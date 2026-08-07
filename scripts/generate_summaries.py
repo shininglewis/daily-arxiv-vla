@@ -23,14 +23,19 @@ RATE_LIMITED_MODELS: Set[str] = set()
 
 def get_client() -> OpenAI:
     """
-    构造 OpenAI 客户端（ModelScope），从环境变量读取配置。
+    构造 OpenAI 兼容客户端。优先使用 DeepSeek 官方 API，
+    也兼容旧的 ModelScope Token / Base URL 配置。
     """
     load_dotenv()
-    api_key = os.getenv("MODELSCOPE_ACCESS_TOKEN")
+    api_key = os.getenv("DEEPSEEK_API_KEY") or os.getenv("MODELSCOPE_ACCESS_TOKEN")
     if not api_key:
-        raise RuntimeError("缺少环境变量 MODELSCOPE_ACCESS_TOKEN")
+        raise RuntimeError("缺少环境变量 DEEPSEEK_API_KEY 或 MODELSCOPE_ACCESS_TOKEN")
 
-    base_url = os.getenv("MODELSCOPE_BASE_URL", "https://api-inference.modelscope.cn/v1/")
+    base_url = (
+        os.getenv("DEEPSEEK_BASE_URL")
+        or os.getenv("MODELSCOPE_BASE_URL")
+        or "https://api.deepseek.com"
+    )
     return OpenAI(api_key=api_key, base_url=base_url)
 
 
@@ -96,8 +101,19 @@ def get_model_list() -> List[str]:
             return models
 
     # 如果未配置 MODELSCOPE_MODELS，回退到单个模型配置
-    single_model = os.getenv("MODELSCOPE_MODEL", "deepseek-ai/DeepSeek-V3.2")
+    single_model = os.getenv("MODELSCOPE_MODEL") or os.getenv("DEEPSEEK_MODEL") or "deepseek-v4-flash"
     return [single_model]
+
+
+def get_thinking_extra_body() -> dict:
+    """
+    DeepSeek V4 默认开启 thinking；批量摘要默认关闭以降低延迟和费用。
+    可通过 DEEPSEEK_THINKING=enabled|disabled 覆盖。
+    """
+    thinking = (os.getenv("DEEPSEEK_THINKING") or "disabled").strip().lower()
+    if thinking in {"1", "true", "yes", "on", "enabled"}:
+        return {"thinking": {"type": "enabled"}}
+    return {"thinking": {"type": "disabled"}}
 
 
 def mark_model_rate_limited(model: str) -> None:
@@ -230,6 +246,7 @@ def generate_summary_for_link(client: OpenAI, link: str, model: str = None) -> s
                         },
                     ],
                     stream=False,
+                    extra_body=get_thinking_extra_body(),
                 )
 
                 if not response.choices:

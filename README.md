@@ -27,17 +27,18 @@
 cp .env.example .env
 
 # 编辑 .env 文件，填入你的 API 密钥
-# MODELSCOPE_ACCESS_TOKEN=你的API密钥
+# DEEPSEEK_API_KEY=你的DeepSeek官方API密钥
 ```
 
 可配置的环境变量：
 
 **必需配置：**
-- `MODELSCOPE_ACCESS_TOKEN`: ModelScope API 密钥
+- `DEEPSEEK_API_KEY`: DeepSeek 官方 API 密钥（也兼容旧名 `MODELSCOPE_ACCESS_TOKEN`）
 
 **可选配置：**
-- `MODELSCOPE_BASE_URL`: API 基础 URL（默认：https://api-inference.modelscope.cn/v1/）
-- `MODELSCOPE_MODEL`: 使用的模型（默认：deepseek-ai/DeepSeek-V3.2）
+- `MODELSCOPE_BASE_URL` / `DEEPSEEK_BASE_URL`: API 基础 URL（默认：`https://api.deepseek.com`）
+- `MODELSCOPE_MODEL` / `MODELSCOPE_MODELS`: 模型名（默认：`deepseek-v4-flash`）
+- `DEEPSEEK_THINKING`: `disabled`（默认，适合批量摘要）或 `enabled`
 - `ARXIV_QUERY_KEYWORD`: 搜索关键词，支持 arXiv 查询语法（默认同时检索 VLA 与 World Action Model 相关短语）
 - `ARXIV_INIT_RESULTS`: 初始化抓取数量（默认：500）
 - `ARXIV_DAILY_RESULTS`: 每日抓取数量（默认：20）
@@ -103,24 +104,26 @@ npx serve site
 
 ### 2. 配置环境变量
 
-在仓库设置中添加以下Secret：
-- `MODELSCOPE_ACCESS_TOKEN`: 你的ModelScope API密钥（必需）
+在仓库设置中添加以下 Secret：
+- `DEEPSEEK_API_KEY`: 你的 DeepSeek 官方 API 密钥（推荐）
+- 或继续使用 `MODELSCOPE_ACCESS_TOKEN`：把 DeepSeek Key 填进这个名字也可（脚本两者都认）
 
 **可选配置：** 如果需要修改默认配置（如搜索关键词、模型等），可以在 `.github/workflows/deploy.yml` 中添加环境变量：
 
 ```yaml
-- name: 运行 arXiv 爬虫
-  run: python scripts/arxiv_crawler.py
+- name: 生成论文摘要
+  run: python scripts/generate_summaries.py
   env:
-    MODELSCOPE_ACCESS_TOKEN: ${{ secrets.MODELSCOPE_ACCESS_TOKEN }}
-    ARXIV_QUERY_KEYWORD: "your_keyword"  # 可选：修改搜索关键词
-    ARXIV_DAILY_RESULTS: "30"            # 可选：修改每日抓取数量
+    DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+    MODELSCOPE_BASE_URL: https://api.deepseek.com
+    MODELSCOPE_MODELS: deepseek-v4-flash
+    DEEPSEEK_THINKING: disabled
 ```
 
 默认配置：
 - 搜索关键词：`all:"VLA" OR all:"Vision-Language-Action" OR all:"World Action Model" OR all:"World-Action Model" OR all:"action world model"`
 - 每日抓取：20篇（GitHub Actions 中可覆盖）
-- 模型：deepseek-ai/DeepSeek-V3.2
+- 模型：`deepseek-v4-flash`（DeepSeek 官方 API）
 - 其他配置见 `.env.example`
 
 ### 3. 自动部署
