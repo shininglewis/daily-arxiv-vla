@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>QuantWAMs: Calibrating at the Right Granularity for World Action Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。 现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。 QuantWAMs 的核心思想是将量化决策与校准上下文（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2607.28405.webp" alt="QuantWAMs: Calibrating at the Right Granularity for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">QuantWAMs: Calibrating at the Right Granularity for World Action Models</h1>
             <div class="detail-meta">2026-07-30 · <a href="http://arxiv.org/abs/2607.28405" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2607.28405" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2607.28405</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。 现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。 QuantWAMs 的核心思想是将量化决策与校准上下文（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学智能机器人学与先进制造学院（College of Intelligent Robotics a…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2607.28405/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。</p>
+  <ul class="reading-intro-points"><li>本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。</li><li>现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。</li><li>QuantWAMs 的核心思想是将量化决策与校准上下文（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>智能机器人学与先进制造学院（College of Intelligent Robotics and Advanced Manufacturing, Fudan University）</li><li><strong>复旦大学</strong>计算机科学与技术学院（College of Computer Science and Artificial Intelligence, Fudan University）</li><li><strong>上海智能信息处理重点实验室</strong>（Shanghai Key Lab of Intelligent Information Processing）</li><li><strong>华东师范大学</strong>数据科学与工程学院（School of Data Science and Engineering, East China Normal University）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>本文提出 <strong>QuantWAMs</strong>，一个面向世界动作模型（<strong>World Action Models, WAMs</strong>）的后训练量化（<strong>PTQ</strong>）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。</li><li>现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。</li><li>QuantWAMs 的核心思想是将量化决策与<strong>校准上下文</strong>（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将 WAM 的后训练量化形式化为围绕<strong>结构性</strong>（structural）、<strong>分布性</strong>（distributional）和<strong>目标性</strong>（objective）上下文校准的决策问题，这三者共同决定了部署时精度分配的合理性。</li><li>推导了激活证据可跨模块或跨模式池化的<strong>坐标可容许性</strong>（coordinate admissibility）条件，并刻画了决定 Top-K 掩码恢复的样本异质性交叉（sample-heterogeneity crossover）规律，即命题 1 中的池化交叉条件。</li><li>提出<strong>联合训练目标显著性</strong>（co-training-objective saliency）：从联合视频–动作梯度中计算经验 Fisher 分数，保留坐标级别的交互项（交叉项），在校准稳定的层粒度上分配权重精度。</li><li>提出<strong>固定干预真实回放审计</strong>（fixed-intervention real-rollout auditing）：利用可达的闭环状态回放来修订去噪步骤保护计划（denoising-step protection schedule），且不改变精度预算。</li><li>在 <strong>Fast-WAM</strong> 和 <strong>LingBot-VA</strong> 两个 WAM 实现上，以 <strong>W4A4</strong> 为主的设置下，仿真平均成功率与 FP16 仅差 0.2–0.7 个百分点，同时将目标视频和动作块的峰值权重-激活内存降至 FP16 的约 29%，并提供 1.4–1.6 倍的块级加速。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>共享基异常校准</strong>（Shared-Basis Outlier Calibration）：保留能量最高的 K 个通道为高精度（FP16），其余量化为 A4；通过 Hadamard 旋转统一组内坐标基，使用上下文特定的对角平滑矩阵处理幅度差异；仅在坐标允许的组内池化激活统计量（平方和能量），并依据 bootstrap 掩码稳定性验证池化收益。</li><li><strong>坐标可容许性</strong>（Coordinate admissibility）：具有共同有序基表示的模块才能共享字面坐标索引；Fast-WAM 中共享值通路可对齐投影，expert 私有残差流不共享 Q/K/V 统计；LingBot-VA 共享主干模式复用同一物理 Linear 的输入列时允许跨模式共享。</li><li><strong>联合训练目标显著性</strong>（Co-Training-Objective Saliency）：使用视频–动作联合损失 ℓv + λaℓa 计算 Kronecker 分解的经验 Fisher 分数；与后验融合（Fusion）相比，联合梯度保留了坐标级交叉项，即 2λvλa E[gv ⊙ ga]；采用层级分数作为分配单元，列分数仅作为 GPTQ 内排序启发，以避免细粒度排名不稳定。</li><li><strong>固定干预回放审计</strong>（Fixed-Intervention Real-Rollout Auditing）：针对合成分布（Ssyn）和受保护调度自掩蔽（Sobs）问题，在 FP16 闭环回放的所有状态下统一施加未保护干预 q0 进行偏差测量；通过固定精度预算的 Top-K 重排修订去噪步保护集合，并使用分布偏移诊断 Δprof 检测分布变化。</li><li>整个框架采用 32 条训练轨迹进行统计估计、掩码拟合与量化器校准，回放审计和 PTQ 校准使用轨迹不相交的数据集，最终基准级调度在验证集上冻结后再进行测试。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据集</strong>：<strong>RoboTwin 2.0</strong>（干净/随机域）、<strong>LIBERO</strong>（Goal、Spatial、Object、Long 四个套件）。</li><li><strong>真实机器人平台</strong>：<strong>AgiBot G2</strong> 双臂机器人，三项真实操作任务。</li><li><strong>模型实现</strong>：<strong>Fast-WAM</strong>（双流 Mixture-of-Transformers 架构）和 <strong>LingBot-VA</strong>（共享扩散主干架构）。</li><li><strong>校准数据</strong>：32 条训练轨迹用于 PTQ 统计和掩码拟合；额外的 32 条 FP16 闭环回放轨迹用于调度审计；另设调度验证集和测试集，均与校准回放轨迹不相交。</li><li><strong>精度设定</strong>：以 W4A4 为主，目标视频和动作块（video/action DiT blocks）参与混合精度量化；对比方法包括 GPTQ、SmoothQuant、SVDQuant、Atom。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：RoboTwin 2.0 和 LIBERO 仿真基准（Fast-WAM 和 LingBot-VA），以及真实 AgiBot G2 机器人三项操作任务。</li><li><strong>主要指标</strong>：任务成功率（Clean/Random/Average for RoboTwin；Goal/Spatial/Object/Long/Average for LIBERO）、块级加速比（Speedup）、峰值权重-激活内存（GB）。</li><li><strong>Fast-WAM（表 1）</strong>：QuantWAMs 在 W4A4 下 RoboTwin 2.0 平均成功率 91.7（FP16 为 91.9），LIBERO 平均 97.4（FP16 为 97.6），差距 0.2–0.5 个百分点；加速比 1.4–1.6 倍，峰值内存由 FP16 的 14.4 GB 降至 4.2 GB（约 29%）。</li><li><strong>LingBot-VA（表 2）</strong>：官方权重仅支持 LIBERO-Long，RoboTwin 2.0 和 LIBERO-Long 上量化后与 FP16 差距保持在 0.2–0.7 个百分点，加速比和内存表现与 Fast-WAM 相当。</li><li><strong>消融实验</strong>：共享基池化从重建恢复提升到闭环成功率；联合训练显著性优于后验融合基线；固定干预回放调度的幻影峰值被修正，调度重排带来额外闭环增益；累积组件阶梯验证三者叠加效果最佳。</li><li><strong>真实机器人</strong>：三项操作任务在量化模型（W4A4）上均成功执行，验证了实际部署可行性。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

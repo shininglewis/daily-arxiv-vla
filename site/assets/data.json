@@ -472,14 +472,16 @@
     "cover_path": "covers/2607.29235/",
     "paper_image_path": "assets/paper-images/thumbs/2607.29235.webp",
     "paper_image_full_path": "assets/paper-images/2607.29235.webp",
-    "preview_text": "待生成",
-    "research_unit": "",
-    "hook_text": "待生成",
+    "preview_text": "FBFM 针对世界-动作模型（World-Action Models, WAMs）在长时程控制中的部署风险提出解决方案：现有 WAM 仅在 chunk 边界用真实观测刷新历史，无法在 chunk 内部校正单个时间步的状态预测误差。 提出训练无关的异步反馈机制 FBFM，在流匹配生成过程中将新观测状态和前一动作 chunk 的承诺动作作为时间对齐约束，直接修正条件速度场。 通过跨 chunk 配对形成异步闭环，在不更新预训练模型参数的前提下抑制长期漂移并提高对突发事件的响应能力。",
+    "research_unit": "北京大学（Peking University）",
+    "hook_text": "FBFM 针对世界-动作模型（World-Action Models, WAMs）在长时程控制中的部署风险提出解决方案：现有 WAM 仅在 chunk 边界用真实观测刷新历史，无法在 chunk 内部校正单个时间步的状态预测误差。",
     "key_points": [
-      "待生成"
+      "FBFM 针对世界-动作模型（World-Action Models, WAMs）在长时程控制中的部署风险提出解决方案：现有 WAM 仅在 chunk 边界用真实观测刷新历史，无法在 chunk 内部校正单个时间步的状态预测误差。",
+      "提出训练无关的异步反馈机制 FBFM，在流匹配生成过程中将新观测状态和前一动作 chunk 的承诺动作作为时间对齐约束，直接修正条件速度场。",
+      "通过跨 chunk 配对形成异步闭环，在不更新预训练模型参数的前提下抑制长期漂移并提高对突发事件的响应能力。"
     ],
-    "reading_minutes": 1,
-    "section_count": 1,
+    "reading_minutes": 6,
+    "section_count": 6,
     "cover_theme": {
       "from": "#6f4cc9",
       "to": "#c57be8",
@@ -499,14 +501,16 @@
     "cover_path": "covers/2607.28993/",
     "paper_image_path": "assets/paper-images/thumbs/2607.28993.webp",
     "paper_image_full_path": "assets/paper-images/2607.28993.webp",
-    "preview_text": "待生成",
-    "research_unit": "",
-    "hook_text": "待生成",
+    "preview_text": "论文聚焦 World Action Models（WAMs） 在视觉分布偏移（visual distribution shifts）下的鲁棒性问题，发现视频生成式 WAM 存在 Training-Distribution Hallucination 现象：当观测偏离训练分布时，模型预测的未来视频会逐渐漂移到训练域内容而非保持对当前场景的忠实 提出 Semantic-Temporal WAM（ST-WAM），使用 DINOv3 作为共享语义表示，同时从前瞻（future prediction）和回溯（history retrieval）两个互补时序方向提升动作鲁棒性，保留细粒度 VAE 动态的同时引入视觉稳定的语义转换 方法无需额外的具身预训练、多阶段训练或任务特定语义标注，推理时不需要显式生成未来视频，保持高效部署",
+    "research_unit": "论文作者来自 6 个研究机构（文中标注为 1-6，部分作者同时隶属多个单位）",
+    "hook_text": "论文聚焦 World Action Models（WAMs） 在视觉分布偏移（visual distribution shifts）下的鲁棒性问题，发现视频生成式 WAM 存在 Training-Distribution Hallucination 现象：当观测偏离训练分布时，模型预测的未来视频会逐渐漂移到训练域内容而非保持对当前场景的忠实",
     "key_points": [
-      "待生成"
+      "论文聚焦 World Action Models（WAMs） 在视觉分布偏移（visual distribution shifts）下的鲁棒性问题，发现视频生成式 WAM 存在 Training-Distribution Hallucination 现象：当观测偏离训练分布时，模型预测的未来视频会逐渐漂移到训练域内容而非保持对当前场景的忠实",
+      "提出 Semantic-Temporal WAM（ST-WAM），使用 DINOv3 作为共享语义表示，同时从前瞻（future prediction）和回溯（history retrieval）两个互补时序方向提升动作鲁棒性，保留细粒度 VAE 动态的同时引入视觉稳定的语义转换",
+      "方法无需额外的具身预训练、多阶段训练或任务特定语义标注，推理时不需要显式生成未来视频，保持高效部署"
     ],
-    "reading_minutes": 1,
-    "section_count": 1,
+    "reading_minutes": 11,
+    "section_count": 6,
     "cover_theme": {
       "from": "#177e89",
       "to": "#5ec2a8",
@@ -526,14 +530,16 @@
     "cover_path": "covers/2607.28405/",
     "paper_image_path": "assets/paper-images/thumbs/2607.28405.webp",
     "paper_image_full_path": "assets/paper-images/2607.28405.webp",
-    "preview_text": "待生成",
-    "research_unit": "",
-    "hook_text": "待生成",
+    "preview_text": "本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。 现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。 QuantWAMs 的核心思想是将量化决策与校准上下文（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。",
+    "research_unit": "复旦大学智能机器人学与先进制造学院（College of Intelligent Robotics a…",
+    "hook_text": "本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。",
     "key_points": [
-      "待生成"
+      "本文提出 QuantWAMs，一个面向世界动作模型（World Action Models, WAMs）的后训练量化（PTQ）框架，旨在解决 WAM 在真实机器人部署中因迭代去噪和闭环执行带来的高计算成本问题。",
+      "现有 PTQ 方法在 WAM 上失效，因为它们依赖开放环路目标（如困惑度、单帧重建）、同质 transformer 假设，以及不能反映部署分布的校准数据；WAM 的早期量化误差会通过闭环交互传播到后续状态，且其双流/共享主干架构耦合了异构路径。",
+      "QuantWAMs 的核心思想是将量化决策与校准上下文（calibration context）对齐，该上下文由模型结构、部署分布和任务目标三个维度定义，并分别提出共享基异常校准、联合训练目标显著性以及固定干预回放审计三种策略。"
     ],
-    "reading_minutes": 1,
-    "section_count": 1,
+    "reading_minutes": 11,
+    "section_count": 6,
     "cover_theme": {
       "from": "#177e89",
       "to": "#5ec2a8",
@@ -553,14 +559,16 @@
     "cover_path": "covers/2607.28391/",
     "paper_image_path": "assets/paper-images/thumbs/2607.28391.webp",
     "paper_image_full_path": "assets/paper-images/2607.28391.webp",
-    "preview_text": "待生成",
-    "research_unit": "",
-    "hook_text": "待生成",
+    "preview_text": "TacWAM 是一种力学感知的触觉增强世界动作模型（World Action Model, WAM），将未来触觉状态预测与机器人动作生成相结合，用于接触丰富的操作任务 现有 WAM 主要依赖视觉未来状态预测，但视觉无法充分监督力、变形、剪切和滑移等接触相关的物理信息；论文通过三步骤解决：SAF 触觉编码器构建共享触觉潜在预测空间、触觉历史编码器提供时间上下文、AGT 注意力隔离未来预测目标与动作分支 核心思想是：未来触觉状态作为训练监督信号丰富接触感知学习，同时保证动作生成在部署时只使用当前可观测信息，避免未来信息成为动作分支的特权线索（privileged cue）",
+    "research_unit": "论文作者单位未在 HTML 原文中明确标注（作者：Lei Jin、Yiding Ma、Xin Zhan…",
+    "hook_text": "TacWAM 是一种力学感知的触觉增强世界动作模型（World Action Model, WAM），将未来触觉状态预测与机器人动作生成相结合，用于接触丰富的操作任务",
     "key_points": [
-      "待生成"
+      "TacWAM 是一种力学感知的触觉增强世界动作模型（World Action Model, WAM），将未来触觉状态预测与机器人动作生成相结合，用于接触丰富的操作任务",
+      "现有 WAM 主要依赖视觉未来状态预测，但视觉无法充分监督力、变形、剪切和滑移等接触相关的物理信息；论文通过三步骤解决：SAF 触觉编码器构建共享触觉潜在预测空间、触觉历史编码器提供时间上下文、AGT 注意力隔离未来预测目标与动作分支",
+      "核心思想是：未来触觉状态作为训练监督信号丰富接触感知学习，同时保证动作生成在部署时只使用当前可观测信息，避免未来信息成为动作分支的特权线索（privileged cue）"
     ],
-    "reading_minutes": 1,
-    "section_count": 1,
+    "reading_minutes": 7,
+    "section_count": 6,
     "cover_theme": {
       "from": "#ef6c3f",
       "to": "#f6b13d",
@@ -578,16 +586,18 @@
     "arxiv_id": "2607.28243",
     "detail_path": "papers/2607.28243/",
     "cover_path": "covers/2607.28243/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
-    "preview_text": "待生成",
-    "research_unit": "",
-    "hook_text": "待生成",
+    "paper_image_path": "assets/paper-images/thumbs/2607.28243.webp",
+    "paper_image_full_path": "assets/paper-images/2607.28243.webp",
+    "preview_text": "论文提出 EgoGenesis，一个第一视角世界动作模拟器（egocentric world-action simulator），用于合成可控、高质量的操控视频，以扩充稀缺的真实世界训练数据。 现有 egocentric 视频生成器存在两类典型失败模式：通用视频模型（如 Wan2.1-14B）无法显式约束相机和末端执行器轨迹，而动作条件模型（如 RynnWorld-TeleOp）生成的场景和被操作物体会随时间漂移。 EgoGenesis 通过解耦世界建模与动作编码两个模态，分别设计了 OAPM（场景记忆）与 A3D-RoPE（动作几何注入），以实现长程 rollout 中的场景持久性与动作对齐。",
+    "research_unit": "上海交通大学（Shanghai Jiao Tong University）",
+    "hook_text": "论文提出 EgoGenesis，一个第一视角世界动作模拟器（egocentric world-action simulator），用于合成可控、高质量的操控视频，以扩充稀缺的真实世界训练数据。",
     "key_points": [
-      "待生成"
+      "论文提出 EgoGenesis，一个第一视角世界动作模拟器（egocentric world-action simulator），用于合成可控、高质量的操控视频，以扩充稀缺的真实世界训练数据。",
+      "现有 egocentric 视频生成器存在两类典型失败模式：通用视频模型（如 Wan2.1-14B）无法显式约束相机和末端执行器轨迹，而动作条件模型（如 RynnWorld-TeleOp）生成的场景和被操作物体会随时间漂移。",
+      "EgoGenesis 通过解耦世界建模与动作编码两个模态，分别设计了 OAPM（场景记忆）与 A3D-RoPE（动作几何注入），以实现长程 rollout 中的场景持久性与动作对齐。"
     ],
-    "reading_minutes": 1,
-    "section_count": 1,
+    "reading_minutes": 9,
+    "section_count": 6,
     "cover_theme": {
       "from": "#177e89",
       "to": "#5ec2a8",
