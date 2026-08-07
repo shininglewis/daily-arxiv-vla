@@ -6,6 +6,7 @@ on:
   schedule:
     # 每日北京时间中午12点（UTC 4:00）运行爬取和生成任务
     - cron: '0 4 * * *'
+  workflow_dispatch: # 允许在 Actions 页面手动 Run workflow
 
 permissions:
   contents: write
