@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。 SelfWAM基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。 在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.00725">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.00725.webp" alt="SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control</h1>
+            <div class="detail-meta">2026-08-01 · <a href="http://arxiv.org/abs/2608.00725" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.00725" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.00725</span></div>
+            <p class="detail-summary">针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。 SelfWAM基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。 在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海科技大学（ShanghaiTech University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.00725/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。</p>
+  <ul class="reading-intro-points"><li>针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。</li><li>SelfWAM基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。</li><li>在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>上海科技大学（ShanghaiTech University）</li><li>教育部智能感知与人机协作重点实验室（上海科技大学）</li><li>Fcloud Co., Ltd.（提供部分算力支持）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型<strong>SelfWAM</strong>，用于实现快速机器人控制。</li><li><strong>SelfWAM</strong>基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。</li><li>在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>扩展双流混合专家Transformer（MoT）架构，新增清洁执行动作的条件分支，将动作预测与动作条件化未来建模统一到单一架构中，仅向未来视觉查询暴露清洁动作条件，既能让模型区分不同动作引发的未来后果，又保留轻量仅动作推理路径，避免目标泄露。</li><li>引入未来机器人自掩码序列预测作为辅助训练目标，排除外观、纹理、背景等与动作无关的视觉变化，将动作条件化建模聚焦于机器人自身的可见运动，强化未来预测的自 grounding 特性。</li><li>在<strong>RoboTwin 2.0</strong>仿真基准与真实世界双臂操控任务上的实验验证了方法的有效性：<strong>SelfWAM</strong>提升了未来预测的保真度与动作敏感性，优化了策略性能，且几乎不增加部署时的推理开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>SelfWAM</strong>基于<strong>FastWAM</strong>的双流MoT架构设计，包含预训练的视频骨干（初始化自<strong>WAN2.2-5B</strong>）和轻量动作专家，二者通过混合注意力机制耦合，语言指令与本体感知特征同时 conditioning 两个分支，视频骨干负责未来视觉预测，动作专家负责动作预测。</li><li>核心创新为不对称的信息流设计：训练时创建一份无噪声的清洁执行动作副本，仅向未来视觉查询暴露该副本，使视觉分支能够学习特定动作引发的视觉后果；而带噪声的未来动作查询仅能访问当前上下文和自身噪声动作，无法获取清洁动作或未来视觉 token，既避免目标泄露到动作预测分支，又保证策略分支的计算图与仅动作部署时完全一致。</li><li>复用同一视频骨干实现双模态未来预测：通过不同的输出提示，分别预测未来RGB视频和未来机器人自掩码视频，自掩码预测排除外观、背景等无关变化，提供聚焦于机器人自身动作的学习信号；仅RGB训练实例需要承担动作预测损失，自掩码实例仅贡献掩码预测损失，不增加策略训练的开销。</li><li>训练采用联合流匹配目标，加权融合动作去噪损失、RGB未来预测损失与自掩码未来预测损失；部署时仅启用当前上下文编码与轻量动作专家的动作去噪路径，省略清洁动作分支与未来视觉去噪过程，保持快速闭环控制能力，可选的世界模型回滚模式可通过清洁动作路径生成未来RGB或自掩码视频。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用的数据集：仿真场景采用<strong>RoboTwin 2.0</strong>双臂协同操控基准，包含50+多样化任务，训练集共27,500条演示（含2,500条干净环境演示和25,000条场景随机化演示）；真实机器人场景采用<strong>AgileX ALOHA</strong>双臂平台采集的约17K episodes、9.5M transitions的桌面操控数据集，机器人自掩码通过<strong>RoboSeg</strong>离线生成。</li><li>模型规模：视频骨干为预训练的<strong>WAN2.2-5B</strong>（50亿参数），轻量动作专家通过权重插值从视频骨干初始化，参数量远小于视频骨干，部署时仅需加载动作专家与上下文编码模块。</li><li>训练资源：64块<strong>NVIDIA A800</strong> GPU，全局批次大小1024（单GPU批次大小16），训练时长约30小时；系统配置为Ubuntu 22.04、Python 3.10.12、PyTorch 2.7.1、CUDA 12.8，系统内存1TB，部分算力由Fcloud Co., Ltd.提供。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：仿真场景覆盖<strong>RoboTwin 2.0</strong>的干净环境与场景随机化环境，真实机器人场景覆盖<strong>AgileX ALOHA</strong>平台的4项桌面 pick-and-place 任务（木支架放杯子、蓝杯子插黑笔、灰色鼠标垫放黑色鼠标、桌面垃圾桶投放纸球），每个任务进行10次独立试验。</li><li>主要评估指标：策略性能采用<strong>任务成功率（%）</strong>；未来预测质量采用<strong>LPIPS</strong>（越低越好）、<strong>PSNR</strong>（越高越好）、<strong>FVD-I3D</strong>（越低越好）；动作敏感性通过方向动作扰动下的预测自掩码运动匹配度评估；推理效率采用单步推理延迟（ms）与峰值内存占用（GiB）。</li><li>关键实验结果：</li></ul>
+<p> - 策略性能：<strong>RoboTwin 2.0</strong>上平均任务成功率达92.62%，优于所有对比基线（包括π₀、π₀.₅、Motus、GigaWorld-Policy、<strong>FastWAM</strong>），场景随机化下的性能提升更显著；真实机器人4项任务平均成功率为95%，高于<strong>FastWAM</strong>（85%）和π₀.₅（90%）。</p>
+<p> - 未来预测质量：动作条件化的未来RGB预测各项指标均优于无动作条件的<strong>FastWAM</strong>，LPIPS从0.0636降至0.0429（降低32.6%），PSNR从29.24升至32.79（提升12.1%），FVD-I3D从45.92降至34.55（降低24.7%）。</p>
+<p> - 动作敏感性：方向动作扰动实验中，<strong>SelfWAM</strong>的预测机器人自掩码可跟随动作扰动方向运动，与真实运动趋势一致，而无动作条件的基线几乎不受扰动影响，验证了未来预测的动作条件化有效性。</p>
+<p> - 推理效率：仅动作推理路径的延迟较<strong>FastWAM</strong>仅增加0.97%，联合动作+视频推理延迟增加1.36%，峰值内存无差异，几乎不增加部署开销。</p>
+<p> - 组件消融实验验证了清洁动作条件与未来自掩码监督的独立有效性：仅加入清洁动作条件时策略性能与<strong>FastWAM</strong>接近，加入自掩码监督后可进一步提升策略性能。</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.00793/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.00635/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FlowPilot: Real-Time World-Action Modeling for Agile UAV Navigation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

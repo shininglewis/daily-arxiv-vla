@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EndoWAM: A Grounded World-Action Model for Generalizable Endoscopic Navigation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制 为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集EndoMotion，支撑模型训练与泛化验证" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.01221">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.01221.webp" alt="EndoWAM: A Grounded World-Action Model for Generalizable Endoscopic Navigation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EndoWAM: A Grounded World-Action Model for Generalizable Endoscopic Navigation</h1>
+            <div class="detail-meta">2026-08-02 · <a href="http://arxiv.org/abs/2608.01221" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.01221" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.01221</span></div>
+            <p class="detail-summary">针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制 为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集EndoMotion，支撑模型训练与泛化验证</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">第一单位：香港中文大学（The Chinese University of Hong Kong, CU…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.01221/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM</p>
+  <ul class="reading-intro-points"><li>针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM</li><li>EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制</li><li>为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集EndoMotion，支撑模型训练与泛化验证</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>第一单位：<strong>香港中文大学（The Chinese University of Hong Kong, CUHK）</strong></li><li>其他合作单位：香港中文大学（深圳）、华南理工大学、上海交通大学、浙江大学、清华大学</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）<strong>EndoWAM</strong></li><li>EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制</li><li>为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集<strong>EndoMotion</strong>，支撑模型训练与泛化验证</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>EndoWAM</strong>，据称是首个面向通用机器人内窥镜导航的World Action Model，通过视频世界模型的中间去噪特征条件化动作策略，同时融合预测视觉动态与实时控制能力</li><li>提出未来 grounded 范式，从世界模型的中间潜在表示预测未来帧中的任务相关目标区域，实现细粒度、目标感知的时间表示学习，提升导航的精确性与鲁棒性</li><li>构建多Procedure内窥镜运动数据集<strong>EndoMotion</strong>，涵盖输尿管镜、食管镜、ERCP三类手术，包含密集目标标注、动作标签与视角增强，为领域提供高质量训练资源</li><li>大量真实世界闭环实验证明EndoWAM达到SOTA性能，且能有效泛化到未见过的视角、环境和目标任务</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用「预测潜在动态-定位-执行」范式：基础视频世界模型基于<strong>Cosmos-Predict2.5-2B</strong>初始化，通过LoRA微调注意力与前馈投影层适配内窥镜领域，冻结文本编码器与视频VAE，从当前帧与语言指令预测未来视觉动态的潜在表示，单次去噪过程中提取第17层块激活作为共享表示H</li><li>基于共享表示H构建双预测头：一是动作解码器，通过可学习动作查询的双向自注意力与对H的交叉注意力，经MLP输出三自由度离散动作序列；二是轻量级<strong>Grounding DiT</strong>，重建未来帧中目标区域的VAE潜在表示，实现未来目标定位</li><li>联合优化三类损失：视频流匹配损失（建模未来视觉动态）、加权动作交叉熵损失（建模多步动作）、未来目标扩散重建损失（建模目标时空演化），三部分损失加权求和</li><li>核心创新与关键技术：首次将World Action Model引入通用内窥镜导航场景；提出未来grounding范式，将目标感知监督注入世界模型中间表示而非仅处理当前观测，更好捕捉目标时空演化；推理阶段仅需单次去噪即可输出动作，无需运行Grounding DiT与未来帧解码，无额外推理开销</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用自建数据集<strong>EndoMotion</strong>：原始版本包含515条轨迹、98万帧，涵盖输尿管镜、食管镜、ERCP三类手术，在对应解剖phantom上采集的人类遥操作轨迹；经Grounding DINO密集标注、Kalman滤波得到时序一致的有向边界框跟踪，转换为目标中心偏移的离散动作标签与未来帧目标区域裁剪标签；经45°间隔视角增强后扩展至4120条序列、784万帧</li><li>模型规模：基础视频世界模型基于<strong>Cosmos-Predict2.5-2B</strong>初始化，经LoRA微调后总参数量约2.1B，共享表示从第17层块激活提取</li><li>训练资源：原文未明确说明训练所用硬件；推理部署采用单张<strong>NVIDIA RTX 5090</strong>，实现7.5Hz的控制频率</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：在输尿管镜、食管镜、ERCP三类手术的物理解剖phantom上，基于3自由度柔性内窥镜平台开展闭环实验，试验成功定义为内窥镜到达指令目标并保持目标在视野内直至rollout结束，失败类型包括丢失管腔、管壁卡住、超时</li><li>评估基准：对比5个基线策略，包括非VLA模仿学习策略<strong>Diffusion Policy</strong>、大规模预训练VLA策略<strong>π₀.₅</strong>与<strong>GR00T-N1.7</strong>、同视觉语言backbone（Qwen3-VL-2B）的对照策略<strong>Qwen3DiT</strong>（扩散动作头）与<strong>Qwen3AE</strong>（离散动作专家），所有基线使用相同观测、指令与增强后的EndoMotion数据集训练</li><li>主要评估指标：闭环导航成功率（%）、零样本泛化成功率、推理控制频率（Hz）</li><li>关键实验结果：</li></ul>
+<p> - 未见过视角下的闭环导航平均成功率达<strong>80.2%</strong>（96次试验中成功77次）， outperformed 最强基线GR00T-N1.7（27.1%）53.1个百分点，在输尿管镜（90.6%）、ERCP（93.8%）上均为最优，食管镜（56.3%）也显著优于所有基线</p>
+<p> - 消融实验显示：移除Grounding DiT后平均成功率降至37.5%，移除视角增强后降至28.1%，验证两个关键设计的有效性；注意力可视化证明Grounding DiT可让策略聚焦任务相关目标，避免被镜面反射与组织纹理干扰</p>
+<p> - 零样本泛化到未见过的环境（反射率、几何、纹理偏移）与目标（形状、尺寸、颜色偏移）时，平均成功率达<strong>90.1%</strong>， outperformed 最强基线GR00T-N1.7（46.9%）43.2个百分点，纹理偏移场景下成功率可达100%</p>
+<p> - 推理效率：单张RTX 5090上控制频率达7.5Hz，比同规模带动态先验的Cosmos Policy（1.1Hz）快6.8倍，兼顾导航精度与实时性要求</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.01397/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SG-WAM: Self-Guided World Modeling in Geometry-Aware Policy Space</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.00793/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

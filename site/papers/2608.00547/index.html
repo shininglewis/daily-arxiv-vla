@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Disentangling Visuo-Tactile Foresight: Oracle-Guided Interface Discovery for World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。 本文提出Oracle Visuo-Tactile Foresight (OVTF) 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？ 在OVTF框架内，提出Asymmetric Phase-Local Future Memory (AFM)，与模态隔离的Modality-Isolated Future Memory (IFM) 进行受控对比，验证未来接口设计的有效性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.00547">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.00547.webp" alt="Disentangling Visuo-Tactile Foresight: Oracle-Guided Interface Discovery for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Disentangling Visuo-Tactile Foresight: Oracle-Guided Interface Discovery for World Action Models</h1>
+            <div class="detail-meta">2026-08-01 · <a href="http://arxiv.org/abs/2608.00547" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.00547" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.00547</span></div>
+            <p class="detail-summary">接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。 本文提出Oracle Visuo-Tactile Foresight (OVTF) 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？ 在OVTF框架内，提出Asymmetric Phase-Local Future Memory (AFM)，与模态隔离的Modality-Isolated Future Memory (IFM) 进行受控对比，验证未来接口设计的有效性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">提供的论文HTML片段中未明确标注作者所属研究机构，论文作者为Zihang Yao、Chaoyue D…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.00547/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。</p>
+  <ul class="reading-intro-points"><li>接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。</li><li>本文提出Oracle Visuo-Tactile Foresight (OVTF) 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？</li><li>在OVTF框架内，提出Asymmetric Phase-Local Future Memory (AFM)，与模态隔离的Modality-Isolated Future Memory (IFM) 进行受控对比，验证未来接口设计的有效性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>提供的论文HTML片段中未明确标注作者所属研究机构，论文作者为Zihang Yao、Chaoyue Ding、Yingying Yu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的<strong>未来到动作接口</strong>是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。</li><li>本文提出<strong>Oracle Visuo-Tactile Foresight (OVTF)</strong> 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？</li><li>在OVTF框架内，提出<strong>Asymmetric Phase-Local Future Memory (AFM)</strong>，与模态隔离的<strong>Modality-Isolated Future Memory (IFM)</strong> 进行受控对比，验证未来接口设计的有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出OVTF变量解耦框架：固定未来提供者为仿真验证的配对成功视觉-触觉轨迹，排除未来预测误差的干扰，实现未来到动作接口的独立可研究性。</li><li>提出AFM非对称未来记忆接口：证明相位对齐的视觉到触觉路由比完全模态隔离的记忆更有利于动作生成，即使后续ACT编码器中多模态可再次交互，接口处的显式非对称融合仍能提供额外增益。</li><li>证明AFM兼容的策略路径无需未来信息也能保持强性能：AFM Zero-Train（训练时无未来输入）和AFM Forced-Zero（测试时禁用未来输入）的成功率分别为20.0%和19.4%，均显著高于UniVTAC-ACT*基线的14.9%，说明框架本身具备独立的动作建模能力。</li><li>在UniVTAC仿真基准的7个接触丰富操作任务上，AFM Oracle达到32.0%平均成功率，较IFM提升8.3个百分点，较基线提升17.1个百分点，验证了接口设计的有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>OVTF未来提供与编码：仅使用仿真验证的成功演示轨迹的配对RGB、左右触觉图像作为未来输入，不提供未来动作、机器人状态等特权信息；未来帧由初始化自UniVTAC-ACT*预训练权重的独立ResNet-18编码，叠加门控局部时间残差增强时序建模能力。</li><li>AFM非对称相位局部记忆：设计12个512维的 learned 记忆槽（4个视觉、4个左触觉、4个右触觉），固定4个相位锚点{0.125, 0.375, 0.625, 0.875}，注意力分数加入高斯相位先验实现相位局部聚合；路由规则为非对称：视觉记忆仅读取未来视觉流，左右触觉记忆各自联合关注自身触觉流与相位对齐的未来视觉流，禁止左右触觉间的交叉访问。作为对照的<strong>Modality-Isolated Future Memory (IFM)</strong> 与AFM共享完全相同的未来提供者、相位锚点、记忆预算、训练数据与优化设置，仅移除视觉到触觉的读取边，实现完全模态隔离。</li><li>ACT集成与优化：当前观测由冻结的UniVTAC-ACT*编码器处理，未来记忆槽经零初始化的tanh门控后与当前观测、本体感知token共同输入ACTTransformer，解码器输出50步动作块；仅使用掩码L1动作损失作为优化目标，记忆槽去相关项 detached 不参与反向传播。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集：<strong>UniVTAC仿真基准</strong>的7个接触丰富操作任务，包括Put Shelf、Pull Out Key、Lift Bottle、Insert HDMI、Insert Hole、Insert Tube、Lift Can，所有任务使用左右双触觉流，部分任务额外使用头部或头部+手腕RGB相机。</li><li>模型规模：未来编码器为ResNet-18，ACT策略隐藏维度512，8头注意力，编码器4层、解码器7层，未来记忆共12个512维槽，动作块大小为50，动作维度为8。</li><li>训练资源：2块<strong>NVIDIA RTX 4090 D</strong> 24GB GPU，每GPU微批次大小为1，梯度累积步数为8，有效批次大小为16，共训练2000步；运行环境为Ubuntu 20.04.6，PyTorch 2.7.0，Isaac Sim 4.5.0，Isaac Lab 0.41.3，采用FP32精度无自动混合精度（AMP）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境与基准：在UniVTAC仿真基准的7个任务上共进行350次rollout评估，基准为<strong>UniVTAC-ACT</strong>*（平均成功率14.9%），所有AFM家族方法共享相同的episode映射、评估器、预处理流程与成功判定标准，仅接口设计存在差异。</li><li>评估指标：任务成功率（Success Rate, SR）。</li><li>关键实验结果：</li></ul>
+<p> - <strong>AFM Oracle</strong>（训练测试均使用oracle未来，非对称路由）达到32.0%平均成功率（112/350），较IFM的23.7%（83/350）提升8.3个百分点，较UniVTAC-ACT*基线提升17.1个百分点。</p>
+<p> - <strong>AFM Forced-Zero</strong>（使用oracle训练checkpoint，测试时零化未来记忆槽）成功率为19.4%，证明训练得到的策略确实利用了测试时未来信息，而非仅受益于额外模块参数。</p>
+<p> - <strong>AFM Zero-Train</strong>（训练测试均无未来输入）成功率为20.0%，显著高于UniVTAC-ACT*基线，证明AFM框架本身即使在没有未来信息时也能保持强性能。</p>
+<p> - 消融实验表明，即使后续ACT编码器中多模态token可再次交互，接口处的显式非对称融合仍能提供无法被后续自注意力恢复的信息组织增益。</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.00635/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">FlowPilot: Real-Time World-Action Modeling for Agile UAV Navigation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2607.29235/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

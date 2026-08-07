@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题 动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力 研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.00793">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.00793.webp" alt="DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation</h1>
+            <div class="detail-meta">2026-08-01 · <a href="http://arxiv.org/abs/2608.00793" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.00793" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.00793</span></div>
+            <p class="detail-summary">本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题 动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力 研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">提供的HTML原文未包含作者所属研究机构的具体名称信息</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.00793/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题</p>
+  <ul class="reading-intro-points"><li>本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题</li><li>动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力</li><li>研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>提供的HTML原文未包含作者所属研究机构的具体名称信息</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文提出<strong>DynamicWAM</strong>，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题</li><li>动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力</li><li>研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>历史流条件</strong>方法：将时间对齐的历史光流帧与当前多视角观测通过冻结的预训练视频VAE联合编码，为未来视觉预测提供密集的近期空间运动证据，且不改变机器人原有动作空间定义</li><li>提出<strong>运动学标记条件</strong>方法：将位移、时间间隔、速度、加速度等12维运动学描述符编码为标记注入动作专家，补充流渲染过程中丢失的绝对运动幅度与时间速率信息，与历史流路径形成互补</li><li>构建了完整的运动条件WAM框架，在仿真基准<strong>DOMINO</strong>与12个真实机器人动态操控任务上验证有效性，实现了仿真与真实场景下的性能双提升</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基础backbone由从大规模视频生成模型<strong>Wan2.2-TI2V-5B</strong>蒸馏得到的紧凑视频专家、动作专家组成，预训练视频VAE保持冻结，两个专家通过层间联合世界-动作注意力机制实现视觉与动作流的双向交互</li><li>历史流路径：将策略查询时刻的观测历史划分为K=4个时间间隔，每个间隔计算Farnebäck光流并通过前向-后向一致性检查得到掩码流场，将流场渲染为RGB图像（方向映射为色相、幅度按帧的99分位数值归一化）后与当前观测沿时间轴拼接，输入视频VAE编码，保留运动的空间分布、方向与时序顺序</li><li>运动学标记路径：对每个有效光流间隔计算平均有符号位移、平均位移幅度、99分位幅度，结合间隔时长推导速度与加速度统计量，组成12维运动学描述符，经数据集级标准化、两层MLP投影后生成运动学标记，注入动作专家，解决流渲染无法恢复的绝对位移尺度与时间信息模糊问题</li><li>联合训练目标：精调阶段采用条件流匹配损失，同时优化视觉流与动作流的预测，总损失为动作流L2损失与加权后的视觉流L2损失之和</li><li>异步执行：真实机器人部署时采用<strong>Real-Time Chunking (RTC)</strong>机制，在执行当前动作块的同时并行推理下一个动作块，通过平滑合并避免推理导致的停顿，隐藏模型推理延迟</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真数据集：采用动态操控基准<strong>DOMINO Level 1</strong>的全部35个任务，评估时每个任务使用100个未见过的语言指令对应的评估片段，训练集包含10500个演示片段（每个任务150个干净场景演示+150个随机化场景演示）</li><li>真实世界数据集：自建12任务动态操控数据集，按目标运动几何结构分为线性运动（Level 1）、圆周运动（Level 2）、复合运动（Level 3）三类，每类包含4个任务，训练集包含1200个演示片段（每个任务100个演示）</li><li>模型规模：视频专家为从<strong>Wan2.2-TI2V-5B</strong>蒸馏得到的紧凑架构，具体参数量未在提供的内容中明确说明</li><li>训练资源：提供的HTML原文未提及具体的GPU、TPU等训练硬件相关信息</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：仿真评估严格遵循DOMINO基准的原生同步协议，每次策略查询预测16步关节位置动作；真实机器人实验使用<strong>Franka Research 3</strong>机械臂，搭配CTAG2F90或Robotiq 2F-140平行夹爪，通过2个Intel RealSense D435i相机提供多视角视觉输入</li><li>主要评估指标：任务成功率（Success Rate, SR）、操控分数（Manipulation Score, MS）、单次策略查询延迟（ms）</li><li>关键实验结果：</li></ul>
+<p> - 仿真DOMINO基准上，DynamicWAM达到38.2% SR与53.2 MS，超过所有对比基线，相比最强基线<strong>InternVLA-A1.5</strong>提升8.9个SR点与10.7个MS点，相比动态操控基线<strong>PUMA</strong>提升21.0个SR点与18.2个MS点；单次查询延迟173.7ms，与最快基线处于同一数量级，且比InternVLA-A1.5快3.2倍，实现了性能与效率的平衡</p>
+<p> - 消融实验验证双路径的互补性：仅使用当前帧的基线WAM SR为22.7%、MS为38.3，仅添加历史流条件后SR提升至27.2%、MS提升至41.6，仅添加运动学标记可达30.5% SR与47.2 MS，两者结合后进一步提升至38.2% SR与53.2 MS，相比更强的单路径变体提升7.7个SR点</p>
+<p> - 真实世界12个任务上，DynamicWAM平均成功率达46.7%，超过最强外部基线<strong>π₀.5</strong> 22.9个百分点；其中线性运动任务（L1）成功率达70.0%，圆周运动（L2）达51.25%，复合运动（L3）达18.75%，所有外部基线在L3任务上无成功案例</p>
+<p> - RTC异步执行可进一步提升平均成功率4.59个百分点（从42.08%提升至46.67%），且运动复杂度越高提升越显著，L3任务上提升达6.25个百分点，说明异步执行与运动条件设计提供互补增益</p>
+<p> - 视觉泛化实验中，DynamicWAM在背景、光照、物体颜色三种分布偏移下的平均分布外成功率达36.3%，远高于π₀.5的17.5%和无运动条件基线的20.0%；其分布偏移下的性能保持比率与基线接近，说明其分布外优势主要来自更强的分布内操控能力，而非相对鲁棒性的特殊提升</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.01221/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">EndoWAM: A Grounded World-Action Model for Generalizable Endoscopic Navigation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.00725/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

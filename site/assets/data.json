@@ -1,6 +1,605 @@
 [
   {
     "date": "2026-08-06",
+    "title": "Adaptive-WAM: Quality-Guided Early-Exit Planning from Intermediate Video-Diffusion Features",
+    "link": "http://arxiv.org/abs/2608.06008",
+    "arxiv_id": "2608.06008",
+    "detail_path": "papers/2608.06008/",
+    "cover_path": "covers/2608.06008/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06008.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06008.webp",
+    "preview_text": "论文提出了 Adaptive-WAM，一种基于质量引导的提前退出规划方法，利用视频扩散模型中间层特征进行自动驾驶决策，避免完整视频生成。 核心问题：现有世界动作模型（WAM）在部署时需执行完整视频扩散模型，但自动驾驶仅需低维轨迹，因此探究“模型需要执行多少层才能做出可靠决策”。 通过系统分析视频去噪时间步和 DiT 深度，发现规划性能对视频噪声水平不敏感，中间层已能解码出强轨迹，从而驱动自适应退出策略。",
+    "research_unit": "作者单位未在提供的论文 HTML 中明确列出，仅标注了作者序号（1,2,3），具体机构信息缺失。",
+    "hook_text": "论文提出了 Adaptive-WAM，一种基于质量引导的提前退出规划方法，利用视频扩散模型中间层特征进行自动驾驶决策，避免完整视频生成。",
+    "key_points": [
+      "论文提出了 Adaptive-WAM，一种基于质量引导的提前退出规划方法，利用视频扩散模型中间层特征进行自动驾驶决策，避免完整视频生成。",
+      "核心问题：现有世界动作模型（WAM）在部署时需执行完整视频扩散模型，但自动驾驶仅需低维轨迹，因此探究“模型需要执行多少层才能做出可靠决策”。",
+      "通过系统分析视频去噪时间步和 DiT 深度，发现规划性能对视频噪声水平不敏感，中间层已能解码出强轨迹，从而驱动自适应退出策略。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-06",
+    "title": "Robust-WAM: Bridging Generative Pretraining and Semantic Foresight in World-Action Models",
+    "link": "http://arxiv.org/abs/2608.05903",
+    "arxiv_id": "2608.05903",
+    "detail_path": "papers/2608.05903/",
+    "cover_path": "covers/2608.05903/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.05903.webp",
+    "paper_image_full_path": "assets/paper-images/2608.05903.webp",
+    "preview_text": "针对World-Action Models (WAMs) 的核心两难问题：基于VAE潜空间的WAM可继承大规模预训练视频生成模型（VGM）的动态先验，但对光照、纹理等视觉分布外（OOD）偏移脆弱；基于语义潜空间的WAM对视觉偏移鲁棒，但无法复用大规模VGM预训练先验，需 costly 重新预训练 提出Robust-WAM 通用后训练方法，在不丢弃原有VAE生成路径的前提下，向动作流添加轻量级语义前瞻对齐目标，同时保留大规模预训练动态先验、提升视觉OOD鲁棒性 研究目标为验证该方法在不牺牲分布内（InD）性能的前提下，能否一致提升多类WAM基线的OOD任务成功率，并覆盖仿真与真实机器人场景",
+    "research_unit": "香港科技大学（广州），中国广州",
+    "hook_text": "针对World-Action Models (WAMs) 的核心两难问题：基于VAE潜空间的WAM可继承大规模预训练视频生成模型（VGM）的动态先验，但对光照、纹理等视觉分布外（OOD）偏移脆弱；基于语义潜空间的WAM对视觉偏移鲁棒，但无法复用大规模VGM预训练先验，需 costly 重新预训练",
+    "key_points": [
+      "针对World-Action Models (WAMs) 的核心两难问题：基于VAE潜空间的WAM可继承大规模预训练视频生成模型（VGM）的动态先验，但对光照、纹理等视觉分布外（OOD）偏移脆弱；基于语义潜空间的WAM对视觉偏移鲁棒，但无法复用大规模VGM预训练先验，需 costly 重新预训练",
+      "提出Robust-WAM 通用后训练方法，在不丢弃原有VAE生成路径的前提下，向动作流添加轻量级语义前瞻对齐目标，同时保留大规模预训练动态先验、提升视觉OOD鲁棒性",
+      "研究目标为验证该方法在不牺牲分布内（InD）性能的前提下，能否一致提升多类WAM基线的OOD任务成功率，并覆盖仿真与真实机器人场景"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-05",
+    "title": "DreamWAM: Beyond RGB Future Prediction for World Action Models",
+    "link": "http://arxiv.org/abs/2608.04996",
+    "arxiv_id": "2608.04996",
+    "detail_path": "papers/2608.04996/",
+    "cover_path": "covers/2608.04996/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.04996.webp",
+    "paper_image_full_path": "assets/paper-images/2608.04996.webp",
+    "preview_text": "现有世界动作模型（World Action Models, WAMs）仅基于RGB空间预测未来状态，将任务相关的状态转移与纹理、光照、背景、视角等无关视觉变化纠缠，导致面对未见过的视觉分布偏移时鲁棒性不足。 本文提出DreamWAM，将WAM的未来预测重构为超越RGB的结构化世界建模，通过外观、运动、几何、语义四个互补视图表示未来状态，训练阶段引入多视图监督信号，推理阶段保持RGB-only部署接口，无需修改推理流程。 论文核心目标是验证“未来状态的表示形式是WAM的核心设计变量，合适的结构化表示比单纯提升RGB预测精度更能促进动作学习”，通过在仿真和真实机器人上的实验验证该结论。",
+    "research_unit": "华中科技大学（HUST）视觉学习实验室（hustvl，对应作者Shanglin Yuan、Weihen…",
+    "hook_text": "现有世界动作模型（World Action Models, WAMs）仅基于RGB空间预测未来状态，将任务相关的状态转移与纹理、光照、背景、视角等无关视觉变化纠缠，导致面对未见过的视觉分布偏移时鲁棒性不足。",
+    "key_points": [
+      "现有世界动作模型（World Action Models, WAMs）仅基于RGB空间预测未来状态，将任务相关的状态转移与纹理、光照、背景、视角等无关视觉变化纠缠，导致面对未见过的视觉分布偏移时鲁棒性不足。",
+      "本文提出DreamWAM，将WAM的未来预测重构为超越RGB的结构化世界建模，通过外观、运动、几何、语义四个互补视图表示未来状态，训练阶段引入多视图监督信号，推理阶段保持RGB-only部署接口，无需修改推理流程。",
+      "论文核心目标是验证“未来状态的表示形式是WAM的核心设计变量，合适的结构化表示比单纯提升RGB预测精度更能促进动作学习”，通过在仿真和真实机器人上的实验验证该结论。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-05",
+    "title": "MobileWAM: Bridging World Action Models to Mobile Manipulation with Chain-of-Foresight",
+    "link": "http://arxiv.org/abs/2608.04657",
+    "arxiv_id": "2608.04657",
+    "detail_path": "papers/2608.04657/",
+    "cover_path": "covers/2608.04657/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.04657.webp",
+    "paper_image_full_path": "assets/paper-images/2608.04657.webp",
+    "preview_text": "针对现有World Action Models（WAMs）仅适用于桌面固定基操作、无法适配移动操作场景的空白，提出MobileWAM架构，将视频生成类WAMs的能力扩展到全身移动操作任务 解决移动操作中底盘移动与机械臂操作并行的异质动态匹配、长时序因果依赖、移动视角下的视觉一致性等核心难题，替代传统模块化拼接（误差跨模块累积）或缺乏物理先验的端到端方案 目标是实现高效、高泛化性的移动操作策略，在标准仿真基准和真实移动机械臂平台上验证性能优势",
+    "research_unit": "Institute for AI Industry Research (AIR), Tsinghua…",
+    "hook_text": "针对现有World Action Models（WAMs）仅适用于桌面固定基操作、无法适配移动操作场景的空白，提出MobileWAM架构，将视频生成类WAMs的能力扩展到全身移动操作任务",
+    "key_points": [
+      "针对现有World Action Models（WAMs）仅适用于桌面固定基操作、无法适配移动操作场景的空白，提出MobileWAM架构，将视频生成类WAMs的能力扩展到全身移动操作任务",
+      "解决移动操作中底盘移动与机械臂操作并行的异质动态匹配、长时序因果依赖、移动视角下的视觉一致性等核心难题，替代传统模块化拼接（误差跨模块累积）或缺乏物理先验的端到端方案",
+      "目标是实现高效、高泛化性的移动操作策略，在标准仿真基准和真实移动机械臂平台上验证性能优势"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-05",
+    "title": "Faster-WAM: Efficient Inference-Time Future Conditioning for Robust World Action Models",
+    "link": "http://arxiv.org/abs/2608.04404",
+    "arxiv_id": "2608.04404",
+    "detail_path": "papers/2608.04404/",
+    "cover_path": "covers/2608.04404/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.04404.webp",
+    "paper_image_full_path": "assets/paper-images/2608.04404.webp",
+    "preview_text": "现有世界动作模型（World Action Models, WAMs）存在固有矛盾：Joint-WAMs在推理时保留未来场景表征，鲁棒性高但计算成本极高；Fast-WAM等高效方案移除推理时未来表征，虽提升效率但在分布外（OOD）场景性能骤降 论文核心研究问题是：推理时的未来表征是否为WAM泛化能力的关键？进而提出Faster-WAM，旨在同时实现高效的推理时未来条件与强OOD鲁棒性，解决现有WAM的性能-效率权衡难题",
+    "research_unit": "华中科技大学（通讯作者Xinggang Wang及第一作者Weiheng Zhao、Haoyi Jia…",
+    "hook_text": "现有世界动作模型（World Action Models, WAMs）存在固有矛盾：Joint-WAMs在推理时保留未来场景表征，鲁棒性高但计算成本极高；Fast-WAM等高效方案移除推理时未来表征，虽提升效率但在分布外（OOD）场景性能骤降",
+    "key_points": [
+      "现有世界动作模型（World Action Models, WAMs）存在固有矛盾：Joint-WAMs在推理时保留未来场景表征，鲁棒性高但计算成本极高；Fast-WAM等高效方案移除推理时未来表征，虽提升效率但在分布外（OOD）场景性能骤降",
+      "论文核心研究问题是：推理时的未来表征是否为WAM泛化能力的关键？进而提出Faster-WAM，旨在同时实现高效的推理时未来条件与强OOD鲁棒性，解决现有WAM的性能-效率权衡难题",
+      "揭示推理时未来条件是WAM泛化的核心因素，证明未来表征不仅是训练目标，更是提升分布外鲁棒性的关键信息来源"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-04",
+    "title": "LiLa-WAM: Lightweight Latent Reasoning World-Action Model for Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2608.03701",
+    "arxiv_id": "2608.03701",
+    "detail_path": "papers/2608.03701/",
+    "cover_path": "covers/2608.03701/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.03701.webp",
+    "paper_image_full_path": "assets/paper-images/2608.03701.webp",
+    "preview_text": "现有世界动作模型（WAM）存在两类核心缺陷：像素空间方法需合成大量与机器人操控无关的视觉细节，计算与内存开销极高；潜在空间方法常采用多阶段训练pipeline，整体训练成本高，且预训练backbone的目标与细粒度操控需求不匹配，大量参数用于非控制相关功能，难以在有限计算资源下训练 本文提出LiLa-WAM轻量级世界动作模型，核心目标是在紧凑潜在空间实现未来状态推理与动作生成的统一，支持单GPU端到端训练，解决现有WAM的可访问性与部署成本问题 本文进一步提出无语言任务表示方案，降低任务规格化的输入开销，同时保持任务指派的准确性，实现更简化的操控策略部署",
+    "research_unit": "天津大学",
+    "hook_text": "现有世界动作模型（WAM）存在两类核心缺陷：像素空间方法需合成大量与机器人操控无关的视觉细节，计算与内存开销极高；潜在空间方法常采用多阶段训练pipeline，整体训练成本高，且预训练backbone的目标与细粒度操控需求不匹配，大量参数用于非控制相关功能，难以在有限计算资源下训练",
+    "key_points": [
+      "现有世界动作模型（WAM）存在两类核心缺陷：像素空间方法需合成大量与机器人操控无关的视觉细节，计算与内存开销极高；潜在空间方法常采用多阶段训练pipeline，整体训练成本高，且预训练backbone的目标与细粒度操控需求不匹配，大量参数用于非控制相关功能，难以在有限计算资源下训练",
+      "本文提出LiLa-WAM轻量级世界动作模型，核心目标是在紧凑潜在空间实现未来状态推理与动作生成的统一，支持单GPU端到端训练，解决现有WAM的可访问性与部署成本问题",
+      "本文进一步提出无语言任务表示方案，降低任务规格化的输入开销，同时保持任务指派的准确性，实现更简化的操控策略部署"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-04",
+    "title": "UniNav: A Unified World-Action Diffusion Model for Visual Navigation",
+    "link": "http://arxiv.org/abs/2608.03244",
+    "arxiv_id": "2608.03244",
+    "detail_path": "papers/2608.03244/",
+    "cover_path": "covers/2608.03244/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.03244.webp",
+    "paper_image_full_path": "assets/paper-images/2608.03244.webp",
+    "preview_text": "针对图像目标视觉导航任务，解决现有导航策略缺乏视觉预见性、导航世界模型需多次候选轨迹rollout导致计算成本高的核心问题 提出统一的世界-动作扩散模型UniNav，在单一扩散过程中联合生成未来第一人称视觉观测与连续航点轨迹，实现未来预测与动作生成的统一框架 设计两种实用变体：UniNav-Full可同时输出可解释的未来观测与对应轨迹，UniNav-Fast通过移除未来图像token实现高效航点预测，单步推理延迟低至0.1s",
+    "research_unit": "论文作者分别隶属于标注为1和2的研究机构（提供的截断HTML内容未显示具体机构全称）",
+    "hook_text": "针对图像目标视觉导航任务，解决现有导航策略缺乏视觉预见性、导航世界模型需多次候选轨迹rollout导致计算成本高的核心问题",
+    "key_points": [
+      "针对图像目标视觉导航任务，解决现有导航策略缺乏视觉预见性、导航世界模型需多次候选轨迹rollout导致计算成本高的核心问题",
+      "提出统一的世界-动作扩散模型UniNav，在单一扩散过程中联合生成未来第一人称视觉观测与连续航点轨迹，实现未来预测与动作生成的统一框架",
+      "设计两种实用变体：UniNav-Full可同时输出可解释的未来观测与对应轨迹，UniNav-Fast通过移除未来图像token实现高效航点预测，单步推理延迟低至0.1s"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-03",
+    "title": "CoWAM: Coordination Contracts for Selective Policy Intervention with WAMs",
+    "link": "http://arxiv.org/abs/2608.02578",
+    "arxiv_id": "2608.02578",
+    "detail_path": "papers/2608.02578/",
+    "cover_path": "covers/2608.02578/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.02578.webp",
+    "paper_image_full_path": "assets/paper-images/2608.02578.webp",
+    "preview_text": "论文针对双臂机器人操作中的 World Action Models (WAMs) 问题：WAMs 虽能生成动作候选并预测未来轨迹，但无法判断何时应用替代动作覆盖标称策略（Policy Top-1），且视觉上合理的轨迹仍可能包含延迟抓取、角色不兼容或碰撞收敛等协调性问题 提出 CoWAM（Coordination Contracts for Selective Policy Intervention with WAMs），一种选择性干预层，将同步性、角色兼容性和碰撞收敛表示为协调合约，结合类型化可接受性检查、事件条件验证和校准干预门控 引入 outcome-blind same-pool evaluation 协议，使所有选择器在相同候选池上操作并预先提交决策，从而将选择器质量与提议质量分离",
+    "research_unit": "作者 affiliations 在原文中以编号标注：机构 1（Shuaijun Liu, Shuyan…",
+    "hook_text": "论文针对双臂机器人操作中的 World Action Models (WAMs) 问题：WAMs 虽能生成动作候选并预测未来轨迹，但无法判断何时应用替代动作覆盖标称策略（Policy Top-1），且视觉上合理的轨迹仍可能包含延迟抓取、角色不兼容或碰撞收敛等协调性问题",
+    "key_points": [
+      "论文针对双臂机器人操作中的 World Action Models (WAMs) 问题：WAMs 虽能生成动作候选并预测未来轨迹，但无法判断何时应用替代动作覆盖标称策略（Policy Top-1），且视觉上合理的轨迹仍可能包含延迟抓取、角色不兼容或碰撞收敛等协调性问题",
+      "提出 CoWAM（Coordination Contracts for Selective Policy Intervention with WAMs），一种选择性干预层，将同步性、角色兼容性和碰撞收敛表示为协调合约，结合类型化可接受性检查、事件条件验证和校准干预门控",
+      "引入 outcome-blind same-pool evaluation 协议，使所有选择器在相同候选池上操作并预先提交决策，从而将选择器质量与提议质量分离"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-03",
+    "title": "Faster-WAM: Do World Action Models Need Deep Action Modules?",
+    "link": "http://arxiv.org/abs/2608.02365",
+    "arxiv_id": "2608.02365",
+    "detail_path": "papers/2608.02365/",
+    "cover_path": "covers/2608.02365/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.02365.webp",
+    "paper_image_full_path": "assets/paper-images/2608.02365.webp",
+    "preview_text": "现有世界动作模型（WAM）的动作模块深度与视频主干深度耦合，导致推理延迟高、计算开销大，难以匹配视觉-语言-动作（VLA）模型的推理速度 本文提出Dock of Transformer (DoT) 视频中心架构框架，将预训练视频Transformer作为表征中心，通过对接接口连接轻量任务头，解耦任务头与视频主干的深度绑定 通过实例化Faster-WAM验证DoT框架的有效性，目标是实现低推理延迟、高控制性能、强泛化能力的WAM",
+    "research_unit": "Huawei Noah’s Ark Lab",
+    "hook_text": "现有世界动作模型（WAM）的动作模块深度与视频主干深度耦合，导致推理延迟高、计算开销大，难以匹配视觉-语言-动作（VLA）模型的推理速度",
+    "key_points": [
+      "现有世界动作模型（WAM）的动作模块深度与视频主干深度耦合，导致推理延迟高、计算开销大，难以匹配视觉-语言-动作（VLA）模型的推理速度",
+      "本文提出Dock of Transformer (DoT) 视频中心架构框架，将预训练视频Transformer作为表征中心，通过对接接口连接轻量任务头，解耦任务头与视频主干的深度绑定",
+      "通过实例化Faster-WAM验证DoT框架的有效性，目标是实现低推理延迟、高控制性能、强泛化能力的WAM"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-03",
+    "title": "World Action Models in Real Time: An Empirical Study of Smooth Execution via Asynchronous Deployment",
+    "link": "http://arxiv.org/abs/2608.01880",
+    "arxiv_id": "2608.01880",
+    "detail_path": "papers/2608.01880/",
+    "cover_path": "covers/2608.01880/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.01880.webp",
+    "paper_image_full_path": "assets/paper-images/2608.01880.webp",
+    "preview_text": "世界动作模型（World Action Models, WAMs）基于扩散策略实现，需迭代去噪生成固定长度的动作块，端到端管道延迟可达秒级，传统同步块执行策略会导致机器人冻结、动作边界不连续，且对环境变化的响应能力受推理频率限制 异步部署可通过重叠推理与执行过程解决响应滞后问题，但相邻推理块在重叠区域的预测不一致会导致动作跳变，本文对四类异步部署策略开展实证研究，目标是实现平滑实时的WAM执行 研究同时揭示时间对齐（准确将指令帧与对应观测时间戳关联）是异步部署的底层工程前提，对齐偏差会引发持续抖动，任何混合算法都无法有效补偿",
+    "research_unit": "Motubrain Team，相关项目页面与代码仓库分别托管于https://www.genspi.c…",
+    "hook_text": "世界动作模型（World Action Models, WAMs）基于扩散策略实现，需迭代去噪生成固定长度的动作块，端到端管道延迟可达秒级，传统同步块执行策略会导致机器人冻结、动作边界不连续，且对环境变化的响应能力受推理频率限制",
+    "key_points": [
+      "世界动作模型（World Action Models, WAMs）基于扩散策略实现，需迭代去噪生成固定长度的动作块，端到端管道延迟可达秒级，传统同步块执行策略会导致机器人冻结、动作边界不连续，且对环境变化的响应能力受推理频率限制",
+      "异步部署可通过重叠推理与执行过程解决响应滞后问题，但相邻推理块在重叠区域的预测不一致会导致动作跳变，本文对四类异步部署策略开展实证研究，目标是实现平滑实时的WAM执行",
+      "研究同时揭示时间对齐（准确将指令帧与对应观测时间戳关联）是异步部署的底层工程前提，对齐偏差会引发持续抖动，任何混合算法都无法有效补偿"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-02",
+    "title": "SG-WAM: Self-Guided World Modeling in Geometry-Aware Policy Space",
+    "link": "http://arxiv.org/abs/2608.01397",
+    "arxiv_id": "2608.01397",
+    "detail_path": "papers/2608.01397/",
+    "cover_path": "covers/2608.01397/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.01397.webp",
+    "paper_image_full_path": "assets/paper-images/2608.01397.webp",
+    "preview_text": "现有世界动作模型（WAMs）存在两类核心缺陷：观测空间预测需建模与机器人操作无关的表观细节，浪费模型建模能力；潜在空间预测易出现未来监督目标与动作生成表示的不匹配，且缺乏操作所需的细粒度空间信息 论文提出SG-WAM（自引导世界动作模型），核心目标是构建与动作生成表示直接耦合、同时具备几何感知的潜在动力学空间，使未来预测监督直接作用于动作生成所用的策略表示，提升机器人操作的泛化性与成功率 实验验证了SG-WAM的有效性，在0.9B参数、无大规模具身预训练的设定下，仍能在仿真和真实世界机器人操作任务中取得优异性能，显著超越更大规模的强基线",
+    "research_unit": "提供的论文HTML原文截断，未包含作者所属研究机构相关信息",
+    "hook_text": "现有世界动作模型（WAMs）存在两类核心缺陷：观测空间预测需建模与机器人操作无关的表观细节，浪费模型建模能力；潜在空间预测易出现未来监督目标与动作生成表示的不匹配，且缺乏操作所需的细粒度空间信息",
+    "key_points": [
+      "现有世界动作模型（WAMs）存在两类核心缺陷：观测空间预测需建模与机器人操作无关的表观细节，浪费模型建模能力；潜在空间预测易出现未来监督目标与动作生成表示的不匹配，且缺乏操作所需的细粒度空间信息",
+      "论文提出SG-WAM（自引导世界动作模型），核心目标是构建与动作生成表示直接耦合、同时具备几何感知的潜在动力学空间，使未来预测监督直接作用于动作生成所用的策略表示，提升机器人操作的泛化性与成功率",
+      "实验验证了SG-WAM的有效性，在0.9B参数、无大规模具身预训练的设定下，仍能在仿真和真实世界机器人操作任务中取得优异性能，显著超越更大规模的强基线"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-02",
+    "title": "EndoWAM: A Grounded World-Action Model for Generalizable Endoscopic Navigation",
+    "link": "http://arxiv.org/abs/2608.01221",
+    "arxiv_id": "2608.01221",
+    "detail_path": "papers/2608.01221/",
+    "cover_path": "covers/2608.01221/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.01221.webp",
+    "paper_image_full_path": "assets/paper-images/2608.01221.webp",
+    "preview_text": "针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制 为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集EndoMotion，支撑模型训练与泛化验证",
+    "research_unit": "第一单位：香港中文大学（The Chinese University of Hong Kong, CU…",
+    "hook_text": "针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM",
+    "key_points": [
+      "针对现有内窥镜导航方法未显式建模未来解剖动态，在组织形变、短暂遮挡、快速视角变化的手术场景下鲁棒性不足的问题，提出首个面向通用机器人内窥镜导航的World Action Model（WAM）EndoWAM",
+      "EndoWAM引入未来 grounded 范式，通过视频世界模型的中间去噪特征预测未来观测中的任务相关目标区域，将目标感知监督注入预测视觉动态建模，同时支持实时闭环控制",
+      "为缓解内窥镜导航领域训练数据稀缺问题，构建多Procedure内窥镜运动数据集EndoMotion，支撑模型训练与泛化验证"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-01",
+    "title": "DynamicWAM: Dual-Path Motion Conditioning for World-Action Models in Dynamic Manipulation",
+    "link": "http://arxiv.org/abs/2608.00793",
+    "arxiv_id": "2608.00793",
+    "detail_path": "papers/2608.00793/",
+    "cover_path": "covers/2608.00793/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.00793.webp",
+    "paper_image_full_path": "assets/paper-images/2608.00793.webp",
+    "preview_text": "本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题 动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力 研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署",
+    "research_unit": "提供的HTML原文未包含作者所属研究机构的具体名称信息",
+    "hook_text": "本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题",
+    "key_points": [
+      "本文提出DynamicWAM，一种面向动态操控场景的紧凑型世界-动作模型（World-Action Model, WAM），用于解决现有WAM仅基于当前单帧观测条件、同步执行机制导致运动感知不足、响应滞后的问题",
+      "动态操控场景中目标会在推理与执行过程中持续移动，要求机器人同时具备运动感知、未来状态预测与快速响应控制的能力",
+      "研究目标是通过双路径运动条件设计增强WAM对目标运动的感知能力，同时结合异步执行机制支撑真实机器人的低延迟实时部署"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-01",
+    "title": "SelfWAM: A Self-Grounded Unified World Action Model for Fast Robot Control",
+    "link": "http://arxiv.org/abs/2608.00725",
+    "arxiv_id": "2608.00725",
+    "detail_path": "papers/2608.00725/",
+    "cover_path": "covers/2608.00725/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.00725.webp",
+    "paper_image_full_path": "assets/paper-images/2608.00725.webp",
+    "preview_text": "针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。 SelfWAM基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。 在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。",
+    "research_unit": "上海科技大学（ShanghaiTech University）",
+    "hook_text": "针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。",
+    "key_points": [
+      "针对现有世界动作模型（WAM）未来预测仅依赖任务提示与观测上下文、无法准确捕捉执行动作的特定后果，且未来RGB预测包含大量与动作无关的外观、背景细节的问题，提出自 grounding 的统一世界动作模型SelfWAM，用于实现快速机器人控制。",
+      "SelfWAM基于模态专用的混合专家Transformer（MoT）架构，联合预测动作、动作条件化的未来RGB帧与机器人自掩码，将未来预测锚定在机器人可见身体及其动作引发的运动上，提升预测的动作敏感性。",
+      "在优化未来预测质量的同时，保持轻量的仅动作推理路径，不牺牲闭环控制的推理效率，最终提升机器人操控策略的性能与泛化性。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-01",
+    "title": "FlowPilot: Real-Time World-Action Modeling for Agile UAV Navigation",
+    "link": "http://arxiv.org/abs/2608.00635",
+    "arxiv_id": "2608.00635",
+    "detail_path": "papers/2608.00635/",
+    "cover_path": "covers/2608.00635/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.00635.webp",
+    "paper_image_full_path": "assets/paper-images/2608.00635.webp",
+    "preview_text": "提出FlowPilot，一个面向机载深度输入的紧凑型世界-动作模型（WAM），用于实时敏捷无人机导航，通过流匹配联合去噪未来深度观测与可执行轨迹，解决现有“地图构建-优化”导航流程延迟高、地图噪声大，或端到端策略缺乏显式场景预测、无法耦合未来几何与可执行轨迹的问题。 采用双流混合Transformer架构，通过共享注意力耦合深度视频专家与动作专家，训练阶段实现未来场景预测与轨迹生成的相互 conditioning，部署阶段运行动作中心模式，仅需输出轨迹即可完成控制。 研究目标为在机载嵌入式设备上实现低延迟、高可跟踪性的敏捷无人机导航，输出满足飞行控制器跟踪要求的平滑轨迹，适配复杂杂乱环境下的高速飞行需求。",
+    "research_unit": "匿名作者（第一作者）",
+    "hook_text": "提出FlowPilot，一个面向机载深度输入的紧凑型世界-动作模型（WAM），用于实时敏捷无人机导航，通过流匹配联合去噪未来深度观测与可执行轨迹，解决现有“地图构建-优化”导航流程延迟高、地图噪声大，或端到端策略缺乏显式场景预测、无法耦合未来几何与可执行轨迹的问题。",
+    "key_points": [
+      "提出FlowPilot，一个面向机载深度输入的紧凑型世界-动作模型（WAM），用于实时敏捷无人机导航，通过流匹配联合去噪未来深度观测与可执行轨迹，解决现有“地图构建-优化”导航流程延迟高、地图噪声大，或端到端策略缺乏显式场景预测、无法耦合未来几何与可执行轨迹的问题。",
+      "采用双流混合Transformer架构，通过共享注意力耦合深度视频专家与动作专家，训练阶段实现未来场景预测与轨迹生成的相互 conditioning，部署阶段运行动作中心模式，仅需输出轨迹即可完成控制。",
+      "研究目标为在机载嵌入式设备上实现低延迟、高可跟踪性的敏捷无人机导航，输出满足飞行控制器跟踪要求的平滑轨迹，适配复杂杂乱环境下的高速飞行需求。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-01",
+    "title": "Disentangling Visuo-Tactile Foresight: Oracle-Guided Interface Discovery for World Action Models",
+    "link": "http://arxiv.org/abs/2608.00547",
+    "arxiv_id": "2608.00547",
+    "detail_path": "papers/2608.00547/",
+    "cover_path": "covers/2608.00547/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.00547.webp",
+    "paper_image_full_path": "assets/paper-images/2608.00547.webp",
+    "preview_text": "接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。 本文提出Oracle Visuo-Tactile Foresight (OVTF) 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？ 在OVTF框架内，提出Asymmetric Phase-Local Future Memory (AFM)，与模态隔离的Modality-Isolated Future Memory (IFM) 进行受控对比，验证未来接口设计的有效性。",
+    "research_unit": "提供的论文HTML片段中未明确标注作者所属研究机构，论文作者为Zihang Yao、Chaoyue D…",
+    "hook_text": "接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。",
+    "key_points": [
+      "接触丰富的机器人操作任务中，视觉-触觉世界动作模型（World Action Models, WAMs）的未来到动作接口是核心瓶颈，但端到端训练中四个问题相互耦合：生成的视觉未来可能物理无效、对未来预测的不信任导致动作分支忽略未来信息、触觉未来预测不准确或不与视觉对齐、未来表示形式无法被动作分支有效读取，难以独立研究接口本身的有效性。",
+      "本文提出Oracle Visuo-Tactile Foresight (OVTF) 框架，通过固定使用仿真验证的成功轨迹的配对RGB-触觉未来作为特权未来提供者，解耦未来预测与接口研究，明确核心问题：若未来是成功且物理可执行的，何种接口能让动作专家有效利用其信息？",
+      "在OVTF框架内，提出Asymmetric Phase-Local Future Memory (AFM)，与模态隔离的Modality-Isolated Future Memory (IFM) 进行受控对比，验证未来接口设计的有效性。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-07-31",
+    "title": "FBFM: A Training-Free Asynchronous Feedback Mechanism for Flow-Matching in World-Action Models Execution",
+    "link": "http://arxiv.org/abs/2607.29235",
+    "arxiv_id": "2607.29235",
+    "detail_path": "papers/2607.29235/",
+    "cover_path": "covers/2607.29235/",
+    "paper_image_path": "assets/paper-images/thumbs/2607.29235.webp",
+    "paper_image_full_path": "assets/paper-images/2607.29235.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-07-31",
+    "title": "ST-WAM: Semantic-Temporal World Action Model for Robust Manipulation under Visual Distribution Shifts",
+    "link": "http://arxiv.org/abs/2607.28993",
+    "arxiv_id": "2607.28993",
+    "detail_path": "papers/2607.28993/",
+    "cover_path": "covers/2607.28993/",
+    "paper_image_path": "assets/paper-images/thumbs/2607.28993.webp",
+    "paper_image_full_path": "assets/paper-images/2607.28993.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-07-30",
+    "title": "QuantWAMs: Calibrating at the Right Granularity for World Action Models",
+    "link": "http://arxiv.org/abs/2607.28405",
+    "arxiv_id": "2607.28405",
+    "detail_path": "papers/2607.28405/",
+    "cover_path": "covers/2607.28405/",
+    "paper_image_path": "assets/paper-images/thumbs/2607.28405.webp",
+    "paper_image_full_path": "assets/paper-images/2607.28405.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-07-30",
+    "title": "TacWAM: Anchor-Guided World Action Model with Mechanics-Aware Tactile Prediction",
+    "link": "http://arxiv.org/abs/2607.28391",
+    "arxiv_id": "2607.28391",
+    "detail_path": "papers/2607.28391/",
+    "cover_path": "covers/2607.28391/",
+    "paper_image_path": "assets/paper-images/thumbs/2607.28391.webp",
+    "paper_image_full_path": "assets/paper-images/2607.28391.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-07-30",
+    "title": "EgoGenesis: Egocentric World-Action Modeling with Online Anchored Projective Memory and Action-3D RoPE",
+    "link": "http://arxiv.org/abs/2607.28243",
+    "arxiv_id": "2607.28243",
+    "detail_path": "papers/2607.28243/",
+    "cover_path": "covers/2607.28243/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-06",
     "title": "$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation",
     "link": "http://arxiv.org/abs/2608.06375",
     "arxiv_id": "2608.06375",
