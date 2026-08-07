@@ -107,13 +107,17 @@ def get_model_list() -> List[str]:
 
 def get_thinking_extra_body() -> dict:
     """
-    DeepSeek V4 默认开启 thinking；批量摘要默认关闭以降低延迟和费用。
-    可通过 DEEPSEEK_THINKING=enabled|disabled 覆盖。
+    DeepSeek V4 默认开启 thinking。未设置 DEEPSEEK_THINKING 时不传参，沿用官方默认。
+    仅在显式设置 enabled/disabled 时覆盖。
     """
-    thinking = (os.getenv("DEEPSEEK_THINKING") or "disabled").strip().lower()
+    thinking = (os.getenv("DEEPSEEK_THINKING") or "").strip().lower()
+    if not thinking:
+        return {}
     if thinking in {"1", "true", "yes", "on", "enabled"}:
         return {"thinking": {"type": "enabled"}}
-    return {"thinking": {"type": "disabled"}}
+    if thinking in {"0", "false", "no", "off", "disabled"}:
+        return {"thinking": {"type": "disabled"}}
+    return {}
 
 
 def mark_model_rate_limited(model: str) -> None:
@@ -194,9 +198,9 @@ def generate_summary_for_link(client: OpenAI, link: str, model: str = None) -> s
         # 对当前模型进行重试
         for attempt in range(api_max_retries):
             try:
-                response = client.chat.completions.create(
-                    model=current_model,
-                    messages=[
+                create_kwargs = {
+                    "model": current_model,
+                    "messages": [
                         {
                             'role': 'system',
                             'content': '''你是一名论文阅读专家。根据提供的 arXiv 论文 HTML 原文，生成结构化的论文总结。
@@ -245,9 +249,12 @@ def generate_summary_for_link(client: OpenAI, link: str, model: str = None) -> s
                             'content': f"以下为论文的 HTML 原文（可能已截断）：\n\n{html_content}"
                         },
                     ],
-                    stream=False,
-                    extra_body=get_thinking_extra_body(),
-                )
+                    "stream": False,
+                }
+                thinking_extra = get_thinking_extra_body()
+                if thinking_extra:
+                    create_kwargs["extra_body"] = thinking_extra
+                response = client.chat.completions.create(**create_kwargs)
 
                 if not response.choices:
                     print(f"警告: API返回无choices，链接: {link}")

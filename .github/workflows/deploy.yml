@@ -62,7 +62,6 @@ jobs:
           MODELSCOPE_ACCESS_TOKEN: ${{ secrets.MODELSCOPE_ACCESS_TOKEN }}
           MODELSCOPE_BASE_URL: https://api.deepseek.com
           MODELSCOPE_MODELS: deepseek-v4-flash
-          DEEPSEEK_THINKING: disabled
 
       - name: 抓取论文首图
         run: |

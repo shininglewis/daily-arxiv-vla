@@ -38,7 +38,7 @@ cp .env.example .env
 **可选配置：**
 - `MODELSCOPE_BASE_URL` / `DEEPSEEK_BASE_URL`: API 基础 URL（默认：`https://api.deepseek.com`）
 - `MODELSCOPE_MODEL` / `MODELSCOPE_MODELS`: 模型名（默认：`deepseek-v4-flash`）
-- `DEEPSEEK_THINKING`: `disabled`（默认，适合批量摘要）或 `enabled`
+- `DEEPSEEK_THINKING`: 可选 `enabled` / `disabled`；不设置则沿用 DeepSeek 默认（thinking 开启）
 - `ARXIV_QUERY_KEYWORD`: 搜索关键词，支持 arXiv 查询语法（默认同时检索 VLA 与 World Action Model 相关短语）
 - `ARXIV_INIT_RESULTS`: 初始化抓取数量（默认：500）
 - `ARXIV_DAILY_RESULTS`: 每日抓取数量（默认：20）
@@ -117,13 +117,12 @@ npx serve site
     DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
     MODELSCOPE_BASE_URL: https://api.deepseek.com
     MODELSCOPE_MODELS: deepseek-v4-flash
-    DEEPSEEK_THINKING: disabled
 ```
 
 默认配置：
 - 搜索关键词：`all:"VLA" OR all:"Vision-Language-Action" OR all:"World Action Model" OR all:"World-Action Model" OR all:"action world model"`
 - 每日抓取：20篇（GitHub Actions 中可覆盖）
-- 模型：`deepseek-v4-flash`（DeepSeek 官方 API）
+- 模型：`deepseek-v4-flash`（DeepSeek 官方 API，默认保留 thinking）
 - 其他配置见 `.env.example`
 
 ### 3. 自动部署
