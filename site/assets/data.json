@@ -1,5 +1,264 @@
 [
   {
+    "date": "2026-08-07",
+    "title": "SimWAM: A Simple World Action Model for End-to-End Autonomous Driving",
+    "link": "http://arxiv.org/abs/2608.07468",
+    "arxiv_id": "2608.07468",
+    "detail_path": "papers/2608.07468/",
+    "cover_path": "covers/2608.07468/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07468.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07468.webp",
+    "preview_text": "提出 SimWAM（A Simple World Action Model），一种用于端到端自动驾驶的简洁世界-动作模型，将视频生成仅作为训练信号，推理时无需未来视频生成，避免了现有 WAM 方法\"想象-再行动\"管线带来的高推理延迟。 SimWAM 通过联合流匹配（joint flow matching）协同训练预训练视频专家（Wan2.2-5B）与轻量动作专家，并利用隔离注意力掩码（Isolated Attention Mask）使动作预测不依赖未来帧，训练后可完全丢弃视频分支，保留自包含的轻量规划器直接预测轨迹。 论文在 NAVSIM 基准上达到 91.5 PDMS，超越现有最先进的世界模型规划器且推理延迟大幅降低，并可零样本迁移到 nuScenes，旨在为高效自动驾驶世界-动作建模提供一个简单而稳固的基线。",
+    "research_unit": "华中科技大学（Huazhong University of Science & Technology）…",
+    "hook_text": "提出 SimWAM（A Simple World Action Model），一种用于端到端自动驾驶的简洁世界-动作模型，将视频生成仅作为训练信号，推理时无需未来视频生成，避免了现有 WAM 方法\"想象-再行动\"管线带来的高推理延迟。",
+    "key_points": [
+      "提出 SimWAM（A Simple World Action Model），一种用于端到端自动驾驶的简洁世界-动作模型，将视频生成仅作为训练信号，推理时无需未来视频生成，避免了现有 WAM 方法\"想象-再行动\"管线带来的高推理延迟。",
+      "SimWAM 通过联合流匹配（joint flow matching）协同训练预训练视频专家（Wan2.2-5B）与轻量动作专家，并利用隔离注意力掩码（Isolated Attention Mask）使动作预测不依赖未来帧，训练后可完全丢弃视频分支，保留自包含的轻量规划器直接预测轨迹。",
+      "论文在 NAVSIM 基准上达到 91.5 PDMS，超越现有最先进的世界模型规划器且推理延迟大幅降低，并可零样本迁移到 nuScenes，旨在为高效自动驾驶世界-动作建模提供一个简单而稳固的基线。"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "Depth-Wise Probing and Pruning of the Planning Token in a Driving Vision-Language-Action Model",
+    "link": "http://arxiv.org/abs/2608.07361",
+    "arxiv_id": "2608.07361",
+    "detail_path": "papers/2608.07361/",
+    "cover_path": "covers/2608.07361/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07361.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07361.webp",
+    "preview_text": "论文研究驾驶Vision-Language-Action (VLA) 模型中规划 token（planning token）在不同解码器深度上信息的产生与演化过程，以ORION模型为代表架构进行实证分析。 核心问题是：深度语言模型的大量堆叠层中，动作规划本身究竟需要多少层计算，以及各层的规划信息是否可以在不损失性能的前提下被剪枝。 论文采用轨迹空间 logit lens 方法，从每一层解码器的隐藏状态读取规划 token，并通过冻结的原生规划器解码出轨迹进行评估。",
+    "research_unit": "Robert Bosch GmbH（德国斯图加特）",
+    "hook_text": "论文研究驾驶Vision-Language-Action (VLA) 模型中规划 token（planning token）在不同解码器深度上信息的产生与演化过程，以ORION模型为代表架构进行实证分析。",
+    "key_points": [
+      "论文研究驾驶Vision-Language-Action (VLA) 模型中规划 token（planning token）在不同解码器深度上信息的产生与演化过程，以ORION模型为代表架构进行实证分析。",
+      "核心问题是：深度语言模型的大量堆叠层中，动作规划本身究竟需要多少层计算，以及各层的规划信息是否可以在不损失性能的前提下被剪枝。",
+      "论文采用轨迹空间 logit lens 方法，从每一层解码器的隐藏状态读取规划 token，并通过冻结的原生规划器解码出轨迹进行评估。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "TEMPO: Semantic-Action Decoupled RL Post-Training for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.07314",
+    "arxiv_id": "2608.07314",
+    "detail_path": "papers/2608.07314/",
+    "cover_path": "covers/2608.07314/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07314.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07314.webp",
+    "preview_text": "针对视觉-语言-动作模型（VLA）在机器人操作任务中的适应问题，提出一种语义-动作解耦、双时标强化学习后训练框架 TEMPO。 现有方法通常对 VLA 模型的所有可训练组件采用统一的 RL 更新策略，忽略了语义投影层和低层动作专家在功能角色与适应需求上的本质差异，导致训练不稳定或效率低下。 TEMPO 冻结预训练的视觉-语言骨干，仅对语义投影层和动作专家分别构建独立的模块级 TD3 强化学习回路，并以不同频率更新二者，从而在保持语义稳定性的同时高效融入在线交互反馈。",
+    "research_unit": "浙江大学：School of Computer Science and Technology, Zhe…",
+    "hook_text": "针对视觉-语言-动作模型（VLA）在机器人操作任务中的适应问题，提出一种语义-动作解耦、双时标强化学习后训练框架 TEMPO。",
+    "key_points": [
+      "针对视觉-语言-动作模型（VLA）在机器人操作任务中的适应问题，提出一种语义-动作解耦、双时标强化学习后训练框架 TEMPO。",
+      "现有方法通常对 VLA 模型的所有可训练组件采用统一的 RL 更新策略，忽略了语义投影层和低层动作专家在功能角色与适应需求上的本质差异，导致训练不稳定或效率低下。",
+      "TEMPO 冻结预训练的视觉-语言骨干，仅对语义投影层和动作专家分别构建独立的模块级 TD3 强化学习回路，并以不同频率更新二者，从而在保持语义稳定性的同时高效融入在线交互反馈。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "WNM-3D: A World Navigation Model with 3D Scene Conditioning for Closed-Loop VLN",
+    "link": "http://arxiv.org/abs/2608.07267",
+    "arxiv_id": "2608.07267",
+    "detail_path": "papers/2608.07267/",
+    "cover_path": "covers/2608.07267/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "Decoupling Intention from Trajectory: A Representational Deduction Framework for World Action Models",
+    "link": "http://arxiv.org/abs/2608.06994",
+    "arxiv_id": "2608.06994",
+    "detail_path": "papers/2608.06994/",
+    "cover_path": "covers/2608.06994/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06994.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06994.webp",
+    "preview_text": "论文提出 PILOT（Physical Inference for Latent Optimized Trajectories）框架，针对世界动作模型（WAMs）中高层物理状态演化与低层轨迹生成之间存在表征纠缠（Representational Entanglement）的问题。 现有 WAM 的视觉分支倾向于预测静态视觉观测，而非反映动作交互下世界状态演化的潜在转换信息，导致 Action Model 的联合优化偏向视觉重建，削弱了世界演化建模对动作生成的预测能力。 PILOT 通过引入表征演绎（Representational Deduction, RD）机制，将潜在状态转换信息压缩为可学习的运动语义 token（Motion-CoT），在推理空间中作为思维链（Chain-of-Thought）引导细粒度动作轨迹生成，从而实现高层运动意图与低层轨迹的解耦。",
+    "research_unit": "南京大学 (NJU)",
+    "hook_text": "论文提出 PILOT（Physical Inference for Latent Optimized Trajectories）框架，针对世界动作模型（WAMs）中高层物理状态演化与低层轨迹生成之间存在表征纠缠（Representational Entanglement）的问题。",
+    "key_points": [
+      "论文提出 PILOT（Physical Inference for Latent Optimized Trajectories）框架，针对世界动作模型（WAMs）中高层物理状态演化与低层轨迹生成之间存在表征纠缠（Representational Entanglement）的问题。",
+      "现有 WAM 的视觉分支倾向于预测静态视觉观测，而非反映动作交互下世界状态演化的潜在转换信息，导致 Action Model 的联合优化偏向视觉重建，削弱了世界演化建模对动作生成的预测能力。",
+      "PILOT 通过引入表征演绎（Representational Deduction, RD）机制，将潜在状态转换信息压缩为可学习的运动语义 token（Motion-CoT），在推理空间中作为思维链（Chain-of-Thought）引导细粒度动作轨迹生成，从而实现高层运动意图与低层轨迹的解耦。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "Cross-View Action Consistency for Camera-Robust Vision-Language-Action Policies",
+    "link": "http://arxiv.org/abs/2608.06965",
+    "arxiv_id": "2608.06965",
+    "detail_path": "papers/2608.06965/",
+    "cover_path": "covers/2608.06965/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06965.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06965.webp",
+    "preview_text": "论文研究 Vision-Language-Action (VLA) 策略 在场景相机视角变化下的鲁棒性问题：当固定相机被移动后，即使任务、物体、语言指令和机器人状态不变，策略也可能失效。 提出 Cross-View Action-Flow Consistency 训练目标，通过正则化动作流（action-flow）速度场来提升跨视角动作一致性，无需相机标签、外参、深度或点云输入，推理时仅使用单张场景 RGB 图像。 整个训练过程中 屏蔽腕部相机流，以排除未受扰动视觉通道的捷径干扰，从而在单一场景 RGB 推理接口下公平归因场景相机的鲁棒性提升。",
+    "research_unit": "清华大学（Tsinghua University）",
+    "hook_text": "论文研究 Vision-Language-Action (VLA) 策略 在场景相机视角变化下的鲁棒性问题：当固定相机被移动后，即使任务、物体、语言指令和机器人状态不变，策略也可能失效。",
+    "key_points": [
+      "论文研究 Vision-Language-Action (VLA) 策略 在场景相机视角变化下的鲁棒性问题：当固定相机被移动后，即使任务、物体、语言指令和机器人状态不变，策略也可能失效。",
+      "提出 Cross-View Action-Flow Consistency 训练目标，通过正则化动作流（action-flow）速度场来提升跨视角动作一致性，无需相机标签、外参、深度或点云输入，推理时仅使用单张场景 RGB 图像。",
+      "整个训练过程中 屏蔽腕部相机流，以排除未受扰动视觉通道的捷径干扰，从而在单一场景 RGB 推理接口下公平归因场景相机的鲁棒性提升。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "AtlasVLA: Persistent World-Ego State Modeling for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.06729",
+    "arxiv_id": "2608.06729",
+    "detail_path": "papers/2608.06729/",
+    "cover_path": "covers/2608.06729/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06729.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06729.webp",
+    "preview_text": "论文指出当前 Vision-Language-Action (VLA) 模型 的根本性缺陷：在仅使用腕部相机的严格设置下，现有模型呈现\"反应式\"范式，存在空间上 感知遗忘（perception forgetting）和时间上 任务进度遗忘（task-progress forgetting）两大瓶颈 提出 AtlasVLA 框架，通过构建持续的 世界-自我状态（persistent world-ego state），将模型从直接反应式操作转变为主动推理式操作，克服部分可观测性和长时序执行中的记忆丢失问题 核心思想：模拟人类认知中的内部世界模型，建立\"局部观测 → 潜状态更新 → 持久世界状态 → 未来动作\"的连续循环，而非简单的\"观测 → 动作\"映射",
+    "research_unit": "中国科学院（CAS）：作者 Guiyu Zhao、Longteng Guo 等所属机构",
+    "hook_text": "论文指出当前 Vision-Language-Action (VLA) 模型 的根本性缺陷：在仅使用腕部相机的严格设置下，现有模型呈现\"反应式\"范式，存在空间上 感知遗忘（perception forgetting）和时间上 任务进度遗忘（task-progress forgetting）两大瓶颈",
+    "key_points": [
+      "论文指出当前 Vision-Language-Action (VLA) 模型 的根本性缺陷：在仅使用腕部相机的严格设置下，现有模型呈现\"反应式\"范式，存在空间上 感知遗忘（perception forgetting）和时间上 任务进度遗忘（task-progress forgetting）两大瓶颈",
+      "提出 AtlasVLA 框架，通过构建持续的 世界-自我状态（persistent world-ego state），将模型从直接反应式操作转变为主动推理式操作，克服部分可观测性和长时序执行中的记忆丢失问题",
+      "核心思想：模拟人类认知中的内部世界模型，建立\"局部观测 → 潜状态更新 → 持久世界状态 → 未来动作\"的连续循环，而非简单的\"观测 → 动作\"映射"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "CrossTracer: Cross-Embodiment Navigation via VLA Model Reasoning and Trace Residuals Adapting",
+    "link": "http://arxiv.org/abs/2608.06688",
+    "arxiv_id": "2608.06688",
+    "detail_path": "papers/2608.06688/",
+    "cover_path": "covers/2608.06688/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06688.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06688.webp",
+    "preview_text": "提出 CrossTracer，一个用于跨形态（cross-embodiment）机器人导航的分层 VLA 框架，核心问题在于现有 VLA 模型提供强语义先验但忽略机器人特有的移动性约束（如轮式与足式机器人对同一地形的通行能力不同）。 框架以归一化像素空间导航轨迹（pixel-space trace）作为语义推理与物理接地之间的统一接口，先由 VL-Tracer 生成与形态无关的初始语义轨迹，再由 CE-Adapter 预测形态条件化的轨迹残差进行细化。 为解决细化模块缺乏标注的问题，提出 CE-RRT* 自动化规划器监督标注管线，将全景分割转化为机器人条件化的通行代价地图并生成代价最小的像素空间参考轨迹。",
+    "research_unit": "Peng Cheng Laboratory（作者单位 1）",
+    "hook_text": "提出 CrossTracer，一个用于跨形态（cross-embodiment）机器人导航的分层 VLA 框架，核心问题在于现有 VLA 模型提供强语义先验但忽略机器人特有的移动性约束（如轮式与足式机器人对同一地形的通行能力不同）。",
+    "key_points": [
+      "提出 CrossTracer，一个用于跨形态（cross-embodiment）机器人导航的分层 VLA 框架，核心问题在于现有 VLA 模型提供强语义先验但忽略机器人特有的移动性约束（如轮式与足式机器人对同一地形的通行能力不同）。",
+      "框架以归一化像素空间导航轨迹（pixel-space trace）作为语义推理与物理接地之间的统一接口，先由 VL-Tracer 生成与形态无关的初始语义轨迹，再由 CE-Adapter 预测形态条件化的轨迹残差进行细化。",
+      "为解决细化模块缺乏标注的问题，提出 CE-RRT* 自动化规划器监督标注管线，将全景分割转化为机器人条件化的通行代价地图并生成代价最小的像素空间参考轨迹。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-06",
+    "title": "Fast and Accurate: An Adaptive VLA Inference Framework through Environment-aware Model Selection",
+    "link": "http://arxiv.org/abs/2608.06434",
+    "arxiv_id": "2608.06434",
+    "detail_path": "papers/2608.06434/",
+    "cover_path": "covers/2608.06434/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.06434.webp",
+    "paper_image_full_path": "assets/paper-images/2608.06434.webp",
+    "preview_text": "论文提出 EMS（Environment-aware Model Selection），一个自适应的双系统 VLA（Vision–Language–Action）推理框架，通过环境感知的模型选择在快慢两个完全解耦系统之间动态切换，以同时兼顾任务成功率与实时闭环控制频率。 现有双系统 VLA 架构（如 DP-VLA、FiS-VLA）通常将快模块紧紧耦合到慢模块的中间表示，需要端到端联合训练，限制了模块独立性、可扩展性和灵活切换。论文旨在解决这一问题。 EMS 通过轻量级强化学习切换策略动态决定何时调用大型慢速规划系统（System 2）、何时调用轻量快速反应系统（System 1），实现稀疏调用慢系统，从而在保留大规模 VLA 预训练知识的同时提升推理效率。",
+    "research_unit": "论文中未明确列出作者所属研究机构（仅提供作者姓名列表，其中 Yuxin Ma 标注编号 2，其余作者标…",
+    "hook_text": "论文提出 EMS（Environment-aware Model Selection），一个自适应的双系统 VLA（Vision–Language–Action）推理框架，通过环境感知的模型选择在快慢两个完全解耦系统之间动态切换，以同时兼顾任务成功率与实时闭环控制频率。",
+    "key_points": [
+      "论文提出 EMS（Environment-aware Model Selection），一个自适应的双系统 VLA（Vision–Language–Action）推理框架，通过环境感知的模型选择在快慢两个完全解耦系统之间动态切换，以同时兼顾任务成功率与实时闭环控制频率。",
+      "现有双系统 VLA 架构（如 DP-VLA、FiS-VLA）通常将快模块紧紧耦合到慢模块的中间表示，需要端到端联合训练，限制了模块独立性、可扩展性和灵活切换。论文旨在解决这一问题。",
+      "EMS 通过轻量级强化学习切换策略动态决定何时调用大型慢速规划系统（System 2）、何时调用轻量快速反应系统（System 1），实现稀疏调用慢系统，从而在保留大规模 VLA 预训练知识的同时提升推理效率。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-06",
     "title": "Adaptive-WAM: Quality-Guided Early-Exit Planning from Intermediate Video-Diffusion Features",
     "link": "http://arxiv.org/abs/2608.06008",
