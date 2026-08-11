@@ -1,5 +1,556 @@
 [
   {
+    "date": "2026-08-10",
+    "title": "SLIM-0.5B: Learning Action-Grounded Predictive Latents for Robot Manipulation",
+    "link": "http://arxiv.org/abs/2608.09771",
+    "arxiv_id": "2608.09771",
+    "detail_path": "papers/2608.09771/",
+    "cover_path": "covers/2608.09771/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09771.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09771.webp",
+    "preview_text": "论文提出 SLIM（Self-supervised Latent Interaction Model），一个仅 0.5B 参数的紧凑潜伏交互策略，用于语言条件下的机器人操作。 核心动机是解决现有 VLA 策略（依赖大型 VLM 骨干，推理开销大）和 像素级世界模型（预测与控制无关的视觉细节）的局限性，主张机器人控制应在动作-观测交互的潜伏空间中进行。 SLIM 通过自监督掩码轨迹预测学习 动作接地的预测性潜伏（action-grounded predictive latents），同时捕捉动作引起的未来状态变化，以及解释观测变化所需的动作。",
+    "research_unit": "复旦大学（Fudan University）",
+    "hook_text": "论文提出 SLIM（Self-supervised Latent Interaction Model），一个仅 0.5B 参数的紧凑潜伏交互策略，用于语言条件下的机器人操作。",
+    "key_points": [
+      "论文提出 SLIM（Self-supervised Latent Interaction Model），一个仅 0.5B 参数的紧凑潜伏交互策略，用于语言条件下的机器人操作。",
+      "核心动机是解决现有 VLA 策略（依赖大型 VLM 骨干，推理开销大）和 像素级世界模型（预测与控制无关的视觉细节）的局限性，主张机器人控制应在动作-观测交互的潜伏空间中进行。",
+      "SLIM 通过自监督掩码轨迹预测学习 动作接地的预测性潜伏（action-grounded predictive latents），同时捕捉动作引起的未来状态变化，以及解释观测变化所需的动作。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "World Tokens: Enhancing Embodied Policies with Training-Time World Modeling",
+    "link": "http://arxiv.org/abs/2608.09730",
+    "arxiv_id": "2608.09730",
+    "detail_path": "papers/2608.09730/",
+    "cover_path": "covers/2608.09730/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09730.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09730.webp",
+    "preview_text": "论文提出 World Tokens 架构，通过训练时世界建模提升具身策略（VLA）的动力学感知能力，同时保持高效的部署推理速度 核心思路是使用 World Adapter 将 VLM 特征压缩为固定数量的世界 token，这些 token 在训练时同时用于未来视频去噪和动作生成，使预测性监督直接塑造控制表征 在部署时完全移除视频世界模型分支，仅保留 VLM、World Adapter 和动作专家，推理延迟与纯 VLA 模型相当",
+    "research_unit": "JIUTIAN Research",
+    "hook_text": "论文提出 World Tokens 架构，通过训练时世界建模提升具身策略（VLA）的动力学感知能力，同时保持高效的部署推理速度",
+    "key_points": [
+      "论文提出 World Tokens 架构，通过训练时世界建模提升具身策略（VLA）的动力学感知能力，同时保持高效的部署推理速度",
+      "核心思路是使用 World Adapter 将 VLM 特征压缩为固定数量的世界 token，这些 token 在训练时同时用于未来视频去噪和动作生成，使预测性监督直接塑造控制表征",
+      "在部署时完全移除视频世界模型分支，仅保留 VLM、World Adapter 和动作专家，推理延迟与纯 VLA 模型相当"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "HarnessWAM: Bridging Prediction and Deliberation in World Action Models",
+    "link": "http://arxiv.org/abs/2608.09516",
+    "arxiv_id": "2608.09516",
+    "detail_path": "papers/2608.09516/",
+    "cover_path": "covers/2608.09516/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09516.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09516.webp",
+    "preview_text": "论文指出世界动作模型（WAMs）虽然能联合学习环境动力学与机器人动作，但有限时域预测和动作生成不足以支持需要全局规划、跨阶段状态维护、执行验证和失败恢复的复杂具身任务，这一不匹配被称为“预测—深思鸿沟”（prediction-deliberation gap）。 为弥合这一鸿沟，论文提出 HarnessWAM，一个模型外部（model-external）的智能体框架，通过VLM 任务管理器维护“证据接地”的场景信念和结构化任务图，将开放式语义规划编译为 WAM 可执行的原子技能序列。 HarnessWAM 通过事件驱动、双时间尺度的反馈回路，将连续控制与任务级推理解耦，实现了可规划、可验证、可恢复的长期具身任务执行。",
+    "research_unit": "中国科学院自动化研究所（Institute of Automation, Chinese Academ…",
+    "hook_text": "论文指出世界动作模型（WAMs）虽然能联合学习环境动力学与机器人动作，但有限时域预测和动作生成不足以支持需要全局规划、跨阶段状态维护、执行验证和失败恢复的复杂具身任务，这一不匹配被称为“预测—深思鸿沟”（prediction-deliberation gap）。",
+    "key_points": [
+      "论文指出世界动作模型（WAMs）虽然能联合学习环境动力学与机器人动作，但有限时域预测和动作生成不足以支持需要全局规划、跨阶段状态维护、执行验证和失败恢复的复杂具身任务，这一不匹配被称为“预测—深思鸿沟”（prediction-deliberation gap）。",
+      "为弥合这一鸿沟，论文提出 HarnessWAM，一个模型外部（model-external）的智能体框架，通过VLM 任务管理器维护“证据接地”的场景信念和结构化任务图，将开放式语义规划编译为 WAM 可执行的原子技能序列。",
+      "HarnessWAM 通过事件驱动、双时间尺度的反馈回路，将连续控制与任务级推理解耦，实现了可规划、可验证、可恢复的长期具身任务执行。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "Rethink Before You Execute: Adaptive Execution for World Action Models",
+    "link": "http://arxiv.org/abs/2608.09492",
+    "arxiv_id": "2608.09492",
+    "detail_path": "papers/2608.09492/",
+    "cover_path": "covers/2608.09492/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09492.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09492.webp",
+    "preview_text": "论文针对 世界动作模型（World Action Models, WAMs） 在固定执行步数下重规划的缺陷，指出 chunk 在不同任务阶段可靠性差异巨大，固定 horizon 无法匹配实际执行动态 提出 TempoWAM（Timing Execution by Monitoring Progress Online），一种轻量级、即插即用的自适应执行方案，通过在线监控任务进展来决定继续执行还是重新规划 在 LIBERO、RoboTwin 2.0 及真实机器人任务上验证了 TempoWAM 能持续改善 WAM 执行效率与成功率之间的权衡",
+    "research_unit": "原文未在 HTML 中明确标注作者所属机构名称（仅以数字上标区分多单位）",
+    "hook_text": "论文针对 世界动作模型（World Action Models, WAMs） 在固定执行步数下重规划的缺陷，指出 chunk 在不同任务阶段可靠性差异巨大，固定 horizon 无法匹配实际执行动态",
+    "key_points": [
+      "论文针对 世界动作模型（World Action Models, WAMs） 在固定执行步数下重规划的缺陷，指出 chunk 在不同任务阶段可靠性差异巨大，固定 horizon 无法匹配实际执行动态",
+      "提出 TempoWAM（Timing Execution by Monitoring Progress Online），一种轻量级、即插即用的自适应执行方案，通过在线监控任务进展来决定继续执行还是重新规划",
+      "在 LIBERO、RoboTwin 2.0 及真实机器人任务上验证了 TempoWAM 能持续改善 WAM 执行效率与成功率之间的权衡"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "RecoverFly: A Failure-Aware Reinforcement Learning Post-Training Framework for Aerial Vision-Language Navigation",
+    "link": "http://arxiv.org/abs/2608.09467",
+    "arxiv_id": "2608.09467",
+    "detail_path": "papers/2608.09467/",
+    "cover_path": "covers/2608.09467/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09467.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09467.webp",
+    "preview_text": "提出 RecoverFly，一个针对端到端无人机视觉-语言-动作（UAV-VLA）策略的失败感知强化学习后训练框架，用于解决无人机视觉语言导航（UAV-VLN）中的闭环执行问题。 该框架解决三大核心挑战：行为克隆缺乏纠错学习、标准RL对失败样本利用效率低、长尾场景分布导致泛化能力弱。 核心思路是将token级PPO、动态失败重放、两阶段长尾场景课程、参考策略KL正则化统一到同一后训练流程中，同时解决稀疏奖励、训练分布偏移和策略退化问题。",
+    "research_unit": "论文作者所属机构在原文中未明确标注，仅提供作者列表：Boxiong Wang、Hui Kang、Gen…",
+    "hook_text": "提出 RecoverFly，一个针对端到端无人机视觉-语言-动作（UAV-VLA）策略的失败感知强化学习后训练框架，用于解决无人机视觉语言导航（UAV-VLN）中的闭环执行问题。",
+    "key_points": [
+      "提出 RecoverFly，一个针对端到端无人机视觉-语言-动作（UAV-VLA）策略的失败感知强化学习后训练框架，用于解决无人机视觉语言导航（UAV-VLN）中的闭环执行问题。",
+      "该框架解决三大核心挑战：行为克隆缺乏纠错学习、标准RL对失败样本利用效率低、长尾场景分布导致泛化能力弱。",
+      "核心思路是将token级PPO、动态失败重放、两阶段长尾场景课程、参考策略KL正则化统一到同一后训练流程中，同时解决稀疏奖励、训练分布偏移和策略退化问题。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "VANE: Reliable Test-Time Training for Vision-Language-Action Models via Future Visual Representation Prediction",
+    "link": "http://arxiv.org/abs/2608.09448",
+    "arxiv_id": "2608.09448",
+    "detail_path": "papers/2608.09448/",
+    "cover_path": "covers/2608.09448/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09448.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09448.webp",
+    "preview_text": "论文提出 VANE 框架，旨在解决视觉-语言-动作（VLA）模型在闭环操作中测试时训练（TTT）不可靠的问题。 核心思想：将提示词（prompt）适配条件化于当前视觉-语言上下文，并利用已执行动作的未来视觉结果进行学习；候选更新与实时策略隔离，仅当得到未来证据支持时才提交，实现选择性、可逆的自适应。 论文指出现有 TTT 的三个挑战：共享适配空间会混合不相容的任务修正、在线更新会在后果未知前改变后续动作、预测式 TTT 需要应对延迟目标和闭环耦合问题。",
+    "research_unit": "香港中文大学（深圳）",
+    "hook_text": "论文提出 VANE 框架，旨在解决视觉-语言-动作（VLA）模型在闭环操作中测试时训练（TTT）不可靠的问题。",
+    "key_points": [
+      "论文提出 VANE 框架，旨在解决视觉-语言-动作（VLA）模型在闭环操作中测试时训练（TTT）不可靠的问题。",
+      "核心思想：将提示词（prompt）适配条件化于当前视觉-语言上下文，并利用已执行动作的未来视觉结果进行学习；候选更新与实时策略隔离，仅当得到未来证据支持时才提交，实现选择性、可逆的自适应。",
+      "论文指出现有 TTT 的三个挑战：共享适配空间会混合不相容的任务修正、在线更新会在后果未知前改变后续动作、预测式 TTT 需要应对延迟目标和闭环耦合问题。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "Skills in Weights, Memory in Code: Hybrid Learning for Memory-Dependent Robot Manipulation",
+    "link": "http://arxiv.org/abs/2608.09410",
+    "arxiv_id": "2608.09410",
+    "detail_path": "papers/2608.09410/",
+    "cover_path": "covers/2608.09410/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09410.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09410.webp",
+    "preview_text": "提出 HyMeS（Hybrid learning framework with Memory-management coding agents to Steer VLAs），一种面向记忆依赖型机器人操作任务的混合学习框架 核心思路是将运动技能学习与记忆策略学习解耦：技能在权重空间通过梯度模仿学习获得，记忆策略在代码空间通过启发式学习由编码智能体迭代更新 解决的核心问题是：现代 VLA 策略本质上是马尔可夫的，只能基于当前观测或短窗口决策，而真实操作往往需要从长程交互历史中保留和推理任务相关信息",
+    "research_unit": "论文作者团队包括 Yunhao Zhao、Zhenyang Ni、Haoyang Chen、Ruoha…",
+    "hook_text": "提出 HyMeS（Hybrid learning framework with Memory-management coding agents to Steer VLAs），一种面向记忆依赖型机器人操作任务的混合学习框架",
+    "key_points": [
+      "提出 HyMeS（Hybrid learning framework with Memory-management coding agents to Steer VLAs），一种面向记忆依赖型机器人操作任务的混合学习框架",
+      "核心思路是将运动技能学习与记忆策略学习解耦：技能在权重空间通过梯度模仿学习获得，记忆策略在代码空间通过启发式学习由编码智能体迭代更新",
+      "解决的核心问题是：现代 VLA 策略本质上是马尔可夫的，只能基于当前观测或短窗口决策，而真实操作往往需要从长程交互历史中保留和推理任务相关信息"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "JEPA-WAM: Learning Vision-Language-Action Policies with Joint-Embedding World Modeling",
+    "link": "http://arxiv.org/abs/2608.09381",
+    "arxiv_id": "2608.09381",
+    "detail_path": "papers/2608.09381/",
+    "cover_path": "covers/2608.09381/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09381.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09381.webp",
+    "preview_text": "提出 JEPA-WAM，一种在预训练 V-JEPA 表示空间中构建的潜在世界动作模型（latent WAM），通过共享预测器将潜在转移预测与连续动作生成耦合 针对视频生成型 WAM 部署成本高、现有潜在 WAM 预测表示被压缩或预测建模与动作生成分离的问题，设计了保持密集 patch 级空间结构的联合当前-未来转移目标 目标是在不显式生成未来帧的情况下，提升机器人策略在分布偏移下的鲁棒性和泛化能力",
+    "research_unit": "作者所属机构未在原文中完整列出，脚注提及部分作者为 XYZ Embodied AI 实习生",
+    "hook_text": "提出 JEPA-WAM，一种在预训练 V-JEPA 表示空间中构建的潜在世界动作模型（latent WAM），通过共享预测器将潜在转移预测与连续动作生成耦合",
+    "key_points": [
+      "提出 JEPA-WAM，一种在预训练 V-JEPA 表示空间中构建的潜在世界动作模型（latent WAM），通过共享预测器将潜在转移预测与连续动作生成耦合",
+      "针对视频生成型 WAM 部署成本高、现有潜在 WAM 预测表示被压缩或预测建模与动作生成分离的问题，设计了保持密集 patch 级空间结构的联合当前-未来转移目标",
+      "目标是在不显式生成未来帧的情况下，提升机器人策略在分布偏移下的鲁棒性和泛化能力"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-10",
+    "title": "Trajectory Divergence Horizon Decision for Reliable Dual-Arm Surgical Subtask Manipulation",
+    "link": "http://arxiv.org/abs/2608.09125",
+    "arxiv_id": "2608.09125",
+    "detail_path": "papers/2608.09125/",
+    "cover_path": "covers/2608.09125/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.09125.webp",
+    "paper_image_full_path": "assets/paper-images/2608.09125.webp",
+    "preview_text": "本文研究VLA（Vision-Language-Action）模型在双机械臂手术子任务中的可靠部署问题，聚焦于手术操作中毫米级精度和软体组织交互的安全需求 针对现有VLA策略依赖固定长度开环动作序列、在场景变化下易产生累积误差的问题，提出TDHD（Trajectory Divergence Horizon Decision） 测试时机制，自适应决定安全执行长度 建立了一个真实世界 da Vinci 风格双机械臂手术平台，收集 600 条遥操作演示数据，覆盖针操作（reach/pick/regrasp）和组织操作（reach/lift/resection）六大层级子任务",
+    "research_unit": "香港中文大学（CUHK） 电子工程系",
+    "hook_text": "本文研究VLA（Vision-Language-Action）模型在双机械臂手术子任务中的可靠部署问题，聚焦于手术操作中毫米级精度和软体组织交互的安全需求",
+    "key_points": [
+      "本文研究VLA（Vision-Language-Action）模型在双机械臂手术子任务中的可靠部署问题，聚焦于手术操作中毫米级精度和软体组织交互的安全需求",
+      "针对现有VLA策略依赖固定长度开环动作序列、在场景变化下易产生累积误差的问题，提出TDHD（Trajectory Divergence Horizon Decision） 测试时机制，自适应决定安全执行长度",
+      "建立了一个真实世界 da Vinci 风格双机械臂手术平台，收集 600 条遥操作演示数据，覆盖针操作（reach/pick/regrasp）和组织操作（reach/lift/resection）六大层级子任务"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-09",
+    "title": "From Recovery to Drop-off: How Action Post-training Reduces a VLM's Late-Layer Depth Decodability",
+    "link": "http://arxiv.org/abs/2608.08904",
+    "arxiv_id": "2608.08904",
+    "detail_path": "papers/2608.08904/",
+    "cover_path": "covers/2608.08904/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08904.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08904.webp",
+    "preview_text": "本文研究视觉-语言-动作模型（VLA）在动作后训练过程中，对预训练视觉-语言模型（VLM）空间几何理解能力的破坏程度，以深度感知作为空间几何理解的基本能力进行探测。 使用权重匹配的 VLM/VLA 对——Molmo2-ER（基础 VLM）和 MolmoAct2-LIBERO（动作后训练的 VLA），对每一解码器层进行深度可解码性逐层探测，发现两代模型间的系统性差距。 论文要解决的问题是：动作后训练造成的深度信息损失发生在网络的哪些层、由哪些模块导致，以及能否通过后期干预恢复。",
+    "research_unit": "纽约大学（New York University）",
+    "hook_text": "本文研究视觉-语言-动作模型（VLA）在动作后训练过程中，对预训练视觉-语言模型（VLM）空间几何理解能力的破坏程度，以深度感知作为空间几何理解的基本能力进行探测。",
+    "key_points": [
+      "本文研究视觉-语言-动作模型（VLA）在动作后训练过程中，对预训练视觉-语言模型（VLM）空间几何理解能力的破坏程度，以深度感知作为空间几何理解的基本能力进行探测。",
+      "使用权重匹配的 VLM/VLA 对——Molmo2-ER（基础 VLM）和 MolmoAct2-LIBERO（动作后训练的 VLA），对每一解码器层进行深度可解码性逐层探测，发现两代模型间的系统性差距。",
+      "论文要解决的问题是：动作后训练造成的深度信息损失发生在网络的哪些层、由哪些模块导致，以及能否通过后期干预恢复。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-09",
+    "title": "SG-WAM: Text-Grounded and Spatial-aware Semantic Guidance for World-Action Models",
+    "link": "http://arxiv.org/abs/2608.08839",
+    "arxiv_id": "2608.08839",
+    "detail_path": "papers/2608.08839/",
+    "cover_path": "covers/2608.08839/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08839.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08839.webp",
+    "preview_text": "论文提出 SG-WAM，一种面向世界行动模型（World-Action Models, WAMs）的语义引导方法，解决现有 WAMs 依赖观测无关的文本嵌入导致预测视频与语言指令语义错位的问题。 核心思路是引入 VLM（视觉语言模型）作为语义规划器，从当前观测和指令中预测\"文本接地\"与\"空间感知\"两类语义预视（semantic foresight），以此引导未来视频生成和动作预测。 在 LIBERO、LIBERO-Plus 仿真基准以及真实机器人平台上验证了方法的有效性，在指令跟随、鲁棒性和精确操作方面均达到 SOTA 水平。",
+    "research_unit": "香港科技大学（广州）（The Hong Kong University of Science and…",
+    "hook_text": "论文提出 SG-WAM，一种面向世界行动模型（World-Action Models, WAMs）的语义引导方法，解决现有 WAMs 依赖观测无关的文本嵌入导致预测视频与语言指令语义错位的问题。",
+    "key_points": [
+      "论文提出 SG-WAM，一种面向世界行动模型（World-Action Models, WAMs）的语义引导方法，解决现有 WAMs 依赖观测无关的文本嵌入导致预测视频与语言指令语义错位的问题。",
+      "核心思路是引入 VLM（视觉语言模型）作为语义规划器，从当前观测和指令中预测\"文本接地\"与\"空间感知\"两类语义预视（semantic foresight），以此引导未来视频生成和动作预测。",
+      "在 LIBERO、LIBERO-Plus 仿真基准以及真实机器人平台上验证了方法的有效性，在指令跟随、鲁棒性和精确操作方面均达到 SOTA 水平。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-09",
+    "title": "OnEvoMemory: Evolving Memory through Online Robot Rollouts for Pretrained Robot Policies",
+    "link": "http://arxiv.org/abs/2608.08749",
+    "arxiv_id": "2608.08749",
+    "detail_path": "papers/2608.08749/",
+    "cover_path": "covers/2608.08749/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08749.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08749.webp",
+    "preview_text": "论文提出 OnEvoMemory，一种面向预训练机器人策略的价值引导记忆模块，解决长时程操作任务中策略难以跟踪已完成子任务和关键交互事件的问题。 现有记忆机制通常依赖外部视觉语言模型或预定义更新规则，无法根据真实交互结果自适应调整“什么值得记住”；OnEvoMemory通过学习轨迹结果来优化记忆选择。 核心思路：先通过离线演示初始化记忆先验，再利用在线机器人回放（包括成功与失败轨迹）持续进化记忆选择，同时保持底层策略冻结。",
+    "research_unit": "上海交通大学（Shanghai Jiao Tong University）",
+    "hook_text": "论文提出 OnEvoMemory，一种面向预训练机器人策略的价值引导记忆模块，解决长时程操作任务中策略难以跟踪已完成子任务和关键交互事件的问题。",
+    "key_points": [
+      "论文提出 OnEvoMemory，一种面向预训练机器人策略的价值引导记忆模块，解决长时程操作任务中策略难以跟踪已完成子任务和关键交互事件的问题。",
+      "现有记忆机制通常依赖外部视觉语言模型或预定义更新规则，无法根据真实交互结果自适应调整“什么值得记住”；OnEvoMemory通过学习轨迹结果来优化记忆选择。",
+      "核心思路：先通过离线演示初始化记忆先验，再利用在线机器人回放（包括成功与失败轨迹）持续进化记忆选择，同时保持底层策略冻结。"
+    ],
+    "reading_minutes": 5,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-09",
+    "title": "WA-SpecDec: World-Aware Speculative Decoding for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.08725",
+    "arxiv_id": "2608.08725",
+    "detail_path": "papers/2608.08725/",
+    "cover_path": "covers/2608.08725/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08725.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08725.webp",
+    "preview_text": "论文提出 WA-SpecDec（World-Aware Speculative Decoding），一种面向视觉-语言-动作模型（VLA）的世界感知推测解码框架，旨在解决 VLA 模型自回归生成动作 token 时的闭环延迟瓶颈。 现有 VLA 推测解码方法采用宽松接受（relaxed acceptance）规则，在动作 token 空间中用固定距离容忍度（ρ）判断草稿 token 是否被接受，但该容忍度是场景无关的：在自由空间中安全的偏差，在接近接触（near-contact）状态下可能引发碰撞、抓取失败或错误的接触相位。 WA-SpecDec 通过在 VLA 预填充（prefill）阶段注入由世界模型派生的物理场景感知，生成共享的世界感知预填充隐藏状态，同时用于草稿生成和目标验证，无需修改宽松接受规则本身。",
+    "research_unit": "The University of Sydney（悉尼大学）",
+    "hook_text": "论文提出 WA-SpecDec（World-Aware Speculative Decoding），一种面向视觉-语言-动作模型（VLA）的世界感知推测解码框架，旨在解决 VLA 模型自回归生成动作 token 时的闭环延迟瓶颈。",
+    "key_points": [
+      "论文提出 WA-SpecDec（World-Aware Speculative Decoding），一种面向视觉-语言-动作模型（VLA）的世界感知推测解码框架，旨在解决 VLA 模型自回归生成动作 token 时的闭环延迟瓶颈。",
+      "现有 VLA 推测解码方法采用宽松接受（relaxed acceptance）规则，在动作 token 空间中用固定距离容忍度（ρ）判断草稿 token 是否被接受，但该容忍度是场景无关的：在自由空间中安全的偏差，在接近接触（near-contact）状态下可能引发碰撞、抓取失败或错误的接触相位。",
+      "WA-SpecDec 通过在 VLA 预填充（prefill）阶段注入由世界模型派生的物理场景感知，生成共享的世界感知预填充隐藏状态，同时用于草稿生成和目标验证，无需修改宽松接受规则本身。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-09",
+    "title": "Vid2WAM: Distilling Video Diffusion Priors into World Action Models",
+    "link": "http://arxiv.org/abs/2608.08558",
+    "arxiv_id": "2608.08558",
+    "detail_path": "papers/2608.08558/",
+    "cover_path": "covers/2608.08558/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08558.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08558.webp",
+    "preview_text": "提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型 核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源 通过双通道蒸馏实现：教师生成的未来视频直接监督学生未来预测分支，逆动力学模型（IDM）恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃",
+    "research_unit": "作者来自编号 1、2、3 三个研究机构（具体机构名称未在提供的 HTML 片段中完整列出）",
+    "hook_text": "提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型",
+    "key_points": [
+      "提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型",
+      "核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源",
+      "通过双通道蒸馏实现：教师生成的未来视频直接监督学生未来预测分支，逆动力学模型（IDM）恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-08",
+    "title": "4D-WAM: Infusing Spatiotemporal Awareness into World Action Models through Trajectory Fields",
+    "link": "http://arxiv.org/abs/2608.08023",
+    "arxiv_id": "2608.08023",
+    "detail_path": "papers/2608.08023/",
+    "cover_path": "covers/2608.08023/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.08023.webp",
+    "paper_image_full_path": "assets/paper-images/2608.08023.webp",
+    "preview_text": "World Action Models（WAMs） 联合进行视频预测与动作生成，但通常在 2D 像素空间建模，与机器人执行动作的 3D 空间存在表示鸿沟。 现有 3D 方案引入了 3D 信息，但未充分利用 3D 结构的动态演化，且逐帧深度重建容易让模型关注低层细节而缺乏高层 4D 理解。 本文提出 4D-WAM，一种模型无关的训练策略，通过表示对齐将 3D 轨迹场注入 WAM，并设计 运动对齐 与 目标点对齐 两个互补目标，分别提供局部运动监督与长程目标引导。",
+    "research_unit": "作者机构在提供的 HTML 中未完整列出；根据已知信息，Feras Dayoub 和 Lingqiao…",
+    "hook_text": "World Action Models（WAMs） 联合进行视频预测与动作生成，但通常在 2D 像素空间建模，与机器人执行动作的 3D 空间存在表示鸿沟。",
+    "key_points": [
+      "World Action Models（WAMs） 联合进行视频预测与动作生成，但通常在 2D 像素空间建模，与机器人执行动作的 3D 空间存在表示鸿沟。",
+      "现有 3D 方案引入了 3D 信息，但未充分利用 3D 结构的动态演化，且逐帧深度重建容易让模型关注低层细节而缺乏高层 4D 理解。",
+      "本文提出 4D-WAM，一种模型无关的训练策略，通过表示对齐将 3D 轨迹场注入 WAM，并设计 运动对齐 与 目标点对齐 两个互补目标，分别提供局部运动监督与长程目标引导。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-08",
+    "title": "Auditing Instruction-Trajectory Mismatches in Multimodal Robot Demonstrations",
+    "link": "http://arxiv.org/abs/2608.07895",
+    "arxiv_id": "2608.07895",
+    "detail_path": "papers/2608.07895/",
+    "cover_path": "covers/2608.07895/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07895.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07895.webp",
+    "preview_text": "研究多模态机器人演示数据中一种隐蔽性错误：指令–轨迹失配（Instruction–Trajectory Mismatch, ITM），即行为正确但配对语言指令语义错误的现象。 提出 MMPF（Multimodal Probabilistic Fusion），一种无需训练的后期审计框架，用于识别并纠正已标注机器人数据集中的 ITM。 核心目标是解决现有数据整理方法只关注执行失败、忽视语义标注错误的问题，改善视觉-语言-动作（VLA）策略的语言-行为映射质量。",
+    "research_unit": "AI Robot Association (AIRoA)，东京，日本",
+    "hook_text": "研究多模态机器人演示数据中一种隐蔽性错误：指令–轨迹失配（Instruction–Trajectory Mismatch, ITM），即行为正确但配对语言指令语义错误的现象。",
+    "key_points": [
+      "研究多模态机器人演示数据中一种隐蔽性错误：指令–轨迹失配（Instruction–Trajectory Mismatch, ITM），即行为正确但配对语言指令语义错误的现象。",
+      "提出 MMPF（Multimodal Probabilistic Fusion），一种无需训练的后期审计框架，用于识别并纠正已标注机器人数据集中的 ITM。",
+      "核心目标是解决现有数据整理方法只关注执行失败、忽视语义标注错误的问题，改善视觉-语言-动作（VLA）策略的语言-行为映射质量。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "CMU-Drive and V2V-VLA: Cooperative Multi-agent Unified Driving with Reasoning Benchmark and Vehicle-to-Vehicle Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.07621",
+    "arxiv_id": "2608.07621",
+    "detail_path": "papers/2608.07621/",
+    "cover_path": "covers/2608.07621/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07621.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07621.webp",
+    "preview_text": "该论文提出 CMU-Drive，一个用于协同多智能体统一驾驶推理的基准测试，支持闭环、端到端评估多个网联自动驾驶汽车（CAVs）。 同时提出 V2V-VLA，一种车对车视觉-语言-动作模型，在单次前向推理中联合生成驾驶动作、未来航点、语言推理和通信策略。 现有VLA模型主要面向单一自动驾驶智能体，缺乏对协同感知、推理和规划的支撑，本文旨在弥合该空白。",
+    "research_unit": "卡内基梅隆大学（Carnegie Mellon University），机器人研究所（Robotics…",
+    "hook_text": "该论文提出 CMU-Drive，一个用于协同多智能体统一驾驶推理的基准测试，支持闭环、端到端评估多个网联自动驾驶汽车（CAVs）。",
+    "key_points": [
+      "该论文提出 CMU-Drive，一个用于协同多智能体统一驾驶推理的基准测试，支持闭环、端到端评估多个网联自动驾驶汽车（CAVs）。",
+      "同时提出 V2V-VLA，一种车对车视觉-语言-动作模型，在单次前向推理中联合生成驾驶动作、未来航点、语言推理和通信策略。",
+      "现有VLA模型主要面向单一自动驾驶智能体，缺乏对协同感知、推理和规划的支撑，本文旨在弥合该空白。"
+    ],
+    "reading_minutes": 5,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-07",
+    "title": "GWM-VLA: Geometry-Aware Latent World Modeling for Vision-Language-Action Learning",
+    "link": "http://arxiv.org/abs/2608.07619",
+    "arxiv_id": "2608.07619",
+    "detail_path": "papers/2608.07619/",
+    "cover_path": "covers/2608.07619/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07619.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07619.webp",
+    "preview_text": "提出 GWM-VLA（Geometry-Aware Latent World Modeling for Vision-Language-Action Learning），一种面向 VLA 模型的几何感知潜在世界建模框架，旨在解决 VLA 模型在视觉与环境变化（如视角、光照、背景、物体布局、传感器噪声）下性能显著退化的问题。 现有潜在世界模型（如 VLA-JEPA）通常独立编码每个相机视角再拼接特征，缺乏显式的跨视角几何关系建模；而显式世界模型需要生成未来视觉观测，代价过高。GWM-VLA 通过引入 VGGT-Ω 联合多视角聚合构建几何感知状态，并结合共享潜在动作表征实现预测与控制的统一学习。 在 LIBERO 和 LIBERO-Plus 仿真基准及 SO-101 真实机器人上验证了方法的有效性和鲁棒性。",
+    "research_unit": "论文作者为 Yanping Zhao、Hang Yu、Yiwei Wang、Chen Ye、Siyu…",
+    "hook_text": "提出 GWM-VLA（Geometry-Aware Latent World Modeling for Vision-Language-Action Learning），一种面向 VLA 模型的几何感知潜在世界建模框架，旨在解决 VLA 模型在视觉与环境变化（如视角、光照、背景、物体布局、传感器噪声）下性能显著退化的问题。",
+    "key_points": [
+      "提出 GWM-VLA（Geometry-Aware Latent World Modeling for Vision-Language-Action Learning），一种面向 VLA 模型的几何感知潜在世界建模框架，旨在解决 VLA 模型在视觉与环境变化（如视角、光照、背景、物体布局、传感器噪声）下性能显著退化的问题。",
+      "现有潜在世界模型（如 VLA-JEPA）通常独立编码每个相机视角再拼接特征，缺乏显式的跨视角几何关系建模；而显式世界模型需要生成未来视觉观测，代价过高。GWM-VLA 通过引入 VGGT-Ω 联合多视角聚合构建几何感知状态，并结合共享潜在动作表征实现预测与控制的统一学习。",
+      "在 LIBERO 和 LIBERO-Plus 仿真基准及 SO-101 真实机器人上验证了方法的有效性和鲁棒性。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-06",
+    "title": "LIRA: Local Cross-Layer Information Routing for Vision-Language-Action Decoding",
+    "link": "http://arxiv.org/abs/2608.07596",
+    "arxiv_id": "2608.07596",
+    "detail_path": "papers/2608.07596/",
+    "cover_path": "covers/2608.07596/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.07596.webp",
+    "paper_image_full_path": "assets/paper-images/2608.07596.webp",
+    "preview_text": "本文提出 LIRA（Local Cross-Layer Information Routing），一种面向视觉-语言-动作（VLA）模型的局部跨层动作条件化机制，解决 VLM 到动作解码器接口设计未被充分探索的问题 现有 VLM-to-action 接口存在三类局限：仅暴露最终层表征、将每个解码器块刚性匹配到单一 VLM 层、或全局聚合破坏跨深度局部结构 核心思路是将 VLM-to-action 条件化重构为深度感知的信息路由问题，引入\"VLM 深度上的局部性先验\"，让每个解码器块访问以对应 VLM 层为中心的相邻层局部窗口",
+    "research_unit": "论文作者为 Zhewei Zhang、Puyue Wang、Guanren Qiao（共同一作） 及多…",
+    "hook_text": "本文提出 LIRA（Local Cross-Layer Information Routing），一种面向视觉-语言-动作（VLA）模型的局部跨层动作条件化机制，解决 VLM 到动作解码器接口设计未被充分探索的问题",
+    "key_points": [
+      "本文提出 LIRA（Local Cross-Layer Information Routing），一种面向视觉-语言-动作（VLA）模型的局部跨层动作条件化机制，解决 VLM 到动作解码器接口设计未被充分探索的问题",
+      "现有 VLM-to-action 接口存在三类局限：仅暴露最终层表征、将每个解码器块刚性匹配到单一 VLM 层、或全局聚合破坏跨深度局部结构",
+      "核心思路是将 VLM-to-action 条件化重构为深度感知的信息路由问题，引入\"VLM 深度上的局部性先验\"，让每个解码器块访问以对应 VLM 层为中心的相邻层局部窗口"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-07",
     "title": "SimWAM: A Simple World Action Model for End-to-End Autonomous Driving",
     "link": "http://arxiv.org/abs/2608.07468",

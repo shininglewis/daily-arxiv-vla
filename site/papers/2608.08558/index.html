@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vid2WAM: Distilling Video Diffusion Priors into World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型 核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源 通过双通道蒸馏实现：教师生成的未来视频直接监督学生未来预测分支，逆动力学模型（IDM）恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.08558">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.08558.webp" alt="Vid2WAM: Distilling Video Diffusion Priors into World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Vid2WAM: Distilling Video Diffusion Priors into World Action Models</h1>
+            <div class="detail-meta">2026-08-09 · <a href="http://arxiv.org/abs/2608.08558" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.08558" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.08558</span></div>
+            <p class="detail-summary">提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型 核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源 通过双通道蒸馏实现：教师生成的未来视频直接监督学生未来预测分支，逆动力学模型（IDM）恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">作者来自编号 1、2、3 三个研究机构（具体机构名称未在提供的 HTML 片段中完整列出）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.08558/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型</p>
+  <ul class="reading-intro-points"><li>提出 Vid2WAM 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 World Action Model（WAM） 学生模型</li><li>核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源</li><li>通过双通道蒸馏实现：教师生成的未来视频直接监督学生未来预测分支，逆动力学模型（IDM）恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>作者来自编号 1、2、3 三个研究机构（具体机构名称未在提供的 HTML 片段中完整列出）</li><li>根据作者学术背景推断：机构 1/3 与 <strong>复旦大学</strong>（Yanwei Fu）相关，机构 2 与 <strong>香港中文大学（深圳）</strong>（Guiliang Liu、Kui Jia）相关</li><li>论文通信作者为 <strong>Simo Wu</strong>（项目负责人）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Vid2WAM</strong> 框架，将大型视频扩散模型中的视觉先验离线蒸馏为紧凑的 <strong>World Action Model（WAM）</strong> 学生模型</li><li>核心挑战：传统 WAM 假设未来监督必须来自目标任务专家轨迹，本文质疑这一约束，探索使用视频基础模型生成的任务条件化未来作为监督源</li><li>通过双通道蒸馏实现：<strong>教师生成的未来视频</strong>直接监督学生未来预测分支，<strong>逆动力学模型（IDM）</strong>恢复的具体化伪动作监督动作学习；推理时教师和 IDM 均被丢弃</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>重新思考 WAM 未来监督的来源，首次将视频基础模型→WAM 蒸馏形式化为视频扩散先验的离线迁移框架</li><li>提出<strong>双通道、源感知的迁移策略</strong>，同时蒸馏未来视觉动态（video latent）与 IDM 推断动作（pseudo-actions），避免动作恢复模型造成的信息瓶颈</li><li>引入<strong>源感知残差动作适配器</strong>（source-aware residual adapters），在共享动作主干上学习源特定修正，缓解伪动作噪声的干扰</li><li>推理阶段移除视频教师、IDM、未来预测头及伪源适配器，仅保留紧凑的 WAM 学生，保证低延迟部署</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>视频教师适配</strong>：以 <strong>Wan2.1-14B</strong> 视频扩散模型（<strong>LVP</strong> 检查点）为教师，用少量演示视频微调以适应机器人外观和具体化物理约束</li><li><strong>逆动力学模型（IDM）</strong>：基于 <strong>ResNet-50</strong> 主干，配动作与本体感受预测头；无需任务级语言标注，仅需任务无关的交互数据训练</li><li><strong>伪数据生成</strong>：冻结教师生成视觉 rollouts，经学生 VAE 编码至同一潜空间得到未来潜变量，再由 IDM 恢复伪动作 chunk 与状态序列</li><li><strong>源感知残差适配器</strong>：公式为 $\text{Ada}_d(x)=x+\alpha W_{up}^{d}\sigma(W_{down}^{d}\text{LN}(x))$，$W_{up}$ 零初始化使适配器初始为恒等映射，推理时仅保留 real 域适配器</li><li><strong>训练目标</strong>：采用<strong>流匹配（flow matching）</strong>损失，联合优化真实域（专家动作+真实未来）与伪域（伪动作+生成未来）四个损失项</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟基准：<strong>RoboTwin 2.0</strong>（50 个双臂操作任务）、<strong>LIBERO</strong>（Spatial/Object/Goal/Long 四个套件）、<strong>LIBERO-Plus</strong>（7 类扰动：相机、机器人初始状态、语言、光照、背景、传感器噪声、布局）</li><li>真实世界平台：两个 <strong>AgileX Piper</strong> 机械臂、1 个顶部 <strong>Intel RealSense D435</strong> 相机 + 2 个腕部 D435 相机；6 个已见任务 + 3 个新任务</li><li>模型规模：视频教师约 <strong>140 亿参数</strong>（Wan2.1-14B），学生 WAM 约 <strong>50 亿参数</strong></li><li>真实世界数据增强：使用 <strong>GPT-Image-2</strong> 从真实观测生成 60 张多样化初始状态图像用于教师条件生成</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin 2.0</strong>：novel-task 子集上 Vid2WAM 成功率 <strong>54.7%/55.3%</strong>（Clean/Randomized），较 Fast-WAM 提升 9.7/12.5 个百分点；low-data 与 novel regime 总体均最优</li><li><strong>LIBERO</strong>：low-data 下平均成功率 <strong>89.7%</strong>，在四个套件上均取得最好或并列最好结果；novel regime 下同样最高</li><li><strong>LIBERO-Plus</strong>：两大评估体制下总体成功率最高，在机器人状态、语言、光照等扰动上增益明显</li><li><strong>真实世界实验</strong>：9 个接触丰富任务（20 次试次/任务），Vid2WAM 在多数任务上取得最佳或并列最佳</li><li><strong>消融研究</strong>：完整模型 (89.7) > Dual Action DiT (89.1) > No Adapter (88.5) > Future Latent Only (88.2) > Pseudo Action Only (86.4)；在线 Teacher Policy（71.3）显著低于所有蒸馏变体，验证离线双通道蒸馏与源感知适配的有效性</li><li><strong>推理延迟</strong>：Vid2WAM 平均 <strong>212.5ms</strong>（5B 参数），与 Fast-WAM（209.1ms）相当，保持低延迟学生端部署</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.08725/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">WA-SpecDec: World-Aware Speculative Decoding for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.08023/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">4D-WAM: Infusing Spatiotemporal Awareness into World Action Models through Trajectory Fields</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
