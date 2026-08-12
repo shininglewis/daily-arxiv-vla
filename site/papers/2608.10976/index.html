@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XCoT-VLA: Executable Chain-of-Thought for Vision-Language-Action Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 XCoT-VLA，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 可执行链式思考（Executable Chain-of-Thought, XCoT） 替代冗长的自然语言 CoT 推理。 核心问题是：推理应以何种形式暴露给轨迹生成器，才能满足实时驾驶控制对 决策关键性、紧凑性和可执行性 的要求。 XCoT 仅用 2–6 个紧凑语义动作 token（如 LEFT_TURN_PREPARE、DECELERATE、RED_LIGHT_HOLD）编码决策关键信息，直接调节连续轨迹生成，大幅降低自回归推理开销。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.10976">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.10976.webp" alt="XCoT-VLA: Executable Chain-of-Thought for Vision-Language-Action Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 XCoT-VLA，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 可执行链式思考（Executable Chain-of-Thought, XCoT） 替代冗长的自然语言 CoT 推理。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">XCoT-VLA: Executable Chain-of-Thought for Vision-Language-Action Driving</h1>
+            <div class="detail-meta">2026-08-11 · <a href="http://arxiv.org/abs/2608.10976" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.10976" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.10976</span></div>
+            <p class="detail-summary">提出 XCoT-VLA，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 可执行链式思考（Executable Chain-of-Thought, XCoT） 替代冗长的自然语言 CoT 推理。 核心问题是：推理应以何种形式暴露给轨迹生成器，才能满足实时驾驶控制对 决策关键性、紧凑性和可执行性 的要求。 XCoT 仅用 2–6 个紧凑语义动作 token（如 LEFT_TURN_PREPARE、DECELERATE、RED_LIGHT_HOLD）编码决策关键信息，直接调节连续轨迹生成，大幅降低自回归推理开销。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Foundation Model Team, XPeng Inc.（小鹏汽车基础模型团队）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.10976/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 XCoT-VLA，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 可执行链式思考（Executable Chain-of-Thought, XCoT） 替代冗长的自然语言 CoT 推理。</p>
+  <ul class="reading-intro-points"><li>提出 XCoT-VLA，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 可执行链式思考（Executable Chain-of-Thought, XCoT） 替代冗长的自然语言 CoT 推理。</li><li>核心问题是：推理应以何种形式暴露给轨迹生成器，才能满足实时驾驶控制对 决策关键性、紧凑性和可执行性 的要求。</li><li>XCoT 仅用 2–6 个紧凑语义动作 token（如 LEFT_TURN_PREPARE、DECELERATE、RED_LIGHT_HOLD）编码决策关键信息，直接调节连续轨迹生成，大幅降低自回归推理开销。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Foundation Model Team, XPeng Inc.</strong>（小鹏汽车基础模型团队）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>XCoT-VLA</strong>，一种面向自动驾驶的视觉-语言-动作（VLA）模型，用 <strong>可执行链式思考（Executable Chain-of-Thought, XCoT）</strong> 替代冗长的自然语言 CoT 推理。</li><li>核心问题是：推理应以何种形式暴露给轨迹生成器，才能满足实时驾驶控制对 <strong>决策关键性、紧凑性和可执行性</strong> 的要求。</li><li>XCoT 仅用 <strong>2–6 个紧凑语义动作 token</strong>（如 <code>LEFT_TURN_PREPARE</code>、<code>DECELERATE</code>、<code>RED_LIGHT_HOLD</code>）编码决策关键信息，直接调节连续轨迹生成，大幅降低自回归推理开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>可执行 CoT（XCoT）</strong> 表示：将自由文本推理压缩为紧凑的语义-动作 token 序列，在满足实时规划预算的同时保留驾驶决策语义。</li><li>设计 <strong>解耦推理-控制架构</strong>：共享多模态自注意力，配合确定性 token 路由，使用 <strong>Reason FFN</strong> 处理 XCoT token、<strong>Control FFN</strong> 处理轨迹查询，实现推理与连续轨迹生成的连接。</li><li>构建 <strong>Reason–Action 监督数据管道</strong>：从日志轨迹提取动作证据，结合场景语义进行因果归因，再通过语义压缩生成规范化的 XCoT 序列。</li><li>引入 <strong>XCoT 策略优化（XCPO）</strong>：在冻结执行栈的条件下，利用轨迹级奖励对推理策略进行可选强化学习微调。</li><li>面向部署的评估：涵盖一般分布规划、换道场景、推理延迟、训练稳定性和轨迹定性分析，证明 XCoT 在决策中心规划上的优势。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>XCoT 数据构建分三步：<code>f_act</code> 从日志轨迹提取纵向/横向动作证据；<code>f_ground</code> 结合场景上下文选择最一致的因果理由；<code>g_XCoT</code> 通过基于分类法的语义压缩将 Reason–Action 对映射为规范化的 XCoT token 序列。</li><li>解码架构：视觉、文本、任务提示、自车状态等 token 与 XCoT token 共享自注意力；确定性路由将非轨迹 token 分配给 <strong>Reason FFN</strong>，24 个轨迹查询分配给 <strong>Control FFN</strong>。</li><li>Stage I 训练：联合优化 XCoT 自回归预测损失（交叉熵）和 <strong>条件流匹配（CFM）</strong> 轨迹生成损失。</li><li>Stage II 训练：XCPO 采用组相对策略优化（GRPO），在离散 XCoT 空间采样，通过冻结执行栈解码轨迹，用归一化奖励优化推理策略。</li><li>轨迹表示：预测未来 24 步的纵向加速度和横摆角变化，再通过确定性时间积分生成自车坐标系轨迹。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练数据为约 <strong>360 万</strong> 样本的混合数据集，包含：</li></ul>
+<p> - <strong>General SFT</strong>：310 万自动标注样本</p>
+<p> - <strong>Human-Annotated</strong>：20 万人工标注的复杂交互场景</p>
+<p> - <strong>Targeted Lane-Change</strong>：32 万规则标注的换道场景</p>
+<ul><li>模型使用 VLA 骨干和 flow-matching 轨迹解码器，含 24 个可学习轨迹查询。</li><li>训练使用 <strong>AdamW</strong> 优化器，Stage I 峰值学习率 <code>4e-5</code>，Stage II 峰值学习率 <code>1e-4</code>；评估采用 12 Hz 规划预算。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>开环规划评估使用 <strong>一般分布集</strong> 和 <strong>换道集</strong>，指标包括 <strong>ADE-6s-Long/Lat</strong> 和 <strong>FDE-6s-Long/Lat</strong>（6 秒预测时域）。</li><li>与三个变体对比：<strong>Trajectory-only (SFT)</strong>、<strong>Verbose CoT</strong>、<strong>Latent tokens</strong>。</li><li>在一般分布集上，XCoT-VLA 将 ADE-6s-Long 从 1.645 降至 <strong>1.323</strong>，FDE-6s-Long 从 4.354 降至 <strong>3.089</strong>。</li><li>在换道集上，横向误差显著改善：ADE-6s-Lat 从 0.594 降至 <strong>0.309</strong>，FDE-6s-Lat 从 1.616 降至 <strong>0.648</strong>。</li><li>相比 Verbose CoT，XCoT 在横向精度上更稳定；相比 Latent tokens，XCoT 因完整的 Reason–Action 监督表现更好。</li><li>XCoT 仅需 2–6 个 token，在满足 12 Hz 实时规划预算的同时显著减少自回归推理开销。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.11204/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.10860/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Flex-$π$: A Multi-Stream World-Action Model with Compute Flexibility</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

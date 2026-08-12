@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FACT: Failure-Aware Causal Training for World-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 FACT（Failure-Aware Causal Training），一种 因果 World-Action Model（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。 核心问题：现有世界-动作模型（WAM）主要利用成功演示进行训练，模型缺乏预测错误动作后果的能力，导致在测试时面对错误动作会&quot;幻觉&quot;出成功导向的未来画面。 FACT 的关键思路是先产生动作，再预测该动作所导致的未来视频和任务进度，使失败轨迹（failure rollouts）能够作为动作后果的监督信号参与训练，而不必成为动作模仿的目标。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.10232">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.10232.webp" alt="FACT: Failure-Aware Causal Training for World-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 FACT（Failure-Aware Causal Training），一种 因果 World-Action Model（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FACT: Failure-Aware Causal Training for World-Action Models</h1>
+            <div class="detail-meta">2026-08-10 · <a href="http://arxiv.org/abs/2608.10232" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.10232" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.10232</span></div>
+            <p class="detail-summary">论文提出 FACT（Failure-Aware Causal Training），一种 因果 World-Action Model（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。 核心问题：现有世界-动作模型（WAM）主要利用成功演示进行训练，模型缺乏预测错误动作后果的能力，导致在测试时面对错误动作会&quot;幻觉&quot;出成功导向的未来画面。 FACT 的关键思路是先产生动作，再预测该动作所导致的未来视频和任务进度，使失败轨迹（failure rollouts）能够作为动作后果的监督信号参与训练，而不必成为动作模仿的目标。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of California San Diego（加州大学圣迭戈分校，UCSD）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.10232/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 FACT（Failure-Aware Causal Training），一种 因果 World-Action Model（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。</p>
+  <ul class="reading-intro-points"><li>论文提出 FACT（Failure-Aware Causal Training），一种 因果 World-Action Model（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。</li><li>核心问题：现有世界-动作模型（WAM）主要利用成功演示进行训练，模型缺乏预测错误动作后果的能力，导致在测试时面对错误动作会&quot;幻觉&quot;出成功导向的未来画面。</li><li>FACT 的关键思路是先产生动作，再预测该动作所导致的未来视频和任务进度，使失败轨迹（failure rollouts）能够作为动作后果的监督信号参与训练，而不必成为动作模仿的目标。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of California San Diego</strong>（加州大学圣迭戈分校，UCSD）</li><li>作者：<strong>Quanquan Peng</strong>、<strong>Yutong Liang</strong>（共同一作）、<strong>Rui Yan</strong>、<strong>Nicklas Hansen</strong>、<strong>Xiaolong Wang</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>FACT</strong>（Failure-Aware Causal Training），一种 <strong>因果 World-Action Model</strong>（世界-动作模型），用于双机械臂操作任务的语言条件策略学习。</li><li>核心问题：现有世界-动作模型（WAM）主要利用成功演示进行训练，模型缺乏预测错误动作后果的能力，导致在测试时面对错误动作会"幻觉"出成功导向的未来画面。</li><li>FACT 的关键思路是<strong>先产生动作，再预测该动作所导致的未来视频和任务进度</strong>，使失败轨迹（failure rollouts）能够作为动作后果的监督信号参与训练，而不必成为动作模仿的目标。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>FACT</strong>，一种采用 "动作-然后-未来"（action-then-future）因果顺序的 World-Action Model，使失败轨迹可以与成功演示共同训练，且不会污染动作解码。</li><li>引入 <strong>teacher-forced action-conditioned mask</strong>（教师强制的动作条件化掩码），将动作生成与未来预测分离，使失败动作可以监督未来视频与价值学习，同时不影响策略学习。</li><li>引入 <strong>failure-aware value targets</strong>（失败感知的价值目标），对成功演示和失败 rollout 分别构造归一化的任务进度目标，使价值头对动作质量敏感。</li><li>在 <strong>RoboTwin 模拟基准</strong> 与 <strong>真实世界双机械臂操作</strong> 上进行广泛验证，证明模型在策略成功率、减少未来幻觉和可选候选动作排序方面均取得显著提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>FACT 基于共享的 <strong>WAN2.2-5B 视频扩散 Transformer</strong> 骨干，将动作、价值和未来视频 token 统一进行去噪预测，token 顺序为 <code>[观测前缀 \|\|预测动作 \|\|真实动作条件 \|\|价值 \|\|未来视频]</code>。</li><li>通过因果注意力掩码实现动作与世界的分离：世界侧预测（价值、未来视频）仅关注干净的真实动作条件 $G$，而预测动作段 $A$ 无法看到 $G$，从而保证训练时未来预测不会泄漏动作信息。</li><li>训练采用 <strong>flow-matching denoising objective</strong>，成功演示监督动作、价值、未来视频三项损失；失败 rollout 则掩码动作模仿损失，仅保留价值与未来视频损失。</li><li>推理采用<strong>两阶段策略</strong>：第一阶段仅从观测去噪生成动作；可选地，第二阶段将生成的动作填入干净动作槽，预测价值与未来视频；价值头可以进一步用于对 $N$ 个候选动作进行排序（best-of-N）。</li><li>价值目标定义为归一化任务进度 $p_t = G_t / G_T$，失败 rollout 在失败发生时刻通过 $\lambda_{fail}$ 对进度目标进行惩罚性裁剪。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟实验：<strong>RoboTwin</strong> 基准中的 <strong>50 个双机械臂操作任务</strong>，并额外加入约 <strong>1.3K 条模型 rollout 失败数据</strong> 作为后果监督。</li><li>真实世界：<strong>5 个已见任务</strong>（Stack Cubes、Pick Cubes、Handover、Stack Bowls、Pour）与 <strong>3 个未见泛化任务</strong>；立方体操作任务使用 200 条专家演示，其余任务使用 50 条，另收集约 30 条失败 rollout。</li><li>模型初始化权重来自 <strong>WAN2.2-5B</strong> 视频生成模型；优化器为 <strong>AdamW</strong>，动作 FFN 学习率 $2\times10^{-4}$，骨干学习率 $2\times10^{-5}$，损失权重 $w_a=20$、$w_v=w_I=1$。</li><li>动作块长度 $H=48$，未来视频监督使用 $[0, H/4, H/2, 3H/4, H]$ 五个时间偏移；推理默认使用 20 步 flow-Euler 去噪。原文未说明 GPU 数量等具体训练资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>模拟评测（RoboTwin 50 任务平均成功率）：<strong>Ours 达到 85.6%</strong>，<strong>Ours w/ failure 达到 87.5%</strong>，接近 <strong>Motus 的 87.8%</strong>，且部署速度快约 <strong>3 倍</strong>；去掉视频协同训练后降至 81.8%。</li><li>真实世界已见任务（平均成功率）：Ours 为 <strong>82%</strong>，加入失败数据后提升至 <strong>89%</strong>，可选价值排序进一步达到 <strong>92%</strong>；相比之下 Motus 为 64%，π0.5 为 88%。</li><li>真实世界未见任务（平均成功率）：Ours 为 <strong>67%</strong>，加入失败数据后提升至 <strong>77%</strong>，可选价值排序达到 <strong>82%</strong>，接近 π0.5（85%）但未使用大规模机器人预训练。</li><li>失败数据减少未来幻觉：在失败 rollout 条件下，成功-only 模型的未来预测 <strong>PSNR 为 19.51</strong>，失败感知共训模型提升至 <strong>25.92</strong>，且不损害成功演示条件下的预测质量（26.08 vs. 26.12）。</li><li>消融实验显示：因果掩码对策略性能至关重要（移除后成功率从 82% 降至 77%）；若失败 rollout 不掩码动作损失，成功率大幅下降至 63%；失败数据比例从 0% 增至 100% 时成功率单调提升（32.7% → 57.3%）。</li><li>价值引导候选排序在 $N=4$ 时取得任务完成率与推理延迟的最佳平衡，且仅有成功数据时价值排序无效（79%），证明失败感知训练是价值头发挥作用的前提。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.10393/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Hidden in Plain Sight: Diffusion-Based Unrestricted Robotic Attacks on Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.10107/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">4D-WAM: 4D Consistent World Modeling for Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

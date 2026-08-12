@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SCALE: Self-uncertainty Conditioned Adaptive Looking and Execution for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文针对 Vision-Language-Action（VLA）模型 在测试时鲁棒性问题，提出一种名为 Scale 的推理策略，旨在无需额外训练、无需外部验证器、且只需 单次前向传播 的条件下提升机器人操控性能。 现有 VLA 的测试时扩展（TTS）方法通常需要训练验证器或多步采样，且仅干预动作解码而忽略视觉感知的适应性；论文提出同时调制 视觉感知（如何看） 与 动作执行（做什么），基于模型自身的“自不确定性”实现探索与利用的平衡。 方法受 Active Inference 理论 中“不确定性驱动的探索”启发，通过在模拟和真实世界中验证，证明其能稳定提升多种自回归 VLA 架构的性能。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">SCALE: Self-uncertainty Conditioned Adaptive Looking and Execution for Vision-Language-Action Models</h1>
             <div class="detail-meta">2026-02-04 · <a href="http://arxiv.org/abs/2602.04208" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2602.04208" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2602.04208</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文针对 Vision-Language-Action（VLA）模型 在测试时鲁棒性问题，提出一种名为 Scale 的推理策略，旨在无需额外训练、无需外部验证器、且只需 单次前向传播 的条件下提升机器人操控性能。 现有 VLA 的测试时扩展（TTS）方法通常需要训练验证器或多步采样，且仅干预动作解码而忽略视觉感知的适应性；论文提出同时调制 视觉感知（如何看） 与 动作执行（做什么），基于模型自身的“自不确定性”实现探索与利用的平衡。 方法受 Active Inference 理论 中“不确定性驱动的探索”启发，通过在模拟和真实世界中验证，证明其能稳定提升多种自回归 VLA 架构的性能。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">所有作者均来自 Seoul National University（首尔大学）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,60 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2602.04208/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文针对 Vision-Language-Action（VLA）模型 在测试时鲁棒性问题，提出一种名为 Scale 的推理策略，旨在无需额外训练、无需外部验证器、且只需 单次前向传播 的条件下提升机器人操控性能。</p>
+  <ul class="reading-intro-points"><li>论文针对 Vision-Language-Action（VLA）模型 在测试时鲁棒性问题，提出一种名为 Scale 的推理策略，旨在无需额外训练、无需外部验证器、且只需 单次前向传播 的条件下提升机器人操控性能。</li><li>现有 VLA 的测试时扩展（TTS）方法通常需要训练验证器或多步采样，且仅干预动作解码而忽略视觉感知的适应性；论文提出同时调制 视觉感知（如何看） 与 动作执行（做什么），基于模型自身的“自不确定性”实现探索与利用的平衡。</li><li>方法受 Active Inference 理论 中“不确定性驱动的探索”启发，通过在模拟和真实世界中验证，证明其能稳定提升多种自回归 VLA 架构的性能。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>所有作者均来自 <strong>Seoul National University（首尔大学）</strong></li><li>通讯作者 Jonghyun Choi 隶属于 <strong>ECE、IPAI 和 ASRI</strong> 实验室</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文针对 <strong>Vision-Language-Action（VLA）模型</strong> 在测试时鲁棒性问题，提出一种名为 <strong>Scale</strong> 的推理策略，旨在无需额外训练、无需外部验证器、且只需 <strong>单次前向传播</strong> 的条件下提升机器人操控性能。</li><li>现有 VLA 的测试时扩展（TTS）方法通常需要训练验证器或多步采样，且仅干预动作解码而忽略视觉感知的适应性；论文提出同时调制 <strong>视觉感知（如何看）</strong> 与 <strong>动作执行（做什么）</strong>，基于模型自身的“自不确定性”实现探索与利用的平衡。</li><li>方法受 <strong>Active Inference 理论</strong> 中“不确定性驱动的探索”启发，通过在模拟和真实世界中验证，证明其能稳定提升多种自回归 VLA 架构的性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Scale</strong>，一种训练无关、免验证器、单前向传播的自适应推理策略，可同时调节动作解码与视觉注意力。</li><li>设计新的 <strong>自不确定性度量</strong>：通过计算预测分布与“完全确定”（one-hot）和“完全模糊”（uniform）两个参考分布之间的 KL 散度差，同时捕捉分布不确定性与 top-1 决策置信度。</li><li>引入 <strong>自适应动作解码</strong>：根据 token 级不确定性动态调节采样温度，高不确定时扩大探索，低不确定时接近贪心执行。</li><li>引入 <strong>自适应视觉注意力</strong>：利用步级不确定性的时间偏差（相对 EMA 历史）动态调节 vision encoder 的注意力温度，场景变复杂时拓宽注意，稳定时锐化聚焦。</li><li>实验证明 <strong>Scale</strong> 在多个 VLA 骨干（OpenVLA、π0-FAST、SpatialVLA）和多个模拟/真实基准上一致优于贪心解码，并超过需要训练的多轮采样 TTS 方法。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>核心公式：自不确定性 $u^k_t = D_{KL}(p^k_t \\|q^{low}) - D_{KL}(p^k_t \\|q^{high})$，其中 $q^{low}$ 为 top-1 的 one-hot 分布（完全确定），$q^{high}$ 为均匀分布（完全模糊）。</li><li>动作解码：采样温度 $\tau^k_t = T_0 \cdot \sigma(u^k_t)$，其中 sigmoid 将不确定性映射为后验概率，实现软的“探索门控”。</li><li>视觉调制：将 token 级不确定性平均为步级 $u_t$，维护 EMA $\bar{u}_t$，计算偏差 $\Delta u_t = u_t - \bar{u}_{t-1}$，再通过 $\gamma_t = \kappa^{\tanh(\Delta u_{t-1})}$ 得到注意力温度，并作用在 vision encoder 的自注意力上。</li><li>创新点：无需额外训练或验证器，仅利用模型自身的输出 logits 计算不确定性；在闭环控制中形成“感知-动作”的反馈回路，实现单次前向传播的协同自适应。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟基准：<strong>LIBERO</strong>（多任务泛化）、<strong>SIMPLER-WidowX</strong>（真实到模拟的抓放）、<strong>LIBERO-PRO-Long</strong>（未见过的长时程任务）。</li><li>真实世界：使用 <strong>6-DoF UR10e</strong> 机械臂 + <strong>Robotiq 2F-85</strong> 夹爪，执行 “Put A on B” 抓放任务，含分布内（ID）和分布外（OOD）条件。</li><li>模型骨干：<strong>OpenVLA</strong>、<strong>π0-FAST</strong>、<strong>SpatialVLA</strong>；均基于官方实现复现。</li><li>训练资源：原文未明确给出具体 GPU/TPU 数量和参数量；模型权重基于作者公开的预训练/微调检查点。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标：<strong>成功率（SR, %）</strong>，模拟实验取 3 个种子平均，真实实验每任务 24 个 episode。</li><li>模拟结果：</li></ul>
+<p> - <strong>LIBERO</strong>：OpenVLA 平均提升 <strong>+5.8</strong>，π0-FAST 平均提升 <strong>+1.8</strong>。</p>
+<p> - <strong>SIMPLER-WidowX</strong>：SpatialVLA 微调/零样本提升 <strong>+3.4/+10.4</strong>，π0-FAST 提升 <strong>+14.6</strong>。</p>
+<p> - <strong>LIBERO-PRO-Long</strong>：OpenVLA 提升 <strong>+3.5</strong>，π0-FAST 提升 <strong>+3.1</strong>。</p>
+<ul><li>真实世界结果：ID 条件下 OpenVLA 提升 <strong>+19.5</strong>、π0-FAST 提升 <strong>+13.9</strong>；OOD 条件下分别提升 <strong>+16.7</strong> 和 <strong>+12.5</strong>。</li><li>与 TTS 方法对比：在 LIBERO 上，<strong>Scale</strong> 比 <strong>MG-Select</strong> 平均高 <strong>+10.7</strong>，比 <strong>RoboMonkey</strong> 在 Long 任务高 <strong>+6.8</strong>，比 <strong>TACO</strong> 高 <strong>+3.3</strong>。</li><li>消融实验显示：自适应解码单独带来 <strong>+5.3</strong>，自适应视觉注意单独带来 <strong>+3.3</strong>，两者组合达到 <strong>+10.6</strong>，验证了联合机制的 <strong>协同效应</strong>（而非简单叠加）。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DriveVLA-M0: Failure-Aware Memory Augmentation for Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DriveVLA-M0，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。 现有 VLA 驾驶模型缺乏利用过往失败经验的能力，导致在相似场景中反复出现同类错误，且难以应对分布偏移。 核心思路受人类通过历史失误关联来预测并规避错误启发：构造存储失败场景的潜记忆池，在测试时检索结构相似的失败案例，并通过轻量级测试时训练（TTT）机制注入规划模块，实现场景针对性修正。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.10413">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.10413.webp" alt="DriveVLA-M0: Failure-Aware Memory Augmentation for Autonomous Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DriveVLA-M0，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DriveVLA-M0: Failure-Aware Memory Augmentation for Autonomous Driving</h1>
+            <div class="detail-meta">2026-08-11 · <a href="http://arxiv.org/abs/2608.10413" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.10413" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.10413</span></div>
+            <p class="detail-summary">论文提出 DriveVLA-M0，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。 现有 VLA 驾驶模型缺乏利用过往失败经验的能力，导致在相似场景中反复出现同类错误，且难以应对分布偏移。 核心思路受人类通过历史失误关联来预测并规避错误启发：构造存储失败场景的潜记忆池，在测试时检索结构相似的失败案例，并通过轻量级测试时训练（TTT）机制注入规划模块，实现场景针对性修正。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">6 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Institute of Automation, Chinese Academy of Science…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.10413/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DriveVLA-M0，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。</p>
+  <ul class="reading-intro-points"><li>论文提出 DriveVLA-M0，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。</li><li>现有 VLA 驾驶模型缺乏利用过往失败经验的能力，导致在相似场景中反复出现同类错误，且难以应对分布偏移。</li><li>核心思路受人类通过历史失误关联来预测并规避错误启发：构造存储失败场景的潜记忆池，在测试时检索结构相似的失败案例，并通过轻量级测试时训练（TTT）机制注入规划模块，实现场景针对性修正。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Institute of Automation, Chinese Academy of Sciences</strong>（中国科学院自动化研究所），北京</li><li><strong>Chongqing Chang'an Technology Co., Ltd.</strong>（重庆长安科技股份有限公司），重庆</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DriveVLA-M0</strong>，一种具有失败感知潜记忆的检索增强视觉-语言-动作（VLA）模型，用于端到端自动驾驶。</li><li>现有 VLA 驾驶模型缺乏利用过往失败经验的能力，导致在相似场景中反复出现同类错误，且难以应对分布偏移。</li><li>核心思路受人类通过历史失误关联来预测并规避错误启发：构造存储失败场景的潜记忆池，在测试时检索结构相似的失败案例，并通过轻量级测试时训练（TTT）机制注入规划模块，实现场景针对性修正。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出面向 VLA 自动驾驶的<strong>失败感知记忆增强框架</strong>，显式针对模型表现不佳的场景进行修正。</li><li>设计<strong>结构解耦的检索机制</strong>，将静态道路结构与动态智能体交互分离，实现结构级场景检索而非纯视觉-语言语义检索。</li><li>集成<strong>解耦 LoRA 的测试时训练（TTT）机制</strong>，实现高效、场景特定的在线规划修正，不修改主干网络参数。</li><li>证明记忆与 TTT 的协同能显著提升鲁棒性、安全性与可扩展性，<strong>通过记忆扩展即可实现免训练的性能提升</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Base Model</strong>：基于 <strong>InternVL3</strong> 的 VLM 骨干，通过 Q-Former 式压缩模块将 2800×1536 token 的中间特征压缩至 16×256（约 1050 倍压缩）；Action Decoder 包含 Trajectory Head 与 Score Head，采用 proposal-and-score 两阶段规划范式。</li><li><strong>Retrieve Model</strong>：以 <strong>DINOv2</strong> 为特征提取器，采用<strong>解耦 LoRA</strong>设计，并行提取静态地图特征 F_map 和动态智能体特征 F_agent，并通过 occupancy grid 的 BCE 损失监督训练。</li><li><strong>Memory Generation（离线阶段）</strong>：用 PDM 仿真评分识别失败场景（评分低于阈值 β），存储检索键、适配输入与监督标签到潜记忆池，并用余弦相似度去重控制规模。</li><li><strong>Inference with TTT（在线阶段）</strong>：在测试时用 Retrieve Model 提取查询键，分别按地图和智能体层级检索 top-k 相似案例；基于余弦相似度触发门控，仅对评估有高失败概率的场景激活 TTT；用地图/智能体案例分别微调静态/动态 LoRA 分支，并按子分数类型选择对应分支的预测进行融合输出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基准数据集：<strong>NAVSIMv1</strong>（Navtest 评估集）与 <strong>NAVSIMv2</strong>（Navhard 评估集）</li><li>VLM 骨干：<strong>InternVL3</strong>，在自动驾驶问答数据上微调</li><li>Retrieve Model：预训练 <strong>DINOv2</strong>，LoRA 微调</li><li>TTT 延迟开销：仅 <strong>26.44 ms</strong>（每次测试场景的 LoRA 反向传播）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准：<strong>NAVSIMv1（Navtest）</strong> 与 <strong>NAVSIMv2（Navhard）</strong>，使用 PDMS/EPDMS 等指标。</li><li>在 Navtest 上，<strong>DriveVLA-M0-Scale</strong> 达到 <strong>94.1 PDMS</strong>，超过既有 SOTA（如 iPad 91.7、Centaur 92.6、DriveSuprim 93.5）。</li><li>在 Navhard 上，实现 <strong>47.0 EPDMS</strong>（摘要报告），在安全关键指标如碰撞避免（NC/TTC）与可行驶区域合规（DAC）上表现突出。</li><li>消融结果表明：结构解耦检索优于纯视觉-语言检索；解耦 LoRA 的分支注入优于共享注入；记忆规模扩大带来额外性能提升，且无需重训练基础模型。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.10484/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Lost in Reconstruction: Aligning Action Representations with Language in Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.10393/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Hidden in Plain Sight: Diffusion-Based Unrestricted Robotic Attacks on Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

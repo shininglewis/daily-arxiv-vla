@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Vision-Language Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 DRIFT（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。 核心思想：将确定性基础预测器（如 MLP 回归头或 token 解码器）提供的粗估计，与基于 Flow Matching 的生成式细化模块 级联，通过建模围绕强先验的局部分布而非全局输出分布，显著简化生成建模的优化难度。 解决的关键问题：离散 token 接口存在量化误差、丢失序数结构与细粒度变化，而直接回归或纯生成式解码难以兼顾精度与不确定性建模；DRIFT 意图在保留 VLM 预训练知识的同时实现精确连续输出。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2606.05758.webp" alt="DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Vision-Language Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 DRIFT（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">DRIFT: A Residual Flow Adapter for Decoding Continuous Outputs in Vision-Language Models</h1>
             <div class="detail-meta">2026-06-04 · <a href="http://arxiv.org/abs/2606.05758" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2606.05758" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2606.05758</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 DRIFT（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。 核心思想：将确定性基础预测器（如 MLP 回归头或 token 解码器）提供的粗估计，与基于 Flow Matching 的生成式细化模块 级联，通过建模围绕强先验的局部分布而非全局输出分布，显著简化生成建模的优化难度。 解决的关键问题：离散 token 接口存在量化误差、丢失序数结构与细粒度变化，而直接回归或纯生成式解码难以兼顾精度与不确定性建模；DRIFT 意图在保留 VLM 预训练知识的同时实现精确连续输出。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Wisconsin–Madison（威斯康星大学麦迪逊分校）</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2606.05758/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 DRIFT（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。</p>
+  <ul class="reading-intro-points"><li>提出 DRIFT（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。</li><li>核心思想：将确定性基础预测器（如 MLP 回归头或 token 解码器）提供的粗估计，与基于 Flow Matching 的生成式细化模块 级联，通过建模围绕强先验的局部分布而非全局输出分布，显著简化生成建模的优化难度。</li><li>解决的关键问题：离散 token 接口存在量化误差、丢失序数结构与细粒度变化，而直接回归或纯生成式解码难以兼顾精度与不确定性建模；DRIFT 意图在保留 VLM 预训练知识的同时实现精确连续输出。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Wisconsin–Madison</strong>（威斯康星大学麦迪逊分校）</li><li><strong>West Lafayette Jr./Sr. High School</strong></li><li>作者：Zhuoming Liu（共同一作）、Jinhong Lin、Kwan Man Cheng、Lin Zhang、Shayok Bagchi、Yin Li</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>DRIFT</strong>（Decoding via Residual Flow Adapter），一个将预训练视觉语言模型（VLM）从离散 token 解码接口适配到连续输出任务的通用框架，覆盖感知（视觉/时间定位）与规划（机器人控制）任务。</li><li>核心思想：将<strong>确定性基础预测器</strong>（如 MLP 回归头或 token 解码器）提供的粗估计，与基于 <strong>Flow Matching 的生成式细化模块</strong> 级联，通过建模围绕强先验的局部分布而非全局输出分布，显著简化生成建模的优化难度。</li><li>解决的关键问题：离散 token 接口存在量化误差、丢失序数结构与细粒度变化，而直接回归或纯生成式解码难以兼顾精度与不确定性建模；DRIFT 意图在保留 VLM 预训练知识的同时实现精确连续输出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DRIFT 通用框架</strong>，可将任意具有离散解码接口的预训练 VLM 适配至连续预测任务，无需修改 VLM 原有架构。</li><li>核心创新在于<strong>残差细化适配器</strong>：基础预测器先给出粗糙估计，flow matching 模块围绕该估计迭代建模并修正残差分布，同时包含可学习的门控向量 α 和方差缩放向量 σ，并引入跳跃连接融合二者。</li><li>提供<strong>理论分析</strong>（Appendix A）证明：相对于直接 MLP 回归或直接 flow matching，残差细化可严格降低预测误差并加快收敛，因为桥接状态天然携带目标信号且残差管域更窄。</li><li>通过<strong>大量实验</strong>（VLA、TVG、空间定位、WAM 四类任务、多种 VLM 架构）验证框架的通用性与 SOTA 效果，并给出完整的 toy experiment 与可视化验证。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>两阶段级联架构</strong>：基础预测器 g(z)（可为现成 token 解码器或新引入的 MLP）从 VLM 隐藏状态 z 输出粗预测 ŷ；flow matching 细化模块 h_θ(y(t), t, z) 学习将中心位于 ŷ 的高斯分布 N(ŷ, σI) 传输到真实目标条件分布 p(y\|z)。</li><li><strong>速度场参数化</strong>：采用目标预测参数化 v_θ = (y_θ(y(t),t,z) − y(t))/(1−t)，且 y_θ = α·g(z) + (1−α)·h_θ，通过可学习门控 α 混合粗预测与细化输出，等价于在生成模型中引入对基础预测器的跳跃连接。</li><li><strong>学习目标</strong>：使用线性插值桥接状态 y(t) = (1−t)(σε + g(z)) + ty，训练时联合优化细化模块、门控向量和缩放向量；对 MLP 基础预测器额外施加 MSE 回归损失 L_p，并在构建插值状态时对 g(·) 做梯度停止以保证训练稳定性。</li><li><strong>推断方式</strong>：从 y(0) = g(z) + σε 出发求解 ODE，通常仅需 10–20 步；多次采样取平均可进一步降低预测偏差。</li><li>在集成到现有 VLM 时配合 <strong>LoRA</strong> 轻量微调，兼容冻结参数或联合更新两种设置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>VLA 任务</strong>：LIBERO 四套件（Spatial / Object / Goal / Long）与 <strong>Simpler</strong> 模拟基准（WidowX 机械臂）；预训练数据使用 <strong>OXE</strong>（Open X-Embodiment）的 Bridge 与 Fractal 子集。</li><li><strong>TVG 任务</strong>：训练集为 <strong>TimeLens-100K</strong>（约 10 万条），零样本评测于 <strong>Charades-STA</strong> 与 <strong>ActivityNet Captions</strong> 测试集。</li><li><strong>空间定位任务（Further Demo）</strong>：<strong>RefCOCO / RefCOCO+ / RefCOCOg</strong> 系列数据集。</li><li><strong>世界动作模型（WAM）</strong>：<strong>FastWAM</strong> 集成实验，同样在 LIBERO 基准上评测。</li><li>模型规模与骨干：<strong>Qwen3-VL-2B</strong>、<strong>OpenVLA-7B</strong>（Prismatic-7B）、<strong>ET-Chat</strong>、<strong>FastWAM</strong>、PaliGemma-3B、Qwen2.5-VL-3B 等；训练资源细节见附录（采用 LoRA 适配器、冻结视觉编码器与帧压缩器，LoRA 微调 LLM 注意力投影）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>VLA（行动成功率）</strong>：DRIFT + Qwen3-VL-2B 在 LIBERO 平均达到 <strong>97.9%</strong>，Simpler WidowX 为 <strong>61.5%</strong>，均为新 SOTA；在 OpenVLA 基础上将 LIBERO 平均从 75.5% 提升至 77.7%、Simpler 从 7.7% 提升至 13.5%。</li><li><strong>TVG（零样本 Recall@1 与 mIoU）</strong>：DRIFT（ET-Chat）在 Charades-STA 上 R@0.3 达 <strong>67.2%</strong>、mIoU <strong>43.8%</strong>；在 ActivityNet Captions 上 R@0.3 达 <strong>57.9%</strong>、mIoU <strong>37.3%</strong>，全面超越最强通用基线 <strong>ED-VTG</strong>（7/8 指标）。</li><li><strong>空间定位（RefCOCO 系列）</strong>：Qwen3-VL-2B 集成 DRIFT 后平均精度从 <strong>85.6% 提升至 88.5%</strong>（refcoco 91.7%、refcoco+ 85.8%、refcocog 87.9%）。</li><li><strong>WAM 集成</strong>：FastWAM + DRIFT 在 LIBERO 上平均成功率从 96.9% 提升至 <strong>98.2%</strong>。</li><li><strong>消融实验</strong>（LIBERO-Long 成功率的均值±方差）：<strong>DRIFT 96.33±0</strong> > 纯 Flow Matching 93.67±0.35 > Diffusion 92.23±0.64 > MLP 88.2±0，验证残差细化设计显著优于各独立解码方案。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

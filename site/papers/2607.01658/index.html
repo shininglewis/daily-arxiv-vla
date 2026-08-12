@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Teaching Vision-Language-Action Models What to See and Where to Look - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 DriveTeach-VLA 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。 通过 Driving-aware Vision Distillation (DVD) 教学模型“看什么”（关键交通目标），通过 2D Trajectory-Guided Prompts (2D-TGP) 教学模型“看哪里”（可行驾驶区域）。 构建 “DVD 预训练 → TGP 引导 SFT → TGP 引导 GRPO” 的视觉引导学习流水线，在 NAVSIM 与 nuScenes 上取得 SOTA 性能。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2607.01658.webp" alt="Teaching Vision-Language-Action Models What to See and Where to Look" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 DriveTeach-VLA 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Teaching Vision-Language-Action Models What to See and Where to Look</h1>
             <div class="detail-meta">2026-07-02 · <a href="http://arxiv.org/abs/2607.01658" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2607.01658" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2607.01658</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 DriveTeach-VLA 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。 通过 Driving-aware Vision Distillation (DVD) 教学模型“看什么”（关键交通目标），通过 2D Trajectory-Guided Prompts (2D-TGP) 教学模型“看哪里”（可行驾驶区域）。 构建 “DVD 预训练 → TGP 引导 SFT → TGP 引导 GRPO” 的视觉引导学习流水线，在 NAVSIM 与 nuScenes 上取得 SOTA 性能。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京航空航天大学（电子信息工程学院、国家卓越工程师学院、计算机学院、网络空间安全学院、人工智能学院）</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2607.01658/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 DriveTeach-VLA 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。</p>
+  <ul class="reading-intro-points"><li>提出 DriveTeach-VLA 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。</li><li>通过 Driving-aware Vision Distillation (DVD) 教学模型“看什么”（关键交通目标），通过 2D Trajectory-Guided Prompts (2D-TGP) 教学模型“看哪里”（可行驾驶区域）。</li><li>构建 “DVD 预训练 → TGP 引导 SFT → TGP 引导 GRPO” 的视觉引导学习流水线，在 NAVSIM 与 nuScenes 上取得 SOTA 性能。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京航空航天大学</strong>（电子信息工程学院、国家卓越工程师学院、计算机学院、网络空间安全学院、人工智能学院）</li><li><strong>清华大学</strong>（智能产业研究院 AIR）</li><li><strong>滴滴出行（DiDi）</strong></li><li><strong>中国传媒大学</strong>（媒体融合与传播国家重点实验室）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>DriveTeach-VLA</strong> 框架，解决现有 VLA 模型在自动驾驶中因文本中心化训练（VQA/CoT）导致视觉表征缺乏空间与行动依赖的问题。</li><li>通过 <strong>Driving-aware Vision Distillation (DVD)</strong> 教学模型“看什么”（关键交通目标），通过 <strong>2D Trajectory-Guided Prompts (2D-TGP)</strong> 教学模型“看哪里”（可行驾驶区域）。</li><li>构建 “DVD 预训练 → TGP 引导 SFT → TGP 引导 GRPO” 的视觉引导学习流水线，在 <strong>NAVSIM</strong> 与 <strong>nuScenes</strong> 上取得 SOTA 性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>指出现有 VLA 模型的文本中心训练会产生空间无根基的注意力分布，缺乏规划所需的空间依赖。</li><li>提出 <strong>DVD</strong>：利用 Grounding DINO 检测关键目标，将检测框叠加到图像上作为视觉提示，通过教师-学生 ViT 自蒸馏将交通视觉先验注入编码器。</li><li>提出 <strong>2D-TGP</strong>：将专家 BEV 轨迹通过针孔相机模型投影到图像平面，以文本坐标序列形式为规划提供空间条件。</li><li>采用双模型架构（<strong>TGP-Prompter</strong> 与 <strong>TGP-Planner</strong>），分别负责 2D-TGP 生成和轨迹预测，避免指令混淆。</li><li>在 NAVSIM Navtest 与 nuScenes 上均达到最新 SOTA 结果，并开源代码。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>双模型均基于 <strong>Qwen2.5-VL-3B</strong>，TGP-Planner 由 TGP-Prompter 初始化以继承驾驶先验。</li><li><strong>DVD 预训练</strong>：教师 ViT 处理 bbox 增强图像，学生 ViT 处理原始图像，采用块级（2×4）Smooth-L1 对齐；教师参数通过 EMA 更新。</li><li><strong>2D-TGP 生成</strong>：使用专家轨迹投影的 8 个图像坐标点作为监督，训练 TGP-Prompter 输出文本形式坐标序列。</li><li><strong>TGP 引导 SFT</strong>：TGP-Planner 基于图像、自车状态、指令和 2D-TGP 条件，生成 CoT 推理（关键目标检测、自然语言解释、元行为选择、未来轨迹预测）并预测轨迹。</li><li><strong>TGP 引导 GRPO</strong>：以 PDM-Score 为奖励进行强化学习，训练时使用教师强制（ground-truth 2D-TGP），推理时使用 TGP-Prompter 生成的条件。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估数据集：<strong>NAVSIM</strong>（navtest，非反应闭环）与 <strong>nuScenes</strong>（开环 3 秒轨迹预测）。</li><li>基础模型：<strong>Qwen2.5-VL-3B</strong>（TGP-Prompter 与 TGP-Planner），CoT 伪标签由 <strong>Qwen2.5-VL-72B</strong> 生成。</li><li>训练配置：<strong>8×H100 GPU</strong>，batch size 16，AdamW（lr 4×10⁻⁵，weight decay 0.05），余弦调度。</li><li>训练阶段：DVD 预训练 1 epoch，CoT-SFT 6 epochs，GRPO 180 步（group size 8）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>NAVSIM Navtest</strong>：DriveTeach-VLA 达到 <strong>PDMS 90.4</strong>，NC 98.5、DAC 96.9、TTC 97.9、C 98.2、EP 88.5，超越 AutoVLA、CuriousVLA、RecogDrive 等方法。</li><li><strong>nuScenes</strong>：L2 误差 <strong>0.30 m</strong>，碰撞率 <strong>0.12%</strong>（ST-P3 指标）；UniAD 指标下 L2 <strong>0.60 m</strong>，碰撞率 <strong>0.31%</strong>，均优于对比方法。</li><li>消融实验表明：DVD 与 2D-TGP 均能有效提升 PDMS；仅用 DVD+CoT 的 Prompter 直接反投影轨迹取得 87.3 PDMS，完整 TGP-Planner 流水线达 90.4 PDMS。</li><li><strong>注意力质量分析</strong>：引入 Attention Mass (AM) 指标，TGP-Planner 的 AM 均值（3.19×10⁻²）显著高于 CoT-SFT 基线（2.28×10⁻²），验证 DVD 有效增强了对交通关键目标的关注。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>
