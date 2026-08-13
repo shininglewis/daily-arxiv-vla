@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 Robotic Steering，一种基于机械可解释性（mechanistic interpretability）的VLA模型微调方法，利用少量演示（few-shot demonstrations）识别并选择性微调与任务相关的注意力头。 解决现有VLA微调方法（如LoRA）对所有任务使用相同参数、缺乏任务特异性、计算开销大且可解释性差的问题。 通过真实机器人（Franka Emika Panda）上的多任务实验，验证了该方法在性能、鲁棒性、效率和可解释性上优于标准LoRA微调。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Mechanistic Finetuning of Vision-Language-Action Models via Few-Shot Demonstrations</h1>
             <div class="detail-meta">2025-11-27 · <a href="http://arxiv.org/abs/2511.22697" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2511.22697" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2511.22697</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 Robotic Steering，一种基于机械可解释性（mechanistic interpretability）的VLA模型微调方法，利用少量演示（few-shot demonstrations）识别并选择性微调与任务相关的注意力头。 解决现有VLA微调方法（如LoRA）对所有任务使用相同参数、缺乏任务特异性、计算开销大且可解释性差的问题。 通过真实机器人（Franka Emika Panda）上的多任务实验，验证了该方法在性能、鲁棒性、效率和可解释性上优于标准LoRA微调。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Carnegie Mellon University（卡内基梅隆大学）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2511.22697/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 Robotic Steering，一种基于机械可解释性（mechanistic interpretability）的VLA模型微调方法，利用少量演示（few-shot demonstrations）识别并选择性微调与任务相关的注意力头。</p>
+  <ul class="reading-intro-points"><li>提出 Robotic Steering，一种基于机械可解释性（mechanistic interpretability）的VLA模型微调方法，利用少量演示（few-shot demonstrations）识别并选择性微调与任务相关的注意力头。</li><li>解决现有VLA微调方法（如LoRA）对所有任务使用相同参数、缺乏任务特异性、计算开销大且可解释性差的问题。</li><li>通过真实机器人（Franka Emika Panda）上的多任务实验，验证了该方法在性能、鲁棒性、效率和可解释性上优于标准LoRA微调。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Carnegie Mellon University</strong>（卡内基梅隆大学）</li><li><strong>University of Southern California</strong>（南加州大学）</li><li><strong>University of California, Berkeley</strong>（加州大学伯克利分校）</li><li><strong>MIT-IBM Watson AI Lab</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>Robotic Steering</strong>，一种基于<strong>机械可解释性（mechanistic interpretability）</strong>的VLA模型微调方法，利用少量演示（few-shot demonstrations）识别并选择性微调与任务相关的注意力头。</li><li>解决现有VLA微调方法（如LoRA）对所有任务使用相同参数、缺乏任务特异性、计算开销大且可解释性差的问题。</li><li>通过真实机器人（<strong>Franka Emika Panda</strong>）上的多任务实验，验证了该方法在性能、鲁棒性、效率和可解释性上优于标准LoRA微调。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次将机械可解释性用于VLA微调，通过语义归因（semantic attribution）识别任务相关的注意力头，实现可控的稀疏微调。</li><li>提出基于 <strong>k-NN回归</strong> 的注意力头选择方法，无需额外模型推理即可高效选出关键头，头选择时间仅 <strong>0.2 分钟</strong>（对比CMA 58分钟、REINFORCE 93分钟）。</li><li>在 <strong>π₀</strong> 和 <strong>π₀.₅</strong> 两个VLA模型上，用20个演示即可匹配或超越全头LoRA的成功率，同时减少 <strong>21%</strong> 微调时间、使用 <strong>96% 更少</strong> 的可训练参数。</li><li>展示优越的任务泛化能力和环境鲁棒性（光照变化、物体形态变化、干扰物存在），并验证了多任务学习下非重叠头选择与联合头选择的优势。</li><li>提供可部署的标准模型检查点，无需推理时额外干预，使机械微调可直接用于真实机器人系统。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>方法分为三步：<strong>（1）</strong> 使用 k-NN 回归评估每个注意力头对动作预测的贡献，选出 top-m 个任务相关头；<strong>（2）</strong> 冻结视觉编码器、动作专家和LLM骨干，仅对选中头的 query 和 MLP 参数施加 LoRA 适配器进行微调；<strong>（3）</strong> 推理时使用微调后的标准检查点，无需额外开销。</li><li>创新点在于利用头部激活的余弦相似度检索相似动作时间步，以回归误差作为头重要性评分，从而实现无需梯度的快速头部筛选。</li><li>微调目标与基础VLA训练目标一致（如π₀/π₀.₅的 flow matching loss），确保方法兼容不同VLA架构。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>DROID</strong> 机器人数据集设定，任务在真实 <strong>Franka Emika Panda</strong> 7-DoF 机械臂 + <strong>Robotiq 夹爪</strong> 上执行。</li><li>共5个主要任务：place marker in mug、press red button hard、pick up red cube、place green cube in red bowl、push red cup to red bowl，每任务 <strong>20 个遥操作演示</strong>。</li><li>模型为 <strong>PaliGemma</strong> 3B LLM 骨干（18层 × 8头），使用 <strong>JAX</strong> 实现，训练使用 <strong>2× NVIDIA RTX A6000 GPU</strong>。</li><li>LoRA 秩 <strong>r=8</strong>，微调 5000 步，激活提取自 LLM 骨干的注意力头，选取 <strong>20 个</strong> 任务相关头。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在真实机器人上对每种方法进行 <strong>40 次试验</strong> 评估，对比零样本（π₀-DROID、π₀.₅-DROID）和微调方法（全头LoRA、Robotic Steering）。</li><li>主要指标为 <strong>任务成功率（%）</strong> 和 <strong>计算开销（训练时间、参数量）</strong>。</li><li>关键结果：Robotic Steering 在π₀上达到80%/75%/90%/85%/17.5%（五任务），优于全头LoRA的75%/45%/75%/60%/10%；在π₀.₅上也全面领先或持平，且训练时间更短（185-189 min vs 214-239 min），可训练参数减少约96%。</li><li>鲁棒性实验显示，在光照、物体形态、干扰物变化下，Robotic Steering 比LoRA 的退化幅度更小（如光照变化下性能下降25% vs 37.5%）。</li><li>多任务实验中，非重叠头选择在 Place Marker 和 Place Cube 上分别达到45%和65%，显著优于联合训练的LoRA（37.5%/37.5%）；对未见任务（Pick Mug）的泛化也优于LoRA。</li><li>消融实验表明：k-NN回归头选择优于CMA和REINFORCE（速度更快且性能相当）；同时微调queries+MLP比仅微调queries效果更好（80% vs 10%成功率）。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

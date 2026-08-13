@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DreamFly: Causal Memory and Receding-Horizon Diffusion Planning for Aerial Vision-Language Navigation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DreamFly，一个基于 Dream-VLA 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。 针对三个关键问题：策略过度依赖当前观测而丢失历史地标、单步动作预测缺乏前瞻性、隐式终止机制不可靠。 通过因果对齐历史记忆、receding-horizon 扩散规划和 LiteStop 显式终止模块，构建了观测、记忆检索、扩散规划、终止判断、执行、记忆更新的因果闭环决策过程。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.12308">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.12308.webp" alt="DreamFly: Causal Memory and Receding-Horizon Diffusion Planning for Aerial Vision-Language Navigation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DreamFly，一个基于 Dream-VLA 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DreamFly: Causal Memory and Receding-Horizon Diffusion Planning for Aerial Vision-Language Navigation</h1>
+            <div class="detail-meta">2026-08-12 · <a href="http://arxiv.org/abs/2608.12308" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.12308" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.12308</span></div>
+            <p class="detail-summary">论文提出 DreamFly，一个基于 Dream-VLA 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。 针对三个关键问题：策略过度依赖当前观测而丢失历史地标、单步动作预测缺乏前瞻性、隐式终止机制不可靠。 通过因果对齐历史记忆、receding-horizon 扩散规划和 LiteStop 显式终止模块，构建了观测、记忆检索、扩散规划、终止判断、执行、记忆更新的因果闭环决策过程。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">西安工业大学（Xi&#x27;an Technological University），电子工程学院（Schoo…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.12308/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DreamFly，一个基于 Dream-VLA 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。</p>
+  <ul class="reading-intro-points"><li>论文提出 DreamFly，一个基于 Dream-VLA 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。</li><li>针对三个关键问题：策略过度依赖当前观测而丢失历史地标、单步动作预测缺乏前瞻性、隐式终止机制不可靠。</li><li>通过因果对齐历史记忆、receding-horizon 扩散规划和 LiteStop 显式终止模块，构建了观测、记忆检索、扩散规划、终止判断、执行、记忆更新的因果闭环决策过程。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>西安工业大学（Xi'an Technological University）</strong>，电子工程学院（School of Electronic Information Engineering）</li><li><strong>西安工业大学</strong>，计算机科学与工程学院（School of Computer Science and Engineering）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DreamFly</strong>，一个基于 <strong>Dream-VLA</strong> 的扩散式空中视觉语言导航（Aerial VLN）框架，面向无人机在 3D 环境中的指令导航任务。</li><li>针对三个关键问题：策略过度依赖当前观测而丢失历史地标、单步动作预测缺乏前瞻性、隐式终止机制不可靠。</li><li>通过<strong>因果对齐历史记忆</strong>、<strong>receding-horizon 扩散规划</strong>和 <strong>LiteStop 显式终止模块</strong>，构建了观测、记忆检索、扩散规划、终止判断、执行、记忆更新的因果闭环决策过程。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>引入<strong>因果对齐历史记忆</strong>（Causally Aligned Historical Memory）：仅利用当前决策步之前的观测构建记忆，采用 read-before-write 协议，并通过轻量级门控交叉注意力模块将历史信息融合进当前视觉表示。</li><li>提出<strong>receding-horizon 扩散规划</strong>（Receding-Horizon Diffusion Planning）：联合预测 K 步动作块，但只执行第一个动作，之后从新观测重新规划，兼顾未来动作结构与闭环控制。</li><li>设计 <strong>LiteStop</strong> 轻量终止模块：从扩散策略初始全掩码状态的动作 logits 直接估计停止概率，解耦显式终止与动作生成，且不修改已训练的运动策略。</li><li>在 <strong>OpenFly</strong> 基准上取得一致性能提升，证明了历史上下文、未来动作结构和显式终止联合建模的有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>Dream-VLA</strong> 作为策略骨干，利用其双向扩散注意力支持行动块并行预测。</li><li>历史记忆构造：冻结的 <strong>CLIPSeg</strong> 稠密路由器与 <strong>OWLv2</strong> 区域路由器提取指令相关候选，通过候选 FIFO、active tracks 和持久/单帧提升机制维护 16 个长期记忆槽位，每个槽位包含 anchor 特征、原型特征、有效性掩码等。</li><li>记忆融合：以当前图像 token 为查询，对历史槽位嵌入执行掩码多头交叉注意力，并通过零初始化的门控残差连接融合，保证初始化时不影响原策略。</li><li>扩散规划：训练时对 K=4 的动作块进行 valid-prefix 监督，使用几何核和 horizon 衰减加权损失；推理时采用 origin 采样器，进行 12 步离散扩散去噪，解码时限制在动作 token 集合内。</li><li>LiteStop：用两层 MLP（LayerNorm + SiLU）将全掩码 logits 网格映射为停止概率，以冻结策略的方式进行独立训练，推理时与原始动作级 Stop 条件结合。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>OpenFly</strong> 数据集，训练集包含 <strong>20 个子集、85,785 条轨迹、1,356,622 个决策步</strong>。</li><li>评估集覆盖 8 个 AirSim/UE 环境共 <strong>1,796 条轨迹</strong>，其中 test-seen 含 1,392 条（UE BigCity 和 6 个 AirSim 城市），test-unseen 含 404 条（UE SmallCity）。</li><li>模型基于 <strong>Dream-VLA</strong> 骨干，使用 <strong>LoRA</strong> 微调（r=32, α=16），batch size 为 <strong>8</strong>，训练最多 10,000 步，选用第 5,000 步 checkpoint 用于 LiteStop 训练和闭环评估。</li><li>历史记忆设置：<strong>16 个长期槽位</strong>，特征维度 <strong>512</strong>，门控交叉注意力模块维度 512、<strong>8 个注意力头</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标包括<strong>导航误差（NE）</strong>、<strong>成功率（SR）</strong>、<strong>oracle 成功率（OSR）</strong>和<strong>路径加权成功率（SPL）</strong>。</li><li>在 <strong>OpenFly test-seen</strong> 上达到 <strong>SR 32.04%</strong>、<strong>SPL 28.22%</strong>；在 <strong>test-unseen</strong> 上达到 <strong>SR 29.46%</strong>、<strong>SPL 23.54%</strong>。</li><li>两项指标均优于所有对比方法，同时取得<strong>最低导航误差</strong>。</li><li>LiteStop 阈值经校准集选择为 <strong>η=0.50</strong>，可取得更小的 OSR–SR 差距和略低的 NE。</li><li>消融研究验证了因果历史记忆、receding-horizon 规划和 LiteStop 各组件的有效性；定性分析展示了其在复杂城市场景中的规划行为。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2608.11769/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Policy-Induced Hand Priors in Humanoid Dual-Arm Manipulation: Diagnosing and Mitigating Initial-Pose Dependence</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
