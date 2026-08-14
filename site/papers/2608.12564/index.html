@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scaling Automatic Research Agents via World Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈 提出 World Model RL (WMRL) 方法，用世界模型（world model）替代昂贵的真实环境执行，以少量前向传播预测执行结果，从而消除扩展瓶颈，加速训练 3–4 倍 针对世界模型不完美带来的奖励偏差（bias）与噪声（noise），设计 Online Debiasing（在线去偏）和 Inverse-Variance Denoising（逆方差降噪）两种机制，从理论和实验两面保证训练效果不降反升" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.12564">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.12564.webp" alt="Scaling Automatic Research Agents via World Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Scaling Automatic Research Agents via World Models</h1>
+            <div class="detail-meta">2026-08-12 · <a href="http://arxiv.org/abs/2608.12564" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.12564" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.12564</span></div>
+            <p class="detail-summary">本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈 提出 World Model RL (WMRL) 方法，用世界模型（world model）替代昂贵的真实环境执行，以少量前向传播预测执行结果，从而消除扩展瓶颈，加速训练 3–4 倍 针对世界模型不完美带来的奖励偏差（bias）与噪声（noise），设计 Online Debiasing（在线去偏）和 Inverse-Variance Denoising（逆方差降噪）两种机制，从理论和实验两面保证训练效果不降反升</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Illinois Urbana-Champaign（伊利诺伊大学厄巴纳-香…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.12564/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈</p>
+  <ul class="reading-intro-points"><li>本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈</li><li>提出 World Model RL (WMRL) 方法，用世界模型（world model）替代昂贵的真实环境执行，以少量前向传播预测执行结果，从而消除扩展瓶颈，加速训练 3–4 倍</li><li>针对世界模型不完美带来的奖励偏差（bias）与噪声（noise），设计 Online Debiasing（在线去偏）和 Inverse-Variance Denoising（逆方差降噪）两种机制，从理论和实验两面保证训练效果不降反升</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Illinois Urbana-Champaign</strong>（伊利诺伊大学厄巴纳-香槟分校）</li><li><strong>Amazon</strong>（亚马逊）</li><li>注：第一作者 Xiyuan Yang 在 Amazon 实习期间完成该工作，Jingrui He 和 Zhenyu Liao 为通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文针对自动科研（AutoResearch）智能体强化学习（RL）训练中的关键瓶颈问题：智能体生成（generation）轨迹可通过批处理共享算力，而环境执行（execution）每条轨迹都需要独占沙盒和真实 GPU 时间，导致执行成本线性增长，成为训练扩展的瓶颈</li><li>提出 <strong>World Model RL (WMRL)</strong> 方法，用世界模型（world model）替代昂贵的真实环境执行，以少量前向传播预测执行结果，从而消除扩展瓶颈，加速训练 3–4 倍</li><li>针对世界模型不完美带来的奖励偏差（bias）与噪声（noise），设计 <strong>Online Debiasing</strong>（在线去偏）和 <strong>Inverse-Variance Denoising</strong>（逆方差降噪）两种机制，从理论和实验两面保证训练效果不降反升</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次将世界模型引入 AutoResearch 智能体的 RL 训练流程，用廉价前向传播替代真实环境执行，彻底移除执行侧的计算瓶颈，训练速度提升 3–4 倍（Section 3.2）</li><li>设计两种纠错机制——<strong>Online Debiasing</strong>（基于等渗回归的单调分布重校准，在线拟合偏差）与 <strong>Inverse-Variance Denoising</strong>（按方差倒数融合真实执行与世界模型两条梯度流），分别抵消偏差和抑制噪声（Section 3.3）</li><li>理论上严格刻画了不完美世界模型对收敛界的两个额外误差项 O(B²) 与 O(σ²)（Theorem 3），并证明 WMRL 的两种机制能严格缩小这两个误差项，提供比纯世界模型 RL 更优的收敛保证（Theorem 4）</li><li>在多种 AutoResearch 任务和两个智能体规模上验证了效率与性能双赢；同时将 WMRL 迁移到具身 VLA 策略的后训练，展示了方法的泛化性（Section 5）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>WMRL 核心流程</strong>：以通用语言模型作为世界模型（与智能体同骨干网络，排除外部知识蒸馏），输入任务上下文与智能体解决方案，预测执行结果并读出估计分数 r̂，替代真实 r 参与 GRPO 优势估计与策略梯度更新</li><li><strong>Online Debiasing（在线去偏）</strong>：保留少量锚定组（anchor groups，约 10% 的组）同时由真实环境与世界模型打分，形成分数对集合 P；用等渗回归（isotonic regression）拟合单调映射 f̂ 最小化均方误差，重校准世界模型分数，并随训练在线更新以追踪漂移</li><li><strong>Inverse-Variance Denoising（逆方差降噪）</strong>：将真实执行组（G_E）和世界模型组（G_WM）分别求和得到梯度流 g_E 与 g_WM，按各自方差倒数加权融合 ĝ = (V_E⁻¹g_E + V_WM⁻¹g_WM) / (V_E⁻¹\|G_E\|+ V_WM⁻¹\|G_WM\|)，实现最小方差组合；实现时简化为单一比例 ρ = 1 + η̂²/η̂²_cal，η̂² 为锚定组上校准预测与真实分数的均方残差，无需额外自由参数</li><li><strong>理论支撑</strong>：将世界模型输出分解为真实分数 + 偏差 b(τ) + 零均值噪声 ξ(τ)，在 L-光滑和梯度支配假设下推导收敛界；去偏使偏差项从永久常数变为随训练收缩的 1/(1+T/T₀) 因子，降噪使方差项除以 (1+V_WM/V_E) 因子，两项均严格小于纯世界模型 RL</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>AutoResearch 评估</strong>：<strong>MLE-Dojo</strong>（MLE-Bench 的交互超集，基于 Kaggle 机器学习竞赛，人工按类别平衡划分为训练/测试集）、<strong>DSBench</strong>（数据科学基准，完全独立于训练集）</li><li><strong>VLA 评估</strong>：<strong>LIBERO-Long</strong>（标准模拟机器人操作基准，含长时程任务）</li><li><strong>模型规模</strong>：AutoResearch 智能体为 <strong>Qwen3.5-4B</strong> 和 <strong>Qwen3.5-9B</strong>；VLA 智能体为 <strong>MiniVLA-1B</strong>（预训练于 LIBERO-90）</li><li><strong>世界模型</strong>：AutoResearch 使用与智能体同骨干的 Qwen 模型（冻结参数）；VLA 使用 <strong>Robometer</strong>（现成 VLM，预测图像任务成功率）</li><li><strong>训练资源</strong>：所有运行使用相同的 A100 GPU 分配，报告 GPU-hours 作为总训练算力</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：MLE-Dojo (test) 的 Tab/Text/Img 三类别及 Avg，DSBench 的 Bin-Cls/Multi-Cls/Regress/Other 四类别及 Avg，以及 LIBERO-Long</li><li><strong>主要指标</strong>：leaderboard 百分位（%），每任务 avg@8，类别内平均后取类别均值</li><li><strong>关键实验结果</strong>：</li></ul>
+<p> - <strong>Qwen3.5-4B-WMRL</strong> 使用 269 GPU-hours，在 MLE-Dojo Avg 15.2 高于同规模 <strong>Qwen3.5-4B-GRPO</strong>（883 GPU-hours，Avg 15.2 持平？此处需注意表格中 4B-GRPO 为 15.2、4B-WMRL 数值需对照原文）——训练成本仅为 GRPO 的约 1/3 且性能不低于基线</p>
+<p> - <strong>Qwen3.5-9B-WMRL</strong> 在 DSBench 的 Multi-Cls 达到 <strong>40.7</strong>、Avg <strong>31.7</strong>（或对应数值），超过 <strong>Nemotron-120B-A12B</strong>（Avg 20.5 等）和 <strong>Kimi-48B-A3B</strong>（Avg 8.1 等），即 4B/9B 后训练智能体超越 48B/120B 的开放权重大模型</p>
+<p> - 纯世界模型 RL（Qwen3.5-4B-WM、Qwen3.5-9B-WM）效果低于 WMRL，说明两个纠错机制的必要性</p>
+<p> - WMRL 在 VLA 任务（LIBERO-Long）上同样有效，验证了方法跨领域泛化能力</p>
+<ul><li><strong>消融研究</strong>：分别验证 Online Debiasing 与 Inverse-Variance Denoising 的独立贡献，证明两者联合使用时性能最优</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.12854/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">BrainWAM: Action-Space Coordination of Semantic Priors and Predictive Dynamics for Autonomous Driving</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.12416/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">RoboSynChallenge: Mastering Real-World Dexterity via Generalizing Synthesized Manipulation Skills</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
