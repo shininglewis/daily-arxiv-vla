@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evolve Vision-Language-Action Model into an Agent with On-the-fly Tool-use - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ART（Agentic Robot with Tool-use） 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。 核心动机是解决现有两条技术路线的矛盾：模块化方法受限于固定工具集和简单动作输出，端到端方法在遇到新场景时需昂贵后训练且易发生灾难性遗忘。ART 通过将连续动作空间与离散工具决策空间相结合，既保留端到端 VLA 模型的精确动作生成能力，又获得模块化工具的灵活可扩展性。 论文构建了仅 30K 条工具使用轨迹数据集（远小于基线方法所需规模），并在 LIBERO 仿真环境及 Astribot S1 真实机器人上验证，展示了框架在高泛化性和低数据依赖方面的优势。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.14047">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.14047.webp" alt="Evolve Vision-Language-Action Model into an Agent with On-the-fly Tool-use" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 ART（Agentic Robot with Tool-use） 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Evolve Vision-Language-Action Model into an Agent with On-the-fly Tool-use</h1>
+            <div class="detail-meta">2026-08-14 · <a href="http://arxiv.org/abs/2608.14047" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.14047" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.14047</span></div>
+            <p class="detail-summary">论文提出 ART（Agentic Robot with Tool-use） 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。 核心动机是解决现有两条技术路线的矛盾：模块化方法受限于固定工具集和简单动作输出，端到端方法在遇到新场景时需昂贵后训练且易发生灾难性遗忘。ART 通过将连续动作空间与离散工具决策空间相结合，既保留端到端 VLA 模型的精确动作生成能力，又获得模块化工具的灵活可扩展性。 论文构建了仅 30K 条工具使用轨迹数据集（远小于基线方法所需规模），并在 LIBERO 仿真环境及 Astribot S1 真实机器人上验证，展示了框架在高泛化性和低数据依赖方面的优势。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Astribot（星尘智能）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.14047/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ART（Agentic Robot with Tool-use） 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。</p>
+  <ul class="reading-intro-points"><li>论文提出 ART（Agentic Robot with Tool-use） 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。</li><li>核心动机是解决现有两条技术路线的矛盾：模块化方法受限于固定工具集和简单动作输出，端到端方法在遇到新场景时需昂贵后训练且易发生灾难性遗忘。ART 通过将连续动作空间与离散工具决策空间相结合，既保留端到端 VLA 模型的精确动作生成能力，又获得模块化工具的灵活可扩展性。</li><li>论文构建了仅 30K 条工具使用轨迹数据集（远小于基线方法所需规模），并在 LIBERO 仿真环境及 Astribot S1 真实机器人上验证，展示了框架在高泛化性和低数据依赖方面的优势。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Astribot</strong>（星尘智能）</li><li><strong>清华大学</strong></li><li><strong>Juxi Tech</strong>（矩溪科技）</li><li><strong>IntelliFusion Inc.</strong>（云天励飞）</li><li><strong>香港中文大学（The Chinese University of Hong Kong）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ART（Agentic Robot with Tool-use）</strong> 框架，将端到端视觉-语言-动作（VLA）模型与智能体工具使用能力相结合，使 VLA 模型能够动态调用外部工具模块，从而在无需重新训练整个模型的情况下适应新场景和新任务。</li><li>核心动机是解决现有两条技术路线的矛盾：模块化方法受限于固定工具集和简单动作输出，端到端方法在遇到新场景时需昂贵后训练且易发生灾难性遗忘。ART 通过将连续动作空间与离散工具决策空间相结合，既保留端到端 VLA 模型的精确动作生成能力，又获得模块化工具的灵活可扩展性。</li><li>论文构建了仅 <strong>30K</strong> 条工具使用轨迹数据集（远小于基线方法所需规模），并在 <strong>LIBERO</strong> 仿真环境及 <strong>Astribot S1</strong> 真实机器人上验证，展示了框架在<strong>高泛化性</strong>和<strong>低数据依赖</strong>方面的优势。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出一种<strong>数据生成方法</strong>，将多模态工具使用整合进现有 VLA 数据集，支持长任务链中的复杂工具调用，仅需 30K 条轨迹即可完成训练。</li><li>提出 <strong>ART（Agentic Robot with Tool-use）</strong> 工具注入微调框架，通过两阶段 <strong>LoRA</strong> 微调策略在冻结原始 VLA 骨干的同时训练工具推理能力，避免灾难性遗忘，保持预训练动作生成质量。</li><li>设计<strong>工具 Token 注入</strong>机制，将离散工具激活状态映射为词表末尾 token，使工具使用成为标准的 next-token 预测任务，无缝融入现有 VLA 训练流程。</li><li>提出<strong>自适应 LoRA 动态激活</strong>方案：推理时先用 LoRA 模块生成推理与工具调用决策，激活外部工具增强观测后，再屏蔽 LoRA 输出、由原始骨干生成最终动作，实现工具推理与动作生成的解耦。</li><li>在 <strong>LIBERO</strong> 仿真和 <strong>Astribot S1</strong> 真实机器人上验证，ART 相比主流基线在泛化任务上成功率提升约 <strong>20%</strong>，并能将工具推理能力迁移到新场景。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>优化目标分解</strong>：将总体目标分解为两项独立目标 $P_{\theta,1}$（原始 VLA 动作生成）和 $P_{\theta,2}$（工具使用推理），假设增强后的观测 $\boldsymbol{o}_t$ 是生成准确动作的充分条件，从而保证两个目标的独立性。</li><li><strong>工具 Token 注入</strong>：将 $n$ 个外部工具函数的激活状态表示为二值向量 $\boldsymbol{a}_{t,t}\in\{0,1\}^n$，映射到词表末尾 $N$ 个 token，采用标准交叉熵 next-token 预测进行训练。</li><li><strong>自适应 LoRA 微调</strong>：冻结 VLA 骨干权重，仅微调 LoRA 模块学习工具推理；动作生成阶段屏蔽 LoRA 输出，使模型回退到原始 VLA 能力，有效防止数据冲突和灾难性遗忘。</li><li><strong>工具使用与动作分块结合</strong>：VLA 模型每 $H$ 个时间步执行一次工具推理决策，一次性处理未来 $H$ 步的动作块观测，降低模型推理频率，提升执行效率。</li><li><strong>工具类别设计</strong>：定义三类工具——<strong>视觉增强</strong>（低光增强、去噪、抖动校正、去模糊等 10 种）、<strong>可供性增强</strong>（深度估计、目标检测）、<strong>具身增强</strong>（相机旋转、缩放、机器人状态重置）。</li><li><strong>长轨迹工具推理数据生成</strong>：借鉴 T3-Agent 思路，分三步生成数据——利用 GPT 将原始简单任务"降级"为需要工具解决的复杂任务（视觉退化/可供性查询/具身扰动三类）、生成对应的工具链、合成包含详细推理的长轨迹。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>AT 数据集（Action with Tool）</strong>：基于 <strong>LIBERO</strong>、<strong>Bridge v2</strong>、<strong>DROID</strong> 现有 VLA 数据集扩展得到，共 30K 条工具使用轨迹与动作演示，包含长轨迹工具推理标注。</li><li><strong>基线模型</strong>：使用预训练的 <strong>π₀-FAST（3B 参数）</strong> 作为主干，同时对比 <strong>OpenVLA</strong>、<strong>π₀</strong> 和 <strong>ECoT</strong> 等主流方法。</li><li><strong>训练资源</strong>：8 张 <strong>A800 GPU</strong>，batch size 为 24，初始学习率 $5\times 10^{-5}$，含 1K 步 warm-up，仅微调 1 epoch。</li><li><strong>真实机器人</strong>：<strong>Astribot S1</strong> 人形机器人，双臂 16 自由度；基线 FAST 模型先在 16K 条包含 80 种物体和 10 种容器类型的 pick-and-place 动作轨迹上训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真环境</strong>：<strong>LIBERO</strong> 平台，引入三类扰动——视觉退化（光照/噪声）、可供性查询（需识别目标物体属性）、具身扰动（相机与机器人初始状态变化）。</li><li><strong>真实环境</strong>：<strong>Astribot S1</strong> 人形机器人上的 pick-and-place 任务，包含新视角、低光环境等复杂条件。</li><li><strong>主要指标</strong>：任务成功率（Success Rate）。</li><li><strong>工具集成性能（表 1）</strong>：<strong>ART-FAST</strong> 在 LIBERO 上平均成功率达 <strong>75%</strong>（视觉 81%、可供性 62%、具身 82%），显著优于 <strong>OpenVLA</strong>（12%）、<strong>π₀</strong>（30%）、<strong>π₀-FAST</strong>（39%）；在 Astribot S1 上平均 <strong>62%</strong>，高于 OpenVLA（6.7%）和 π₀（37%）。</li><li><strong>与端到端后训练对比（表 3）</strong>：在相同训练数据与消耗下，<strong>ART-FAST</strong> 在视觉（81% vs 71%）、可供性（82% vs 65%）和具身（62% vs 61%）任务上均超过直接后训练的 <strong>FAST</strong> 模型。</li><li><strong>与纯推理模型 ECoT 对比（表 2）</strong>：在无视觉退化时 ART 略优（62% vs 58%）；加入视觉退化后 <strong>ECoT</strong> 成功率骤降至 <strong>12%</strong>，而 <strong>ART</strong> 保持 <strong>72%</strong>，验证了外部视觉工具对扰动的鲁棒性。</li><li><strong>工具推理泛化性</strong>：在 AT 数据集（融合 LIBERO/Bridge v2/DROID）上微调的 ART，其工具推理能力可迁移至真实 Astribot S1 新场景，无需任务特定重训练。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.14379/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Reflex: Enabling Fast and Predictive Vision-Language-Action Models for Reaction-Critical Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.14028/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">AdvDex: Learning Dexterous Manipulation from Human Demonstrations via Joint-Aligned Actions and Adversarial Learning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
