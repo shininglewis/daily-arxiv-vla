@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robo-Dopamine 2.0: History-Conditioned and OOD-Aware Process Reward Modeling for Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 Robo-Dopamine 2.0，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈 解决现有奖励模型的 时间模糊性（temporal ambiguity） 问题：静态前后观测对无法区分隐藏接触事件、重复阶段或子目标重排导致的相似视觉状态；同时难以区分保持语义的鲁棒变化与任务无效失败 通过两项互补设计改进进度估计：历史条件化成对奖励公式（标准查询用同剧集专家历史、在线查询用观测 rollout 历史、合成 OOD 查询用源对齐参考面板）和 OOD 感知的有符号进度空间（统一表示有效进度、鲁棒保持、失败与恢复）" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.15680">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.15680.webp" alt="Robo-Dopamine 2.0: History-Conditioned and OOD-Aware Process Reward Modeling for Robotic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 Robo-Dopamine 2.0，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Robo-Dopamine 2.0: History-Conditioned and OOD-Aware Process Reward Modeling for Robotic Manipulation</h1>
+            <div class="detail-meta">2026-08-16 · <a href="http://arxiv.org/abs/2608.15680" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.15680" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.15680</span></div>
+            <p class="detail-summary">提出 Robo-Dopamine 2.0，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈 解决现有奖励模型的 时间模糊性（temporal ambiguity） 问题：静态前后观测对无法区分隐藏接触事件、重复阶段或子目标重排导致的相似视觉状态；同时难以区分保持语义的鲁棒变化与任务无效失败 通过两项互补设计改进进度估计：历史条件化成对奖励公式（标准查询用同剧集专家历史、在线查询用观测 rollout 历史、合成 OOD 查询用源对齐参考面板）和 OOD 感知的有符号进度空间（统一表示有效进度、鲁棒保持、失败与恢复）</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者：Yijie Xu、Haopeng Jin、Run Zhou、Shengbang Liu、Si…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.15680/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 Robo-Dopamine 2.0，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈</p>
+  <ul class="reading-intro-points"><li>提出 Robo-Dopamine 2.0，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈</li><li>解决现有奖励模型的 时间模糊性（temporal ambiguity） 问题：静态前后观测对无法区分隐藏接触事件、重复阶段或子目标重排导致的相似视觉状态；同时难以区分保持语义的鲁棒变化与任务无效失败</li><li>通过两项互补设计改进进度估计：历史条件化成对奖励公式（标准查询用同剧集专家历史、在线查询用观测 rollout 历史、合成 OOD 查询用源对齐参考面板）和 OOD 感知的有符号进度空间（统一表示有效进度、鲁棒保持、失败与恢复）</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者：<strong>Yijie Xu</strong>、<strong>Haopeng Jin</strong>、<strong>Run Zhou</strong>、<strong>Shengbang Liu</strong>、<strong>Sixiang Chen</strong>、<strong>Hongyang Cheng</strong>、<strong>Sicheng Hu</strong>、<strong>Peterson Co</strong>、<strong>Jinwen Luo</strong>、<strong>Huajie Tan</strong>、<strong>Shanghang Zhang</strong>（通讯作者）</li><li>提供的 HTML 原文中未明确标注作者所属机构（如大学或实验室），仅有作者列表与通讯作者标记</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Robo-Dopamine 2.0</strong>，一个历史条件化（History-Conditioned）且感知 OOD（Out-of-Distribution）的机器人操作过程奖励模型，保留成对预测接口（pairwise prediction interface），用于为视觉-语言-动作（VLA）策略提供密集反馈</li><li>解决现有奖励模型的 <strong>时间模糊性（temporal ambiguity）</strong> 问题：静态前后观测对无法区分隐藏接触事件、重复阶段或子目标重排导致的相似视觉状态；同时难以区分保持语义的鲁棒变化与任务无效失败</li><li>通过两项互补设计改进进度估计：<strong>历史条件化成对奖励公式</strong>（标准查询用同剧集专家历史、在线查询用观测 rollout 历史、合成 OOD 查询用源对齐参考面板）和 <strong>OOD 感知的有符号进度空间</strong>（统一表示有效进度、鲁棒保持、失败与恢复）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Robo-Dopamine 2.0</strong> 框架：支持合成 OOD 查询的源参考上下文与在线奖励推断的 rollout 观察上下文，并引入有符号进度空间统一建模有效进度、鲁棒性、失败与恢复</li><li>开发 <strong>Signed-Hop Curriculum（有符号跳课程）</strong> 与过渡感知回放（transition-aware replay），先学习粗粒度执行顺序、再细化细粒度进度校准，改善优化效率</li><li>构建 <strong>OOD 轨迹数据集</strong> 与 <strong>五族基准（five-family benchmark）</strong>，用于全面评估轨迹级视觉顺序一致性（VOC）</li><li>提出轨迹级 <strong>视觉顺序一致性（Visual Order Consistency, VOC）</strong> 评估协议，覆盖分布内（ID）、时间（Temporal）、OOD 负例、OOD 鲁棒、OOD 时间五类场景</li><li>在仿真（<strong>RoboTwin</strong>）与真实机器人（<strong>ConRFT</strong> 双 Franka 重复插入）下游强化学习中验证了 OOD 监督与历史上下文的互补增益</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>历史条件化成对奖励公式</strong>：给定指令 c、任务参考锚 R、有序时间上下文 C_ba 与有序状态对 (X_b, X_a)，GRM 预测有符号相对进度；静态基线令上下文为空，标准查询使用同剧集专家历史面板，合成 OOD 查询使用源对齐成功参考面板且保留编辑端点</li><li><strong>结构化 OOD 数据构建</strong>：从 <strong>RoboCasa</strong>、<strong>LIBERO</strong> 与 <strong>AgiBot World</strong> 成功轨迹出发，应用任务/阶段感知编辑算子生成反事实轨迹；负算子（错误物体、空抓、不释放、目标替换）与鲁棒保持算子（前景遮挡、背景变化、干扰物增删、非目标颜色变化）共同构成编辑池</li><li><strong>OOD 感知有符号进度空间</strong>：对源轨迹定义进度 g_i=i/(T-1)，令 Φ(P_i)=Φ(R_i)=g_i、Φ(N_i)=-g_i，并用分支指示符 b(·) 扩展 Hop 归一化的下界 L_ba，输出 y_ba=100·clip(H_ba,-1,1)，以 MSE 回归训练</li><li><strong>Signed-Hop Curriculum</strong>：两个 200K 成对奖励阶段，共 400K 样本；阶段 1 用大 Hop 池学全局几何，阶段 2 用小 Hop/零 Hop 精调并回放 25% 大 Hop 样本（ρ=0.25）</li><li><strong>闭环奖励框架</strong>：在线推断构造前向锚定、反向锚定、增量三种查询的因果 rollout 上下文，通过逆归一化融合三个势估计 Φ̂_t，并以势整形形式 r_t^GRM = r_t^task + γ_RL·Φ̂_{t+1} - Φ̂_t 提供给下游 RL</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练数据来源：<strong>RoboCasa</strong> 与 <strong>LIBERO</strong> 仿真基准、<strong>AgiBot World</strong> 真实机器人轨迹</li><li>模型规模：主模型 <strong>Robo-Dopamine 2.0-8B</strong> 基于 <strong>Qwen3-VL-8B</strong> 骨干；基线为 <strong>GRM-8B-Pro</strong></li><li>训练数据量：<strong>400K</strong> 有符号成对奖励样本 + 固定 <strong>200K</strong> 视觉 QA 混合（QA200K，不计入成对预算）</li><li>评估基准：自建 <strong>五族 VOC 基准</strong>（ID、时间、OOD 负例、OOD 鲁棒、OOD 时间）与 60 集任务完成分类测试</li><li>训练资源：附录 B 提到计算基础设施与训练成本，但 HTML 正文片段未给出具体 GPU/TPU 数量</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>离线评估</strong>：五族轨迹级 VOC（Spearman 相关）；面板输入将 Robo-Dopamine 2.0 平均 VOC 从 <strong>0.967 提升到 0.986</strong>，OOD-鲁棒 VOC 从 <strong>0.906 提升到 0.958</strong>；GRM-8B-Pro 静态平均 VOC 为 <strong>0.958</strong></li><li><strong>课程消融</strong>：在固定 400K 成对奖励预算下，25% 回放的 Signed-Hop 达到 <strong>0.9872</strong> 平均 VOC，优于匹配池随机打乱对照（<strong>0.9858</strong>）与无回放变体（<strong>0.9866</strong>）</li><li><strong>任务完成分类</strong>：Robo-Dopamine 2.0-8B 达 <strong>96.1%</strong> 准确率，超过 GPT-5.5（81.1%）、Claude-Opus-4.8（79.4%）、Gemini-3-Pro（77.2%）、Qwen3.5-397B-A17B-fp8（76.1%）与 RoboBrain 2.0（61.7%）</li><li><strong>RoboTwin 仿真 RL</strong>：用 GRPO/RLinf 优化 OpenVLA-OFT 策略，C11（OOD+历史）300 轮内平均成功率 <strong>86.8%</strong>，超过 1000 轮稀疏基线（85.8%）；C00 为 72.2%、C01 为 75.1%、C10 为 80.6%，验证 OOD 监督与 rollout 历史面板的互补增益</li><li><strong>真实机器人重复插入</strong>：双 Franka 平台进行 4 次连续 Insert Square；C11 达到 <strong>71/80</strong> 次插入与 <strong>15/20</strong> 次完整序列成功，远超 Event Sparse（48/80 与 8/20），且仅用 200 集在线数据（稀疏基线用 300 集）</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.15816/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ViTaR: Visuo-Tactile Residual Adaptation for Foundation VLA Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.15636/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Algorithm-Architecture Co-Design for Efficient VLA Inference via Speculative Inference and Verification</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EcoVLA: Energy-Efficient Device-Edge Co-Inference for Vision-Language-Action Models under Real-Time Constraints - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 EcoVLA 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。 针对机器人设备算力与能耗有限、纯边缘卸载受网络波动影响大的问题，EcoVLA 通过统一的阶段级抽象、联合延迟-能量预测模型和自适应调度，实现跨异构 VLA 范式的节能协同推理。 核心洞察在于：机器人控制回路中，推理完成后须等待动作执行周期，因此系统级能量效率应基于整个控制周期评估，而非瞬时功耗，最优方案是满足 SLO 约束下每焦耳输出动作数最大化的方案。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.15502">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.15502.webp" alt="EcoVLA: Energy-Efficient Device-Edge Co-Inference for Vision-Language-Action Models under Real-Time Constraints" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 EcoVLA 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EcoVLA: Energy-Efficient Device-Edge Co-Inference for Vision-Language-Action Models under Real-Time Constraints</h1>
+            <div class="detail-meta">2026-08-16 · <a href="http://arxiv.org/abs/2608.15502" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.15502" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.15502</span></div>
+            <p class="detail-summary">提出 EcoVLA 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。 针对机器人设备算力与能耗有限、纯边缘卸载受网络波动影响大的问题，EcoVLA 通过统一的阶段级抽象、联合延迟-能量预测模型和自适应调度，实现跨异构 VLA 范式的节能协同推理。 核心洞察在于：机器人控制回路中，推理完成后须等待动作执行周期，因此系统级能量效率应基于整个控制周期评估，而非瞬时功耗，最优方案是满足 SLO 约束下每焦耳输出动作数最大化的方案。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京航空航天大学（Beihang University）：Ao Zhou、Bo Dai、Le Yu、Z…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.15502/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 EcoVLA 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。</p>
+  <ul class="reading-intro-points"><li>提出 EcoVLA 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。</li><li>针对机器人设备算力与能耗有限、纯边缘卸载受网络波动影响大的问题，EcoVLA 通过统一的阶段级抽象、联合延迟-能量预测模型和自适应调度，实现跨异构 VLA 范式的节能协同推理。</li><li>核心洞察在于：机器人控制回路中，推理完成后须等待动作执行周期，因此系统级能量效率应基于整个控制周期评估，而非瞬时功耗，最优方案是满足 SLO 约束下每焦耳输出动作数最大化的方案。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京航空航天大学（Beihang University）</strong>：Ao Zhou、Bo Dai、Le Yu、Zeyu Hao、Lingkun Long、Chunming Hu、Jianlei Yang</li><li><strong>北京工业大学（Beijing University of Technology）</strong>：Xingyu Liu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>EcoVLA</strong> 框架，这是首个面向 VLA（视觉-语言-动作）模型的自适应设备-边缘协同推理框架，目标是在实时约束下最大化系统能量效率（Actions/J）。</li><li>针对机器人设备算力与能耗有限、纯边缘卸载受网络波动影响大的问题，EcoVLA 通过统一的阶段级抽象、联合延迟-能量预测模型和自适应调度，实现跨异构 VLA 范式的节能协同推理。</li><li>核心洞察在于：机器人控制回路中，推理完成后须等待动作执行周期，因此系统级能量效率应基于整个控制周期评估，而非瞬时功耗，最优方案是满足 SLO 约束下每焦耳输出动作数最大化的方案。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>统一框架</strong>：提出首个范式无关（paradigm-agnostic）的自适应设备-边缘协同推理框架 <strong>EcoVLA</strong>，支持异构 VLA 模型和系统的统一设计与部署，避免针对每种模型重新实现协同推理逻辑。</li><li><strong>系统感知调度</strong>：构建联合延迟-能量预测模型，结合离线阶段级性能剖析与在线通信/边缘负载感知，实现端到端延迟和能量的高精度预测（20% 误差界内超过 95% 预测准确率）。</li><li><strong>SLO 约束的能量优先调度</strong>：在实时约束（SLO）可行域内持续选择能量最优的协同推理方案，决策开销仅为毫秒级；无可行方案时降级为最小延迟方案。</li><li><strong>轻量级传输机制</strong>：设计结构化中间包（structured intermediate packet）统一跨设备传输单元，配合控制/数据平面分离的通信中间件，降低跨设备协作的通信开销。</li><li><strong>全面实验验证</strong>：在 <strong>5 个 VLA 模型</strong>（OpenVLA、π₀、π₀.5、SmolVLA、RDT-1b）和真实设备-边缘测试平台上验证，在 20 Hz 动作输出频率约束下相较固定划分基线能量效率最高提升 <strong>236%</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>阶段级抽象</strong>：将 VLA 计算图解耦为有向无环图（DAG），每阶段满足可序列化、可重定位、可独立执行三个条件，兼容自回归（如 OpenVLA）和扩散式（如 π₀）两类主流 VLA 范式。</li><li><strong>统一映射空间</strong>：将协同推理问题形式化为阶段到设备的映射策略集合，并通过阶段-设备可执行性过滤，得到部署可行的映射子空间。</li><li><strong>系统性能感知模块</strong>：结合离线阶段级延迟/功耗剖析、在线通信探测与边缘负载感知，递归估计候选方案端到端延迟与能量，并引入 EWMA 在线反馈校准。</li><li><strong>自适应调度器</strong>：枚举可行候选方案，基于预测模型执行 SLO 约束下的能量优先选择；调度决策不仅包含阶段映射，还包含执行时序、批处理机会和节点占用区间。</li><li><strong>执行引擎</strong>：构建保持调度不变性的阶段运行时（支持 torch.compile、CUDA Graph、批处理）和协同推理通信中间件（控制/数据平面分离、p2p 通信与通信-计算重叠）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>评估模型</strong>：OpenVLA（自回归）、π₀、π₀.5、SmolVLA、RDT-1b（扩散/去噪型），均使用官方预训练权重。</li><li><strong>硬件资源</strong>：边缘服务器为 <strong>NVIDIA RTX 4090</strong> GPU，机器人设备为 <strong>NVIDIA Jetson AGX Orin 32GB</strong>。</li><li><strong>实现技术栈</strong>：控制平面使用 Ray RPC，数据平面使用 torch.distributed（Gloo 后端），功率采集使用 NVML（RTX 4090）和 tegrastats（AGX Orin），动态网络实验使用 Linux tc 注入带宽扰动。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：在 AGX Orin–RTX 4090 真实设备-边缘测试平台，对比 Device-Only（设备本地执行）、Edge-Only（全量边缘卸载）和 Fixed Split（固定划分）方案，SLO 设置为动作输出频率 20 Hz（即每推理延迟 ≤ 1 秒）。</li><li><strong>主要指标</strong>：能量效率（Actions/J）、端到端延迟、SLO 满足率、预测准确率（MAPE）。</li><li><strong>关键结果</strong>：</li></ul>
+<p> - 相较 Fixed Split 基线，能量效率提升：π₀ 提升 <strong>58%</strong>、π₀.5 提升 <strong>84%</strong>、SmolVLA 提升 <strong>100%</strong>、RDT-1b 提升 <strong>182%</strong>、OpenVLA 提升 <strong>236%</strong>。</p>
+<p> - Device-Only 在 5 个模型中有 4 个违反 SLO，说明纯设备端推理无法兼顾实时性与能效。</p>
+<p> - 在网络从 200 Mbps 降级到 50 Mbps 时，EcoVLA 在线重调度至设备侧重方案，稳定在 <strong>0.1 秒</strong> 延迟和 <strong>2.4 Actions/J</strong>，而 Fixed Split 和 Edge-Only 均显著恶化。</p>
+<p> - 延迟和能量预测器的平均绝对百分比误差（MAPE）仅为 <strong>6%</strong> 和 <strong>3.8%</strong>；±10% 误差界内准确率超 80%，±20% 误差界内超 95%。</p>
+<p> - 在不同负载（轻/中/重）下，相较静态划分延迟/能量降低 12.6%/15.8% 至 35.9%/31.8%，相较 Edge-Only 降低 8.9%/10.7% 至 26.8%/24.6%。</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.15636/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Algorithm-Architecture Co-Design for Efficient VLA Inference via Speculative Inference and Verification</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.15285/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PhaseLoRA: Control-Regime-Conditioned Low-Rank Adaptation for Continuous-Action Vision-Language-Action Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

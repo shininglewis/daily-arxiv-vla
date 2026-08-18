@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Imagining Recovery: Inference-Time Counterfactual Realignment for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 Counterfactual Realignment (CoRe)，一个训练无关的推理时恢复框架，用于让冻结的视觉-语言-动作（VLA）模型在在线语言切换、环境扰动和机器人状态干扰下自主恢复 核心思想是“反事实延续”：从最近的分布内状态出发，使用合成观测模拟策略在当前目标下会如何继续执行，从而在不进行物理试错的前提下规划最小恢复方案 解决现有恢复方法依赖失败数据、策略重训练或外部辅助模型的问题，统一处理任务中途指令变更与物理扰动" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.14822">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.14822.webp" alt="Imagining Recovery: Inference-Time Counterfactual Realignment for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 Counterfactual Realignment (CoRe)，一个训练无关的推理时恢复框架，用于让冻结的视觉-语言-动作（VLA）模型在在线语言切换、环境扰动和机器人状态干扰下自主恢复</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Imagining Recovery: Inference-Time Counterfactual Realignment for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-08-14 · <a href="http://arxiv.org/abs/2608.14822" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.14822" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.14822</span></div>
+            <p class="detail-summary">提出 Counterfactual Realignment (CoRe)，一个训练无关的推理时恢复框架，用于让冻结的视觉-语言-动作（VLA）模型在在线语言切换、环境扰动和机器人状态干扰下自主恢复 核心思想是“反事实延续”：从最近的分布内状态出发，使用合成观测模拟策略在当前目标下会如何继续执行，从而在不进行物理试错的前提下规划最小恢复方案 解决现有恢复方法依赖失败数据、策略重训练或外部辅助模型的问题，统一处理任务中途指令变更与物理扰动</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文未在 HTML 中明确列出作者所属机构名称</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.14822/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 Counterfactual Realignment (CoRe)，一个训练无关的推理时恢复框架，用于让冻结的视觉-语言-动作（VLA）模型在在线语言切换、环境扰动和机器人状态干扰下自主恢复</p>
+  <ul class="reading-intro-points"><li>提出 Counterfactual Realignment (CoRe)，一个训练无关的推理时恢复框架，用于让冻结的视觉-语言-动作（VLA）模型在在线语言切换、环境扰动和机器人状态干扰下自主恢复</li><li>核心思想是“反事实延续”：从最近的分布内状态出发，使用合成观测模拟策略在当前目标下会如何继续执行，从而在不进行物理试错的前提下规划最小恢复方案</li><li>解决现有恢复方法依赖失败数据、策略重训练或外部辅助模型的问题，统一处理任务中途指令变更与物理扰动</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文未在 HTML 中明确列出作者所属机构名称</li><li>作者包括 <strong>Yanyan Zhang、Disheng Liu、Kai Ye、Chaoda Song、Xinpeng Li</strong></li><li>作者注释中提及的合作者包括 <strong>Mohsen Hariri、Vikash Singh、Yu Yin、Vipin Chaudhary</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Counterfactual Realignment (CoRe)</strong>，一个训练无关的推理时恢复框架，用于让冻结的<strong>视觉-语言-动作（VLA）模型</strong>在在线语言切换、环境扰动和机器人状态干扰下自主恢复</li><li>核心思想是“反事实延续”：从最近的分布内状态出发，使用合成观测模拟策略在当前目标下会如何继续执行，从而在不进行物理试错的前提下规划最小恢复方案</li><li>解决现有恢复方法依赖失败数据、策略重训练或外部辅助模型的问题，统一处理任务中途指令变更与物理扰动</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>CoRe</strong>，无需重训练或失败数据即可从在线扰动中恢复冻结的 VLA 策略</li><li>证明 VLA 策略对几何合成观测具有鲁棒性，闭环反事实 rollout 足以用于恢复规划，无需学习世界模型或特权环境访问</li><li>通过跨模拟器、多种 VLA 骨干和真实世界的广泛实验，验证了成功率的大幅提升和物理恢复次数的减少</li><li>引入 <strong>探针式最小恢复</strong> 机制，仅恢复影响策略延续性的少量物体，显著降低物理干预成本</li><li>将物理试错转化为虚拟规划，同时提高恢复过程的安全性和时间效率</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>在线后缀 OOD 检测</strong>：利用 VLA 动作头的后缀隐状态计算逐任务 Mahalanobis 距离，仅从成功 rollout 中校准阈值，无需训练分类器</li><li><strong>相位感知恢复锚定</strong>：扫描执行轨迹，比较新旧指令下的动作差异或干净 rollout 与真实轨迹的位姿差，确定最近的可恢复、保持已完成进度的分布内锚点</li><li><strong>合成反事实延续</strong>：从锚点出发，利用累积的 RGB-D 历史构建逐对象体素存储，通过正向运动学渲染机械臂位姿，生成虚实结合的观测，进行闭环 rollout，得到安全的<strong>重接入状态</strong>（pre-contact 状态）</li><li><strong>探针式最小恢复</strong>：通过虚拟探针（在混合场景种子上的反事实 rollout）对比完整恢复参考轨迹，贪心选择满足轨迹等价阈值的最小物体恢复子集</li><li><strong>物理重排与交接</strong>：仅最后阶段产生物理运动，通过运动规划的抓放将选中物体恢复到重接位姿，机械臂移至重接配置，然后交还控制给冻结策略</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LangSwitch 基准</strong>：基于 <strong>ManiSkill</strong> 模拟器，使用 <strong>xArm6</strong> 机器人，涵盖 Re-grounding、Re-skilling、Conflict 三类指令切换任务</li><li><strong>LIBERO-Long with Perturbation 基准</strong>：基于 <strong>robosuite</strong> 模拟器，使用 <strong>Franka Panda</strong> 机器人，包含 Arm Collision、Grasp Failure、Object Displace、Object Tip 四类物理扰动</li><li>使用的 VLA 骨干包括 <strong>π0、π0.5、GR00T N1.7、OpenVLA、X-VLA</strong> 等</li><li>真实世界系统：物理 <strong>xArm6</strong> 机械臂、两个 <strong>RealSense D435i</strong> 相机（固定第三视角 + 腕装第一视角）</li><li>模拟实验未明确给出 GPU 型号；真实实验使用 100 条遥操作演示每技能进行微调</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>LangSwitch</strong> 上，CoRe 将三个骨干的平均成功率从 18.3%–35.5% 提升至 <strong>82.6%–92.7%</strong>，所有 27 个切换设置均有改善</li><li>在 <strong>LIBERO-Long with Perturbation</strong> 上，CoRe 达到 <strong>69.8%–88.2%</strong> 成功率，而裸策略仅为 12.8%–43.5%；全自主 Arm-Only 变体仍保持 65.0%–81.9%</li><li>真实世界实验中，裸策略在扰动下最高仅 9/20 成功率，CoRe 将每个条件提升至 <strong>17–19/20（85%–95%）</strong>，其中 Re-skilling 和 Conflict 从 1/20 提升到 18/20</li><li>消融实验表明：合成 rollout 与真实渲染的端点 TCP 发散中位数为 <strong>0.36–3.28 cm</strong>，低于恢复决策的接触前阈值；CoRe 每集恢复物体数从全恢复的 1.16 降至 <strong>0.67</strong>，减少物理恢复约 42.2%</li><li>虚拟探测比物理试错快 2–5 倍（虚拟规划周期中位数 9.7 秒 vs. 单次物理操作 46.6 秒墙钟），并将探索性接触转移到想象中，基线 100 集中 21 次碰撞/急停降低为 5 次</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.15009/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ForceU-VLA: A Force-Aware Vision-Language-Action Model for Embodied Ultrasound Scanning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.14379/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Reflex: Enabling Fast and Predictive Vision-Language-Action Models for Reaction-Critical Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

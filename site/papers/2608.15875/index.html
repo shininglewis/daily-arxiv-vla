@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 GigaBrain-0.7，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。 该系统协调 System 1（行动与控制）、System 2（理解与规划）和 System 3（预测与评估）三大功能模块，构建从感知、规划到执行的完整闭环。 相比前代 GigaBrain-0 系列及当前最强的 VLA 基线（如 π0.5），GigaBrain-0.7 在基础零样本能力、语言指令跟随和任务后训练成功率上均有显著提升。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.15875">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.15875.webp" alt="GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 GigaBrain-0.7，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GigaBrain-0.7: Scaling Embodied Foundation Models to Emergent Capabilities with a Three-System Architecture</h1>
+            <div class="detail-meta">2026-08-16 · <a href="http://arxiv.org/abs/2608.15875" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.15875" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.15875</span></div>
+            <p class="detail-summary">论文提出 GigaBrain-0.7，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。 该系统协调 System 1（行动与控制）、System 2（理解与规划）和 System 3（预测与评估）三大功能模块，构建从感知、规划到执行的完整闭环。 相比前代 GigaBrain-0 系列及当前最强的 VLA 基线（如 π0.5），GigaBrain-0.7 在基础零样本能力、语言指令跟随和任务后训练成功率上均有显著提升。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">GigaBrain Team（GigaAI 团队）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.15875/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 GigaBrain-0.7，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。</p>
+  <ul class="reading-intro-points"><li>论文提出 GigaBrain-0.7，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。</li><li>该系统协调 System 1（行动与控制）、System 2（理解与规划）和 System 3（预测与评估）三大功能模块，构建从感知、规划到执行的完整闭环。</li><li>相比前代 GigaBrain-0 系列及当前最强的 VLA 基线（如 π0.5），GigaBrain-0.7 在基础零样本能力、语言指令跟随和任务后训练成功率上均有显著提升。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>GigaBrain Team</strong>（GigaAI 团队）</li><li>项目主页：<a href="https://gigaai.cc/blog/gigabrain07" target="_blank" rel="noopener noreferrer">https://gigaai.cc/blog/gigabrain07</a></li><li>代码仓库：<a href="https://github.com/open-gigaai/giga-brain-0" target="_blank" rel="noopener noreferrer">https://github.com/open-gigaai/giga-brain-0</a></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>GigaBrain-0.7</strong>，一个具身基础模型系统，采用三系统架构统一理解、预测和行动，旨在解决当前 VLA 系统在架构设计、数据规模化和跨任务/跨形态泛化方面的瓶颈。</li><li>该系统协调 <strong>System 1</strong>（行动与控制）、<strong>System 2</strong>（理解与规划）和 <strong>System 3</strong>（预测与评估）三大功能模块，构建从感知、规划到执行的完整闭环。</li><li>相比前代 GigaBrain-0 系列及当前最强的 VLA 基线（如 <strong>π0.5</strong>），GigaBrain-0.7 在基础零样本能力、语言指令跟随和任务后训练成功率上均有显著提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出三系统架构，将理解规划、预测评估与连续动作生成深度耦合，并保留各系统专业化目标。</li><li>构建 <strong>单阶段多形态 VLA 预训练框架</strong>，联合优化视觉-语言理解、层次化任务预测、离散动作表示和连续动作生成，消除多级训练流水线的碎片化问题。</li><li>构建超大规模异构数据语料，清理后包含 <strong>37,256.98 小时</strong>实体轨迹数据（覆盖 16 种机器人形态）和 <strong>271,976,674</strong> 个 VLM 图像-文本/问答样本。</li><li>提出 <strong>Soft Knowledge Insulation (Soft KI)</strong> 机制，在保护 VLM 通用视觉-语言能力的同时，允许骨干网络适应具身控制任务。</li><li>设计 <strong>World-Model-Powered 后训练</strong> 管线，利用 System 3 预测的子目标图像和值函数信号条件化 System 1 策略，并通过经验驱动强化学习实现持续改进。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>Mixture-of-Transformers (MoT)</strong> 架构，将 PaliGemma2 (3B) VLM 骨干与专用的 Action Expert (0.5B) 结合，通过联合注意力耦合，但保持独立的前馈参数。</li><li>System 2 通过<strong>链式思维推理</strong>从当前观测和任务指令中分解出子任务指令；System 3 基于 <strong>GigaWorld-1</strong> 世界模型，预测未来视频帧（子目标图像）并估计任务进度值，提供双重条件接口。</li><li>引入 <strong>Temporal-Spatial Blocks</strong> 短期视觉记忆机制，在保持高维上下文长度与单帧设置相当的前提下，融合历史帧信息。</li><li>采用<strong>流匹配 (Flow Matching)</strong> 生成连续动作块，同时保留自回归离散动作通路作为训练桥梁；系统 1 支持多形态统一优化，通过掩码和投影模块处理异构自由度。</li><li>经验强化阶段包括<strong>离线经验强化</strong>（利用失败与纠正轨迹训练进度判别器）和<strong>在线强化</strong>（人类纠正反馈 + 子任务成功标签构建密集奖励），形成持续学习生命周期。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>真实机器人数据：<strong>20,535.65 小时</strong>，覆盖 16 种机器人（Maker H01、Maker M01、Agibot-G1/G2、AgileX、Franka、UR5、Galaxea R1 Lite 等），共计 1,810,101 个 episode。</li><li><strong>UMI 数据</strong>：8,251.83 小时（含 Jianzhi 10K）；<strong>EGO 数据</strong>：2,862.36 小时（含 EgoDex、EgoVerse、World in Your Hands）。</li><li><strong>仿真数据</strong>：1,453.92 小时；<strong>世界模型生成数据</strong>：4,153.22 小时。</li><li><strong>VLM 数据</strong>：271,976,674 个样本，覆盖图像描述、视觉问答、空间关系、区域 Grounding、点预测、功能属性理解和机器人任务理解。</li><li>模型规模：<strong>System 1/2</strong> 基于 PaliGemma2 (3B) + Action Expert (0.5B)；<strong>System 3</strong> 基于 GigaWorld-1 (5B) 世界价值模型。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估平台涵盖 <strong>AgileX PiPER/PiPER-X</strong> 和自研 <strong>Maker H01</strong> 平台，覆盖零样本、多任务执行、语言指令跟随、分布外泛化和长程操作。</li><li>与 <strong>GigaBrain-0 系列</strong> 和 <strong>π0.5</strong> 等基线对比，GigaBrain-0.7 在基础零样本能力、语言条件指令跟随和任务后训练成功率上均有显著提升。</li><li>消融实验验证了 <strong>System 3</strong> 中未来状态预测和值函数评估信号的单独及联合贡献，以及数据规模、VLM 骨干容量和 VLA 耦合架构对性能的影响。</li><li>在全真机平台上展示了基于人类干预数据和纠正反馈的<strong>经验驱动策略改进</strong>，并通过离线强化和在线强化进一步提升了<strong>复杂精细操作</strong>的成功率。</li><li>大量实验表明，大规模异构预训练带来的<strong>涌现具身能力</strong>（emergent embodied capabilities）使模型在基础语言跟随和复杂操作任务上持续提升。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.16074/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">US-VLA: An Ultrasound Vision-Language-Action Model for Embodied Abdomina</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.15816/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ViTaR: Visuo-Tactile Residual Adaptation for Foundation VLA Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

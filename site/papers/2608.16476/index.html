@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exposing the Long-tail in Embodied Urban Navigation via Scalable Learning from In-the-Wild Videos - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出了一个可扩展框架，从网络规模的 in-the-wild（野外）第一视角视频 中学习点目标城市导航策略，并系统性地揭示其长尾结构 该框架自动将未策划的网页视频注释为度量轨迹和结构化导航语义，用于训练 WILD-Nav，一个具备可解释导航规划能力的推理感知视觉-语言-动作（VLA）模型 实验证明从无约束视频到真实世界城市导航任务的知识迁移有效，并揭示了超越聚合导航性能的连贯长尾结构" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.16476">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.16476.webp" alt="Exposing the Long-tail in Embodied Urban Navigation via Scalable Learning from In-the-Wild Videos" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出了一个可扩展框架，从网络规模的 in-the-wild（野外）第一视角视频 中学习点目标城市导航策略，并系统性地揭示其长尾结构</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Exposing the Long-tail in Embodied Urban Navigation via Scalable Learning from In-the-Wild Videos</h1>
+            <div class="detail-meta">2026-08-17 · <a href="http://arxiv.org/abs/2608.16476" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.16476" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.16476</span></div>
+            <p class="detail-summary">提出了一个可扩展框架，从网络规模的 in-the-wild（野外）第一视角视频 中学习点目标城市导航策略，并系统性地揭示其长尾结构 该框架自动将未策划的网页视频注释为度量轨迹和结构化导航语义，用于训练 WILD-Nav，一个具备可解释导航规划能力的推理感知视觉-语言-动作（VLA）模型 实验证明从无约束视频到真实世界城市导航任务的知识迁移有效，并揭示了超越聚合导航性能的连贯长尾结构</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者包括 Bingyi Xia、Han Bao、Zhewei Chen、Hanjing Ye、Ji…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.16476/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出了一个可扩展框架，从网络规模的 in-the-wild（野外）第一视角视频 中学习点目标城市导航策略，并系统性地揭示其长尾结构</p>
+  <ul class="reading-intro-points"><li>提出了一个可扩展框架，从网络规模的 in-the-wild（野外）第一视角视频 中学习点目标城市导航策略，并系统性地揭示其长尾结构</li><li>该框架自动将未策划的网页视频注释为度量轨迹和结构化导航语义，用于训练 WILD-Nav，一个具备可解释导航规划能力的推理感知视觉-语言-动作（VLA）模型</li><li>实验证明从无约束视频到真实世界城市导航任务的知识迁移有效，并揭示了超越聚合导航性能的连贯长尾结构</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者包括 Bingyi Xia、Han Bao、Zhewei Chen、Hanjing Ye、Jingwen Yu、Yuhan Pang、Wenjun Xu 和 Jiankun Wang</li><li>论文未在 HTML 原文中明确标注作者所属的具体研究机构</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出了一个可扩展框架，从网络规模的 <strong>in-the-wild（野外）第一视角视频</strong> 中学习点目标城市导航策略，并系统性地揭示其长尾结构</li><li>该框架自动将未策划的网页视频注释为度量轨迹和结构化导航语义，用于训练 <strong>WILD-Nav</strong>，一个具备可解释导航规划能力的推理感知视觉-语言-动作（VLA）模型</li><li>实验证明从无约束视频到真实世界城市导航任务的知识迁移有效，并揭示了超越聚合导航性能的连贯长尾结构</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>开发了可扩展的数据管线，将街走第一视角野外视频自动转换为带有轨迹和结构化推理监督的城市导航训练数据</li><li>构建了包含 <strong>超过 500K 个城市导航样本</strong> 的网络规模数据集，并提供基线模型用于策略学习和评估的基准测试</li><li>通过 <strong>模型相关难度</strong> 和 <strong>感知-运动模式中的分布稀有性</strong> 两个互补维度刻画导航长尾现象，无需依赖预定义场景分类体系</li><li>引入 <strong>特权反射（Privileged Reflection）</strong> 机制，对困难样本进行结构化失败归因，诊断推理和规划各阶段的循环失败模式</li><li>组织识别的稀有/困难样本以及反射归因结果，构建了 <strong>WILD-LongTail</strong> 基准用于一致评估</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>数据收集：收集覆盖 <strong>30 个城市、15 个国家</strong> 的约 <strong>500 小时</strong> 街走视频，使用视觉语言模型过滤楼梯、电梯、门廊等非街道行走场景</li><li>轨迹重建：使用 <strong>LoGeR</strong> 框架（以 <strong>Pi3X</strong> 作为视觉几何骨干）重建每段 5 分钟视频的度量尺度相机轨迹，并以 1 Hz 采样分割为导航片段</li><li>语义标注：使用 <strong>GroundingDINO</strong> 检测导航相关物体，<strong>Qwen3.6VL-27B</strong> 作为教师模型生成遵循 <strong>感知-分析-规划（Perception-Analysis-Planning）</strong> 模式的结构化导航推理链</li><li>模型架构：<strong>WILD-Nav</strong> 基于 <strong>Qwen3.5VL-4B</strong> 骨干，引入特殊 <code><PLAN_QUERY></code> 令牌连接语言模型与动作专家；动作专家包含元动作分类头（线性分类器）和轨迹预测头（四层 MLP）</li><li>多任务训练：联合优化推理链语言建模损失、元动作交叉熵损失、轨迹 MSE 损失，视觉编码器冻结，动作专家使用更高学习率</li><li>长尾发现：使用平滑逆文档频率（IDF）评估感知-运动联合特征的稀有性，用 ADE/FDE 评估模型困难度，并通过 UMAP+HDBSCAN 聚类和教师模型反射进行失败归因</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>WILD-Nav 视频数据集</strong>：约 500 小时、30 城市、超过 500K 样本，其中长尾挖掘集 <strong>287,820 样本</strong>、长尾评估集 <strong>104,655 样本</strong></li><li><strong>真实世界导航数据</strong>：整合 3 个公开数据集（SCAND、SiT、GND），共 <strong>45,096 样本</strong>，划分为训练和测试集</li><li><strong>模型规模</strong>：基于 <strong>Qwen3.5VL-4B</strong> 骨干网络的 VLA 模型，动作专家含 512 维隐藏层</li><li><strong>训练资源</strong>：<strong>NVIDIA V100 GPU（32GB 显存）</strong></li><li><strong>对比数据集</strong>：SCAND（8.7h）、SiT（0.4h）、GND（11h）、Citywalker（200h）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：视频测试集（来自野外视频划分的 20% 测试数据）和真实世界测试集（跨域迁移及真实数据微调两种设置）</li><li><strong>主要指标</strong>：<strong>ADE</strong>（平均位移误差）、<strong>FDE</strong>（最终位移误差）、<strong>MAOE</strong>（最大角度方向误差）、元动作准确率</li><li><strong>视频测试集结果</strong>：<strong>WILD-Nav-think</strong> 取得最优成绩（ADE 0.086m、FDE 0.068m、MAOE 5.32°），较 <strong>UrbanNav</strong> 的 FDE 降低 47.8%；WILD-Nav-inst 元动作准确率达 <strong>96.5%</strong></li><li><strong>真实世界直接迁移</strong>：WILD-Nav-think 表现最佳（ADE 0.619、FDE 0.834、MAOE 7.14°），但仍存在明显域差距</li><li><strong>真实世界微调后</strong>：WILD-Nav-inst 取得最优轨迹性能（ADE 0.206、FDE 0.127、MAOE 4.49°），较 UrbanNav 的 FDE 降低 55.6%</li><li><strong>长尾评估</strong>：稀有样本与困难样本重叠率低（24.18% 的困难样本同时稀有），说明数据覆盖缺口与模型弱点相互独立；聚类分析显示失败模式具有场景依赖性，如密集行人场景以规划和轨迹形状错误为主，滑板车/骑行交互主要暴露预测与碰撞风险失败</li><li><strong>微调策略对比</strong>：仅用困难样本微调可改善尾部表现但损害整体性能，<strong>困难+随机样本混合微调</strong> 可同时保持整体性能并获得最优尾部误差（Test-hard ADE 0.217、FDE 0.160）</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.16503/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">NebulaVLA: A Dual-Frequency Vision-Language-Action Model With Guide Action for Robotic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.16172/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SparkVLA: Stop-Aware Hierarchical VLA with Adaptive Action Chunking for Long-Horizon Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
