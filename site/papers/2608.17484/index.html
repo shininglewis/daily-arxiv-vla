@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究具身多模态策略（VLA 模型）在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过额外采样选择（retry selection）来恢复已有能力，还是通过外部检索（retrieval）引入新的行为先验。 提出两个可量化的诊断指标：可恢复余量（recoverable headroom） 和 检索互补性（retrieval complementarity），用以区分策略自身可恢复的能力与需要外部引入的行为先验。 论文在多个 VLA 主干（π₀、SmolVLA、π₀.₅、OpenVLA）和多个环境（LIBERO、SimplerEnv-Bridge、LIBERO-Occ）上系统验证了这两个诊断指标的有效性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.17484">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.17484.webp" alt="Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究具身多模态策略（VLA 模型）在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过额外采样选择（retry selection）来恢复已有能力，还是通过外部检索（retrieval）引入新的行为先验。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies</h1>
+            <div class="detail-meta">2026-08-18 · <a href="http://arxiv.org/abs/2608.17484" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.17484" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.17484</span></div>
+            <p class="detail-summary">论文研究具身多模态策略（VLA 模型）在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过额外采样选择（retry selection）来恢复已有能力，还是通过外部检索（retrieval）引入新的行为先验。 提出两个可量化的诊断指标：可恢复余量（recoverable headroom） 和 检索互补性（retrieval complementarity），用以区分策略自身可恢复的能力与需要外部引入的行为先验。 论文在多个 VLA 主干（π₀、SmolVLA、π₀.₅、OpenVLA）和多个环境（LIBERO、SimplerEnv-Bridge、LIBERO-Occ）上系统验证了这两个诊断指标的有效性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">KAIST（韩国科学技术院）Visual Intelligence Lab</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.17484/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究具身多模态策略（VLA 模型）在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过额外采样选择（retry selection）来恢复已有能力，还是通过外部检索（retrieval）引入新的行为先验。</p>
+  <ul class="reading-intro-points"><li>论文研究具身多模态策略（VLA 模型）在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过额外采样选择（retry selection）来恢复已有能力，还是通过外部检索（retrieval）引入新的行为先验。</li><li>提出两个可量化的诊断指标：可恢复余量（recoverable headroom） 和 检索互补性（retrieval complementarity），用以区分策略自身可恢复的能力与需要外部引入的行为先验。</li><li>论文在多个 VLA 主干（π₀、SmolVLA、π₀.₅、OpenVLA）和多个环境（LIBERO、SimplerEnv-Bridge、LIBERO-Occ）上系统验证了这两个诊断指标的有效性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>KAIST（韩国科学技术院）Visual Intelligence Lab</strong></li><li>作者：<strong>Yuhwan Jeong</strong> 和 <strong>Kuk-Jin Yoon</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>具身多模态策略（VLA 模型）</strong>在测试时增强的决策问题：当部署的冻结策略表现不完美时，应该通过<strong>额外采样选择（retry selection）</strong>来恢复已有能力，还是通过<strong>外部检索（retrieval）</strong>引入新的行为先验。</li><li>提出两个可量化的诊断指标：<strong>可恢复余量（recoverable headroom）</strong> 和 <strong>检索互补性（retrieval complementarity）</strong>，用以区分策略自身可恢复的能力与需要外部引入的行为先验。</li><li>论文在多个 VLA 主干（<strong>π₀</strong>、<strong>SmolVLA</strong>、<strong>π₀.₅</strong>、<strong>OpenVLA</strong>）和多个环境（<strong>LIBERO</strong>、<strong>SimplerEnv-Bridge</strong>、<strong>LIBERO-Occ</strong>）上系统验证了这两个诊断指标的有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>可恢复余量</strong>（pass@N − pass@1）和<strong>检索互补性</strong>（通过演示拟合误差 DFE 度量）作为可计算的诊断指标，用于区分测试时增强的两类机会来源。</li><li>设计了一个<strong>无需训练的 episode-level retry selector</strong>，通过演示流形近邻评分从多次随机 rollout 中选取最优轨迹，在 LIBERO 上对全部测试主干均实现一致提升，最高达 <strong>+21.0 成功率点</strong>。</li><li>发现<strong>选择器增益与可恢复余量高度相关</strong>（r = 0.954，bootstrap 95% CI [0.89, 0.99]），并在 disjoint episode 划分下仍保持 r = 0.91 ± 0.04。</li><li>通过<strong>检索实验</strong>证明检索增益与基线能力无关，而与策略对演示动作先验的复现差距（DFE）一致：π₀ 具有最大 DFE（0.042），是唯一在所有 LIBERO 套件上获得一致检索增益的主干。</li><li>验证了<strong>检索与选择可组合使用</strong>（π₀ 上组合增益 +23.3），并展示泛化实验：选择器跨机器人/模拟器迁移（SimplerEnv-Bridge +12.5），而 OpenVLA 实验揭示了<strong>可用余量与排序信号之间的差距</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>可恢复余量定义</strong>：H_N = pass@N − pass@1，即策略在 N 次随机 rollout 中能够达到的最好成功率与单次成功率之差，量化策略自身随机行为中已存在的、可被选择器恢复的潜在成功能力。</li><li><strong>演示拟合误差（DFE）</strong>：在演示观测上采样 K 个策略动作块，计算其与演示动作的最短 ℓ₂ 距离，用于度量策略对演示动作先验的复现程度，作为检索互补性的独立探针。</li><li><strong>Episode-level retry selector</strong>：从相同初始状态执行 N 次 rollout，使用冻结的 <strong>DINOv2 + SigLIP</strong> 拼接视觉编码器（ℓ₂ 归一化，1,536 维）计算每条轨迹与演示帧的余弦相似度均值，选择得分最高轨迹。</li><li><strong>事件模式检索（event-schema retrieval）</strong>：基于演示中的事件边界（抓取开合、运动方向突变等）进行前瞻性检索，将检索到的下一事件动作块作为 flow-matching 采样器的 warm-start 初始化（a_init = α·a_retr + (1−α)·ε，α=0.3）。</li><li>论文强调选择器的<strong>训练自由性</strong>和<strong>无需成功标签</strong>的特性，并区分了 episode-level 选择与 per-step 重排的粒度差异。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>（Spatial、Object、Goal、LIBERO-10 四个套件），Franka 机器人，每配置 n=500×3 次 rollout，演示库为每任务 50 条标准演示。</li><li><strong>SimplerEnv-Bridge</strong>（carrot、spoon、stack 三个任务），WidowX 机器人，n=24×3 rollouts，任务特定演示库含 510 帧。</li><li><strong>LIBERO-Occ</strong>（场景遮挡扩展），n=250×2 rollouts。</li><li>模型规模：<strong>π₀</strong>、<strong>SmolVLA</strong>、<strong>π₀.₅</strong>（flow-matching VLA 主干，LIBERO 微调），以及 <strong>OpenVLA-7B</strong>（自回归 VLA）。</li><li>实现细节：冻结 <strong>DINOv2 + SigLIP</strong> 视觉编码器，1,536 维 ℓ₂ 归一化特征；DFE 探针使用 K=3 策略样本，400 个演示状态；检索 α=0.3。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>选择器效果</strong>：在 LIBERO 上所有 12 个 backbone×suite 组合均获得正增益，π₀ +21.0、SmolVLA +19.9、π₀.₅ +7.8；捕获率（gain/H₃）均值 0.90，标准差 0.11。</li><li><strong>检索效果</strong>：π₀ 平均 +6.4 且所有套件均为正；SmolVLA +0.3、π₀.₅ +0.5 均不显著，与 DFE 排序（π₀ 0.042 > π₀.₅ 0.021 > SmolVLA 0.003）一致。</li><li><strong>组合效果</strong>：检索 + 选择在 π₀ 上达到 +23.3，比单独选择再增 +2.4；LIBERO-10 上额外增益 +6.2。</li><li><strong>跨域迁移</strong>：SimplerEnv-Bridge 上选择器 +12.5（oracle headroom +18.1，捕获 69%），检索 -0.9 无迁移效果。</li><li><strong>OpenVLA</strong>：oracle pass@3 为 0.72，但 episode-level 选择器仅达到 0.44，说明大量可用余量因排序信号不足而无法恢复；per-step 重排反而下降至 0.36。</li><li><strong>LBERO-Occ 遮挡条件</strong>：π₀.₅ 的可恢复余量随性能下降而增加，选择器增益从 +7.8 增至 +11.2；检索增益仍弱（π₀ +4.3，π₀.₅ +0.8）。</li><li>聚合关联分析显示演示流形评分与任务成功的 AUC 为 0.96（17,964 条有效 rollout）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.17496/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Calibrated Predictive Safety for Heterogeneous Robots: An Action-Conditioned JEPA Framework with Model-Based Safety Shields</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.17453/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

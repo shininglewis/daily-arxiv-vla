@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文针对 GRPO 在视觉-语言-动作（VLA）策略强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费 提出 Prism-GRPO，通过引入轨迹级执行质量评分（如碰撞、平滑度等）来拆分同结果（same-outcome）组，将退化组转化为有信息量的训练信号，同时保证每个成功轨迹的得分仍高于所有失败轨迹 核心目标是提升 rollout 效率，在相同或更少的样本预算下达到目标成功率，同时改善执行质量，并抑制奖励黑客（reward hacking）行为" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.17423">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.17423.webp" alt="Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文针对 GRPO 在视觉-语言-动作（VLA）策略强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups</h1>
+            <div class="detail-meta">2026-08-18 · <a href="http://arxiv.org/abs/2608.17423" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.17423" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.17423</span></div>
+            <p class="detail-summary">论文针对 GRPO 在视觉-语言-动作（VLA）策略强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费 提出 Prism-GRPO，通过引入轨迹级执行质量评分（如碰撞、平滑度等）来拆分同结果（same-outcome）组，将退化组转化为有信息量的训练信号，同时保证每个成功轨迹的得分仍高于所有失败轨迹 核心目标是提升 rollout 效率，在相同或更少的样本预算下达到目标成功率，同时改善执行质量，并抑制奖励黑客（reward hacking）行为</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">AWS AI（Amazon Web Services AI，主要研究机构）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.17423/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文针对 GRPO 在视觉-语言-动作（VLA）策略强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费</p>
+  <ul class="reading-intro-points"><li>论文针对 GRPO 在视觉-语言-动作（VLA）策略强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费</li><li>提出 Prism-GRPO，通过引入轨迹级执行质量评分（如碰撞、平滑度等）来拆分同结果（same-outcome）组，将退化组转化为有信息量的训练信号，同时保证每个成功轨迹的得分仍高于所有失败轨迹</li><li>核心目标是提升 rollout 效率，在相同或更少的样本预算下达到目标成功率，同时改善执行质量，并抑制奖励黑客（reward hacking）行为</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>AWS AI</strong>（Amazon Web Services AI，主要研究机构）</li><li><strong>Zeyun Deng</strong> 在 <strong>AWS AI</strong> 完成实习期间的工作</li><li>其他作者包括 Yuzhe Lu、Yawei Wang、Linbo Liu、Qing Ping、Han Ding、Guande Wu、Panpan Xu、Jun Huan 等</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文针对 <strong>GRPO</strong> 在<strong>视觉-语言-动作（VLA）策略</strong>强化学习中的样本效率问题：在二元成功奖励下，同场景采样的 rollouts 若全部成功或全部失败，组内优势为零，会被动态采样丢弃，造成大量昂贵的机器人 rollout 预算浪费</li><li>提出 <strong>Prism-GRPO</strong>，通过引入<strong>轨迹级执行质量评分</strong>（如碰撞、平滑度等）来拆分同结果（same-outcome）组，将退化组转化为有信息量的训练信号，同时保证每个成功轨迹的得分仍高于所有失败轨迹</li><li>核心目标是<strong>提升 rollout 效率</strong>，在相同或更少的样本预算下达到目标成功率，同时改善执行质量，并抑制奖励黑客（reward hacking）行为</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Prism-GRPO</strong> 算法，将二元任务成功奖励与有界的轨迹质量评分结合，恢复同结果组中的训练信号</li><li>证明了<strong>组合奖励的样本效率不低于二元奖励</strong>（Theorem 1），即 Prism-GRPO 不会增加获得有效组所需的期望 rollout 数；在连续质量评分下，每个组都能成为有效组</li><li>推导出<strong>梯度对齐条件</strong>（Proposition 1）并证明组合梯度的有效性（Proposition 2）：当成功与质量的梯度对齐时，组合更新对成功目标仍是一阶上升方向</li><li>在 <strong>RoboTwin 2.0</strong> 的四个任务上，Prism-GRPO 在匹配的 rollout 预算下同时提升成功率和执行质量，达到目标成功率最高可节省 <strong>56%</strong> 的 rollouts</li><li>质量信号可来自<strong>模拟器接触、执行动作或视觉观察</strong>（VLM），避免任务特定的过程奖励设计，并验证了多种质量源的泛化性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用组合奖励：<strong>R_combined(τ) = success(τ) + λ·q(τ)</strong>，其中 0 < λ < 1，保证成功主导性（success dominance），仅在同结果类内按质量排序</li><li>使用 <strong>RLOO（leave-one-out）</strong> 优势估计器而非标准 GRPO 的组标准化，以保留同结果组中质量差异的原始尺度</li><li><strong>动态采样</strong>策略：丢弃 reward 完全相同的组并重新采样；连续质量评分使得同结果组不再退化</li><li>理论分析表明，任务级质量-成功相关性（含场景间协方差）在有退化组时仍然提供信息，梯度对齐条件与策略集中度（条件数 κπ）相关</li><li>默认质量信号为 <strong>GT-Max Force</strong>（最大非目标物体受力），并支持碰撞计数、VLM 判断、平滑度（flips/jerk）等多种替代信号</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin 2.0</strong> 基准：双臂操纵benchmark，含域随机化（clutter、光照、背景、桌高、语言指令）</li><li>四个评估任务：<strong>Lift Pot</strong>、<strong>Move Can Pot</strong>、<strong>Handover Block</strong>、<strong>Beat Block Hammer</strong>（覆盖单臂/双臂，短/长时域）</li><li>组大小 <strong>G=8</strong>，每更新 512 条 rollouts，默认 λ=0.2，5 个随机种子</li><li>参照 <strong>SimpleVLA-RL</strong> 的配置：clip-higher、温度采样、无 KL 惩罚</li><li>硬件与训练资源详见附录 F；质量计算开销极小（模拟器信号增加 0.04% 墙钟时间，VLM 信号增加 4.8%）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>对比基线：<strong>Binary GRPO</strong>（SimpleVLA-RL）、<strong>Binary RLOO</strong>、<strong>Random quality</strong>、<strong>RL-ZVP</strong></li><li>评估指标：<strong>成功率</strong>（raw success）、<strong>校准成功率</strong>（按非目标接触次数折扣）、<strong>Max-Force Quality</strong>、<strong>Sum-Impulse Quality</strong></li><li>在四个任务上，Prism-GRPO 相比 Binary GRPO 节省 <strong>22%–56%</strong> 的 rollouts，同时提升执行质量；最大增益出现在 <strong>Lift Pot</strong>（早期丢弃率从 70% 降至约 0%）</li><li><strong>Move Can Pot</strong> 上发现 "shove-cheat" 奖励黑客行为：RL-ZVP 的作弊率范围为 0.6%–20%，Binary GRPO 为 0.7%–7%，而 Prism-GRPO 仅 0.6%–1.3%</li><li>λ 消融显示在有意义的（非随机）质量信号下，λ=0.2–0.9 均稳定达到目标并节省 41%–56% rollouts；随机质量虽能早期提升成功率但效益不稳定</li><li>质量源消融（Lift Pot）：接触类信号节省 38%–56% rollouts，平滑度类信号节省 25%–44% rollouts，均改善对应质量指标</li><li>真实机器人部署（Piper，每方法 25 次试验）：Prism-GRPO 的清洁行为在<strong>sim-to-real</strong> 直接部署中更可靠，抑制了 RL-ZVP 的 shove-cheat 行为</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.17453/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.17386/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">MANIGUARD: A Benchmark and Data Suite for Specification-Grounded Safety Evaluation and Improvement of Robotic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

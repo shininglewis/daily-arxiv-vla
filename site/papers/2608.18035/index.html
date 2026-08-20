@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plug-and-Play Traffic Element Awareness for End-to-End Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文首次系统研究交通元素感知（traffic element awareness）对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。 现有端到端驾驶研究主要聚焦动态参与者（车辆、行人），缺乏对交通元素的量化分析；本文通过构建统一数据集与通用集成机制，填补了这一空白。 核心目标是回答：跨现代范式下，交通元素感知对端到端驾驶性能有多大影响？并验证一种最小化、即插即用的集成设计是否具有普适性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.18035">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.18035.webp" alt="Plug-and-Play Traffic Element Awareness for End-to-End Autonomous Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文首次系统研究交通元素感知（traffic element awareness）对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Plug-and-Play Traffic Element Awareness for End-to-End Autonomous Driving</h1>
+            <div class="detail-meta">2026-08-18 · <a href="http://arxiv.org/abs/2608.18035" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.18035" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.18035</span></div>
+            <p class="detail-summary">论文首次系统研究交通元素感知（traffic element awareness）对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。 现有端到端驾驶研究主要聚焦动态参与者（车辆、行人），缺乏对交通元素的量化分析；本文通过构建统一数据集与通用集成机制，填补了这一空白。 核心目标是回答：跨现代范式下，交通元素感知对端到端驾驶性能有多大影响？并验证一种最小化、即插即用的集成设计是否具有普适性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学智能产业研究院（AIR）（Tsinghua University, Institute for…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.18035/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文首次系统研究交通元素感知（traffic element awareness）对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。</p>
+  <ul class="reading-intro-points"><li>论文首次系统研究交通元素感知（traffic element awareness）对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。</li><li>现有端到端驾驶研究主要聚焦动态参与者（车辆、行人），缺乏对交通元素的量化分析；本文通过构建统一数据集与通用集成机制，填补了这一空白。</li><li>核心目标是回答：跨现代范式下，交通元素感知对端到端驾驶性能有多大影响？并验证一种最小化、即插即用的集成设计是否具有普适性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学智能产业研究院（AIR）</strong>（Tsinghua University, Institute for AI Industry Research）</li><li><strong>博世企业研究院（上海）</strong>（Bosch Corporate Research, Shanghai）</li><li>项目主页：https://zzongzheng0918.github.io/TE-Aware-E2E-AD/</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文首次系统研究<strong>交通元素感知（traffic element awareness）</strong>对端到端自动驾驶规划性能的影响，涵盖交通灯、道路标志等规则性信号。</li><li>现有端到端驾驶研究主要聚焦动态参与者（车辆、行人），缺乏对交通元素的量化分析；本文通过构建统一数据集与通用集成机制，填补了这一空白。</li><li>核心目标是回答：<strong>跨现代范式下，交通元素感知对端到端驾驶性能有多大影响？</strong>并验证一种最小化、即插即用的集成设计是否具有普适性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>首个系统性研究</strong>：量化了交通元素（TE）在端到端自动驾驶中的价值，证明其在多个基准和模型族上带来一致增益。</li><li><strong>3D交通元素数据集构建</strong>：提出从2D检测、单目深度估计与LiDAR融合中提取3D交通元素中心点的流程，为nuScenes、NAVSIM等无标注数据集自动生成伪标签。</li><li><strong>即插即用的辅助监督机制</strong>：在现有规划器上增加轻量级辅助3D TE检测损失（L1位置损失 + focal分类损失），仅需极小架构改动即可集成。</li><li><strong>语言引导的拓扑条件化</strong>：将预测的LCLC/LCTE拓扑矩阵过滤为自车相关子图，转换为结构化语言文本，经冻结<strong>BERT</strong>编码后注入规划解码器，优于GNN图编码方案。</li><li><strong>跨范式、跨基准的广泛验证</strong>：在<strong>VAD</strong>（感知-规划）、<strong>Orion</strong>（VLA）、<strong>LTF</strong>（回归）、<strong>DiffusionDrive</strong>（扩散）、<strong>DrivoR</strong>（轨迹评分）、<strong>DriveTransformer</strong>（统一Transformer）等六类方法上验证，并覆盖四个公开基准。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>3D数据集构建</strong>：2D交通元素检测（YOLO） + 单目深度估计（UniDepthv2） + LiDAR点云几何约束，投影融合得到3D中心点坐标。</li><li><strong>辅助3D交通元素监督</strong>：在原有辅助任务基础上增加TE位置回归（L1）与类别分类（focal loss），损失权重与辅助任务一致，强制BEV特征分配专用容量给稀疏但关键的规则信号。</li><li><strong>语言引导拓扑条件化</strong>：预测全局拓扑矩阵 → 自车过滤 → 格式化为语言描述（例如"green traffic_light... no_right_turn road_sign... connects '1' 'straight' centerline"） → 冻结BERT编码 → 与BEV查询拼接输入规划解码器。</li><li><strong>创新点</strong>：显式3D表示优于2D线索；独立预测头+最大池化避免稀疏目标被密集背景梯度淹没；拓扑语言编码比GNN更高效紧凑。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集</strong>：nuScenes、NAVSIM-v1（navtest）、NAVSIM-v2（navhard）、Bench2Drive（CARLA闭环）</li><li><strong>模型规模</strong>：BERT-base（约1.1亿参数）作为拓扑语言编码器；各规划器骨干保持原配置（如VAD、Orion等）</li><li><strong>训练资源</strong>：nuScenes和Bench2Drive使用8×A100（batch size 1）；NAVSIM使用4×RTX 3090（batch size 32）</li><li><strong>运行时开销</strong>：引入TE与拓扑后FPS仅下降0.3，远低于VLM型场景理解方法（>10倍吞吐优势）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：nuScenes（开放轨迹误差L2、碰撞率CR）、NAVSIM-v1（PDMS）、NAVSIM-v2（EPDMS分段）、Bench2Drive（闭环Driving Score等）</li><li><strong>nuScenes结果</strong>：VAD+TE将平均L2从0.72降至0.63（↓0.09），CR从0.22%降至0.17%；加入拓扑进一步将L2降至0.60；Orion+TE+Topo达到L2 0.26、CR 0.23%，优于原Orion（0.34/0.37）</li><li><strong>NAVSIM结果</strong>：三个范式（回归/扩散/评分）在NAVSIM-v1和NAVSIM-v2上均取得一致提升，且在NAVSIM-v2上结合大规模模拟协同训练数据刷新技术水平</li><li><strong>闭环Bench2Drive</strong>：TE+Topo提升Driving Score、Success Rate等闭环指标</li><li><strong>消融发现</strong>：3D TE表示优于2D；选择性TE深度优于全局深度图；交通标志（不只是信号灯）同样关键；独立头+focal loss+最大池化对稀疏TE必要；语言拓扑编码优于GNN（提升L2且更快）</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.18077/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Hydra-0: Action Flow for Generalist World Modeling and Control</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.17717/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

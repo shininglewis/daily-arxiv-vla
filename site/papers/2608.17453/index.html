@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 EATR-Stereo，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的体感感知token路由框架，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题 现有方法要么丢弃立体互补信息（monocular），要么直接替换预训练主视图token（如 StereoPolicy），没有保留原生主视图通路，也未将辅助视觉信息与机器人本体状态（embodiment）相关联 EATR-Stereo 通过构造主视图对齐的跨视图辅助token（CVAT），并利用身体分段的姿态历史进行token级路由，在冻结视觉-语言模型的前提下选择性融合配对立体证据，提升空间定位与长时间任务可靠性" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.17453">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.17453.webp" alt="EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 EATR-Stereo，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的体感感知token路由框架，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EATR-Stereo: Embodiment-Aware Token Routing of Paired Stereo Evidence for Humanoid Vision-Language-Action Control</h1>
+            <div class="detail-meta">2026-08-18 · <a href="http://arxiv.org/abs/2608.17453" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.17453" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.17453</span></div>
+            <p class="detail-summary">论文提出 EATR-Stereo，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的体感感知token路由框架，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题 现有方法要么丢弃立体互补信息（monocular），要么直接替换预训练主视图token（如 StereoPolicy），没有保留原生主视图通路，也未将辅助视觉信息与机器人本体状态（embodiment）相关联 EATR-Stereo 通过构造主视图对齐的跨视图辅助token（CVAT），并利用身体分段的姿态历史进行token级路由，在冻结视觉-语言模型的前提下选择性融合配对立体证据，提升空间定位与长时间任务可靠性</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">哈尔滨工业大学（Harbin Institute of Technology）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.17453/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 EATR-Stereo，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的体感感知token路由框架，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题</p>
+  <ul class="reading-intro-points"><li>论文提出 EATR-Stereo，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的体感感知token路由框架，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题</li><li>现有方法要么丢弃立体互补信息（monocular），要么直接替换预训练主视图token（如 StereoPolicy），没有保留原生主视图通路，也未将辅助视觉信息与机器人本体状态（embodiment）相关联</li><li>EATR-Stereo 通过构造主视图对齐的跨视图辅助token（CVAT），并利用身体分段的姿态历史进行token级路由，在冻结视觉-语言模型的前提下选择性融合配对立体证据，提升空间定位与长时间任务可靠性</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>哈尔滨工业大学（Harbin Institute of Technology）</strong></li><li><strong>Honor（荣耀）</strong></li><li>论文作者包括 Songwei Wu、Rui Zhao、Fan Yang 等，标注 ∗ 为共同一作，† 为通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>EATR-Stereo</strong>，一个面向人体形机器人（humanoid）视觉-语言-动作（VLA）控制的<strong>体感感知token路由框架</strong>，解决头戴式立体相机在长时间任务中互补视觉证据利用率不足的问题</li><li>现有方法要么丢弃立体互补信息（monocular），要么直接替换预训练主视图token（如 <strong>StereoPolicy</strong>），没有保留原生主视图通路，也未将辅助视觉信息与机器人本体状态（embodiment）相关联</li><li>EATR-Stereo 通过构造<strong>主视图对齐的跨视图辅助token（CVAT）</strong>，并利用<strong>身体分段的姿态历史</strong>进行token级路由，在冻结视觉-语言模型的前提下选择性融合配对立体证据，提升空间定位与长时间任务可靠性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>CVAT</strong> 模块：以主视图token为查询（query）、同步辅助视图token为键值（key-value），构造主索引对齐的辅助视觉流，同时完整保留预训练主视图token通路</li><li>设计<strong>体感感知的路由器</strong>：将37维姿态状态划分为5个语义组（腿、臂、头、腰、机器人位姿），通过分段特征的注意力加权与均值池化，生成token级门控权重，条件化地调控辅助token的使用</li><li>在 <strong>33自由度 HONOR Omega 1.0</strong> 实体人形平台上完成九种配置、超过100秒的"搜索-接近-抓取-放置-返回"长周期任务评测，<strong>EATR-Stereo</strong> 达到 <strong>60.0% 完整任务成功率</strong>、<strong>100.0% 抓取成功率</strong>、<strong>80.0% 阶段成功率</strong></li><li>在严重不对称遮挡场景下，<strong>EATR-Stereo</strong> 将恢复成功率提升至 <strong>80%</strong>（对比 CVAT 的 30%、CVAT-Flat 的 60%），平均恢复时间仅 22.4 秒</li><li>通过消融实验证明保留主视图token、跨视图辅助特征与结构化姿态路由三者缺一不可，并展示 EATR-Stereo 仅用 <strong>1.06×</strong> 训练开销即达到显式深度估计方法（4.04×）相同的阶段成功率</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用冻结的 <strong>Cosmos VLM</strong> 编码同步立体对与语言指令，按token来源分离得到主视图序列 M_t、辅助视图序列 A_t 与语言序列 L_t</li><li>CVAT 模块采用 StereoPolicy 式多头跨视图注意力：主视图token作为query，辅助视图token作为key/value，输出经MLP残差块后形成与主视图对齐的辅助token流 C_t</li><li>体感路由：姿态历史按身体语义分为 G=5 组，每组经LayerNorm、轻量MLP与段类型embedding编码；注意力加权池化得到共享体感条件 h_t^s；路由MLP结合主token、CVAT token、二者差异/乘积及体感条件，预测每个CVAT token的sigmoid门控权重</li><li>路由后的辅助token与语言token、主视图token拼接，输入 <strong>GR00T N1.7</strong> flow-matching动作专家生成连续动作块；VLM完全冻结，仅训练CVAT、分段姿态编码器、路由器和动作头</li><li>部署时采用异步动作块缓冲与局部三次B样条拼接（cubic B-spline stitching）保证动作块切换处的连续性；外部VLM以慢时标FSM更新子任务指令</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>物理人形实验：<strong>HONOR Omega 1.0</strong> 平台，33自由度，37维姿态状态（33关节 + 4维基座四元数），头戴式立体相机采集 240×320 同步图像，共1000段分段任务演示</li><li>仿真实验：<strong>RoboCasa365</strong> 基准，18个任务，3600次 Franka 机械臂 rollout（每任务每配置20次），排除腕部相机，仅保留左右agent视图以隔离配对视图建模</li><li>模型基础：<strong>GR00T N1.7</strong> VLA框架 + <strong>Cosmos VLM</strong>（冻结），对比基线包括 GR00T1.7-Mono、GR00T-Wide、GR00T、StereoPolicy、QwenPI0.5、Main-XAttn、CVAT、CVAT-Flat、Stereo-Route</li><li>训练资源：每策略60,000步，全局batch size 512，<strong>16块 NVIDIA H20 GPU</strong>，训练时长约10.95小时（GR00T为10.35小时，估计深度VLA为41.8小时）</li><li>推理设备：<strong>NVIDIA RTX 4090</strong>，10Hz策略频率，30步动作块</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>物理人形主对比</strong>（每方法20次试验）：EATR-Stereo 完整任务成功率 <strong>60.0%</strong>（领先StereoPolicy 15个百分点、GR00T/GR00T1.7-Mono 25个百分点、GR00T-Wide 40个百分点）；抓取成功率 <strong>100.0%</strong>；阶段成功率 <strong>80.0%</strong>，其中ID位置90.0%、OOD位置70.0%</li><li><strong>位置泛化与语言遵从</strong>：EATR-Stereo 在ID与OOD位置均保持 <strong>100% 抓取成功率</strong>（ID-OOD差距为0）；左右指令遵从率 <strong>100%</strong>，颜色指令遵从率 <strong>80%</strong></li><li><strong>消融实验</strong>：替换为 Main-XAttn（修改主token）时完整任务成功率从55.0%降至25.0%；CVAT-Flat（平铺姿态编码）为55.0%；Stereo-Route为40.0%；完整 EATR-Stereo 为60.0%，验证各组件互补增益</li><li><strong>遮挡恢复</strong>：严重不对称遮挡（主视图完全遮挡、辅助视图部分可见）下，EATR-Stereo 恢复成功率 <strong>80%（8/10）</strong>，平均恢复时间22.4秒，优于 CVAT-Flat（60%，41.7秒）和 CVAT（30%，>55秒）</li><li><strong>RoboCasa365仿真</strong>：EATR-Stereo 聚合成功率 <strong>43.33%</strong>（156/360），领先 CVAT（39.44%）、StereoPolicy（38.06%）、CVAT-Flat（37.50%）、QwenPI0.5（36.11%）、GR00T（35.55%）、GR00T1.7-Mono（32.77%）</li><li><strong>训练成本对比</strong>：EATR-Stereo 以 10.95h（1.06× GR00T）达到 80.0% 阶段成功率，与微调4层VLM的显式深度 VLA（41.8h，4.04×）性能持平但训练开销显著更低</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.17484/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Reuse Before You Retrieve: Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.17423/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Prism-GRPO: Faster VLA Policy Optimization via Splitting Same-outcome Groups</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

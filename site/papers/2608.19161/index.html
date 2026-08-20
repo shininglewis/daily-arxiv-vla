@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond the Transcript: Detecting Covert Co ordination in Latent Multi-Agent Communication - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文研究多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。 提出了 Verifiable Latent Alignments (VLA)，一个激活感知（activation-aware）框架，用于监控、归因和干预私有潜在通信渠道，为每一次被监控决策建立私有潜在状态与公共行为之间的精确因果链接。 核心问题：公共审计只能看到文本行为，而最关键的私有沟通渠道位于审计表面之外，且未来攻击代码可能不同于训练时见过的样本，因此需要不依赖攻击标签的中性（neutral-only）无监督监控方案。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.19161">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.19161.webp" alt="Beyond the Transcript: Detecting Covert Co ordination in Latent Multi-Agent Communication" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文研究多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Beyond the Transcript: Detecting Covert Co ordination in Latent Multi-Agent Communication</h1>
+            <div class="detail-meta">2026-08-19 · <a href="http://arxiv.org/abs/2608.19161" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.19161" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.19161</span></div>
+            <p class="detail-summary">本文研究多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。 提出了 Verifiable Latent Alignments (VLA)，一个激活感知（activation-aware）框架，用于监控、归因和干预私有潜在通信渠道，为每一次被监控决策建立私有潜在状态与公共行为之间的精确因果链接。 核心问题：公共审计只能看到文本行为，而最关键的私有沟通渠道位于审计表面之外，且未来攻击代码可能不同于训练时见过的样本，因此需要不依赖攻击标签的中性（neutral-only）无监督监控方案。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">MIT Media Lab：Pradyumna Chari、Ramesh Raskar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.19161/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文研究多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。</p>
+  <ul class="reading-intro-points"><li>本文研究多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。</li><li>提出了 Verifiable Latent Alignments (VLA)，一个激活感知（activation-aware）框架，用于监控、归因和干预私有潜在通信渠道，为每一次被监控决策建立私有潜在状态与公共行为之间的精确因果链接。</li><li>核心问题：公共审计只能看到文本行为，而最关键的私有沟通渠道位于审计表面之外，且未来攻击代码可能不同于训练时见过的样本，因此需要不依赖攻击标签的中性（neutral-only）无监督监控方案。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>MIT Media Lab</strong>：Pradyumna Chari、Ramesh Raskar</li><li><strong>Westtown School</strong>：Jugad Singh</li><li><strong>University of Florida</strong>：Sumit Kumar Jha</li><li><strong>SRI International</strong>：Anirban Roy</li><li>作者 Ramneet Kaur 未标注所属机构</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文研究<strong>多智能体系统中通过连续隐藏状态（latent channel）进行的隐蔽协调</strong>问题，这类通信不会出现在公开转录（transcript）中，却能影响智能体的有害行为。</li><li>提出了 <strong>Verifiable Latent Alignments (VLA)</strong>，一个激活感知（activation-aware）框架，用于<strong>监控、归因和干预</strong>私有潜在通信渠道，为每一次被监控决策建立私有潜在状态与公共行为之间的精确因果链接。</li><li>核心问题：公共审计只能看到文本行为，而最关键的私有沟通渠道位于审计表面之外，且<strong>未来攻击代码可能不同于训练时见过的样本</strong>，因此需要不依赖攻击标签的中性（neutral-only）无监督监控方案。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>三层无监督监控器</strong>：结合表示异常检测（L1）、反事实动作分布影响分析（L2）、稀疏自编码器解释支持（L3），均基于中性数据拟合，攻击标签仅用于评估。</li><li><strong>可引导性（Steerability）框架</strong>：覆盖黑盒提示引导、系统级指令、白盒匹配中性反事实替换，以及混合访问权限下的分配式引导策略。</li><li><strong>精确事件链接协议</strong>：通过共享交互 ID 将私有 sidecar 记录与公共动作事件精确连接，避免时间窗口启发式，支持匹配因果分析。</li><li><strong>受控拍卖基准实验</strong>：在 <strong>NandaTown</strong> 拍卖场景上评估了同质/异质模型对、最多 100 个竞标者的可扩展性以及干预效果，验证了框架的实用性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Public–Private Event Linking</strong>：每个被监控交互写入私有 sidecar 行（含元数据、候选动作得分、潜向量、特征），并用 correlation ID 与公共事件精确连接。</li><li><strong>Layer 1 中性流形异常</strong>：对上下文条件建立对角线高斯模型，计算新潜在表示与中性分布的标准化偏离分数。</li><li><strong>Layer 2 反事实影响</strong>：通过匹配参考分布（优先使用 blocked、其次 neutral、最后 independent 条件的控制行），计算有害期望偏移与 KL 散度组合分数。</li><li><strong>Layer 3 稀疏自编码器支持</strong>：使用 TopK（k=16）稀疏自编码器，以重建误差、中性未见过的新特征数和稀有度权重构成解释性支持分数。</li><li><strong>顺序/连续组合</strong>：顺序监控器按层次门控（lexicographic score），连续监控器使用 log(1+r_i) 求和，分别针对部署告警和平滑诊断排序。</li><li><strong>异质潜在空间适配</strong>：针对不同模型家族的维度差异，提供三种仅用中性数据训练的适配器——<strong>Ridge</strong>、<strong>Rectangular Procrustes</strong> 和 <strong>Bottleneck（32 维 GELU）</strong>。</li><li><strong>转向干预</strong>：黑盒提示转向、系统级全局提示、白盒匹配中性反事实重放，以及按比例分配白盒/黑盒访问的分配策略。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>测试平台</strong>：<strong>NandaTown</strong>（Project NANDA 开源测试平台），选用拍卖场景作为受控案例研究。</li><li><strong>模型</strong>：<strong>Qwen3-0.6B</strong>、<strong>Mistral-7B</strong>、<strong>Vicuna-7B</strong>、<strong>Phi-4-mini</strong> 四种 LLM 家族。</li><li><strong>实验规模</strong>：拍卖竞标人数 N∈{25,50,75,100}，卡特尔密度 ρ∈{10%,20%}；转向网格含白盒比例 {0.25,0.50,0.75}。</li><li>异质实验中包含 12 个定向模型对 × 3 种适配器，共 36 个设置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>同质监控性能</strong>：顺序监控器均值 <strong>AUROC=0.993</strong>（Mistral-7B 1.000、Vicuna-7B 0.994、Qwen3-0.6B 0.990、Phi-4-mini 0.988），连续监控均值 0.824。</li><li><strong>异质监控性能</strong>：36 个定向适配器设置均值 <strong>AUROC=0.854</strong>（Bottleneck 0.857、Procrustes 0.853、Ridge 0.851）。</li><li><strong>可扩展性</strong>：Qwen3-0.6B 中 25–100 竞标者下顺序监控 <strong>AUROC≥0.917</strong>；N=100、ρ=20% 时全调度监控的归一化负载仅为 <strong>0.202%</strong>（对比全部有向对）。</li><li><strong>转向效果</strong>：全白盒转向达到 <strong>100% 出价分布恢复</strong>并降低低价行为 <strong>47.3 个百分点</strong>；分配白盒比例从 0.25 升至 0.75 时，恢复率从 34.7% 提升至 93.0%，低价行为减少从 16.2 pp 增至 39.0 pp。</li><li><strong>市场危害验证</strong>：同质实验中 Qwen3-0.6B、Mistral-7B、Phi-4-mini 的潜在共谋使收入下降约 11–12 积分，低价行为增加 56.2–62.5 个百分点（Vicuna-7B 为近零阴性对照）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2608.19066/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GS-VLA: Plug-and-Play Viewpoint Canonicalization for Frozen VLA Policies via Gaussian Splatting</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

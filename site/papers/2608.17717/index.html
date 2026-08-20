@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文针对语言指令中析取意图（disjunctive intent）被表征为单一连通集合而导致的“静默语义失败”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。 核心思路是提出 CompCPZ——一个声音代数层，将语言条件学习系统的输出包装起来，通过沿语言解析树递归组合约束多项式 Zonotope（CPZ）包围，恢复多模态析取表征，并提供分布无关的共形覆盖保证和亚毫秒级运行时间。 论文同时证明了拓扑下界定理：任何声音编码若连通分量数少于指令的模式数，其 Hausdorff 距离至少为模式间隔的一半；单动作规划器在运行时模式不确定下最坏成功率仅为 1/k。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.17717">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.17717.webp" alt="CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文针对语言指令中析取意图（disjunctive intent）被表征为单一连通集合而导致的“静默语义失败”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">CompCPZ: Preserving Multi-Modal Intent in Language-Guided Robot Manipulation</h1>
+            <div class="detail-meta">2026-08-18 · <a href="http://arxiv.org/abs/2608.17717" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.17717" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.17717</span></div>
+            <p class="detail-summary">论文针对语言指令中析取意图（disjunctive intent）被表征为单一连通集合而导致的“静默语义失败”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。 核心思路是提出 CompCPZ——一个声音代数层，将语言条件学习系统的输出包装起来，通过沿语言解析树递归组合约束多项式 Zonotope（CPZ）包围，恢复多模态析取表征，并提供分布无关的共形覆盖保证和亚毫秒级运行时间。 论文同时证明了拓扑下界定理：任何声音编码若连通分量数少于指令的模式数，其 Hausdorff 距离至少为模式间隔的一半；单动作规划器在运行时模式不确定下最坏成功率仅为 1/k。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Technical University of Munich (TUM), Germany（慕尼黑工业…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.17717/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文针对语言指令中析取意图（disjunctive intent）被表征为单一连通集合而导致的“静默语义失败”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。</p>
+  <ul class="reading-intro-points"><li>论文针对语言指令中析取意图（disjunctive intent）被表征为单一连通集合而导致的“静默语义失败”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。</li><li>核心思路是提出 CompCPZ——一个声音代数层，将语言条件学习系统的输出包装起来，通过沿语言解析树递归组合约束多项式 Zonotope（CPZ）包围，恢复多模态析取表征，并提供分布无关的共形覆盖保证和亚毫秒级运行时间。</li><li>论文同时证明了拓扑下界定理：任何声音编码若连通分量数少于指令的模式数，其 Hausdorff 距离至少为模式间隔的一半；单动作规划器在运行时模式不确定下最坏成功率仅为 1/k。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Technical University of Munich (TUM), Germany</strong>（慕尼黑工业大学）</li><li>作者：Zhen Zhang、Ahmad Hafez、Peng Xie、Wenyuan Wu、Amr Alanwar，隶属于 TUM 计算、信息与技术学院</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文针对语言指令中<strong>析取意图（disjunctive intent）</strong>被表征为单一连通集合而导致的“<strong>静默语义失败</strong>”问题（例如“将杯子放到红色盘子或蓝色盘子附近”最终到达两者质心，却不满足任何一个子句）。</li><li>核心思路是提出 <strong>CompCPZ</strong>——一个<strong>声音代数层</strong>，将语言条件学习系统的输出包装起来，通过沿语言解析树递归组合<strong>约束多项式 Zonotope（CPZ）</strong>包围，恢复多模态析取表征，并提供<strong>分布无关的共形覆盖</strong>保证和亚毫秒级运行时间。</li><li>论文同时证明了<strong>拓扑下界定理</strong>：任何声音编码若连通分量数少于指令的模式数，其 Hausdorff 距离至少为模式间隔的一半；单动作规划器在运行时模式不确定下最坏成功率仅为 1/k。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>结构不可能性结果</strong>：严格证明声音单分量或凸包表征在析取指令下存在 η/2 的固有误差下限，并给出单动作规划器的 1/k 最坏成功率下界。</li><li>首次构建<strong>从自然语言解析树到声音 k 分量集合包围的组合编译器</strong>，实例化为 CPZ，支持精确交集、并集及（轴对齐文法下的）精确补集，并通过布尔组合传播共形覆盖保证。</li><li>在 <strong>ManiSkill3</strong> 仿真上构建闭环比对基准（49 条指令，扩展 191 条），在 <strong>Unitree Go2</strong> 四足机器人上进行跨实体硬件验证；CompCPZ 在 1,900/1,918 配对符号检验中全面胜出（p ≪ 10⁻³⁰）。</li><li>额外具备<strong>对抗模式阻塞</strong>（containment-checked 模式切换）、<strong>显式否定</strong>、<strong>多项式原语（椭球避障）</strong>和深度无关的 Lipschitz 稳定性等能力，均从解析树组合推导，而非手工枚举。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用<strong>组合式指令文法</strong>：固定原始谓词集（goal/obstacle/property/relational）通过 ∧、∨、¬ 闭合；VLM（GPT-4o，chain-of-thought）将自由形式指令解析为文法树。</li><li>对每个原语提取<strong>双面 CPZ 包围</strong>（内侧 C⁻ ⊆ 真实集合 ⊆ 外侧 C⁺），通过 split-conformal 校准保证单原语覆盖概率 ≥ 1−δ。</li><li>采用 <strong>CPZ 组合代数</strong>：∧ 对应交集、∨ 对应并集、¬ 对应补集交换两侧；理论上满足并集边界 ∪δᵢ，Hausdorff 误差 ≤ κ^depth(L)·ε，轴对齐时 κ=1，深度无关。</li><li>检测器使用 <strong>YOLOv8n</strong> 微调（200 帧合成数据，3 分钟训练），与零样本 Grounding-DINO+SAM2 相比 in-GT-mode 从 0.20 提升至 1.00。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：基于 <strong>ManiSkill3</strong>，11 个未修改任务族（PickCube、StackCube、PokeCube、AssemblingKits、PickClutterYCB、PushT 等），49 条指令（扩展 191 条），分层深度 0–4。</li><li><strong>真实机器人</strong>：<strong>Unitree Go2</strong> 四足机器人 + <strong>NOKOV 动作捕捉</strong>（约 100Hz），平面配置 X⊂ℝ²，4 个场景共 36 次闭环试验。</li><li><strong>模型规模</strong>：使用 GPT-4o 作为解析器、YOLOv8n 为检测器、OpenVLA-7B 为零样本 VLA 基线；训练资源为单 GPU、200 帧合成数据、3 分钟微调。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>闭环 Franka 伺服（ManiSkill3）</strong>：CompCPZ 在 18 个任务族 × 200 种子的 pooled in-GT-mode 率为 <strong>1.00</strong>，凸包基线仅 <strong>0.13</strong>；几何成功率双方均 ≥0.99。</li><li><strong>配对符号检验</strong>：1,900/1,918 胜利，p ≪ 10⁻³⁰，对所有基线（AABB、MVEE、oracle GMM、多峰解码器、OpenVLA-7B）一致。</li><li><strong>真实 Go2 硬件</strong>：CompCPZ 在析取/否定/对抗阻塞四场景中 12/12 次落入真实 GT 模式；AABB 凸包 0/12，且 3/3 次落入被禁止的 rug 区域（否定违反）；单子句基线在阻塞场景 0/3。</li><li><strong>运行时间</strong>：深度 4 时组合 <0.25 ms，最坏析取深度 7 时 <1.1 ms；经验 Lipschitz 常数 κ̂=1.00（6,828 个解析树节点）。</li><li><strong>共形覆盖</strong>：在 Gaussian、重尾、各向异性、偏置混合噪声下，覆盖概率与目标 1−α 的偏差在 ±1% 以内。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.18035/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Plug-and-Play Traffic Element Awareness for End-to-End Autonomous Driving</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.17600/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">LIBERO-VIFO: Benchmarking the Capability and Safety of Visual Cue Following in Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
