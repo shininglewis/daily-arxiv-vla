@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划 针对 V-JEPA 范式在规划任务中的三个根本缺陷：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟 通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.20974">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.20974.webp" alt="WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving</h1>
+            <div class="detail-meta">2026-08-21 · <a href="http://arxiv.org/abs/2608.20974" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.20974" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.20974</span></div>
+            <p class="detail-summary">论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划 针对 V-JEPA 范式在规划任务中的三个根本缺陷：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟 通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者隶属于 AFARI-Research 团队</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.20974/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划</p>
+  <ul class="reading-intro-points"><li>论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划</li><li>针对 V-JEPA 范式在规划任务中的三个根本缺陷：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟</li><li>通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者隶属于 <strong>AFARI-Research</strong> 团队</li><li>具体机构信息未在论文中明确标注</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>WA-JEPA</strong>，一种 <strong>V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model）</strong>，用于自动驾驶规划</li><li>针对 <strong>V-JEPA 范式在规划任务中的三个根本缺陷</strong>：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟</li><li>通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>WA-JEPA</strong>，一种 V-JEPA 原生的世界动作模型，利用 V-JEPA 的时空表征能力强化联合世界动作建模，显著提升自动驾驶规划能力</li><li>引入 <strong>混合未来遮罩预训练（Hybrid Future-Masked Pre-training）</strong>：用全未来遮罩和补丁级遮罩取代随机时空遮罩，使模型从观测上下文推断未来隐变量，赋予模型未来预测能力</li><li>提出 <strong>基于流匹配（Flow Matching）的隐空间未来预测</strong>：将未来预测从确定性回归重构为条件流匹配生成过程，显著提升未来潜变量生成的合理性和多样性</li><li>设计 <strong>联合未来动作预测器（Joint Future-Action Predictor）</strong>：在统一的时空潜空间中联合去噪未来场景 token 和自车轨迹，使动作监督直接塑造规划相关的世界表征</li><li>在 <strong>NAVSIM-v1/v2</strong> 上达到新的最先进水平，并在 <strong>HUGSIM</strong> 闭环模拟器上验证了零样本泛化能力</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用预训练的 <strong>V-JEPA 2 ViT-L</strong> 作为多视角时空编码器，将每个相机流视为独立视频处理</li><li><strong>阶段一（Stage 1）</strong>：在 nuPlan 多视角驾驶视频上进行混合未来遮罩预训练，包含全未来遮罩分支（严格过去到未来预测）和补丁遮罩分支（保留部分未来上下文）</li><li>采用 <strong>MMDiT（Multimodal Diffusion Transformer）</strong> 风格的未来流预测器，以 <strong>干净潜变量（x-prediction）参数化</strong> 的条件流匹配进行未来潜变量生成</li><li><strong>阶段二（Stage 2）</strong>：初始化自阶段一检查点，引入动作生成流，将历史动作和自车状态编码为动作 token，与场景 token 在统一联合预测器中交互</li><li>在动作 token 上应用 <strong>stop-gradient</strong> 设计：未来场景输出流不对动作流传播梯度，防止场景预测损失干扰动作学习</li><li>推理时仅需历史多视角观测、历史动作和自车状态，通过迭代流匹配采样生成未来场景潜变量和归一化动作</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>阶段一预训练</strong>：<strong>nuPlan</strong> 多视角驾驶视频数据集</li><li><strong>阶段二微调和评估</strong>：<strong>NAVSIM</strong> 官方 navtrain 划分训练，navtest 划分评估（NAVSIM-v1 和 NAVSIM-v2）</li><li><strong>闭环节评估</strong>：<strong>HUGSIM</strong> 模拟器（零样本，无 HUGSIM 特定微调）</li><li>视觉骨干为 <strong>V-JEPA 2 ViT-L</strong>，输入分辨率为 <strong>256×512</strong>，四视角（左、前、右、后）历史帧</li><li>阶段一使用 <strong>64 张 NVIDIA A800 GPU</strong>，阶段二使用 <strong>32 张 NVIDIA A800 GPU</strong>，每 GPU 批大小为 4</li><li>训练使用 <strong>AdamW 优化器、bfloat16 精度、DeepSpeed ZeRO-2</strong>，推理时使用 12 步采样、10 个固定随机种子取均值</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>NAVSIM-v2（navtest）</strong>：WA-JEPA 达到 <strong>91.7 EPDMS</strong>，超越最强端到端方法 <strong>SparseDriveV2</strong> 1.6 分，超越最强世界动作模型 <strong>Discrete-WAM</strong> 1.3 分</li><li><strong>NAVSIM-v1（navtest）</strong>：WA-JEPA 达到 <strong>91.8 PDMS</strong>，超越所有对比基线</li><li>子指标表现：NC 99.4、DAC 98.2、DDC 99.7、TLC 99.9、EP 87.8、TTC 98.9、LK 98.3、HC 98.3、EC 88.1</li><li><strong>HUGSIM 零样本闭环评估</strong>：WA-JEPA 达到 <strong>0.4462 HD-Score</strong>，在全部 436 个场景上超越 <strong>LTF</strong>、<strong>DrivoR</strong>、<strong>UniAD</strong>、<strong>VAD</strong> 等基线</li><li>按难度分层：Easy 0.7977、Medium 0.5563、Hard 0.3060、Extreme 0.1362，在前三档难度上均取得最优</li><li>消融实验验证了视觉编码器初始化、混合遮罩策略、场景-动作耦合方式及流匹配生成对未来预测和规划性能的贡献</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.21031/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PhysCaP: Grounding Code-as-Policy Agent with Physics-Informed Exploration</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.20890/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">A Collaborative Multi-Modality Interaction for VLA-based End-to-End Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,5 +1,295 @@
 [
   {
+    "date": "2026-08-21",
+    "title": "Just Noticeable Difference Modeling for Token Compression in Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.21247",
+    "arxiv_id": "2608.21247",
+    "detail_path": "papers/2608.21247/",
+    "cover_path": "covers/2608.21247/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.21247.webp",
+    "paper_image_full_path": "assets/paper-images/2608.21247.webp",
+    "preview_text": "论文提出 Action-JND 概念，将经典 JND（最小可觉差）理论从人类感知和静态机器感知扩展到具身感知，为视觉-语言-动作（VLA）模型中的 token 压缩提供动作条件化的容忍边界。 现有 VLA 加速方法（如 token 剪枝、KV-cache 重用）主要依赖视觉相似性、注意力分数、显著性等间接代理信号，未直接回答“token 被压缩后是否会导致下游机器人动作不可接受地偏离”这一核心问题。 论文通过建模语言条件下的机器人动作响应来定义 token 变化的可接受性，并在此基础上实现更可靠的 KV-cache 重用和 token 剪枝。",
+    "research_unit": "香港理工大学（The Hong Kong Polytechnic University）：论文第一作者…",
+    "hook_text": "论文提出 Action-JND 概念，将经典 JND（最小可觉差）理论从人类感知和静态机器感知扩展到具身感知，为视觉-语言-动作（VLA）模型中的 token 压缩提供动作条件化的容忍边界。",
+    "key_points": [
+      "论文提出 Action-JND 概念，将经典 JND（最小可觉差）理论从人类感知和静态机器感知扩展到具身感知，为视觉-语言-动作（VLA）模型中的 token 压缩提供动作条件化的容忍边界。",
+      "现有 VLA 加速方法（如 token 剪枝、KV-cache 重用）主要依赖视觉相似性、注意力分数、显著性等间接代理信号，未直接回答“token 被压缩后是否会导致下游机器人动作不可接受地偏离”这一核心问题。",
+      "论文通过建模语言条件下的机器人动作响应来定义 token 变化的可接受性，并在此基础上实现更可靠的 KV-cache 重用和 token 剪枝。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "PhysCaP: Grounding Code-as-Policy Agent with Physics-Informed Exploration",
+    "link": "http://arxiv.org/abs/2608.21031",
+    "arxiv_id": "2608.21031",
+    "detail_path": "papers/2608.21031/",
+    "cover_path": "covers/2608.21031/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.21031.webp",
+    "paper_image_full_path": "assets/paper-images/2608.21031.webp",
+    "preview_text": "提出 PhysCaP（Physics-Informed Code-as-Policy Agent），在代码即策略（Code-as-Policy）框架中引入物理学启发的主动探索层，使机器人能够通过交互主动获取隐藏的物理属性（如质量、刚度）。 针对现有 VLA 策略和被动式 CaP 系统在部分可观测环境中无法推断潜在物理属性的问题，PhysCaP 通过成本可控的信息寻求机制，实现高效、可解释的物理世界接地。 采用双智能体架构（Planner + Prioritizer）平衡探索成本与信息收益，避免过度探索或信息不足。",
+    "research_unit": "National Taiwan University",
+    "hook_text": "提出 PhysCaP（Physics-Informed Code-as-Policy Agent），在代码即策略（Code-as-Policy）框架中引入物理学启发的主动探索层，使机器人能够通过交互主动获取隐藏的物理属性（如质量、刚度）。",
+    "key_points": [
+      "提出 PhysCaP（Physics-Informed Code-as-Policy Agent），在代码即策略（Code-as-Policy）框架中引入物理学启发的主动探索层，使机器人能够通过交互主动获取隐藏的物理属性（如质量、刚度）。",
+      "针对现有 VLA 策略和被动式 CaP 系统在部分可观测环境中无法推断潜在物理属性的问题，PhysCaP 通过成本可控的信息寻求机制，实现高效、可解释的物理世界接地。",
+      "采用双智能体架构（Planner + Prioritizer）平衡探索成本与信息收益，避免过度探索或信息不足。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "WA-JEPA: Rethinking the Video JEPA Paradigm for World-Action Modeling in Autonomous Driving",
+    "link": "http://arxiv.org/abs/2608.20974",
+    "arxiv_id": "2608.20974",
+    "detail_path": "papers/2608.20974/",
+    "cover_path": "covers/2608.20974/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20974.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20974.webp",
+    "preview_text": "论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划 针对 V-JEPA 范式在规划任务中的三个根本缺陷：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟 通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能",
+    "research_unit": "论文作者隶属于 AFARI-Research 团队",
+    "hook_text": "论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划",
+    "key_points": [
+      "论文提出 WA-JEPA，一种 V-JEPA 原生（V-JEPA-native）的世界动作模型（World-Action Model），用于自动驾驶规划",
+      "针对 V-JEPA 范式在规划任务中的三个根本缺陷：随机遮罩补全缺乏未来预测能力、确定性回归无法生成全新未来 token、与世界动作建模之间存在鸿沟",
+      "通过重新思考 V-JEPA 范式，将强大的时空表征学习能力与因果未来生成、联合动作建模相结合，实现更优的自动驾驶规划性能"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "A Collaborative Multi-Modality Interaction for VLA-based End-to-End Autonomous Driving",
+    "link": "http://arxiv.org/abs/2608.20890",
+    "arxiv_id": "2608.20890",
+    "detail_path": "papers/2608.20890/",
+    "cover_path": "covers/2608.20890/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20890.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20890.webp",
+    "preview_text": "提出一个基于 VLA（Vision-Language-Action） 模型的端到端自动驾驶系统，融合多模态交互与多轨迹规划优化，旨在实现更可靠、可解释且更安全的驾驶决策。 针对现有 VLA 模型将自动驾驶视为视觉问答任务、缺乏可靠决策推理，以及难以在异构传感器间建立有效多模态交互的局限，提出三大核心组件：Affinity-Guided Optimal Transport、Distribution-Consistent Modality Transfer 和 Multi-modal Multi-Trajectory Planning。 实验在开环与闭环数据集上验证了方法在安全长时驾驶推理和道路场景感知方面的提升，展现出良好的可扩展性。",
+    "research_unit": "新加坡国立大学 (National University of Singapore, NUS)：Jin…",
+    "hook_text": "提出一个基于 VLA（Vision-Language-Action） 模型的端到端自动驾驶系统，融合多模态交互与多轨迹规划优化，旨在实现更可靠、可解释且更安全的驾驶决策。",
+    "key_points": [
+      "提出一个基于 VLA（Vision-Language-Action） 模型的端到端自动驾驶系统，融合多模态交互与多轨迹规划优化，旨在实现更可靠、可解释且更安全的驾驶决策。",
+      "针对现有 VLA 模型将自动驾驶视为视觉问答任务、缺乏可靠决策推理，以及难以在异构传感器间建立有效多模态交互的局限，提出三大核心组件：Affinity-Guided Optimal Transport、Distribution-Consistent Modality Transfer 和 Multi-modal Multi-Trajectory Planning。",
+      "实验在开环与闭环数据集上验证了方法在安全长时驾驶推理和道路场景感知方面的提升，展现出良好的可扩展性。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "CertVLA: Certified Defense against Physical Visual Attacks for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.20791",
+    "arxiv_id": "2608.20791",
+    "detail_path": "papers/2608.20791/",
+    "cover_path": "covers/2608.20791/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20791.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20791.webp",
+    "preview_text": "论文提出 CertVLA，一个针对视觉-语言-动作（VLA）模型的认证防御框架，用于抵御有界 补丁攻击（patch attack） 和 纹理攻击（texture attack） 现有认证补丁防御主要针对离散标签，无法直接应用于输出连续、时序相关动作的 VLA 策略；CertVLA 通过校准的 行为一致性区域 和确定性覆盖掩码，确保至少一个被检查的预测是无攻击的 论文证明，在满足有界支撑威胁模型的自适应攻击下，所有被 CertVLA 认证的 rollout 仅执行与攻击擦除的干净预测一致的 action chunk，并可将证书从单次策略查询扩展到完整闭环轨迹",
+    "research_unit": "论文作者包括 Hui Lu、Zhijie Peng、Yuqi Lin、Zaijia Yang、Jiam…",
+    "hook_text": "论文提出 CertVLA，一个针对视觉-语言-动作（VLA）模型的认证防御框架，用于抵御有界 补丁攻击（patch attack） 和 纹理攻击（texture attack）",
+    "key_points": [
+      "论文提出 CertVLA，一个针对视觉-语言-动作（VLA）模型的认证防御框架，用于抵御有界 补丁攻击（patch attack） 和 纹理攻击（texture attack）",
+      "现有认证补丁防御主要针对离散标签，无法直接应用于输出连续、时序相关动作的 VLA 策略；CertVLA 通过校准的 行为一致性区域 和确定性覆盖掩码，确保至少一个被检查的预测是无攻击的",
+      "论文证明，在满足有界支撑威胁模型的自适应攻击下，所有被 CertVLA 认证的 rollout 仅执行与攻击擦除的干净预测一致的 action chunk，并可将证书从单次策略查询扩展到完整闭环轨迹"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "Is Multimodal Speculative Decoding Ready for Diffusion-Based Parallel Drafting? A Survey and Empirical Diagnosis",
+    "link": "http://arxiv.org/abs/2608.20743",
+    "arxiv_id": "2608.20743",
+    "detail_path": "papers/2608.20743/",
+    "cover_path": "covers/2608.20743/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20743.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20743.webp",
+    "preview_text": "本文围绕一个核心问题展开：多模态推测解码（Multimodal Speculative Decoding）是否已准备好支持基于扩散的并行草拟（Diffusion-Based Parallel Drafting），即 L2 级块并行生成式草拟。 论文采用\"模态中心的综述 + 跨架构实证研究\"相结合的方式，系统分析 Vision-Language、Video-Language、Audio、Vision-Language-Action（VLA）等多模态模型，从草拟并行性和跨模态信息交互两个视角进行梳理。 针对现有方法大多停留在 L0/L1 级（顺序或半并行草拟）、L2 级块并行在多模态场景中尚未充分探索的空白，本文引入统一分类体系并开展受控实验，探究 L2 草拟在冻结的多模态目标模型上能否带来实际加速。",
+    "research_unit": "Data Science & Artificial Intelligence Research Ins…",
+    "hook_text": "本文围绕一个核心问题展开：多模态推测解码（Multimodal Speculative Decoding）是否已准备好支持基于扩散的并行草拟（Diffusion-Based Parallel Drafting），即 L2 级块并行生成式草拟。",
+    "key_points": [
+      "本文围绕一个核心问题展开：多模态推测解码（Multimodal Speculative Decoding）是否已准备好支持基于扩散的并行草拟（Diffusion-Based Parallel Drafting），即 L2 级块并行生成式草拟。",
+      "论文采用\"模态中心的综述 + 跨架构实证研究\"相结合的方式，系统分析 Vision-Language、Video-Language、Audio、Vision-Language-Action（VLA）等多模态模型，从草拟并行性和跨模态信息交互两个视角进行梳理。",
+      "针对现有方法大多停留在 L0/L1 级（顺序或半并行草拟）、L2 级块并行在多模态场景中尚未充分探索的空白，本文引入统一分类体系并开展受控实验，探究 L2 草拟在冻结的多模态目标模型上能否带来实际加速。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-21",
+    "title": "ForeTime-VLA: Causal Future-Token Distillation from a World Action Model for Conveyor-Belt Manipulation",
+    "link": "http://arxiv.org/abs/2608.20735",
+    "arxiv_id": "2608.20735",
+    "detail_path": "papers/2608.20735/",
+    "cover_path": "covers/2608.20735/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20735.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20735.webp",
+    "preview_text": "论文提出 ForeTime-VLA，一种面向传送带动态抓取任务的因果未来令牌蒸馏策略，解决现有 VLA 策略仅依赖当前观测、缺乏显式未来结构监督的问题。 核心思路是将 Fast-WAM 世界动作模型的预测性视频表征离线蒸馏为紧凑的 64 维动作等价未来码，在推理阶段完全移除世界模型与未来帧，保持策略的因果性。 方法在保持 π0.5 原始流匹配动作目标不变的前提下，通过预测未来码、操作相位（phase）与归一化过渡时间（time-to-transition），实现低延迟动态操控。",
+    "research_unit": "清华大学（Tsinghua University, Beijing, China）",
+    "hook_text": "论文提出 ForeTime-VLA，一种面向传送带动态抓取任务的因果未来令牌蒸馏策略，解决现有 VLA 策略仅依赖当前观测、缺乏显式未来结构监督的问题。",
+    "key_points": [
+      "论文提出 ForeTime-VLA，一种面向传送带动态抓取任务的因果未来令牌蒸馏策略，解决现有 VLA 策略仅依赖当前观测、缺乏显式未来结构监督的问题。",
+      "核心思路是将 Fast-WAM 世界动作模型的预测性视频表征离线蒸馏为紧凑的 64 维动作等价未来码，在推理阶段完全移除世界模型与未来帧，保持策略的因果性。",
+      "方法在保持 π0.5 原始流匹配动作目标不变的前提下，通过预测未来码、操作相位（phase）与归一化过渡时间（time-to-transition），实现低延迟动态操控。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-20",
+    "title": "Logic-VLA: A Temporal Logic Conditioned Vision-Language-Action Model",
+    "link": "http://arxiv.org/abs/2608.20556",
+    "arxiv_id": "2608.20556",
+    "detail_path": "papers/2608.20556/",
+    "cover_path": "covers/2608.20556/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20556.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20556.webp",
+    "preview_text": "提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入 解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求 在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 24.8 至 40.7 个百分点（pp），同时名义 NL 任务成功率最多仅下降 1.8 pp",
+    "research_unit": "University of Southern California（USC），Thomas Lord…",
+    "hook_text": "提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入",
+    "key_points": [
+      "提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入",
+      "解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求",
+      "在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 24.8 至 40.7 个百分点（pp），同时名义 NL 任务成功率最多仅下降 1.8 pp"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-20",
+    "title": "EndoLIFT: Language-Disambiguated Latent-Conditioned Rectified Flow for Bidirectional Endoscopic Control",
+    "link": "http://arxiv.org/abs/2608.20478",
+    "arxiv_id": "2608.20478",
+    "detail_path": "papers/2608.20478/",
+    "cover_path": "covers/2608.20478/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20478.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20478.webp",
+    "preview_text": "论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。 提出并形式化 intent aliasing（意图混叠） 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。 提出 EndoLIFT（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将语言指令条件化与潜在条件修正流动作专家结合，实现双向内镜的鲁棒控制。",
+    "research_unit": "香港中文大学（The Chinese University of Hong Kong, Hong Ko…",
+    "hook_text": "论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。",
+    "key_points": [
+      "论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。",
+      "提出并形式化 intent aliasing（意图混叠） 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。",
+      "提出 EndoLIFT（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将语言指令条件化与潜在条件修正流动作专家结合，实现双向内镜的鲁棒控制。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 7,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-20",
+    "title": "RISE: Adaptive Imagination for World Action Models",
+    "link": "http://arxiv.org/abs/2608.20430",
+    "arxiv_id": "2608.20430",
+    "detail_path": "papers/2608.20430/",
+    "cover_path": "covers/2608.20430/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.20430.webp",
+    "paper_image_full_path": "assets/paper-images/2608.20430.webp",
+    "preview_text": "论文提出 RISE（Refining Imagination through Selective Rollout），一个面向 World Action Models（WAMs） 的系统级自适应想象框架。 现有 WAM 方法对每个场景分配固定的想象预算（固定 rollout 深度），导致不必要的推理开销；RISE 通过顺序 Roll/Stop 决策，按场景动态调整想象深度。 核心思想是利用 Future Planning Gain（未来规划增益）衡量继续 rollout 对规划质量的实际提升，并在增益与计算成本之间做权衡。 针对事实驾驶日志只包含单一已实现未来、缺乏安全关键反事实样本的问题，论文还构建了 CounterDrive 反事实数据集，用于风险监督和世界建模研究。",
+    "research_unit": "COWARobot Co. Ltd（机器人公司）",
+    "hook_text": "论文提出 RISE（Refining Imagination through Selective Rollout），一个面向 World Action Models（WAMs） 的系统级自适应想象框架。",
+    "key_points": [
+      "论文提出 RISE（Refining Imagination through Selective Rollout），一个面向 World Action Models（WAMs） 的系统级自适应想象框架。",
+      "现有 WAM 方法对每个场景分配固定的想象预算（固定 rollout 深度），导致不必要的推理开销；RISE 通过顺序 Roll/Stop 决策，按场景动态调整想象深度。",
+      "核心思想是利用 Future Planning Gain（未来规划增益）衡量继续 rollout 对规划质量的实际提升，并在增益与计算成本之间做权衡。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-20",
     "title": "Towards Surgical World-Action Modeling: A Preliminary Joint Visual-Trajectory Forecasting for Surgical Motion Planning",
     "link": "http://arxiv.org/abs/2608.20284",

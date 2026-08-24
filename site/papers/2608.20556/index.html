@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Logic-VLA: A Temporal Logic Conditioned Vision-Language-Action Model - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入 解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求 在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 24.8 至 40.7 个百分点（pp），同时名义 NL 任务成功率最多仅下降 1.8 pp" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.20556">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.20556.webp" alt="Logic-VLA: A Temporal Logic Conditioned Vision-Language-Action Model" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Logic-VLA: A Temporal Logic Conditioned Vision-Language-Action Model</h1>
+            <div class="detail-meta">2026-08-20 · <a href="http://arxiv.org/abs/2608.20556" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.20556" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.20556</span></div>
+            <p class="detail-summary">提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入 解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求 在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 24.8 至 40.7 个百分点（pp），同时名义 NL 任务成功率最多仅下降 1.8 pp</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Southern California（USC），Thomas Lord…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.20556/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入</p>
+  <ul class="reading-intro-points"><li>提出了 Logic-VLA，一个基于 Signal Temporal Logic（STL） 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入</li><li>解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求</li><li>在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 24.8 至 40.7 个百分点（pp），同时名义 NL 任务成功率最多仅下降 1.8 pp</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Southern California</strong>（USC），Thomas Lord Department of Computer Science</li><li>作者：Celina Shiyu Wang、Yiqi Zhao、Junjie Ye、Yue Wang、Jyotirmoy V. Deshmukh</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出了 <strong>Logic-VLA</strong>，一个基于 <strong>Signal Temporal Logic（STL）</strong> 条件的视觉-语言-动作（VLA）模型，可在推理时接收时态逻辑公式作为额外策略输入</li><li>解决了自然语言指令难以精确表达安全关键、时空、反应式行为要求的问题，使单一策略能适应不同部署时变化的正式需求</li><li>在闭环四旋翼导航仿真中，Logic-VLA 相较于 STL 盲基础策略将 STL 满足率提升 <strong>24.8 至 40.7 个百分点（pp）</strong>，同时名义 NL 任务成功率最多仅下降 <strong>1.8 pp</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Logic-VLA</strong>，一种基于 <strong>π₀.₅</strong> 的时序逻辑条件 VLA，将结构化正式需求与多模态 VLA 输入融合</li><li>开发了 <strong>两阶段需求感知后训练框架</strong>：先进行 STL 条件监督微调（SFT），再进行轨迹级偏好优化（基于匹配的满足-违反轨迹对）</li><li>引入 <strong>语法图 STL 编码器</strong>（基于 TeLoGraF），并通过 STL 鲁棒语义预测进行预训练，使模型捕捉谓词、时间与逻辑结构</li><li>实验证明模型可泛化到训练中未见过的 STL 公式（参数变化和结构变化），无需为每个规格单独训练策略</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>TeLoGraF</strong> 的语法图骨干将 STL 公式编码为有向图，节点表示布尔、时序、比较运算符，并包含时间边界、信号标识、阈值等特征</li><li>STL 编码器预训练：通过 Huber 损失预测轨迹-公式对的鲁棒语义值，预训练后丢弃轨迹编码器与回归头，将公式表示投影为规范 token 序列注入 VLA 前缀</li><li><strong>Stage 1</strong>：STL 条件监督微调，在满足 STL 的演示数据上优化条件流匹配目标，使策略模仿满足行为</li><li><strong>Stage 2</strong>：轨迹级偏好优化，采用 <strong>Identity Preference Optimization（IPO）</strong> 的流匹配代理目标，用条件流匹配损失之差替代参考相对 log 策略比率，并引入单边 preferred-rollout anchor 防止满足轨迹拟合退化</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>随机化摄影逼真四旋翼导航仿真环境</strong>，包含 <strong>10 个随机仓库环境</strong></li><li>共 <strong>6 个自然语言导航任务</strong>（如图中所示，覆盖绕桌飞行等多种机动）</li><li>基础模型采用 <strong>π₀.₅</strong>（流匹配 VLA 策略）</li><li>训练资源（GPU/TPU 类型与数量）在原文中未披露</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准分为 <strong>Seen</strong>（训练中见过的公式）、<strong>Unseen Parameter</strong>（未见过参数）、<strong>Unseen Structure</strong>（未见过结构）三类</li><li>主要指标：<strong>STL 满足率</strong>、<strong>鲁棒性均值 ρ</strong>、<strong>最小鲁棒性 ρ_min</strong>、<strong>NL 任务成功率</strong></li><li>与基线比较（Base、STL-SFT、Smooth Robust Semantics 1×/2×）：</li></ul>
+<p> - <strong>Logic-VLA</strong> 在 Seen 上 STL 满足率 <strong>82.0%</strong>，较 Base（41.3%）提升 <strong>40.7 pp</strong>，同时 NL 任务成功率 <strong>89.0%</strong>（Base 90.5%，仅降 1.5 pp）</p>
+<p> - 在 Unseen Parameter 上 STL 满足率 <strong>74.8%</strong>，较 Base（50.0%）提升 <strong>24.8 pp</strong>，NL 任务成功率 <strong>92.2%</strong>（Base 93.9%）</p>
+<p> - 在 Unseen Structure 上 STL 满足率 <strong>82.0%</strong>，较 Base（56.8%）提升 <strong>25.2 pp</strong>，NL 任务成功率 <strong>87.5%</strong>（Base 89.3%，仅降 1.8 pp）</p>
+<ul><li><strong>Smooth Robust Semantics</strong> 基线虽然能提升 STL 满足率（如 Seen 上 76.2/78.8），但 NL 任务成功率大幅下降（68.5/45.0），暴露其对基础任务能力的破坏；Logic-VLA 在保持任务性能上显著更优</li><li>消融研究表明 <strong>STL 编码器预训练</strong> 和 <strong>结构化 STL 编码（vs 提示词）</strong> 对最终性能均具有正面作用</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.20735/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ForeTime-VLA: Causal Future-Token Distillation from a World Action Model for Conveyor-Belt Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.20478/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">EndoLIFT: Language-Disambiguated Latent-Conditioned Rectified Flow for Bidirectional Endoscopic Control</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

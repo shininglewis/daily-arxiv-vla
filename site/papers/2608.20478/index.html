@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EndoLIFT: Language-Disambiguated Latent-Conditioned Rectified Flow for Bidirectional Endoscopic Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。 提出并形式化 intent aliasing（意图混叠） 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。 提出 EndoLIFT（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将语言指令条件化与潜在条件修正流动作专家结合，实现双向内镜的鲁棒控制。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.20478">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.20478.webp" alt="EndoLIFT: Language-Disambiguated Latent-Conditioned Rectified Flow for Bidirectional Endoscopic Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EndoLIFT: Language-Disambiguated Latent-Conditioned Rectified Flow for Bidirectional Endoscopic Control</h1>
+            <div class="detail-meta">2026-08-20 · <a href="http://arxiv.org/abs/2608.20478" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.20478" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.20478</span></div>
+            <p class="detail-summary">论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。 提出并形式化 intent aliasing（意图混叠） 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。 提出 EndoLIFT（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将语言指令条件化与潜在条件修正流动作专家结合，实现双向内镜的鲁棒控制。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">7 张阅读卡</span>
+              <span class="meta-pill">香港中文大学（The Chinese University of Hong Kong, Hong Ko…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.20478/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。</p>
+  <ul class="reading-intro-points"><li>论文聚焦胃肠道内窥镜双向控制：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。</li><li>提出并形式化 intent aliasing（意图混叠） 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。</li><li>提出 EndoLIFT（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将语言指令条件化与潜在条件修正流动作专家结合，实现双向内镜的鲁棒控制。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>香港中文大学</strong>（The Chinese University of Hong Kong, Hong Kong SAR, China）</li><li><strong>中山大学附属第六医院</strong>（The Sixth Affiliated Hospital, Sun Yat-sen University, Guangzhou, China）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文聚焦<strong>胃肠道内窥镜双向控制</strong>：内镜前进到达目标、后撤/翻转进行观察，且外部事件可能触发提前反转。</li><li>提出并形式化 <strong>intent aliasing（意图混叠）</strong> 问题：当外部阶段指令改变而视觉场景几乎未变时，相近的观察可能要求相反轴向动作，仅靠像素无法确定模式。</li><li>提出 <strong>EndoLIFT</strong>（Endoscopic Language-Instruction Flow with Trajectory Latents），一种视觉-语言-动作（VLA）策略，将<strong>语言指令条件化</strong>与<strong>潜在条件修正流动作专家</strong>结合，实现双向内镜的鲁棒控制。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>形式化意图混叠问题</strong>：证明在双向内镜控制中，观测不足以识别被外部指定的操作模式，需显式语言意图条件。</li><li><strong>创新模型 EndoLIFT</strong>：基于 <strong>PaliGemma 2</strong> 的 LoRA 视觉-语言骨干，搭配 32 维<strong>变分轨迹潜在（VTL）</strong>随机条件的 <strong>rectified-flow Transformer 动作专家</strong>，生成 32×3 连续动作块。</li><li><strong>系统解耦设计</strong>：外部触发监督器（生理异常/语音）仅负责选择规范指令，事件检测与指令选择被排除在学习策略之外。</li><li><strong>全面消融与对比</strong>：通过同观测指令翻转、架构控制的 ModeFlag 参考、匹配无 VTL 消融、44 个未见语言变体、跨 phantom 迁移和 ex-vivo 猪气管验证，隔离并验证语言意图与轨迹潜伏的各自贡献。</li><li><strong>显著性能提升</strong>：相比无 VTL 的匹配模型，导航方向准确率提高 <strong>11.1 个百分点</strong>，错误方向前进率降低 <strong>83%</strong>；闭环评估在 seen 和 unseen phantom 上总体成功率提升 <strong>30 个百分点</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>控制接口</strong>：策略输出三轴连续动作——纵向前进/回撤（<code>a_fwd</code>，负值为前进）、上下弯曲（<code>a_ud</code>）、左右弯曲（<code>a_lr</code>），并按 <code>[60,150,150]</code> 轴缩放归一化。</li><li><strong>视觉-语言前缀</strong>：RGB 帧 + 规范指令 + 动作通道定义构成提示，由 <strong>PaliGemma2-3B</strong>（LoRA 微调）编码为前缀 <code>P_t</code>，与前一动作状态一同输入动作专家。</li><li><strong>潜在条件修正流</strong>：32 维变分流轨迹潜在 <code>z</code> 条件化自适应 RMS 归一化；训练时用目标块的后验 <code>q_φ(z\|·)</code>，推理时从标准正态先验采样；噪声块经 20 步 Euler 积分得到动作块。</li><li><strong>训练目标</strong>：流匹配损失 + 自由比特 KL 项（每维 0.5 nat 下限，KL 权重线性升温至 1e-3）。</li><li><strong>ModeFlag 参考</strong>：架构控制的基线，删除提示中的指令文本，用字面 1-bit 标志经嵌入/MLP 条件化，保留视觉骨干与动作专家，用于对比语言 vs 比特接口。</li><li><strong>执行策略</strong>：每个 32 步预测块最多执行 8 步后重规划；指令改变会使当前动作块失效并触发新模式下的重规划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>基础模仿数据集</strong>：44,942 帧，包含 4 种指令形式：<code>failed recovery navigation</code>（8,344）、<code>normal navigation</code>（6,850）、<code>successful recovery navigation</code>（1,278）、<code>urgent retraction</code>（28,470）。</li><li><strong>指令风格化阶段</strong>：1,200 采样帧，40 个前向 + 40 个回撤改写，含在线扰动和 20% 规范锚混合。</li><li><strong>模型规模</strong>：<strong>PaliGemma2-3B</strong> VLM + 宽度 1024、8 块、16 头的 Transformer 动作专家；VTL 维度 32。</li><li><strong>数据划分</strong>：185 个 episode 按 90/5/5 拆分（166 训练 / 9 验证 / 10 测试），测试集含 150,351 个有效帧-块-步对。</li><li><strong>训练资源</strong>：文中未明确 GPU/TPU 型号，仅提及优化器步数（500 步 KL 升温、2,000 步指令条件化）与 LoRA/动作专家优化设置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：封闭结肠 phantom（seen 域）、未见过肺和胃 phantom（unseen 域）、以及 <strong>ex-vivo 猪气管</strong>。</li><li><strong>意图接口对比</strong>：规范文本在 40 帧固定干预上 IFA 达 <strong>85.0%</strong>，优于字面 1-bit ModeFlag 的 68.8%；规范配对翻转 70.0% vs 37.5%，条件分离度大 2.86×。</li><li><strong>语言泛化</strong>：44 个未见指令变体（英/中改写、口头命令、ASR/噪声、长干扰句）上，EndoLIFT 保持 <strong>82.8%</strong> IFA，优于无 VTL 的 78.2%、Qwen3-VL+GR00T 的 63.1% 和 Qwen3-VL+MLP 的 59.7%。</li><li><strong>方向正确性</strong>：EndoLIFT 在测试集上导航方向准确率 <strong>0.565</strong>（较无 VTL 提升 +11.1 pp），错误方向前进率 <strong>0.010</strong>（降低 83%）；95% 置信区间不重叠。</li><li><strong>动作块质量</strong>：EndoLIFT 在轴向和弯曲轴上均能保持三轴时间结构，而无 VTL 基线存在纵向低估、负偏置和弯曲持续等问题。</li><li><strong>闭环 phantom 结果</strong>：在 seen 结肠 phantom 上，EndoLIFT 导航/回撤成功率为 100%/某闭值，总体成功率较无 VTL 提升 <strong>30 个百分点</strong>；在 unseen 肺和胃 phantom 上同样取得更高成功率。</li><li><strong>ex-vivo 验证</strong>：猪气管触发回撤试验 <strong>10/10 全部成功</strong>，并记录触发到动作延迟与残余弯曲活动。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 07</span>
+    <span class="reading-step-note">讨论与失败分析</span>
+  </div>
+  <h2>讨论与失败分析</h2>
+  <div class="reading-card-content"><ul><li><strong>无 VTL 基线回撤衰减</strong>：在部分测试中出现回撤幅度不足、轴向动作衰减。</li><li><strong>通用动作生成不稳定</strong>：无语言或弱语言接口的基线在弯曲轴上易产生大幅虚假动作或振荡，影响双向平滑执行。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.20556/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Logic-VLA: A Temporal Logic Conditioned Vision-Language-Action Model</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.20430/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">RISE: Adaptive Imagination for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
