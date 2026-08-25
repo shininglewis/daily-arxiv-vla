@@ -1,5 +1,440 @@
 [
   {
+    "date": "2026-08-24",
+    "title": "GeoWAM: Visual Geometry World Action Models for Autonomous Driving",
+    "link": "http://arxiv.org/abs/2608.23486",
+    "arxiv_id": "2608.23486",
+    "detail_path": "papers/2608.23486/",
+    "cover_path": "covers/2608.23486/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23486.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23486.webp",
+    "preview_text": "论文提出 GeoWAM（Visual Geometry World Action Model），一种面向自动驾驶的视觉几何世界动作模型，将世界建模与动作预测统一在三维几何空间中 现有世界动作模型（WAM）大多在像素空间预测未来帧，但像素将几何与运动同外观、纹理、光照纠缠在一起，难以显式恢复底层三维变换；论文主张点云几何是驾驶场景更自然的状态表示，因为它直接刻画空间结构与刚性/非刚性变换，且与规划动作处于同一三维坐标系 GeoWAM 通过预训练预测未来场景几何来学习时空演化表征，再利用几何条件动作头将预测的几何动态映射为未来自车轨迹，从而建立以 3D 结构为核心驱动的驾驶策略",
+    "research_unit": "Uber AV Labs（优步自动驾驶实验室）",
+    "hook_text": "论文提出 GeoWAM（Visual Geometry World Action Model），一种面向自动驾驶的视觉几何世界动作模型，将世界建模与动作预测统一在三维几何空间中",
+    "key_points": [
+      "论文提出 GeoWAM（Visual Geometry World Action Model），一种面向自动驾驶的视觉几何世界动作模型，将世界建模与动作预测统一在三维几何空间中",
+      "现有世界动作模型（WAM）大多在像素空间预测未来帧，但像素将几何与运动同外观、纹理、光照纠缠在一起，难以显式恢复底层三维变换；论文主张点云几何是驾驶场景更自然的状态表示，因为它直接刻画空间结构与刚性/非刚性变换，且与规划动作处于同一三维坐标系",
+      "GeoWAM 通过预训练预测未来场景几何来学习时空演化表征，再利用几何条件动作头将预测的几何动态映射为未来自车轨迹，从而建立以 3D 结构为核心驱动的驾驶策略"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "Act with Intent: Distilling Behavior Intent for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.23478",
+    "arxiv_id": "2608.23478",
+    "detail_path": "papers/2608.23478/",
+    "cover_path": "covers/2608.23478/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23478.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23478.webp",
+    "preview_text": "论文指出 Vision-Language-Action (VLA) 模型的动作解码器主要依赖行为克隆（behavior cloning）训练，仅监督输出的电机指令，而忽略了该行为在指令下所服务的局部目标（behavior-level intent） 现有未来状态监督（future frames、latent observations、trajectories、motion representations）只捕捉特定行为实现方式，而非共享的语义目标 论文提出 Intention Distillation (Indi)，在训练时用冻结的教师 VLM 从执行行为中蒸馏行为级意图，注入动作解码器的中间层表示，使解码器在预测动作的同时显式建模行为目标",
+    "research_unit": "GSAI, POSTECH（浦项科技大学 人工智能研究生院）",
+    "hook_text": "论文指出 Vision-Language-Action (VLA) 模型的动作解码器主要依赖行为克隆（behavior cloning）训练，仅监督输出的电机指令，而忽略了该行为在指令下所服务的局部目标（behavior-level intent）",
+    "key_points": [
+      "论文指出 Vision-Language-Action (VLA) 模型的动作解码器主要依赖行为克隆（behavior cloning）训练，仅监督输出的电机指令，而忽略了该行为在指令下所服务的局部目标（behavior-level intent）",
+      "现有未来状态监督（future frames、latent observations、trajectories、motion representations）只捕捉特定行为实现方式，而非共享的语义目标",
+      "论文提出 Intention Distillation (Indi)，在训练时用冻结的教师 VLM 从执行行为中蒸馏行为级意图，注入动作解码器的中间层表示，使解码器在预测动作的同时显式建模行为目标"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "ROS2SmolVLA: Enabling Small Vision-Language-Action Models for Integration into Industrial-Grade Lightweight Robots",
+    "link": "http://arxiv.org/abs/2608.23320",
+    "arxiv_id": "2608.23320",
+    "detail_path": "papers/2608.23320/",
+    "cover_path": "covers/2608.23320/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23320.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23320.webp",
+    "preview_text": "提出 ROS2SmolVLA 框架，将 Hugging Face 的 SmolVLA（450M 参数轻量级视觉-语言-动作模型）通过 ROS 2 接口集成到工业级轻量机器人（Universal Robots UR10e）上，实现自适应生产场景中的机器人控制。 论文旨在解决当前 VLA 模型部署面临的两大挑战：大规模模型无法在本地/边缘计算导致合规与安全风险，以及小模型仅在实验室级硬件上验证、缺乏真实工业环境适配。 通过开源软件仓库、自采数据集和模型微调，在真实工业机器人上验证了 SmolVLA 的可行性，并给出了实施指南与经验教训。",
+    "research_unit": "University of Augsburg, Chair of Mechatronics, Am T…",
+    "hook_text": "提出 ROS2SmolVLA 框架，将 Hugging Face 的 SmolVLA（450M 参数轻量级视觉-语言-动作模型）通过 ROS 2 接口集成到工业级轻量机器人（Universal Robots UR10e）上，实现自适应生产场景中的机器人控制。",
+    "key_points": [
+      "提出 ROS2SmolVLA 框架，将 Hugging Face 的 SmolVLA（450M 参数轻量级视觉-语言-动作模型）通过 ROS 2 接口集成到工业级轻量机器人（Universal Robots UR10e）上，实现自适应生产场景中的机器人控制。",
+      "论文旨在解决当前 VLA 模型部署面临的两大挑战：大规模模型无法在本地/边缘计算导致合规与安全风险，以及小模型仅在实验室级硬件上验证、缺乏真实工业环境适配。",
+      "通过开源软件仓库、自采数据集和模型微调，在真实工业机器人上验证了 SmolVLA 的可行性，并给出了实施指南与经验教训。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "Think Only When Needed: Prompt-Authority Control for Selective Slow-Path Intervention in Vision-Language-Action Manipulation",
+    "link": "http://arxiv.org/abs/2608.23224",
+    "arxiv_id": "2608.23224",
+    "detail_path": "papers/2608.23224/",
+    "cover_path": "covers/2608.23224/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23224.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23224.webp",
+    "preview_text": "论文研究冻结视觉-语言-动作（VLA）策略在测试时被外部检索文本修改输入提示（prompt）的问题，将检索增强视为一种提示权限控制（prompt-authority control）问题。 通过匹配审计发现 prompt-form collapse：无论附加文本是否有语义，只要改变指令形式，就会严重破坏策略执行（原始附加文本使成功率从 92.47% 降至 3.00%，有义/无意义附加均为 0/500）。 提出 TOWN-VLA（Think Only When Needed） 接口，分离候选内容生成与“是否授权修改策略输入”的决策；拒绝时精确恢复原始 Base 提示，授权时仅允许规范紧凑指令。",
+    "research_unit": "作者：Zhiruo Zhou, Zelin Li, Xiwen Chen, Jiazhuo Li, C…",
+    "hook_text": "论文研究冻结视觉-语言-动作（VLA）策略在测试时被外部检索文本修改输入提示（prompt）的问题，将检索增强视为一种提示权限控制（prompt-authority control）问题。",
+    "key_points": [
+      "论文研究冻结视觉-语言-动作（VLA）策略在测试时被外部检索文本修改输入提示（prompt）的问题，将检索增强视为一种提示权限控制（prompt-authority control）问题。",
+      "通过匹配审计发现 prompt-form collapse：无论附加文本是否有语义，只要改变指令形式，就会严重破坏策略执行（原始附加文本使成功率从 92.47% 降至 3.00%，有义/无意义附加均为 0/500）。",
+      "提出 TOWN-VLA（Think Only When Needed） 接口，分离候选内容生成与“是否授权修改策略输入”的决策；拒绝时精确恢复原始 Base 提示，授权时仅允许规范紧凑指令。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "Pointing-VLA: Typed Spatial Grounding Interfaces for Vision-Language-Action Manipulation",
+    "link": "http://arxiv.org/abs/2608.23138",
+    "arxiv_id": "2608.23138",
+    "detail_path": "papers/2608.23138/",
+    "cover_path": "covers/2608.23138/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23138.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23138.webp",
+    "preview_text": "论文提出 Pointing-VLA，一个构建在 Embodied-R1 之上的类型化隐藏状态空间读出（typed hidden-state spatial readout）框架，用于视觉-语言-动作（VLA）操作任务 核心主张：具身空间接地应视为类型化接口预测，而不是文本坐标生成——通过独立的点（Pointing）、对象功能接地（OFG）热图、视觉轨迹（VTG）三种几何专用头，分别输出机器人执行所需的空间目标，无需将几何序列化为文本 解决的核心问题：文本坐标生成在解析前就可能失效（无法生成合法坐标或坐标在空间上错误），且密集的部件级空间证据在执行前被丢弃；直接动作令牌隐藏了空间依据，缺乏可检查性",
+    "research_unit": "论文作者：Xiwen Chen、Zelin Li、Zhiruo Zhou、Huiming Chen、C…",
+    "hook_text": "论文提出 Pointing-VLA，一个构建在 Embodied-R1 之上的类型化隐藏状态空间读出（typed hidden-state spatial readout）框架，用于视觉-语言-动作（VLA）操作任务",
+    "key_points": [
+      "论文提出 Pointing-VLA，一个构建在 Embodied-R1 之上的类型化隐藏状态空间读出（typed hidden-state spatial readout）框架，用于视觉-语言-动作（VLA）操作任务",
+      "核心主张：具身空间接地应视为类型化接口预测，而不是文本坐标生成——通过独立的点（Pointing）、对象功能接地（OFG）热图、视觉轨迹（VTG）三种几何专用头，分别输出机器人执行所需的空间目标，无需将几何序列化为文本",
+      "解决的核心问题：文本坐标生成在解析前就可能失效（无法生成合法坐标或坐标在空间上错误），且密集的部件级空间证据在执行前被丢弃；直接动作令牌隐藏了空间依据，缺乏可检查性"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "InstructMove: A Text-Indispensable Benchmark for Instruction-Following Manipulation",
+    "link": "http://arxiv.org/abs/2608.22990",
+    "arxiv_id": "2608.22990",
+    "detail_path": "papers/2608.22990/",
+    "cover_path": "covers/2608.22990/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22990.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22990.webp",
+    "preview_text": "论文提出 InstructMove，一个面向指令跟随操作（instruction-following manipulation）的“文本不可或缺”（text-indispensable）基准测试。 核心问题：现有操作基准中，场景往往只有一个语义上明显的目标，模型可以仅凭视觉就推断正确动作，语言指令退化为“任务标识符”而非必要的接地信号。 InstructMove 通过引入语义干扰物（semantic distractors），使每个回合包含多个视觉上合理、物理上可执行的候选动作，但只有与语言指令一致的候选才是正确目标，从而强制要求策略真正依赖语言进行动作选择。",
+    "research_unit": "Horizon Robotics（地平线机器人，主要作者单位）",
+    "hook_text": "论文提出 InstructMove，一个面向指令跟随操作（instruction-following manipulation）的“文本不可或缺”（text-indispensable）基准测试。",
+    "key_points": [
+      "论文提出 InstructMove，一个面向指令跟随操作（instruction-following manipulation）的“文本不可或缺”（text-indispensable）基准测试。",
+      "核心问题：现有操作基准中，场景往往只有一个语义上明显的目标，模型可以仅凭视觉就推断正确动作，语言指令退化为“任务标识符”而非必要的接地信号。",
+      "InstructMove 通过引入语义干扰物（semantic distractors），使每个回合包含多个视觉上合理、物理上可执行的候选动作，但只有与语言指令一致的候选才是正确目标，从而强制要求策略真正依赖语言进行动作选择。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "UniMem: Unifying Multimodal Memory and Control for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.22869",
+    "arxiv_id": "2608.22869",
+    "detail_path": "papers/2608.22869/",
+    "cover_path": "covers/2608.22869/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22869.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22869.webp",
+    "preview_text": "论文提出 UniMem 框架，解决 Vision-Language-Action（VLA）模型在非马尔可夫长时程任务中缺乏历史记忆而导致 感知混叠（perceptual aliasing） 的问题 现有方法通常依赖额外的大语言模型进行分层记忆管理，形成记忆瓶颈和破碎的训练流程；固定间隔历史帧采样则可能引入无关信息、损害策略性能 UniMem 将多模态（文本+视觉）记忆与底层动作控制统一在同一 VLA 骨干网络中，利用事件驱动机制动态构建任务相关记忆，实现高效、低延迟的实时推理",
+    "research_unit": "Stanford University（斯坦福大学，美国加利福尼亚州）",
+    "hook_text": "论文提出 UniMem 框架，解决 Vision-Language-Action（VLA）模型在非马尔可夫长时程任务中缺乏历史记忆而导致 感知混叠（perceptual aliasing） 的问题",
+    "key_points": [
+      "论文提出 UniMem 框架，解决 Vision-Language-Action（VLA）模型在非马尔可夫长时程任务中缺乏历史记忆而导致 感知混叠（perceptual aliasing） 的问题",
+      "现有方法通常依赖额外的大语言模型进行分层记忆管理，形成记忆瓶颈和破碎的训练流程；固定间隔历史帧采样则可能引入无关信息、损害策略性能",
+      "UniMem 将多模态（文本+视觉）记忆与底层动作控制统一在同一 VLA 骨干网络中，利用事件驱动机制动态构建任务相关记忆，实现高效、低延迟的实时推理"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation",
+    "link": "http://arxiv.org/abs/2608.22800",
+    "arxiv_id": "2608.22800",
+    "detail_path": "papers/2608.22800/",
+    "cover_path": "covers/2608.22800/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22800.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22800.webp",
+    "preview_text": "论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。 TTS 用离散的、实例锚定的 三元组（triplet） 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。 系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。",
+    "research_unit": "上海交通大学（School of Artificial Intelligence, Shanghai…",
+    "hook_text": "论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。",
+    "key_points": [
+      "论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。",
+      "TTS 用离散的、实例锚定的 三元组（triplet） 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。",
+      "系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-23",
+    "title": "Robust Bimanual Vision-Language-Action Models via Embarrassingly Simple Modality Masking",
+    "link": "http://arxiv.org/abs/2608.22419",
+    "arxiv_id": "2608.22419",
+    "detail_path": "papers/2608.22419/",
+    "cover_path": "covers/2608.22419/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22419.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22419.webp",
+    "preview_text": "论文针对查询式视觉-语言-动作（VLA）模型在双手机器人操作中出现的动作不连续和执行失败问题，提出了一种简单有效的训练时策略。 核心思想是通过模态掩码机制（Modality Masking Mechanism, M3），在训练阶段随机隐藏部分模态通道，迫使策略在部分可观测条件下学习更稳健的表征。 实验表明，M3 在RoboTwin 2.0仿真基准的 10 个双手任务和 3 个真实世界长时程任务上，相较于 Adapter 基线均取得了显著成功率的提升。",
+    "research_unit": "上海创新研究院（Shanghai Innovation Institute）",
+    "hook_text": "论文针对查询式视觉-语言-动作（VLA）模型在双手机器人操作中出现的动作不连续和执行失败问题，提出了一种简单有效的训练时策略。",
+    "key_points": [
+      "论文针对查询式视觉-语言-动作（VLA）模型在双手机器人操作中出现的动作不连续和执行失败问题，提出了一种简单有效的训练时策略。",
+      "核心思想是通过模态掩码机制（Modality Masking Mechanism, M3），在训练阶段随机隐藏部分模态通道，迫使策略在部分可观测条件下学习更稳健的表征。",
+      "实验表明，M3 在RoboTwin 2.0仿真基准的 10 个双手任务和 3 个真实世界长时程任务上，相较于 Adapter 基线均取得了显著成功率的提升。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-23",
+    "title": "LD4WAM: Learning Latent Dynamics from Human Videos for World Action Models",
+    "link": "http://arxiv.org/abs/2608.22403",
+    "arxiv_id": "2608.22403",
+    "detail_path": "papers/2608.22403/",
+    "cover_path": "covers/2608.22403/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22403.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22403.webp",
+    "preview_text": "提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合 核心思路是引入运动对齐的潜动态（Motion-Aligned Latent Dynamics），作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作 构建了包含 5,000+ 小时人类与机器人操作数据的统一预训练数据集，在 RoboTwin 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性",
+    "research_unit": "论文作者所属机构在 HTML 原文中未明确列出（仅有作者姓名列表：Zhenhao Shen、Jiaqi…",
+    "hook_text": "提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合",
+    "key_points": [
+      "提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合",
+      "核心思路是引入运动对齐的潜动态（Motion-Aligned Latent Dynamics），作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作",
+      "构建了包含 5,000+ 小时人类与机器人操作数据的统一预训练数据集，在 RoboTwin 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-23",
+    "title": "WAM-OPD: On-Policy Distillation for World Action Models",
+    "link": "http://arxiv.org/abs/2608.22364",
+    "arxiv_id": "2608.22364",
+    "detail_path": "papers/2608.22364/",
+    "cover_path": "covers/2608.22364/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22364.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22364.webp",
+    "preview_text": "面向视频优先的世界动作模型（World Action Model, WAM）提出了一种部署一致的on-policy 蒸馏（OPD）后训练方法，旨在修复加速学生模型（如 Flash-WAM）在蒸馏后丢失的任务能力。 核心问题在于：加速学生模型在部署时会遇到离线数据覆盖不好的状态分布，且其动作分支实际消费的是自己生成的视频计划而非教师的视频计划，存在条件接口不匹配。 论文在 RoboTwin 2.0 的两个任务上验证了该方法的初步有效性，结果支持可重复性但不主张广泛泛化。",
+    "research_unit": "University College London (UCL) 计算机科学系（Liuhaichen Y…",
+    "hook_text": "面向视频优先的世界动作模型（World Action Model, WAM）提出了一种部署一致的on-policy 蒸馏（OPD）后训练方法，旨在修复加速学生模型（如 Flash-WAM）在蒸馏后丢失的任务能力。",
+    "key_points": [
+      "面向视频优先的世界动作模型（World Action Model, WAM）提出了一种部署一致的on-policy 蒸馏（OPD）后训练方法，旨在修复加速学生模型（如 Flash-WAM）在蒸馏后丢失的任务能力。",
+      "核心问题在于：加速学生模型在部署时会遇到离线数据覆盖不好的状态分布，且其动作分支实际消费的是自己生成的视频计划而非教师的视频计划，存在条件接口不匹配。",
+      "论文在 RoboTwin 2.0 的两个任务上验证了该方法的初步有效性，结果支持可重复性但不主张广泛泛化。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-23",
+    "title": "On the Capability Separation Between World-Model Policy Learning and Imitated World-Action Models",
+    "link": "http://arxiv.org/abs/2608.22197",
+    "arxiv_id": "2608.22197",
+    "detail_path": "papers/2608.22197/",
+    "cover_path": "covers/2608.22197/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22197.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22197.webp",
+    "preview_text": "论文研究三类策略学习范式的能力边界差异：直接行为克隆（π_A: H→A）、模仿世界动作模型（π_WA: H→Y→A）和世界模型策略学习（π_WM: (H,A)→Y→utility）。 核心问题是：当仅从相同的观测演示数据中训练时，未来预测能力是否赋予世界动作模型比直接行为克隆更强的控制能力，还是仅仅提供了学习同一行为策略的不同分解方式。 论文在控制器类与控制能力类层面进行严格的形式化比较，剔除了有限样本误差、优化误差和模型误设的影响，聚焦于外部可表达能力、总体目标、信息与识别需求三个层面的区分。",
+    "research_unit": "南京大学（Nanjing University）",
+    "hook_text": "论文研究三类策略学习范式的能力边界差异：直接行为克隆（π_A: H→A）、模仿世界动作模型（π_WA: H→Y→A）和世界模型策略学习（π_WM: (H,A)→Y→utility）。",
+    "key_points": [
+      "论文研究三类策略学习范式的能力边界差异：直接行为克隆（π_A: H→A）、模仿世界动作模型（π_WA: H→Y→A）和世界模型策略学习（π_WM: (H,A)→Y→utility）。",
+      "核心问题是：当仅从相同的观测演示数据中训练时，未来预测能力是否赋予世界动作模型比直接行为克隆更强的控制能力，还是仅仅提供了学习同一行为策略的不同分解方式。",
+      "论文在控制器类与控制能力类层面进行严格的形式化比较，剔除了有限样本误差、优化误差和模型误设的影响，聚焦于外部可表达能力、总体目标、信息与识别需求三个层面的区分。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-22",
+    "title": "Inferring Action from Future Latent State for Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2608.22067",
+    "arxiv_id": "2608.22067",
+    "detail_path": "papers/2608.22067/",
+    "cover_path": "covers/2608.22067/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.22067.webp",
+    "paper_image_full_path": "assets/paper-images/2608.22067.webp",
+    "preview_text": "论文针对现有 World-Action Models（WAMs） 依赖视频生成骨干、联合预测密集未来视觉轨迹与机器人动作的范式提出质疑，认为视频生成是不必要的中间目标。 核心观点：操控任务中的世界模型不应重建世界在每一中间时刻的外观，而应预测动作执行后世界将到达的物理状态；中间帧仅描述状态间的视觉过渡，消耗大量模型容量和计算资源。 提出 DELE-w0.5 模型，直接从紧凑的未来潜在状态推断机器人动作序列，无需生成任何中间视频帧，从而降低训练成本并实现低延迟推理。",
+    "research_unit": "DeepLeap Research（深圳，中国）",
+    "hook_text": "论文针对现有 World-Action Models（WAMs） 依赖视频生成骨干、联合预测密集未来视觉轨迹与机器人动作的范式提出质疑，认为视频生成是不必要的中间目标。",
+    "key_points": [
+      "论文针对现有 World-Action Models（WAMs） 依赖视频生成骨干、联合预测密集未来视觉轨迹与机器人动作的范式提出质疑，认为视频生成是不必要的中间目标。",
+      "核心观点：操控任务中的世界模型不应重建世界在每一中间时刻的外观，而应预测动作执行后世界将到达的物理状态；中间帧仅描述状态间的视觉过渡，消耗大量模型容量和计算资源。",
+      "提出 DELE-w0.5 模型，直接从紧凑的未来潜在状态推断机器人动作序列，无需生成任何中间视频帧，从而降低训练成本并实现低延迟推理。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-22",
+    "title": "CounterAlign: Counterfactual Supervision for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.21740",
+    "arxiv_id": "2608.21740",
+    "detail_path": "papers/2608.21740/",
+    "cover_path": "covers/2608.21740/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.21740.webp",
+    "paper_image_full_path": "assets/paper-images/2608.21740.webp",
+    "preview_text": "提出 CounterAlign，一个面向 Vision-Language-Action (VLA) 模型的离线强化学习（offline RL）框架 核心思路：通过反事实重标注（counterfactual relabeling），将成功的专家演示转化为纠正性监督信号，无需额外环境交互、奖励标注或纠正性演示 解决的问题：机器人数据采集昂贵、行为克隆（BC）仅提供正向监督导致 VLA 模型对物体位置偏移、指令改写等扰动鲁棒性不足",
+    "research_unit": "论文作者为 Haru Kondoh、Kei Ota、Asako Kanezaki、Yueh-Hua Wu",
+    "hook_text": "提出 CounterAlign，一个面向 Vision-Language-Action (VLA) 模型的离线强化学习（offline RL）框架",
+    "key_points": [
+      "提出 CounterAlign，一个面向 Vision-Language-Action (VLA) 模型的离线强化学习（offline RL）框架",
+      "核心思路：通过反事实重标注（counterfactual relabeling），将成功的专家演示转化为纠正性监督信号，无需额外环境交互、奖励标注或纠正性演示",
+      "解决的问题：机器人数据采集昂贵、行为克隆（BC）仅提供正向监督导致 VLA 模型对物体位置偏移、指令改写等扰动鲁棒性不足"
+    ],
+    "reading_minutes": 5,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-18",
+    "title": "Geo-VLA: Geometry-Aware Vision-Language-Action Planning via Internalization of Map Semantics",
+    "link": "http://arxiv.org/abs/2608.21440",
+    "arxiv_id": "2608.21440",
+    "detail_path": "papers/2608.21440/",
+    "cover_path": "covers/2608.21440/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.21440.webp",
+    "paper_image_full_path": "assets/paper-images/2608.21440.webp",
+    "preview_text": "论文提出 Geo-VLA，一个即插即用的训练框架，通过在学习过程中内化地图语义来增强视觉-语言-动作（VLA）模型的规划性能。 核心问题是现有VLA模型从相机图像中获取的视觉表征不足以捕捉规划所需的道路几何和拓扑结构，导致在弯道和路口等复杂场景中轨迹预测偏离专家轨迹和道路几何约束。 该方法在训练时利用离线地图标注生成几何监督信号，而不改变推理时的输入接口，因此推理时无需HD地图、地图文本或额外的地图编码器。",
+    "research_unit": "论文作者所属机构未在HTML原文中明确列出。",
+    "hook_text": "论文提出 Geo-VLA，一个即插即用的训练框架，通过在学习过程中内化地图语义来增强视觉-语言-动作（VLA）模型的规划性能。",
+    "key_points": [
+      "论文提出 Geo-VLA，一个即插即用的训练框架，通过在学习过程中内化地图语义来增强视觉-语言-动作（VLA）模型的规划性能。",
+      "核心问题是现有VLA模型从相机图像中获取的视觉表征不足以捕捉规划所需的道路几何和拓扑结构，导致在弯道和路口等复杂场景中轨迹预测偏离专家轨迹和道路几何约束。",
+      "该方法在训练时利用离线地图标注生成几何监督信号，而不改变推理时的输入接口，因此推理时无需HD地图、地图文本或额外的地图编码器。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-21",
     "title": "Just Noticeable Difference Modeling for Token Compression in Vision-Language-Action Models",
     "link": "http://arxiv.org/abs/2608.21247",

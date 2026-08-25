@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。 TTS 用离散的、实例锚定的 三元组（triplet） 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。 系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.22800">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.22800.webp" alt="Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation</h1>
+            <div class="detail-meta">2026-08-24 · <a href="http://arxiv.org/abs/2608.22800" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.22800" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.22800</span></div>
+            <p class="detail-summary">论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。 TTS 用离散的、实例锚定的 三元组（triplet） 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。 系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海交通大学（School of Artificial Intelligence, Shanghai…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.22800/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 Triplet-to-Track System (TTS)，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。</li><li>TTS 用离散的、实例锚定的 三元组（triplet） 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。</li><li>系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海交通大学</strong>（School of Artificial Intelligence, Shanghai Jiao Tong University）</li><li><strong>萨塞克斯大学</strong>（School of Engineering and Informatics, University of Sussex, Brighton, U.K.）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Triplet-to-Track System (TTS)</strong>，一个用于可靠长时程机器人操作的闭环模仿学习系统，旨在解决端到端 VLA 模型数据需求大、可解释性差，以及分层方法规划与观测弱关联、缺乏在线反馈等问题。</li><li>TTS 用离散的、实例锚定的 <strong>三元组（triplet）</strong> 作为高层子目标表示，并通过连续的点轨迹（track）作为中间接口连接低层控制，实现从规划到执行的显式、可验证的闭环流程。</li><li>系统利用无动作标注的人类视频进行训练，显著降低了对机器人采集数据的依赖，并在真实世界的多种长时程任务中验证了可靠性和泛化能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>TTS</strong>（Triplet-to-Track System），一个闭环长时程模仿学习系统，利用人类视频减少对机器人数据的需求，并通过基于观测的监控和重规划提升执行可靠性。</li><li>设计了连接规划与控制的<strong>结构化接口</strong>：高层子目标表达为实例锚定的三元组，并被转化为连续的点轨迹先验供底层次执行使用，使任务进度显式且可验证。</li><li>引入<strong>三元组时序图</strong>约束 VLM 规划器的候选子目标，将开放式的生成问题转化为受限的实例级选择，有效抑制规划幻觉。</li><li>在真实世界的长时程操作任务中验证了系统性能，支持<strong>物体级泛化</strong>和<strong>组合泛化</strong>，并在扰动和有限数据设置下保持了较高的成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>TTS 采用<strong>三层架构</strong>：<strong>任务规划器（Task Planner）</strong>、<strong>轨迹预测器（Track Predictor）</strong> 和<strong>动作策略（Action Policy）</strong>。</li><li><strong>任务规划器</strong>包含一个轻量级 Transformer 关系预测器（LTP）和一个 LoRA 微调的 VLM 验证分支，通过级联方式高效且准确地检测空间关系；再通过图约束的 VLM 生成下一个三元组子目标。</li><li><strong>轨迹预测器</strong>受 ATM 启发，将三元组转换（relation change）编码为条件信号，结合实例掩码输入，以多模态掩码预测方式生成实体对齐的连续点轨迹。</li><li><strong>动作策略</strong>基于 Transformer 和 MLP 动作头，将观测特征、三元组转换先验和预测的轨迹先验融合，输出 7 维末端执行器位姿和夹爪宽度，采用滚动时域方式执行。</li><li>创新点在于用<strong>三元组</strong>连接高层规划与底层控制，使规划结构可验证，同时用<strong>轨迹</strong>作为物理惯导接口，增强了空间推理和物体级泛化能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>真实世界实验在<strong>7-DoF Franka 机械臂</strong>上进行，使用两个 <strong>Intel RealSense D435i</strong> 摄像头（第三视角和手眼视角），分辨率为 1280×720。</li><li>每个任务收集 <strong>30 条机器人演示</strong>和 <strong>50 条人类演示</strong>，其中分别有 5 条轨迹标注用于训练。</li><li>模型在 <strong>PyTorch</strong> 和 <strong>CUDA 11.8</strong> 中实现，使用 <strong>两张 NVIDIA A100 GPU</strong> 进行训练。</li><li>动作策略运行频率为 15 Hz，关系检测每 5 步执行一次。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为真实世界物理机器人，涵盖三个任务族：<strong>动态天平平衡（DSB）</strong>、<strong>顺序堆叠（SS）</strong> 和 <strong>多样化拾取放置（DPP）</strong>。</li><li>对比基线包括 <strong>FT-Pi0.5</strong>（端到端 VLA）、<strong>SeeDo</strong>（QA 式规划）和 <strong>PALO</strong>（语义规划）。</li><li>在 7 项评估设置中，<strong>TTS 平均成功率为 74.8%</strong>，最佳基线 SeeDo 仅 30.4%，TTS 在所有设置中均大幅领先。</li><li>在扰动测试下（如添加/移除物体、目标移走），TTS 仍能通过重定位和重规划保持较高成功率（如 DSB 扰动 60.0%、DPP 扰动 80.0%）。</li><li>消融实验表明：去除时间图、轨迹预测器或任务规划器都会导致性能显著下降，其中仅使用动作策略（BC）在长时程任务上成功率为 0%，验证了各层组件的必要性。</li><li>数据规模分析显示，TTS 在仅使用少量（如 10-20 条）带动作标签的演示时即可获得合理性能，体现了其数据效率。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.22869/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">UniMem: Unifying Multimodal Memory and Control for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.22419/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Robust Bimanual Vision-Language-Action Models via Embarrassingly Simple Modality Masking</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

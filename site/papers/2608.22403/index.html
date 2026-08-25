@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LD4WAM: Learning Latent Dynamics from Human Videos for World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合 核心思路是引入运动对齐的潜动态（Motion-Aligned Latent Dynamics），作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作 构建了包含 5,000+ 小时人类与机器人操作数据的统一预训练数据集，在 RoboTwin 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.22403">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.22403.webp" alt="LD4WAM: Learning Latent Dynamics from Human Videos for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">LD4WAM: Learning Latent Dynamics from Human Videos for World Action Models</h1>
+            <div class="detail-meta">2026-08-23 · <a href="http://arxiv.org/abs/2608.22403" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.22403" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.22403</span></div>
+            <p class="detail-summary">提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合 核心思路是引入运动对齐的潜动态（Motion-Aligned Latent Dynamics），作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作 构建了包含 5,000+ 小时人类与机器人操作数据的统一预训练数据集，在 RoboTwin 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者所属机构在 HTML 原文中未明确列出（仅有作者姓名列表：Zhenhao Shen、Jiaqi…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.22403/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合</p>
+  <ul class="reading-intro-points"><li>提出 LD4WAM（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合</li><li>核心思路是引入运动对齐的潜动态（Motion-Aligned Latent Dynamics），作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作</li><li>构建了包含 5,000+ 小时人类与机器人操作数据的统一预训练数据集，在 RoboTwin 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者所属机构在 HTML 原文中未明确列出（仅有作者姓名列表：Zhenhao Shen、Jiaqi Liang、Jasper Lu、Feng Jiang、Yuran Wang、Chuanbo Wei、Jiayi Liu、Jianchun Yang、Qize Yu、Jiadi You、Ce Hao、Guanqi He、Chen Xie、Ruihai Wu 等）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>LD4WAM</strong>（Learning Latent Dynamics from Human Videos for World Action Models），旨在解决人类视频预训练知识向机器人控制迁移不畅的问题——现有 WAM 仅通过像素级未来帧预测学习动态，缺乏动作标签锚定，导致动态表示与策略弱耦合</li><li>核心思路是引入<strong>运动对齐的潜动态（Motion-Aligned Latent Dynamics）</strong>，作为跨具身（embodiment-agnostic）的桥梁表示，连接高维视频先验与低层机器人动作</li><li>构建了包含 <strong>5,000+ 小时</strong>人类与机器人操作数据的统一预训练数据集，在 <strong>RoboTwin</strong> 仿真和真实机器人（抓取器与灵巧手）上验证了强操作能力与泛化性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>运动对齐潜动态</strong>与<strong>潜动态模型（LDM）</strong>：在语义特征空间中通过语义重建与运动对齐训练，作为视频先验与低层动作间的跨具身桥梁</li><li>开发<strong>世界动态动作模型（WDAM）</strong>：采用 Mixture-of-Transformers（MoT）架构，保留完整未来视频生成能力，并通过可学习查询（learnable queries）将潜动态从生成未来中蒸馏出来用于动作条件化</li><li>构建统一数据处理流程：对 8 个数据集进行分段、降采样、过滤与坐标帧统一，生成约 <strong>2.747 亿帧（5,086 小时）</strong>的跨具身预训练语料</li><li>在 <strong>RoboTwin</strong> 50 项仿真任务与 7 项真实世界任务（含灵巧手操作）上超越强基线，并展示对未见物体与背景的泛化能力</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>数据管线</strong>：长视频按标注分割为子任务片段，3-60 秒之外丢弃，统一降采样至 15 FPS；人类数据分为"动作标注"与"仅视频"两类，分别通过头部运动、手部可见性、光流相机抖动等标准过滤；动作统一到头部相机坐标系与腕部坐标系</li><li><strong>Latent Dynamics Model (LDM)</strong>：冻结 <strong>DINOv3</strong> 编码帧特征，经时空 Transformer 聚合，通过 <strong>SoftVQ</strong> 映射为潜动态 token <code>z_i</code>；两个解码头分别做语义重建（预测未来 DINOv3 特征）与运动解码（预测端到端位移 Delta EE），损失为 <code>L_LDM = L_sem + λ_m L_mot + L_vq</code></li><li><strong>World Dynamics Action Model (WDAM)</strong>：三专家结构（video expert、latent dynamics expert、action expert）共享自注意力但权重分离；video expert 从预训练 <strong>Wan2.2</strong> 视频生成模型初始化；通过非对称注意力可见性形成 <code>video → latent dynamics → action</code> 单向流水线，推理时先降噪视频，再一次性求解动作</li><li><strong>训练流程</strong>：Stage I 预训练（冻结 action expert，在全部人类与机器人数据上训练视频与潜动态专家）；Stage II 对齐训练（解冻全部专家，在通用机器人数据上对齐）；Stage III 任务特定后训练</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>聚合数据集包括 <strong>AgiBot World Colosseum</strong>、<strong>RoboMIND</strong>、<strong>RoboMIND 2.0</strong>、<strong>EgoDex</strong>、<strong>EgoSuite</strong>、<strong>Ego4D</strong>、<strong>EgoVerse</strong>、<strong>Xperience-10M</strong> 等 8 个来源</li><li>最终数据集约 <strong>274.66M 帧（5,086 小时）</strong>，其中人类数据占 76.4%，机器人数据占 23.6%</li><li>模型使用冻结 <strong>DINOv3</strong> 视觉编码器与预训练 <strong>Wan2.2</strong> 视频生成器初始化；训练资源细节见附录 C（原文未截取具体 GPU/TPU 信息）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin 仿真</strong>：50 项任务统一策略，平均成功率 <strong>93.4%</strong>（Clean 93.96%，Random 92.78%），超过 π₀.₅（79.8%）、ACE-Ego-0（90.9%）、Motus（87.8%）、Lingbot-VA（92.2%）、Fast-WAM（91.8%）、Being-H0.7（89.9%）、LaWAM（91.2%）</li><li><strong>真实世界</strong>：7 项任务（5 项抓取器 + 2 项灵巧手），平均成功率 <strong>70.5%</strong>，在 6/7 任务上最优，超越 π₀.₅（63.3%）、Fast-WAM（47.1%）、Lingbot-VA（64.3%）</li><li><strong>泛化评估</strong>：未见物体保留 88.6% 分布内性能；背景迁移（光照、纹理、干扰物）上优于 WAM 基线 +10.0/+34.4 点，但仍落后 π₀.₅（44.4% vs 54.5%），差距集中在纹理级扰动</li><li><strong>潜动态检索</strong>：跨人类与机器人数据集的余弦相似度最近邻检索能一致复现查询的运动方向，证明潜空间的跨具身一致性</li><li><strong>消融实验</strong>：运动对齐去除使回归误差膨胀 3.7–5.0 倍；硬 VQ 增加 76–88% 误差；像素重建替代语义重建降低控制性能；完整架构消融显示潜动态专家 +4.8 点、预训练 +10.8 点、对齐训练 +4.8 点，总计提升基线 23.7 点</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.22419/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Robust Bimanual Vision-Language-Action Models via Embarrassingly Simple Modality Masking</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.22364/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">WAM-OPD: On-Policy Distillation for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
