@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GlanceWAM: Sparse Test-Time Imagination for World-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。 核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 lookahead 帧，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。 在 RoboCasa kitchen（24 任务）上达到 72.2% 成功率，超过同步 Cosmos Policy（67.1%）和无想象协同训练（64.4%）；在 LIBERO 上达到 99.0% 成功率，且推理速度比同步基线快 24×。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.23927">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.23927.webp" alt="GlanceWAM: Sparse Test-Time Imagination for World-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GlanceWAM: Sparse Test-Time Imagination for World-Action Models</h1>
+            <div class="detail-meta">2026-08-25 · <a href="http://arxiv.org/abs/2608.23927" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.23927" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.23927</span></div>
+            <p class="detail-summary">提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。 核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 lookahead 帧，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。 在 RoboCasa kitchen（24 任务）上达到 72.2% 成功率，超过同步 Cosmos Policy（67.1%）和无想象协同训练（64.4%）；在 LIBERO 上达到 99.0% 成功率，且推理速度比同步基线快 24×。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Virginia Tech（林汉王、陈岱、陈银林、吕常田）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.23927/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。</p>
+  <ul class="reading-intro-points"><li>提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。</li><li>核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 lookahead 帧，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。</li><li>在 RoboCasa kitchen（24 任务）上达到 72.2% 成功率，超过同步 Cosmos Policy（67.1%）和无想象协同训练（64.4%）；在 LIBERO 上达到 99.0% 成功率，且推理速度比同步基线快 24×。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Virginia Tech</strong>（林汉王、陈岱、陈银林、吕常田）</li><li><strong>Drexel University</strong>（安子健、周立峰）</li><li><strong>Northeastern University</strong>（张明远、徐毅）</li><li><strong>Purdue University</strong>（崔灿、杨子聪）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GlanceWAM</strong> 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。</li><li>核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 <strong>lookahead 帧</strong>，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。</li><li>在 <strong>RoboCasa kitchen</strong>（24 任务）上达到 <strong>72.2%</strong> 成功率，超过同步 <strong>Cosmos Policy</strong>（67.1%）和无想象协同训练（64.4%）；在 <strong>LIBERO</strong> 上达到 <strong>99.0%</strong> 成功率，且推理速度比同步基线快 <strong>24×</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>异步测试时想象</strong> 范式：单个 lookahead 帧跨多个控制周期复用，将生成采样完全移出关键路径，显著降低实时控制延迟。</li><li>设计 <strong>非干扰 3 类 attention mask</strong>（prefix-LM 结构），防止 lookahead token 污染观测表示，保证策略增益完全来自 lookahead 条件通道。</li><li>提出 <strong>抗陈旧性（staleness-robust）视界训练</strong>：通过随机偏移采样 $u \sim \mathcal{U}(0, H_f]$ 和显式时间偏移条件，使策略适应异步执行中 lookahead 的老化。</li><li>实现 <strong>纯潜空间控制路径</strong>：生成 lookahead 潜变量后不做 VAE 解码，直接在潜空间作为条件 token 指导动作解码，省去像素解码开销。</li><li>通过注意力分析与扰动实验证明了 lookahead 条件在因果上对动作决策是负载关键的。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>SkyReels-V2-DF-1.3B</strong> 视频扩散 Transformer 作为统一 backbone，联合训练视频世界模型与 flow-matching 动作头。</li><li>训练窗口包含三种视觉角色：观测历史（无噪声）、未来目标（噪声化，视界 $H_f \approx 3$ s）、lookahead 条件（干净帧，随机偏移 $u$），并采用两遍 VAE 编码防止时序信息泄漏。</li><li>联合优化视频速度预测损失 $\mathcal{L}_{\text{video}}$ 与动作回归损失 $\mathcal{L}_{\text{action}}$，动作头跨注意力到四层均匀分布的 DiT 特征（层 5/12/19/26），并结合 lookahead 偏移 $\Delta$ 的显式时间嵌入。</li><li>推理时每 $H_f$ 秒运行 1–10 步 ODE 采样生成 lookahead 潜变量，动作块在 48 ms 内解码，lookahead 生成与动作执行异步流水线并行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboCasa kitchen</strong>：24 个厨房操作任务，每任务 50 条演示（低数据规模），3 个 RGB 相机视角，保持场景评估。</li><li><strong>LIBERO</strong>：4 个基准套件（Spatial/Object/Goal/Long）各 10 任务，每任务 50 条演示，2 个 RGB 视角。</li><li>模型基础：<strong>SkyReels-V2-DF-1.3B</strong>（1.3B 参数视频 DiT）。</li><li>训练资源：<strong>4× NVIDIA H200 GPU</strong>；优化器与学习率调度详见附录 E。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboCasa kitchen</strong>：GlanceWAM 平均成功率 <strong>72.2%</strong>，超越 Cosmos Policy（67.1%）、FLARE（66.4%）、Video Policy（66.0%）及使用 300 demos/task 的 GR00T-N1.5+HAMLET（66.4%）。</li><li><strong>LIBERO</strong>：平均成功率 <strong>99.0%</strong>（Spatial 99.4%、Object 100.0%、Goal 99.0%、Long 97.8%），成为基准上最优模型之一。</li><li><strong>推理效率</strong>：动作解码 48 ms/chunk（单张 A100 GPU），而无 lookahead 基线为 64.4%，证明视觉预判是关键增益来源。</li><li><strong>组件消融</strong>（RoboCasa）：无 lookahead 协同训练 64.4%；单层 lookahead 提取 71.5%；多层提取 72.2%。评估时置零 lookahead token 后成功率降至 61.6%，证明 lookahead 条件因果负载关键。</li><li><strong>生成计算分配</strong>：1 步 Euler 采样即达 71.2% 成功率，与 10 步采样（71.5%）相当，异步摊销后生成开销仅约 2%。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.24042/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.23831/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Learning to Act While Waiting: RL Finetuning of Generalist Robot Policies Under Inference Latency</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

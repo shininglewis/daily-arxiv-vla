@@ -1,5 +1,237 @@
 [
   {
+    "date": "2026-08-25",
+    "title": "Latent Action as Intention Enables Efficient Future Imagination for World Action Models",
+    "link": "http://arxiv.org/abs/2608.24882",
+    "arxiv_id": "2608.24882",
+    "detail_path": "papers/2608.24882/",
+    "cover_path": "covers/2608.24882/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24882.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24882.webp",
+    "preview_text": "论文提出 LAWA（Latent Action as Intention for World Action Models），一种新型世界动作模型架构，将紧凑的潜变量动作作为未来意图的操作性表示，在不生成未来观测的情况下实现高效的测试时未来想象。 论文解决了现有 WAM 范式的两难问题：Joint-WAM（联合生成未来视频与动作）泛化性能好但推理延迟高；Fast-WAM（去除测试时未来想象）推理快但泛化能力差，尤其在机器人演示稀缺和分布外场景下。 核心思路是将未来想象从观测空间迁移到紧凑的潜变量动作空间——预测的潜变量动作序列作为未来意图指导动作生成，既保留未来感知的动作生成能力，又避免昂贵的视觉预测。",
+    "research_unit": "CollegeAI, THU（清华大学）",
+    "hook_text": "论文提出 LAWA（Latent Action as Intention for World Action Models），一种新型世界动作模型架构，将紧凑的潜变量动作作为未来意图的操作性表示，在不生成未来观测的情况下实现高效的测试时未来想象。",
+    "key_points": [
+      "论文提出 LAWA（Latent Action as Intention for World Action Models），一种新型世界动作模型架构，将紧凑的潜变量动作作为未来意图的操作性表示，在不生成未来观测的情况下实现高效的测试时未来想象。",
+      "论文解决了现有 WAM 范式的两难问题：Joint-WAM（联合生成未来视频与动作）泛化性能好但推理延迟高；Fast-WAM（去除测试时未来想象）推理快但泛化能力差，尤其在机器人演示稀缺和分布外场景下。",
+      "核心思路是将未来想象从观测空间迁移到紧凑的潜变量动作空间——预测的潜变量动作序列作为未来意图指导动作生成，既保留未来感知的动作生成能力，又避免昂贵的视觉预测。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "GaussianWAM: Distilling Geometry and Semantics from 3D Gaussian Fields into World-Action Models",
+    "link": "http://arxiv.org/abs/2608.24714",
+    "arxiv_id": "2608.24714",
+    "detail_path": "papers/2608.24714/",
+    "cover_path": "covers/2608.24714/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24714.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24714.webp",
+    "preview_text": "提出 GaussianWAM，一个面向世界动作模型（World-Action Models, WAMs）的训练时表示增强框架，利用 3D 高斯场作为统一空间载体，将几何与视觉语义监督组织并蒸馏进 WAM 的当前观测表示。 现有 WAM 的视频潜变量主要针对视觉预测优化，缺乏显式的跨视角几何结构约束和空间定位的物体级语义约束；直接使用多个异构教师分别蒸馏缺乏共享空间载体，而显式 3D/4D 世界模型又会增加训练和推理成本。 GaussianWAM 在训练时构建高斯教师，渲染语义、深度和覆盖率目标并蒸馏到 WAM 表示中；推理时完全移除所有额外模块，保持原始 WAM 推理路径和计算开销不变。",
+    "research_unit": "Tuojing Intelligence（托睛智能）",
+    "hook_text": "提出 GaussianWAM，一个面向世界动作模型（World-Action Models, WAMs）的训练时表示增强框架，利用 3D 高斯场作为统一空间载体，将几何与视觉语义监督组织并蒸馏进 WAM 的当前观测表示。",
+    "key_points": [
+      "提出 GaussianWAM，一个面向世界动作模型（World-Action Models, WAMs）的训练时表示增强框架，利用 3D 高斯场作为统一空间载体，将几何与视觉语义监督组织并蒸馏进 WAM 的当前观测表示。",
+      "现有 WAM 的视频潜变量主要针对视觉预测优化，缺乏显式的跨视角几何结构约束和空间定位的物体级语义约束；直接使用多个异构教师分别蒸馏缺乏共享空间载体，而显式 3D/4D 世界模型又会增加训练和推理成本。",
+      "GaussianWAM 在训练时构建高斯教师，渲染语义、深度和覆盖率目标并蒸馏到 WAM 表示中；推理时完全移除所有额外模块，保持原始 WAM 推理路径和计算开销不变。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "Gripper-aware Vision Language Action Models",
+    "link": "http://arxiv.org/abs/2608.24603",
+    "arxiv_id": "2608.24603",
+    "detail_path": "papers/2608.24603/",
+    "cover_path": "covers/2608.24603/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24603.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24603.webp",
+    "preview_text": "论文针对现有视觉语言动作模型（VLA）隐含假设夹爪不变性的问题，指出不同的夹爪类型（如平行爪、吸盘、软体夹爪、灵巧手等）需要本质不同的操作策略来实现相同的任务目标。 现有的机器人数据集（如Open X-Embodiment、DROID、Bridge V2）以平行爪为主，缺乏夹爪多样性，且未显式编码夹爪依赖的策略差异，限制了VLA学习夹爪感知策略。 为此作者引入MiGA多夹爪数据集和GVLA夹爪感知VLA框架，旨在回答\"VLA能否学习多夹爪的具身依赖性和策略级差异\"这一核心问题。",
+    "research_unit": "University of Liverpool, UK（利物浦大学，英国）",
+    "hook_text": "论文针对现有视觉语言动作模型（VLA）隐含假设夹爪不变性的问题，指出不同的夹爪类型（如平行爪、吸盘、软体夹爪、灵巧手等）需要本质不同的操作策略来实现相同的任务目标。",
+    "key_points": [
+      "论文针对现有视觉语言动作模型（VLA）隐含假设夹爪不变性的问题，指出不同的夹爪类型（如平行爪、吸盘、软体夹爪、灵巧手等）需要本质不同的操作策略来实现相同的任务目标。",
+      "现有的机器人数据集（如Open X-Embodiment、DROID、Bridge V2）以平行爪为主，缺乏夹爪多样性，且未显式编码夹爪依赖的策略差异，限制了VLA学习夹爪感知策略。",
+      "为此作者引入MiGA多夹爪数据集和GVLA夹爪感知VLA框架，旨在回答\"VLA能否学习多夹爪的具身依赖性和策略级差异\"这一核心问题。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "PonderPounce: A Pretrained MLLM as an Episode Context Engine for Robot Control",
+    "link": "http://arxiv.org/abs/2608.24115",
+    "arxiv_id": "2608.24115",
+    "detail_path": "papers/2608.24115/",
+    "cover_path": "covers/2608.24115/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24115.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24115.webp",
+    "preview_text": "论文提出 PonderPounce 系统，将预训练多模态大语言模型（MLLM）的原生因果上下文重新利用为机器人控制的\"情景上下文引擎\"（episode context engine），而非构建专门的情景记忆模块。 系统由两个异步组件组成：Ponder（System 2 MLLM）负责累积 episode 观察、演示与内部认知；Pounce（System 1 VLA）接收最新认知 token 及其年龄，快速生成动作。 核心解决的是\"长时程记忆依赖\"与\"测试时演示条件化\"两类上下文相关控制问题。在 RoboMME 上，仅看当前观察的基线的成功率仅 17.93%，而人类达到 90.50%，凸显了使可操作上下文可用于控制器的重要性。",
+    "research_unit": "MAUM.AI",
+    "hook_text": "论文提出 PonderPounce 系统，将预训练多模态大语言模型（MLLM）的原生因果上下文重新利用为机器人控制的\"情景上下文引擎\"（episode context engine），而非构建专门的情景记忆模块。",
+    "key_points": [
+      "论文提出 PonderPounce 系统，将预训练多模态大语言模型（MLLM）的原生因果上下文重新利用为机器人控制的\"情景上下文引擎\"（episode context engine），而非构建专门的情景记忆模块。",
+      "系统由两个异步组件组成：Ponder（System 2 MLLM）负责累积 episode 观察、演示与内部认知；Pounce（System 1 VLA）接收最新认知 token 及其年龄，快速生成动作。",
+      "核心解决的是\"长时程记忆依赖\"与\"测试时演示条件化\"两类上下文相关控制问题。在 RoboMME 上，仅看当前观察的基线的成功率仅 17.93%，而人类达到 90.50%，凸显了使可操作上下文可用于控制器的重要性。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "TrAct: Bridging Robot Control and Visual Prediction with Visual Tracks",
+    "link": "http://arxiv.org/abs/2608.24101",
+    "arxiv_id": "2608.24101",
+    "detail_path": "papers/2608.24101/",
+    "cover_path": "covers/2608.24101/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24101.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24101.webp",
+    "preview_text": "TrAct（Track & Act）提出了一个以视觉点轨迹（visual tracks）为中间接口的机器人决策框架，将机器人策略学习与世界模型预测桥接起来。 核心动机：机器人动作（actions）具有具身特异性，与图像空间视觉变化弱对齐，难以作为世界模型的有效条件；而视觉轨迹是与具身无关（embodiment-agnostic）的稠密图像空间引导，能更精确地预测未来视频。 框架由三部分组成：VLAT 联合预测动作与视觉轨迹、TWM 以轨迹为条件的未来视频世界模型、VLAC 视觉语言奖励模型对预测结果评分，最终选择最优动作执行。",
+    "research_unit": "University of Michigan（密歇根大学）与 Stanford University（…",
+    "hook_text": "TrAct（Track & Act）提出了一个以视觉点轨迹（visual tracks）为中间接口的机器人决策框架，将机器人策略学习与世界模型预测桥接起来。",
+    "key_points": [
+      "TrAct（Track & Act）提出了一个以视觉点轨迹（visual tracks）为中间接口的机器人决策框架，将机器人策略学习与世界模型预测桥接起来。",
+      "核心动机：机器人动作（actions）具有具身特异性，与图像空间视觉变化弱对齐，难以作为世界模型的有效条件；而视觉轨迹是与具身无关（embodiment-agnostic）的稠密图像空间引导，能更精确地预测未来视频。",
+      "框架由三部分组成：VLAT 联合预测动作与视觉轨迹、TWM 以轨迹为条件的未来视频世界模型、VLAC 视觉语言奖励模型对预测结果评分，最终选择最优动作执行。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "Hierarchical Skill Retrieval for Data-Efficient Adaptation of Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.24042",
+    "arxiv_id": "2608.24042",
+    "detail_path": "papers/2608.24042/",
+    "cover_path": "covers/2608.24042/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.24042.webp",
+    "paper_image_full_path": "assets/paper-images/2608.24042.webp",
+    "preview_text": "论文针对 视觉-语言-动作（VLA）模型 在目标任务演示数据稀缺时性能下降的问题，提出一种层级技能检索框架 HSR（Hierarchical Skill Retrieval），用于数据高效的 VLA 模型自适应。 核心思路是：对于长时程操作任务（如\"泡一杯茶\"），完整的任务级演示在已有数据集中极少，但构成该任务的原子技能（如\"抓取茶壶\"、\"拿起茶包\"）往往大量存在。HSR 通过将目标任务分解为可复用的技能序列，在技能层级进行演示检索，从而更精确地复用先验数据。 论文在 LIBERO 仿真基准和多个真实世界长时程机器人操作任务上验证了 HSR 的有效性，相比最强基线分别提升平均成功率 10.3% 和 21.3%。",
+    "research_unit": "卡内基梅隆大学（Carnegie Mellon University）机器人研究所（Robotics…",
+    "hook_text": "论文针对 视觉-语言-动作（VLA）模型 在目标任务演示数据稀缺时性能下降的问题，提出一种层级技能检索框架 HSR（Hierarchical Skill Retrieval），用于数据高效的 VLA 模型自适应。",
+    "key_points": [
+      "论文针对 视觉-语言-动作（VLA）模型 在目标任务演示数据稀缺时性能下降的问题，提出一种层级技能检索框架 HSR（Hierarchical Skill Retrieval），用于数据高效的 VLA 模型自适应。",
+      "核心思路是：对于长时程操作任务（如\"泡一杯茶\"），完整的任务级演示在已有数据集中极少，但构成该任务的原子技能（如\"抓取茶壶\"、\"拿起茶包\"）往往大量存在。HSR 通过将目标任务分解为可复用的技能序列，在技能层级进行演示检索，从而更精确地复用先验数据。",
+      "论文在 LIBERO 仿真基准和多个真实世界长时程机器人操作任务上验证了 HSR 的有效性，相比最强基线分别提升平均成功率 10.3% 和 21.3%。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "GlanceWAM: Sparse Test-Time Imagination for World-Action Models",
+    "link": "http://arxiv.org/abs/2608.23927",
+    "arxiv_id": "2608.23927",
+    "detail_path": "papers/2608.23927/",
+    "cover_path": "covers/2608.23927/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23927.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23927.webp",
+    "preview_text": "提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。 核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 lookahead 帧，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。 在 RoboCasa kitchen（24 任务）上达到 72.2% 成功率，超过同步 Cosmos Policy（67.1%）和无想象协同训练（64.4%）；在 LIBERO 上达到 99.0% 成功率，且推理速度比同步基线快 24×。",
+    "research_unit": "Virginia Tech（林汉王、陈岱、陈银林、吕常田）",
+    "hook_text": "提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。",
+    "key_points": [
+      "提出 GlanceWAM 框架，解决世界-动作模型（WAM）中同步视频生成带来的推理延迟过高与预测视界退化问题，打破“速度–成功率”两难困境。",
+      "核心思路：将视觉想象从控制环路中解耦——在后台以慢时钟异步生成单个数秒后的 lookahead 帧，动作头以 48 ms 的控制频率在纯潜空间中解码动作块，实现实时推理与更高任务成功率兼得。",
+      "在 RoboCasa kitchen（24 任务）上达到 72.2% 成功率，超过同步 Cosmos Policy（67.1%）和无想象协同训练（64.4%）；在 LIBERO 上达到 99.0% 成功率，且推理速度比同步基线快 24×。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-24",
+    "title": "Learning to Act While Waiting: RL Finetuning of Generalist Robot Policies Under Inference Latency",
+    "link": "http://arxiv.org/abs/2608.23831",
+    "arxiv_id": "2608.23831",
+    "detail_path": "papers/2608.23831/",
+    "cover_path": "covers/2608.23831/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.23831.webp",
+    "paper_image_full_path": "assets/paper-images/2608.23831.webp",
+    "preview_text": "论文针对通用机器人策略（如视觉-语言-动作模型 VLA）在部署中因推理延迟而导致 RL 微调失效的问题，提出了一种延迟感知的微调框架 Arli（Asynchronous RL with Intermediate Information）。 核心思路是结合异步推理（在动作执行的同时计算下一动作）与 RL 微调，通过状态增强恢复近马尔可夫性，使标准 RL 算法在延迟条件下仍能有效学习。 论文在模拟和真实世界操纵任务上验证了 Arli 的有效性，显示其能匹配甚至超越无延迟理想条件下的标准 RL 性能。",
+    "research_unit": "Siemens",
+    "hook_text": "论文针对通用机器人策略（如视觉-语言-动作模型 VLA）在部署中因推理延迟而导致 RL 微调失效的问题，提出了一种延迟感知的微调框架 Arli（Asynchronous RL with Intermediate Information）。",
+    "key_points": [
+      "论文针对通用机器人策略（如视觉-语言-动作模型 VLA）在部署中因推理延迟而导致 RL 微调失效的问题，提出了一种延迟感知的微调框架 Arli（Asynchronous RL with Intermediate Information）。",
+      "核心思路是结合异步推理（在动作执行的同时计算下一动作）与 RL 微调，通过状态增强恢复近马尔可夫性，使标准 RL 算法在延迟条件下仍能有效学习。",
+      "论文在模拟和真实世界操纵任务上验证了 Arli 的有效性，显示其能匹配甚至超越无延迟理想条件下的标准 RL 性能。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-24",
     "title": "GeoWAM: Visual Geometry World Action Models for Autonomous Driving",
     "link": "http://arxiv.org/abs/2608.23486",
@@ -39275,8 +39507,8 @@
     "arxiv_id": "2506.17639",
     "detail_path": "papers/2506.17639/",
     "cover_path": "covers/2506.17639/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2506.17639.webp",
+    "paper_image_full_path": "assets/paper-images/2506.17639.webp",
     "preview_text": "视觉-语言-动作模型在解决复杂机器人操作任务方面表现出色，但巨大的参数量和推理延迟限制了其在资源受限平台上的部署。 论文旨在解决VLA模型因模型规模庞大导致的部署难题，提出了一个名为 RLRC 的三阶段压缩与恢复框架。 RLRC实现了高达 8倍 的内存减少和 2.3倍 的推理吞吐量提升，同时保持甚至超越了原始模型的任务成功率。",
     "research_unit": "上海交通大学 机械工程学院",
     "hook_text": "视觉-语言-动作模型在解决复杂机器人操作任务方面表现出色，但巨大的参数量和推理延迟限制了其在资源受限平台上的部署。",
@@ -39304,8 +39536,8 @@
     "arxiv_id": "2506.17561",
     "detail_path": "papers/2506.17561/",
     "cover_path": "covers/2506.17561/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2506.17561.webp",
+    "paper_image_full_path": "assets/paper-images/2506.17561.webp",
     "preview_text": "该论文系统地研究了视觉-语言-动作（VLA）模型中的任务规划范式和表示方法，旨在解决现有方法在网络架构、规划范式、表示和训练数据方面的差异问题 论文提出 VLA-OS 统一架构系列，支持三种主流 VLA 范式：ActionOnly-VLA、Integrated-VLA 和 Hierarchical-VLA，通过控制变量实验比较不同范式的优劣 研究回答了五个核心问题：任务规划的表示选择、范式选择、瓶颈分析、可扩展性与预训练效果、泛化与持续学习能力",
     "research_unit": "National University of Singapore (新加坡国立大学) - Chongk…",
     "hook_text": "该论文系统地研究了视觉-语言-动作（VLA）模型中的任务规划范式和表示方法，旨在解决现有方法在网络架构、规划范式、表示和训练数据方面的差异问题",
