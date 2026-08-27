@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MA-VLA: Multi-Arm Vision-Language-Action Model for Collaboration and Compositional Generalization - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文提出 MA-VLA（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的组合泛化（Compositional Generalization）难题。 现有 VLA 模型通常将自然语言视为单一全局指令，缺乏显式的任务分解与跨臂子任务分配机制，导致模型对训练中见过的协作模式过拟合，难以泛化到未见过的协作模式（如新的叠放顺序、物体传递策略）。 MA-VLA 通过原子动作分配（Atomic Action Assignment）将高层指令分解为每臂的中层原子提示（Atomic Prompts），并引入 Arm Shuffle 训练策略强制模型进行角色无关的指令跟随，从而实现对未见协作模式的组合重配。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.25864">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.25864.webp" alt="MA-VLA: Multi-Arm Vision-Language-Action Model for Collaboration and Compositional Generalization" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文提出 MA-VLA（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的组合泛化（Compositional Generalization）难题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">MA-VLA: Multi-Arm Vision-Language-Action Model for Collaboration and Compositional Generalization</h1>
+            <div class="detail-meta">2026-08-26 · <a href="http://arxiv.org/abs/2608.25864" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.25864" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.25864</span></div>
+            <p class="detail-summary">本文提出 MA-VLA（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的组合泛化（Compositional Generalization）难题。 现有 VLA 模型通常将自然语言视为单一全局指令，缺乏显式的任务分解与跨臂子任务分配机制，导致模型对训练中见过的协作模式过拟合，难以泛化到未见过的协作模式（如新的叠放顺序、物体传递策略）。 MA-VLA 通过原子动作分配（Atomic Action Assignment）将高层指令分解为每臂的中层原子提示（Atomic Prompts），并引入 Arm Shuffle 训练策略强制模型进行角色无关的指令跟随，从而实现对未见协作模式的组合重配。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">大连理工大学（Dalian University of Technology）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.25864/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文提出 MA-VLA（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的组合泛化（Compositional Generalization）难题。</p>
+  <ul class="reading-intro-points"><li>本文提出 MA-VLA（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的组合泛化（Compositional Generalization）难题。</li><li>现有 VLA 模型通常将自然语言视为单一全局指令，缺乏显式的任务分解与跨臂子任务分配机制，导致模型对训练中见过的协作模式过拟合，难以泛化到未见过的协作模式（如新的叠放顺序、物体传递策略）。</li><li>MA-VLA 通过原子动作分配（Atomic Action Assignment）将高层指令分解为每臂的中层原子提示（Atomic Prompts），并引入 Arm Shuffle 训练策略强制模型进行角色无关的指令跟随，从而实现对未见协作模式的组合重配。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>大连理工大学（Dalian University of Technology）</strong></li><li><strong>上海交通大学（Shanghai Jiao Tong University）</strong></li><li><strong>中国科学技术大学（University of Science and Technology of China）</strong></li><li><strong>中山大学（Sun Yat-sen University）</strong></li><li><strong>香港中文大学（深圳）（The Chinese University of Hong Kong, Shenzhen）</strong></li><li><strong>北京航空航天大学（Beihang University）</strong></li><li><strong>牛津大学（University of Oxford）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文提出 <strong>MA-VLA</strong>（Multi-Arm Vision-Language-Action Model），一个用于多臂机器人协作的统一视觉-语言-动作框架，核心目标是解决多臂协作中的<strong>组合泛化（Compositional Generalization）</strong>难题。</li><li>现有 VLA 模型通常将自然语言视为单一全局指令，缺乏显式的任务分解与跨臂子任务分配机制，导致模型对训练中见过的协作模式过拟合，难以泛化到未见过的协作模式（如新的叠放顺序、物体传递策略）。</li><li>MA-VLA 通过<strong>原子动作分配（Atomic Action Assignment）</strong>将高层指令分解为每臂的中层原子提示（Atomic Prompts），并引入 <strong>Arm Shuffle</strong> 训练策略强制模型进行角色无关的指令跟随，从而实现对未见协作模式的组合重配。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MA-VLA</strong> 框架，将多臂协作行为显式分解为中层原子动作并分配到各机械臂，在共享模型中统一推理多臂动作，实现任务分解与控制的端到端协同。</li><li>引入 <strong>Arm Shuffle</strong> 训练时排列策略，随机置换各臂的观察、状态与原子提示，阻止模型将行为绑定到固定臂索引，显著提升角色无关的指令跟随能力。</li><li>引入 <strong>View Dropout</strong> 视觉正则化策略，随机遮蔽部分相机视角，增强模型对多视角冗余信息的鲁棒感知。</li><li>构建了一个测试时协作模式在训练集中完全未出现的<strong>组合泛化基准</strong>，并验证了先前的 SOTA VLA 模型在此设置下几乎完全失败，而 MA-VLA 持续成功。</li><li>在 <strong>RoboFactory</strong>、<strong>RoboTwin 2.0</strong> 和真实世界的双机械臂 <strong>SO101</strong> 平台上均验证了方法的有效性，实现了域内协作和域外组合泛化的双重提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>VLM-based Planner</strong>：使用 <strong>GPT-4.1</strong> 将高层指令分解为按时间排序的逐阶段原子提示序列，每个提示从预定义的有限原子动作模板集合 \(\mathcal{A}\) 中选取，为每只手臂指定明确子目标。</li><li><strong>VLA Executor</strong>：基于 <strong>Pi0</strong>（<code>pi0_base</code> checkpoint）作为骨干，将多臂的原子提示拼接为统一指令字符串，结合多视角视觉输入与全局/腕部相机、多臂本体感受状态，通过流匹配（Flow Matching）生成连续多臂动作。</li><li><strong>Arm Shuffle</strong>：训练时以概率 \(p_{\text{shuffle}}\) 随机置换各臂的状态、视图、提示和动作元组，强制模型依据语义而非空间位置解释原子提示。</li><li><strong>View Dropout</strong>：训练时以概率 \(p_{\text{drop}}\) 将随机子集的相机视图置零，提升模型对视角缺失的鲁棒性。</li><li>两项策略均为数据级扰动，保持原始行为克隆目标不变，在推理时无需额外开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真数据集：<strong>RoboFactory</strong>（2–4 臂协作任务）、<strong>RoboTwin 2.0 (Hard)</strong>（双臂协作，含强烈视觉扰动）。</li><li>真实数据集：<strong>SO101</strong> 双机械臂平台（12 自由度，6 自由度假 + 全局 RGB 相机 + 每臂腕部相机，30Hz）。</li><li>每任务采集 <strong>150</strong> 条专家演示（仿真）或 <strong>50</strong> 条遥操作演示（真实），通过规则解析器将演示转换为帧级原子动作标签。</li><li>Backbone：<strong>Pi0</strong>（3.2B？未明确，基于官方 <code>pi0_base</code> checkpoint）；Planner 为 <strong>GPT-4.1</strong>。</li><li>训练资源：<strong>2× NVIDIA A800 GPU</strong>，批次大小 <strong>32</strong>，动作预测地平线为 <strong>50</strong>，训练步数因任务规模而异。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboFactory 域内协作</strong>：MA-VLA 在两臂任务平均成功率 <strong>83.5%</strong>（Pi0 为 80.3%），三臂任务 <strong>83.3%</strong>（Pi0 为 76.5%），其中 4 臂 Camera Alignment 达 96%、Long Pipeline Delivery 达 97%。</li><li><strong>RoboTwin 2.0 (Hard) 域内协作</strong>：MA-VLA 平均成功率 <strong>49.0%</strong>（Pi0 为 41.1%），在 Place Dual Shoes（22%）和 Handover Block（46%）上显著领先。</li><li><strong>域外组合泛化</strong>：在未见过的三臂叠放顺序（GBR/RGB/BRG）、Pass Two Shoes、Reverse Stack Bowls 等任务上，DP、Pi0-FAST、Pi0 全部为 <strong>0.0%</strong> 成功率，MA-VLA 平均达 <strong>13.0%</strong>，其中 GBR 顺序达 28%。</li><li><strong>真实 SO101 结果</strong>：MA-VLA 在 Stack Bowls 的 OOD 设置下实现 <strong>10/20</strong> × 成功率，而 Pi0 为 <strong>0/20</strong>；在其余 3 个 OOD 任务中同样实现非零成功率。</li><li><strong>消融实验</strong>：单独加入原子动作将域内成功率从 48% 提升至 58%；加入 Arm Shuffle 后域外泛化从 0.0% 跃升至 7.3%；再加入 View Dropout 后进一步提升至 <strong>15.3%</strong>，验证了三项组件的必要性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.25956/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">4DGS-WAM: Bridging Past and Future with an Object-Centric World Action Model based on 4D Gaussian Splatting</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.25798/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TacForcing: Streaming Action Generation with Execution-Time Tactile Feedback</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

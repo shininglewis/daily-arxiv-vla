@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Taxonomy of Construction Task Activities for Robot Workers - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 TARCAT（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系 研究旨在解决现有施工机器人多为任务专用（task-specific）、缺乏通用能力规范的问题，为通用型建筑机器人提供一套可解释、可组合的动作原语词汇表 该分类体系可用于组织示范数据、明确机器人能力需求，并支持像 ASPIRE 这样的机器人编程智能体进行技能库的检索与扩展" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.25395">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.25395.webp" alt="A Taxonomy of Construction Task Activities for Robot Workers" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 TARCAT（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">A Taxonomy of Construction Task Activities for Robot Workers</h1>
+            <div class="detail-meta">2026-08-26 · <a href="http://arxiv.org/abs/2608.25395" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.25395" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.25395</span></div>
+            <p class="detail-summary">论文提出 TARCAT（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系 研究旨在解决现有施工机器人多为任务专用（task-specific）、缺乏通用能力规范的问题，为通用型建筑机器人提供一套可解释、可组合的动作原语词汇表 该分类体系可用于组织示范数据、明确机器人能力需求，并支持像 ASPIRE 这样的机器人编程智能体进行技能库的检索与扩展</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">6 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">加州大学尔湾分校（University of California-Irvine），包括 Nhu 电气…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.25395/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 TARCAT（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系</p>
+  <ul class="reading-intro-points"><li>论文提出 TARCAT（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系</li><li>研究旨在解决现有施工机器人多为任务专用（task-specific）、缺乏通用能力规范的问题，为通用型建筑机器人提供一套可解释、可组合的动作原语词汇表</li><li>该分类体系可用于组织示范数据、明确机器人能力需求，并支持像 ASPIRE 这样的机器人编程智能体进行技能库的检索与扩展</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>加州大学尔湾分校（University of California-Irvine）</strong>，包括 <strong>Nhu 电气工程与计算机科学系</strong> 以及 <strong>土木与环境工程系</strong></li><li>作者团队由 <strong>Sadman Sakib</strong>、<strong>Zhangyi None Peng</strong>、<strong>Yujie Pang</strong>、<strong>Yu Otsuki</strong> 和 <strong>Mohammad Abdullah Al Faruque</strong> 组成</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>TARCAT</strong>（Taxonomy of Construction Task Activities for Robot Workers），一个面向建筑机器人工人的、基于职业（occupation-grounded）的施工任务活动分类体系</li><li>研究旨在解决现有施工机器人多为任务专用（task-specific）、缺乏通用能力规范的问题，为通用型建筑机器人提供一套可解释、可组合的动作原语词汇表</li><li>该分类体系可用于组织示范数据、明确机器人能力需求，并支持像 <strong>ASPIRE</strong> 这样的机器人编程智能体进行技能库的检索与扩展</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>定义了 <strong>41 个动作原语</strong>，组织为 <strong>12 个功能组</strong> 和 <strong>3 个大类</strong>（信息处理、沟通、工具使用）</li><li>提出了将 <strong>参数化原语序列</strong> 组合为 <strong>可重用技能</strong> 的机制，技能可跨任务和职业复用</li><li>构建了 <strong>30 个教学视频</strong> 的标注数据集，覆盖 <strong>7 个高就业建筑职业</strong> 和 **91 个 O*NET 任务**</li><li>在 <strong>DOBOT CR3 协作机械臂 + CRAFT 灵巧手</strong> 平台上完成了 4 个动作原语的初步物理验证</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>利用 <strong>美国劳工部</strong> 的 **O*NET<strong> 任务声明和 </strong>BLS** 就业数据确定职业范围，选取 7 个高就业建筑职业（如建筑工人、木匠、电工、水管工、油漆工、砖瓦工、屋顶工）</li><li>使用 <strong>ChatGPT/GPT-5.6</strong> 从 YouTube 检索教学视频，并由人工对视频中的活动进行带时间戳的标注，赋予动作原语和技能标签</li><li>原语按 <strong>类（Class）— 组（Group）— 动作原语（Action Primitive）</strong> 三级层次组织，区分信息处理、沟通与工具使用三类能力</li><li>技能表示采用 <strong>带变量的有序动作序列</strong>，任务（Task）层支持同时动作、重复动作（repeated 属性）和嵌套技能（子技能）的表达</li><li>创新点在于：以职业为锚定，而非以工具或职业身份区分能力，从而支持跨工种迁移并保留控制相关的差异</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集来源：**O*NET 数据库<strong>（169 条任务声明，其中 137 条需要物理运动）和 </strong>BLS 职业展望手册**</li><li>视频语料：<strong>30 个 YouTube 教学视频</strong>，覆盖 **91 个 O*NET 任务**</li><li>涉及职业：<strong>Construction Laborers</strong>、<strong>Carpenters</strong>、<strong>Electricians</strong>、<strong>Plumbers/Pipefitters/Steamfitters</strong>、<strong>Painters</strong>、<strong>Brickmasons/Blockmasons</strong>、<strong>Roofers</strong></li><li>硬件平台：<strong>DOBOT CR3</strong>（六轴协作机械臂） + <strong>CRAFT 灵巧手</strong>（15 个执行器，腱驱动，软硬混合柔性）</li><li>标注数据开源：https://github.com/AICPS/TARCAT-Taxonomy</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估方式为 <strong>真实世界硬件部署</strong>，在 DOBOT CR3 + CRAFT 手上执行了 4 个动作原语：定位电动螺丝刀、将锤子放入盒子、钉钉子、将物体刷到一旁</li><li>这些演示覆盖了 <strong>臂部平移与定位</strong>、<strong>臂与腕部旋转</strong>、<strong>表面接触操作</strong> 三个原语组，验证了分类学元素可映射为可执行的物理行为</li><li>演示视频公开于：https://youtu.be/Dc-bcWGwTLc</li><li>当前评估属于 <strong>初步验证（preliminary）</strong>，局限性包括仅覆盖 7 个职业、每个任务示范数量较少，未来需扩展语料、量化标注一致性，并在移动操作平台和人形机器人上实现更多原语</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.25585/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">RA-VLA: Retrieval-Augmented VLA for Test-Time Adaptation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.25308/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">V-Link: Recovering Lost Visual Representations in Action DiT for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
