@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrapVLA: Trapping Vision-Language-Action Models in Configured Failure Modes - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的&quot;配置式故障模式&quot;。 与以往只追求&quot;任务失败&quot;这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。 为解决该任务，论文构建了数据引擎 TrapEngine、自动化评估套件 TrapEval、攻击方法 TrapVLA，并在仿真与真实机器人上验证了四种故障模式的注入效果。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.26578">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.26578.webp" alt="TrapVLA: Trapping Vision-Language-Action Models in Configured Failure Modes" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的&quot;配置式故障模式&quot;。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">TrapVLA: Trapping Vision-Language-Action Models in Configured Failure Modes</h1>
+            <div class="detail-meta">2026-08-27 · <a href="http://arxiv.org/abs/2608.26578" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.26578" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.26578</span></div>
+            <p class="detail-summary">论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的&quot;配置式故障模式&quot;。 与以往只追求&quot;任务失败&quot;这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。 为解决该任务，论文构建了数据引擎 TrapEngine、自动化评估套件 TrapEval、攻击方法 TrapVLA，并在仿真与真实机器人上验证了四种故障模式的注入效果。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">中山大学（Sun Yat-sen University） 计算机科学与工程学院</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.26578/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的&quot;配置式故障模式&quot;。</p>
+  <ul class="reading-intro-points"><li>论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的&quot;配置式故障模式&quot;。</li><li>与以往只追求&quot;任务失败&quot;这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。</li><li>为解决该任务，论文构建了数据引擎 TrapEngine、自动化评估套件 TrapEval、攻击方法 TrapVLA，并在仿真与真实机器人上验证了四种故障模式的注入效果。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>中山大学（Sun Yat-sen University）</strong> 计算机科学与工程学院</li><li><strong>鹏城实验室（Pengcheng Laboratory）</strong></li><li><strong>香港大学（The University of Hong Kong）</strong></li><li><strong>江西省智能（贵州）科技有限公司（Jiangxing Intelligence）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Configured Failure Trapping（配置式故障陷阱）</strong>，一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的"配置式故障模式"。</li><li>与以往只追求"任务失败"这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。</li><li>为解决该任务，论文构建了数据引擎 <strong>TrapEngine</strong>、自动化评估套件 <strong>TrapEval</strong>、攻击方法 <strong>TrapVLA</strong>，并在仿真与真实机器人上验证了四种故障模式的注入效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次提出 Configured Failure Trapping 这一新型 VLA 后门攻击任务，实现从"无约束失败"到"可配置失败"的转变，显著提升攻击隐蔽性。</li><li>提出 TrapEngine 数据引擎，采用"先配置再重放"（configure-then-replay）策略，自动合成高质量的目标轨迹，并与隐蔽文本触发器配对，构建后门数据集。</li><li>构建 <strong>Trap-LIBERO</strong> 和 <strong>Trap-RoboTwin</strong> 两个基准，实例化四种代表性故障模式：<strong>Early Close（提前闭合）</strong>、<strong>Grasp Deviation（抓取偏移）</strong>、<strong>Early Open（提前打开）</strong>、<strong>Release Deviation（释放偏移）</strong>。</li><li>提出 TrapVLA 方法，通过 <strong>Target Residual Steering（目标残差引导）</strong> 显式学习触发器诱导的动作残差，缓解"稀疏动作偏差"问题，显著提升触发-故障关联的可靠性。</li><li>提出 TrapEval 评估套件，引入 <strong>C-ASR（配置式攻击成功率）</strong> 与 <strong>AVE（攻击有效性与有效性综合评价）</strong> 两个指标，系统评估攻击效果与干净任务保持能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>识别出"稀疏动作偏差"（Sparse Action Deviation）关键挑战：后门轨迹中仅极少部分动作产生显著偏差，大量任务一致数据主导学习信号，导致触发器被忽略。</li><li><strong>TrapVLA</strong> 通过配对干净/后门轨迹，计算预测的触发器诱导动作残差（触发条件下与干净条件下的策略输出之差），并针对目标偏差数据与任务一致数据分别施加不同的残差约束。</li><li>对目标偏差数据（S）施加残差匹配损失；对任务一致数据（S^c）施加带容忍度 ε 的残差抑制损失，从而放大关键偏差信号、抑制无关扰动。</li><li>总训练目标为原始后门模仿损失与 TRS 残差损失的加权组合，兼顾干净任务保持与配置式故障激活。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>Trap-LIBERO</strong>：基于 <strong>LIBERO</strong> 基准，涵盖 Object、Spatial、Goal、Long 四个任务套件。</li><li><strong>Trap-RoboTwin</strong>：基于 <strong>RoboTwin 2.0</strong> 基准，含双机械臂 Shoes 和 Fan 任务。</li><li>受害模型：<strong>OpenVLA-OFT</strong>（自回归式 VLA）与 <strong>π₀.₅</strong>（流匹配式 VLA，含专用动作专家）。</li><li>真实实验平台：<strong>ROKAE 6-DoF 机械臂</strong>，配备第三视角相机与腕部相机；每任务采集 50 条示范，每条件评估 30 次试验。</li><li>论文未在正文中明确列出模型参数量与 GPU 训练资源，训练细节见附录 B（Training Details）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准：Trap-LIBERO（四套件）、Trap-RoboTwin（双任务）及真实机器人平台。</li><li>主要指标：<strong>SR</strong>（干净指令下的任务成功率）、<strong>C-ASR</strong>（触发条件下满足配置式故障的比例，容差 γ=0.03）、<strong>AVE</strong>（综合干净性能保持与平均 C-ASR）。</li><li>基线方法：<strong>Benign</strong>（干净训练）、<strong>DropVLA</strong>（仅在后门偏差数据中插入触发器）、<strong>Vanilla-I</strong>（视觉触发器朴素后门）、<strong>Vanilla-T</strong>（文本触发器朴素后门）。</li><li>在 OpenVLA-OFT 上，TrapVLA 于四个 LIBERO 套件的 AVE 分别达 <strong>98.7、98.9、95.8、94.1</strong>，全面超越各基线；朴素后门方法在 Close/Open 等时序类故障上 C-ASR 常接近 0，而 TrapVLA 稳定达到 87.8–99.4。</li><li>在 π₀.₅ 上，TrapVLA 维持最佳的综合表现（AVE 89.4–96.1）；Vanilla-T 因流匹配结构提升明显，但 TrapVLA 仍更均衡。</li><li>真实机器人实验中，TrapVLA 在 Eggplant 与 Cup 任务上的 AVE 分别达 <strong>97.0</strong> 与 <strong>99.2</strong>，比 DropVLA 高出 44.7 与 43.3 个百分点，验证了物理环境的有效性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.26645/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">FLARE: A Failure-Aware Framework for Autonomous Correction and Recovery in Visual-Language Robotic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.26200/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GameWAM: A World Action Model for Video Games</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

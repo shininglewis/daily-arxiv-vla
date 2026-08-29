@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameWAM: A World Action Model for Video Games - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。 研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。 论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.26200">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.26200.webp" alt="GameWAM: A World Action Model for Video Games" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GameWAM: A World Action Model for Video Games</h1>
+            <div class="detail-meta">2026-08-25 · <a href="http://arxiv.org/abs/2608.26200" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.26200" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.26200</span></div>
+            <p class="detail-summary">论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。 研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。 论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学（Fudan University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.26200/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。</p>
+  <ul class="reading-intro-points"><li>论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。</li><li>研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。</li><li>论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>（Fudan University）</li><li><strong>LIGHTSPEED</strong>（腾讯光子工作室群）</li><li><strong>独立研究员</strong>（Independent Researcher）</li><li><strong>清华大学深圳国际研究生院</strong>（Tsinghua Shenzhen International Graduate School）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>GameWAM</strong>，据作者所述是<strong>首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM）</strong>，通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。</li><li>研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。</li><li>论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GameWAM</strong>，据作者所述是首个面向原生闭环游戏玩法与 GUI 控制的 WAM，基于并行 Video/Action DiT、块因果注意力和联合流匹配（flow matching），联合生成未来观察与可执行动作。</li><li>构建同步的 gameplay 与 GUI 轨迹数据，将标准化游戏数据与脚本化界面交互结合，支持联合世界-动作学习。</li><li>提出统一的原生动作与块-周期（block–cycle）公式化方法：支持在共享键盘-鼠标动作空间中完成游戏与 GUI 控制，通过块-周期控制解耦长时程预测与短时程执行，并结合细粒度周期内上下文与分层跨周期历史记忆。</li><li>发现 <strong>Low-Frequency Action Source Imprinting（LASI，低频动作源印记）</strong> 现象——采样动作源的低频成分在固定条件下系统性地引导粗粒度的生成相机运动，跨重规划步骤复用同一动作源时偏差会累积，构成生成式控制的病态失败模式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用<strong>块因果世界-动作建模</strong>：以 (C_{c,k}, ℓ, H_c, s_{c,k}) 作为条件上下文，涵盖周期内观察上下文、语言指令、跨周期视觉历史与本体状态，对 R 个块进行块因果自回归生成。</li><li>视觉与动作分别由 <strong>Video DiT</strong> 和 <strong>Action DiT</strong> 建模，采用 Fast-WAM 风格的模态解耦掩码（两个模态共享干净前缀、噪声变量互不条件），视频 K/V 状态被 Action DiT 共享，联合视频与动作监督塑造动作生成上下文。</li><li><strong>逐动作路由（per-action routing）</strong>：通过学习到的路由器在每个动作时间步选择 gameplay 专用或 GUI 专用的动作流预测分支，分别使用各自的连续动作归一化统计，离散维度共享归一化，以适配异构控制分布。</li><li><strong>块-周期控制（block-cycle control）</strong>：规划 P 个动作但仅执行 E 步前缀（E<P），执行后基于新观察重新规划重叠后缀；训练时以 E 步间隔锚定重叠 P 步计划进行 teacher-forcing，避免额外自回归展开。</li><li><strong>分层跨周期历史记忆</strong>：周期内 KV 缓存随周期刷新，周期边界将已执行视觉段经 VAE 和 Conv3D 压缩为 segment token，通过 FIFO 近期缓冲与基于注意力池化、可学习门控更新的长期记忆槽，实现有界内存下的持久多周期条件。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>MCU（Minecraft Universe）</strong> 基准（800+ 任务）与 <strong>ViZDoom</strong> 四地图套件。</li><li>训练数据源包括：VPT（Video Pretraining）Minecraft 轨迹、<strong>Event-Anchored VPT 数据集</strong>（基于 MineStudio 风格交互事件构造，事件锚定窗口提取、双层片段过滤与最大-最小公平分配）、以及 <strong>MineStudio 脚本化 GUI 轨迹</strong>。</li><li>采用<strong>事件锚定训练片段采样</strong>：在事件锚点附近密集采样、远处稀疏采样，增加事件相关转换的监督暴露。</li><li>模型基于并行 Video/Action DiT 架构与预训练 VAE；训练使用 flow matching 目标，并将连续动作坐标按 gameplay/GUI 模式分别归一化；完整训练规模与 token 消耗细节见论文附录 D.1。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>MCU 基准</strong>：GameWAM 在 Mini 与全部任务集上都取得最高平均成功率（ASR Avg Mini 50.7、ASR Avg All 46.6），同时在<strong>所有任务类别中成功回合的平均原生动作步数最少</strong>（Embodied 138 步、GUI 155 步、Combat 203 步），显著优于 VPT、STEVE-1、ROCKET-1、JARVIS-VLA、OpenHA、Game-TARS 等基线。</li><li><strong>ViZDoom 四场景</strong>：GameWAM 在四个地图上持续优于 Game-TARS，相对所比较的多模态智能体取得具有竞争力或领先的平均奖励（每张地图 50 个回合的均奖励）。</li><li><strong>消融分析</strong>：移除未来视频监督（action-only）或使用更粗时间采样导致最大性能下降；事件锚定片段采样贡献显著；统一 gameplay/GUI 动作分布劣于模式特定公式；预测-执行水平匹配（P=E）降低 ASR，验证了超越执行范围预测的必要性；跨周期历史对依赖跨重规划信息任务的 GUI 与战斗任务有价值。</li><li><strong>LASI 诊断</strong>：通过受控频域干预，验证低频频段动作源成分在固定条件下系统性导向粗粒度相机运动，跨重规划复用时可累积为持续方向性相机偏差（如原地旋转）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.26578/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">TrapVLA: Trapping Vision-Language-Action Models in Configured Failure Modes</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.26103/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Zero-WAM: In-Context World-Action Modeling from Human Videos for Open-Ended Task Generalization</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

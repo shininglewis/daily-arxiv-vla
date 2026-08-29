@@ -1,5 +1,295 @@
 [
   {
+    "date": "2026-08-27",
+    "title": "FlashVLA: Streaming Action Decoding for Fast and Asynchronous VLA Inference",
+    "link": "http://arxiv.org/abs/2608.27384",
+    "arxiv_id": "2608.27384",
+    "detail_path": "papers/2608.27384/",
+    "cover_path": "covers/2608.27384/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.27384.webp",
+    "paper_image_full_path": "assets/paper-images/2608.27384.webp",
+    "preview_text": "论文提出 FlashVLA，一个面向流匹配（flow-matching）视觉-语言-动作（VLA）模型的流式动作解码框架，旨在同时解决 VLA 部署中的高推理延迟和异步执行不稳定两大瓶颈。 核心洞察在于：现有 flow-matching VLA 以隔离方式解码每个动作块（从纯噪声出发、仅以当前观测为条件），导致十步去噪集中在单次解码中（延迟成本），且新块无法感知已有轨迹（异步失配成本）。FlashVLA 通过联合解码动作块来同时消除这两项成本。 在 LIBERO、RoboTwin 2.0 及真实 Franka 机器人任务上验证，FlashVLA 实现单 GPU 上 ≥30 Hz 的平滑异步控制频率，同时保持或提升任务成功率。",
+    "research_unit": "UC San Diego（加州大学圣迭戈分校）：作者 Zekai Li、Zhijian Liu",
+    "hook_text": "论文提出 FlashVLA，一个面向流匹配（flow-matching）视觉-语言-动作（VLA）模型的流式动作解码框架，旨在同时解决 VLA 部署中的高推理延迟和异步执行不稳定两大瓶颈。",
+    "key_points": [
+      "论文提出 FlashVLA，一个面向流匹配（flow-matching）视觉-语言-动作（VLA）模型的流式动作解码框架，旨在同时解决 VLA 部署中的高推理延迟和异步执行不稳定两大瓶颈。",
+      "核心洞察在于：现有 flow-matching VLA 以隔离方式解码每个动作块（从纯噪声出发、仅以当前观测为条件），导致十步去噪集中在单次解码中（延迟成本），且新块无法感知已有轨迹（异步失配成本）。FlashVLA 通过联合解码动作块来同时消除这两项成本。",
+      "在 LIBERO、RoboTwin 2.0 及真实 Franka 机器人任务上验证，FlashVLA 实现单 GPU 上 ≥30 Hz 的平滑异步控制频率，同时保持或提升任务成功率。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "Making Latent Evolution Explicit: Operator-Structured Transitions for World Action Models",
+    "link": "http://arxiv.org/abs/2608.27259",
+    "arxiv_id": "2608.27259",
+    "detail_path": "papers/2608.27259/",
+    "cover_path": "covers/2608.27259/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.27259.webp",
+    "paper_image_full_path": "assets/paper-images/2608.27259.webp",
+    "preview_text": "论文聚焦潜空间 World Action Models（WAMs） 中的未来潜变量预测，提出 transition realization（转移实现） 应作为独立于预测表示和预测-策略耦合的架构设计维度。 现有潜变量 WAM 常用 Transformer 实现条件转移，其归纳结构偏向 token 之间的一般性信息交互，而非显式的时间演化；论文主张把“状态如何随上下文演化”直接体现在转移参数化中。 提出 Latent Evolution Operator Network（LEON），通过上下文调制的算子传播与加性强迫实现潜变量演化，并在受控动力学系统与两类 WAM 中验证其有效性和鲁棒性。",
+    "research_unit": "华中科技大学人工智能与自动化学院（School of Artificial Intelligence…",
+    "hook_text": "论文聚焦潜空间 World Action Models（WAMs） 中的未来潜变量预测，提出 transition realization（转移实现） 应作为独立于预测表示和预测-策略耦合的架构设计维度。",
+    "key_points": [
+      "论文聚焦潜空间 World Action Models（WAMs） 中的未来潜变量预测，提出 transition realization（转移实现） 应作为独立于预测表示和预测-策略耦合的架构设计维度。",
+      "现有潜变量 WAM 常用 Transformer 实现条件转移，其归纳结构偏向 token 之间的一般性信息交互，而非显式的时间演化；论文主张把“状态如何随上下文演化”直接体现在转移参数化中。",
+      "提出 Latent Evolution Operator Network（LEON），通过上下文调制的算子传播与加性强迫实现潜变量演化，并在受控动力学系统与两类 WAM 中验证其有效性和鲁棒性。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "GRAFT: Grounded and Efficient Online Reinforcement Adaptation for Fine-Grained Robot Manipulation",
+    "link": "http://arxiv.org/abs/2608.27079",
+    "arxiv_id": "2608.27079",
+    "detail_path": "papers/2608.27079/",
+    "cover_path": "covers/2608.27079/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.27079.webp",
+    "paper_image_full_path": "assets/paper-images/2608.27079.webp",
+    "preview_text": "提出 GRAFT（*Grounded Reinforcement Adaptation for Fast Task Learning*）框架，用于预训练视觉-语言-动作（VLA）策略在细粒度机器人操作任务中的高效在线强化适应。 针对的核心问题：细粒度生物医学操作（如移液枪头安装、培养皿开盖等）依赖微小且视角敏感的局部视觉线索，但任务级奖励难以提供区域级空间指导；同时VLA推理和回放更新的计算成本限制了在线适应。 通过区域级监督学习视图专用视觉锚点（view-specific visual anchors），并结合单步动作生成与冻结前缀缓存复用，在固定45分钟在线适应预算内显著提升任务成功率并降低学习开销。",
+    "research_unit": "中国科学技术大学苏州高等研究院（Suzhou Institute for Advanced Resea…",
+    "hook_text": "提出 GRAFT（*Grounded Reinforcement Adaptation for Fast Task Learning*）框架，用于预训练视觉-语言-动作（VLA）策略在细粒度机器人操作任务中的高效在线强化适应。",
+    "key_points": [
+      "提出 GRAFT（*Grounded Reinforcement Adaptation for Fast Task Learning*）框架，用于预训练视觉-语言-动作（VLA）策略在细粒度机器人操作任务中的高效在线强化适应。",
+      "针对的核心问题：细粒度生物医学操作（如移液枪头安装、培养皿开盖等）依赖微小且视角敏感的局部视觉线索，但任务级奖励难以提供区域级空间指导；同时VLA推理和回放更新的计算成本限制了在线适应。",
+      "通过区域级监督学习视图专用视觉锚点（view-specific visual anchors），并结合单步动作生成与冻结前缀缓存复用，在固定45分钟在线适应预算内显著提升任务成功率并降低学习开销。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "Riemann-1.0: An Embodied World Action Model for Physical AI",
+    "link": "http://arxiv.org/abs/2608.27033",
+    "arxiv_id": "2608.27033",
+    "detail_path": "papers/2608.27033/",
+    "cover_path": "covers/2608.27033/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.27033.webp",
+    "paper_image_full_path": "assets/paper-images/2608.27033.webp",
+    "preview_text": "提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。 在统一因果序列中联合建模多视角视觉观测、机器人状态和具身专属动作，使模型既能作为可执行机器人策略，也能作为多具身动作条件视觉世界模拟器。 提出渐进式具身预训练框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。",
+    "research_unit": "Riemann Dynamics（全部作者所属机构；带 * 为共同贡献，‡ 为研究实习生，† 为项目负…",
+    "hook_text": "提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。",
+    "key_points": [
+      "提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。",
+      "在统一因果序列中联合建模多视角视觉观测、机器人状态和具身专属动作，使模型既能作为可执行机器人策略，也能作为多具身动作条件视觉世界模拟器。",
+      "提出渐进式具身预训练框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "TemporalFlow-VLA: Learning Physically Grounded Execution History for Long-Horizon Robot Manipulation",
+    "link": "http://arxiv.org/abs/2608.26821",
+    "arxiv_id": "2608.26821",
+    "detail_path": "papers/2608.26821/",
+    "cover_path": "covers/2608.26821/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26821.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26821.webp",
+    "preview_text": "提出 TemporalFlow-VLA，一种通过物理锚定的时间监督学习紧凑执行历史的视觉-语言-动作（VLA）模型，用于解决长时程机器人操作问题。 核心动机在于：简单地堆叠历史帧无法可靠捕捉近期的物理变化，在多阶段操作任务中，视觉上相似的状态可能因先前执行历史不同而需要不同的动作。 该方法利用机器人状态、URDF 几何和相机标定构建 机器人表面时间流（robot-surface temporal flow） 作为训练目标，监督两个与动作块对齐的时间查询，使动作专家获得结构化的历史信息。",
+    "research_unit": "The Hong Kong University of Science and Technology…",
+    "hook_text": "提出 TemporalFlow-VLA，一种通过物理锚定的时间监督学习紧凑执行历史的视觉-语言-动作（VLA）模型，用于解决长时程机器人操作问题。",
+    "key_points": [
+      "提出 TemporalFlow-VLA，一种通过物理锚定的时间监督学习紧凑执行历史的视觉-语言-动作（VLA）模型，用于解决长时程机器人操作问题。",
+      "核心动机在于：简单地堆叠历史帧无法可靠捕捉近期的物理变化，在多阶段操作任务中，视觉上相似的状态可能因先前执行历史不同而需要不同的动作。",
+      "该方法利用机器人状态、URDF 几何和相机标定构建 机器人表面时间流（robot-surface temporal flow） 作为训练目标，监督两个与动作块对齐的时间查询，使动作专家获得结构化的历史信息。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "Decoupling Planning and Control for Instructable Agents",
+    "link": "http://arxiv.org/abs/2608.26788",
+    "arxiv_id": "2608.26788",
+    "detail_path": "papers/2608.26788/",
+    "cover_path": "covers/2608.26788/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26788.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26788.webp",
+    "preview_text": "提出 Instruct-to-Act 框架，将具身智能体的决策解耦为高层 规划（planning） 与低层 控制（control） 两部分。 核心思想：预训练 VLM 作为规划器生成稀疏语言指令，世界模型控制器高频执行低层动作，两者异步协同工作。 解决现有方法中 VLM 难以生成实时低层动作流、纯 RL 控制器缺少开放任务引导的问题，实现无需微调 VLM 即可适配多种环境。",
+    "research_unit": "UC Berkeley（Zineng Tang, Alane Suhr）",
+    "hook_text": "提出 Instruct-to-Act 框架，将具身智能体的决策解耦为高层 规划（planning） 与低层 控制（control） 两部分。",
+    "key_points": [
+      "提出 Instruct-to-Act 框架，将具身智能体的决策解耦为高层 规划（planning） 与低层 控制（control） 两部分。",
+      "核心思想：预训练 VLM 作为规划器生成稀疏语言指令，世界模型控制器高频执行低层动作，两者异步协同工作。",
+      "解决现有方法中 VLM 难以生成实时低层动作流、纯 RL 控制器缺少开放任务引导的问题，实现无需微调 VLM 即可适配多种环境。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "PredVLA: A Sub-Million-Parameter Predictive-Coding Policy for Robot Manipulation",
+    "link": "http://arxiv.org/abs/2608.26673",
+    "arxiv_id": "2608.26673",
+    "detail_path": "papers/2608.26673/",
+    "cover_path": "covers/2608.26673/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26673.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26673.webp",
+    "preview_text": "论文提出 PredVLA，一种基于预测编码（Predictive Coding）的语言条件机器人操作策略，仅含 0.68M 可训练参数，且无机器人数据预训练。 该模型通过层次循环生成网络同时预测视觉特征、本体感觉和动作分布，观测信号仅通过预测误差驱动的潜变量在线推理影响策略状态。 在 LIBERO 基准上，PredVLA 在三个短时任务套件上达到 86.9% 的平均成功率，加入长时任务后为 75.4%，显著优于参数匹配的 Transformer 和 LSTM 策略。",
+    "research_unit": "Sony Computer Science Laboratory（日本东京）",
+    "hook_text": "论文提出 PredVLA，一种基于预测编码（Predictive Coding）的语言条件机器人操作策略，仅含 0.68M 可训练参数，且无机器人数据预训练。",
+    "key_points": [
+      "论文提出 PredVLA，一种基于预测编码（Predictive Coding）的语言条件机器人操作策略，仅含 0.68M 可训练参数，且无机器人数据预训练。",
+      "该模型通过层次循环生成网络同时预测视觉特征、本体感觉和动作分布，观测信号仅通过预测误差驱动的潜变量在线推理影响策略状态。",
+      "在 LIBERO 基准上，PredVLA 在三个短时任务套件上达到 86.9% 的平均成功率，加入长时任务后为 75.4%，显著优于参数匹配的 Transformer 和 LSTM 策略。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "FLARE: A Failure-Aware Framework for Autonomous Correction and Recovery in Visual-Language Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2608.26645",
+    "arxiv_id": "2608.26645",
+    "detail_path": "papers/2608.26645/",
+    "cover_path": "covers/2608.26645/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26645.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26645.webp",
+    "preview_text": "提出 FLARE（Failure-Aware Retry/Reset）框架，用于增强视觉-语言-动作模型（VLA）在机器人操作中的错误恢复能力。 核心问题：现有 VLA 模型基于轨迹单调、成功偏置的演示数据训练，面对轻微执行偏差（如抓取失败、物体掉落）或灾难性 OOD 状态（如杯子倾倒）时无法自主恢复。 通过 “Retry”（重试） 与 “Reset”（重置） 双范式，将错误分为 ID 错误（环境状态有效但机器人姿态新颖）和 OOD 错误（环境状态不可恢复），分别对应原生重试鲁棒性和专用重置技能。",
+    "research_unit": "The Chinese University of Hong Kong（香港中文大学）",
+    "hook_text": "提出 FLARE（Failure-Aware Retry/Reset）框架，用于增强视觉-语言-动作模型（VLA）在机器人操作中的错误恢复能力。",
+    "key_points": [
+      "提出 FLARE（Failure-Aware Retry/Reset）框架，用于增强视觉-语言-动作模型（VLA）在机器人操作中的错误恢复能力。",
+      "核心问题：现有 VLA 模型基于轨迹单调、成功偏置的演示数据训练，面对轻微执行偏差（如抓取失败、物体掉落）或灾难性 OOD 状态（如杯子倾倒）时无法自主恢复。",
+      "通过 “Retry”（重试） 与 “Reset”（重置） 双范式，将错误分为 ID 错误（环境状态有效但机器人姿态新颖）和 OOD 错误（环境状态不可恢复），分别对应原生重试鲁棒性和专用重置技能。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-27",
+    "title": "TrapVLA: Trapping Vision-Language-Action Models in Configured Failure Modes",
+    "link": "http://arxiv.org/abs/2608.26578",
+    "arxiv_id": "2608.26578",
+    "detail_path": "papers/2608.26578/",
+    "cover_path": "covers/2608.26578/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26578.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26578.webp",
+    "preview_text": "论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的\"配置式故障模式\"。 与以往只追求\"任务失败\"这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。 为解决该任务，论文构建了数据引擎 TrapEngine、自动化评估套件 TrapEval、攻击方法 TrapVLA，并在仿真与真实机器人上验证了四种故障模式的注入效果。",
+    "research_unit": "中山大学（Sun Yat-sen University） 计算机科学与工程学院",
+    "hook_text": "论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的\"配置式故障模式\"。",
+    "key_points": [
+      "论文提出 Configured Failure Trapping（配置式故障陷阱），一种针对视觉-语言-动作（VLA）模型的新型后门攻击任务：通过隐形的文本触发器激活攻击，并诱导机器人产生攻击者指定的\"配置式故障模式\"。",
+      "与以往只追求\"任务失败\"这一二元结果的后门攻击不同，本任务要求攻击者精确控制机器人如何失败（如按指定位置偏移抓取），使攻击更具隐蔽性、更难被检测。",
+      "为解决该任务，论文构建了数据引擎 TrapEngine、自动化评估套件 TrapEval、攻击方法 TrapVLA，并在仿真与真实机器人上验证了四种故障模式的注入效果。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-25",
+    "title": "GameWAM: A World Action Model for Video Games",
+    "link": "http://arxiv.org/abs/2608.26200",
+    "arxiv_id": "2608.26200",
+    "detail_path": "papers/2608.26200/",
+    "cover_path": "covers/2608.26200/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.26200.webp",
+    "paper_image_full_path": "assets/paper-images/2608.26200.webp",
+    "preview_text": "论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。 研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。 论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。",
+    "research_unit": "复旦大学（Fudan University）",
+    "hook_text": "论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。",
+    "key_points": [
+      "论文提出 GameWAM，据作者所述是首个用于原生闭环游戏玩法与 GUI 控制的 World–Action Model（世界-动作模型，WAM），通过并行视觉与动作生成过程，联合生成未来视觉观察与可执行的键盘-鼠标动作轨迹。",
+      "研究动机在于：现有游戏智能体直接将视觉和任务上下文映射到动作、缺乏显式世界动态建模，而交互式游戏世界模型虽能预测视觉未来却无法作为任务策略；GameWAM 旨在统一这两类目标。",
+      "论文解决的关键问题包括：视频游戏中快速变化的视觉动态、持久世界状态、异构原生控制（游戏与 GUI 共用键盘-鼠标通道）、长时程交互下的视觉子采样与内存预算矛盾，以及生成式控制中的源敏感性失败模式。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
     "date": "2026-08-26",
     "title": "Zero-WAM: In-Context World-Action Modeling from Human Videos for Open-Ended Task Generalization",
     "link": "http://arxiv.org/abs/2608.26103",

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Riemann-1.0: An Embodied World Action Model for Physical AI - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。 在统一因果序列中联合建模多视角视觉观测、机器人状态和具身专属动作，使模型既能作为可执行机器人策略，也能作为多具身动作条件视觉世界模拟器。 提出渐进式具身预训练框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.27033">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.27033.webp" alt="Riemann-1.0: An Embodied World Action Model for Physical AI" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Riemann-1.0: An Embodied World Action Model for Physical AI</h1>
+            <div class="detail-meta">2026-08-27 · <a href="http://arxiv.org/abs/2608.27033" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.27033" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.27033</span></div>
+            <p class="detail-summary">提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。 在统一因果序列中联合建模多视角视觉观测、机器人状态和具身专属动作，使模型既能作为可执行机器人策略，也能作为多具身动作条件视觉世界模拟器。 提出渐进式具身预训练框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Riemann Dynamics（全部作者所属机构；带 * 为共同贡献，‡ 为研究实习生，† 为项目负…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.27033/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。</p>
+  <ul class="reading-intro-points"><li>提出 Riemann-1.0，一个全因果自回归世界动作模型（World Action Model, WAM），用于物理世界具身智能。</li><li>在统一因果序列中联合建模多视角视觉观测、机器人状态和具身专属动作，使模型既能作为可执行机器人策略，也能作为多具身动作条件视觉世界模拟器。</li><li>提出渐进式具身预训练框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Riemann Dynamics</strong>（全部作者所属机构；带 * 为共同贡献，‡ 为研究实习生，† 为项目负责人和通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Riemann-1.0</strong>，一个<strong>全因果自回归世界动作模型（World Action Model, WAM）</strong>，用于物理世界具身智能。</li><li>在统一因果序列中联合建模<strong>多视角视觉观测、机器人状态和具身专属动作</strong>，使模型既能作为<strong>可执行机器人策略</strong>，也能作为<strong>多具身动作条件视觉世界模拟器</strong>。</li><li>提出<strong>渐进式具身预训练</strong>框架，基于 200K+ 小时异构具身经验，将大规模弱监督人类交互知识逐步迁移为可执行的机器人操作能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>全因果自回归世界动作模型</strong>：采用动作先于视觉潜在状态的因果分解，统一“策略执行”与“动作条件世界模拟”两种功能，避免现有 WAM（联合生成、视频优先、解耦建模）的建模不一致问题。</li><li><strong>渐进式具身预训练</strong>：三阶段课程（LAM 动作引导、轨迹接地对齐、机器人策略增强），从弱监督人类视频逐步过渡到真实机器人控制。</li><li><strong>统一具身数据基础设施</strong>：将第一视角人类视频、手持夹具演示、异构机器人轨迹统一为动作级“视频-状态-动作”表示，实现多源异构数据的大规模预训练。</li><li><strong>全面的实验验证</strong>：在真实世界长时操作任务和多个仿真基准上均取得 SOTA 结果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用<strong>全因果自回归因式分解</strong>：p(a₁:T, z₁:T) = ∏ p(a_t \|z_<t, s_<t, a_<t, c) · p(z_t \|z_<t, s_<t, a_≤t, c)，先预测动作，再以动作（策略输出或外部给定）为条件生成未来视觉潜在。</li><li>对<strong>视觉潜在</strong>和<strong>连续动作</strong>分别使用<strong>流匹配（Flow Matching）</strong>目标，统一优化为速度回归问题。</li><li>设计<strong>具身专属接口</strong>：共享 transformer 主干，通过具身 ID 选择对应的 action/state 投影和预测头，保留不同机器人控制语义的同时支持跨具身学习。</li><li>使用 <strong>Wan VAE</strong> 编码多视角图像，<strong>T5 编码器</strong>注入语言条件，并通过<strong>结构化因果注意力掩码</strong>（结合帧 ID、时间 ID、clean/noisy 标记）确保训练与在线推理一致。</li><li>训练采用统一目标 L = (1-λ)L_z + λL_a，三阶段预训练中 λ 从 0.1 增至 0.5 再到 0.9，后训练阶段设为 0.95。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>230K+ 小时</strong>具身经验语料：<strong>200K+ 小时</strong>第一视角人类视频、<strong>12K+ 小时</strong>手持夹具/可穿戴演示、<strong>20K+ 小时</strong>异构机器人轨迹。</li><li>数据覆盖<strong>数千种交互技能</strong>及多种机器人本体，场景涵盖家庭、办公室和工业环境。</li><li>统一数据引擎包含六阶段处理：视觉预处理、VLM 语义标注、质量过滤、3D 手部重建（MANO、VGGT-Ω）、几何过滤、语义感知数据均衡。</li><li>模型采用 <strong>Wan VAE</strong>、<strong>T5 encoder</strong>、flow matching 和<strong>3D patch embedding</strong>；文中未明确给出 Riemann-1.0 总参数量，但复现的基线模型 DreamZero* 为 5B 规模。</li><li>训练资源（GPU/TPU 类型与数量）在原文中未提及。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>真实世界实验</strong>（Tianji Marvin 双臂机器人，四任务：有序方块堆叠、衣物折叠、桌面整理、厨房整理）：平均 <strong>SR 85.0%</strong>、<strong>PSR 94.4%</strong>，比最强开源基线 G0.5 的 SR 提高 <strong>15 个百分点</strong>，PSR 也全面领先。</li><li><strong>组合泛化与 OOD 评估</strong>：组合泛化平均 SR 65.0%，OOD 任务（魔方入盒、毛巾入盆）平均 SR 85.0%，总体平均 75.0%，明显高于 π0.5（47.5%）和 LingBot-VA（22.5%）。</li><li><strong>RoboCasa365</strong>：平均成功率 <strong>62.6%</strong>，比最强基线 ABot-M0.5（54.2%）高 <strong>8.4 个百分点</strong>；Composite-Unseen 达 56.3%，体现强组合泛化能力。</li><li><strong>RoboTwin 2.0</strong>：50 个双手任务平均成功率 <strong>94.3%</strong>（Clean 94.6%，Randomized 94.0%），优于 Fast-WAM（91.8%）、G0.5（93.3%）等对比方法。</li><li><strong>LIBERO</strong>：平均成功率 <strong>99.0%</strong>（Spatial 99.6、Object 100.0、Goal 97.6、Long 98.6），在各套件上均达到或接近最优。</li><li><strong>动作条件视觉展开</strong>：可作为<strong>多具身模拟器</strong>，在多种机器人（人形、双臂、单臂、灵巧手）和仿真环境下生成与动作一致、保持场景结构的未来帧（定性结果）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.27079/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">GRAFT: Grounded and Efficient Online Reinforcement Adaptation for Fine-Grained Robot Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.26821/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TemporalFlow-VLA: Learning Physically Grounded Execution History for Long-Horizon Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
