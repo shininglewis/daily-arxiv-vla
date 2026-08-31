@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PHR-VLA: Planning Horizon Reasoning for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 PHR-VLA（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 视觉-语言-动作模型（VLA） 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题 核心思路：在训练阶段，利用示范数据中&quot;未来规划时域&quot;的观测作为 特权信息（privileged information），通过轻量级辅助未来头（auxiliary future head）将 VLA 内部表示与从未来观测中提取的潜空间动力学对齐，从而&quot;教会&quot;策略编码未来任务演化相关信息 关键优势：推理阶段无需显式未来 rollout 或世界模型推断，未来头和辅助编码器在部署时全部丢弃，不增加任何推理延迟或内存开销" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.27609">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.27609.webp" alt="PHR-VLA: Planning Horizon Reasoning for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 PHR-VLA（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 视觉-语言-动作模型（VLA） 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PHR-VLA: Planning Horizon Reasoning for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-08-27 · <a href="http://arxiv.org/abs/2608.27609" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.27609" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.27609</span></div>
+            <p class="detail-summary">论文提出 PHR-VLA（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 视觉-语言-动作模型（VLA） 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题 核心思路：在训练阶段，利用示范数据中&quot;未来规划时域&quot;的观测作为 特权信息（privileged information），通过轻量级辅助未来头（auxiliary future head）将 VLA 内部表示与从未来观测中提取的潜空间动力学对齐，从而&quot;教会&quot;策略编码未来任务演化相关信息 关键优势：推理阶段无需显式未来 rollout 或世界模型推断，未来头和辅助编码器在部署时全部丢弃，不增加任何推理延迟或内存开销</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Texas A&amp;M University（德克萨斯A&amp;M大学）：J. Mike Walker &#x27;66…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.27609/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 PHR-VLA（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 视觉-语言-动作模型（VLA） 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题</p>
+  <ul class="reading-intro-points"><li>论文提出 PHR-VLA（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 视觉-语言-动作模型（VLA） 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题</li><li>核心思路：在训练阶段，利用示范数据中&quot;未来规划时域&quot;的观测作为 特权信息（privileged information），通过轻量级辅助未来头（auxiliary future head）将 VLA 内部表示与从未来观测中提取的潜空间动力学对齐，从而&quot;教会&quot;策略编码未来任务演化相关信息</li><li>关键优势：推理阶段无需显式未来 rollout 或世界模型推断，未来头和辅助编码器在部署时全部丢弃，不增加任何推理延迟或内存开销</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Texas A&M University</strong>（德克萨斯A&M大学）：J. Mike Walker '66 机械工程系（Davood Soleymanzadeh, Bihao Zhang, Minghui Zheng）</li><li><strong>Purdue University</strong>（普渡大学）：工业工程系（Kaidi Zhang, Zhiyuan Zhang, Yu She）</li><li><strong>Texas A&M University</strong>：Zachry 土木与环境工程系（Xiao Liang）</li><li>该工作部分受 <strong>美国国家科学基金会（NSF）</strong> 资助（Grant No. 2527316, 2422826, 2423068），并使用了 Texas A&M 高性能计算资源</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PHR-VLA</strong>（Planning Horizon Reasoning for Vision-Language-Action Models）框架，旨在解决现有 <strong>视觉-语言-动作模型（VLA）</strong> 主要依赖当前观测进行反应式动作预测、缺乏对未来任务动力学显式推理能力的问题</li><li>核心思路：在训练阶段，利用示范数据中"未来规划时域"的观测作为 <strong>特权信息（privileged information）</strong>，通过轻量级辅助未来头（auxiliary future head）将 VLA 内部表示与从未来观测中提取的潜空间动力学对齐，从而"教会"策略编码未来任务演化相关信息</li><li>关键优势：推理阶段无需显式未来 rollout 或世界模型推断，<strong>未来头和辅助编码器在部署时全部丢弃</strong>，不增加任何推理延迟或内存开销</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PHR-VLA</strong> 框架，通过特权潜动力学（privileged latent dynamics）实现 VLA 的规划时域推理，在部署时无需显式未来预测或世界模型推理</li><li>系统研究了不同的<strong>相机视角</strong>（腕部/第三人称/多相机）、<strong>表示粒度</strong>（patch级/均值池化）、<strong>潜目标形式</strong>（动力学差分 vs. 绝对未来潜变量）、以及<strong>编码器选择</strong>（SigLIP vs. V-JEPA 2）对特权未来监督效果的影响</li><li>实验证明<strong>局部、接触中心、patch级</strong>的短时域信号最为有效：在 <strong>LIBERO</strong> 上成功率从 84.1% 提升至 <strong>88.4%</strong>，在真实世界拆卸任务上从 63.3% 提升至 <strong>82.5%</strong>，在 <strong>Meta-World</strong> 上从 56.7% 提升至 57.8%</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>以 <strong>SmolVLA (0.45B)</strong> 作为 VLA 基线模型（SmolVLM-2 骨干 + flow matching 动作专家），可在单张 <strong>A100 GPU</strong> 上进行可控微调</li><li>利用冻结的视觉编码器（<strong>SigLIP</strong> 或 <strong>V-JEPA 2</strong>）对规划时域的未来观测帧进行编码，计算相邻帧潜变量之差作为<strong>规划时域潜动力学目标</strong>（latent dynamics targets），以强调场景如何演化而非静态内容</li><li>附加轻量级未来头 \(g_\phi\)，从 VLM 骨干的动作 token 表示 \(z_t\) 中预测上述潜动力学，对齐损失采用 <strong>MSE</strong>；总训练目标为 \(\mathcal{L}_{\mathrm{PHR-VLA}} = \mathcal{L}_{\mathrm{VLA}} + \lambda \mathcal{L}_{\mathrm{Align}}\)</li><li>消融研究表明：<strong>腕部相机 > 多相机 > 第三人称</strong>；<strong>patch级 > 均值池化</strong>；<strong>动力学差分 > 绝对潜变量</strong>；<strong>λ=0.02</strong> 为最优辅助损失权重</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：语言条件桌面操作基准，含 Spatial、Object、Goal、Long 四个任务套件（每套件 300 次试验）</li><li><strong>Meta-World</strong>：多任务模拟操作基准，按 Easy、Medium、Hard、VeryHard 难度分级</li><li><strong>真实世界拆卸数据集</strong>：基于 7-DoF <strong>Franka Emika Panda</strong> 机械臂，包含 4 个接触丰富拆卸任务，每任务 <strong>100 条人类遥操作演示</strong>，使用固定第三人称 + 腕部相机 RGB 图像，所有模态以 <strong>10 Hz</strong> 同步</li><li>模型规模：<strong>SmolVLA (0.45B)</strong>；训练资源：单张 <strong>A100 GPU</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>对比基线：<strong>ACT</strong>、<strong>Diffusion Policy</strong>、<strong>Octo</strong>、<strong>DiT Policy</strong>、<strong>OpenVLA</strong>、<strong>TinyVLA</strong>、<strong>SmolVLA</strong>（部分基线结果引用自相关文献）</li><li>评估指标：各任务套件/难度级别的<strong>成功率（Success Rate）</strong>及平均值</li><li><strong>LIBERO</strong>：PHR-VLA 平均成功率 84.1% → <strong>88.4%</strong>，其中 LIBERO-Long 提升最显著（+8.4 个百分点，66.0% → 74.4%），各子套件均优于 SmolVLA</li><li><strong>Meta-World</strong>：平均成功率 56.7% → <strong>57.8%</strong>（SigLIP 编码器）；使用 <strong>JEPA</strong> 编码器可达 <strong>59.8%</strong></li><li><strong>真实世界拆卸</strong>：PHR-VLA 达 <strong>82.5%</strong>（99/120），显著优于 ACT（35.8%）、Diffusion Policy（51.7%）、SmolVLA（63.3%）；PHR-VLA (JEPA) 为 77.5%；在最具挑战性的"旋转90度拔出"任务（Task IV）上，PHR-VLA 成功率 23/30，远超 SmolVLA 的 6/30</li><li>消融结论：<strong>目标结构</strong>（而非单纯存在未来预测目标）是提升的关键——patch级优于均值池化、腕部相机优于第三人称、动力学差分优于绝对潜变量，这一规律在 SigLIP 和 JEPA 两种编码器下均一致成立</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.28108/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DeicticVLA: Unifying Instruction Modes Based on Language and Deictic Gestures in a Single VLA</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.27550/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Beyond Data Scaling: Representation-Centric Continued Pre-training for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
