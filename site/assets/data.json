@@ -1,5 +1,498 @@
 [
   {
+    "date": "2026-08-31",
+    "title": "Zeva: In-Context Causal Learning for Generalizable Embodied Manipulation",
+    "link": "http://arxiv.org/abs/2608.30880",
+    "arxiv_id": "2608.30880",
+    "detail_path": "papers/2608.30880/",
+    "cover_path": "covers/2608.30880/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30880.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30880.webp",
+    "preview_text": "论文提出 Zeva，首个在部署期间从机器人自身物理交互经验中进行上下文内因果学习（In-Context Causal Learning, ICCL）的框架，同时保持策略模型权重冻结。 核心动机：预训练模型难以覆盖真实世界中未见过的物理条件；机器人需要在执行中实时从自己的动作与状态变化之间的因果关系中学习，并用于后续决策。 解决的问题：现有测试时训练方法依赖梯度更新、延迟高；现有上下文内学习主要针对任务泛化而非交互过程的因果适应。Zeva 通过记忆驱动、无需梯度的自我进化来弥合这一空白。",
+    "research_unit": "清华大学智能产业研究院（AIR）",
+    "hook_text": "论文提出 Zeva，首个在部署期间从机器人自身物理交互经验中进行上下文内因果学习（In-Context Causal Learning, ICCL）的框架，同时保持策略模型权重冻结。",
+    "key_points": [
+      "论文提出 Zeva，首个在部署期间从机器人自身物理交互经验中进行上下文内因果学习（In-Context Causal Learning, ICCL）的框架，同时保持策略模型权重冻结。",
+      "核心动机：预训练模型难以覆盖真实世界中未见过的物理条件；机器人需要在执行中实时从自己的动作与状态变化之间的因果关系中学习，并用于后续决策。",
+      "解决的问题：现有测试时训练方法依赖梯度更新、延迟高；现有上下文内学习主要针对任务泛化而非交互过程的因果适应。Zeva 通过记忆驱动、无需梯度的自我进化来弥合这一空白。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Temporal Forcing: 4D Representation Alignment for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.30643",
+    "arxiv_id": "2608.30643",
+    "detail_path": "papers/2608.30643/",
+    "cover_path": "covers/2608.30643/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30643.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30643.webp",
+    "preview_text": "论文提出Temporal Forcing，一种面向视觉-语言-动作模型（VLA）的4D表示对齐方法，旨在解决长时程操作与视觉相似状态间的观察歧义问题。 现有的3D几何对齐方法（如Spatial Forcing）仅建模当前帧的3D场景几何，无法表示物体状态随时间的变化，也无法在物体被遮挡后推断任务进度。 论文通过引入历史路径（History Pathway） 并利用预训练4D基础模型提取的时间一致几何特征进行表示对齐，使VLA模型获得时间感知的潜在表示。",
+    "research_unit": "南京大学（Nanjing University）",
+    "hook_text": "论文提出Temporal Forcing，一种面向视觉-语言-动作模型（VLA）的4D表示对齐方法，旨在解决长时程操作与视觉相似状态间的观察歧义问题。",
+    "key_points": [
+      "论文提出Temporal Forcing，一种面向视觉-语言-动作模型（VLA）的4D表示对齐方法，旨在解决长时程操作与视觉相似状态间的观察歧义问题。",
+      "现有的3D几何对齐方法（如Spatial Forcing）仅建模当前帧的3D场景几何，无法表示物体状态随时间的变化，也无法在物体被遮挡后推断任务进度。",
+      "论文通过引入历史路径（History Pathway） 并利用预训练4D基础模型提取的时间一致几何特征进行表示对齐，使VLA模型获得时间感知的潜在表示。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Behavior-Skill: A Fine-Grained Benchmark for Evaluating Vision-Language-Action Policies in Long-Horizon Tasks",
+    "link": "http://arxiv.org/abs/2608.30536",
+    "arxiv_id": "2608.30536",
+    "detail_path": "papers/2608.30536/",
+    "cover_path": "covers/2608.30536/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30536.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30536.webp",
+    "preview_text": "论文提出了 Behavior-Skill，一个面向长时程移动操作任务的细粒度基准，将\"可执行的构成技能（constituent skills）\"作为学习与评估的基本单元。 该基准基于 BEHAVIOR-1K 构建，包含 235,492 个技能实例，来自 50 个家庭任务、10,000 条演示，涵盖 34 个语义技能类别。 现有基准主要依赖完整任务 rollout 和聚合任务级指标，难以观察中间技能失败；Behavior-Skill 通过独立技能评估、中间状态恢复和技能成功条件，揭示长时程任务中真正的能力瓶颈。",
+    "research_unit": "国防科技大学（College of Intelligence Science and Technolo…",
+    "hook_text": "论文提出了 Behavior-Skill，一个面向长时程移动操作任务的细粒度基准，将\"可执行的构成技能（constituent skills）\"作为学习与评估的基本单元。",
+    "key_points": [
+      "论文提出了 Behavior-Skill，一个面向长时程移动操作任务的细粒度基准，将\"可执行的构成技能（constituent skills）\"作为学习与评估的基本单元。",
+      "该基准基于 BEHAVIOR-1K 构建，包含 235,492 个技能实例，来自 50 个家庭任务、10,000 条演示，涵盖 34 个语义技能类别。",
+      "现有基准主要依赖完整任务 rollout 和聚合任务级指标，难以观察中间技能失败；Behavior-Skill 通过独立技能评估、中间状态恢复和技能成功条件，揭示长时程任务中真正的能力瓶颈。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies",
+    "link": "http://arxiv.org/abs/2608.30378",
+    "arxiv_id": "2608.30378",
+    "detail_path": "papers/2608.30378/",
+    "cover_path": "covers/2608.30378/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30378.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30378.webp",
+    "preview_text": "论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。 针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。 核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。",
+    "research_unit": "Multi-Dimensional Information Processing Laboratory…",
+    "hook_text": "论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。",
+    "key_points": [
+      "论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。",
+      "针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。",
+      "核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding",
+    "link": "http://arxiv.org/abs/2608.30289",
+    "arxiv_id": "2608.30289",
+    "detail_path": "papers/2608.30289/",
+    "cover_path": "covers/2608.30289/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30289.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30289.webp",
+    "preview_text": "论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。 现有物理 VQA 数据通常与机器人动作域\"脱离\"（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 CometData 语料库和 CometBench 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。 核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。",
+    "research_unit": "JD Explore Academy（中国）",
+    "hook_text": "论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。",
+    "key_points": [
+      "论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。",
+      "现有物理 VQA 数据通常与机器人动作域\"脱离\"（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 CometData 语料库和 CometBench 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。",
+      "核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Motus2: A Self-Evolving General World Model for Dexterous Manipulation",
+    "link": "http://arxiv.org/abs/2608.30237",
+    "arxiv_id": "2608.30237",
+    "detail_path": "papers/2608.30237/",
+    "cover_path": "covers/2608.30237/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30237.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30237.webp",
+    "preview_text": "论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。 核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。 论文沿数据扩展与模型扩展两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。",
+    "research_unit": "GensPI",
+    "hook_text": "论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。",
+    "key_points": [
+      "论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。",
+      "核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。",
+      "论文沿数据扩展与模型扩展两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Rethinking Language's Role in Efficient VLA for Autonomous Vehicles: Toward Smarter, Trustworthy Driving",
+    "link": "http://arxiv.org/abs/2608.30144",
+    "arxiv_id": "2608.30144",
+    "detail_path": "papers/2608.30144/",
+    "cover_path": "covers/2608.30144/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30144.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30144.webp",
+    "preview_text": "本文是一篇综述论文，聚焦于自动驾驶场景下的高效视觉-语言-动作（VLA）模型，重新审视语言在推理阶段的作用，而非简单地追求模型规模缩小。 核心问题：\"何时何地\"应在推理时使用语言——训练成本是一次性的，而推理成本在每一帧部署中反复发生，因此语言参与的时机与方式成为关键设计决策。 论文提出了 \"语言残留（Language Residue）\"分类体系（L1–L4），按语言在推理阶段的使用程度对方法进行分类，旨在保留语言带来的语义增益，同时消除其部署代价。",
+    "research_unit": "东北大学（Northeastern University）电气与计算机工程系，美国马萨诸塞州波士顿",
+    "hook_text": "本文是一篇综述论文，聚焦于自动驾驶场景下的高效视觉-语言-动作（VLA）模型，重新审视语言在推理阶段的作用，而非简单地追求模型规模缩小。",
+    "key_points": [
+      "本文是一篇综述论文，聚焦于自动驾驶场景下的高效视觉-语言-动作（VLA）模型，重新审视语言在推理阶段的作用，而非简单地追求模型规模缩小。",
+      "核心问题：\"何时何地\"应在推理时使用语言——训练成本是一次性的，而推理成本在每一帧部署中反复发生，因此语言参与的时机与方式成为关键设计决策。",
+      "论文提出了 \"语言残留（Language Residue）\"分类体系（L1–L4），按语言在推理阶段的使用程度对方法进行分类，旨在保留语言带来的语义增益，同时消除其部署代价。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-31",
+    "title": "Aligning Multi-Trajectory Supervision with Policy Optimization for VLA Driving",
+    "link": "http://arxiv.org/abs/2608.30122",
+    "arxiv_id": "2608.30122",
+    "detail_path": "papers/2608.30122/",
+    "cover_path": "covers/2608.30122/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.30122.webp",
+    "paper_image_full_path": "assets/paper-images/2608.30122.webp",
+    "preview_text": "论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。 核心问题是监督-优化错位（supervision–optimization mismatch）：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。 为此提出统一框架 AMPT（Aligned Multi-Trajectory Policy Training），通过策略兼容的多轨迹监督（PC-MTS）、可行性优先的 Pareto GRPO（FF-PGRPO） 和自适应 Pareto 引导策略细化（APR）三个机制，实现轨迹监督与策略优化的系统对齐。",
+    "research_unit": "武汉大学（School of Computer Science, Wuhan University）",
+    "hook_text": "论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。",
+    "key_points": [
+      "论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。",
+      "核心问题是监督-优化错位（supervision–optimization mismatch）：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。",
+      "为此提出统一框架 AMPT（Aligned Multi-Trajectory Policy Training），通过策略兼容的多轨迹监督（PC-MTS）、可行性优先的 Pareto GRPO（FF-PGRPO） 和自适应 Pareto 引导策略细化（APR）三个机制，实现轨迹监督与策略优化的系统对齐。"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-30",
+    "title": "Training-Free Action Correction for VLA Model Failures via Language Feedback",
+    "link": "http://arxiv.org/abs/2608.29967",
+    "arxiv_id": "2608.29967",
+    "detail_path": "papers/2608.29967/",
+    "cover_path": "covers/2608.29967/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29967.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29967.webp",
+    "preview_text": "论文提出 CorrectVLA 框架，面向视觉-语言-动作（VLA）模型在部署中出现的系统性失败，利用自然语言反馈在不修改任何策略权重的前提下进行动作级修正。 核心研究问题：VLA 模型部署失败的条件是什么？哪些失败可以通过推理时（inference-time）修正恢复，而无需重新训练？ 通过 LIBERO-90 上的失败分类（Taxonomy），论文发现执行错位（Execution Misalignment）类失败（策略方向正确但动作幅度失衡）是可以通过推理时修正恢复的主要子集，而语义理解类失败则不可修正。",
+    "research_unit": "Carnegie Mellon University (CMU)，美国匹兹堡",
+    "hook_text": "论文提出 CorrectVLA 框架，面向视觉-语言-动作（VLA）模型在部署中出现的系统性失败，利用自然语言反馈在不修改任何策略权重的前提下进行动作级修正。",
+    "key_points": [
+      "论文提出 CorrectVLA 框架，面向视觉-语言-动作（VLA）模型在部署中出现的系统性失败，利用自然语言反馈在不修改任何策略权重的前提下进行动作级修正。",
+      "核心研究问题：VLA 模型部署失败的条件是什么？哪些失败可以通过推理时（inference-time）修正恢复，而无需重新训练？",
+      "通过 LIBERO-90 上的失败分类（Taxonomy），论文发现执行错位（Execution Misalignment）类失败（策略方向正确但动作幅度失衡）是可以通过推理时修正恢复的主要子集，而语义理解类失败则不可修正。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-30",
+    "title": "AcrossWAM1.0:A Modular Latent World-Action Stack for Compact Robot Policies",
+    "link": "http://arxiv.org/abs/2608.29937",
+    "arxiv_id": "2608.29937",
+    "detail_path": "papers/2608.29937/",
+    "cover_path": "covers/2608.29937/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29937.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29937.webp",
+    "preview_text": "论文提出 AcrossWAM1.0，一个构建在 LaWAM 潜在世界–动作学习范式之上的模块化、可审计、可部署的机器人策略技术栈。 核心问题：原 LaWAM 将世界模型、多模态主干（backbone）和部署检查点高度耦合，导致替换更 compact 的主干时面临 token 约定、隐藏维度、图像调用接口和检查点可达性等一系列工程障碍。 研究目标：在保持闭环任务性能的前提下，将潜在世界–动作计算显式分解为策略适配器、潜在世界解码器和流匹配动作专家，并验证紧凑主干（Qwen3.5-0.8B）相对原 2B 主干的性能保持能力。",
+    "research_unit": "Yafei Zhang：Across Physical AI（北京，中国）；中国科学院自动化研究所（北…",
+    "hook_text": "论文提出 AcrossWAM1.0，一个构建在 LaWAM 潜在世界–动作学习范式之上的模块化、可审计、可部署的机器人策略技术栈。",
+    "key_points": [
+      "论文提出 AcrossWAM1.0，一个构建在 LaWAM 潜在世界–动作学习范式之上的模块化、可审计、可部署的机器人策略技术栈。",
+      "核心问题：原 LaWAM 将世界模型、多模态主干（backbone）和部署检查点高度耦合，导致替换更 compact 的主干时面临 token 约定、隐藏维度、图像调用接口和检查点可达性等一系列工程障碍。",
+      "研究目标：在保持闭环任务性能的前提下，将潜在世界–动作计算显式分解为策略适配器、潜在世界解码器和流匹配动作专家，并验证紧凑主干（Qwen3.5-0.8B）相对原 2B 主干的性能保持能力。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-30",
+    "title": "DriftingVLA: Native One-Step Vision-Language-Action Generation via Per-Dimension Temporal Drifting",
+    "link": "http://arxiv.org/abs/2608.29749",
+    "arxiv_id": "2608.29749",
+    "detail_path": "papers/2608.29749/",
+    "cover_path": "covers/2608.29749/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29749.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29749.webp",
+    "preview_text": "论文提出 DriftingVLA，一种原生单步视觉-语言-动作（VLA）生成模型，通过单次动作专家前向传播即可生成完整动作块，解决传统流匹配 VLA 模型（如 π0.5）在推理时需多步数值积分导致的延迟问题 核心思路是放弃在推理时学习/使用流场（flow field）进行迭代积分，而是利用分布漂移目标（distribution drifting objective）在训练阶段将分布校正逐步吸收进生成器参数，学习从高斯噪声到动作块的直接映射 针对机器人动作维度具有异构控制语义和分布特征的问题，提出 Per-Dimension Temporal Drifting（PDTD），将每个动作维度的完整时间轨迹作为独立漂移单元进行建模，同时保持共享 VLA 模型对完整动作块的联合生成",
+    "research_unit": "中国科学技术大学（University of Science and Technology of Ch…",
+    "hook_text": "论文提出 DriftingVLA，一种原生单步视觉-语言-动作（VLA）生成模型，通过单次动作专家前向传播即可生成完整动作块，解决传统流匹配 VLA 模型（如 π0.5）在推理时需多步数值积分导致的延迟问题",
+    "key_points": [
+      "论文提出 DriftingVLA，一种原生单步视觉-语言-动作（VLA）生成模型，通过单次动作专家前向传播即可生成完整动作块，解决传统流匹配 VLA 模型（如 π0.5）在推理时需多步数值积分导致的延迟问题",
+      "核心思路是放弃在推理时学习/使用流场（flow field）进行迭代积分，而是利用分布漂移目标（distribution drifting objective）在训练阶段将分布校正逐步吸收进生成器参数，学习从高斯噪声到动作块的直接映射",
+      "针对机器人动作维度具有异构控制语义和分布特征的问题，提出 Per-Dimension Temporal Drifting（PDTD），将每个动作维度的完整时间轨迹作为独立漂移单元进行建模，同时保持共享 VLA 模型对完整动作块的联合生成"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-30",
+    "title": "AGM: Achievement-Grounded Memory for Closed-Loop Agents with Frozen VLA Policies",
+    "link": "http://arxiv.org/abs/2608.29537",
+    "arxiv_id": "2608.29537",
+    "detail_path": "papers/2608.29537/",
+    "cover_path": "covers/2608.29537/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29537.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29537.webp",
+    "preview_text": "提出 Achievement-Grounded Memory (AGM) 框架，解决冻结 VLA（Vision-Language-Action）策略在重复性操作任务中无法跟踪任务进度的问题。 指出基于\"尝试次数\"的外部记忆更新会将瞬时操作失败固化为持久任务状态错误，导致性能甚至不如无记忆基线。 将任务表示为带进度指针的子目标序列，仅当子目标通过物理证据验证后才推进指针，实现执行-验证-进度的闭环，保持策略完全冻结。",
+    "research_unit": "哈尔滨工业大学（Harbin Institute of Technology）",
+    "hook_text": "提出 Achievement-Grounded Memory (AGM) 框架，解决冻结 VLA（Vision-Language-Action）策略在重复性操作任务中无法跟踪任务进度的问题。",
+    "key_points": [
+      "提出 Achievement-Grounded Memory (AGM) 框架，解决冻结 VLA（Vision-Language-Action）策略在重复性操作任务中无法跟踪任务进度的问题。",
+      "指出基于\"尝试次数\"的外部记忆更新会将瞬时操作失败固化为持久任务状态错误，导致性能甚至不如无记忆基线。",
+      "将任务表示为带进度指针的子目标序列，仅当子目标通过物理证据验证后才推进指针，实现执行-验证-进度的闭环，保持策略完全冻结。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "title": "SMILE: Smooth Motion for Improved Long-Horizon VLA Execution",
+    "link": "http://arxiv.org/abs/2608.29432",
+    "arxiv_id": "2608.29432",
+    "detail_path": "papers/2608.29432/",
+    "cover_path": "covers/2608.29432/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29432.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29432.webp",
+    "preview_text": "论文提出 SMILE（Smooth Motion for Improved Long-Horizon VLA Execution），一种架构保持（architecture-preserving）的动作接口，通过预测 B-spline 系数并将其解码为平滑动作序列，解决 VLA 模型在长时程执行中因原始动作块包含抖动和离群值而导致精度下降的问题。 核心目标是在不改变各基线模型骨干结构和模型规模的前提下，仅替换动作侧表示，使 VLA 模型能够安全地使用更长的固定执行视野（execution horizon），从而在提升任务精度的同时降低单动作摊销推理延迟。 论文将 SMILE 应用于 SmolVLA、Evo1、VPP 和 DAWN 四个异构动作专家，在 LIBERO、CALVIN 和真实世界 xArm 实验中验证了一致的精度–效率提升。",
+    "research_unit": "Stony Brook University（纽约州立大学石溪分校）",
+    "hook_text": "论文提出 SMILE（Smooth Motion for Improved Long-Horizon VLA Execution），一种架构保持（architecture-preserving）的动作接口，通过预测 B-spline 系数并将其解码为平滑动作序列，解决 VLA 模型在长时程执行中因原始动作块包含抖动和离群值而导致精度下降的问题。",
+    "key_points": [
+      "论文提出 SMILE（Smooth Motion for Improved Long-Horizon VLA Execution），一种架构保持（architecture-preserving）的动作接口，通过预测 B-spline 系数并将其解码为平滑动作序列，解决 VLA 模型在长时程执行中因原始动作块包含抖动和离群值而导致精度下降的问题。",
+      "核心目标是在不改变各基线模型骨干结构和模型规模的前提下，仅替换动作侧表示，使 VLA 模型能够安全地使用更长的固定执行视野（execution horizon），从而在提升任务精度的同时降低单动作摊销推理延迟。",
+      "论文将 SMILE 应用于 SmolVLA、Evo1、VPP 和 DAWN 四个异构动作专家，在 LIBERO、CALVIN 和真实世界 xArm 实验中验证了一致的精度–效率提升。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "title": "AdaVLA: Adaptive Step Flow Matching for Training-free Acceleration of Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2608.29208",
+    "arxiv_id": "2608.29208",
+    "detail_path": "papers/2608.29208/",
+    "cover_path": "covers/2608.29208/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29208.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29208.webp",
+    "preview_text": "论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。 现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的迭代式 ODE 求解过程这一新的主要性能瓶颈。 核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。",
+    "research_unit": "韩国西江大学（Sogang University） 人工智能系",
+    "hook_text": "论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。",
+    "key_points": [
+      "论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。",
+      "现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的迭代式 ODE 求解过程这一新的主要性能瓶颈。",
+      "核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "title": "DREAM: Deployment-Time Demonstration Generation via Real-to-Sim for Scalable Policy Adaptation",
+    "link": "http://arxiv.org/abs/2608.29078",
+    "arxiv_id": "2608.29078",
+    "detail_path": "papers/2608.29078/",
+    "cover_path": "covers/2608.29078/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29078.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29078.webp",
+    "preview_text": "提出 DREAM（Deployment-Time Demonstration Generation via Real-to-Sim）框架，用于在新部署工作区中为预训练的视觉-语言-动作（VLA）模型生成微调数据，无需任何任务特定的人工遥操作演示 核心问题：VLA 模型在新工作区部署时性能不足，而采集带动作标签的真实数据依赖昂贵的人工遥操作，难以在每次新环境、新物体布局或新任务中规模化 核心思想：将工作区短视频与语言指令作为输入，重建可交互的数字孪生，用任务与运动规划（TAMP）自动生成并验证可行轨迹，再渲染为图像-动作对用于 VLA 微调",
+    "research_unit": "The University of Tokyo（东京大学），日本",
+    "hook_text": "提出 DREAM（Deployment-Time Demonstration Generation via Real-to-Sim）框架，用于在新部署工作区中为预训练的视觉-语言-动作（VLA）模型生成微调数据，无需任何任务特定的人工遥操作演示",
+    "key_points": [
+      "提出 DREAM（Deployment-Time Demonstration Generation via Real-to-Sim）框架，用于在新部署工作区中为预训练的视觉-语言-动作（VLA）模型生成微调数据，无需任何任务特定的人工遥操作演示",
+      "核心问题：VLA 模型在新工作区部署时性能不足，而采集带动作标签的真实数据依赖昂贵的人工遥操作，难以在每次新环境、新物体布局或新任务中规模化",
+      "核心思想：将工作区短视频与语言指令作为输入，重建可交互的数字孪生，用任务与运动规划（TAMP）自动生成并验证可行轨迹，再渲染为图像-动作对用于 VLA 微调"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "title": "A Degradation-Tolerance Benchmark for Camera-Only End-to-End Driving",
+    "link": "http://arxiv.org/abs/2608.29005",
+    "arxiv_id": "2608.29005",
+    "detail_path": "papers/2608.29005/",
+    "cover_path": "covers/2608.29005/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.29005.webp",
+    "paper_image_full_path": "assets/paper-images/2608.29005.webp",
+    "preview_text": "提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度 现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面 关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性",
+    "research_unit": "University of Georgia（佐治亚大学），College of Engineering…",
+    "hook_text": "提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度",
+    "key_points": [
+      "提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度",
+      "现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面",
+      "关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-08-29",
+    "title": "Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution",
+    "link": "http://arxiv.org/abs/2608.28995",
+    "arxiv_id": "2608.28995",
+    "detail_path": "papers/2608.28995/",
+    "cover_path": "covers/2608.28995/",
+    "paper_image_path": "assets/paper-images/thumbs/2608.28995.webp",
+    "paper_image_full_path": "assets/paper-images/2608.28995.webp",
+    "preview_text": "提出 Hydra，一种面向视觉机器人导航的世界动作模型（World Action Model, WAM），旨在解决世界模型与规划器之间的表示错位（representation misalignment）问题——传统生成模型与规划器操作在解耦的流形上，导致规划器必须将每个候选解码回像素空间才能评估，严重阻碍实时控制。 Hydra 通过建立覆盖视觉状态、物理位姿和控制动作的统一潜在流形，并利用模态特定的向量量化（VQ）瓶颈压缩为离散的“运动学意图（kinodynamic intents）”和视觉状态词汇表，将采样器和评估器都移入模型内部，实现无需像素解码的规划。 引入 离散潜在规划（Discrete Latent Planning, DLP） 与条件流匹配（Flow Matching） 结合：前者在离散流形上搜索和排名候选轨迹，后者将选中的意图映射为连续执行轨迹；在两个物理机器人平台上验证了实时规划与执行能力。",
+    "research_unit": "George Mason University（乔治梅森大学）：作者 Mohammad Nazeri、…",
+    "hook_text": "提出 Hydra，一种面向视觉机器人导航的世界动作模型（World Action Model, WAM），旨在解决世界模型与规划器之间的表示错位（representation misalignment）问题——传统生成模型与规划器操作在解耦的流形上，导致规划器必须将每个候选解码回像素空间才能评估，严重阻碍实时控制。",
+    "key_points": [
+      "提出 Hydra，一种面向视觉机器人导航的世界动作模型（World Action Model, WAM），旨在解决世界模型与规划器之间的表示错位（representation misalignment）问题——传统生成模型与规划器操作在解耦的流形上，导致规划器必须将每个候选解码回像素空间才能评估，严重阻碍实时控制。",
+      "Hydra 通过建立覆盖视觉状态、物理位姿和控制动作的统一潜在流形，并利用模态特定的向量量化（VQ）瓶颈压缩为离散的“运动学意图（kinodynamic intents）”和视觉状态词汇表，将采样器和评估器都移入模型内部，实现无需像素解码的规划。",
+      "引入 离散潜在规划（Discrete Latent Planning, DLP） 与条件流匹配（Flow Matching） 结合：前者在离散流形上搜索和排名候选轨迹，后者将选中的意图映射为连续执行轨迹；在两个物理机器人平台上验证了实时规划与执行能力。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
     "date": "2026-08-28",
     "title": "DeicticVLA: Unifying Instruction Modes Based on Language and Deictic Gestures in a Single VLA",
     "link": "http://arxiv.org/abs/2608.28108",

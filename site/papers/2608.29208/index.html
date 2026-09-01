@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AdaVLA: Adaptive Step Flow Matching for Training-free Acceleration of Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。 现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的迭代式 ODE 求解过程这一新的主要性能瓶颈。 核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.29208">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.29208.webp" alt="AdaVLA: Adaptive Step Flow Matching for Training-free Acceleration of Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">AdaVLA: Adaptive Step Flow Matching for Training-free Acceleration of Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-08-29 · <a href="http://arxiv.org/abs/2608.29208" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.29208" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.29208</span></div>
+            <p class="detail-summary">论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。 现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的迭代式 ODE 求解过程这一新的主要性能瓶颈。 核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">韩国西江大学（Sogang University） 人工智能系</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.29208/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。</p>
+  <ul class="reading-intro-points"><li>论文提出 AdaVLA，一个在线、无需训练的自适应加速框架，用于加速基于 Flow Matching 的 Vision-Language-Action（VLA）模型 在边缘设备上的推理。</li><li>现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的迭代式 ODE 求解过程这一新的主要性能瓶颈。</li><li>核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>韩国西江大学（Sogang University）</strong> 人工智能系</li><li>作者：<strong>Sunghwan Han</strong>、<strong>Youngtae Han</strong>、<strong>Youngmin Yi</strong>（通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>AdaVLA</strong>，一个<strong>在线、无需训练</strong>的自适应加速框架，用于加速基于 <strong>Flow Matching</strong> 的 <strong>Vision-Language-Action（VLA）模型</strong> 在边缘设备上的推理。</li><li>现有加速方法大多需要微调或访问训练数据，且只关注 VLM 骨干网络的计算优化，而忽略了 flow matching 推理中固有的<strong>迭代式 ODE 求解过程</strong>这一新的主要性能瓶颈。</li><li>核心思想是让模型根据任务难度动态调整计算量，类似人类的认知机制——简单任务快速响应，复杂任务深入思考。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出基于 <strong>Flow Matching 轨迹曲率（Trajectory Curvature）</strong> 的<strong>自适应推理机制</strong>，在推理过程中动态减少 ODE 求解步数，并自适应调整 MLP 剪枝比例。</li><li>设计<strong>无需训练数据且高效</strong>的 <strong>MLP 块重要性评估方法</strong>，利用 <strong>Participation Ratio (PR)</strong> 代替 SVD 计算层的表示多样性，实现按层差异化剪枝。</li><li>提出 <strong>MLP 通道重排序（Channel Reordering）</strong> 策略，在推理过程中动态调整通道优先级，实现高效结构化剪枝。</li><li>将延迟-成功率权衡封装为<strong>单一可调参数（曲率阈值 C_th）</strong>，无需多维手动调参。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>自适应推断（Adaptive Inference）</strong>：采用类 <strong>Runge-Kutta 2（RK2）</strong> 方法，计算相邻向量场估计的归一化差异作为轨迹曲率 C；当曲率低于阈值时直接跳至最终状态，高于阈值时根据曲率自适应调整步长，实现计算资源的动态分配。</li><li><strong>高效重要性评估（Efficient Importance Assessment）</strong>：利用 Gram 矩阵的迹和 Frobenius 范数计算 <strong>Participation Ratio (PR)</strong>，无需 SVD 分解，在边缘设备上高效评估各层 MLP 块的表示丰富度，从而对各层采用差异化剪枝比例。</li><li><strong>通道重排序（Channel Reordering）</strong>：综合考虑中间层激活幅度和后续投影层的权重范数，定义通道重要性，并在初始前向或检测到显著上下文变化时对通道进行重排序，保留关键特征。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟评估使用的模型：<strong>π_0.5</strong>（参数量 <strong>3.3B</strong>）和 <strong>X-VLA</strong>（参数量 <strong>0.9B</strong>）</li><li>真实机器人实验使用的模型：<strong>SmolVLA</strong></li><li>模拟基准：<strong>LIBERO Benchmark</strong>（包含 Spatial、Object、Goal、Long 四个任务套件）</li><li>真实机器人平台：<strong>SO-ARM101</strong></li><li>评估硬件：<strong>NVIDIA Jetson AGX Orin</strong>（边缘设备）和 <strong>NVIDIA A10</strong>（服务器 GPU）</li><li>模型检查点来自 LeRobot 官方 Hugging Face 仓库</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO 基准测试（Jetson AGX Orin）</strong>：AdaVLA 在 π_0.5 上实现 <strong>1.87×</strong> 加速（958.54ms → 513.35ms），平均成功率从 98.65% 提升至 <strong>99.45%</strong>；在 X-VLA 上实现 <strong>2.24×</strong> 加速（387.52ms → 173.09ms），成功率保持在 <strong>98.90%</strong>。</li><li><strong>能量效率</strong>：π_0.5 能耗从 19.83J 降至 13.17J（1.51× 降低）；X-VLA 能耗从 10.73J 降至 3.51J（<strong>3.06× 降低</strong>）。</li><li><strong>消融实验</strong>：去除自适应推断后延迟增至 925.71ms 接近基线水平，验证其核心作用；移除剪枝组件则成功率恢复至 98.65% 基线，验证剪枝对鲁棒性的保护。参与比（PR）方法相比 SVD 具有 5.63× 的首次动作时间（TTFA）加速。</li><li><strong>对比方法</strong>：与 SparseVLM 和 FastV 对比，现有方法在 X-VLA 上仅减少 2.3ms 延迟，而 AdaVLA 实现 214ms 的显著加速。</li><li><strong>真实机器人实验</strong>：在 SO-ARM101 上使用 SmolVLA 完成四项操作任务，实现 <strong>1.65×</strong> 延迟加速（806.73ms → 488.49ms），同时平均成功率从 87.50% 提升至 <strong>90.00%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.29432/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SMILE: Smooth Motion for Improved Long-Horizon VLA Execution</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.29078/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DREAM: Deployment-Time Demonstration Generation via Real-to-Sim for Scalable Policy Adaptation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

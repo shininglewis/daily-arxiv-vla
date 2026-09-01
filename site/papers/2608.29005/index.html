@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Degradation-Tolerance Benchmark for Camera-Only End-to-End Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度 现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面 关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.29005">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.29005.webp" alt="A Degradation-Tolerance Benchmark for Camera-Only End-to-End Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">A Degradation-Tolerance Benchmark for Camera-Only End-to-End Driving</h1>
+            <div class="detail-meta">2026-08-29 · <a href="http://arxiv.org/abs/2608.29005" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.29005" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.29005</span></div>
+            <p class="detail-summary">提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度 现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面 关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Georgia（佐治亚大学），College of Engineering…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.29005/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度</p>
+  <ul class="reading-intro-points"><li>提出了 DriveDegrade 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度</li><li>现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面</li><li>关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Georgia</strong>（佐治亚大学），<strong>College of Engineering</strong>，美国佐治亚州雅典市</li><li>作者：<strong>Haohua Que</strong>、<strong>Handong Yao</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出了 <strong>DriveDegrade</strong> 基准，用于评估相机-only端到端（E2E）驾驶模型对图像退化的容忍度</li><li>现有 corruption 鲁棒性基准止步于检测或 BEV 感知层面，没有评估真正驱动车辆的规划输出；DriveDegrade 将 16 种 corruption 家族以 5 个严重度直接在图像加载器内注入，评估规划层面</li><li>关键发现：轻度退化基本不影响规划、退化族类存在明确的中等严重度阈值；模糊、JPEG、雨滴最伤规划，天气和位错误容忍度极高；通过区分“质量退化”与“信息移除”解决了平坦曲线的歧义性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>一个注入器、十五个策略、五个架构家族</strong>：模型无关的注入器在各自模型的加载器内部以相同算子、相同严重度作用于所有架构，覆盖 UniAD、VAD、SparseDrive、GenAD、DiffusionDrive、LAW 等六种主规划器及 NAVSIM 策略、世界模型、VLA、CARLA agent</li><li><strong>逐 corruption 容忍度阈值</strong>：定位每种 corruption 下规划开始崩溃的严重度，包括四种驾驶专属污染族（遮挡、泥浆飞溅、雨滴、镜头污垢），其损害是空间集中而非全局性的</li><li><strong>视觉依赖诊断（vision-reliance diagnostic）</strong>：将质量退化与信息移除分离，把退化曲线转化为可解释的相机依赖度量，避免把忽略输入的 planner 误判为“鲁棒”</li><li><strong>开放全部绝对指标</strong>：释放每个绝对单元格数据，可重算任意基线相对分数，支持排名反转分析</li><li><strong>闭环验证与多协议评估</strong>：在 CARLA 中用两个相机-only agent 锚定趋势，并用 NAVSIM 的 PDMS/EPDMS 规则评分交叉验证，确保结论不依赖单一模仿误差指标</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>在线退化注入</strong>：corruption 在图像 loader 内解码后、归一化前应用，不落盘；仅依赖 numpy/cv2，同一实现可服务六种模型环境和两个模拟器</li><li><strong>退化分类学</strong>：16 个 corruption 家族分为五组：传感器/质量（模糊、噪声、JPEG、降采样、颜色量化）、天气/环境（雾、雪、低光）、时间/多相机（帧丢失、相机黑屏）、近似内存（位错误），以及新增的镜头与挡风玻璃污染（遮挡、泥浆飞溅、雨滴、镜头污垢）</li><li><strong>严重度阶梯</strong>：每个家族由单一物理参数定义，S1–S5 各档位参数值直接从注入器导出，端点规定为“日常可见”到“人类认为不可用”，确保阈值膝盖被括在区间内</li><li><strong>评估协议</strong>：开放回路使用轨迹 L2、碰撞、舒适度、能量代理；NAVSIM 规则评分使用 PDMS/EPDMS；CARLA 闭环使用 Driving Score；主要比较指标为 <strong>relative retention</strong> r(s)=M(clean)/M(s)，并定义 s*₁₀、s*₂₅ 阈值</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>nuScenes</strong>：完整验证集 6019 个关键帧、六相机；GenAD 和 DiffusionDrive 使用 5119 帧有效规划子集</li><li><strong>NAVSIM</strong>：navtest（12147 场景，PDMS）和 navhard_two_stage（EPDMS）</li><li><strong>CARLA</strong>：三个城镇闭环评估（Town10 等）</li><li>评估模型：<strong>UniAD</strong>、<strong>VAD</strong>、<strong>SparseDrive</strong>、<strong>GenAD</strong>、<strong>DiffusionDrive</strong>、<strong>LAW</strong>、<strong>TransFuser</strong>（相机+LiDAR）、<strong>DrivoR</strong>（DINOv2 ViT-S）、<strong>Epona</strong>（世界模型）、<strong>OpenDriveVLA-0.5B</strong>、<strong>ZTRS</strong>、<strong>GTRS-Aug</strong>、<strong>RAP</strong>、<strong>iPad</strong></li><li>训练资源未在文中具体说明；每个单元平均 6019 帧 × 6 相机 × 3 seeds</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：开放回路规划在 nuScenes 与 NAVSIM 上评估，闭环锚定在 CARLA 上进行；开放回路为确定性评估，帧级 bootstrap 95% 置信区间低于 0.01 retention</li><li><strong>脆弱性排序</strong>：模糊（运动/高斯）、JPEG、噪声最能破坏规划；天气类（雾、雪、低光）和位错误几乎被完全容忍；雨滴是最具破坏力的单一家族，相机依赖型规划器 s*₁₀ 在 1.10–2.31 之间即被突破</li><li><strong>跨模型视觉依赖</strong>：UniAD 与 DiffusionDrive 位于相机依赖端，SparseDrive 和 GenAD 居中，VAD 与 LAW 几乎不动；但 VAD 在移除前相机时损失 7.7%，LAW 损失 9.7%，证明其平坦曲线是质量不敏感而非盲目</li><li><strong>VLA 特例</strong>：OpenDriveVLA 在 48 单元扫描中所有 retention 落在 [0.909, 0.997]，全六相机黑屏仅损失 11.5%，唯一具有负 gap 的模型，暴露其规划主要依赖 ego 状态而非视觉输入</li><li><strong>闭环结果</strong>：CARLA 中前相机黑屏 S5 将 Driving Score 从 100 降至 19.4，图像质量类条件保持在 81 以上；即使用完整案例平均或对未评分运行做边界赋值，可用性 vs 质量的分隔仍然成立</li><li><strong>规则评分交叉验证</strong>：NAVSIM PDMS 下，TransFuser 的 PDMS 在模糊和黑屏下下降，子分数同步降低；DrivoR（DINOv2 骨干）质量退化 retention 达 0.956–0.962，但前相机黑屏骤降至 0.531</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.29078/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DREAM: Deployment-Time Demonstration Generation via Real-to-Sim for Scalable Policy Adaptation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.28995/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

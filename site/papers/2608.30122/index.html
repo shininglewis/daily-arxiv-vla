@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aligning Multi-Trajectory Supervision with Policy Optimization for VLA Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。 核心问题是监督-优化错位（supervision–optimization mismatch）：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。 为此提出统一框架 AMPT（Aligned Multi-Trajectory Policy Training），通过策略兼容的多轨迹监督（PC-MTS）、可行性优先的 Pareto GRPO（FF-PGRPO） 和自适应 Pareto 引导策略细化（APR）三个机制，实现轨迹监督与策略优化的系统对齐。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.30122">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.30122.webp" alt="Aligning Multi-Trajectory Supervision with Policy Optimization for VLA Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Aligning Multi-Trajectory Supervision with Policy Optimization for VLA Driving</h1>
+            <div class="detail-meta">2026-08-31 · <a href="http://arxiv.org/abs/2608.30122" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.30122" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.30122</span></div>
+            <p class="detail-summary">论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。 核心问题是监督-优化错位（supervision–optimization mismatch）：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。 为此提出统一框架 AMPT（Aligned Multi-Trajectory Policy Training），通过策略兼容的多轨迹监督（PC-MTS）、可行性优先的 Pareto GRPO（FF-PGRPO） 和自适应 Pareto 引导策略细化（APR）三个机制，实现轨迹监督与策略优化的系统对齐。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">武汉大学（School of Computer Science, Wuhan University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.30122/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。</p>
+  <ul class="reading-intro-points"><li>论文聚焦 VLA（Vision-Language-Action）驾驶模型 中多轨迹模仿学习与 GRPO（Group-Relative Policy Optimization） 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。</li><li>核心问题是监督-优化错位（supervision–optimization mismatch）：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。</li><li>为此提出统一框架 AMPT（Aligned Multi-Trajectory Policy Training），通过策略兼容的多轨迹监督（PC-MTS）、可行性优先的 Pareto GRPO（FF-PGRPO） 和自适应 Pareto 引导策略细化（APR）三个机制，实现轨迹监督与策略优化的系统对齐。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>武汉大学</strong>（School of Computer Science, Wuhan University）</li><li><strong>东风汽车研发总院</strong>（Dongfeng Research & Development Institute）</li><li>作者团队包括 Tian Zhang、Zhuo Huang、Hongrui Ye、Yu Wu、Zengmao Wang、Kaixuan Zhou（第一作者 Tian Zhang 曾在该院实习）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文聚焦 <strong>VLA（Vision-Language-Action）驾驶模型</strong> 中多轨迹模仿学习与 <strong>GRPO（Group-Relative Policy Optimization）</strong> 结合的范式，指出当前轨迹选择策略在提升模仿学习性能的同时，可能因与当前策略可行行为分布不匹配，导致后续 GRPO 优势估计偏置，驱动策略偏离安全合规行为。</li><li>核心问题是<strong>监督-优化错位（supervision–optimization mismatch）</strong>：高评分轨迹不一定是有用的监督目标，其价值取决于与当前训练策略的兼容性。论文通过实验展示，基于评分或 Pareto 过滤的轨迹集在模仿阶段表现更好，但经 GRPO 后性能反而退化。</li><li>为此提出统一框架 <strong>AMPT（Aligned Multi-Trajectory Policy Training）</strong>，通过<strong>策略兼容的多轨迹监督（PC-MTS）</strong>、<strong>可行性优先的 Pareto GRPO（FF-PGRPO）</strong> 和<strong>自适应 Pareto 引导策略细化（APR）</strong>三个机制，实现轨迹监督与策略优化的系统对齐。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别并揭示了多轨迹 VLA 驾驶中的结构性监督-优化错位问题：能够提升模仿阶段规划的轨迹集，可能降低后续 GRPO 阶段可行高质量 rollout 的可用性，说明单一轨迹评分不足以评估下游优化价值。</li><li>提出 <strong>PC-MTS（Policy-Compatible Multi-Trajectory Supervision）</strong>：通过场景级 Pareto 最优性筛选候选轨迹，并仅保留与冻结 GT-only 策略 rollout 分布接近且局部可行的轨迹，在微调前过滤策略不匹配的监督。</li><li>提出 <strong>FF-PGRPO（Feasibility-First Pareto GRPO）</strong>：根据 rollout 组的可行性组合自适应分配信用，仅对可行的 Pareto 前沿轨迹给予正优势，对完全不可行组引导至安全参考，确保先建立可行性再提升效率。</li><li>提出 <strong>APR（Adaptive Pareto-Guided Policy Refinement）</strong>：每一轮根据最新策略重新评估多源教师轨迹池，筛选相对改进并转化为局部目标，通过优势加权蒸馏与策略保留实现保守转移，移除过时监督。</li><li>在 <strong>NAVSIM v1</strong> 和 <strong>NAVSIM v2</strong> 上实现 SOTA 性能；其中 <strong>91.4 PDMS</strong> 与 <strong>89.1 EPDMS</strong> 均为单轨迹推理结果，且无明显额外推理负担。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>总体流程</strong>：先基于日志轨迹训练冻结的 GT-only 策略 π_GT，通过 PC-MTS 用兼容的候选轨迹微调其副本得到 GRPO 初始化 π_initial，再经 FF-PGRPO 在线优化，最后用 APR 多轮迭代细化。</li><li><strong>PC-MTS 的筛选逻辑</strong>：候选轨迹需满足基本安全合规要求（NC/DAC/DDC）、达到足够聚合分数、位于场景级 Pareto 前沿（EP/TTC/舒适度），并利用冻结策略的 rollout 构建样本兼容性测试（K 近邻平均路点距离），同时通过局部时序扰动检验候选的局部可行性；日志轨迹始终保留。</li><li><strong>FF-PGRPO 的信用分配</strong>：以可行且不劣于场景参考（由日志、保留候选和 π_initial 单轨迹预测中最高分可行轨迹构成）的 rollout 为可接受 Pareto 前沿，正优势仅赋予该集合成员；可行但不在 Pareto 前沿者仅允许非正优势，不可行者附加安全惩罚；完全不可行组则附加安全参考的弱扩散监督并降低组权重。</li><li><strong>APR 的迭代细化</strong>：以当前策略单轨迹预测为基线，候选教师需可行、聚合分数提升超过阈值、不损害保护指标；通过插值比率搜索将教师转换为局部验证目标，按验证分数增益加权，用同一扩散目标训练，同时保留当前预测行为；训练结束时合并安全/效率/结构分支的任务向量，得到下一轮策略。</li><li><strong>创新点</strong>：将轨迹选择从“规划质量”扩展到“与当前策略分布的兼容性”；将 GRPO 信用赋值从标量排名扩展到“可行性优先 + Pareto 比较 + 参考相对表现”的分层结构；将教师蒸馏从静态集合更新为动态策略相对评估。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>NAVSIM v1</strong>：OpenScene 仿真数据集，用于单轨迹规划评估，报告 <strong>PDMS（Predictive Driver Model Score）</strong>，包含 NC、DAC、TTC、舒适度（C）和进度（EP）等指标。</li><li><strong>NAVSIM v2</strong>：扩展评估协议，报告 <strong>EPDMS</strong>，额外加入 DDC、TLC、Lane Keeping（LK）、History Comfort（HC）和 Extended Comfort（EC）等指标。</li><li><strong>模型架构</strong>：VLA 主干为 <strong>InternVL3-2B</strong>，扩散规划器复用 ReCogDrive 的架构与轨迹表示，模型规模约 <strong>2B 参数</strong>。</li><li><strong>训练资源</strong>：8 张 <strong>NVIDIA A800 GPU</strong>；GT-only 与多轨迹模仿变体训练 200 epochs；GRPO 每场景 16 条 rollout，优化 10 epochs；AMPT 共 3 轮迭代优化。</li><li><strong>额外评估集</strong>：基于 ReCogDrive IL 策略筛选的 <strong>658 个挑战性场景</strong>（5 次采样中均发生碰撞或驶出可行驶区域、PDMS 为 0）。</li><li>来源机构为 <strong>武汉大学</strong> 与 <strong>东风汽车研发总院</strong>关键词（研究单位）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>基准对比（NAVSIM v1, 单轨迹 PDMS）</strong>：AMPT 达到 <strong>91.4 PDMS</strong>，超过 DiffusionDriveV2（91.2）、GoalFlow（90.3）、Curious-VLA（90.3）、ReCogDrive（90.8）、DriveVLA-W0（90.2）等所有对比方法，实现 SOTA；NC 98.5、DAC 98.0、TTC 96.0、EP 86.7。</li><li><strong>基准对比（NAVSIM v2, 单轨迹 EPDMS）</strong>：AMPT 达到 <strong>89.1 EPDMS</strong>，大幅超越 Drive-JEPA（87.8）、DiffusionDriveV2（85.5）、Curious-VLA（85.3）、DriveVLA-W0（86.1）等基线；EP 89.4 为所有方法中最优。</li><li><strong>监督-优化错位实验</strong>：Score 与 Pareto 轨迹集分别将 IL 提升至 87.2/87.5 PDMS，但 GRPO 后降至 85.8/86.7；PC-MTS 在 IL 阶段仅 86.9，但 GRPO 后提升至 <strong>91.1</strong>；GT-only 从 86.4 提升到 90.3。证明轨迹集质量需由下游优化效果而非模仿性能评判。</li><li><strong>消融研究（NAVSIM v1）</strong>：单独 PC-MTS 仅提升至 86.9（直接增益有限）；单独 FF-PGRPO 将 DAC 从 94.7 提升到 98.0、TTC 94.2→95.8、EP 80.9→85.9，PDMS 达 91.0（贡献最大）；增加 PC-MTS 达 91.1；再增加 APR 达 91.4，收益来自 EP 从 86.0 到 86.7，不牺牲安全指标。</li><li><strong>APR 迭代效果</strong>：三轮细化 PDMS 从 91.10 → 91.21 → 91.37 → 91.45，增益单调；支持动态教师重构的有效性。</li><li><strong>失败场景恢复</strong>：在 658 个初始失败场景中，原始标量 GRPO 恢复 <strong>367</strong> 个（55.8%），AMPT 恢复 <strong>440</strong> 个（66.9%），多恢复 73 个场景，绝对增益 <strong>11.1 个百分点</strong>，说明改进覆盖困难样本尾部。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.30144/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Rethinking Language&#x27;s Role in Efficient VLA for Autonomous Vehicles: Toward Smarter, Trustworthy Driving</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.29967/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Training-Free Action Correction for VLA Model Failures via Language Feedback</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

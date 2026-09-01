@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。 现有物理 VQA 数据通常与机器人动作域&quot;脱离&quot;（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 CometData 语料库和 CometBench 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。 核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.30289">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.30289.webp" alt="CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding</h1>
+            <div class="detail-meta">2026-08-31 · <a href="http://arxiv.org/abs/2608.30289" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.30289" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.30289</span></div>
+            <p class="detail-summary">论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。 现有物理 VQA 数据通常与机器人动作域&quot;脱离&quot;（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 CometData 语料库和 CometBench 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。 核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">JD Explore Academy（中国）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.30289/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。</p>
+  <ul class="reading-intro-points"><li>论文提出 CometVLA，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。</li><li>现有物理 VQA 数据通常与机器人动作域&quot;脱离&quot;（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 CometData 语料库和 CometBench 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。</li><li>核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>JD Explore Academy</strong>（中国）</li><li><strong>香港中文大学（深圳）理工学院</strong>（The Chinese University of Hong Kong, Shenzhen）</li><li><strong>深圳市人工智能与机器人研究院</strong>（Shenzhen Institute of Artificial Intelligence and Robotics for Society）</li><li><strong>华南理工大学</strong>（South China University of Technology）</li><li><strong>中山大学</strong>（Sun Yat-sen University）</li><li>通讯作者：<strong>肖强季</strong>（Xiaoqiang Ji，jixiaoqiang@cuhk.edu.cn）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>CometVLA</strong>，一个端到端的视觉-语言-动作（VLA）模型框架，旨在将物理常识（physical commonsense）注入机器人操纵策略，弥合 VLM 物理理解与 VLA 动作生成之间的鸿沟。</li><li>现有物理 VQA 数据通常与机器人动作域"脱离"（disembodied），且缺乏与真实操作场景的对齐。论文通过构建与机器人动作数据和具身形态严格对齐的 <strong>CometData</strong> 语料库和 <strong>CometBench</strong> 基准，系统地验证了增强的物理理解能否真正提升下游动作生成表现。</li><li>核心思路是从数据、模型架构、训练策略三个层面系统性解决物理常识无法有效迁移至机器人操纵的问题。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>CometData 与 CometBench（数据层面）</strong>：首个与机器人动作数据视觉域和具身形态对齐的具身物理常识 VQA 语料库（约 100 万 QA 对、超 180 万张图像）及评估基准（2000 个问题）；验证了在 CometBench 上的 VLM 表现与动作生成表现呈正相关。</li><li><strong>Global Action Prior（GAP）token（架构层面）</strong>：一种紧凑的可学习信息瓶颈，作为自回归骨干与扩散动作专家之间的唯一通信接口，有效聚合跨样本的动作先验，并防止低层控制干扰预训练 VLM 的多模态表征。</li><li><strong>CometVLA 协同训练（训练层面）</strong>：利用知识隔离（knowledge insulation）技术实现 VLM-VLA 第一阶段协同预训练，覆盖遥操作、仿真、第一视角轨迹和 VQA 各层级的"具身数据金字塔"。</li><li><strong>系统评估与相关性分析</strong>：在真实世界双机械臂操纵任务和 <strong>RoboTwin 2.0</strong> 仿真基准上超越现有 SOTA 方法；通过域级 Pearson 相关性分析和线性探针实验验证了物理理解预训练对操纵性能的真实贡献。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>CometData 生成管线</strong>：从遥操作、仿真、第一视角轨迹多种异构源收集数据，通过"物理感知中间件"（提取动力学关键帧、描述交互事件、将低级本体感受/动作信号转为语义化物理状态描述），再由 16 个分类生成器覆盖 5 大域（空间推理、任务理解、物理与动力学、错误与工具、可供性）生成 VQA 对。</li><li><strong>CometVLA 架构</strong>：基于 <strong>Qwen3-VL-4B</strong> 预训练骨干，统一自回归视觉-语言建模（L_AR + L_fast，含 FAST 动作分词器）与扩散式连续动作生成（flow matching 目标 L_fm）；通过 stop-gradient 屏障将动作专家与骨干隔离。</li><li><strong>GAP token 设计</strong>：插入骨干 token 序列，经分离的潜在路径传递至动作专家，在注意计算时可穿越 stop-gradient 边界，实现受控信息流而防止梯度泄漏；类似 [CLS] token 的全局语义聚合器，条件化 DiT 动作专家的生成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>预训练数据：<strong>AgiBot-World-Beta</strong>（遥操作）、<strong>InternData-A1</strong>（仿真）、<strong>EgoLive</strong>（第一视角视频）、<strong>EgoDex</strong>（第一视角视频）、通用 VQA 数据（<strong>Cambrian-1</strong>）、以及 <strong>CometData</strong>（具身物理 VQA）。</li><li><strong>CometData</strong>：约 100 万 QA 对，包含超 180 万张图像；<strong>CometBench</strong>：2000 个平衡留出子集问题，经人工审核。</li><li>模型规模：<strong>Qwen3-VL-4B</strong> 骨干 + <strong>DiT-B</strong> flow-matching 动作头 + <strong>FAST</strong> tokenizer；动作空间填充至 32 维（双机械臂格式）。</li><li>训练资源：4 节点 × 8 张 <strong>H200 GPU</strong> 分布式训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>真实机器人实验</strong>（AgiBot Robotics <strong>G1 双机械臂</strong>，梳妆台整理场景，5 类化妆品对象，每任务 16 次试验）：成功率分别为 bb cream 75.00%、liquid foundation 31.25%、lotion 37.50%、makeup sponge 93.75%、serum 43.75%。</li><li><strong>RoboTwin 2.0 仿真基准</strong>：CometVLA 在 easy（clean）split 上达 <strong>89.24%</strong> 成功率，在 hard（randomized）split 上达 <strong>88.38%</strong>，优于 π0、π0.5、RDT、X-VLA、Motus、JEPA-VLA、HALO、LingBot-VLA 等基线。</li><li><strong>消融实验</strong>：移除具身物理 VQA（w/o phys. VQA）导致最大性能下降；移除 GAP token 也持续降低性能，验证了各组件贡献。</li><li><strong>VLM-VLA 相关性分析</strong>：5 个语义域均呈现正相关，其中 <strong>Spatial Reasoning</strong>（r=0.721）相关性最强，<strong>Physics & Dynamics</strong>（r=0.645）次之，说明几何/空间先验对操纵控制迁移最有效。</li><li><strong>GAP token 分析</strong>：t-SNE 可视化显示 GAP token 保留了全局语义结构并形成交互相关的局部簇；线性探针实验中 GAP token 在抓取器状态（+7.0%）、运动方向（+0.7%）、运动幅度（+3.9%）上均优于 VLM-mean 均值池化基线，尽管其维度（1024-d）仅为 VLM 骨干（2560-d）的 2.5 倍更小。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.30378/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.30237/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Motus2: A Self-Evolving General World Model for Dexterous Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

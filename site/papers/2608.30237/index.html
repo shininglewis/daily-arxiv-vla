@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Motus2: A Self-Evolving General World Model for Dexterous Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。 核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。 论文沿数据扩展与模型扩展两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.30237">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.30237.webp" alt="Motus2: A Self-Evolving General World Model for Dexterous Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Motus2: A Self-Evolving General World Model for Dexterous Manipulation</h1>
+            <div class="detail-meta">2026-08-31 · <a href="http://arxiv.org/abs/2608.30237" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.30237" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.30237</span></div>
+            <p class="detail-summary">论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。 核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。 论文沿数据扩展与模型扩展两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">GensPI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.30237/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。</p>
+  <ul class="reading-intro-points"><li>论文提出 Motus2，一个面向灵巧操作（dexterous manipulation）的自进化通用世界模型（self-evolving General World Model），构建在 Motus 基础上。</li><li>核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。</li><li>论文沿数据扩展与模型扩展两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>GensPI</strong></li><li><strong>清华大学（Tsinghua University）</strong></li><li><strong>北京航空航天大学（BUAA）</strong></li><li><strong>北京理工大学（BIT）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Motus2</strong>，一个面向灵巧操作（dexterous manipulation）的<strong>自进化通用世界模型（self-evolving General World Model）</strong>，构建在 Motus 基础上。</li><li>核心目标：让通用具身智能体在统一系统中同时实现感知、预测、行动、评估与改进，解决现有世界模型仅将动作输出头附加到模拟器、缺乏闭环决策与学习回路的问题。</li><li>论文沿<strong>数据扩展</strong>与<strong>模型扩展</strong>两条主线推进：数据上从大规模单目（monocular）自我中心数据过渡到同步立体（stereo）自我中心数据，再经机器人域适应；模型上以单一共享参数模型暴露策略、模拟器、评估器三类控制接口，并通过模型驱动强化学习形成闭环自进化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>通用世界模型用于灵巧操作</strong>：Motus2 在共享参数的视频–动作模型中联合建模可执行动作块、动作条件下的未来观测与任务进度值，暴露三个接口——策略（world–action model）、模拟器（action-conditioned world model）、评估器（value model），并增加轻量触觉专家支持触觉条件动作细化与触觉预测。</li><li><strong>自我中心数据扩展与机器人域迁移研究</strong>：预训练从单目自我中心数据推进到立体自我中心数据，随后用机器人轨迹及人–机对齐数据进行机器人域中训练；规模实验还建立了立体人类数据的扩展趋势。</li><li><strong>值引导的闭环自进化方法</strong>：策略提出候选动作，模拟器预测其视觉后果，评估器估计任务进度；基于模型强化学习将评估分数转换为策略更新，同时同一套接口支持 Best-of-N 测试时规划；失败与次优交互为动力学建模和值学习提供证据。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>通用世界建模（General World Modeling）</strong>：采用阶段特定信息流掩码实现动作优先分解（action-first factorization），即 $A_j \rightarrow Z_j \rightarrow U_j$，保证动作预测不暴露未来观测；通过轨迹依赖的监督路由（trajectory-dependent supervision routing）区分策略、模拟、评估三种训练模式，只让精选成功轨迹激活动作监督。</li><li><strong>值引导闭环自进化（Value-Guided Closed-Loop Self-Evolution）</strong>：基于相对进度公式为成功段/失败段分别赋正/负目标构造值标签；采用 <strong>DiffusionNFT</strong> 风格更新将候选分支分数转为流匹配策略梯度；实现 <strong>Ray 异步 MBRL 流水线</strong>（受 AcceRL 启发），解耦前缀采样、想象 rollout、参考构建与策略优化。</li><li><strong>工作记忆（Working Memory）</strong>：比较三种上下文机制——滑动窗口（固定成本流式默认）、全局自回归（保留全部历史）、混合工作记忆（MemoryWAM 风格，锚帧+近期窗口全分辨率+旧中间观测压缩为持久记忆 token）；并提出基于潜帧负载的变长 episode 打包。</li><li><strong>触觉专家（Tactile Expert）</strong>：复用骨干网络的中间动作块与解耦层 KV 缓存，以轻量网络完成 $\sigma_c \to 0$ 的动作细化并预测接触力窗口，采用流匹配目标训练，部署时仅输出细化动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>自我中心语料库（Egocentric corpus）</strong>：约 <strong>130,000 小时</strong>，涵盖单目与立体相机，主要来源包括 <strong>Egocentric-100K</strong>（100,500 小时）、<strong>Egocentric-10K</strong>、<strong>EgoVerse</strong>、<strong>EgoDex</strong>、<strong>Ropedia</strong>（立体）、<strong>EgoScale</strong>、<strong>LightWheel</strong>、<strong>JD-Group</strong>、<strong>CyberOrigin</strong>，分辨率从 480×360 到 640×480 不等。</li><li><strong>人–机对齐数据</strong>：使用 <strong>Wuji Human Gloves</strong> 采集数十小时数据作为补充中训练数据，中训练总数据量超过 100 小时。</li><li><strong>预训练阶段</strong>：Stage 1 低分辨率单目 500K 步 + 高分辨率单目 340K 步；Stage 2 多分辨率立体自我中心数据 450K 步。</li><li><strong>模型规模</strong>：共享视频–动作骨干网络从基础视频扩散模型初始化；立体视频潜变量共享时间与垂直坐标但占不同水平 RoPE 范围；语言通过交叉注意力进入。文本未给出具体参数量。</li><li><strong>训练资源</strong>：文本未明确列出 GPU/TPU 数量，但提到基于 Ray 的异步流水线、EMA 参考策略与版本化样本管理。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境与基准</strong>：真实机器人评估每任务 <strong>20 个初始配置</strong>，长时程上下文研究的仿真分支每任务 <strong>25 个配置</strong>；每个配置执行一次闭环 rollout，只有全部任务谓词在期限内满足才算成功。</li><li><strong>主要评估指标</strong>：成功率（SR），任务间取宏平均；仿真与真实机器人结果分开报告。</li><li><strong>主任务套件</strong>：Place Ball、Put Phone（空间定位与放置）、Attach Eraser、Screw Bulb（精确对齐与持续接触）、Multi-Finger（多指协同抓取）。</li><li><strong>专项研究套件</strong>：MBRL 研究使用 Put Phone 与 Multi-Finger；记忆研究使用 Find Square 与 Press Button 探针任务；触觉研究使用 Pull Out the Paper Cup 与 Tear Paper。</li><li><strong>研究问题</strong>：RQ1 自我中心人类预训练对下游机器人控制的影响；RQ2 MBRL 与测试时规划是否超越监督模仿；RQ3 不同上下文机制对长时程控制的影响；RQ4 触觉专家是否改善接触密集操作。由于原文实验部分被截断，具体数值结果未完全呈现，仅给出实验设置与协议。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.30289/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.30144/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Rethinking Language&#x27;s Role in Efficient VLA for Autonomous Vehicles: Toward Smarter, Trustworthy Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

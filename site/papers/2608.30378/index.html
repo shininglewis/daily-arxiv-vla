@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。 针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。 核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2608.30378">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2608.30378.webp" alt="PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PAVE: Predictive Alignment and Value-Guided Evolution for World-Action Policies</h1>
+            <div class="detail-meta">2026-08-31 · <a href="http://arxiv.org/abs/2608.30378" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2608.30378" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2608.30378</span></div>
+            <p class="detail-summary">论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。 针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。 核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Multi-Dimensional Information Processing Laboratory…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2608.30378/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。</p>
+  <ul class="reading-intro-points"><li>论文提出 PAVE（Predictive Alignment and Value-Guided Evolution），一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。</li><li>针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。</li><li>核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Multi-Dimensional Information Processing Laboratory, East China Normal University</strong>（华东师范大学多维信息处理实验室）</li><li><strong>EBKernel, Shanghai Artificial Intelligence Laboratory</strong>（上海人工智能实验室）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PAVE（Predictive Alignment and Value-Guided Evolution）</strong>，一种直接世界-动作策略（world-action policy），用于机器人操作任务中的视觉-语言-动作（VLA）建模。</li><li>针对两个互补的不足：标准行为克隆未显式建模多时间尺度场景演变，且部署轨迹质量参差、未区分有用动态与不良行为。</li><li>核心思想是“从所有有效轨迹中学习状态转移，但只从较优轨迹中执行动作”，通过结合预测性表示学习与基于价值的策略进化实现。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>轨迹相对多时域转换对齐</strong>（trajectory-relative multi-horizon transition alignment），在保留固定偏移局部 JEPA 目标的基础上，增加剩余轨迹 25%、50%、75%、100% 处的多时域未来锚点。</li><li>建立<strong>预测-偏好分解</strong>（predictive-preferential decomposition）：所有有效轨迹提供物理转换监督，而分布价值评论家通过优势条件行为学习区分较优与较差动作块。</li><li>实现<strong>自我改进的直接策略</strong>：多时域预测器和价值评论家仅在训练或离线标注阶段使用，在线执行路径保持直接动作生成，不引入未来展开、候选动作评估或 MPC 搜索。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用<strong>V-JEPA 2.1 ViT-L/16</strong> 冻结视觉编码器提取 384×384 双视角图像特征（每视角 576 tokens），经投影映射到 <strong>Qwen2.5-0.5B</strong> 的 896 维隐藏空间，使用 LoRA（rank=32）适配语言模型。</li><li>动作生成使用<strong>16 层流匹配 DiT</strong>（flow-matching DiT），预测 20×7 的动作块，采用 4 步欧拉采样。</li><li>局部对齐使用固定帧偏移 δ=31 的双帧 JEPA 目标；多时域对齐使用共享 MLP 与可学习时域嵌入，在不同轨迹相对未来分数处预测转换表示。</li><li>分布价值评论家输出 201 个 bins（支持集 [-1,0]），计算 N=20 步优势，按任务内优势排名将前 30% 标记为正样本；正、负、空标签以文本形式与任务指令拼接，标签以 0.3 概率 dropout 为空。</li><li>每轮进化从同一基础检查点重新初始化 actor，按 3:1 演示-进化数据比例训练，共 3 轮、每轮收集 96 条轨迹，actor 训练 30,000 步、critic 训练 8,000 步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估基准：<strong>LIBERO</strong>（四套件：Spatial、Object、Goal、Long）、<strong>LIBERO-Plus</strong>（七种扰动：相机视角、机器人初始状态、语言、光照、背景纹理、传感器噪声、物体布局）、<strong>RoboTwin 2.0</strong>（50 个双手任务）。</li><li>额外提供真实机器人擦桌定性演示（非定量基准）。</li><li>模型规模：在线参数 <strong>1.29B</strong>（与 JEPA-WAM 相同），离线额外模块 <strong>4.63M</strong> 参数。</li><li>训练资源未明确列出，但报告 GPU 推理显存占用 <strong>10.4 GB</strong>，p50 延迟 <strong>62.2 ms</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：PAVE 平均成功率 <strong>96.6%</strong>，比 JEPA-WAM 提高 2.6 点，比 π*₀.₆ 提高 2.0 点；Long-horizon 成功率 95.0%，提高 3.4 点。</li><li><strong>LIBERO-Plus</strong>：PAVE 平均 <strong>73.2%</strong>，比 JEPA-WAM 提高 6.0 点，比 π*₀.₆ 提高 4.7 点；在背景变化（+7.9）和传感器噪声（+7.4）维度增益最大。</li><li><strong>RoboTwin 2.0</strong>：PAVE 平均 <strong>60.0%</strong>，比 JEPA-WAM 提高 6.6 点，比 π*₀.₆ 提高 4.8 点；在杂乱场景（+7.0）与背景变化（+7.5）下优势显著。</li><li><strong>在线效率</strong>：PAVE 在线延迟（p50 62.2 ms、p95 66.8 ms）和 GPU 显存（10.4 GB）与 JEPA-WAM 持平，验证了在不增加在线规划成本的前提下获得性能提升。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2608.30536/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Behavior-Skill: A Fine-Grained Benchmark for Evaluating Vision-Language-Action Policies in Long-Horizon Tasks</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2608.30289/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">CometVLA: Co-Training on an Embodied Data Pyramid towards Physical Understanding</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
