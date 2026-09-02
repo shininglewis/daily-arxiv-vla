@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EmbodiedSkills: A Unified Framework for Orchestrating, Training, and Deploying VLA Agents - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 EmbodiedSkills，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。 核心洞察在于：VLA *模型* 预测动作，而 VLA *智能体* 必须协调感知、规划、执行、验证和恢复；模型生成的操作决策本身并不保证其在当前物理状态下可执行或有效。 论文解决的关键问题是：如何桥接模型层面的决策与物理执行，使提议的操作在执行前被检查、执行后结果被验证，并将产生的证据用于后续决策与学习。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.01281">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.01281.webp" alt="EmbodiedSkills: A Unified Framework for Orchestrating, Training, and Deploying VLA Agents" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 EmbodiedSkills，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EmbodiedSkills: A Unified Framework for Orchestrating, Training, and Deploying VLA Agents</h1>
+            <div class="detail-meta">2026-09-01 · <a href="http://arxiv.org/abs/2609.01281" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.01281" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.01281</span></div>
+            <p class="detail-summary">论文提出 EmbodiedSkills，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。 核心洞察在于：VLA *模型* 预测动作，而 VLA *智能体* 必须协调感知、规划、执行、验证和恢复；模型生成的操作决策本身并不保证其在当前物理状态下可执行或有效。 论文解决的关键问题是：如何桥接模型层面的决策与物理执行，使提议的操作在执行前被检查、执行后结果被验证，并将产生的证据用于后续决策与学习。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学（College of Computer Science and Technology, Zh…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.01281/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 EmbodiedSkills，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。</p>
+  <ul class="reading-intro-points"><li>论文提出 EmbodiedSkills，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。</li><li>核心洞察在于：VLA *模型* 预测动作，而 VLA *智能体* 必须协调感知、规划、执行、验证和恢复；模型生成的操作决策本身并不保证其在当前物理状态下可执行或有效。</li><li>论文解决的关键问题是：如何桥接模型层面的决策与物理执行，使提议的操作在执行前被检查、执行后结果被验证，并将产生的证据用于后续决策与学习。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学</strong>（College of Computer Science and Technology, Zhejiang University）</li><li><strong>南京航空航天大学</strong>（Nanjing University of Aeronautics and Astronautics）</li><li><strong>康奈尔大学</strong>（Cornell University）</li><li><strong>Universal Ubiquitous AI Co., Ltd.</strong></li><li><strong>杭州宇树科技</strong>（Hangzhou DEEP Robotics Technology Co., Ltd.）</li><li><strong>新加坡国立大学</strong>（National University of Singapore）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>EmbodiedSkills</strong>，一个统一框架，用于编排、训练和部署 VLA（视觉-语言-动作）智能体，将低层 VLA 策略转化为闭环具身智能系统。</li><li>核心洞察在于：VLA *模型* 预测动作，而 VLA *智能体* 必须协调感知、规划、执行、验证和恢复；模型生成的操作决策本身并不保证其在当前物理状态下可执行或有效。</li><li>论文解决的关键问题是：如何桥接模型层面的决策与物理执行，使提议的操作在<strong>执行前</strong>被检查、<strong>执行后</strong>结果被验证，并将产生的证据用于后续决策与学习。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>技能导向的闭环 AgentLoop</strong>：将长时程 VLA 智能体构建为闭环系统，围绕显式具身技能协调观察、规划、就绪检查、受限执行、进度验证与恢复，而非固定单次穿行管线。</li><li><strong>策略-运行时分隔</strong>：引入共享的技能契约，策略提供结构化技能决策，运行时强制执行前置条件、工件新鲜度、动作有效性与合法状态转移，使失败显式化、智能体轨迹可诊断。</li><li><strong>模块化适配与基准验证</strong>：定义可独立训练与替换的规划、验证、动作生成及环境交互接口；不对底层执行语义嵌入基准特定提示或控制脚本，便于底层 VLA 策略独立替换与适配。</li><li><strong>组件级有监督训练机制</strong>：规划器、调度器、验证器等组件可独立训练，训练样本与部署输入边界一致，无需联合端到端优化；并支持可选的在线闭环策略优化（如 group-relative policy optimization）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用<strong>两层级联架构</strong>：高层的 <strong>Qwen3-VL</strong> 基础智能体组件负责场景解析、子目标规划、阶段推进决策与执行后验证；底层的 <strong>OpenPI/π_0.5</strong> VLA 策略负责将活动子目标映射为有界动作块。</li><li>运行时维护一个六阶段状态机 <strong>（Observe, Plan, Preflight, Execute, Verify, Recover）</strong>，每个技能以契约形式定义：类型化输入输出模式、前置条件、执行操作、后置状态更新及失败映射。</li><li>策略提议被当作"执行提案"处理，由运行时守卫函数（<code>G_skill</code>、<code>G_advance</code>、<code>G_finish</code>）在执行前验证阶段兼容性、所需输入、工件新鲜度及动作合法性（如动作块长度受限于 <code>H_max</code>）；执行后获取新证据再决定继续、推进或恢复。</li><li>训练采用<strong>部署一致性数据</strong>：例如调度器冻结底层 VLA 策略，仅用与部署相同的上下文格式（任务指令、图像、紧凑状态、可执行技能集、最近历史）进行有监督微调；底层 VLA 策略则通过子任务级演示进行任务特定适配。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin 2.0</strong> 数据集：覆盖 50 个双臂操纵任务，包含多种物体配置和域随机化设置；论文针对每任务微调单独的 π_0.5 策略。</li><li><strong>LIBERO</strong> 基准套件：包含 LIBERO-Spatial、LIBERO-Object、LIBERO-Goal、LIBERO-Long 四个套件，用于测试空间、物体、目标及长时程泛化。</li><li><strong>RMBench</strong> 基准：选取其中的 4 个记忆依赖任务进行补充评测。</li><li>高层智能体组件基于 <strong>Qwen3-VL</strong> 模型，低层动作策略为 <strong>OpenPI/π_0.5</strong>；具体模型参数量在原文中未明确列出，框架中高层组件的规划/调度通过冻结底层策略来实现解耦。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估采用各环境自带的终端成功判定器，而非高层提示中自定义成功语义；受控消融实验在 RoboTwin 2.0 全部 50 个任务上运行，每任务 100 个 episode。</li><li>在 <strong>RoboTwin 2.0</strong> 上，任务适配的低层策略达到 <strong>86.20%</strong> 平均成功率，超过 LingBot-VA 报告 π_0.5 的 <strong>82.74%</strong> 参考水平，提升 <strong>3.46 个百分点</strong>；最大增益出现在 Hanging Mug（+20）、Blocks Ranking Size（+15）、Open Microwave（+15）等任务。</li><li>在 <strong>LIBERO</strong> 上，四个套件平均成功率达 <strong>97.40%</strong>，高于官方 OpenPI 参考值 <strong>96.85%</strong>，验证了任务适配 VLA 策略的跨基准执行能力。</li><li>在 <strong>RMBench</strong> 四个记忆依赖任务上，同一任务适配式执行策略仅达到 <strong>12.5%</strong> 平均成功率，说明当正确动作依赖先前的交互历史时，仅靠子目标条件执行仍面临显著挑战。</li><li>论文也将<strong>在线强化学习定位为可选优化机制</strong>，而非替代组件级监督的主要训练范式，明确承认 episode 级奖励归因到多个决策上是粗粒度的。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.01404/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Evaluating Multimodal LLMs as Generalist Vision-Language-Action Agents for Drone Control: Commanding, Approaching, Tracking and Searching</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.01215/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

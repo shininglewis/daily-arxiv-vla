@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文针对现有 视觉-语言-动作模型（VLA）（如 OpenVLA、π₀、RT-2、RDT-1B）的&quot;单体式（monolithic）&quot;架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在长时序任务上表现不佳且难以解释 现有技能发现方法（如 AtomicVLA、AtomSkill 的对比嵌入聚类，BLADE、LRLL 的 LLM 判断）均未解决核心问题：判断两条动作序列是否&quot;行为等价&quot;，即与机器人自身动力学不校准 论文提出 REFACTOR-VLA，采用醒/睡（wake/sleep）架构：睡眠阶段用行为等价核（BEK）在潜世界模型中聚类动作片段，清醒阶段生成带类型的 λ 程序（typed lambda terms）并由库条件动作解码器输出动作，且伴随关键发现——任务训练目标的选择比单纯增加模型容量更为重要" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.01215">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.01215.webp" alt="REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文针对现有 视觉-语言-动作模型（VLA）（如 OpenVLA、π₀、RT-2、RDT-1B）的&quot;单体式（monolithic）&quot;架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在长时序任务上表现不佳且难以解释</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs</h1>
+            <div class="detail-meta">2026-09-01 · <a href="http://arxiv.org/abs/2609.01215" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.01215" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.01215</span></div>
+            <p class="detail-summary">论文针对现有 视觉-语言-动作模型（VLA）（如 OpenVLA、π₀、RT-2、RDT-1B）的&quot;单体式（monolithic）&quot;架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在长时序任务上表现不佳且难以解释 现有技能发现方法（如 AtomicVLA、AtomSkill 的对比嵌入聚类，BLADE、LRLL 的 LLM 判断）均未解决核心问题：判断两条动作序列是否&quot;行为等价&quot;，即与机器人自身动力学不校准 论文提出 REFACTOR-VLA，采用醒/睡（wake/sleep）架构：睡眠阶段用行为等价核（BEK）在潜世界模型中聚类动作片段，清醒阶段生成带类型的 λ 程序（typed lambda terms）并由库条件动作解码器输出动作，且伴随关键发现——任务训练目标的选择比单纯增加模型容量更为重要</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Apple（作者 Chandru Venkataraman 隶属，邮箱后缀为 @apple.com）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.01215/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文针对现有 视觉-语言-动作模型（VLA）（如 OpenVLA、π₀、RT-2、RDT-1B）的&quot;单体式（monolithic）&quot;架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在长时序任务上表现不佳且难以解释</p>
+  <ul class="reading-intro-points"><li>论文针对现有 视觉-语言-动作模型（VLA）（如 OpenVLA、π₀、RT-2、RDT-1B）的&quot;单体式（monolithic）&quot;架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在长时序任务上表现不佳且难以解释</li><li>现有技能发现方法（如 AtomicVLA、AtomSkill 的对比嵌入聚类，BLADE、LRLL 的 LLM 判断）均未解决核心问题：判断两条动作序列是否&quot;行为等价&quot;，即与机器人自身动力学不校准</li><li>论文提出 REFACTOR-VLA，采用醒/睡（wake/sleep）架构：睡眠阶段用行为等价核（BEK）在潜世界模型中聚类动作片段，清醒阶段生成带类型的 λ 程序（typed lambda terms）并由库条件动作解码器输出动作，且伴随关键发现——任务训练目标的选择比单纯增加模型容量更为重要</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Apple</strong>（作者 Chandru Venkataraman 隶属，邮箱后缀为 @apple.com）</li><li>作者为 <strong>Riyaaz Shaik</strong> 与 <strong>Chandru Venkataraman</strong>，论文由两人协作完成</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文针对现有 <strong>视觉-语言-动作模型（VLA）</strong>（如 <strong>OpenVLA</strong>、<strong>π₀</strong>、<strong>RT-2</strong>、<strong>RDT-1B</strong>）的"单体式（monolithic）"架构缺陷——直接输出原始电机命令、缺乏可复用的高层抽象，导致在<strong>长时序任务</strong>上表现不佳且难以解释</li><li>现有技能发现方法（如 <strong>AtomicVLA</strong>、<strong>AtomSkill</strong> 的对比嵌入聚类，<strong>BLADE</strong>、<strong>LRLL</strong> 的 LLM 判断）均未解决核心问题：判断两条动作序列是否"<strong>行为等价</strong>"，即与机器人自身动力学不校准</li><li>论文提出 <strong>REFACTOR-VLA</strong>，采用<strong>醒/睡（wake/sleep）架构</strong>：睡眠阶段用<strong>行为等价核（BEK）</strong>在潜世界模型中聚类动作片段，清醒阶段生成<strong>带类型的 λ 程序</strong>（typed lambda terms）并由<strong>库条件动作解码器</strong>输出动作，且伴随关键发现——任务训练目标的选择比单纯增加模型容量更为重要</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>(1) BEK 公式化</strong>：定义了轨迹片段级行为等价核 $D_{\phi}(\tau,\tau')$，由潜世界模型 $M_{\phi}$ 上的<strong>期望价值差异</strong>与 <strong>k 步 Wasserstein 距离</strong>组成，用作睡眠阶段聚类核，并提供 NMI 集中率理论保证（Theorem 1）</li><li><strong>(2) 类型化 λ 发射器与库条件动作解码器</strong>：设计了 Hindley–Milner 类型风格词汇表 $\Sigma=\{$Twist, Wrench, GripperPhase, Pose, Lang$\}$ 的 <strong>Typed Program Emitter（TPE）</strong>，以及基于 <strong>rectified-flow</strong> 的 <strong>Library-Conditioned Action Decoder（LCAD）</strong></li><li><strong>(3) MDL 门控的醒/睡闭环</strong>：候选抽象须同时通过 <strong>BEK 可靠性</strong>、<strong>返回值保持</strong>（ε=0.05）与 <strong>MDL 增益</strong>（>4 nats）三条件才能入技能库</li><li><strong>(4) 端到端实证验证</strong>：在完整 <strong>LIBERO</strong> 四套件矩阵上验证，含合成递归倒水基准和 4 个基线系统的复现对比</li><li><strong>(5) 容量假说证伪</strong>：发现将世界模型从 <strong>188M</strong> 扩大至 <strong>430M</strong> 参数反而导致 4/4 套件上 NMI 全面退步，反驳了"更大的世界模型一定更好"的直觉</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>系统包含四个模块：骨干 VLA 策略 $\pi_{\theta}$（含 TPE 与 LCAD）、潜世界模型 $M_{\phi}$、类型化 λ 程序库 $\mathcal{F}_t$ 及其后验 $\rho_t$</li><li><strong>潜世界模型 $M_{\phi}$</strong>：基于 <strong>DreamerV3</strong> 风格的分层世界模型，采用冻结的 <strong>DINOv2-base</strong> 视觉编码器，因果 Transformer 处理穿插的 [图片、状态、动作] 令牌，在 DINOv2 特征空间中重建；LIBERO 无奖励故返回头权重 $w_{\mathrm{ret}}=0$</li><li><strong>行为等价核（BEK）</strong>：公式 $D_{\phi}=w_R\mathbb{E}\|V^{\tau}_{\phi}{-}V^{\tau'}_{\phi}\|+ w_E\mathbb{E}\mathcal{W}_2(P^k_{\phi},P^k_{\phi})$；实际用 <strong>2.4M 参数的 Siamese Transformer</strong>（$k_{\chi}$）蒸馏获得约简嵌入，固定 k 的 KMeans 聚类</li><li><strong>TPE 与 LCAD</strong>：TPE 为因果解码 Transformer，在每次束搜索时用 <strong>Robinson 合一器 + 完整 occurs-check</strong> 做类型检查过滤不良类型；LCAD 为 4 层 Transformer（d_model=384，约 10.9M 参数），输入类型化项与当前状态，以 <strong>10 步 Euler</strong> 的 rectified-flow 生成 <strong>16 步动作块</strong></li><li><strong>醒/睡/库重构循环</strong>：每轮外层迭代，唤醒阶段训练 TPE 与 LCAD；睡眠阶段用 $M_{\phi}$ rollout 蒸馏训练 BEK 头；库重构阶段按 Bowers 等的语法反合一提取公共语法结构，门控策略选入最优的 $K_{\mathrm{max}}=8$ 个候选项</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用真实 <strong>LIBERO</strong> 基准的四个 LeRobot v3 套件：<strong>libero_object_image</strong>、<strong>libero_spatial_image</strong>、<strong>libero_goal_image</strong>、<strong>libero_10_image</strong>（长时序）；另有合成 <strong>RecursivePourEnv</strong> 环境</li><li>默认世界模型 $M_{\phi}$ 配置：<strong>188.16M</strong> 总参数 / <strong>101.58M</strong> 可训练参数（d_model=1024，8 层，冻结 DINOv2 后）；另有 <strong>430M</strong> 规模用于容量对照实验</li><li>其余模型规模：<strong>2.4M</strong> 参数 Siamese BEK 摊销器 $k_{\chi}$；<strong>约 10.9M</strong> 参数的 LCAD；TPE 与 LCAD 合计约 10.9M 规模</li><li>训练资源：<strong>8×H100 GPU</strong>（DDP + bfloat16，4,000 优化步）训练世界模型、唤醒与睡眠阶段模型；单张 H100 用于跨提供者评估、语法库重构与基线复现</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>BEK 聚类质量核心结果</strong>（Phase C，n=3 多种子 NMI，基于 held-out 1024 片段探针）：</li></ul>
+<p> - Object 套件 NMI <strong>0.462 ± 0.021</strong>；Spatial 套件 NMI <strong>0.867 ± 0.025</strong></p>
+<p> - Goal 套件 NMI <strong>0.915 ± 0.013</strong>；LIBERO-10 套件 NMI <strong>0.754 ± 0.010</strong></p>
+<ul><li><strong>容量 vs 目标对比结论</strong>：430M 世界模型（LR 重调后）在 Phase C 上 <strong>4/4 套件 NMI 全部回归</strong>；而在 Phase A 加入 <strong>InfoNCE 辅助对比损失</strong> 可恢复至受监督上界的 98.5%</li><li><strong>跨提供者种子收敛</strong>（n=12 对，percentile bootstrap 95% CI）：平均成对 NMI 区间 <strong>[0.683, 0.729]</strong>，均值 $\bar{x}=0.705$（处于预设 0.70 阈值边界附近）</li><li><strong>相对最强基线的头对头对比</strong>：在 4 个 LIBERO 套件上全部获胜，平均 NMI 提升 <strong>Δ = +0.184</strong>，超越了 AtomicVLA 与 AtomSkill 等已发布基线</li><li><strong>真实库学习的端到端验证</strong>：睡眠阶段在 libero_object 上产出首个真实 LIBERO 任务语言库（<strong>3 个抽象 / 1211 nats</strong>）；LCAD 唤醒解码器使用了其中 <strong>2/3 个抽象</strong>并成功重写全部 <strong>256/256 条采样演示</strong>，且译码器速度误差变化仅 Δ=-0.0059（维持 ±0.02 不变），证明库条件化不改变动作分布</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.01281/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">EmbodiedSkills: A Unified Framework for Orchestrating, Training, and Deploying VLA Agents</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.00908/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Knowing When to Stop: Adaptive Action Chunking via Internal Cross-Attention Dynamics in VLAs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

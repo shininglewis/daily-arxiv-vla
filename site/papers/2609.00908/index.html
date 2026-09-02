@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowing When to Stop: Adaptive Action Chunking via Internal Cross-Attention Dynamics in VLAs - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 VLA（Vision-Language-Action）模型 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大 提出基于 动作专家内部交叉注意力动态 的自适应动作分块方法：观测到预测视界延伸时动作对观测的注意力分布趋于分散、熵升高至稳定高平台，并与此后动作误差增大相关 据此设计 无需训练的在线截断机制，在推断时动态选择执行视界，实现反应性与效率的平衡" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.00908">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.00908.webp" alt="Knowing When to Stop: Adaptive Action Chunking via Internal Cross-Attention Dynamics in VLAs" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 VLA（Vision-Language-Action）模型 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Knowing When to Stop: Adaptive Action Chunking via Internal Cross-Attention Dynamics in VLAs</h1>
+            <div class="detail-meta">2026-09-01 · <a href="http://arxiv.org/abs/2609.00908" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.00908" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.00908</span></div>
+            <p class="detail-summary">论文研究 VLA（Vision-Language-Action）模型 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大 提出基于 动作专家内部交叉注意力动态 的自适应动作分块方法：观测到预测视界延伸时动作对观测的注意力分布趋于分散、熵升高至稳定高平台，并与此后动作误差增大相关 据此设计 无需训练的在线截断机制，在推断时动态选择执行视界，实现反应性与效率的平衡</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University），作者：Runze Xu、Xiaolong Shan…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.00908/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 VLA（Vision-Language-Action）模型 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大</p>
+  <ul class="reading-intro-points"><li>论文研究 VLA（Vision-Language-Action）模型 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大</li><li>提出基于 动作专家内部交叉注意力动态 的自适应动作分块方法：观测到预测视界延伸时动作对观测的注意力分布趋于分散、熵升高至稳定高平台，并与此后动作误差增大相关</li><li>据此设计 无需训练的在线截断机制，在推断时动态选择执行视界，实现反应性与效率的平衡</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University），作者：Runze Xu、Xiaolong Shan、Shuang Dai、Yu Wang、Jincheng Yu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>VLA（Vision-Language-Action）模型</strong> 中固定执行视界（action chunk）带来的精度与效率冲突：短块需频繁推理并易振荡，长块则随视觉反馈失效而预测误差增大</li><li>提出基于 <strong>动作专家内部交叉注意力动态</strong> 的自适应动作分块方法：观测到预测视界延伸时动作对观测的注意力分布趋于分散、熵升高至稳定高平台，并与此后动作误差增大相关</li><li>据此设计 <strong>无需训练的在线截断机制</strong>，在推断时动态选择执行视界，实现反应性与效率的平衡</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>刻画注意力退化规律</strong>：系统揭示 flow-based VLA 策略中 action-to-VLM 注意力随预测步长增加而发散并进入高熵饱和，且该状态伴随更高离线动作误差（top MSE 四分位平均误差高出 10.4 倍，标准差高出 12.1 倍）</li><li><strong>提出训练无关的截断准则</strong>：基于平滑后的交叉注意力熵序列，通过高熵阈值 $\eta$ 与稳定性阈值 $\tau$ 同时判定“高而平”的平台，自动确定执行视界 $H_e$，无需重训练或结构性改动</li><li><strong>验证跨架构通用性</strong>：在解耦架构 <strong>π₀.₅</strong>（动作查询静态交叉注意力到 VLM tokens）与耦合架构 <strong>X-VLA</strong>（自注意力中联合更新）上均取得收益，证明其可推广性</li><li><strong>展示实际部署优势</strong>：注意力权重为模型已有计算，方法额外延时 <7 ms，优于需多次采样的 MS 基线，支持实时闭环控制</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>将 VLA 动作生成统一建模为“动作查询对感知关键的交叉注意力”交互，构造注意力权重矩阵 $W \in \mathbb{R}^{H_p \times N}$</li><li>聚合各层 action-to-VLM 注意力权重并归一化为概率分布 $p_{i,j}$，计算信息熵 $\mathcal{E}_j = -\sum_i p_{i,j}\log p_{i,j}$（上界为 $\log N$，架构相关）</li><li>对熵序列施加窗口 $k=5$ 的移动平均 $\bar{\mathcal{E}}$，然后检测满足下列两条件的候选平台起点：窗口内熵最小值 ≥ $\eta \log N$（高熵），且窗口内平均熵变化绝对值 < $\tau$（平稳，$\tau=0.01$）</li><li>取首个满足条件的起点加窗口偏移为执行视界 $H_e$；若全序列不存在高且平的平台，则执行完整预测视界 $H_p$</li><li>创新点在于将“感知支撑退化”这一动因直接作为信号，区别于依赖自注意力一致性或多次采样的既有方法；无需按任务或架构逐例调参，仅 $\pi_{0.5}$ + LIBERO 因预测视界为 10 将窗口缩为 3</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据集</strong>：<strong>RoboTwin 2.0</strong>（10 个任务，按平均帧数划分 short/medium/long 各 3/4/3 类）、<strong>LIBERO</strong>（4 个套件：Spatial/Object/Goal/Long）</li><li><strong>真实世界任务</strong>：Hang Mug（单臂精准挂杯）、Stack Cups（双臂叠杯）、Pen Tidying（由单臂到双臂交接的笔整理）</li><li><strong>模型规模</strong>：π₀.₅（预测视界 50/10）、X-VLA（预测视界 30）</li><li><strong>训练配置</strong>：单独微调时每任务用 50 条人类演示、batch size 32、训练 40,000 步；真实世界数据采集于 ARX R5 从臂 / X5 主臂，20 Hz 图像 + 60 Hz 控制</li><li><strong>算力</strong>：延迟分析在单张 <strong>NVIDIA A100 GPU</strong> 上进行</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：固定视界基线、多采样 MS、自注意力 SA；每个配置 3 个随机种子 × 100 次 rollout（模拟），真实任务 20 次 trials</li><li><strong>RoboTwin 2.0 / π₀.₅</strong>：平均成功率 <strong>62.9%</strong>，高于最优固定基线（chunk=10，61.6%）、SA（57.6%）与 MS（57.0%）；平均执行长度 18.11 步，效率更优</li><li><strong>RoboTwin 2.0 / X-VLA</strong>：平均成功率 <strong>79.0%</strong>，超过最优固定基线（chunk=30，76.1%）</li><li><strong>LIBERO / π₀.₅</strong>：全部四个套件取得最佳（Spatial 99.5、Object 98.5、Goal 96.5、Long 94.5），平均 <strong>97.25%</strong>，较最优固定 chunk=6 的 94.88% 提升显著，Long 套件提升 4.5 个百分点</li><li><strong>真实世界三任务</strong>：平均成功率 <strong>61.7%</strong>，相较 best fixed（40–47.5%）提升约 14 个百分点，较 SA（55%）提升 6.7%</li><li><strong>效率指标</strong>：单次推断延迟 0.2725 s，仅比纯固定推理高约 6.4 ms，远低于 MS 附加的 29.5 ms 延迟，维持实时闭环控制能力</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.01215/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">REFACTOR-VLA: Unsupervised Library Learning of Typed Motor Programs</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.00188/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ZimaBlue: Evolving Generalizable World Action Models through Scalable Video Pre-training</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

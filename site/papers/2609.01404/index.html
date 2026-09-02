@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluating Multimodal LLMs as Generalist Vision-Language-Action Agents for Drone Control: Commanding, Approaching, Tracking and Searching - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DroneCATS-Agent 架构与 DroneCATS 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。 论文要解决的问题是：无人机控制中哪些环节真正依赖模型能力。此前系统研究（如 Fly0、OnFly 等）往往将模型限制在单一感知/接地任务上，掩盖了模型间的差距；本文反过来固定智能体架构、只更换 MLLM 模型本身，衡量模型在接近、追踪、搜索和指挥多机任务中的表现。 关键发现是&quot;失败在于协议遵循而非导航&quot;：小型开源模型常常比前沿模型更可靠地飞入目标半径，但会因过早/不宣告到达而输掉回合；多机指挥进一步放大这一鸿沟。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.01404">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.01404.webp" alt="Evaluating Multimodal LLMs as Generalist Vision-Language-Action Agents for Drone Control: Commanding, Approaching, Tracking and Searching" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DroneCATS-Agent 架构与 DroneCATS 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Evaluating Multimodal LLMs as Generalist Vision-Language-Action Agents for Drone Control: Commanding, Approaching, Tracking and Searching</h1>
+            <div class="detail-meta">2026-09-01 · <a href="http://arxiv.org/abs/2609.01404" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.01404" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.01404</span></div>
+            <p class="detail-summary">论文提出 DroneCATS-Agent 架构与 DroneCATS 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。 论文要解决的问题是：无人机控制中哪些环节真正依赖模型能力。此前系统研究（如 Fly0、OnFly 等）往往将模型限制在单一感知/接地任务上，掩盖了模型间的差距；本文反过来固定智能体架构、只更换 MLLM 模型本身，衡量模型在接近、追踪、搜索和指挥多机任务中的表现。 关键发现是&quot;失败在于协议遵循而非导航&quot;：小型开源模型常常比前沿模型更可靠地飞入目标半径，但会因过早/不宣告到达而输掉回合；多机指挥进一步放大这一鸿沟。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Drone AI Team, NAVER Cloud（论文作者所属研究机构）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.01404/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DroneCATS-Agent 架构与 DroneCATS 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。</p>
+  <ul class="reading-intro-points"><li>论文提出 DroneCATS-Agent 架构与 DroneCATS 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。</li><li>论文要解决的问题是：无人机控制中哪些环节真正依赖模型能力。此前系统研究（如 Fly0、OnFly 等）往往将模型限制在单一感知/接地任务上，掩盖了模型间的差距；本文反过来固定智能体架构、只更换 MLLM 模型本身，衡量模型在接近、追踪、搜索和指挥多机任务中的表现。</li><li>关键发现是&quot;失败在于协议遵循而非导航&quot;：小型开源模型常常比前沿模型更可靠地飞入目标半径，但会因过早/不宣告到达而输掉回合；多机指挥进一步放大这一鸿沟。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Drone AI Team, NAVER Cloud</strong>（论文作者所属研究机构）</li><li>通讯作者 <strong>Geewook Kim</strong>（NAVER Cloud）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DroneCATS-Agent</strong> 架构与 <strong>DroneCATS</strong> 基准，系统的评估多模态大语言模型（MLLM）作为通用视觉-语言-动作（VLA）智能体直接控制无人机的表现，行动空间仅通过提示词声明，无需微调或函数调用模式。</li><li>论文要解决的问题是：<strong>无人机控制中哪些环节真正依赖模型能力</strong>。此前系统研究（如 Fly0、OnFly 等）往往将模型限制在单一感知/接地任务上，掩盖了模型间的差距；本文反过来固定智能体架构、只更换 MLLM 模型本身，衡量模型在接近、追踪、搜索和指挥多机任务中的表现。</li><li>关键发现是"<strong>失败在于协议遵循而非导航</strong>"：小型开源模型常常比前沿模型更可靠地飞入目标半径，但会因过早/不宣告到达而输掉回合；多机指挥进一步放大这一鸿沟。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DroneCATS-Agent</strong>，一个模型无关（model-agnostic）的无人机智能体，其接口包含四个自然语言声明的动作：<code>go</code>（指向+深度）、<code>rotate</code>（原地偏航搜索）、<code>think</code>（悬停思考/延迟决策）、<code>finished</code>（自行宣告到达）；任何能读懂提示词的 MLLM 无需改动即可接入。</li><li>提出统一的闭环成功准则，覆盖所有任务类型（接近、搜索、追踪、搜索-追踪）：成功 = 存在一次到达宣告，且此时距离目标不超过 δ=5m 且目标可见；此准则防止"飞过目标区域即成功"的伪阳性。</li><li>构建 <strong>DroneCATS 基准</strong>，包含 100 个 episode：单机任务 80 个（两张地图 × 每类 20 个）加多机指挥任务 20 个（N=4）；对模型排行、跨尺度分析（2B 到 27B 及前沿 API）做了完整评估。</li><li>发现并量化"<strong>声明差距（declaration gap）</strong>"：小模型导航能力尚可（如 Qwen3.5-9B 在接近任务中 90% 进入 δ 区间，超过所有前沿模型），但最终只能转化 35%，成为性能瓶颈的关键定位。</li><li>提供了多机指挥（commanding）场景的首个闭环评估：单个上下文同时驱动 4 台无人机进行视角关联和候选目标区分，测试跨视野一致性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>架构</strong>：每步向模型提供自我中心的 RGB 帧、指令和最近 5 个动作；模型输出一个 JSON 动作对象，由规则解析器和几何控制器转为飞行设定点；无人机飞行栈（级联控制）执行底层控制，整个架构不含模型特定组件。</li><li><strong>动作设计</strong>：<code>go</code> 将所选像素与模型自估深度反投影为 3D 位移；<code>rotate</code> 原地偏航以搜索视野外目标；<code>think</code> 悬停并允许模型延长推理；<code>finished</code> 悬停并提交到达声明，由事后验证器评判是否成功。</li><li><strong>创新点</strong>：将终止判定（arrival declaration）、搜索转向和测试时计算（thinking）从人类/外部模块迁入模型自身的决策空间，使任何 MLLM 都能以零训练、零函数调用模式接入；深度系模型自估而非传感器读数，强调单目、无外部测距的设定。</li><li><strong>基准设计</strong>：单机任务轴由两个二元变量（目标是否移动、初始是否可见）构成四个任务格子；多机指挥轴让一个上下文同时控制 4 个无人机，要求正确关联视图与无人机。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟器：<strong>AirSim</strong> 构建于 <strong>Unreal Engine</strong> 地图之上；单机任务使用<strong>住宅区（residential）</strong> 与<strong>校园（campus）</strong> 两类地图；指挥测试另加 <strong>Blocks</strong> 地图。</li><li>评估模型：前沿 API（<strong>GPT-5</strong>、<strong>Claude Opus 5</strong>、<strong>Gemini 3.7 Flash</strong>、<strong>Gemini Robotics-ER 2</strong>）；<strong>Qwen3.5</strong> 家族（2B / 4B / 9B / 27B）；<strong>Cosmos3-Edge-2B</strong>（具身专用边缘模型，仅用其 reasoner tower）。</li><li>资源：小模型（2B/4B）本地部署，更大模型通过 API 访问；Cosmos3-Edge-2B 以 vLLM/bf16 在单卡 H100 上服务时占约 10.5 GiB、约 0.44s/30-token，即约 2Hz 解码吞吐；4B 模型需 13.9 GiB 内存。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估设置：单机任务每格 20 个 episode（每个地图 10 个），共 80 个；指挥任务 20 个（N=4）；所有成功判定由统一“宣告到达 + δ=5m 内 + 目标可见”规则进行事后验证。</li><li>主要指标：<strong>Success Rate（SR）</strong>（宣告式成功）、Oracle Success Rate（OSR）、到达宣告率、接近比、导航误差（NE）、声明距离/起始距离（测过早宣告）。</li><li>关键结果：</li></ul>
+<p> - 最简单单元（初始可见目标接近）对最优模型仅达 <strong>65%</strong>（Gemini 3.7 Flash），且初始隐藏目标使成功率下降超过三分之一（最优 40%）；多模型在跨格子排行不稳定，GPT-5 追踪仅 15% 而 Gemini 3.7 Flash 追踪达 80%。</p>
+<p> - <strong>声明失败是主导</strong>：Qwen3.5-9B 进入 δ 范围比例高达 90%（接近任务）却只转化 35%；Qwen3.5-2B 声明距离/起始距离比达 1.28（近乎未飞即声称到达）且从未成功；Cosmos3-Edge-2B 进入 δ 比例 25% 却一次也不宣告。</p>
+<p> - 规模效应：Qwen3.5 家族在单机 4 格平均成功率随规模单调（27B: 33.8%，9B: 21.3%，4B: 12.5%，2B: 0%）；指挥任务中 Gemini 3.7 Flash 达 80%，GPT-5 仅 20%，单机排行不能推广。</p>
+<p> - 具身专用模型（Gemini Robotics-ER 2, 47.5%）未超过其通用姊妹（Gemini 3.7 Flash, 57.5%）；失败归因分析显示，337 个不宣告失败中 61 个（18%）轨迹曾进入 δ 但未宣告，若以轨迹接近计分会虚增约三分之一成功率。</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2609.01281/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">EmbodiedSkills: A Unified Framework for Orchestrating, Training, and Deploying VLA Agents</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
