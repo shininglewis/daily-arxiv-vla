@@ -1,5 +1,208 @@
 [
   {
+    "date": "2026-09-02",
+    "title": "HINT: Human-Intent Inception for Long-Horizon Robot Manipulation",
+    "link": "http://arxiv.org/abs/2609.02653",
+    "arxiv_id": "2609.02653",
+    "detail_path": "papers/2609.02653/",
+    "cover_path": "covers/2609.02653/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02653.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02653.webp",
+    "preview_text": "论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义\"脱节\"问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。 核心思想受人类操作启发：语义意图仅在操作模式（manipulation pattern）切换时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。 HINT 在 π0.5 和 Wall-OSS-0.5 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。",
+    "research_unit": "浙江大学（Zhejiang University）",
+    "hook_text": "论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义\"脱节\"问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。",
+    "key_points": [
+      "论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义\"脱节\"问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。",
+      "核心思想受人类操作启发：语义意图仅在操作模式（manipulation pattern）切换时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。",
+      "HINT 在 π0.5 和 Wall-OSS-0.5 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "Latent Cluster Analysis for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2609.02634",
+    "arxiv_id": "2609.02634",
+    "detail_path": "papers/2609.02634/",
+    "cover_path": "covers/2609.02634/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02634.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02634.webp",
+    "preview_text": "该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。 论文聚焦于对NVIDIA GR00T N1.5这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。 当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。",
+    "research_unit": "该论文由曼彻斯特大学（The University of Manchester）、汉堡大学（Unive…",
+    "hook_text": "该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。",
+    "key_points": [
+      "该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。",
+      "论文聚焦于对NVIDIA GR00T N1.5这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。",
+      "当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation",
+    "link": "http://arxiv.org/abs/2609.02546",
+    "arxiv_id": "2609.02546",
+    "detail_path": "papers/2609.02546/",
+    "cover_path": "covers/2609.02546/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02546.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02546.webp",
+    "preview_text": "论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。 文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了严格零样本迁移（strict zero-shot transfer）与预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）两种协议。 为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度。",
+    "research_unit": "Galbot（北京 Galbot 公司）",
+    "hook_text": "论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。",
+    "key_points": [
+      "论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。",
+      "文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了严格零样本迁移（strict zero-shot transfer）与预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）两种协议。",
+      "为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度。"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "Spatially Aware World Action Model via Geometric Latent Diffusion",
+    "link": "http://arxiv.org/abs/2609.02531",
+    "arxiv_id": "2609.02531",
+    "detail_path": "papers/2609.02531/",
+    "cover_path": "covers/2609.02531/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02531.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02531.webp",
+    "preview_text": "论文提出 SA-WAM（Spatially Aware World Action Model），一种通过几何潜在扩散实现的空间感知世界动作模型，将显式 3D 几何信息（深度）注入到预训练视频扩散模型（WAM）中，用于联合预测机器人动作、未来 RGB 观测和深度预测。 现有 WAM 仅基于 RGB 观测，缺乏 3D 信息利用，论文旨在弥合这一差距——在复用冻结的 VAE tokenizer 的前提下，将无界度量深度映射到 tokenizer 兼容的输入域，实现 3D 感知的世界动作建模，而无需专用 3D 编码器或 3D 微调。 在该工作的任务场景中，SA-WAM 在 RoboCasa 和 LIBERO-Plus 仿真基准上达到最新最优（SOTA）水平，同时改善了未来状态预测质量，并在真实世界 UR5 机械臂评估中优于强基线，在随机化环境中提升尤为显著。",
+    "research_unit": "Inria（法国国家信息与自动化研究所）",
+    "hook_text": "论文提出 SA-WAM（Spatially Aware World Action Model），一种通过几何潜在扩散实现的空间感知世界动作模型，将显式 3D 几何信息（深度）注入到预训练视频扩散模型（WAM）中，用于联合预测机器人动作、未来 RGB 观测和深度预测。",
+    "key_points": [
+      "论文提出 SA-WAM（Spatially Aware World Action Model），一种通过几何潜在扩散实现的空间感知世界动作模型，将显式 3D 几何信息（深度）注入到预训练视频扩散模型（WAM）中，用于联合预测机器人动作、未来 RGB 观测和深度预测。",
+      "现有 WAM 仅基于 RGB 观测，缺乏 3D 信息利用，论文旨在弥合这一差距——在复用冻结的 VAE tokenizer 的前提下，将无界度量深度映射到 tokenizer 兼容的输入域，实现 3D 感知的世界动作建模，而无需专用 3D 编码器或 3D 微调。",
+      "在该工作的任务场景中，SA-WAM 在 RoboCasa 和 LIBERO-Plus 仿真基准上达到最新最优（SOTA）水平，同时改善了未来状态预测质量，并在真实世界 UR5 机械臂评估中优于强基线，在随机化环境中提升尤为显著。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "Towards Zero-Shot Transfer Across Embodiments For Driving VLAs",
+    "link": "http://arxiv.org/abs/2609.02341",
+    "arxiv_id": "2609.02341",
+    "detail_path": "papers/2609.02341/",
+    "cover_path": "covers/2609.02341/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02341.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02341.webp",
+    "preview_text": "论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。 针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了多数据集训练的影响，并提出了BEV-Forcing辅助目标。 核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升分布内（in-distribution）和分布外（out-of-distribution）性能；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。",
+    "research_unit": "École des Mines de Paris（法国巴黎矿业学院）",
+    "hook_text": "论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。",
+    "key_points": [
+      "论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。",
+      "针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了多数据集训练的影响，并提出了BEV-Forcing辅助目标。",
+      "核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升分布内（in-distribution）和分布外（out-of-distribution）性能；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models",
+    "link": "http://arxiv.org/abs/2609.02159",
+    "arxiv_id": "2609.02159",
+    "detail_path": "papers/2609.02159/",
+    "cover_path": "covers/2609.02159/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.02159.webp",
+    "paper_image_full_path": "assets/paper-images/2609.02159.webp",
+    "preview_text": "论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。 核心洞察是 WAM 的\"想象\"是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。 论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。",
+    "research_unit": "Institute of Science Tokyo（东京科学大学，计算机科学系）",
+    "hook_text": "论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。",
+    "key_points": [
+      "论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。",
+      "核心洞察是 WAM 的\"想象\"是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。",
+      "论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "MACAW: Reliable And Efficient Surgical Debridement Using Monocular Adaptive Compact Attention Windows",
+    "link": "http://arxiv.org/abs/2609.01961",
+    "arxiv_id": "2609.01961",
+    "detail_path": "papers/2609.01961/",
+    "cover_path": "covers/2609.01961/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.01961.webp",
+    "paper_image_full_path": "assets/paper-images/2609.01961.webp",
+    "preview_text": "论文提出 MACAW（Monocular Adaptive Compact Attention Windows） 系统，利用单目 RGB 相机实现自主手术清创（debridement），即自动移除坏死或病变组织碎片。 该方法通过视觉伺服在图像平面内对齐缆驱动手术器械，并结合受人类视网膜中央凹（fovea）启发的自适应紧凑注意力窗口实现精确的深度控制，以补偿机器人运动学不精确的问题。 物理实验中，单臂 MACAW 清创成功率达 93%，吞吐量达 304 碎片/小时；双臂扩展后吞吐量提升至 473 碎片/小时。",
+    "research_unit": "加州大学伯克利分校（University of California, Berkeley, USA）",
+    "hook_text": "论文提出 MACAW（Monocular Adaptive Compact Attention Windows） 系统，利用单目 RGB 相机实现自主手术清创（debridement），即自动移除坏死或病变组织碎片。",
+    "key_points": [
+      "论文提出 MACAW（Monocular Adaptive Compact Attention Windows） 系统，利用单目 RGB 相机实现自主手术清创（debridement），即自动移除坏死或病变组织碎片。",
+      "该方法通过视觉伺服在图像平面内对齐缆驱动手术器械，并结合受人类视网膜中央凹（fovea）启发的自适应紧凑注意力窗口实现精确的深度控制，以补偿机器人运动学不精确的问题。",
+      "物理实验中，单臂 MACAW 清创成功率达 93%，吞吐量达 304 碎片/小时；双臂扩展后吞吐量提升至 473 碎片/小时。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
     "date": "2026-09-01",
     "title": "Evaluating Multimodal LLMs as Generalist Vision-Language-Action Agents for Drone Control: Commanding, Approaching, Tracking and Searching",
     "link": "http://arxiv.org/abs/2609.01404",
@@ -41856,8 +42059,8 @@
     "arxiv_id": "2505.21432",
     "detail_path": "papers/2505.21432/",
     "cover_path": "covers/2505.21432/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2505.21432.webp",
+    "paper_image_full_path": "assets/paper-images/2505.21432.webp",
     "preview_text": "提出一个双系统视觉-语言-动作模型 Hume，引入系统2慢思考范式，用于灵巧机器人控制。 旨在解决通用机器人策略在处理复杂物理世界任务时缺乏有效思考和推理能力的问题。 核心目标是通过价值引导的思考和级联动作去噪，提升VLA模型在复杂、灵巧任务中的表现。",
     "research_unit": "上海交通大学",
     "hook_text": "提出一个双系统视觉-语言-动作模型 Hume，引入系统2慢思考范式，用于灵巧机器人控制。",
@@ -41885,8 +42088,8 @@
     "arxiv_id": "2505.21200",
     "detail_path": "papers/2505.21200/",
     "cover_path": "covers/2505.21200/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2505.21200.webp",
+    "paper_image_full_path": "assets/paper-images/2505.21200.webp",
     "preview_text": "论文针对 Vision-Language-Action (VLA) 模型推理成本高、延迟高的问题，提出了一种无需训练的加速框架。 研究发现了 VLA 模型中存在的双重冗余：连续动作步骤的高相似性（时间冗余）和视觉 Token 的实质性冗余。 目标是通过动作复用和 Token 剪枝机制，在不重新训练的情况下实现高效的 VLA 推理。",
     "research_unit": "Fudan University",
     "hook_text": "论文针对 Vision-Language-Action (VLA) 模型推理成本高、延迟高的问题，提出了一种无需训练的加速框架。",
@@ -41914,8 +42117,8 @@
     "arxiv_id": "2505.21567",
     "detail_path": "papers/2505.21567/",
     "cover_path": "covers/2505.21567/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2505.21567.webp",
+    "paper_image_full_path": "assets/paper-images/2505.21567.webp",
     "preview_text": "待生成",
     "research_unit": "",
     "hook_text": "待生成",

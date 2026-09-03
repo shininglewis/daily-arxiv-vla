@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。 核心洞察是 WAM 的&quot;想象&quot;是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。 论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.02159">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.02159.webp" alt="World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models</h1>
+            <div class="detail-meta">2026-09-02 · <a href="http://arxiv.org/abs/2609.02159" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.02159" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.02159</span></div>
+            <p class="detail-summary">论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。 核心洞察是 WAM 的&quot;想象&quot;是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。 论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Institute of Science Tokyo（东京科学大学，计算机科学系）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.02159/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 World-Coherent Decoding（WCD），一个用于 World Action Models（WAMs） 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。</li><li>核心洞察是 WAM 的&quot;想象&quot;是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。</li><li>论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Institute of Science Tokyo</strong>（东京科学大学，计算机科学系）</li><li><strong>DENSO IT Lab, Japan</strong>（日本电装 IT 实验室）</li><li><strong>National Institute of Informatics, Japan</strong>（日本国立信息学研究所）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>World-Coherent Decoding（WCD）</strong>，一个用于 <strong>World Action Models（WAMs）</strong> 的自我验证测试时规划框架，旨在解决 WAM 在随机生成未来视觉时因候选质量不均而导致动作解码不稳定的问题。</li><li>核心洞察是 WAM 的"想象"是可证伪的：模型在执行前预测未来视觉，现实执行后可以用观测结果审计该预测，从而提供无需奖励或外部验证器的自我监督可靠性信号。</li><li>论文指出测试时扩展的关键不在于采样更多未来，而在于选择可靠候选，并通过预执行内部信号与延迟自验证的结合来提升机器人在分布偏移场景下的控制成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将测试时 WAM 控制形式化为<strong>可靠性感知的候选选择问题</strong>，识别出"想象可证伪性"（imagination falsifiability）是因果 WAM 的结构性优势，并验证同前缀采样未来存在可选择的可靠性差。</li><li>提出 <strong>WCD 框架</strong>，一种无需奖励、无需外部验证器的冻结 WAM 测试时规划方案，通过 best-of-N 采样与模型内部生成信号排序选优。</li><li>设计两种互补的<strong>内部生成信号</strong>：基于流的视频惊异度（flow-based video surprisal）用于评估视觉合理性，以及动作路径费力度（action path effort）用于评估动作生成稳定性。</li><li>提出<strong>延迟自我验证</strong>机制：执行后利用实现观测与所选想象的失配训练轻量在线预测器，将事后反馈摊销为事前选择依据，全程保持骨干模型冻结。</li><li>在 <strong>RoboTwin 2.0</strong> 基准和真实 <strong>Franka</strong> 机器人上验证了方法：有限随机化 Hard 任务成功率从 <strong>55.80%</strong> 提升至 <strong>60.90%</strong>，Horizon-3 任务获得 <strong>+16.43</strong> 点增益。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>方法建立在<strong>分块因果视频-动作世界模型</strong>之上，每个决策步骤生成想象视觉未来 <code>ẑ</code>，再条件解码对应动作块 <code>a</code>，形成"未来-动作"配对假设。</li><li><strong>视频侧流惊异度</strong>：利用流匹配生成器的速度场散度沿采样轨迹累计，估计候选未来的对数密度（惊异度），偏好高密度、低惊异的视觉未来。</li><li><strong>动作侧路径费力度</strong>：度量动作去噪轨迹中每单位调度步幅的校正运动量，偏好更平滑、更直接的动作生成路径。</li><li><strong>延迟自验证</strong>：执行后对比所选想象未来与真实观测的潜空间 MSE（向后误差），该信号驱动融合权重自适应调整，并为在线预测器提供回归标签。</li><li><strong>在线校准</strong>：轻量预测器 <code>fψ</code> 将紧凑生成特征映射为预测的逐帧向后误差，采用预热身（流惊异）+ 后热身（在线预测）两阶段课程切换，降低推理开销。</li><li>融合策略为归一化后视频/动作分数的加权和，权重由延迟误差动态调节，所选动作块被执行并缓存用于反馈训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin 2.0</strong>：50 任务双臂操作仿真基准，覆盖多步骤执行与长程技能，含标准协议（2500 干净 + 25000 随机演示）与有限随机化协议（70% 干净/30% 随机混合）。</li><li><strong>真实 Franka 机器人</strong>：桌面锤击任务，仅在干净演示上训练，测试时引入彩色光照、相机模糊、杂乱布局三种未见视觉偏移。</li><li>骨干模型为 <strong>LingBot-VA</strong>（冻结权重），视频与动作生成均采用 flow-matching 去噪过程实现。</li><li>评估规模涵盖 Easy/Hard 配置及 H1/H2/H3 三种任务长度，候选数量 <code>N</code> 的缩放实验至 N=8。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>标准协议（RoboTwin 2.0）</strong>：在强预训练 LingBot-VA 骨干上，WCD 将整体 Hard 成功率从 <strong>91.55%</strong> 提升至 <strong>92.28%</strong>，在近饱和场景下仍保持竞争力。</li><li><strong>有限随机化 Hard 评估</strong>：WCD 将 Hard 成功率从 <strong>55.80%</strong> 提升至 <strong>60.90%</strong>（+5.10），其中 Horizon-3 任务从 30.00% 提升至 <strong>46.43%</strong>（+16.43），证明候选选择在模型结构足够但采样可靠性不足时最有效。</li><li><strong>行为关联分析</strong>：早期想象-现实失配与滚动失败密切相关，失败率从最低误差四分位的 <strong>4.9%</strong> 单调上升至最高四分位的 <strong>21.2%</strong>，验证了向后误差作为自监督目标的行为有效性。</li><li><strong>真实 Franka 压力测试</strong>：在彩色光照、相机模糊和杂乱布局下，WCD 能从同一冻结 WAM 中恢复可执行轨迹，而基线和 π0.5 基线在彩色光照下均失败。</li><li><strong>消融研究</strong>：随机采样 N 在 Hard 上仅得 53.5%；单分支变体各有侧重（动作路径提升短视距、惊异度过滤分布偏移下不合理的视觉未来、预测器在 H3 表现最佳），完整 WCD 组合达到最优 Hard 平均值 <strong>60.90%</strong>，超过随机-N <strong>+7.40</strong>、最强单分支 <strong>+5.50</strong>。</li><li><strong>测试时扩展分析</strong>：增加候选数 <code>N</code> 仅在配合可靠选择器时带来稳定提升，随机选择无一致趋势；收益集中在仍有裕量的任务上，饱和任务上提升有限。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.02341/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Towards Zero-Shot Transfer Across Embodiments For Driving VLAs</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.01961/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">MACAW: Reliable And Efficient Surgical Debridement Using Monocular Adaptive Compact Attention Windows</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards Zero-Shot Transfer Across Embodiments For Driving VLAs - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。 针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了多数据集训练的影响，并提出了BEV-Forcing辅助目标。 核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升分布内（in-distribution）和分布外（out-of-distribution）性能；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.02341">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.02341.webp" alt="Towards Zero-Shot Transfer Across Embodiments For Driving VLAs" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Towards Zero-Shot Transfer Across Embodiments For Driving VLAs</h1>
+            <div class="detail-meta">2026-09-02 · <a href="http://arxiv.org/abs/2609.02341" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.02341" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.02341</span></div>
+            <p class="detail-summary">论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。 针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了多数据集训练的影响，并提出了BEV-Forcing辅助目标。 核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升分布内（in-distribution）和分布外（out-of-distribution）性能；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">École des Mines de Paris（法国巴黎矿业学院）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.02341/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。</p>
+  <ul class="reading-intro-points"><li>论文研究驾驶视觉-语言-动作模型（Driving VLAs）在跨传感器配置（embodiments/camera rigs）零样本迁移问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏几何空间迁移能力。</li><li>针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了多数据集训练的影响，并提出了BEV-Forcing辅助目标。</li><li>核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升分布内（in-distribution）和分布外（out-of-distribution）性能；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>École des Mines de Paris</strong>（法国巴黎矿业学院）</li><li><strong>Stellantis</strong>（法国汽车制造商）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>驾驶视觉-语言-动作模型（Driving VLAs）</strong>在<strong>跨传感器配置（embodiments/camera rigs）零样本迁移</strong>问题，指出VLA虽然具备语义理解能力，但当相机配置变化时缺乏<strong>几何空间迁移能力</strong>。</li><li>针对驾驶VLA大多在单个数据集上训练、很少评估对新数据集和相机系统零样本迁移的现状，论文系统研究了<strong>多数据集训练</strong>的影响，并提出了<strong>BEV-Forcing</strong>辅助目标。</li><li>核心发现是：在训练传感器配置较少时，BEV-Forcing能显著提升<strong>分布内（in-distribution）和分布外（out-of-distribution）性能</strong>；但随着训练数据种类和相机系统多样性增加，辅助任务的收益会减少，提示新技术的评估应考虑数据规模扩展因素。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>BEV-Forcing</strong>方法：使用跨注意力BEV头，将专用BEV模型（<strong>SimpleBEV</strong>）生成的<strong>占用图（occupancy maps）</strong>作为监督信号，传输到VLM骨干网络最后一层的图像隐藏状态中，从而让模型通过共享的BEV空间接口感知物体位置，不依赖3D标注。</li><li>证明了BEV-Forcing在训练数据多样性有限时<strong>可充当几何感知正则化器</strong>，在单数据集训练下能带来与增加训练数据多样性相当的收益，且推理时无任何额外计算开销。</li><li>提供了<strong>多开源数据集联合训练</strong>（规划和VQA任务）系统的实证研究，评估了在已见和未见相机配置上的性能表现，填补了当前驾驶VLA跨传感器迁移研究的空白。</li><li>通过消融实验揭示了<strong>BEV头容量</strong>与效果的权衡（低容量cross-attention优于高容量transformer block），以及BEV-Forcing与图像增强、标定参数注入等鲁棒性技术的协同作用。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>以预训练的开源视觉语言模型 <strong>Qwen 3.5 2B</strong> 为骨干网络，动作表示为文本形式的1Hz轨迹路点（2D坐标对），推理时用三次样条（cubic spline）插值到目标采样率。</li><li>应用<strong>LoRA（rank=16）</strong>适配方式微调，避免灾难性遗忘并保持语言能力，并加入<strong>VQA 联合训练</strong>（nuScenes-QA）来保留语言和语义推理能力。</li><li><strong>BEV-Forcing</strong>：随机初始化的查询向量通过<strong>低容量跨注意力BEV头</strong>从骨干网络目标层图像嵌入中提取特征，投射为BEV占用图，用<strong>SimpleBEV</strong>输出的教师占用图进行二分类监督（对正样本加权，损失为L = L_NTP + λ·L_BEV）。</li><li>将多个数据集统一为标准数据格式，包括当前时刻的多相机图像、过去轨迹、车辆意图提示以及目标未来轨迹，便于多数据集联合训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>规划训练数据集：<strong>WOD-E2E</strong>、<strong>NAVSIM</strong>、<strong>nuScenes</strong>，以及 <strong>Physical AI（PhysicalAI-Autonomous-Vehicles）</strong> 的子集（6千片段，训练取5千片段）。</li><li>VQA 数据：<strong>nuScenes-QA</strong>。</li><li>零样本目标评估集：<strong>Physical AI 验证集（PhAI-1k）</strong> 和 <strong>KITScenes LongTail 数据集</strong>。</li><li>训练配置：<strong>4×A100 GPU</strong>，全局batch size 64，训练1个epoch，学习率1e-4配合余弦衰减。</li><li>模型基于 <strong>Qwen 3.5 2B</strong> 视觉语言模型，使用LoRA（rank=16）微调，输入三路前置相机图像（VQA任务使用全环绕相机图像）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标：规划使用 <strong>ADE/FDE</strong>（平均/最终位移误差）、<strong>RFS</strong>（WOD-E2E 评判反馈得分）、<strong>MMS</strong>（KITScenes 多操作评分）。</li><li>只使用单数据集 <strong>WOD-E2E</strong> 训练时，BEV-Forcing 在 Physical AI 验证集上实现 ADE 降低 <strong>10.1%</strong>；KITScenes 验证集上，MMS 从 3.90 提升至 <strong>4.64</strong>。</li><li>在 KITScenes LongTail 测试集上，训练于 <strong>WOD-E2E+NAVSIM</strong> 的模型配合 BEV 任务获得 <strong>5.15 MMS</strong>（基线 4.62），超越 Gemini 3 Pro（4.61）和 Alpamayo 1.5（4.31）等强基线。</li><li>在 WOD-E2E 测试集上，单数据集时 BEV 任务提高了指标（RFS 从 7.873 升至 7.902）；但训练数据扩大为 WOD-E2E+NAVSIM+nuScenes-QA 后，加入 BEV 任务反而使 RFS 从 7.939 降至 7.902，说明<strong>多数据集多样化本身已提供了类似的正则化效果</strong>。</li><li>消融表明：低容量 cross-attention BEV 头优于完整 transformer block；当与图像增强或标定参数注入等技术结合时，BEV-Forcing 才能进一步提升零样本迁移性能，体现其作为<strong>统一空间接口</strong>的桥梁作用。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.02531/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Spatially Aware World Action Model via Geometric Latent Diffusion</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.02159/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">World-Coherent Decoding: Self-Verifying Test-Time Planning for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Latent Cluster Analysis for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。 论文聚焦于对NVIDIA GR00T N1.5这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。 当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.02634">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.02634.webp" alt="Latent Cluster Analysis for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Latent Cluster Analysis for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-09-02 · <a href="http://arxiv.org/abs/2609.02634" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.02634" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.02634</span></div>
+            <p class="detail-summary">该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。 论文聚焦于对NVIDIA GR00T N1.5这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。 当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">该论文由曼彻斯特大学（The University of Manchester）、汉堡大学（Unive…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.02634/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。</p>
+  <ul class="reading-intro-points"><li>该论文提出了一种用于视觉-语言-动作模型（VLA）的潜在空间分析方法，称为 LAVLA（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。</li><li>论文聚焦于对NVIDIA GR00T N1.5这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。</li><li>当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>该论文由<strong>曼彻斯特大学</strong>（The University of Manchester）、<strong>汉堡大学</strong>（Universität Hamburg）和<strong>布拉迪斯拉发夸美纽斯大学</strong>（Comenius University Bratislava）三所机构的研究者合作完成。</li><li>主要作者包括 Theodor Wulff、Torben S. P. Jensen、Tamara Bila、Angelo Cangelosi、Stefan Wermter 和 Igor Farkas 等。</li><li>论文为跨机构协作研究，涉及多作者共同指导。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>该论文提出了一种用于<strong>视觉-语言-动作模型（VLA）</strong>的潜在空间分析方法，称为 <strong>LAVLA</strong>（Latent Cluster Analysis for Vision-Language-Action Models），旨在提升对 VLA 模型内部表征的理解。</li><li>论文聚焦于对<strong>NVIDIA GR00T N1.5</strong>这一当前最先进 VLA 模型的逐层分析，尤其是其动作解码器（Diffusion Transformer）在动作生成过程中的潜在空间组织。</li><li>当前 VLA 模型的“黑箱”特性阻碍了其在机器人领域的高风险应用，而现有多数解释性研究忽视了动作解码器内部，该论文从中入手填补了这一研究空白。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出了<strong>LAVLA框架</strong>，一种基于聚类的 VLA 嵌入分析方法，并首次对 NVIDIA GR00T N1.5 动作解码器的潜在空间进行系统分析。</li><li>引入<strong>基于交叉注意力的嵌入加权模块</strong>（cross-attention-based embedding-weighting），用于放大动作解码器在扩散过程中关注的视觉-语言 token 的影响，该模块在无监督聚类基准上带来性能提升。</li><li>提供<strong>概念提取管道</strong>，通过外部 VLM 为每个聚类生成人类可理解的语义概念，并用 CLIP 进行自动评估，实现潜在空间的可解释化。</li><li>实验揭示了 VLA 分层中潜在表征的<strong>时空与运动学特征逐步解耦</strong>现象，即中间层表征更精细、靠近输出层趋于稳定的规律，进一步证明了交叉注意力在动作扩散过程中的关键作用。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>嵌入收集：在<strong>GR00T N1.5</strong>模型的 VLM 骨干网络最后层（Eagle 12th 层）以及动作解码器的<strong>15个交叉注意力层</strong>，分别于4个扩散时间步中收集嵌入。</li><li>聚类算法：使用<strong>凝聚层次聚类</strong>（agglomerative hierarchical clustering），基于欧氏距离和平均链接法，并针对不同层单独选择距离阈值。</li><li>嵌入加权模块：通过对交叉注意力权重矩阵进行平均，得到各视觉-语言 token 的影响得分，再经 softmax 归一化后，与 VLM 嵌入做<strong>Hadamard乘积</strong>，实现特征增强。</li><li>概念生成：对聚类中心最近的<strong>top-5</strong>个样本（包含指令文本和视频帧），先用 <strong>LLaVA 72B</strong> 对每个样本生成概括句，再汇总为单一概念标签，最后使用 <strong>CLIPSIM</strong> 评估概念与视频内容一致性。</li><li>与相关的 SAE 方法相比，LAVLA 不依赖大量数据训练，更适合机器人快速迭代的研究需求。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集：使用<strong>Open-X-Embodiment</strong>中的<strong>GR1人形机器人桌面操作任务</strong>数据子集，共包含<strong>24个任务</strong>，每个任务采样1000条样本，总样本量为<strong>24,000个</strong>观察-动作对。</li><li>每个任务视频包含5秒片段、10帧画面，样本间隔10帧采样。</li><li>使用的模型：<strong>GR00T N1.5</strong>，参数量<strong>3B</strong>，采用<strong>Eagle VLM</strong>作为骨干，动作解码器为扩散Transformer（DiT）。</li><li>训练与推理资源：嵌入收集在<strong>单个 NVIDIA A100 GPU</strong>上进行约4小时；概念生成使用<strong>2×NVIDIA A100 GPU</strong>约3小时。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准：在层内采用<strong>Silhouette分数</strong>、<strong>Davies-Bouldin Index</strong>、<strong>Caliński-Harabasz Index</strong>等无监督聚类指标；跨层一致性则采用<strong>Jaccard Index</strong>和<strong>Overlap Coefficient</strong>；概念质量使用<strong>CLIPSIM</strong>（CLIP相似度）。</li><li>嵌入加权模块显著改善聚类效果：Silhouette分数在无 PCA 情况下<strong>提升62.1%</strong>，在 PCA 情况下提升 <strong>24.0%</strong>，DB Index 均有约 <strong>8%</strong> 改进。</li><li>在加入 PCA 和加权时，Silhouette分数平均达到 <strong>0.1642</strong>，DB指数最低为 <strong>1.3617</strong>（加权无PCA）与<strong>1.4682</strong>（加权+PCA）。</li><li>更深层和更晚扩散时间步的潜在表示结构更有序、聚类数更少，说明模型会从噪声逐步解码为结构化动作表征。</li><li>加权机制使潜在空间始终保持更一致的聚类，未加权时早期扩散时间步的噪声导致聚类被大量孤立点占据（平均1.5万+聚类数，加权后降至约3800个）。</li><li>动作解码器聚类的轮廓与骨架运动特征间有明显区分，左右臂位移在 Wasserstein 距离上显示出约 <strong>20%</strong> 的簇间差异，表明模型在动作扩散过程中已编码特定的运动学与时间状态。</li><li>CLIPSIM 分数在基线（unweighted）与加权、PCA 变体上的差异不大（约 0.206-0.233），但 PCA 配置在多数层上一致地带来更高分数，概念生成在仅静态画面与文本下存在较高语义天花板。</li><li>聚类稳定性随扩散推进提升，同一层不同时间步的聚类分配一致性明显，说明交叉注意力会持续关注某些特定特征token。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.02653/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">HINT: Human-Intent Inception for Long-Horizon Robot Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.02546/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

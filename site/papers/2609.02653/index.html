@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HINT: Human-Intent Inception for Long-Horizon Robot Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义&quot;脱节&quot;问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。 核心思想受人类操作启发：语义意图仅在操作模式（manipulation pattern）切换时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。 HINT 在 π0.5 和 Wall-OSS-0.5 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.02653">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.02653.webp" alt="HINT: Human-Intent Inception for Long-Horizon Robot Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义&quot;脱节&quot;问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">HINT: Human-Intent Inception for Long-Horizon Robot Manipulation</h1>
+            <div class="detail-meta">2026-09-02 · <a href="http://arxiv.org/abs/2609.02653" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.02653" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.02653</span></div>
+            <p class="detail-summary">论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义&quot;脱节&quot;问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。 核心思想受人类操作启发：语义意图仅在操作模式（manipulation pattern）切换时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。 HINT 在 π0.5 和 Wall-OSS-0.5 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学（Zhejiang University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.02653/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义&quot;脱节&quot;问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。</p>
+  <ul class="reading-intro-points"><li>论文提出 HINT（Human-INTent INcepTion） 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义&quot;脱节&quot;问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。</li><li>核心思想受人类操作启发：语义意图仅在操作模式（manipulation pattern）切换时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。</li><li>HINT 在 π0.5 和 Wall-OSS-0.5 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学</strong>（Zhejiang University）</li><li><strong>上海交通大学</strong>（Shanghai Jiao Tong University）</li><li><strong>Noematrix</strong></li><li><strong>EndlessAI</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>HINT（Human-INTent INcepTion）</strong> 框架，解决长时程机器人操作中稀疏语言意图与密集、动态视觉观察之间的语义"脱节"问题，防止动作策略沿视觉捷径（visual shortcut）偏离人类目标。</li><li>核心思想受人类操作启发：语义意图仅在<strong>操作模式（manipulation pattern）切换</strong>时稀疏变化，而连续控制主要依赖手-物关系的持续跟踪；HINT 据此在模式转换时触发语义推理，在模式内通过多视角定位与视觉跟踪维持意图。</li><li>HINT 在 <strong>π0.5</strong> 和 <strong>Wall-OSS-0.5</strong> 两个基础动作策略上作为即插即用的语义接口，无需向基础动作模型引入额外可训练参数，即可提升意图理解、子任务完成率与端到端成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>HINT</strong> 框架：将高层语言指令转化为跨多视角的密集连续语义视觉线索，实现意图-动作对齐。</li><li>提出<strong>模式感知的语义感知调度（Pattern-Aware Perception Scheduling）</strong>：以操作模式转移作为语义推理触发点，并自适应选择优先相机视角，降低推理延迟。</li><li>提出<strong>语义承诺与视觉跟踪（Semantic Commitment and Visual Tracking）</strong>：在模式切换时由任务管理器解析当前子任务与目标实体，并在模式内用 <strong>SAM2</strong> 持续跟踪目标，低置信度时触发重定位。</li><li>提出<strong>无参数语义注入接口（View-Routed Semantic Intent Injection）</strong>：通过像素级视觉高亮与 token 级注意力先验（attention prior）两条互补通路向动作策略传递意图，不修改动作骨干网络。</li><li>实验表明 HINT 在三项长时程任务及语义组合式 OOD 设定下大幅提升两个基础策略的意图分数与成功率，同时保持低延迟控制。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>操作模式定义</strong>：将操作行为划分为四种与任务无关的模式——<strong>free move（自由移动）</strong>、<strong>pre-contact（预接触）</strong>、<strong>transport contact（搬运接触）</strong>、<strong>dexterous contact（灵巧接触）</strong>，每种模式对应不同感知源优先级（全局视角/腕部视角/力觉触觉）。</li><li><strong>Pattern Router</strong>：轻量级多模态网络，以共享 ResNet-18 编码多视角图像、GRU 分支建模本体感受与关节力矩时序，经门控融合联合预测模式类别与模式内进度，用 CE+MSE 损失训练，并在三个任务数据上联合训练。</li><li><strong>Task Manager</strong>：基于 <strong>Qwen3-VL</strong>，在重置时生成有序子任务计划，并在每次模式转移时结合执行上下文解析当前子任务指令与活动目标实体。</li><li><strong>Semantic Grounder 与跟踪</strong>：结合 <strong>Grounding DINO</strong>（物体级定位）与 <strong>Qwen</strong>（细粒度语义/空间关系解析）在多视角中生成目标边界框；<strong>SAM2</strong> 在模式内持续传播目标掩码，低置信度触发重新定位。</li><li><strong>意图注入</strong>：在路由视角中按 λ=0.32 透明度叠加目标掩码高亮（形成外观不变的外部指代），并将目标相关性先验以 head-shared bias 注入视觉编码器中间层自注意力与动作解码器 action-to-vision 注意力，采用"中间层集中、外部稀疏"的注入层选择策略。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>三项语言条件任务：<strong>水果蔬菜分类（Fruit-Vegetable Sorting）</strong>、<strong>单词拼写（Word Spelling）</strong>、<strong>插销入孔（Peg-in-Hole Insertion）</strong>，分别采集 50/80/150 条演示（30 Hz 双臂遥操作）。</li><li>机器人平台：双 <strong>AgileX PiPER</strong> 机械臂 + 三台 <strong>Intel RealSense D435</strong> RGB-D 相机（1 个全局视角 + 2 个腕部视角）。</li><li>基础动作策略：<strong>π0.5</strong> 与 <strong>Wall-OSS-0.5</strong> 两个大规模预训练策略，HINT 不向其中添加可训练参数。</li><li>训练与评估资源：<strong>2× NVIDIA RTX 3090 GPU</strong> 工作站。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标：<strong>Intention Score（IS）</strong>、<strong>Subtask Success Rate（Sub. SR）</strong>、<strong>Full-Task Success Rate（Full SR）</strong>；每任务 ID 测试 15–20 次，OOD/消融各 10 次。</li><li>ID 结果（π0.5 + HINT vs 基础策略）：排序任务 IS/Sub.SR/Full SR 达 91.2/91.2/60.0%（基础 52.2/52.2/10.0%）；拼写任务达 97.9/95.7/86.7%；插销任务 IS 从 35.0% 提升至 100.0%，Full SR 从 5.0% 提升至 40.0%。</li><li>OOD 结果：π0.5 平均 IS 从 41.4% 提升至 89.4%、Sub.SR 从 36.2% 提升至 74.3%，三项任务均从 0.0% Full SR 提升至 30.0%；Wall-OSS-0.5 同样获得稳定增益。</li><li><strong>视觉捷径实验</strong>：π0.5 在固定映射"easy"设定下 Sub.SR 达 89.5%，在可变映射"mixed"设定下降至 52.2%，HINT 使 mixed 设定 Sub.SR 提升 38.5 个百分点，说明其能克服视觉捷径、恢复语言意图主导。</li><li><strong>Pattern Router 可靠性</strong>：模式预测成功率 ID/OOD 为 94.7%/91.1%，子任务切换成功率达 95–100%（260 次转换中 251 次正确）。</li><li><strong>延迟分析</strong>：基础策略 185 ms/帧、Pattern Router 14 ms、SAM2 43 ms、Grounding DINO 227 ms、Qwen 431 ms；推理帧（DINO/Qwen）426/630 ms，而跟踪帧仅 242 ms，辅助开销从 445 ms 降至 57 ms（降低 61.6%）。</li><li><strong>消融发现</strong>：仅高亮（无注意力先验）或仅注意力（无高亮）的单一通路效果均低于完整 HINT；连续跟踪使子任务/全任务完成时间分别降低 25.3%/21.5%，腕部视角使 Full SR 从 10.0% 提升至 30.0%。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2609.02634/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Latent Cluster Analysis for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

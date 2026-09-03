@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。 文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了严格零样本迁移（strict zero-shot transfer）与预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）两种协议。 为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.02546">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.02546.webp" alt="ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ZETA: A Controlled Study of Zero-Shot Cross-Embodiment VLA Transfer for Tabletop Manipulation</h1>
+            <div class="detail-meta">2026-09-02 · <a href="http://arxiv.org/abs/2609.02546" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.02546" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.02546</span></div>
+            <p class="detail-summary">论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。 文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了严格零样本迁移（strict zero-shot transfer）与预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）两种协议。 为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Galbot（北京 Galbot 公司）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.02546/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。</p>
+  <ul class="reading-intro-points"><li>论文研究视觉-语言-动作（VLA）模型在跨实体（cross-embodiment）场景下的零样本迁移（zero-shot transfer）问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。</li><li>文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了严格零样本迁移（strict zero-shot transfer）与预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）两种协议。</li><li>为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Galbot（北京 Galbot 公司）</strong></li><li><strong>CFCS, School of CS, Peking University（北京大学计算机学院前沿计算研究中心）</strong></li><li><strong>Peking University（北京大学）</strong></li><li><strong>Renmin University of China（中国人民大学）</strong></li><li><strong>Xiamen University Malaysia（厦门大学马来西亚分校）</strong></li><li><strong>The University of Hong Kong（香港大学）</strong></li><li><strong>Beihang University（北京航空航天大学）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>视觉-语言-动作（VLA）模型</strong>在跨实体（cross-embodiment）场景下的<strong>零样本迁移（zero-shot transfer）</strong>问题，聚焦于固定桌面操作（stationary tabletop manipulation）与两指夹爪（two-finger gripper）设置。</li><li>文章指出现有“零样本迁移”定义不一致：有些工作中目标机器人完全不在训练数据中，有些则出现在预训练数据中但不在任务后训练数据中。为此作者区分了<strong>严格零样本迁移（strict zero-shot transfer）</strong>与<strong>预训练暴露零样本迁移（pretrain-exposed zero-shot transfer）</strong>两种协议。</li><li>为解决评估中“实体差异”与“任务、场景、相机、数据量、协议差异”相混淆的问题，论文构建了受控基准，对影响跨实体迁移的四个关键因素进行分解式研究：<strong>状态-动作表征、源实体多样性、辅助共训练目标、目标实体暴露程度</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>协议澄清（Protocol clarification)</strong>：明确提出区分严格零样本迁移与预训练暴露零样本迁移，主张二者应分开报告，因为目标实体是否出现在预训练数据中会显著改变迁移难度。</li><li><strong>受控基准（Controlled benchmark）</strong>：构建横跨仿真与真实世界的受控评估基准，覆盖 <strong>7 个留出目标实体</strong>与<strong>四类实体迁移类别（外观变化、夹爪变化、机械臂变化、全实体变化）</strong>；仿真中每个模型评估 <strong>6,300 次 rollout</strong>。</li><li><strong>分解式研究（Factorized study）</strong>：在匹配的骨干网络、数据预算与评估协议下，系统比较了状态-动作表征、源实体多样性（程序化生成的 512 个 Franka 系列源实体池）、辅助共训练目标与目标实体暴露对零样本迁移的影响。</li><li><strong>实用指导（Practical guidance）</strong>：总结出改善固定桌面二指夹爪 VLA 跨实体迁移的实用建议：采用局部 EEF 框架表征、在受控预算下评估源多样性、引入辅助共训练目标、明确报告目标实体暴露情况。</li><li>论文还发现：仅 5% 的目标实体预训练数据即可带来 13.4 个百分点的平均任务进度提升，为区分两种零样本协议提供了实证依据。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>论文采用两阶段训练协议：先在多实体预训练数据 $\mathcal{D}_{\mathrm{pre}}$ 上预训练，再在单一源实体 $e_s$ 的下游任务数据 $\mathcal{D}_{\mathrm{post}}$ 上做后训练，最后在目标实体 $e_t$ 上评估。</li><li>在状态-动作表征方面，比较了 <strong>World-Delta</strong>（世界坐标系增量）与 <strong>EEF-Delta</strong>（夹爪坐标系增量）两种动作表征，以及 <strong>Abs. EEF state</strong>（绝对末端执行器位姿历史）与 <strong>EEF-Delta state</strong>（局部夹爪坐标系末端增量状态）两种状态编码。EEF-Delta 方式可减少对实体基座定义与运动学语义的依赖。</li><li>模型骨干基于 <strong>π₀.₅（pi0.5）</strong> VLA 架构；预训练使用程序化生成的 <strong>512 个 Franka 风格源实体</strong>池，并施加领域随机化（相机位姿、光照、背景、质量、摩擦等）以缩小 sim-to-real 差距。</li><li>数据构建将预训练任务与下游任务分离（$\mathcal{T}_{\mathrm{pre}} \cap \mathcal{T}_{\mathrm{post}} = \varnothing$），保证实体迁移间隙可在受控任务暴露下测量；默认预训练预算为 <strong>640K 条轨迹</strong>。</li><li>辅助共训练目标包含 <strong>语言-动作预测（LAP）</strong>、<strong>子目标预测</strong>与<strong>任务条件边界框预测</strong>，用于在模仿学习之外提供可迁移的语义、空间与动作结构监督。</li><li>实体迁移分类包括：外观变化（appearance-only）、夹爪变化（gripper-only）、臂变化（arm-only）与全实体变化（full-embodiment）。仿真源机器人采用 <strong>Franka</strong>，真实世界源实体采用 <strong>Franka-Robotiq</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>程序化生成的 <strong>512 个 Franka 系列源实体</strong>，通过几何与视觉变化产生（用于预训练）。</li><li><strong>7 个留出目标实体</strong>：Franka（带 logo）、Franka（绿手指）、Franka+UMI 夹爪、UR5e+Franka 手、Google Robot+Franka 手、UR5e+UMI、Google Robot（full embodiment 等组合）。</li><li>预训练规模：默认 <strong>640K 条 pick-and-place 轨迹</strong>；对比设置还包括固定每实体预算（32/128/512 个源实体）的 sweep。</li><li>仿真后训练：每个下游任务 <strong>40K 条轨迹</strong>；真实世界后训练：每个任务 <strong>50 条演示</strong>。</li><li>下游任务：仿真 3 个任务，真实世界 2 个任务（open the fryer、water the flower 等）。</li><li>仿真评估规模：每个模型 <strong>3 任务 × 7 实体 × 100 rollouts × 3 次独立训练 = 6,300 次 rollout</strong>；真实世界评估：<strong>2 任务 × 7 实体 × 10 次试验 = 140 次 rollout/模型</strong>。</li><li>模型规模与训练资源细节原文未完全给出，主要以 π₀.₅ 为 VLA 骨干在受控两阶段协议下训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：仿真为主要平台（支持受控、高通量比较），真实世界作为外部效度验证（external-validity check）。</li><li><strong>指标</strong>：每次 rollout 按任务进度（task progress）打分，范围 [0,100]，100 表示完全完成，子目标可获得部分分数；报告均值 ± 标准差。</li><li><strong>RQ1（表征影响）</strong>：EEF 帧表征显著改善严格零样本迁移；将动作从 World-Delta 换为 EEF-Delta 使平均进度从 60.3% 提升至 64.6%（绝对状态），而 EEF-Delta 状态最高将平均进度提升至 <strong>75.7%</strong>（相对提升约 15 个百分点）；真实世界验证中 EEF-Delta 状态 + EEF-Delta 动作达到最佳平均 <strong>89.9%</strong>。</li><li><strong>RQ2（源实体多样性）</strong>：固定总预算 640K 轨迹下，<strong>512 源实体设置比单源提升约 18 个百分点</strong>，增益主要在夹爪、臂与全实体迁移类别；真实世界中出现非单调中间区（8 源低于单源，512 源恢复），说明源多样性与数据分配需联合设计。</li><li><strong>RQ3（辅助共训练）</strong>：所有辅助目标均优于无共训练基线（75.7%），将均值提升至 77.7%–82.3%，最大增益出现在较大实体迁移类别；其中 <strong>Language-action（EEF 框）与 Task-conditioned BBox 效果最佳（81.3%/82.3%）</strong>。</li><li><strong>RQ4（目标暴露）</strong>：仅加入 5% 目标实体预训练数据即可分别把 UR5eUMI 从 69.3% 提升至 78.6%、Google Robot 从 51.4% 提升至 68.9%，平均提升 13.4 个百分点；但性能仍低于在目标实体上做后训练的 oracle 上限，说明目标实体预训练可缓解但不能消除迁移差距。</li><li><strong>表征与目标暴露的交互</strong>：5% 目标暴露可缩小不同表征间的差距，说明表征选择在严格零样本迁移时更为关键，而有限目标暴露可部分补偿迁移性较弱的表征。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.02634/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Latent Cluster Analysis for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.02531/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Spatially Aware World Action Model via Geometric Latent Diffusion</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
