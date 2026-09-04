@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。 针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。 在 π₀ 和 π₀.₅ 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 80%。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.03681">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.03681.webp" alt="WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-09-03 · <a href="http://arxiv.org/abs/2609.03681" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.03681" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.03681</span></div>
+            <p class="detail-summary">本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。 针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。 在 π₀ 和 π₀.₅ 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 80%。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.03681/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。</p>
+  <ul class="reading-intro-points"><li>本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。</li><li>针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。</li><li>在 π₀ 和 π₀.₅ 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 80%。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学（Tsinghua University）</strong></li><li><strong>北京智源人工智能研究院（Beijing Academy of Artificial Intelligence, BAAI）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文提出 <strong>WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models）</strong>，一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。</li><li>针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。</li><li>在 <strong>π₀</strong> 和 <strong>π₀.₅</strong> 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 <strong>80%</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出统一的 <strong>WISE 框架</strong>，融合交互相关状态选择、有界未来预测、反事实轨迹评估与真实上下文策略优化，实现更可靠高效的世界模型想象利用。</li><li>设计<strong>想象调度机制（Imagination Scheduling）</strong>，基于 DINOv2 视觉编码器与轻量头预测交互相关分数，仅在关键状态触发想象，大幅减少不必要的世界模型推理。</li><li>引入<strong>有界反事实想象（Bounded Counterfactual Imagination）</strong>，通过动作条件多视角世界模型执行有限步闭环 rollout，避免长程预测误差累积。</li><li>构建<strong>反事实轨迹评估与策略优化</strong>方案，利用进度、完成度、置信度等多维信号计算奖励，并通过组相对优势（group-relative advantage）更新策略，且只对真实上下文中的首个动作块进行监督。</li><li>在 <strong>MimicGen</strong> 仿真任务和 <strong>Galaxea R1 Lite</strong> 真实机器人上验证，相比全量想象降低约 80% 计算量，同时提升策略成功率与泛化鲁棒性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>问题建模：将 VLA 策略后训练视为最大化任务成功率的优化问题，使用世界模型预测候选动作在真实上下文中的反事实后果。</li><li>世界模型：基于 <strong>Open-Sora</strong> 适配的动作条件多视角视频预测模型，利用 rectified-flow 训练目标（噪声 latent 插值）学习未来帧生成。</li><li>想象调度器：使用 <strong>DINOv2</strong> 共享编码器融合腕部与第三人称视角观测，训练轻量头输出交互相关分数 s_t，并通过阈值 κ 决定是否触发想象。</li><li>有界 rollout：每个候选动作块（action chunk）递归生成未来帧与动作序列，限制总 rollout 长度 L×H，以控制在可靠预测范围内。</li><li>奖励模型：基于独立 DINOv2 编码器评估想象轨迹，输出进度 p、置信度 c 和完成度 q，综合得到奖励 R = G − αB + βT，其中 G 为加权进度增益、B 为后退惩罚、T 为最大完成度。</li><li>策略优化：对每个候选动作的奖励进行组内标准化得到优势 A_i，用 stop-gradient 的 A_i 加权 flow-matching 损失（L_FM）求梯度，并加入参考损失 L_ref 防止策略漂移。</li><li>可靠性过滤：重复想象两次，仅当组间奖励差、排名一致性 ρ_rank、世界模型稳定性 σ_WM 满足阈值时才使用该组进行策略更新。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真任务使用 <strong>MimicGen</strong> 数据集上的五个操作任务：<strong>Stack、Coffee、Square、Threading、Mug Cleanup</strong>。</li><li>真实世界评测在 <strong>Galaxea R1 Lite</strong> 机器人上执行四个任务：<strong>Pick-and-Place、Two-Cube Stacking、Open、Open-and-Close</strong>。</li><li>预训练骨干模型：<strong>π₀</strong>（Black et al., 2026）与 <strong>π₀.₅</strong>（Intelligence et al., 2025b）。</li><li>世界模型基于 <strong>Open-Sora</strong> 适配，奖励模型与调度器基于 <strong>DINOv2</strong>。</li><li>训练硬件与详细参数量在附录中给出（正文未明确列出 GPU 型号与总参数量，但以 GPU 小时数衡量计算开销）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>仿真环境：五个 <strong>MimicGen</strong> 操作任务，报告 episode-level 成功率与平均成功率。</li><li>π₀ 基线：平均成功率 <strong>49.7%</strong>；WISE（π₀ + WISE）提升至 <strong>59.5%</strong>（+9.8 个百分点），优于最强基线 π₀ + DPO（53.8%）。</li><li>π₀.₅ 基线：平均成功率 <strong>52.3%</strong>；WISE（π₀.₅ + WISE）提升至 <strong>60.2%</strong>（+7.9 个百分点）。</li><li>消融实验表明：完整奖励模型平均成功率 <strong>68.3%</strong>，仅用进度或完成度时为 57.3%，去掉置信度权重或后退惩罚均显著降低性能。</li><li>想象调度消融：WISE 仅需 <strong>2.61 GPU 小时</strong>，相比全量想象（11.45 GPU 小时）降低约 <strong>77%</strong> 计算时间，成功率反而提升 7.9 个百分点；在相近预算下优于均匀调度（uniform）和随机调度（random）。</li><li>真实世界标准设置下，π₀ 平均成功率从 <strong>60.0%</strong> 提升到 <strong>77.5%</strong>（+17.5 个百分点）；泛化设置下从 <strong>42.5%</strong> 提升到 <strong>68.8%</strong>（+26.3 个百分点）。</li><li>π₀.₅ 在真实世界标准设置下从 <strong>61.3%</strong> 提升到 <strong>77.5%</strong>，泛化设置下从 <strong>50.0%</strong> 提升到 <strong>71.3%</strong>（+21.3 个百分点）。</li><li>泛化测试涵盖高度变化、光照变化、干扰物变化和语言指令变化，WISE 在各类分布偏移下均表现出更强的鲁棒性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.03715/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.03602/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

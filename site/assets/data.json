@@ -1,5 +1,324 @@
 [
   {
+    "date": "2026-09-03",
+    "title": "GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2609.04193",
+    "arxiv_id": "2609.04193",
+    "detail_path": "papers/2609.04193/",
+    "cover_path": "covers/2609.04193/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.04193.webp",
+    "paper_image_full_path": "assets/paper-images/2609.04193.webp",
+    "preview_text": "论文提出 GIFT（Guided Intermediate Feature Training） 框架，通过动作导向的结构性监督信号来引导机器人操作策略的中间视觉特征表征。 针对预训练视觉语言模型和世界模型在控制任务中存在的 “动作充分性差距（action-sufficiency gap）”——即视觉特征丰富但未保留物理可行动、对象交互和任务相关的关键结构信息。 在 VLA 直接动作策略、前馈世界-动作模型（WAM-Fast） 和 逆动力学世界模型（WAM-IDM） 三种不同动作范式中统一验证同一表征学习原则，以测试其在各类模型动作接口上的可移植性。",
+    "research_unit": "中国科学院自动化研究所（多数作者所属机构，含 Yupeng Zheng、Xiang Li、Songen…",
+    "hook_text": "论文提出 GIFT（Guided Intermediate Feature Training） 框架，通过动作导向的结构性监督信号来引导机器人操作策略的中间视觉特征表征。",
+    "key_points": [
+      "论文提出 GIFT（Guided Intermediate Feature Training） 框架，通过动作导向的结构性监督信号来引导机器人操作策略的中间视觉特征表征。",
+      "针对预训练视觉语言模型和世界模型在控制任务中存在的 “动作充分性差距（action-sufficiency gap）”——即视觉特征丰富但未保留物理可行动、对象交互和任务相关的关键结构信息。",
+      "在 VLA 直接动作策略、前馈世界-动作模型（WAM-Fast） 和 逆动力学世界模型（WAM-IDM） 三种不同动作范式中统一验证同一表征学习原则，以测试其在各类模型动作接口上的可移植性。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "Continuous Actions from Discrete Minds: Latent-Aligned Planning for End-to-End Autonomous Driving",
+    "link": "http://arxiv.org/abs/2609.04070",
+    "arxiv_id": "2609.04070",
+    "detail_path": "papers/2609.04070/",
+    "cover_path": "covers/2609.04070/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.04070.webp",
+    "paper_image_full_path": "assets/paper-images/2609.04070.webp",
+    "preview_text": "本文提出 LaPla（Latent-aligned Planning），一个统一的视觉-语言-动作（VLA）框架，用于端到端自动驾驶。 核心问题是弥合视觉语言模型（VLM）的离散语义推理与自动驾驶所需的连续、受物理约束的动作执行之间的差距。 现有方法存在三种缺陷：动作标记化引入量化误差导致轨迹抖动；双系统耦合松散导致时空割裂；扩散式动作头训练不稳定且推理延迟高。LaPla 通过在运动学合理的连续潜空间中直接规划来解决这些问题。",
+    "research_unit": "香港科技大学（广州）",
+    "hook_text": "本文提出 LaPla（Latent-aligned Planning），一个统一的视觉-语言-动作（VLA）框架，用于端到端自动驾驶。",
+    "key_points": [
+      "本文提出 LaPla（Latent-aligned Planning），一个统一的视觉-语言-动作（VLA）框架，用于端到端自动驾驶。",
+      "核心问题是弥合视觉语言模型（VLM）的离散语义推理与自动驾驶所需的连续、受物理约束的动作执行之间的差距。",
+      "现有方法存在三种缺陷：动作标记化引入量化误差导致轨迹抖动；双系统耦合松散导致时空割裂；扩散式动作头训练不稳定且推理延迟高。LaPla 通过在运动学合理的连续潜空间中直接规划来解决这些问题。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "Toward Unified Robot Learning: Bridging Representation, Vision-Language-Action, and World Models",
+    "link": "http://arxiv.org/abs/2609.03927",
+    "arxiv_id": "2609.03927",
+    "detail_path": "papers/2609.03927/",
+    "cover_path": "covers/2609.03927/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03927.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03927.webp",
+    "preview_text": "本文是一篇面向统一机器人学习的综述论文，围绕感知表示学习（Representation Learning）、视觉-语言-动作模型（Vision-Language-Action, VLA）与世界模型（World Models）三大互补轴组织现有机器人学习方法 论文指出现有机器人学习范式大多孤立发展，导致系统碎片化，在泛化能力、长时程推理与规划、非结构化环境部署等方面面临显著困难 研究目标是建立统一的分类框架，系统梳理各组件之间的交互关系，识别感知、行动与推理之间缺少的耦合机制，并提出迈向一体化机器人学习的未来方向",
+    "research_unit": "Fujitsu Research of America（Fujitsu Research of Ame…",
+    "hook_text": "本文是一篇面向统一机器人学习的综述论文，围绕感知表示学习（Representation Learning）、视觉-语言-动作模型（Vision-Language-Action, VLA）与世界模型（World Models）三大互补轴组织现有机器人学习方法",
+    "key_points": [
+      "本文是一篇面向统一机器人学习的综述论文，围绕感知表示学习（Representation Learning）、视觉-语言-动作模型（Vision-Language-Action, VLA）与世界模型（World Models）三大互补轴组织现有机器人学习方法",
+      "论文指出现有机器人学习范式大多孤立发展，导致系统碎片化，在泛化能力、长时程推理与规划、非结构化环境部署等方面面临显著困难",
+      "研究目标是建立统一的分类框架，系统梳理各组件之间的交互关系，识别感知、行动与推理之间缺少的耦合机制，并提出迈向一体化机器人学习的未来方向"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "FWBC-VLA: Force-Aware Whole-Body Compensation for Contact-Rich Loco-Manipulation",
+    "link": "http://arxiv.org/abs/2609.03889",
+    "arxiv_id": "2609.03889",
+    "detail_path": "papers/2609.03889/",
+    "cover_path": "covers/2609.03889/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03889.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03889.webp",
+    "preview_text": "提出 FWBC-VLA，一个面向接触丰富移动操作（contact-rich loco-manipulation）的力感知全身补偿框架，用于轮腿式四足机器人（wheeled-legged quadruped）。 解决现有 VLA 模型无法理解物理交互、无传感器平台难以估计接触力、以及任务级动作与全身稳定控制缺乏协同的问题。 核心思路是借助无传感器残差力矩估计器提取因果物理反馈，构建从本体感知到 VLA 动作生成与 WBC 全身补偿的双反馈通路。",
+    "research_unit": "浙江大学",
+    "hook_text": "提出 FWBC-VLA，一个面向接触丰富移动操作（contact-rich loco-manipulation）的力感知全身补偿框架，用于轮腿式四足机器人（wheeled-legged quadruped）。",
+    "key_points": [
+      "提出 FWBC-VLA，一个面向接触丰富移动操作（contact-rich loco-manipulation）的力感知全身补偿框架，用于轮腿式四足机器人（wheeled-legged quadruped）。",
+      "解决现有 VLA 模型无法理解物理交互、无传感器平台难以估计接触力、以及任务级动作与全身稳定控制缺乏协同的问题。",
+      "核心思路是借助无传感器残差力矩估计器提取因果物理反馈，构建从本体感知到 VLA 动作生成与 WBC 全身补偿的双反馈通路。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "MINERVA: How Small Can a Manipulation Policy Be and Still Solve LIBERO?",
+    "link": "http://arxiv.org/abs/2609.03715",
+    "arxiv_id": "2609.03715",
+    "detail_path": "papers/2609.03715/",
+    "cover_path": "covers/2609.03715/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03715.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03715.webp",
+    "preview_text": "本文提出 MINERVA（MINimal Efficient Robotic Vision-Action policy），一个极简视觉运动策略系列，系统性缩小模型规模以寻找 LIBERO 操作基准的\"经验容量下限\"（empirical capacity floor） 核心问题：当机器人的任务集固定后，最小的策略模型需要多少参数仍能保持任务性能和部署效率？模型能否在 CPU 等边缘设备上实时运行？ 通过从 9.7M 参数逐步缩小到 0.09M，发现 0.54M 参数模型即可达到 95.1% 的成功率，并且分析其在记忆化基准上的行为边界、鲁棒性和效率",
+    "research_unit": "东京大学（The University of Tokyo），Matsuo-Iwasawa Lab，工学…",
+    "hook_text": "本文提出 MINERVA（MINimal Efficient Robotic Vision-Action policy），一个极简视觉运动策略系列，系统性缩小模型规模以寻找 LIBERO 操作基准的\"经验容量下限\"（empirical capacity floor）",
+    "key_points": [
+      "本文提出 MINERVA（MINimal Efficient Robotic Vision-Action policy），一个极简视觉运动策略系列，系统性缩小模型规模以寻找 LIBERO 操作基准的\"经验容量下限\"（empirical capacity floor）",
+      "核心问题：当机器人的任务集固定后，最小的策略模型需要多少参数仍能保持任务性能和部署效率？模型能否在 CPU 等边缘设备上实时运行？",
+      "通过从 9.7M 参数逐步缩小到 0.09M，发现 0.54M 参数模型即可达到 95.1% 的成功率，并且分析其在记忆化基准上的行为边界、鲁棒性和效率"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "WISE: World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2609.03681",
+    "arxiv_id": "2609.03681",
+    "detail_path": "papers/2609.03681/",
+    "cover_path": "covers/2609.03681/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03681.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03681.webp",
+    "preview_text": "本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。 针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。 在 π₀ 和 π₀.₅ 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 80%。",
+    "research_unit": "清华大学（Tsinghua University）",
+    "hook_text": "本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。",
+    "key_points": [
+      "本文提出 WISE（World-model-guided Imagination Scheduling for Efficient Post-training of Vision-Language-Action Models），一种面向视觉-语言-动作（VLA）模型后训练的世界模型引导想象调度框架。",
+      "针对现有 VLA 后训练依赖昂贵专家演示或高风险真实世界强化探索的问题，WISE 通过协调“何时使用想象、想象延伸多远、如何将想象结果转化为策略监督”来提高后训练效率与可靠性。",
+      "在 π₀ 和 π₀.₅ 两种预训练 VLA 骨干上，WISE 在多样化操作任务和真实机器人场景中均取得一致性能提升，并将世界模型 GPU 计算时间降低约 80%。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "SV-WAM: An Efficient Surround-View World-Action Model for End-to-End Autonomous Driving",
+    "link": "http://arxiv.org/abs/2609.03602",
+    "arxiv_id": "2609.03602",
+    "detail_path": "papers/2609.03602/",
+    "cover_path": "covers/2609.03602/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03602.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03602.webp",
+    "preview_text": "论文提出 SV-WAM，一个高效的环视（surround-view）世界-动作模型（World-Action Model, WAM），用于端到端自动驾驶规划，保留完整六摄像头观测的同时避免推理阶段的高开销未来视频生成。 现有世界模型规划器大多在推理时生成未来视频，导致延迟高，因此通常只使用单前视摄像头，缺乏变道、汇入、转弯等安全关键场景所需的侧向与后方空间感知。 SV-WAM 将未来视频预测作为训练时的稠密监督信号而非推理输出，通过共享生成模型联合去噪未来动作与未来视频潜变量，从而在部署时只保留低延迟的动作推理路径。",
+    "research_unit": "Institute of Automation, Chinese Academy of Science…",
+    "hook_text": "论文提出 SV-WAM，一个高效的环视（surround-view）世界-动作模型（World-Action Model, WAM），用于端到端自动驾驶规划，保留完整六摄像头观测的同时避免推理阶段的高开销未来视频生成。",
+    "key_points": [
+      "论文提出 SV-WAM，一个高效的环视（surround-view）世界-动作模型（World-Action Model, WAM），用于端到端自动驾驶规划，保留完整六摄像头观测的同时避免推理阶段的高开销未来视频生成。",
+      "现有世界模型规划器大多在推理时生成未来视频，导致延迟高，因此通常只使用单前视摄像头，缺乏变道、汇入、转弯等安全关键场景所需的侧向与后方空间感知。",
+      "SV-WAM 将未来视频预测作为训练时的稠密监督信号而非推理输出，通过共享生成模型联合去噪未来动作与未来视频潜变量，从而在部署时只保留低延迟的动作推理路径。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "Scaling Bimanual Household Manipulation from 1,500 hours of Demonstrations to On-Policy Corrections",
+    "link": "http://arxiv.org/abs/2609.03591",
+    "arxiv_id": "2609.03591",
+    "detail_path": "papers/2609.03591/",
+    "cover_path": "covers/2609.03591/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03591.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03591.webp",
+    "preview_text": "发布 1,500 小时 的双臂家务操作演示数据集，涵盖真实机器人遥操作和 UMI 手持夹爪采集的两种数据。 利用该数据训练 XR-2，一个 5B 参数的视觉-语言-动作 (VLA) 模型，用于鲁棒的家庭双臂操作任务。 系统研究两条扩展路径：专家演示数据量的扩展，以及在策略部署时通过 DAgger 方法收集人工在线纠正数据进行扩展。",
+    "research_unit": "PrimeBot Research Institute（Swancor Advanced Materi…",
+    "hook_text": "发布 1,500 小时 的双臂家务操作演示数据集，涵盖真实机器人遥操作和 UMI 手持夹爪采集的两种数据。",
+    "key_points": [
+      "发布 1,500 小时 的双臂家务操作演示数据集，涵盖真实机器人遥操作和 UMI 手持夹爪采集的两种数据。",
+      "利用该数据训练 XR-2，一个 5B 参数的视觉-语言-动作 (VLA) 模型，用于鲁棒的家庭双臂操作任务。",
+      "系统研究两条扩展路径：专家演示数据量的扩展，以及在策略部署时通过 DAgger 方法收集人工在线纠正数据进行扩展。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "Air-Ground Collaborative Vision-and-Language Navigation via Shared Bird's-Eye Maps",
+    "link": "http://arxiv.org/abs/2609.03483",
+    "arxiv_id": "2609.03483",
+    "detail_path": "papers/2609.03483/",
+    "cover_path": "covers/2609.03483/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03483.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03483.webp",
+    "preview_text": "论文提出 AGC-VLN（Air-Ground Collaborative VLN），据称是首个训练免除（training-free）的空地协同视觉-语言导航（VLN）基线方法 研究问题：现有无训练方法只支持单智能体导航，而已有研究表明五种 SOTA VLA 模型在空地协同任务中无法产生稳定协作行为，朴素通信甚至会降低性能 核心思路：把无训练 VLN 分解为“VLM 语义推理 + 确定性几何执行”，暴露协作接口——由无人机在全局鸟瞰图上渲染队友位姿与目标标记，形成可供地面车直接消费的共享鸟瞰图",
+    "research_unit": "香港科技大学（广州）（HKUST(GZ)）系统枢纽、机器人与自主系统学域（Robotics and A…",
+    "hook_text": "论文提出 AGC-VLN（Air-Ground Collaborative VLN），据称是首个训练免除（training-free）的空地协同视觉-语言导航（VLN）基线方法",
+    "key_points": [
+      "论文提出 AGC-VLN（Air-Ground Collaborative VLN），据称是首个训练免除（training-free）的空地协同视觉-语言导航（VLN）基线方法",
+      "研究问题：现有无训练方法只支持单智能体导航，而已有研究表明五种 SOTA VLA 模型在空地协同任务中无法产生稳定协作行为，朴素通信甚至会降低性能",
+      "核心思路：把无训练 VLN 分解为“VLM 语义推理 + 确定性几何执行”，暴露协作接口——由无人机在全局鸟瞰图上渲染队友位姿与目标标记，形成可供地面车直接消费的共享鸟瞰图"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-03",
+    "title": "R2S-Eval: Robot Evaluation with Real-to-Sim Calibration via Vision-Language Models",
+    "link": "http://arxiv.org/abs/2609.03276",
+    "arxiv_id": "2609.03276",
+    "detail_path": "papers/2609.03276/",
+    "cover_path": "covers/2609.03276/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03276.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03276.webp",
+    "preview_text": "论文提出 R2S-Eval，一个结合真实到仿真（Real-to-Sim）校准与视觉语言模型（VLM）偏好评估的机器人操作策略评估流水线，用于解决传统真实世界评估中劳动密集、结果不稳定且信息量有限的问题。 传统评估依赖大量硬件重复试验、人工场景重置和持续监控，且只依赖二元成功率的评估方式难以反映执行质量差异；R2S-Eval 通过校准仿真生成 rollout 视频，再利用 VLM 对执行质量进行偏好判断，从而输出策略排序。 论文引入多维度验证协议，从可靠性、稳定性、人类一致性、人工成本和行为信息量等五个方面检验评估结论的有效性。",
+    "research_unit": "Sharpa（SharpaNorth 机器人平台研发方）",
+    "hook_text": "论文提出 R2S-Eval，一个结合真实到仿真（Real-to-Sim）校准与视觉语言模型（VLM）偏好评估的机器人操作策略评估流水线，用于解决传统真实世界评估中劳动密集、结果不稳定且信息量有限的问题。",
+    "key_points": [
+      "论文提出 R2S-Eval，一个结合真实到仿真（Real-to-Sim）校准与视觉语言模型（VLM）偏好评估的机器人操作策略评估流水线，用于解决传统真实世界评估中劳动密集、结果不稳定且信息量有限的问题。",
+      "传统评估依赖大量硬件重复试验、人工场景重置和持续监控，且只依赖二元成功率的评估方式难以反映执行质量差异；R2S-Eval 通过校准仿真生成 rollout 视频，再利用 VLM 对执行质量进行偏好判断，从而输出策略排序。",
+      "论文引入多维度验证协议，从可靠性、稳定性、人类一致性、人工成本和行为信息量等五个方面检验评估结论的有效性。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-02",
+    "title": "Sensing Which Modality Matters: Evidence-Gated Regularization for Robust VLA Policies",
+    "link": "http://arxiv.org/abs/2609.03142",
+    "arxiv_id": "2609.03142",
+    "detail_path": "papers/2609.03142/",
+    "cover_path": "covers/2609.03142/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.03142.webp",
+    "paper_image_full_path": "assets/paper-images/2609.03142.webp",
+    "preview_text": "论文聚焦 Vision-Language-Action (VLA) 策略在多模态感知中的鲁棒性问题，指出有限的机器人演示数据会导致策略学习到虚假的跨传感器相关性，而非任务相关信号。 作者将这种失败定义为模态纠缠（modality entanglement），表现为两种状态依赖的失败模式：干扰敏感（nuisance sensitivity） 和单模态不足（single-modality insufficiency）。 目标是提出一种训练方法，使策略能够根据每帧每个传感器的任务相关性进行自适应依赖，从而在真实遮挡、干扰或传感器损坏条件下保持稳定性能。",
+    "research_unit": "University of North Carolina at Chapel Hill（计算机科学系）",
+    "hook_text": "论文聚焦 Vision-Language-Action (VLA) 策略在多模态感知中的鲁棒性问题，指出有限的机器人演示数据会导致策略学习到虚假的跨传感器相关性，而非任务相关信号。",
+    "key_points": [
+      "论文聚焦 Vision-Language-Action (VLA) 策略在多模态感知中的鲁棒性问题，指出有限的机器人演示数据会导致策略学习到虚假的跨传感器相关性，而非任务相关信号。",
+      "作者将这种失败定义为模态纠缠（modality entanglement），表现为两种状态依赖的失败模式：干扰敏感（nuisance sensitivity） 和单模态不足（single-modality insufficiency）。",
+      "目标是提出一种训练方法，使策略能够根据每帧每个传感器的任务相关性进行自适应依赖，从而在真实遮挡、干扰或传感器损坏条件下保持稳定性能。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
     "date": "2026-09-02",
     "title": "HINT: Human-Intent Inception for Long-Horizon Robot Manipulation",
     "link": "http://arxiv.org/abs/2609.02653",
