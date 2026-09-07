@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FailureSpot: Label-Efficient Timestamp-Level Failure Detection for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 Vision-Language-Action (VLA) 策略在长周期机器人操作中的时间戳级（timestamp-level）失败检测问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。 现有方法（如 SAFE）使用轨迹级标签监督时间戳级检测，导致失败轨迹中正常的失败前行为被错误标记为失败，造成标签噪声，降低轨迹级检测精度和时间戳级失败定位精度。 论文提出 FailureSpot 框架，结合动作派生的弱监督（action-derived weak supervision）与主动学习（active learning），在显著减少人工稠密标注成本的同时提升时间戳级与轨迹级失败检测性能。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.04277">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.04277.webp" alt="FailureSpot: Label-Efficient Timestamp-Level Failure Detection for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 Vision-Language-Action (VLA) 策略在长周期机器人操作中的时间戳级（timestamp-level）失败检测问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FailureSpot: Label-Efficient Timestamp-Level Failure Detection for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-09-03 · <a href="http://arxiv.org/abs/2609.04277" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.04277" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.04277</span></div>
+            <p class="detail-summary">论文研究 Vision-Language-Action (VLA) 策略在长周期机器人操作中的时间戳级（timestamp-level）失败检测问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。 现有方法（如 SAFE）使用轨迹级标签监督时间戳级检测，导致失败轨迹中正常的失败前行为被错误标记为失败，造成标签噪声，降低轨迹级检测精度和时间戳级失败定位精度。 论文提出 FailureSpot 框架，结合动作派生的弱监督（action-derived weak supervision）与主动学习（active learning），在显著减少人工稠密标注成本的同时提升时间戳级与轨迹级失败检测性能。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Wayne State University（韦恩州立大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.04277/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 Vision-Language-Action (VLA) 策略在长周期机器人操作中的时间戳级（timestamp-level）失败检测问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。</p>
+  <ul class="reading-intro-points"><li>论文研究 Vision-Language-Action (VLA) 策略在长周期机器人操作中的时间戳级（timestamp-level）失败检测问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。</li><li>现有方法（如 SAFE）使用轨迹级标签监督时间戳级检测，导致失败轨迹中正常的失败前行为被错误标记为失败，造成标签噪声，降低轨迹级检测精度和时间戳级失败定位精度。</li><li>论文提出 FailureSpot 框架，结合动作派生的弱监督（action-derived weak supervision）与主动学习（active learning），在显著减少人工稠密标注成本的同时提升时间戳级与轨迹级失败检测性能。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Wayne State University</strong>（韦恩州立大学）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>Vision-Language-Action (VLA) 策略</strong>在长周期机器人操作中的<strong>时间戳级（timestamp-level）失败检测</strong>问题，旨在准确识别“轨迹是否失败”以及“失败从何时开始”。</li><li>现有方法（如 <strong>SAFE</strong>）使用轨迹级标签监督时间戳级检测，导致失败轨迹中正常的失败前行为被错误标记为失败，造成标签噪声，降低轨迹级检测精度和时间戳级失败定位精度。</li><li>论文提出 <strong>FailureSpot</strong> 框架，结合<strong>动作派生的弱监督（action-derived weak supervision）</strong>与<strong>主动学习（active learning）</strong>，在显著减少人工稠密标注成本的同时提升时间戳级与轨迹级失败检测性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次系统研究 <strong>VLA 时间戳级失败检测</strong>问题，构建了细粒度时间戳标注用于训练与评估，涵盖失败起始时间与恢复时间。</li><li>提出<strong>动作派生弱监督策略</strong>：利用 VLA 输出的动作块中相邻块不一致、动作冻结/停滞、大幅随机运动等异常模式（短期动作一致性、全块动作幅度、已执行动作幅度三类信号），在无需人工时间戳标注的情况下预训练失败检测器。</li><li>引入<strong>基于不确定性的主动学习</strong>：用检测器预测熵估计轨迹不确定性，仅对最不确定的轨迹请求时间戳级人工标注，大幅降低标注成本。</li><li>结合<strong>功能共形预测（conformal prediction）</strong> 构建随时间变化的时变阈值，实现可靠的失败告警。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>问题建模为时间戳级二分类：检测器以 VLA 内部表示 \(h_{i,t}\) 为输入，输出失败概率，可采用轻量级 <strong>MLP</strong> 或 <strong>LSTM</strong> 结构，在动作执行前给出预防性告警。</li><li>弱监督信号构造：定义<strong>短期动作一致性</strong>（相邻动作块重叠部分 \(\ell_2\) 距离）、<strong>全块动作幅度</strong>（输出块内动作的平均 \(\ell_2\) 范数）、<strong>已执行动作幅度</strong>（前 \(K\) 个已执行动作的平均范数），并对每个信号计算<strong>指数移动平均（\(\beta=0.8\)）</strong>后加权组合，再经百分位归一化生成 [0,1] 软伪标签。</li><li>两阶段框架：第一阶段利用无人工标注的动作块信号预训练检测器；第二阶段用预测熵（平均轨迹熵）挑选最不确定轨迹进行时间戳标注与监督微调。</li><li>创新点在于用<strong>动作块自带的统计模式</strong>替代稠密人工标注，配合主动学习精准修正决策边界，实现“弱监督预训练 + 少量高质量标注微调”的数据高效训练范式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基准数据集：<strong>LIBERO-10（LIBERO-Long）</strong>，包含 10 个长周期操作任务，每个策略在每个任务上各 rollout 50 条轨迹（共 500 条）。</li><li>评估策略：<strong>π₀</strong>（flow matching 生成动作块，\(H=50, K=5\)）、<strong>π₀-FAST</strong>（压缩动作块，\(H=10, K=5\)）、<strong>OpenVLA</strong>（自回归逐动作输出，\(H=K=1\)），三者共享 7 维动作空间。</li><li>数据划分：3 个 seen 任务用于训练（60%）与 seen 评估（40%），7 个 unseen 任务全部用于泛化评估；时间戳标注预算固定为 seen 任务训练轨迹的 <strong>15%</strong>。</li><li>训练资源：<strong>2 张 NVIDIA RTX A6000 GPU（48GB 显存）</strong>；策略最终成功率分别为 π₀（81.4%）、π₀-FAST（61.4%）、OpenVLA（53.8%）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：LIBERO 仿真操作套件，seen/unseen 任务双设置，结果取三个随机种子平均；时间戳标注采用人工逐帧判定失败起始时间 \(t_{\mathrm{dev}}\) 与恢复时间 \(t_{\mathrm{rec}}\)。</li><li>主要指标：轨迹级与时间戳级 <strong>AUROC</strong>、共形预测下时间戳级<strong>平衡准确率（Balanced Accuracy）</strong>与<strong>检测到的失败起始时间</strong>。</li><li>关键结果：仅用 <strong>15% 时间戳标注预算</strong>，<strong>FailureSpot-MLP</strong> 在 π₀、π₀-FAST、OpenVLA 上均取得最高时间戳级 AUROC（unseen 分别约 90.5、85.8、63.0），轨迹级 AUROC 在 π₀ 与 π₀-FAST 上超过所有基线；相比 SAFE、STAC、LogpZO、ActProbe 等基线均有显著提升。</li><li>消融实验表明：单独使用动作弱监督不足，随机微调低于主动学习微调；<strong>弱监督预训练 + 主动学习微调</strong>可获得互补增益，达到最优时间戳级 AUROC。</li><li>数据量分析：增加预训练轨迹或时间戳标注都能提升性能，其中时间戳标注收益更大，60% 预训练 + 15% 标注是最优性价比配置。</li><li>可视化与失败模式发现：检测器在正常执行阶段分数低、失败起始前急剧上升并早于人工标注的失败时间告警；归纳出<strong>重复无效动作、停滞（stagnation）、无效大幅运动</strong>三类典型失败模式，且不同 VLA（π₀、π₀-FAST、OpenVLA）分别更容易出现反复抓取失败、过度摆动和停滞。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.04355/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-Precision: Asymmetric Co-Bootstrapping for Efficient Real-World Online RL of Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.04193/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GIFT: Guided Intermediate Feature Training via Action-Oriented Structural Supervision for Robotic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
