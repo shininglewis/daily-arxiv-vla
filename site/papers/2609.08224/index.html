@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 3DWay，一种用于机器人操作泛化的3D 一致路点（3D Consistent Waypoints）中间表示，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。 核心思想是将 3D 轨迹预测重构为多视角一致的 2D 路点预测 + 几何三角测量，从而无需依赖深度信息即可恢复明确、可执行的 3D 运动意图，同时保留 VLM 强大的视觉-语言先验。 论文指出，现有 2D 轨迹存在深度歧义，2.5D（深度反投影）路点在自由空间中仍然不唯一，而 3DWay 能提供更可靠、更具可扩展性的空间定位与动作引导。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.08224">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.08224.webp" alt="3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 3DWay，一种用于机器人操作泛化的3D 一致路点（3D Consistent Waypoints）中间表示，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">3DWay: Generalizing Robot Manipulation via 3D Consistent Waypoints</h1>
+            <div class="detail-meta">2026-09-08 · <a href="http://arxiv.org/abs/2609.08224" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.08224" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.08224</span></div>
+            <p class="detail-summary">提出 3DWay，一种用于机器人操作泛化的3D 一致路点（3D Consistent Waypoints）中间表示，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。 核心思想是将 3D 轨迹预测重构为多视角一致的 2D 路点预测 + 几何三角测量，从而无需依赖深度信息即可恢复明确、可执行的 3D 运动意图，同时保留 VLM 强大的视觉-语言先验。 论文指出，现有 2D 轨迹存在深度歧义，2.5D（深度反投影）路点在自由空间中仍然不唯一，而 3DWay 能提供更可靠、更具可扩展性的空间定位与动作引导。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.08224/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 3DWay，一种用于机器人操作泛化的3D 一致路点（3D Consistent Waypoints）中间表示，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。</p>
+  <ul class="reading-intro-points"><li>提出 3DWay，一种用于机器人操作泛化的3D 一致路点（3D Consistent Waypoints）中间表示，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。</li><li>核心思想是将 3D 轨迹预测重构为多视角一致的 2D 路点预测 + 几何三角测量，从而无需依赖深度信息即可恢复明确、可执行的 3D 运动意图，同时保留 VLM 强大的视觉-语言先验。</li><li>论文指出，现有 2D 轨迹存在深度歧义，2.5D（深度反投影）路点在自由空间中仍然不唯一，而 3DWay 能提供更可靠、更具可扩展性的空间定位与动作引导。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>ETH Zürich</strong></li><li><strong>University of California, Berkeley</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>3DWay</strong>，一种用于机器人操作泛化的<strong>3D 一致路点（3D Consistent Waypoints）中间表示</strong>，旨在弥合预训练视觉-语言模型（VLM）与连续、高维的 3D 机器人动作模态之间的差距。</li><li>核心思想是将 3D 轨迹预测<strong>重构为多视角一致的 2D 路点预测 + 几何三角测量</strong>，从而无需依赖深度信息即可恢复明确、可执行的 3D 运动意图，同时保留 VLM 强大的视觉-语言先验。</li><li>论文指出，现有 2D 轨迹存在深度歧义，2.5D（深度反投影）路点在自由空间中仍然不唯一，而 3DWay 能提供更可靠、更具可扩展性的空间定位与动作引导。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出利用<strong>多视角空间一致性约束</strong>生成 3DWay，一种能有效捕捉执行线索和显式空间关系的 3D 轨迹表示。</li><li>通过对 <strong>NVILA</strong> 系列 VLM 进行定制微调，实现多视角一致 2D 路点（2D-MCW）预测，保持多视角监督一致性同时保留 VLM 视觉-语言知识。</li><li>提出<strong>自适应路点引导集成策略</strong>（3DWay-augmented），可与基础 VLA 模型（如 <strong>π₀</strong>）无缝结合，显著提升新场景和跨机器人本体上的泛化表现。</li><li>在<strong>仿真（RLBench、VLABench）与真实世界</strong>环境中系统性验证了 3DWay 的可执行性、直接零样本部署能力和对基础 VLA 泛化性的增强效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>给定多视角 RGB 图像、相机内外参和语言指令，先由微调后的 VLM 预测多视角一致的 2D 路点（2D-MCW），再通过标准透视投影约束和<strong>三角测量（triangulation）</strong>恢复 3D 路点序列。</li><li>系统以 NVILA（2B/8B/15B）作为基础 VLM，采用参考轨迹（TCP）提取、<strong>RDP 轨迹简化算法</strong>、任务相关自动数据筛选等流程构造训练数据，并对原始 VLM 进行两阶段微调（RoboPoint 数据集 + 自建路点数据集）。</li><li>在执行层面支持两条路径：<strong>(1)</strong> 直接用<strong>自顶向下（Top-Down）</strong>固定策略执行 3DWay 完成简单任务；<strong>(2)</strong> 在 VLA 微调阶段将局部时间窗口的 3D 路点与机器人状态拼接，作为额外条件输入，增强基础 VLA 的空间感知和动作预测。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练数据集：<strong>RoboPoint</strong> 点预测数据集、<strong>RLBench</strong>（仿真）、<strong>DROID</strong> 和 <strong>RH20T</strong>（真实），共约 <strong>290 个任务 / 13.4 万条轨迹</strong>。</li><li>基础模型：<strong>NVILA-2B / 8B / 15B</strong>；集成实验使用基础 VLA 模型 <strong>π₀</strong>。</li><li>训练资源：<strong>8 张 A100 GPU</strong>，最大模型（NVILA-15B）微调不到两天；默认采用双摄像头设置获取多视角观测。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准：<strong>RLBench</strong>（10 个任务，seen/unseen）、<strong>VLABench</strong>（5 维泛化评估），以及真实环境中 <strong>AgileX PIPER</strong> 机械臂上的基础任务、视觉泛化和语义指令任务；主要指标为<strong>任务成功率</strong>。</li><li>关键结果：在 RLBench 上，直接执行的 <strong>3DWay-TD</strong> 在 seen/unseen 设置下分别达到 <strong>84.8%/64.0%</strong>，明显高于 OpenVLA-OFT、π₀、π₀.5 等基础 VLA 基线；在 VLABench 上平均成功率比 <strong>π₀.5</strong> 高 <strong>6.4%</strong>。</li><li>在 π₀ 的少数样本微调实验中，3DWay 增强在零样本/few-shot 下将成功率分别提升 <strong>+18.4%/+26.4%</strong>（10 demos/task），且用 <strong>20% 的训练数据</strong>即可达到标准微调基线相当的均值；真实环境中基础任务平均成功率从 <strong>21.7% 提升到 65.8%</strong>，在跨本体与语义指令等困难场景中成功率超 50%。</li><li>消融分析表明：更大的 VLM 主干（15B > 8B > 2B）效果更好；对相机外参扰动（尤其是更大扰动）具有一定鲁棒性；<strong>多视角一致监督</strong>对 3DWay 泛化至关重要（去掉后 RLBench unseen 成功率从 64.0% 降至 22.0%）；该框架可适应不同机器人本体和摄像头配置，性能保持稳定。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.09119/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DeCAL: Towards Physically-Grounded Dexterous Vision-Language-Action Models via Contact-Aware Latent Co-Imagination</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.08209/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Monkey See, Can Monkey Do? A Benchmark for Evaluating Robot Skill Learning by Observation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

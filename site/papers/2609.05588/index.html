@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GE-Act 2.0: Pretraining and Scaling a World-Action Model for Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 GE-Act 2.0（Genie Envisioner Act 2.0），一种用于机器人操作的世界-动作模型（World-Action Model, WAM），核心思路是通过预测未来状态来指导机器人动作。 与大多数继承预训练视频生成器的现有 WAM 研究不同，GE-Act 2.0 的所有可训练生成与动作组件均从零开始在操作数据上预训练，系统性地探索世界-动作模型的预训练与规模化问题。 论文重点解决三个设计问题：如何构建控制导向的潜空间、如何在该空间中预测可行的未来视觉状态、以及如何将这些预测状态与记录的动作监督对齐。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.05588">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #316b57; --cover-to: #8bb174; --cover-spot: #d9e7c7; --cover-ink: #fbfff6; --cover-muted: rgba(251, 255, 246, 0.82); --cover-chip: rgba(251, 255, 246, 0.16); --cover-stroke: rgba(251, 255, 246, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">GE-Act 2.0: Pretraining and Scaling a World-Action Model for Robotic Manipulation</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GE-Act 2.0: Pretraining and Scaling a World-Action Model for Robotic Manipulation</h1>
+            <div class="detail-meta">2026-09-04 · <a href="http://arxiv.org/abs/2609.05588" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.05588" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.05588</span></div>
+            <p class="detail-summary">论文提出 GE-Act 2.0（Genie Envisioner Act 2.0），一种用于机器人操作的世界-动作模型（World-Action Model, WAM），核心思路是通过预测未来状态来指导机器人动作。 与大多数继承预训练视频生成器的现有 WAM 研究不同，GE-Act 2.0 的所有可训练生成与动作组件均从零开始在操作数据上预训练，系统性地探索世界-动作模型的预训练与规模化问题。 论文重点解决三个设计问题：如何构建控制导向的潜空间、如何在该空间中预测可行的未来视觉状态、以及如何将这些预测状态与记录的动作监督对齐。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">AgiBot Research Team（智元机器人研究团队）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.05588/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 GE-Act 2.0（Genie Envisioner Act 2.0），一种用于机器人操作的世界-动作模型（World-Action Model, WAM），核心思路是通过预测未来状态来指导机器人动作。</p>
+  <ul class="reading-intro-points"><li>论文提出 GE-Act 2.0（Genie Envisioner Act 2.0），一种用于机器人操作的世界-动作模型（World-Action Model, WAM），核心思路是通过预测未来状态来指导机器人动作。</li><li>与大多数继承预训练视频生成器的现有 WAM 研究不同，GE-Act 2.0 的所有可训练生成与动作组件均从零开始在操作数据上预训练，系统性地探索世界-动作模型的预训练与规模化问题。</li><li>论文重点解决三个设计问题：如何构建控制导向的潜空间、如何在该空间中预测可行的未来视觉状态、以及如何将这些预测状态与记录的动作监督对齐。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>AgiBot Research Team</strong>（智元机器人研究团队）</li><li>团队项目主页：https://ge-act-v2.github.io/</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>GE-Act 2.0</strong>（Genie Envisioner Act 2.0），一种用于机器人操作的世界-动作模型（World-Action Model, WAM），核心思路是通过预测未来状态来指导机器人动作。</li><li>与大多数继承预训练视频生成器的现有 WAM 研究不同，<strong>GE-Act 2.0 的所有可训练生成与动作组件均从零开始在操作数据上预训练</strong>，系统性地探索世界-动作模型的预训练与规模化问题。</li><li>论文重点解决三个设计问题：如何构建控制导向的潜空间、如何在该空间中预测可行的未来视觉状态、以及如何将这些预测状态与记录的动作监督对齐。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GE-Act 2.0</strong> 完整架构，包含控制导向自编码器（CoAE）、单步视觉规划器（SVP）与逆向动力学模型（IDM），支持在互补数据上分别预训练后通过端到端共同训练连接。</li><li>识别并形式化了 <strong>"有效性差距"（validity gap）</strong>——即预测的未来状态与记录动作来自不同结果模式时的监督不匹配问题，并据此提出 <strong>KASO（Knowledge-Aligned Selective Optimization）</strong> 共同训练策略。</li><li>系统证明了从 300 小时扩展到 30,000 小时操作数据时，<strong>零样本 OOD 操作能力的显著提升</strong>（G1-OP 从 17.1% 提升到 44.1%），且跨 100 个真实机器人任务与两个本体（embodiment）实现广泛增益。</li><li>在同一零样本 OOD 协议下，验证了模型对对象、颜色、形状、位置等指令的<strong>细粒度指称理解能力</strong>（≥90% 试验成功率）。</li><li>在模拟基准（RoboTwin、GenieSim-Instruction、LIBERO）上提供了水平参考点，进一步验证模型的 OOD 泛化能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>CoAE（控制导向自编码器）</strong>：帧级 2D 自编码器，采用 64× 空间降采样（256×384 分辨率 → 每帧 4×6×512 = 24 token），通过像素重建、感知损失、对抗损失以及多教师对齐（SigLIP 2 / V-JEPA 2.1 / DINOv3 等冻结视觉编码器）训练。</li><li><strong>SVP（单步视觉规划器）</strong>：基于<strong>条件化 MeanFlow</strong> 的扩散 transformer（DiT），结合多视角时空处理与跨视角注意力，一次前向传播即可从噪声完全去噪得到未来视觉潜变量序列，使视觉规划与 IDM 可分别预训练。</li><li><strong>多尺度视觉预测</strong>：同时预测稠密近端帧（控制相关）与稀疏远端帧（任务意图相关），在保持 token 效率的同时覆盖近期动态与远期场景演化。</li><li><strong>IDM（逆向动力学模型）</strong>：通过交叉注意力将当前与预测的视觉潜变量及本体感觉信息映射为稠密动作块与稀疏远视界动作序列。</li><li><strong>KASO 共同训练</strong>：保留 SVP 视频目标与 IDM 记录视频目标，采样多个生成候选，仅选择被主动 IDM 判定与记录动作行为兼容的候选进行端到端共同训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练数据：异构操作视频与机器人交互数据，涵盖动作标注轨迹、无指令操作、失败尝试与部署回滚，规模从 300 小时扩展到 30,000 小时。</li><li>模拟基准：<strong>RoboTwin</strong>（干净到随机泛化）、<strong>GenieSim-Instruction</strong>（OOD 指令跟随）、<strong>LIBERO-Plus</strong>（多扰动轴鲁棒性）。</li><li>真实机器人评估：100 项任务、20 个操作技能组，覆盖两个本体（G1-OP 与 G2-90D），测试环境使用未见过的场景、背景、光照与物体实例。</li><li>基础视觉编码器：<strong>DC-AE</strong>（128 通道初始化，扩展至 512 通道）；冻结视觉教师包括 SigLIP 2、V-JEPA 2.1、DINOv3；冻结 VLM 采用 <strong>Qwen3.5</strong>。</li><li>训练资源：论文未明确列出精确 GPU/TPU 数量，但根据 30,000 小时数据量和多组件联合训练可推断使用了大规模并行计算集群。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>零样本 OOD 评估协议</strong>：不对目标任务或本体进行任何 SFT/微调，直接评估预训练 checkpoint，保持协议在扩展检查点间固定。</li><li><strong>数据规模扩展效果</strong>：共同训练数据从 300 小时增至 30,000 小时，G1-OP 成功率从 17.1% 提升至 44.1%；G2-90D 从 13.4% 提升至 31.1%，增长覆盖 19/20 和 18/20 的技能组。</li><li><strong>跨本体迁移</strong>：G2-90D 仅占共同训练数据的不足 2%，但仍获得 17.7 个百分点的提升，表明广泛数据语料中存在有效的跨本体迁移。</li><li><strong>技能覆盖率相关性与成功率的关联</strong>：技能特定数据覆盖率与零样本 OOD 成功率高度相关（Pearson r=0.80；Spearman ρ=0.85）。</li><li><strong>指令理解</strong>：对象、颜色、形状和位置指称在超过 90% 的试验中被正确理解；定性压力测试表明模型能遵循明确指令，即便指令与已承诺行为或常规场景关联冲突。</li><li><strong>CoAE 表示质量</strong>：CoAE 在动作恢复探测中 MAE 为 0.01673（仅比 DINOv3/V-JEPA 2.1 高 13–31%，但 token 数仅为 1/16），指令匹配错误率 2.05% 低于全部视觉教师与 DC-AE 基线。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.05832/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">CR-VLA-Force: Learning Control-aware Compliance VLA Model for Robust Contact-rich Robotic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.05533/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SimpleMemVLA: A Simple but Effective Native-Video Memory for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

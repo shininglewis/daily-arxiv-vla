@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MEMOBench: A Process Level Memory Benchmark for Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 MEMOBench，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。 现有记忆基准主要依赖最终任务成功率，容易将“遗忘”与“操作失败”混淆；MEMOBench通过可执行的记忆检查点把记忆过程显式区分出来。 基准包含 30 个历史依赖任务、1,500 条专家演示和 4,200 个检查点实例，并定义了存储、更新、压缩三类记忆操作标签和对应评测指标。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.07047">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.07047.webp" alt="MEMOBench: A Process Level Memory Benchmark for Robotic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 MEMOBench，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">MEMOBench: A Process Level Memory Benchmark for Robotic Manipulation</h1>
+            <div class="detail-meta">2026-09-07 · <a href="http://arxiv.org/abs/2609.07047" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.07047" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.07047</span></div>
+            <p class="detail-summary">提出 MEMOBench，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。 现有记忆基准主要依赖最终任务成功率，容易将“遗忘”与“操作失败”混淆；MEMOBench通过可执行的记忆检查点把记忆过程显式区分出来。 基准包含 30 个历史依赖任务、1,500 条专家演示和 4,200 个检查点实例，并定义了存储、更新、压缩三类记忆操作标签和对应评测指标。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学（Zhejiang University），中国杭州</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.07047/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 MEMOBench，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。</p>
+  <ul class="reading-intro-points"><li>提出 MEMOBench，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。</li><li>现有记忆基准主要依赖最终任务成功率，容易将“遗忘”与“操作失败”混淆；MEMOBench通过可执行的记忆检查点把记忆过程显式区分出来。</li><li>基准包含 30 个历史依赖任务、1,500 条专家演示和 4,200 个检查点实例，并定义了存储、更新、压缩三类记忆操作标签和对应评测指标。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学（Zhejiang University）</strong>，中国杭州</li><li>作者包括 Haiyang Sun、Haoxiao Wang、Junming Chen、Weicheng Fang、Zihao Su、Jingkun Yi、Wenyou Yi、Hao Chen、Zhou Zhao</li><li>标注了同等贡献与通讯作者（*、Email 显示为 zhaozhou@zju.edu.cn）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MEMOBench</strong>，一个面向机器人操作的过程级（process-level）记忆评测基准，用于诊断“信息需在观测中消失后仍然被使用”的历史依赖型任务。</li><li>现有记忆基准主要依赖最终任务成功率，容易将“遗忘”与“操作失败”混淆；MEMOBench通过可执行的记忆检查点把记忆过程显式区分出来。</li><li>基准包含 30 个历史依赖任务、1,500 条专家演示和 4,200 个检查点实例，并定义了存储、更新、压缩三类记忆操作标签和对应评测指标。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>引入 <strong>MEMOBench</strong> 基准，覆盖 30 个任务、1,500 条演示和 4,200 个标注检查点，按时间记忆、空间记忆、物体记忆和程序记忆组织。</li><li>定义可执行的检查点约束，并给出 <strong>Memory Storage Rate (MSR)</strong>、<strong>Memory Update Rate (MUR)</strong>、<strong>Memory Compression Rate (MCR)</strong> 三类过程级记忆指标，将记忆保真度与最终操作是否成功解耦。</li><li>系统评测标准型与记忆增强型 Vision-Language-Action 模型（如 <strong>π0</strong>、<strong>π0.5</strong>、<strong>OpenVLA-OFT</strong>、<strong>MemoryVLA</strong>、<strong>HiF-VLA</strong>、<strong>RoboMME Memory Module</strong>），发现当前模型往往能“存储”但难以“更新/压缩”信息。</li><li>基于检查点语言设计 <strong>Semantic / Contrastive / Framewise Memory Alignment</strong> 三类监督目标，证明标注语言可用于改善不同记忆操作能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用两层记忆分类法：任务层区分 Temporal（何时）、Spatial（何地）、Object（何物）、Procedural（如何做）；操作层给每个检查点分配 Storage、Update 或 Compression 标签。</li><li>每个任务由有序的可执行检查点刻画，检查点包含从粗到细的文本描述和可直接在模拟器中验证的 simulator predicate。</li><li>检查点谓词与仿真状态对接，按前缀完成规则得到整体过程级指标；三个记忆指标是该类检查点在轨迹中成功满足的比例。</li><li>对带显式记忆模块的策略（π0.5 + RoboMME memory module），在动作损失外额外添加对齐正则化：总损失 = 动作损失 + 权重 × 对齐损失，其中对齐损失可为余弦语义损失、InfoNCE 对比损失或帧级时间对齐损失。</li><li>新方法的核心在于把“记忆内容是否被正确写/改/压缩”变成可程序化验证的检查点，而不仅是依赖隐式的模型状态读取。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真平台采用 <strong>LIBERO / robosuite</strong> 栈上的 BDDL 任务规范。</li><li>数据规模：30 个任务、每个任务 50 条演示，合计 1,500 条专家演示；覆盖 29 类物体和 5 类固定装置。</li><li>检查点规模：84 个可执行检查点模板，每个演示按模板展开后获得 4,200 个检查点实例，默认配比为 Storage 1,750、Update 1,600、Compression 850。</li><li>评测设置：每个任务 50 个保留仿真 rollout，共 1,500 个评估轨迹；使用 seed base 7、1200 步 horizon，replan 间隔 k∈{5,20,35,50}。</li><li>评估与训练文本未披露具体 GPU/TPU 型号及模型参数量；可复现参数设置计划见论文附录 H（提供的截断文本未覆盖该明细）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评测指标为最终任务成功率 SR 加上 MSR、MUR、MCR 三种记忆指标，并按时间、空间、物体、程序记忆类别做宏平均。</li><li>在最佳 replan 设置下，最强记忆模块基线 <strong>π0.5 + RoboMME Memory Module</strong> 平均成功率仅达到 <strong>31.9%</strong>，对应 Avg MSR=58.1%、Avg MUR=16.5%、Avg MCR=7.8%。</li><li>标准 VLA 模型在 MEMOBench 上成功率极低，例如 π0、π0.5、OpenVLA-OFT 不同 replan 下平均成功率多在 10% 以下，说明传统短时依赖策略难以处理进程记忆任务。</li><li>结果显示高“存储率”与低“更新率/压缩率”常常并存——例如部分记忆增强模型 MSR 在 90% 以上，但 MUR 和 MCR 明显落后，说明策略记住了初始状态却没有修订过期信息或整合历史。</li><li>记忆对齐实验表明，Semantic、Contrastive、Framewise Alignment 对不同记忆操作产生有限但有差异的提升，初步验证 MEMOBench 可作为 VLA 记忆模块的额外训练监督来源。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.07049/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Large Discrete Policy: Advancing Explicit Behavior Modeling with Stochastic Iterative Scoring</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.07006/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GIFT: Goal-Injected Fine-Tuning for Efficient Manipulation Policy Adaptation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

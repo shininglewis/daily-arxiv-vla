@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VLA-Corrector: Stage-Aware Observable State Understanding for Prompt-Based Closed-Loop Recovery of Vision-Language-Action Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 VLA-Corrector，一个面向 Vision-Language-Action（VLA） 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题 核心思路是在不修改冻结 VLA 策略参数、不访问仿真特权状态的前提下，通过可观测的视觉-本体-动作历史推断执行风险，并触发阶段感知的提示恢复（Prompt Recovery） 方法将操作执行划分为 APPROACH、ALIGN、GRASP、MOVE、PLACE 等语义阶段，利用阶段信息引导恢复" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.06508">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.06508.webp" alt="VLA-Corrector: Stage-Aware Observable State Understanding for Prompt-Based Closed-Loop Recovery of Vision-Language-Action Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 VLA-Corrector，一个面向 Vision-Language-Action（VLA） 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">VLA-Corrector: Stage-Aware Observable State Understanding for Prompt-Based Closed-Loop Recovery of Vision-Language-Action Policies</h1>
+            <div class="detail-meta">2026-09-06 · <a href="http://arxiv.org/abs/2609.06508" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.06508" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.06508</span></div>
+            <p class="detail-summary">提出 VLA-Corrector，一个面向 Vision-Language-Action（VLA） 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题 核心思路是在不修改冻结 VLA 策略参数、不访问仿真特权状态的前提下，通过可观测的视觉-本体-动作历史推断执行风险，并触发阶段感知的提示恢复（Prompt Recovery） 方法将操作执行划分为 APPROACH、ALIGN、GRASP、MOVE、PLACE 等语义阶段，利用阶段信息引导恢复</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者为 Chang Song、Bin Qian、Yan Feng、Zhijie Song，文中未注…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.06508/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 VLA-Corrector，一个面向 Vision-Language-Action（VLA） 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题</p>
+  <ul class="reading-intro-points"><li>提出 VLA-Corrector，一个面向 Vision-Language-Action（VLA） 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题</li><li>核心思路是在不修改冻结 VLA 策略参数、不访问仿真特权状态的前提下，通过可观测的视觉-本体-动作历史推断执行风险，并触发阶段感知的提示恢复（Prompt Recovery）</li><li>方法将操作执行划分为 APPROACH、ALIGN、GRASP、MOVE、PLACE 等语义阶段，利用阶段信息引导恢复</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者为 <strong>Chang Song、Bin Qian、Yan Feng、Zhijie Song</strong>，文中未注明具体所属机构</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>VLA-Corrector</strong>，一个面向 <strong>Vision-Language-Action（VLA）</strong> 策略的闭环纠错框架，解决长程操作中执行偏差导致任务失败的问题</li><li>核心思路是在不修改冻结 VLA 策略参数、不访问仿真特权状态的前提下，通过可观测的视觉-本体-动作历史推断执行风险，并触发阶段感知的提示恢复（<strong>Prompt Recovery</strong>）</li><li>方法将操作执行划分为 <strong>APPROACH、ALIGN、GRASP、MOVE、PLACE</strong> 等语义阶段，利用阶段信息引导恢复</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别出执行状态理解是当前 VLA 系统缺失的关键能力，并将其定义为从动作生成到可靠闭环控制之间的桥梁</li><li>提出基于可观测历史的 <strong>Learned Verifier</strong>，利用视觉-本体-动作时间序列联合估计操作进度和执行风险，无需特权环境状态</li><li>提出 <strong>Prompt Recovery</strong> 机制，通过保留原指令并拼接阶段恢复提示，使冻结的 VLA 策略完成闭环纠错，无需微调或修改动作</li><li>建立基于扰动的系统评估协议，覆盖 <strong>LIBERO</strong> 与 <strong>LIBERO Plus</strong> 的多种执行偏差场景，并在真实机器人平台验证迁移能力</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基础策略为冻结的 <strong>OpenPI pi05_libero</strong> 策略，推理时每 5 步重新规划，输入为 224×224 图像</li><li><strong>Learned Verifier</strong> 采用轻量时序网络：双视角 RGB（112×112）经参数无关的空间统计特征提取后投影至 64 维，8 维本体感知与 7 维动作拼接后投影至 32 维，经 <strong>GRU</strong>（隐含维度 64）整合后输出二值风险概率与阶段预测</li><li>特权规则验证器（<strong>Rule-Based Verifier</strong>）利用仿真真值追踪状态机，作为训练教师和性能上界参考</li><li>在线触发门控采用风险阈值 0.40、连续 4 帧确认、10 步冷却期，避免瞬时误报；阶段置信度低于 0.9625 时回退到通用恢复提示</li><li>恢复提示格式为原指令 + "Immediate recovery: " + 阶段指令，恢复后恢复原指令继续执行</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟评估使用 <strong>LIBERO</strong>（SPATIAL/GOAL/OBJECT/10/90）与 <strong>LIBERO Plus</strong>（难度 4 和 5）</li><li>真实世界使用物理机器人平台，评估 <strong>Pick and Open、Place、Pour Water</strong> 三个操作任务</li><li>Learned Verifier 收集 120 个 episode 数据，按 60% 训练 / 20% 验证 / 20% 测试切分</li><li>训练配置：30 epochs、batch size 32、学习率 1e-3、权重衰减 1e-4，训练设备为 <strong>CPU</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>模拟环境主要指标为 <strong>episode 成功率</strong>，另有精度、召回、F1、AUROC、AUPRC 等检测指标</li><li><strong>标准 LIBERO</strong>：No Assistance 为 70.9%，Rule + Prompt 提升至 82.6%，Learned Binary + Prompt 达到 80.2%</li><li><strong>LIBERO Plus 难度 4</strong>：No Assistance 为 73.7%，Rule + Prompt 为 79.7%，Learned Binary + Prompt 为 79.0%</li><li><strong>LIBERO Plus 难度 5</strong>：No Assistance 为 66.7%，Rule + Prompt 为 73.6%，Learned Binary + Prompt 为 72.6%</li><li><strong>Learned Verifier 检测性能</strong>：准确率 93.1%、精度 61.1%、召回 94.9%、Positive F1 74.4%、AUROC 0.902、AUPRC 0.7123</li><li>在线门控触发精度为 79.2%，Rule + Prompt 恢复成功率为 77.0%，Learned Binary + Prompt 为 75.0%</li><li>消融实验表明，<strong>Temporal + Fusion（时间序列 + 多模态融合）</strong> 配置效果最佳（Positive F1 74.35%），仅用单帧、仅视觉或仅状态-动作均有明显下降</li><li><strong>真实世界实验</strong>：冻结 <strong>pi05_libero</strong> 基线平均成功率为 82.5%，VLA-Corrector 提升至 88.3%，绝对提升 5.8 个百分点</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.06578/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Learning to Use Imagination: Progress-Conditioned Future Utilization for World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.06256/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GloVLA: Let Geometry Move and Local VLA Interact for Robust Object-Centric Manipulation in Unstructured Environments</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Where Success Breaks: Failure-Boundary Learning for Robust Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。 作者将鲁棒 VLA 适配重新定义为 Failure-Boundary Learning（失败边界学习）——即发现（Discover）、定位（Localize）、塑形（Shape）可恢复偏差与任务失败之间的边界，并提出了 DLS 流水线实现该范式。 DLS 在流匹配 VLA（Flow-Based VLA）上通过数字孪生的在线策略（on-policy）推出发现失败边界，以带进度感知（progress-aware）的监督信号定位穿越失败边界的阶段，并在速度场中实现无 critic 的推拉式塑形，显著提升真实机器人操作的鲁棒性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.06114">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.06114.webp" alt="Where Success Breaks: Failure-Boundary Learning for Robust Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Where Success Breaks: Failure-Boundary Learning for Robust Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-09-05 · <a href="http://arxiv.org/abs/2609.06114" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.06114" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.06114</span></div>
+            <p class="detail-summary">论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。 作者将鲁棒 VLA 适配重新定义为 Failure-Boundary Learning（失败边界学习）——即发现（Discover）、定位（Localize）、塑形（Shape）可恢复偏差与任务失败之间的边界，并提出了 DLS 流水线实现该范式。 DLS 在流匹配 VLA（Flow-Based VLA）上通过数字孪生的在线策略（on-policy）推出发现失败边界，以带进度感知（progress-aware）的监督信号定位穿越失败边界的阶段，并在速度场中实现无 critic 的推拉式塑形，显著提升真实机器人操作的鲁棒性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Showlab, National University of Singapore（新加坡国立大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.06114/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。</p>
+  <ul class="reading-intro-points"><li>论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。</li><li>作者将鲁棒 VLA 适配重新定义为 Failure-Boundary Learning（失败边界学习）——即发现（Discover）、定位（Localize）、塑形（Shape）可恢复偏差与任务失败之间的边界，并提出了 DLS 流水线实现该范式。</li><li>DLS 在流匹配 VLA（Flow-Based VLA）上通过数字孪生的在线策略（on-policy）推出发现失败边界，以带进度感知（progress-aware）的监督信号定位穿越失败边界的阶段，并在速度场中实现无 critic 的推拉式塑形，显著提升真实机器人操作的鲁棒性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Showlab, National University of Singapore</strong>（新加坡国立大学）</li><li>作者：Yanzhe Chen, Zhijun Cao（*Equal contribution）、Mike Zheng Shou（†Corresponding author）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 VLA（视觉-语言-动作）模型经 SFT 微调后存在结构性不对称：专家演示只告诉策略“成功行为在哪里”，却未提供“行为何处开始失效”的信号，导致闭环执行中面对分布偏移时缺乏鲁棒性。</li><li>作者将鲁棒 VLA 适配重新定义为 <strong>Failure-Boundary Learning（失败边界学习）</strong>——即发现（Discover）、定位（Localize）、塑形（Shape）可恢复偏差与任务失败之间的边界，并提出了 <strong>DLS</strong> 流水线实现该范式。</li><li>DLS 在流匹配 VLA（Flow-Based VLA）上通过数字孪生的在线策略（on-policy）推出发现失败边界，以带进度感知（progress-aware）的监督信号定位穿越失败边界的阶段，并在速度场中实现无 critic 的推拉式塑形，显著提升真实机器人操作的鲁棒性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出“以边界为中心”的适配视角：将基于流的 VLA 的 SFT 后优化问题重新定义为学习闭环策略行为从可恢复偏差到任务失败的边界，而非单纯拟合专家行为。</li><li>提出 <strong>语义进度定位（SPL）</strong>：利用数字孪生的特权仿真状态，将操作轨迹分解为有序任务阶段，输出包含成功、低效成功与部分失败在内的进度感知标签，区分“何处”穿越失败边界与“是否”失败。</li><li>提出 <strong>方向性边界塑形（DBS）</strong>：在流速度场中构建围绕旧策略偏差的镜像分支，以马氏距离误差与符号标签构成排序约束实现拉向成功方向、推开失败方向的塑形，全程无需动作似然或学得的 critic/价值网络。</li><li>提出 <strong>Sim-Real 共训练的“真实接地行为先验”</strong>：少量真实演示结合 MimicGen 合成的海量仿真数据实现行为先验，再通过在线数字孪生探索发现失败边界，并以真实 SFT 项作正则化防止灾难性遗忘。</li><li>在 <strong>π₀</strong> 与 <strong>π₀.₅</strong> 两个流匹配 VLA 主干及三个真实机器人任务上验证，仅用 50 个真实演示即在未见条件下超越 100 个真实演示的 Real-only SFT 达 +17.8% 绝对成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Discover–Localize–Shape（DLS）</strong> 两阶段流水线；Stage 1 建立真实接地行为先验，Stage 2 通过在线探索进行失败边界学习。</li><li><strong>Stage 1</strong>：以 Sim-Real 混合目标进行共训练（α=0.5），真实数据锚定部署域，仿真的 MimicGen 合成 1000 条轨迹提供行为多样性，形成策略先验。</li><li><strong>Stage 2 边界发现</strong>：将当前旧策略部署在 128 个并行 ManiSkill 数字孪生环境中，使用 Flow-SDE 采样器注入随机探索，记录每步降噪转移元组到经验缓冲区。</li><li><strong>SPL 标签生成</strong>：先定义混合状态转移系统 ψ(sᵢ) 将状态映射到有序任务阶段，累积势函数 Φ(sᵢ)=W_z₋₁+w_z·φ_z(sᵢ) 以离散门控（阶段完成才能获得更高积分）＋连续阶段内度量组合，输出阶段级奖励图 r_z，区分干净成功、已完成阶段与失败位点。</li><li><strong>DBS 塑形</strong>：围绕偏差 Δv_t = v_θ,t − v_t^old 构造 v± = v_old ± βΔv 两个镜像分支，利用软加（Softplus）条件化排序约束 Minimize Mahalanobis 误差差；正标签拉向成功方向、负标签推离失败方向；总损失 L_total = L_DBS + λ·L_SFT(Real) 并以 EMA 同步（anneal ε）维持策略稳定性。</li><li>关键创新在于注入轨迹级进度标签到流速度场中的逐级对比排序，绕过 PPO/GRPO 类算法的似然求解和 critic 过拟合，同时保留了对 Flow-VLA 生成过程的细粒度感知。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实数据</strong>：每任务 50（或消融中 25/50/100）条遥操作演示；3 个真实任务为 <strong>Pick & Place</strong>（30×30 cm 工作空间抓取并厘米精度放置）、<strong>Sweep</strong>（非抓取推入 12×10 cm 目标区）、<strong>Plugin</strong>（约 3 mm 间隙的插头-插座插入）。</li><li><strong>仿真数据</strong>：<strong>ManiSkill</strong> 搭建数字孪生（手眼标定校准相机）；<strong>MimicGen</strong> 由 5 条真实种子轨迹合成 1000 条含 ±1°、±2 cm 相机扰动的仿真轨迹。</li><li><strong>硬件</strong>：<strong>Franka Research 3</strong> 机械臂 + 单目前置 <strong>RealSense D435</strong> RGB 相机（640×480，30 fps），10 Hz 控制，动作块大小 H=8。</li><li><strong>训练资源</strong>：4× <strong>NVIDIA H200</strong> GPU。</li><li>两个流匹配 VLA 骨干：<strong>π₀</strong>（arXiv:2410.24164）与 <strong>π₀.₅</strong>（arXiv:2504.16054）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：每个策略进行 30 次真实机器人 rollout；两条件下测试——<strong>in-distribution（ID.）</strong>：统一 980 Lux 光照与标准初始位置；<strong>Unseen</strong>：更换桌布与背景、560 Lux 单侧光、随机化目标位置。基线含 Real-only SFT（N=50/100）、Sim-Real SFT、+GRPO、+PPO。</li><li><strong>主要指标</strong>：成功率（%），附加平均 episode horizon 等效率指标；主结果见 Table 1。</li><li><strong>关键结果（Table 1）</strong>：</li></ul>
+<p> - DLS 在 π₀.₅ 上取得 <strong>84.4%（ID.）</strong>、<strong>72.2%（Unseen）</strong> 平均成功率，在 π₀ 上为 <strong>78.9%（ID.）</strong>、<strong>71.1%（Unseen）</strong>，为两主干各列最高/次高。</p>
+<p> - DLS 相对 PPO 的优势随分布偏移扩大（π₀.₅：ID +3.3% → Unseen +4.4%；π₀：ID +1.1% → Unseen +5.5%），且全程无 critic 头与组内 rollout 比较。</p>
+<p> - 与 Real-only SFT（N=100）在未见条件下对比，DLS 以 50 个演示取得 +17.8% 绝对优势（π₀.₅：72.2% vs 54.4%）。</p>
+<p> - <strong>消融（Fig. 4）</strong>：SPL 相对 Binary Reward 成功收敛更快、最终成功率更高；二元奖励在能力边界附近产生冲突梯度无法稳定收敛。</p>
+<p> - <strong>消融（Table 2，π₀.₅ Unseen）</strong>：SPL 相对 step-count penalty / distance-based potential 均取得 ≥6.7% 成功率提升（Pick & Place 80.0 vs 60.0/66.7，Sweep 66.7 vs 53.3/50.0，Plugin 70.0 vs 56.7/63.3）。</p>
+<p> - <strong>正则强度 λ 消融（Fig. 5）</strong>：λ∈[0.5,1.0] 时成功率稳定；λ→0 时出现对真实先验的灾难性遗忘；λ 过高则轻微下降，支撑双目标设计。</p>
+<p> - <strong>数据效率消融（Fig. 6）</strong>：DLS 在所有演示数量档位上于 Plugin 任务均超过 Real-only SFT 的 Unseen 成功率，确认在线失败发现对稀疏真实数据的补偿作用。</p></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.06221/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">RefGuard: Identity-Aware Language-Guided Robot Manipulation via Joint Target-Anchor-Frame Grounding</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.06079/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">LayerRoute: Action-Conditioned Mixture-of-Layers Routing for Vision-Language-Action Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

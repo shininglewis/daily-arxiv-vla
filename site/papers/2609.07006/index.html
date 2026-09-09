@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GIFT: Goal-Injected Fine-Tuning for Efficient Manipulation Policy Adaptation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 GIFT（Goal-Injected Fine-Tuning，目标注入式微调） 框架，用于将生成的目标图像高效融入预训练的 Vision-Language-Action（VLA） 模型，提升机器人操作策略的鲁棒性与目标理解能力。 针对现有目标条件化 VLA 方法的两大痛点：一是仅将生成目标图像用于底层策略、未利用预训练 VLA 主干；二是将目标生成直接重构进 VLA 管线需大量联合重训、破坏预训练推理路径且代价高昂。 提出&quot;先生成目标图像、再轻量微调注入&quot;的两阶段方案，仅用 单个 epoch 微调 即可取得显著性能提升，兼顾效率与有效性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.07006">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.07006.webp" alt="GIFT: Goal-Injected Fine-Tuning for Efficient Manipulation Policy Adaptation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 GIFT（Goal-Injected Fine-Tuning，目标注入式微调） 框架，用于将生成的目标图像高效融入预训练的 Vision-Language-Action（VLA） 模型，提升机器人操作策略的鲁棒性与目标理解能力。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GIFT: Goal-Injected Fine-Tuning for Efficient Manipulation Policy Adaptation</h1>
+            <div class="detail-meta">2026-09-07 · <a href="http://arxiv.org/abs/2609.07006" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.07006" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.07006</span></div>
+            <p class="detail-summary">论文提出 GIFT（Goal-Injected Fine-Tuning，目标注入式微调） 框架，用于将生成的目标图像高效融入预训练的 Vision-Language-Action（VLA） 模型，提升机器人操作策略的鲁棒性与目标理解能力。 针对现有目标条件化 VLA 方法的两大痛点：一是仅将生成目标图像用于底层策略、未利用预训练 VLA 主干；二是将目标生成直接重构进 VLA 管线需大量联合重训、破坏预训练推理路径且代价高昂。 提出&quot;先生成目标图像、再轻量微调注入&quot;的两阶段方案，仅用 单个 epoch 微调 即可取得显著性能提升，兼顾效率与有效性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">南京航空航天大学（Nanjing University of Aeronautics and Astr…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.07006/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 GIFT（Goal-Injected Fine-Tuning，目标注入式微调） 框架，用于将生成的目标图像高效融入预训练的 Vision-Language-Action（VLA） 模型，提升机器人操作策略的鲁棒性与目标理解能力。</p>
+  <ul class="reading-intro-points"><li>论文提出 GIFT（Goal-Injected Fine-Tuning，目标注入式微调） 框架，用于将生成的目标图像高效融入预训练的 Vision-Language-Action（VLA） 模型，提升机器人操作策略的鲁棒性与目标理解能力。</li><li>针对现有目标条件化 VLA 方法的两大痛点：一是仅将生成目标图像用于底层策略、未利用预训练 VLA 主干；二是将目标生成直接重构进 VLA 管线需大量联合重训、破坏预训练推理路径且代价高昂。</li><li>提出&quot;先生成目标图像、再轻量微调注入&quot;的两阶段方案，仅用 单个 epoch 微调 即可取得显著性能提升，兼顾效率与有效性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>南京航空航天大学</strong>（Nanjing University of Aeronautics and Astronautics）人工智能学院</li><li>脑机智能技术教育部重点实验室（The Key Laboratory of Brain-Machine Intelligence Technology, Ministry of Education）</li><li>通讯作者：<strong>Piji Li</strong>（E-mail: frankfang@nuaa.edu.cn, pjli@nuaa.edu.cn）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>GIFT（Goal-Injected Fine-Tuning，目标注入式微调）</strong> 框架，用于将生成的目标图像高效融入预训练的 <strong>Vision-Language-Action（VLA）</strong> 模型，提升机器人操作策略的鲁棒性与目标理解能力。</li><li>针对现有目标条件化 VLA 方法的两大痛点：一是仅将生成目标图像用于底层策略、未利用预训练 VLA 主干；二是将目标生成直接重构进 VLA 管线需大量联合重训、破坏预训练推理路径且代价高昂。</li><li>提出"先生成目标图像、再轻量微调注入"的两阶段方案，仅用 <strong>单个 epoch 微调</strong> 即可取得显著性能提升，兼顾效率与有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GIFT</strong> 轻量级微调框架，通过 <strong>零初始化卷积（ZeroConv）</strong> 将目标图像特征注入 VLA 观测，不破坏预训练操作策略的稳定性。</li><li>提出面向机器人场景的精细化图像编辑方法 <strong>Image Editing for Robotic Goal</strong>，采用上下文编辑提示（in-context edit prompt）确保与指令对齐，并引入 <strong>观测结构注入（Observation-structure Injection）</strong> 保持与观测场景一致。</li><li>在 <strong>OpenVLA、CogACT、SpatialVLA</strong> 等多个 VLA 基线（涵盖 Prismatic VLM 与 PaLI-Gemma2 两种骨干）上验证了模型无关的泛化能力。</li><li>仅以单个 epoch 微调，在 <strong>SIMPLER</strong> 两个设置上分别提升 <strong>6.0%</strong> 与 <strong>13.4%</strong>，在 <strong>LIBERO</strong> 上提升 <strong>4.7%</strong>；真实机器人任务上也获得一致性提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>两阶段框架：先在推理前用图像编辑模型基于初始观测与语言指令生成目标图像，再将目标图像条件输入微调后的 VLA 策略预测动作。</li><li>通过共享图像编码器提取目标与观测特征，计算语义差（Semantic Contrast）$F_{\Delta}=F_g-F_t$，突出任务相关变化。</li><li>基于 <strong>ControlNet</strong> 风格的零初始化卷积层 $\mathrm{ZeroConv}(\mathrm{Proj_g}(F_{\Delta}))+\mathrm{Proj_o}(F_t)$，训练初期抑制干扰、训练中渐进注入目标信号；推理时目标图像在整个任务执行过程中重复使用。</li><li>微调时冻结绝大部分预训练参数，仅更新三个轻量组件：目标图像投影器（由观测投影器初始化）、零初始化卷积层与动作预测头。</li><li>图像编辑模块基于 <strong>FLUX.1-Fill-dev</strong>，通过 LoRA 微调 T2I DiT；先对观测做潜在反转（latent inversion），再与随机噪声拼接输入 DiT 去噪，并以加权融合方式注入观测结构特征 $\hat{z}=\alpha z^g+(1-\alpha)z^o$。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估基准：<strong>SIMPLER</strong>（Google Robot 与 WidowX 双平台，含 Visual Matching 与 Variant Aggregation 设置）、<strong>LIBERO</strong>（Franka Emika Panda，Spatial/Object/Goal/Long 四个任务套件）。</li><li>微调数据集按机器人平台严格对齐：WidowX 用 <strong>BridgeDataset V2</strong>，Google Robot 用 <strong>Fractal</strong> 数据集，LIBERO 用 LIBERO 数据集；图像编辑模型用三者的混合子集训练（90% Bridge + 90% Fractal + 30% LIBERO）。</li><li>真实世界实验：<strong>Synria Alicia-D</strong> 六自由度机械臂 + Intel RealSense D405 相机，每个任务收集 30 条 LeRobot 格式演示，基线为 <strong>π0.5</strong>。</li><li>训练资源：4 张 <strong>NVIDIA L20 GPU</strong>，PyTorch FSDP；单 epoch 训练时间约 CogACT 24/43.2 小时（Bridge/Fractal）、OpenVLA LIBERO 9.6 小时；图像编辑模型训练 3 epoch，LoRA rank=32，有效 batch size 144。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>SIMPLER（Google Robot）中 <strong>CogACT+GIFT</strong> 在 Visual Matching 达 80.5% 平均成功率（较 CogACT +6.0%），在 Variant Aggregation 达 74.7%（+13.4%）；WidowX 上 CogACT 四任务均提升，平均 51.3%→67.7%，其中 Task3 从 16.4% 涨至 43.1%。</li><li>LIBERO 中 <strong>OpenVLA+GIFT</strong> 平均成功率 81.2%（+4.7%），Spatial 89.5%、Goal 88.6%、最具挑战的 Long 任务 56.0%，均优于其他方法。</li><li>真实机器人部署：<strong>π0.5+GIFT</strong> 在域内任务成功率由 56.7%/36.7% 提升至 71.7%/43.3%；OOD（暗光）场景增益更显著，由 33.3%/23.3% 提升至 51.7%/36.7%。</li><li>目标图像质量对比（Table 4，固定注入模块、只换目标来源）：降级目标性能最差，SuSIE 缺乏空间一致性（Stack 为 0%），Turbo 编辑器牺牲保真度（约 1.1s），本方法（约 4.2s 一次性生成）在全部 9 个任务上优于所有生成基线且接近 GT 目标上界。</li><li>消融实验表明：语义对比机制将性能从 57.5% 提升至 67.7%；ZeroConv 优于 FiLM，交叉注意力会严重破坏预训练策略（接近零成功率）；观测结构注入可提升场景布局与结构一致性。</li><li>论文同时指出 <strong>GIFT 增强而非创造能力</strong>——例如 OpenVLA 注入目标后 PutInDrawer 仍为 0%，说明其只能放大大模型已具备的操作能力，无法凭空补足缺失技能。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.07047/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">MEMOBench: A Process Level Memory Benchmark for Robotic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.06852/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ContextFlow: In-Context Flow Matching for Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
