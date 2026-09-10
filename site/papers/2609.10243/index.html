@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FolDeX: A Physical-World Benchmark for Long-Horizon Robotic Manipulation of Deformable Objects - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 FolDeX，首个完全基于真实机器人数据构建、面向长时序可变形物体操作的物理世界基准，以衣物折叠为核心任务族，包含 2,000+ 小时真实机器人数据、20+ 任务与 10+ 机器人本体。 针对现有真实机器人基准多聚焦短时序刚体操作、缺乏长时序可变形任务覆盖的问题，以及真实机器人评测易受数据配比、重置流程、推理设置等因素干扰、结果难以复现的问题。 论文同时发布 FoldChallenge 真实机器人评测平台，提供标准化任务定义、留出物理物体、受控初始化和统一执行协议，并建立强 π₀ + RTC 基线，使新方法能与有竞争力的真实策略对比。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.10243">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.10243.webp" alt="FolDeX: A Physical-World Benchmark for Long-Horizon Robotic Manipulation of Deformable Objects" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 FolDeX，首个完全基于真实机器人数据构建、面向长时序可变形物体操作的物理世界基准，以衣物折叠为核心任务族，包含 2,000+ 小时真实机器人数据、20+ 任务与 10+ 机器人本体。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FolDeX: A Physical-World Benchmark for Long-Horizon Robotic Manipulation of Deformable Objects</h1>
+            <div class="detail-meta">2026-09-09 · <a href="http://arxiv.org/abs/2609.10243" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.10243" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.10243</span></div>
+            <p class="detail-summary">论文提出 FolDeX，首个完全基于真实机器人数据构建、面向长时序可变形物体操作的物理世界基准，以衣物折叠为核心任务族，包含 2,000+ 小时真实机器人数据、20+ 任务与 10+ 机器人本体。 针对现有真实机器人基准多聚焦短时序刚体操作、缺乏长时序可变形任务覆盖的问题，以及真实机器人评测易受数据配比、重置流程、推理设置等因素干扰、结果难以复现的问题。 论文同时发布 FoldChallenge 真实机器人评测平台，提供标准化任务定义、留出物理物体、受控初始化和统一执行协议，并建立强 π₀ + RTC 基线，使新方法能与有竞争力的真实策略对比。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学（Fudan University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.10243/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 FolDeX，首个完全基于真实机器人数据构建、面向长时序可变形物体操作的物理世界基准，以衣物折叠为核心任务族，包含 2,000+ 小时真实机器人数据、20+ 任务与 10+ 机器人本体。</p>
+  <ul class="reading-intro-points"><li>论文提出 FolDeX，首个完全基于真实机器人数据构建、面向长时序可变形物体操作的物理世界基准，以衣物折叠为核心任务族，包含 2,000+ 小时真实机器人数据、20+ 任务与 10+ 机器人本体。</li><li>针对现有真实机器人基准多聚焦短时序刚体操作、缺乏长时序可变形任务覆盖的问题，以及真实机器人评测易受数据配比、重置流程、推理设置等因素干扰、结果难以复现的问题。</li><li>论文同时发布 FoldChallenge 真实机器人评测平台，提供标准化任务定义、留出物理物体、受控初始化和统一执行协议，并建立强 π₀ + RTC 基线，使新方法能与有竞争力的真实策略对比。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>（Fudan University）</li><li><strong>美的集团（上海）有限公司 AI 研究中心</strong>（AI Research Center, Midea Group (Shanghai) Co., Ltd.）</li><li><strong>卡内基梅隆大学</strong>（Carnegie Mellon University）</li><li>通讯作者：<strong>Yi Xu</strong>、<strong>Shuyong Gao</strong>、<strong>Wenqiang Zhang</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>FolDeX</strong>，首个完全基于真实机器人数据构建、面向<strong>长时序可变形物体操作</strong>的物理世界基准，以<strong>衣物折叠</strong>为核心任务族，包含 <strong>2,000+ 小时</strong>真实机器人数据、<strong>20+ 任务</strong>与 <strong>10+ 机器人本体</strong>。</li><li>针对现有真实机器人基准多聚焦短时序刚体操作、缺乏长时序可变形任务覆盖的问题，以及真实机器人评测易受数据配比、重置流程、推理设置等因素干扰、结果难以复现的问题。</li><li>论文同时发布 <strong>FoldChallenge</strong> 真实机器人评测平台，提供标准化任务定义、留出物理物体、受控初始化和统一执行协议，并建立强 <strong>π₀ + RTC</strong> 基线，使新方法能与有竞争力的真实策略对比。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>FolDeX</strong>：首个大规模、面向长时序可变形物体操作的真实机器人数据集与基准，含 2,000+ 小时物理机器人数据，覆盖 20+ 任务与 10+ 机器人本体。</li><li>建立 <strong>FoldChallenge</strong>：公开、已实际运行的真实机器人评测系统，支持标准化任务与受控物理执行，并对外部提交策略进行公平评测与排行榜报告。</li><li>提出 <strong>FoldScore</strong> 综合指标，联合衡量任务成功率、最终状态平整质量与完成时间，弥补单一二值成功率无法刻画完整折叠回合质量的不足。</li><li>建立经过精细工程调优的高竞争力<strong>参考基线</strong>（π₀ 训练时 RTC），为后续方法提供可复现的强对比对象。</li><li>沿<strong>恢复数据利用、跨任务、跨场景、跨本体</strong>四个研究轴组织异构真实机器人数据，系统研究数据复用效率与迁移能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>任务设定</strong>：折叠回合从篮子中取衣开始，经随机初始构型置放于桌面、翻转与铺平、多次折叠，最终放置/堆叠到已折衣物上，形成依赖型长时序连续回合。</li><li><strong>观测与动作接口</strong>：策略输入为两个腕部手眼相机加一个外部工作空间相机的同步 RGB 观测、自然语言指令与机器人本体感知状态，输出未来末端执行器位姿轨迹。</li><li><strong>数据组织</strong>：使用统一 schema 组织同步视觉观测、本体感知、带时间戳动作、语言指令与回合级元数据（任务、物体类别与实例、场景、本体、操作员、数据来源、完成状态、失败/终止原因）。</li><li><strong>基准四轴设计</strong>：恢复数据利用（策略部署中人工干预/恢复轨迹 + 独立演示数据训练单独初始化策略）、跨任务迁移（刚体↔可变形联合训练与少样本适配）、跨场景迁移（布局、光照、背景变化）、跨本体迁移（不同运动学、控制接口与动作空间）。</li><li><strong>关键技术</strong>：训练时 <strong>RTC（real-time chunking）</strong>，通过模拟推理延迟并以已提交动作前缀为条件，避免推理时的 inpainting 开销；对比统一多任务训练与任务专用训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据规模</strong>：<strong>2,000+ 小时</strong>真实机器人经验，覆盖 <strong>20+ 操作任务</strong>与 <strong>10+ 机器人本体</strong>。</li><li><strong>机器人平台</strong>：<strong>Aloha</strong>、<strong>YAM</strong>、<strong>Piper</strong>、<strong>Astribot</strong>、<strong>Franka</strong>、<strong>UR5</strong>、自研移动双臂平台、<strong>AgiBot G2</strong> 等，涵盖单臂、双臂、移动与人形配置及桌面/家庭环境。</li><li><strong>任务构成</strong>：以长时序衣物折叠为主（衬衫、裙子、裤子、毛巾等类别），另含少量其他可变形物体任务与刚体任务（用于刚体到可变形迁移研究）。</li><li><strong>基线模型</strong>：<strong>π₀</strong>（含训练时 RTC 与推理时 RTC 配置）、复现的 <strong>π₀.₅</strong>。</li><li><strong>训练资源</strong>：<strong>16 块 GPU</strong>，批量大小 <strong>16</strong>。</li><li><strong>评测规模</strong>：每个衣物类别 <strong>30 次</strong>独立物理试验，衣物构型随机化；定性评分由至少两名评估者独立评定且需一致。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：真实机器人物理环境，统一任务、衣物实例、初始化流程、最大回合时长与执行协议。</li><li><strong>评估指标</strong>：任务成功率、平均完成时间、六档（0–5）最终状态平整度评分，以及 <strong>FoldScore = 35·Q̄ + 35·R + 30·max(0, 1 − t/T_max)</strong>。</li><li><strong>基线对比（表 2）</strong>：RTC 任务专用策略平均成功率最高 <strong>82.50%</strong>；RTC 多任务策略平均 FoldScore 最高 <strong>75.59</strong>；标准多任务训练平均成功率仅 <strong>72.50%</strong>、FoldScore <strong>72.30</strong>，说明 RTC 在多任务设定下将成功率从 72.50% 提升至 80.75%。</li><li><strong>类别差异</strong>：任务专用训练在 Shirt/Skirt/Pants 上表现强；RTC 多任务策略在 Towel 上显著更优（成功率 <strong>76.67% vs 50.00%</strong>）。</li><li><strong>恢复数据利用（表 3）</strong>：在演示数据基础上加入 Shirt、Skirt、Pants、Towel 的恢复轨迹后，平均成功率由 <strong>80.75%</strong> 提升至 <strong>95.00%</strong>，平均 FoldScore 由 <strong>75.59</strong> 提升至 <strong>82.53</strong>；Pants 与 Towel 均达 <strong>100.00%</strong> 成功率。</li><li><strong>其他迁移轴初步观察</strong>：刚体-可变形联合训练存在显著动作生成干扰，继续训练易导致灾难性遗忘；跨本体迁移问题更严重，普遍无法可靠完成完整任务；而策略对光照、背景与适度布局变化相对鲁棒，跨场景扰动弱于任务动态与本体变化。</li><li><strong>补充基线</strong>：复现的 π₀.₅ 在预铺平状态下成功率 <strong>100.0%</strong>、平均耗时 41 秒，但折叠质量多处于最低非零档；π₀ + 推理时 RTC 在完整任务上成功率仅 <strong>42.9%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.10405/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Frequency-Conditioned Flow Matching for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.10021/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">RoboDrop: Curating VLA Post-Training Data via Local Gradient Compatibility</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
