@@ -1,5 +1,266 @@
 [
   {
+    "date": "2026-09-10",
+    "title": "UniMPA: A Unified Memory-Prediction-Action Model via Action-Grounded Transition Modeling",
+    "link": "http://arxiv.org/abs/2609.11875",
+    "arxiv_id": "2609.11875",
+    "detail_path": "papers/2609.11875/",
+    "cover_path": "covers/2609.11875/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11875.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11875.webp",
+    "preview_text": "针对 Vision-Language-Action（VLA）模型中 observation-to-action 学习的 transition realizability gap，即策略难以将意图中的未来变化转化为当前场景中物理可执行的动作。 将该问题分解为三个耦合子问题：transition ambiguity、prediction–execution mismatch、experience–realization mismatch。 提出 UniMPA，通过共享的 action-grounded transition 接口统一预测、记忆和动作生成，形成 anticipate–ground–refine 过程。",
+    "research_unit": "哈尔滨工业大学（深圳）计算机科学与技术学院：Wei Li、Rui Shao、Jie He、Lingse…",
+    "hook_text": "针对 Vision-Language-Action（VLA）模型中 observation-to-action 学习的 transition realizability gap，即策略难以将意图中的未来变化转化为当前场景中物理可执行的动作。",
+    "key_points": [
+      "针对 Vision-Language-Action（VLA）模型中 observation-to-action 学习的 transition realizability gap，即策略难以将意图中的未来变化转化为当前场景中物理可执行的动作。",
+      "将该问题分解为三个耦合子问题：transition ambiguity、prediction–execution mismatch、experience–realization mismatch。",
+      "提出 UniMPA，通过共享的 action-grounded transition 接口统一预测、记忆和动作生成，形成 anticipate–ground–refine 过程。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "ActSafeGuard: Differentiable and Training-Aligned Constraint Enforcement for Flow-Matching Policies",
+    "link": "http://arxiv.org/abs/2609.11697",
+    "arxiv_id": "2609.11697",
+    "detail_path": "papers/2609.11697/",
+    "cover_path": "covers/2609.11697/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11697.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11697.webp",
+    "preview_text": "针对 VLA 和 WAMs 生成的动作可能违反硬物理约束（如位置、速度、工作空间限制）的问题，提出 ActSafeGuard。 现有方法要么仅优化统计安全目标而缺乏确定性每步保证，要么仅在推理时纠正动作，造成训练与执行之间的不匹配。 目标是将硬动作可行性直接集成到 flow-matching 策略的学习与生成过程中，实现确定性安全且保持任务能力。",
+    "research_unit": "上海交通大学",
+    "hook_text": "针对 VLA 和 WAMs 生成的动作可能违反硬物理约束（如位置、速度、工作空间限制）的问题，提出 ActSafeGuard。",
+    "key_points": [
+      "针对 VLA 和 WAMs 生成的动作可能违反硬物理约束（如位置、速度、工作空间限制）的问题，提出 ActSafeGuard。",
+      "现有方法要么仅优化统计安全目标而缺乏确定性每步保证，要么仅在推理时纠正动作，造成训练与执行之间的不匹配。",
+      "目标是将硬动作可行性直接集成到 flow-matching 策略的学习与生成过程中，实现确定性安全且保持任务能力。"
+    ],
+    "reading_minutes": 6,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
+    "link": "http://arxiv.org/abs/2609.11561",
+    "arxiv_id": "2609.11561",
+    "detail_path": "papers/2609.11561/",
+    "cover_path": "covers/2609.11561/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11561.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11561.webp",
+    "preview_text": "论文提出 MaP-WAM（Memory-as-Plans），将依赖记忆的世界-动作建模分解为「记忆接地的规划」与「以规划为条件的执行」两个阶段，而非让执行器反复处理全部历史观测。 针对主流机器人策略的马尔可夫假设缺陷：许多真实操作任务本质上是非马尔可夫的，所需信息可能已不在当前观测中，而现有的语言摘要记忆会丢失细粒度视觉证据，增长式视觉窗口则带来延迟与显存随历史线性增长的权衡。 目标是让执行器上下文长度保持固定、推理延迟近似恒定，同时仍能利用长期、细粒度的多模态情景记忆。",
+    "research_unit": "哈尔滨工业大学（Harbin Institute of Technology）：Sizhe Zhao、…",
+    "hook_text": "论文提出 MaP-WAM（Memory-as-Plans），将依赖记忆的世界-动作建模分解为「记忆接地的规划」与「以规划为条件的执行」两个阶段，而非让执行器反复处理全部历史观测。",
+    "key_points": [
+      "论文提出 MaP-WAM（Memory-as-Plans），将依赖记忆的世界-动作建模分解为「记忆接地的规划」与「以规划为条件的执行」两个阶段，而非让执行器反复处理全部历史观测。",
+      "针对主流机器人策略的马尔可夫假设缺陷：许多真实操作任务本质上是非马尔可夫的，所需信息可能已不在当前观测中，而现有的语言摘要记忆会丢失细粒度视觉证据，增长式视觉窗口则带来延迟与显存随历史线性增长的权衡。",
+      "目标是让执行器上下文长度保持固定、推理延迟近似恒定，同时仍能利用长期、细粒度的多模态情景记忆。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "FARM: Reading Failure Signals from the Internal Predictive States of a Frozen Robotic World Model",
+    "link": "http://arxiv.org/abs/2609.11445",
+    "arxiv_id": "2609.11445",
+    "detail_path": "papers/2609.11445/",
+    "cover_path": "covers/2609.11445/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11445.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11445.webp",
+    "preview_text": "论文提出 FARM（Failure-Aware Readout from World Models），研究一个表征复用问题：冻结的预训练机器人世界模型的内部预测状态（WM state）中是否已经包含可直接解码的失败信息。 现有执行监视器多依赖不确定性、新颖性、OOD、动作一致性等代理信号，或训练专门的监视模块；这些信号与\"任务失败\"并不等价（策略可能自信且时序一致却无进展）。 FARM 仅在冻结的 VLA-JEPA 预测状态上训练一个 33,985 参数的轻量监督读出器，输出逐步失败分数与因果轨迹风险，用于在线判断继续执行、干预、恢复或重置。",
+    "research_unit": "中国科学院自动化研究所（Institute of Automation, Chinese Academ…",
+    "hook_text": "论文提出 FARM（Failure-Aware Readout from World Models），研究一个表征复用问题：冻结的预训练机器人世界模型的内部预测状态（WM state）中是否已经包含可直接解码的失败信息。",
+    "key_points": [
+      "论文提出 FARM（Failure-Aware Readout from World Models），研究一个表征复用问题：冻结的预训练机器人世界模型的内部预测状态（WM state）中是否已经包含可直接解码的失败信息。",
+      "现有执行监视器多依赖不确定性、新颖性、OOD、动作一致性等代理信号，或训练专门的监视模块；这些信号与\"任务失败\"并不等价（策略可能自信且时序一致却无进展）。",
+      "FARM 仅在冻结的 VLA-JEPA 预测状态上训练一个 33,985 参数的轻量监督读出器，输出逐步失败分数与因果轨迹风险，用于在线判断继续执行、干预、恢复或重置。"
+    ],
+    "reading_minutes": 14,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "Your Model Already Knows Don't Teach It, Learn to Ask It: Soft Prompting for Few-Shot Adaptation of Vision-Language Models",
+    "link": "http://arxiv.org/abs/2609.11310",
+    "arxiv_id": "2609.11310",
+    "detail_path": "papers/2609.11310/",
+    "cover_path": "covers/2609.11310/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11310.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11310.webp",
+    "preview_text": "论文研究少样本域外目标检测，在仅有10张标注图像的条件下，利用视觉-语言模型（VLM） 适应航空、工业、医疗等专业领域。 主流方法包括离散提示优化（无梯度）和LoRA微调，但前者表达力有限，后者修改数百万权重并导致灾难性遗忘。 论文重新审视软提示（SoftPrompt）：在冻结主干上优化少量连续提示token，实现梯度适应且不改变任何预训练权重，核心观点是“模型已经知道，只需学会如何询问”。",
+    "research_unit": "Carnegie Mellon University",
+    "hook_text": "论文研究少样本域外目标检测，在仅有10张标注图像的条件下，利用视觉-语言模型（VLM） 适应航空、工业、医疗等专业领域。",
+    "key_points": [
+      "论文研究少样本域外目标检测，在仅有10张标注图像的条件下，利用视觉-语言模型（VLM） 适应航空、工业、医疗等专业领域。",
+      "主流方法包括离散提示优化（无梯度）和LoRA微调，但前者表达力有限，后者修改数百万权重并导致灾难性遗忘。",
+      "论文重新审视软提示（SoftPrompt）：在冻结主干上优化少量连续提示token，实现梯度适应且不改变任何预训练权重，核心观点是“模型已经知道，只需学会如何询问”。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "2AM: Grounding Agent-Side Memory as Guidance for Steerable Action Models in Long-Horizon Manipulation",
+    "link": "http://arxiv.org/abs/2609.11308",
+    "arxiv_id": "2609.11308",
+    "detail_path": "papers/2609.11308/",
+    "cover_path": "covers/2609.11308/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.11308.webp",
+    "paper_image_full_path": "assets/paper-images/2609.11308.webp",
+    "preview_text": "论文提出 2AM（Agent-Side Memory + Steerable Action Models），研究长时程机器人操作中\"任务记忆应放在哪里\"的问题，主张将持久任务记忆完全放在多模态 Agent 一侧，而让一个基于 RGB、情节级无状态（episodically stateless） 的 Action Model 独自执行所有任务相关运动。 现有 agentic 系统常把 VLA 与规划器、几何工具、深度/标定几何组合使用，导致性能归因不清：收益可能来自更丰富的观测或替代运动通路，失败也可能来自策略或表述不足的语言接口。 论文选择相反的极简设计点：限制感知与工具广度，但提高接口带宽，通过一个\"组合式转向契约\"把 Agent 的记忆意图转成可执行的物理指令。",
+    "research_unit": "KU Leuven，机械工程系，机器人、自动化与机电一体化研究组（Robotics, Automati…",
+    "hook_text": "论文提出 2AM（Agent-Side Memory + Steerable Action Models），研究长时程机器人操作中\"任务记忆应放在哪里\"的问题，主张将持久任务记忆完全放在多模态 Agent 一侧，而让一个基于 RGB、情节级无状态（episodically stateless） 的 Action Model 独自执行所有任务相关运动。",
+    "key_points": [
+      "论文提出 2AM（Agent-Side Memory + Steerable Action Models），研究长时程机器人操作中\"任务记忆应放在哪里\"的问题，主张将持久任务记忆完全放在多模态 Agent 一侧，而让一个基于 RGB、情节级无状态（episodically stateless） 的 Action Model 独自执行所有任务相关运动。",
+      "现有 agentic 系统常把 VLA 与规划器、几何工具、深度/标定几何组合使用，导致性能归因不清：收益可能来自更丰富的观测或替代运动通路，失败也可能来自策略或表述不足的语言接口。",
+      "论文选择相反的极简设计点：限制感知与工具广度，但提高接口带宽，通过一个\"组合式转向契约\"把 Agent 的记忆意图转成可执行的物理指令。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-10",
+    "title": "IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies",
+    "link": "http://arxiv.org/abs/2609.10915",
+    "arxiv_id": "2609.10915",
+    "detail_path": "papers/2609.10915/",
+    "cover_path": "covers/2609.10915/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.10915.webp",
+    "paper_image_full_path": "assets/paper-images/2609.10915.webp",
+    "preview_text": "论文提出 IMLE-VLA，用单步条件生成器替换 VLA 中迭代式（如 10 步 Euler 采样）的连续动作头，解决 VLA 推理延迟瓶颈。 核心矛盾：扩散/流匹配动作头能建模多模态动作分布但需多步采样，导致机器人“走走停停”且任务完成慢；朴素的单步 L1/L2 回归头则会发生模式坍塌。 目标是在不牺牲（甚至提升）任务成功率与泛化能力的前提下，实现单步、多模态、高频的动作生成。",
+    "research_unit": "Simon Fraser University（西蒙菲莎大学）",
+    "hook_text": "论文提出 IMLE-VLA，用单步条件生成器替换 VLA 中迭代式（如 10 步 Euler 采样）的连续动作头，解决 VLA 推理延迟瓶颈。",
+    "key_points": [
+      "论文提出 IMLE-VLA，用单步条件生成器替换 VLA 中迭代式（如 10 步 Euler 采样）的连续动作头，解决 VLA 推理延迟瓶颈。",
+      "核心矛盾：扩散/流匹配动作头能建模多模态动作分布但需多步采样，导致机器人“走走停停”且任务完成慢；朴素的单步 L1/L2 回归头则会发生模式坍塌。",
+      "目标是在不牺牲（甚至提升）任务成功率与泛化能力的前提下，实现单步、多模态、高频的动作生成。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-09",
+    "title": "When Validation Stops Learning: Auditing Update Admission for Continual Embodied Agents",
+    "link": "http://arxiv.org/abs/2609.10873",
+    "arxiv_id": "2609.10873",
+    "detail_path": "papers/2609.10873/",
+    "cover_path": "covers/2609.10873/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.10873.webp",
+    "paper_image_full_path": "assets/paper-images/2609.10873.webp",
+    "preview_text": "论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。 核心主张是：更新准入必须同时评估错误控制和保留的学习机会，并在给定交互预算下进行审计。 识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。 贡献为一种准入审计协议，包含分析推导、合成诊断和机会级审计，但物理机器人和 VLA 验证仍待未来工作。",
+    "research_unit": "Qinzhen Ma：Rice University",
+    "hook_text": "论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。",
+    "key_points": [
+      "论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。",
+      "核心主张是：更新准入必须同时评估错误控制和保留的学习机会，并在给定交互预算下进行审计。",
+      "识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-09",
+    "title": "HuRo: Robotizing Human Videos for Scalable VLA Pretraining",
+    "link": "http://arxiv.org/abs/2609.10706",
+    "arxiv_id": "2609.10706",
+    "detail_path": "papers/2609.10706/",
+    "cover_path": "covers/2609.10706/",
+    "paper_image_path": "assets/paper-images/thumbs/2609.10706.webp",
+    "paper_image_full_path": "assets/paper-images/2609.10706.webp",
+    "preview_text": "研究核心问题：机器人化的（robotized）人类视频能否作为视觉-语言-动作（VLA）策略预训练的有效且可扩展的监督来源。 现有人类视频利用方法要么局限于任务匹配（task-matched）场景，要么将观测对齐与动作对齐分开处理，缺乏大规模联合观测-动作机器人化的通用预训练数据。 论文构建了机器人化流水线并发布 HuRo 数据集，通过大规模真实机器人实验验证机器人化人类视频预训练的缩放规律与泛化收益。",
+    "research_unit": "RLWRLD（韩国机器人公司）",
+    "hook_text": "研究核心问题：机器人化的（robotized）人类视频能否作为视觉-语言-动作（VLA）策略预训练的有效且可扩展的监督来源。",
+    "key_points": [
+      "研究核心问题：机器人化的（robotized）人类视频能否作为视觉-语言-动作（VLA）策略预训练的有效且可扩展的监督来源。",
+      "现有人类视频利用方法要么局限于任务匹配（task-matched）场景，要么将观测对齐与动作对齐分开处理，缺乏大规模联合观测-动作机器人化的通用预训练数据。",
+      "论文构建了机器人化流水线并发布 HuRo 数据集，通过大规模真实机器人实验验证机器人化人类视频预训练的缩放规律与泛化收益。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
     "date": "2026-09-09",
     "title": "Show-Harness: Just a VLM Agent Can Play Robots",
     "link": "http://arxiv.org/abs/2609.10522",

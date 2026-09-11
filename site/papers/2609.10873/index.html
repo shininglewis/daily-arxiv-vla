@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>When Validation Stops Learning: Auditing Update Admission for Continual Embodied Agents - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。 核心主张是：更新准入必须同时评估错误控制和保留的学习机会，并在给定交互预算下进行审计。 识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。 贡献为一种准入审计协议，包含分析推导、合成诊断和机会级审计，但物理机器人和 VLA 验证仍待未来工作。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.10873">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.10873.webp" alt="When Validation Stops Learning: Auditing Update Admission for Continual Embodied Agents" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">When Validation Stops Learning: Auditing Update Admission for Continual Embodied Agents</h1>
+            <div class="detail-meta">2026-09-09 · <a href="http://arxiv.org/abs/2609.10873" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.10873" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.10873</span></div>
+            <p class="detail-summary">论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。 核心主张是：更新准入必须同时评估错误控制和保留的学习机会，并在给定交互预算下进行审计。 识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。 贡献为一种准入审计协议，包含分析推导、合成诊断和机会级审计，但物理机器人和 VLA 验证仍待未来工作。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Qinzhen Ma：Rice University</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.10873/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。</p>
+  <ul class="reading-intro-points"><li>论文研究持续具身智能体中的策略更新准入问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。</li><li>核心主张是：更新准入必须同时评估错误控制和保留的学习机会，并在给定交互预算下进行审计。</li><li>识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Qinzhen Ma</strong>：<strong>Rice University</strong></li><li><strong>Ruihai Wu</strong>：<strong>University of California, Berkeley</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究持续具身智能体中的<strong>策略更新准入</strong>问题，指出独立评估可能拒绝有害更新，但也可能阻止有用的持续学习。</li><li>核心主张是：更新准入必须同时评估<strong>错误控制</strong>和<strong>保留的学习机会</strong>，并在给定交互预算下进行审计。</li><li>识别具体失败：基于范围的置信门（Hoeffding 区间）无法在合理预算内证明旧任务行为未变；标准成对二项构造在结果分歧稀少时可降低样本负担。</li><li>贡献为一种<strong>准入审计协议</strong>，包含分析推导、合成诊断和机会级审计，但物理机器人和 VLA 验证仍待未来工作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出可检查的<strong>更新准入契约</strong>：候选策略必须证明当前任务增益至少 η，同时历史任务性能下降不超过 ε_j，且在固定预算内完成检查。</li><li>识别并量化<strong>基于范围的 Hoeffding 门</strong>在旧任务零分歧检查中的预算爆炸问题：示例中每项比较需 4,229 配对样本，总预算超过 20,000 回合上限。</li><li>采用<strong>成对二项（Clopper–Pearson）区间</strong>构造准入规则，在零分歧时仅需约 117 配对样本，显著降低旧任务保留检查负担。</li><li>指定<strong> certified 历史参考提升</strong>机制：仅当现有下界 L_j ≥ 0 时晋升旧参考，保证在覆盖事件上参考性能非降，并限制活跃参考集大小。</li><li>提出<strong>轮级错过机会指标</strong>：仅有可行候选但未采纳时计为错过机会，避免将正常候选选择误报为错误；同时报告覆盖率、合同违反、遗忘和资源成本。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>持续策略学习设定：任务条件策略 <strong>π_θ</strong> 参数跨任务批次保留，允许有限演示回放和历史参考；每次尝试需在提交后使用<strong>新环境配对样本</strong>进行准入检查。</li><li>合同定义：对每个保护任务 j，定义真实配对差异 <strong>g_j = E[S(π') - S(b_j)]</strong>，要求当前任务增益至少 η，旧任务下降不超过 ε_j。</li><li>准入规则：对配对二项差异 <strong>X ∈ {-1,0,1}</strong> 分别构造正负差异的 Clopper–Pearson 区间，得到 <strong>L_j = ℓ_+ - u_-</strong> 和 <strong>U_j = u_+ - ℓ_-</strong>；所有 L_j ≥ q_j 则接受，任一 U_j < q_j 则拒绝，否则推迟。</li><li>错误分配：每次尝试非覆盖概率 <strong>α_t = 6δ/(π²t²)</strong>，每个端点分配 <strong>β = α_t/(4m)</strong>，通过并集界限使整体失败概率不超过 δ。</li><li>历史参考提升：接受候选后，仅当旧参考的同一有效区间满足 <strong>L_j ≥ 0</strong> 时替换参考，确保覆盖事件上参考序列非降；参考集容量为 10 个任务。</li><li>机会审计：在流结束后对全部候选进行穷举评估，精确标注合同满足情况，不将审计标签用于训练或选择。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>所有实验均为<strong>合成模拟</strong>，无物理机器人、无 LIBERO 运行、无预训练 VLA、无人类参与者。</li><li>环境为构造的一步推动诊断：10 个移动任务顺序到达，2 个初始化策略，8 个更新；每个任务有 <strong>4,096 个重置</strong>的审计库。</li><li>动作模型：<strong>a = clip[(θ_shared + θ_j)d, 0, 3]</strong>，终端位移 <strong>g_j(1+z)a</strong>，成功定义为绝对目标误差 ≤ 0.06。</li><li>候选生成：每任务 4 个候选，包括两个当前任务 ridge 拟合、一个回放拟合、一个任务局部拟合；线性动力学代理由 32 个独立模拟探测拟合。</li><li>资源：候选为小型 ridge 求解或局部拟合，<strong>无 GPU 使用</strong>，CPU 环境完整评估 50.9 秒，含 1,536 个种子/预算/方法/视图设置和 12,288 次决策。</li><li>评估种子：32 个固定评估种子，4 个试点种子；预算 <strong>B ∈ {200, 2000, 20000}</strong>；每项比较样本数 <strong>n = ⌊B/(2m)⌋</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：共同候选流用于隔离准入规则，闭环运行允许决策改变后续提议；每个任务事后在 4,096 重置有限总体上穷举审计。</li><li>主要指标：<strong>采纳率（coverage）</strong>、<strong>合同违反率</strong>、<strong>保留违反率</strong>、<strong>错过机会率</strong>、<strong>最终成功率</strong>、<strong>遗忘（百分点）</strong>。</li><li>共同流结果：成对门在 <strong>B=2000</strong> 采纳 <strong>81/256（31.6%）</strong>，在 <strong>B=20000</strong> 采纳 <strong>229/256</strong>，无观察到的合同违反；<strong>Hoeffding 门在所有预算下采纳 0</strong>；经验 Bernstein 在 B=2000 采纳 0，B=20000 采纳 195/256；所有三种门在 B=200 全部推迟。</li><li>闭环结果（B=2000，32 种子）：成对门采纳率 <strong>37.1%</strong>，错过机会 <strong>60.4%</strong>，最终成功率 <strong>59.6%</strong>，遗忘 0；回放更新最终成功率 <strong>100%</strong>，合同违反 <strong>5.9%</strong>（均为当前任务增益不足，非保留损失）；直接微调遗忘 <strong>79.9 个百分点</strong>。</li><li>动力学压力测试：线性代理拟合低动作转移后，自适应搜索在曲率 <strong>c=0.35</strong>、256 次查询时，代理成功率高估真实成功率 <strong>40.8/41.9 个百分点</strong>（复用/新鲜代理抽样）；c=0 时差距仅 0.15/0.32 个百分点，表明新鲜代理反馈不能消除选择乐观。</li><li>主要结论与局限：标准区间选择改变有效更新机会的存活，但结果仅为合成诊断，不支持资源最优或优于回放的实践主张；物理机器人、VLA 和 LIBERO 迁移验证尚未完成。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.10915/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">IMLE-VLA: Fast Single-Step Action Generation for Vision-Language-Action Policies</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.10706/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">HuRo: Robotizing Human Videos for Scalable VLA Pretraining</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
