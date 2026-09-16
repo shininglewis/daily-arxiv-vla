@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SWIM: Vision-Language-Grounded Soft Whole-Body Interactive Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 SWIM 框架，将初始 RGB 观测与语言指令映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。 研究目标是解决软体/连续体机器人中语言与视觉上下文难以转化为可执行全身驱动的问题，克服动作接口、全身状态与执行三方面的不匹配。 核心思路是以 SWIM-VLA 策略在虚拟环境中通过迭代 virtual rollout 生成完整指令序列，再借助软体本征柔顺性在物理机器人上开环执行。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.17035">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.17035.webp" alt="SWIM: Vision-Language-Grounded Soft Whole-Body Interactive Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 SWIM 框架，将初始 RGB 观测与语言指令映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">SWIM: Vision-Language-Grounded Soft Whole-Body Interactive Manipulation</h1>
+            <div class="detail-meta">2026-09-15 · <a href="http://arxiv.org/abs/2609.17035" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.17035" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.17035</span></div>
+            <p class="detail-summary">论文提出 SWIM 框架，将初始 RGB 观测与语言指令映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。 研究目标是解决软体/连续体机器人中语言与视觉上下文难以转化为可执行全身驱动的问题，克服动作接口、全身状态与执行三方面的不匹配。 核心思路是以 SWIM-VLA 策略在虚拟环境中通过迭代 virtual rollout 生成完整指令序列，再借助软体本征柔顺性在物理机器人上开环执行。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">南洋理工大学（Nanyang Technological University），新加坡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.17035/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 SWIM 框架，将初始 RGB 观测与语言指令映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。</p>
+  <ul class="reading-intro-points"><li>论文提出 SWIM 框架，将初始 RGB 观测与语言指令映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。</li><li>研究目标是解决软体/连续体机器人中语言与视觉上下文难以转化为可执行全身驱动的问题，克服动作接口、全身状态与执行三方面的不匹配。</li><li>核心思路是以 SWIM-VLA 策略在虚拟环境中通过迭代 virtual rollout 生成完整指令序列，再借助软体本征柔顺性在物理机器人上开环执行。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>南洋理工大学（Nanyang Technological University）</strong>，新加坡</li><li>**A*STAR 先进智能与计算研究院（Institute of Advanced Intelligence and Computing, A*STAR）**，新加坡</li><li><strong>穆罕默德·本·扎耶德人工智能大学（Mohamed bin Zayed University of Artificial Intelligence, MBZUAI）</strong>，阿布扎比，阿联酋</li><li><strong>新加坡国立大学（National University of Singapore）</strong>，新加坡</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>SWIM</strong> 框架，将初始 <strong>RGB 观测</strong>与<strong>语言指令</strong>映射为一整段可完整执行的动作指令序列，用于软体机器人的全身交互式操作。</li><li>研究目标是解决软体/连续体机器人中语言与视觉上下文难以转化为可执行全身驱动的问题，克服动作接口、全身状态与执行三方面的不匹配。</li><li>核心思路是以 <strong>SWIM-VLA</strong> 策略在虚拟环境中通过迭代 <strong>virtual rollout</strong> 生成完整指令序列，再借助软体本征柔顺性在物理机器人上开环执行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>SWIM</strong> 部署框架：通过虚拟 rollout 生成完整驱动指令序列，并依靠<strong>嵌入式机械智能</strong>（本征柔顺性）实现开环执行中的局部接触自适应，使 VLA 推理不进入物理执行回路。</li><li>提出 <strong>SWIM-VLA</strong> 策略：以 <strong>扩散动作头（diffusion action head）</strong>建模专家指令块的条件分布，捕捉同一任务下多种可行的全身驱动策略。</li><li>引入 <strong>Visual Soft Proprioception（VSP）</strong>：利用仿真中真值体锚点坐标作为辅助监督，促使共享多模态表征保留全身几何信息，从而在有限示教下更易学习。</li><li>在平面腱驱动软体机器人上系统评估 <strong>packing、reaching、grasping</strong> 三类任务，并进行 VSP 与扩散动作头的消融实验。</li><li>对比虚拟 rollout 执行与同一策略检查点的直接在线部署，验证部署策略对物理性能的关键影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>以 <strong>OpenVLA-OFT</strong> 为骨干，输入为俯视 RGB 图像、语言指令和当前<strong>腱长向量</strong>（低维本体感知），输出为 <strong>H 步（H=15）</strong> 双通道绝对电机力矩指令。</li><li>多模态编码器 <strong>f_θ</strong> 生成共享表征 <strong>h_t</strong>，分别送入扩散动作头 <strong>ε_ψ</strong> 与 VSP 头 <strong>v_φ</strong>。</li><li>扩散目标：对专家指令块加高斯噪声并训练网络预测噪声，采用噪声预测的 <strong>L2 损失</strong>建模条件动作分布。</li><li>VSP 目标：对沿机器人主干由近端到远端排序的 <strong>N_b=4</strong> 个体锚点预测归一化图像平面坐标，用<strong>平均欧氏定位误差</strong>监督。</li><li>联合训练目标为 <strong>L_train = L_act + λ_VSP · L_VSP</strong>，训练后丢弃 VSP 头，仅保留 <strong>f_θ</strong> 与 <strong>ε_ψ</strong>。</li><li>推理阶段：由初始 RGB 观测初始化虚拟场景（HSV 分割 + 平面标定映射物体位置），迭代查询策略并执行前 <strong>K=8</strong> 步命令，将各段按时间顺序拼接为完整序列 <strong>U</strong>，最后在物理机器人上开环执行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据来源：<strong>MuJoCo</strong> 中按专家示教流程生成的<strong>驱动空间示教轨迹</strong>，每类任务条件采集 <strong>4 条</strong>不同指令序列的成功轨迹。</li><li>训练数据规模：<strong>Packing 18 条件/72 条轨迹</strong>、<strong>Reaching 32 条件/128 条轨迹</strong>、<strong>Grasping 148 条件/592 条轨迹</strong>，共 <strong>792 条</strong>轨迹，包含同步 RGB、语言指令、腱长、驱动指令与体锚点坐标。</li><li>测试集：<strong>50</strong> 个 packing、<strong>50</strong> 个 reaching、<strong>100</strong> 个 grasping 的留出测试条件，每条件 1 次 rollout。</li><li>模型与训练配置：<strong>OpenVLA-OFT</strong> 骨干，<strong>LoRA rank 32</strong>，<strong>bfloat16</strong> 混合精度，<strong>AdamW</strong> 优化器，学习率 <strong>3×10⁻⁴</strong> 余弦衰减，批大小 <strong>4/GPU</strong>，训练 <strong>20,000</strong> 步。</li><li>训练算力：<strong>4 张 NVIDIA A100 GPU</strong>；策略推理时间约 <strong>700 ms/次查询</strong>（均值）。</li><li>其他超参：指令频率 <strong>10 Hz</strong>，扩散训练 <strong>50 步</strong>，DDIM 推理 <strong>10 步</strong>，<strong>λ_VSP=0.15</strong>，VSP 头为含 <strong>512 维隐层</strong>的两层 MLP（GELU 激活）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估对象为平面腱驱动螺旋连续体机器人 <strong>SpiRob</strong>（24 关节对数螺旋本体，双腱驱动），仿真与物理平台采用一致的几何、腱驱动接口与俯视单目观测配置。</li><li>对比方法：适配到相同驱动空间的 <strong>OpenVLA-OFT</strong> 基线，以及去掉 VSP、去掉扩散动作头的两组消融。</li><li>仿真成功率（留出测试条件）：<strong>SWIM-VLA 达 100% / 96% / 88%</strong>（Packing / Reaching / Grasping），显著优于 <strong>OpenVLA-OFT 的 90% / 72% / 52%</strong>。</li><li>消融结果：去掉 <strong>VSP</strong> 降至 98% / 90% / 78%；用确定性 <strong>L1 回归</strong>替代扩散头降至 94% / 84% / <strong>69%</strong>，说明扩散建模对接触丰富的抓取尤为关键。</li><li>空间分布分析显示，包络任务对初始位置鲁棒，而 reaching 与 grasping 对目标位置更敏感，去除 VSP 或扩散后外围区域失败显著增多。</li><li>物理实验（每策略每任务 20 次）：<strong>SWIM 成功率 100% / 80% / 75%</strong>，大幅优于同一检查点直接在线部署的 <strong>75% / 40% / 25%</strong>，表明虚拟 rollout 部署恢复了直接 sim-to-real 迁移中损失的大部分性能。</li><li>剩余仿真—现实差距被归因于场景初始化中的物体位置误差以及机器人材料与结构特性差异。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.17099/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">GeoLAM: Learning Geometry-Grounded Latent Actions from Unlabeled Human Videos</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.17021/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">sensVLA: Spatially-Grounded Vision-Language-Action Model for Autonomous Wheel Loader</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

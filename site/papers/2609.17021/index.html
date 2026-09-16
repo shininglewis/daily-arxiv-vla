@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>sensVLA: Spatially-Grounded Vision-Language-Action Model for Autonomous Wheel Loader - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 sensVLA，一种面向自主轮式装载机的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。 核心设计问题在于：BEV（鸟瞰图）特征应当注入网络的哪个位置；论文主张将空间几何直接送入动作专家，而非经语言解码器转递。 目标是在真实重型工程机械数据稀缺条件下，实现连续多执行器控制，并在相机退化时保持鲁棒性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.17021">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.17021.webp" alt="sensVLA: Spatially-Grounded Vision-Language-Action Model for Autonomous Wheel Loader" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 sensVLA，一种面向自主轮式装载机的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">sensVLA: Spatially-Grounded Vision-Language-Action Model for Autonomous Wheel Loader</h1>
+            <div class="detail-meta">2026-09-15 · <a href="http://arxiv.org/abs/2609.17021" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.17021" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.17021</span></div>
+            <p class="detail-summary">提出 sensVLA，一种面向自主轮式装载机的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。 核心设计问题在于：BEV（鸟瞰图）特征应当注入网络的哪个位置；论文主张将空间几何直接送入动作专家，而非经语言解码器转递。 目标是在真实重型工程机械数据稀缺条件下，实现连续多执行器控制，并在相机退化时保持鲁棒性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">sensmore GmbH（德国柏林）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.17021/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 sensVLA，一种面向自主轮式装载机的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。</p>
+  <ul class="reading-intro-points"><li>提出 sensVLA，一种面向自主轮式装载机的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。</li><li>核心设计问题在于：BEV（鸟瞰图）特征应当注入网络的哪个位置；论文主张将空间几何直接送入动作专家，而非经语言解码器转递。</li><li>目标是在真实重型工程机械数据稀缺条件下，实现连续多执行器控制，并在相机退化时保持鲁棒性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>sensmore GmbH</strong>（德国柏林）</li><li>作者：<strong>Gopi Krishna Erabati</strong>、<strong>Bjarne Johannsen</strong>、<strong>Angus Stewart</strong>、<strong>Vardeep Singh Sandhu</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>sensVLA</strong>，一种面向<strong>自主轮式装载机</strong>的视觉-语言-动作（VLA）架构，联合推理任务语义、第一视角视觉、本体感知与三维场景几何。</li><li>核心设计问题在于：<strong>BEV（鸟瞰图）特征应当注入网络的哪个位置</strong>；论文主张将空间几何直接送入动作专家，而非经语言解码器转递。</li><li>目标是在真实重型工程机械数据稀缺条件下，实现连续多执行器控制，并在相机退化时保持鲁棒性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>sensVLA</strong>：通过异构交叉注意力把激光雷达 BEV 特征直接路由至全可训练的动作专家，同时用 <strong>LoRA</strong> 适配的 VLM 提供任务级语义上下文，实现几何定位与语言推理的解耦。</li><li>将动作生成建模为<strong>时间分块 6 自由度预测上的流匹配速度回归</strong>，避免离散化伪影，支持连续多执行器控制。</li><li>设计分阶段、参数高效的训练策略：适配器解冻、状态历史 dropout、EMA 验证，缓解小数据下的过拟合。</li><li>在装载场景中，相比强相机-only 基线在精度上更优，且在模拟相机丢失时性能下降显著更小，表明空间接地既是精度杠杆也是容错杠杆。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>多模态输入</strong>：前/后 RGB 图像 + 简短文本任务提示 + 本体感知状态（含 10 步历史）+ 0.5 s 累积的前后激光雷达点云，输出 10 步未来 6 维动作块。</li><li><strong>VLM 分支</strong>：以 <strong>Qwen3-VL-2B-Instruct</strong> 为骨干，前后视图经冻结 ViT 编码器分词后拼接，与文本、状态 token 一起送入截断至前 <strong>14 层</strong>的语言解码器，输出上下文 <strong>C_vlm</strong>；状态向量 s∈R²⁰（纵向速度、偏航率、三个 IMU 的 6 通道读数）经 MLP 投影为额外 token。</li><li><strong>几何分支</strong>：0.5 s 前后激光雷达在前雷达坐标系融合，经<strong>冻结的 PointPillars</strong> 编码器提取多尺度特征金字塔，上采样拼接得到密集 <strong>BEV 特征图 B</strong>，展平并投影为空间 token（含位置编码），通过专用交叉注意力路径直接送入动作专家。</li><li><strong>动作专家</strong>：输入带噪动作块 x_t∈R^(10×6)，加位置编码与正弦流匹配时间编码；首层为双向自注意力，其余为因果层，采用<strong>异构交叉注意力</strong>——分别关注 VLM 上下文、BEV token（带近恒等初始化的门控残差）、以及两者拼接。</li><li><strong>流匹配头</strong>：t∼Beta(2,5) 线性插值构造带噪输入，按分量加权 MSE 回归真实速度场；推理时用 <strong>10 步中点 ODE 求解器</strong>从 t=1 积分到 t=0。</li><li><strong>训练细节</strong>：语言解码器截断至 14 层；LoRA（r=16，α=16，dropout 0.05）插入最后 8 个解码层；动作专家隐维 <strong>384</strong>、5 层 transformer（1 双向 + 4 因果）、8 头、dropout 0.2，关注 <strong>32</strong> 个 BEV token；状态历史压成 8 个重采样 Perceiver token；第一阶段冻结 LoRA 预热动作专家；正则化含 BEV token dropout 与状态历史 dropout。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用在<strong>生产轮式装载机</strong>上采集的<strong>专有真实数据集</strong>，含激光雷达、RGB 相机与 IMU，按控制时间戳做时间同步。</li><li>场景分两类：<strong>料堆装载</strong>与<strong>地下隧道行驶</strong>；按录制序列级别（而非帧级）划分数据集以防时间近邻泄漏。</li><li>数据规模：<strong>200K 训练 chunk</strong> 与 <strong>40K 验证 chunk</strong>。</li><li>动作规格：分块长度 10 步、动作步幅 5，对应 25 Hz 下 <strong>2 秒</strong>预测时域。</li><li>训练配置：batch size 16 + 2 步梯度累积（有效 32）；AdamW，专家/BEV 头学习率 1e-5、BEV 重采样器 3e-6、LoRA 1e-6；余弦衰减、5% warm-up、权重衰减 1e-3；bf16 混合精度训练 <strong>30 个 epoch</strong>。</li><li>论文未明确给出 GPU/TPU 型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：在 40K 验证 chunk 上做逐步物理量 RMSE 评估，含整体、<strong>Loading</strong>（装载）与 <strong>Driving</strong>（行驶）两个子集；基线为同架构去掉 BEV 通路、仅用前后 RGB + 文本 + 本体感知的相机-only 模型。</li><li><strong>主要指标</strong>：纵向速度 RMSE v_x（m/s）、位移误差 dx+dy（m），以及输入消融下的 z-归一化动作空间平均 RMSE（Agg）与相对各自 full 锚点的比值 Δ×（越低越好）。</li><li><strong>整体精度</strong>：sensVLA 将 v_x RMSE 从 <strong>1.134</strong> 降至 <strong>0.886</strong> m/s（<strong>-21.9%</strong>），dx RMSE 从 9.52 cm 降至 8.98 cm（-5.7%），转向与横向 dy 误差基本持平，整体达<strong>逐步平价</strong>。</li><li><strong>装载场景提升最显著</strong>：v_x RMSE 从 <strong>0.996</strong> 降至 <strong>0.717</strong> m/s（<strong>-28.0%</strong>），dx RMSE 从 9.27 降至 8.40 cm（<strong>-9.4%</strong>）；行驶子集 v_x 也从 1.281 降至 1.054 m/s（-17.7%）。</li><li><strong>长时域滚动</strong>：装载组 2 秒终点位移误差从 <strong>0.538</strong> m 降至 <strong>0.521</strong> m（-3.1%），逐步增益在积分下未被冲淡。</li><li><strong>鲁棒性消融</strong>：相机丢失（no-cam）时基线退化 <strong>2.34×</strong>，sensVLA 仅退化 <strong>1.67×</strong>；v_x RMSE 基线从 1.13 爆炸至 9.05 m/s，sensVLA 仅从 0.89 升至 2.47 m/s（塌缩幅度小 3.7 倍）；关闭 BEV（no-bev）为 1.18×，说明 BEV 被实际使用但非唯一承载模态；轻微图像模糊与状态历史缺失下 sensVLA 退化也更小。</li><li><strong>定性结果</strong>：在料堆前向接近与铲斗交互后倒车两个验证帧上，预测 2 秒自车路径与真值轨迹保持厘米级吻合，即使前相机被物料遮挡或后方无光照。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.17035/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SWIM: Vision-Language-Grounded Soft Whole-Body Interactive Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.16864/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TEMPO: Learning Temporal Context for Dynamic Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

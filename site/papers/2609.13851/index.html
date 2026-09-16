@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReWeight: Leveraging Human Data for VLA Post-Training via Demonstration Retrieval and Sample Weighting - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ReWeight 框架，通过示教级检索（demonstration-level retrieval）与样本级加权（sample-level weighting），将大规模第一人称人类演示数据用于 VLA（视觉-语言-动作）模型的后训练。 核心问题是：面向特定机器人与任务的 VLA 后训练需要域内数据，而机器人数据采集成本高昂；人类数据虽易得，但人类与机器人之间存在跨具身差异，直接混合两类数据会引入干扰甚至降低策略性能。 论文将人类数据的使用形式化为一个联合的检索-加权问题：即（i）哪些人类示教应当被迁移，（ii）每条被选中的样本应以多大权重参与后训练。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.13851">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #3f6ee8; --cover-to: #6fa7ff; --cover-spot: #d5e6ff; --cover-ink: #f7fbff; --cover-muted: rgba(247, 251, 255, 0.82); --cover-chip: rgba(247, 251, 255, 0.16); --cover-stroke: rgba(247, 251, 255, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">ReWeight: Leveraging Human Data for VLA Post-Training via Demonstration Retrieval and Sample Weighting</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ReWeight: Leveraging Human Data for VLA Post-Training via Demonstration Retrieval and Sample Weighting</h1>
+            <div class="detail-meta">2026-09-12 · <a href="http://arxiv.org/abs/2609.13851" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.13851" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.13851</span></div>
+            <p class="detail-summary">论文提出 ReWeight 框架，通过示教级检索（demonstration-level retrieval）与样本级加权（sample-level weighting），将大规模第一人称人类演示数据用于 VLA（视觉-语言-动作）模型的后训练。 核心问题是：面向特定机器人与任务的 VLA 后训练需要域内数据，而机器人数据采集成本高昂；人类数据虽易得，但人类与机器人之间存在跨具身差异，直接混合两类数据会引入干扰甚至降低策略性能。 论文将人类数据的使用形式化为一个联合的检索-加权问题：即（i）哪些人类示教应当被迁移，（ii）每条被选中的样本应以多大权重参与后训练。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">香港大学机械工程系（The University of Hong Kong, Department o…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.13851/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ReWeight 框架，通过示教级检索（demonstration-level retrieval）与样本级加权（sample-level weighting），将大规模第一人称人类演示数据用于 VLA（视觉-语言-动作）模型的后训练。</p>
+  <ul class="reading-intro-points"><li>论文提出 ReWeight 框架，通过示教级检索（demonstration-level retrieval）与样本级加权（sample-level weighting），将大规模第一人称人类演示数据用于 VLA（视觉-语言-动作）模型的后训练。</li><li>核心问题是：面向特定机器人与任务的 VLA 后训练需要域内数据，而机器人数据采集成本高昂；人类数据虽易得，但人类与机器人之间存在跨具身差异，直接混合两类数据会引入干扰甚至降低策略性能。</li><li>论文将人类数据的使用形式化为一个联合的检索-加权问题：即（i）哪些人类示教应当被迁移，（ii）每条被选中的样本应以多大权重参与后训练。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>香港大学机械工程系</strong>（The University of Hong Kong, Department of Mechanical Engineering）：Chenwei Wang、Dianye Huang、Match W.L. Ko、Zhongliang Jiang（通讯作者）</li><li><strong>中国电信人工智能研究院 TeleAI</strong>：Chenjia Bai</li><li><strong>西北工业大学深圳研究院</strong>：Chenjia Bai</li><li>项目主页：<strong>https://reweight-vla.github.io/</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ReWeight</strong> 框架，通过<strong>示教级检索（demonstration-level retrieval）</strong>与<strong>样本级加权（sample-level weighting）</strong>，将大规模第一人称人类演示数据用于 <strong>VLA（视觉-语言-动作）模型的后训练</strong>。</li><li>核心问题是：面向特定机器人与任务的 VLA 后训练需要域内数据，而机器人数据采集成本高昂；人类数据虽易得，但人类与机器人之间存在<strong>跨具身差异</strong>，直接混合两类数据会引入干扰甚至降低策略性能。</li><li>论文将人类数据的使用形式化为一个<strong>联合的检索-加权问题</strong>：即（i）哪些人类示教应当被迁移，（ii）每条被选中的样本应以多大权重参与后训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次将 VLA 后训练中人类数据的使用建模为<strong>检索与加权联合问题</strong>，明确区分"迁移哪些人类示教"与"每个样本施加多大影响"两个决策。</li><li>提出 <strong>ReWeight</strong> 框架，学习统一的<strong>跨具身视觉运动表征（visuomotor representation）</strong>，据此完成示教级检索并按相关性推导样本级连续权重，实现异构人类数据的选择性利用。</li><li>设计了<strong>具身感知的人类动作精炼</strong>流程：用 <strong>LeVR</strong> 将人手运动学重定向到机器人动作空间，再用<strong>残差强化学习策略</strong>修正速度、加速度等动力学约束违背。</li><li>基于<strong>最优传输（OT）</strong>度量人类与机器人数据在示教级与样本级的差异，并引入<strong>时序错配惩罚</strong>（soft-DTW 对齐）提升跨具身对应质量。</li><li>在 <strong>8 个仿真任务</strong>与 <strong>4 个真实世界任务</strong>上验证，同时覆盖 clean 与 randomized 两种设置，证明选择性检索与细粒度加权优于随机混合。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>具身感知人类动作精炼</strong>：使用 <strong>LeVR</strong> 将估计的人手运动学映射到机器人动作空间（夹爪状态由拇指-指尖距离推断），再训练<strong>残差 RL 策略</strong>（actor-critic + <strong>PPO</strong>，参考状态初始化 RSI）预测残差修正 \(c_t\) 与非负门控 \(g_t\)，奖励由位姿跟踪、速度匹配与正则项构成。</li><li><strong>跨具身视觉运动编码器</strong>：视觉编码器由 <strong>ResNet-18</strong> backbone + 时序 <strong>Transformer</strong> 组成，编码长度为 δ=8 的图像序列。</li><li><strong>视觉编码器两阶段训练</strong>：warm-up 阶段用 <strong>SwAV</strong> 空间一致性损失 + 时间对比损失（<strong>TCN</strong>）+ 时序循环一致性损失（<strong>TCC</strong>）；对齐阶段加入<strong>域对抗损失</strong>（抑制具身特有线索）与<strong>基于 OT 的对应损失</strong>。</li><li><strong>视觉运动融合</strong>：基于 <strong>InfoVAE</strong> 架构，将视觉表征与未来动作块（L=20，相对初始位姿、保留夹爪状态）分别经 MLP 编码后融合为隐变量 \(z\)；引入阶段预测头与辅助损失，拉近同阶段跨域表征、推远不同阶段表征（margin μ=0.3）。</li><li><strong>最优传输差异度量</strong>：使用熵正则化的 <strong>Wasserstein 距离</strong>（<strong>Sinkhorn</strong> 算法求解），成本矩阵融合视觉特征余弦距离与基于 soft-DTW 的时序错配惩罚 \(Q_{i,j}\)。</li><li><strong>示教级检索</strong>：对每条人类示教计算其对所有机器人示教的差异向量，取 <strong>K=5</strong> 个最小差异的均值作为检索分数，排序后选出 <strong>M</strong> 条构建 \(S_h^*\)，形成 <strong>1:1</strong> 人机数据比。</li><li><strong>样本级加权</strong>：计算每条人类样本对 K 个最近机器人示教的帧级差异均值 \(d_t^{(i)}\)，通过 \(d_{\max}-d_t^{(i)}\) 转为相似度并归一化为 \(w_t^{(i)}=\alpha+(1-\alpha)\cdot\tilde w/\max\tilde w\)，其中 \(\alpha\) 为权重校准参数。</li><li><strong>后训练损失</strong>：机器人样本以权重 1、人类样本以 \(w_j\) 加权求和，再按混合数据集规模归一化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>RoboTwin 2.0</strong>，包含 <strong>8 个双臂操作任务</strong>（4 个堆叠、3 个抓取放置、1 个抽屉操作），AgileX 平台。</li><li>人类数据来源：<strong>EgoDex</strong> 第一人称人类演示数据集。</li><li>真机平台：<strong>DoBot 双臂平台</strong>（MuJoCo 用于残差策略训练），<strong>4 个真实世界任务</strong>。</li><li>VLA 骨干模型：<strong>π0.5</strong>，所有模型从同一预训练 checkpoint 初始化。</li><li>计算资源：视觉运动编码器训练使用<strong>单张 NVIDIA RTX 5090 GPU</strong>；VLA 后训练使用<strong>两张 NVIDIA H100 GPU</strong>。</li><li>训练超参：编码器学习率 1e-4、批大小 64（warm-up 20 epochs、对齐 260 epochs、视觉运动编码 500 epochs）；VLA 后训练学习率 2.5e-5、批大小 64、仿真 20k 步/真机 40k 步；残差策略学习率 1e-4、批大小 64、折扣因子 0.95、每任务 50k 环境步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：RoboTwin 2.0 仿真（每任务 100 次试验）与 DoBot 真机，均覆盖 <strong>clean</strong> 与 <strong>randomized</strong> 两种设置。</li><li><strong>主要指标</strong>：任务<strong>成功率（Success Rate）</strong>；编码器消融另用<strong>阶段准确率（Stage Acc.）</strong>与<strong>关键帧距离（KF Dist.）</strong>衡量跨具身对应质量。</li><li><strong>仿真结果</strong>：ReWeight 将 π0.5 平均成功率从仅用机器人数据的 <strong>39%</strong>（随机混合人机数据为 44%）提升至 <strong>57%</strong>；clean 设置下平均 <strong>0.57</strong>，randomized 设置下平均 <strong>0.42</strong>，均优于 All₁.₀、Random₁.₀ 及 Retrieval₀.₄/₀.₇/₁.₀ 等基线。</li><li><strong>真实世界结果</strong>：ReWeight 取得平均 <strong>68.8%</strong> 成功率，分别比仅机器人数据（40.0%）与随机混合基线高出 <strong>28.8%</strong> 和 <strong>13.8%</strong>。</li><li><strong>关键结论</strong>：无差别混合人类数据仅在 clean 设置下带来 4–5% 提升，但在 randomized 设置下反而下降 5%/2%，说明数据相关性至关重要；加入检索后，Retrieval₀.₄ 在 randomized 设置下比 Random₁.₀ 高 6%；ReWeight 又在最强均匀权重变体（Retrieval₁.₀）基础上再提升 5%（clean）与 2%（randomized）。</li><li><strong>消融结果</strong>：完整视觉运动编码器平均 <strong>Stage Acc. 0.93 / KF Dist. 4.1</strong>，明显优于仅用视觉特征（0.83 / 10.0）与去除时序错配惩罚（0.86 / 8.0）的变体，验证未来动作块与时序惩罚设计的有效性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.13984/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">What Makes an Efficient VLA? Navigating Action-Head Design, Scaling, and Latency</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.13812/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GeomVLA: Unifying Scene, Motion, and Action in 3D</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

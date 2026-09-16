@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XPACE: Joint World and Action Modeling from Heterogeneous Experience - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 XPACE，一个统一的具身世界模型（unified embodied world model），同时充当 world action model（联合预测可执行机器人动作与未来视频）和 world simulator（在给定动作下预测视觉后果） 核心洞察：视频预测既能将异构经验（人类视频、人类动作标注、机器人遥操作）连接到动作学习，又能生成新的经验用于策略自我改进 旨在解决三个问题：(Q1) 模型应从什么经验中学习；(Q2) 单一模型如何同时支持动作生成与仿真；(Q3) 训练如何把这两项能力转化为机器人控制与后续自我提升 针对模仿学习中偏离专家轨迹时缺乏纠错监督（distribution shift）的问题，利用学习到的仿真器合成恢复（recovery）数据" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.17372">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.17372.webp" alt="XPACE: Joint World and Action Modeling from Heterogeneous Experience" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 XPACE，一个统一的具身世界模型（unified embodied world model），同时充当 world action model（联合预测可执行机器人动作与未来视频）和 world simulator（在给定动作下预测视觉后果）</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">XPACE: Joint World and Action Modeling from Heterogeneous Experience</h1>
+            <div class="detail-meta">2026-09-15 · <a href="http://arxiv.org/abs/2609.17372" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.17372" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.17372</span></div>
+            <p class="detail-summary">提出 XPACE，一个统一的具身世界模型（unified embodied world model），同时充当 world action model（联合预测可执行机器人动作与未来视频）和 world simulator（在给定动作下预测视觉后果） 核心洞察：视频预测既能将异构经验（人类视频、人类动作标注、机器人遥操作）连接到动作学习，又能生成新的经验用于策略自我改进 旨在解决三个问题：(Q1) 模型应从什么经验中学习；(Q2) 单一模型如何同时支持动作生成与仿真；(Q3) 训练如何把这两项能力转化为机器人控制与后续自我提升 针对模仿学习中偏离专家轨迹时缺乏纠错监督（distribution shift）的问题，利用学习到的仿真器合成恢复（recovery）数据</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文基于 XPENG（小鹏） 的 IRON 人形机器人平台开展研究，真实机器人实验在 IRON-R01…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.17372/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 XPACE，一个统一的具身世界模型（unified embodied world model），同时充当 world action model（联合预测可执行机器人动作与未来视频）和 world simulator（在给定动作下预测视觉后果）</p>
+  <ul class="reading-intro-points"><li>提出 XPACE，一个统一的具身世界模型（unified embodied world model），同时充当 world action model（联合预测可执行机器人动作与未来视频）和 world simulator（在给定动作下预测视觉后果）</li><li>核心洞察：视频预测既能将异构经验（人类视频、人类动作标注、机器人遥操作）连接到动作学习，又能生成新的经验用于策略自我改进</li><li>旨在解决三个问题：(Q1) 模型应从什么经验中学习；(Q2) 单一模型如何同时支持动作生成与仿真；(Q3) 训练如何把这两项能力转化为机器人控制与后续自我提升</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文基于 <strong>XPENG（小鹏）</strong> 的 <strong>IRON</strong> 人形机器人平台开展研究，真实机器人实验在 <strong>IRON-R01-1.11</strong> 机型上完成</li><li>论文 HTML 原文中未完整给出作者列表与具体机构署名（正文以“XPENG’s IRON humanoid robot”指代部署平台，并设有致谢（Acknowledgement）章节）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>XPACE</strong>，一个统一的具身世界模型（unified embodied world model），同时充当 <strong>world action model</strong>（联合预测可执行机器人动作与未来视频）和 <strong>world simulator</strong>（在给定动作下预测视觉后果）</li><li>核心洞察：视频预测既能将异构经验（人类视频、人类动作标注、机器人遥操作）连接到动作学习，又能生成新的经验用于策略自我改进</li><li>旨在解决三个问题：<strong>(Q1)</strong> 模型应从什么经验中学习；<strong>(Q2)</strong> 单一模型如何同时支持动作生成与仿真；<strong>(Q3)</strong> 训练如何把这两项能力转化为机器人控制与后续自我提升</li><li>针对模仿学习中偏离专家轨迹时缺乏纠错监督（distribution shift）的问题，利用学习到的仿真器合成恢复（recovery）数据</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出四层<strong>数据金字塔（data pyramid）</strong>：L1 野外自我中心视频、L2 人类视频–动作数据、L3 任务/外观对齐的 bridge 数据、L4 机器人遥操作，另设仅用于仿真训练的失败/恢复集 <strong>F</strong></li><li>设计<strong>非对称 Mixture-of-Transformers（MoT）架构</strong>：共享视频主干同时服务于策略与仿真，动作 Transformer 从视频骨干的多层视觉特征读出动作，动作损失梯度可回传进入视频主干</li><li>提出<strong>由粗到细（coarse-to-fine）联合训练范式</strong>：Stage I 纯视频预训练，Stage II 分 II-a/II-b/II-c 三阶段逐步加重目标机器人数据并保留人类 replay</li><li>提出 <strong>Stage III-sim：chunk-wise self-gradient forcing（SGF）</strong>，使仿真器适应自生成上下文，提升自回归长时程预测稳定性并降低推理步数</li><li>提出 <strong>Stage III-policy：基于 DAgger 的恢复数据合成与策略微调</strong>，在专家轨迹周围合成“偏离–恢复”轨迹并做一致性过滤，实现世界模型驱动的策略自我改进</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>动作模式</strong>：由视觉历史、当前状态、语言指令条件下联合预测未来视频与可执行动作块，动作时为 <strong>N_a = 16</strong>，具身特定输入/输出投影 + 共享动作 Transformer</li><li><strong>仿真模式</strong>：由视觉历史、预设的 <strong>2D 骨架序列 κ</strong> 与 <strong>相机位姿 c_cam</strong> 条件下预测未来视频，动作 Transformer 不激活，不使用语言指令</li><li><strong>Chunk-wise 预测</strong>：冻结视频 VAE 编码出初始锚 latent <strong>z₀</strong> 与 M 个 chunk，每个 chunk 含 4 个 latent 帧（对应 16 个视频帧），采用 chunk 内双向、跨 chunk 因果的注意力</li><li><strong>骨架条件注入</strong>：对比 <strong>AdaLN</strong>、<strong>cross-attention</strong>、<strong>channel concat</strong>、<strong>token addition</strong> 四种方式，最终默认采用 <strong>token addition</strong>（骨架 patch embedding 零初始化以保护预训练表示）</li><li><strong>训练目标</strong>：视频与动作均采用 <strong>flow-matching</strong> 损失（L_v、L_a），仿真更新仅优化 L_v，视频–动作更新优化 L_v + L_a 且权重相等</li><li><strong>语言条件</strong>：多层级 caption（原始任务指令、稠密描述、原子动作指令、LLM 生成的任务改写），训练中按阶段调整采样比例，从稠密描述逐步过渡到部署风格的任务指令</li><li><strong>跨具身动作 schema</strong>：统一表示末端执行器位姿、手部关节运动与躯干/相机位姿，保留手部 articulation，源特定归一化</li><li><strong>SGF 细节</strong>：8 步 ODE 采样器自回归 rollout，使用 stop-gradient 截断生成前缀梯度，保留 ℓ2 回归损失而非 DMD 分布匹配，以确保对给定控制的样本级对应</li><li><strong>恢复数据合成</strong>：选择 pivot 帧与位移最大的手臂，沿采样单位方向 v_d 以步长 μ 施加偏差、偏差视野 k ∈ {8, 16}，采用三角波函数在第 2k 帧回到 pivot；仅用世界模型渲染中间 2k 帧，前后分别拼接真实视频前缀与专家尾部</li><li><strong>一致性过滤</strong>：以 <strong>DINOv3</strong> 特征相似度、深度加权 <strong>PSNR</strong> 与 <strong>SSIM</strong> 构成三项质量指标，要求恢复端点相对偏差端点更接近专家（Δq > 0）且超过阈值 τq，并按分位数综合打分、任务均衡采样</li><li><strong>实时部署</strong>：流式 VAE 编码（每 4 帧视频产生 1 个 latent）、重叠视野拼接（overlapping-horizon stitching）、以约 10 Hz 发布控制指令，并通过衰减校正平滑衔接处</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练语料：约 <strong>5,000 小时</strong>具身视频，组织为 L1–L4 四层数据金字塔 + 失败/恢复集 F</li><li>评测数据集：19 个子集，均独立于训练数据，分为 <strong>in-distribution (ID)</strong> 与 <strong>out-of-distribution (OOD)</strong>，涵盖场景外观、物体位姿、干扰物、指令、空间布局、任务组成与动作原语的变化</li><li>视频预训练骨干：基于 <strong>Wan2.2-TI2V-5B</strong> 初始化（仿真消融实验中四种条件注入变体均从该模型初始化）</li><li>训练资源：原文（截断部分）未给出具体 GPU/TPU 数量、显存与训练时长等信息</li><li>输入分辨率：仿真使用 <strong>480 × 832</strong>（高 × 宽）图像</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评测维度分为两类：<strong>仿真视频预测质量</strong>与<strong>真实机器人策略性能</strong>，指标包括 <strong>PSNR</strong>、<strong>SSIM</strong>、<strong>OFS（光流相似度）</strong>、<strong>DINO 特征相似度</strong>，以及推理延迟与显存</li><li>骨架条件注入消融：<strong>token addition</strong> 在 ID 与 OOD 两分片上均取得最高 PSNR、SSIM 与 DINO，OOD OFS 亦最高；相比 AdaLN 在 ID 上提升 <strong>0.95 dB</strong>、OOD 上提升 <strong>1.11 dB</strong>，且不增加推理开销</li><li>长时程自回归评测：<strong>Baseline + SGF</strong> 在 97 帧（100 ID / 52 OOD）与 193 帧（22 ID / 11 OOD）设置下评估；SGF 模型每 chunk 仅需 <strong>8 步 ODE 采样</strong>，而基线需 <strong>50 步</strong>，在提升预测保真度的同时显著降低推理成本</li><li>真实机器人评测：在 <strong>IRON-R01-1.11</strong> 上以任务进度分数与成功率衡量，每个任务每个方法 <strong>20 次试验</strong>并匹配初始条件</li><li>主要结论：异构训练（人类视频 + 机器人数据）提升了策略鲁棒性，并实现人类可观察技能向机器人示教中未出现任务的迁移；人类监督在机器人适配阶段的持续存在有助于抗过拟合与抗遗忘</li><li>策略自我改进：合成恢复数据在 Stage III-policy 微调中占训练混合的 <strong>8%</strong>，其余来自 Phase II-c 数据配方，真实机器人任务完成率获得进一步提升，证明学到的仿真器可用于改进模型自身策略</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.17524/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Modality-Autoregressive World-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.17210/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FluxVLA Engine: A One-Stop VLA Engineering Platform for Embodied Intelligence</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

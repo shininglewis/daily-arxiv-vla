@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 World-Action Model（WAM），面向轮式装载机连续堆料挖掘的闭环决策框架。 核心目标是把世界模型从“预测器”扩展为执行时决策模块：在执行每个铲掘动作前预测多个候选的后果，并据此选择动作。 要解决的问题是：连续铲掘会不断改变地形，后续动作受前序动作影响，因此需要在不可逆地形改变前评估候选动作的装载量与地形变化。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.15382">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.15382.webp" alt="From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 World-Action Model（WAM），面向轮式装载机连续堆料挖掘的闭环决策框架。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">From Prediction to Decision: World-Model-Guided Action Selection for Continuous Pile Excavation</h1>
+            <div class="detail-meta">2026-09-14 · <a href="http://arxiv.org/abs/2609.15382" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.15382" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.15382</span></div>
+            <p class="detail-summary">论文提出 World-Action Model（WAM），面向轮式装载机连续堆料挖掘的闭环决策框架。 核心目标是把世界模型从“预测器”扩展为执行时决策模块：在执行每个铲掘动作前预测多个候选的后果，并据此选择动作。 要解决的问题是：连续铲掘会不断改变地形，后续动作受前序动作影响，因此需要在不可逆地形改变前评估候选动作的装载量与地形变化。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">15 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Tsing-AI (Shanghai) Technology Co., Ltd.：Ailing Zha…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.15382/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 World-Action Model（WAM），面向轮式装载机连续堆料挖掘的闭环决策框架。</p>
+  <ul class="reading-intro-points"><li>论文提出 World-Action Model（WAM），面向轮式装载机连续堆料挖掘的闭环决策框架。</li><li>核心目标是把世界模型从“预测器”扩展为执行时决策模块：在执行每个铲掘动作前预测多个候选的后果，并据此选择动作。</li><li>要解决的问题是：连续铲掘会不断改变地形，后续动作受前序动作影响，因此需要在不可逆地形改变前评估候选动作的装载量与地形变化。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Tsing-AI (Shanghai) Technology Co., Ltd.</strong>：Ailing Zhang、Fan Gao、Song Zhang、Kawa Leong、Ziyu Wu</li><li><strong>Shanghai Jiao Tong University</strong>：Ailing Zhang、Kawa Leong、Yafei Wang</li><li><strong>Shanghai Ocean University</strong>：Ziyu Wu</li><li>通讯作者：<strong>Song Zhang</strong>（song.zhang@zex-t.com）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>World-Action Model（WAM）</strong>，面向轮式装载机连续堆料挖掘的闭环决策框架。</li><li>核心目标是把世界模型从“预测器”扩展为执行时决策模块：在执行每个铲掘动作前预测多个候选的后果，并据此选择动作。</li><li>要解决的问题是：连续铲掘会不断改变地形，后续动作受前序动作影响，因此需要在不可逆地形改变前评估候选动作的装载量与地形变化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Proposal–Selection WAM</strong> 闭环决策过程：扩散生成多模态铲掘候选，几何可行性过滤，冻结世界模型批量评估，执行预测装载量最大的候选，并从新观测地形重规划。</li><li>提出 <strong>physics-structured action-conditioned predictor</strong>：使用地形高度、表面法线通道、轨迹导出的扫掠掩膜与挖掘深度图，联合预测 signed terrain change 与 loaded volume。</li><li>实现 <strong>real-world closed-loop deployment</strong>：将完整 perception–proposal–prediction–selection–execution 循环部署到全尺寸轮式装载机，ROS2/TensorRT 在 <strong>Jetson AGX Orin</strong> 上以 72.4 ms 处理 5 个候选。</li><li>在 <strong>MinSlope</strong> 32 个 geometry-disjoint 测试 episode 上，加入世界模型排序后平均 scoop 数从 651.8 降至 540.6（降低 17.1%），保持 32/32 完成，并改善全部 32 个配对 episode。</li><li>系统级对比中，WAM 完成 32/32 episode，而独立训练的 <strong>SAC</strong> 策略完成 29/32；同时在额外仿真数据与真实装载机数据上验证预测接口的可学习性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>动作表示为 7 维归一化向量：approach heading、lateral offset、approach distance、cutting length、maximum cutting depth、speed scale、bucket-curl angle，并映射到物理范围。</li><li>世界模型基于 <strong>DigNet++ Large</strong>，10.48 M 参数双头网络；输入为 10 m×10 m ROI、50×50 网格的 6 通道数据；输出 signed terrain change 与 loaded volume。</li><li>训练损失由加权 terrain L1 损失与 loaded-volume SL1 损失组成，changed pixels 权重为其他有效像素的 5 倍，总损失为 <strong>L = L_H + λ_V L_V</strong>，λ_V=1。</li><li>扩散动作提案使用条件 DDPM，余弦 schedule，<strong>T=50</strong> 步；两阶段训练包括 coverage pretraining 与 productive fine-tuning，并按装载体积分层采样。</li><li>每轮采样生成 16 个 proposal，最多 8 轮，接受 5 个合法且 distinct 的候选，动作空间距离阈值 δ_a=0.02。</li><li>几何可行性过滤定义 <strong>A_legal(s_t)</strong>：动作数值有限且在 [-1,1]，关键点位于工作空间，approach corridor 高度不超过 0.25 m，容量限制 swept volume 至少 0.05 m³，entry-point 位移通常不超过 9 m。</li><li><strong>Geometric-5</strong> 构造五个确定性候选：锚点、短/浅切割、长/深切割、左/右工作面偏移；WAM 对五个 admitted candidates 单批次评估，并执行预测装载量最大的动作。</li><li>执行后观察新地形并重复决策循环，直到剩余堆料体积不超过初始体积的 10%。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟数据集包括 <strong>MinSlope</strong>、<strong>Chrono</strong>、<strong>Isaac Sim</strong>、<strong>Newton MPM</strong>；其中 <strong>MinSlope</strong> 用于主实验、预测器消融和连续 depletion 评估。</li><li>数据规模：<strong>MinSlope</strong> 72,241 train / 25,014 test；<strong>Chrono</strong> 506/127；<strong>Isaac Sim</strong> 1,672/188；<strong>Newton MPM</strong> 662/142；另有 MinSlope validation set 25,349 samples。</li><li>真实数据集来自 <strong>XCMG XC958EV electric wheel loader</strong>，额定载荷 5.5 t，用于港口铁矿石粉堆转运；样本数 1,015 train / 130 test。</li><li>真实平台传感器包括 RTK、3 个 LiDAR、3 个鱼眼相机、boom/bucket 角度传感器、前向针孔相机。</li><li>世界模型 <strong>DigNet++ Large</strong> 参数量为 10.48 M；SAC baseline 的 actor 与 critic 各使用两层 256 单元隐藏层。</li><li>世界模型使用 AdamW，batch size 32，初始学习率 10^-3，最多 100 epochs；SAC 训练 300,000 环境交互，batch size 256，discount 0.995，replay buffer 250,000，warm-up 20,000 步。</li><li>部署硬件为 <strong>NVIDIA Jetson AGX Orin 64 GB</strong>；架构效率 profiling 使用 <strong>NVIDIA GeForce RTX 3070 Laptop GPU</strong>，FP32，batch size 5。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>MinSlope</strong> 32 个 geometry-disjoint test episodes，任务目标为剩余体积降至初始值的 10% 以下，单 episode 上限 1600 scoops，失败按右删失处理。</li><li>主要指标包括 success、<strong>N_10</strong>（达到 10% 剩余体积所需 scoop 数）、terminal residual 百分比、mean loaded volume；预测指标包括 terrain MAE、changed-region MAE、changed-region IoU、loaded-volume MAE。</li><li>Diffusion-direct 达到 32/32，mean N_10 为 <strong>651.8</strong>，mean loaded volume 为 <strong>4.03 m³</strong>；<strong>Diffusion-5+WM（WAM）</strong> 达到 32/32，mean N_10 降至 <strong>540.6</strong>（降低 <strong>17.1%</strong>），mean loaded volume 提升至 <strong>4.78 m³</strong>，全部 32 个配对 episode 均有改善。</li><li>几何候选对比中，Geometric-heuristic 完成 15/32，mean N_10 740.1，terminal residual 22.61%，mean load 2.36 m³；<strong>Geometric-5+WM</strong> 完成 22/32，mean N_10 549.2，terminal residual 16.80%，mean load 3.66 m³。</li><li>系统级对比中，<strong>WAM 完成 32/32</strong>，<strong>SAC 完成 29/32</strong>；SAC 的 mean N_10 为 596.2，terminal residual 11.00%，mean load 4.19 m³。</li><li>空间支持消融显示，ROI-10 相比 ROI-5 将 changed-region MAE 降低约 43%、loaded-volume MAE 降低约 34%，IoU 从 0.87 提升至 0.93；Global-60 无额外精度收益且推理延迟为 23.73 ms。</li><li>输入消融显示，加入 action-derived sweep 与 dig-depth maps 后，terrain、changed-region、loaded-volume MAE 分别降低 43.20%、41.60%、51.31%；再加入 surface normals 带来小幅额外改善。</li><li>架构比较中，<strong>DigNet++ Large</strong> 取得最高 IoU 0.928，terrain MAE 4.237 mm，参数 10.48 M，batch-5 latency 4.280 ms；Terrain-JEPA terrain MAE 略低但参数更多、推理更慢且 IoU 略低。</li><li>域特定评估结果：MinSlope IoU 0.928、terrain MAE 0.004 m、volume MAE 0.312 m³；Chrono 0.695/0.048 m/0.218 m³；Isaac Sim 0.692/0.004 m/0.066 m³；Newton MPM 0.641/0.001 m/0.003 m³；Real loader 0.640/0.054 m/0.148 m³。</li><li>部署结果显示，ROS2/TensorRT 混合精度 C++ 管线在 <strong>Jetson AGX Orin 64 GB</strong> 上处理 5 个候选：预处理 60.6 ms、推理 4.1 ms、后处理 7.7 ms，总延迟 <strong>72.4 ms</strong>。</li><li>局限：定量增益主要建立在 <strong>MinSlope</strong> 的 height-field 动态上；真实装载机试验证明闭环可行性，但尚不足以支持统计显著的效率增益；预测器按域单独训练，不声称零样本迁移；选择器只排序即时预测装载量，没有显式地形变化 look-ahead。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.15570/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DIDO: Distilling Interaction-Centric Dynamics into One-Step Denoising for World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.15169/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GRAVA: Grounded Reasoning-to-Action Representation and Learning for Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

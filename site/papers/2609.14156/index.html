@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visible Touch: Rendering Contact for Visuomotor Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Visible Touch，目标是将接触/触觉信息集成到视运动策略中，使策略在接触丰富操作任务中更鲁棒。 核心问题是：现代图像条件策略和预训练 VLA 多数仅依赖视觉与本体感觉；现有接触集成方式需要专用触觉硬件、独立触觉编码器或非图像策略骨干，难以适配当前范式。 关键思路是改变接触信息的交付方式：将接触信号渲染为与场景相同的图像空间覆盖层，使其可被任何图像条件策略直接使用，无需架构改动。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.14156">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #177e89; --cover-to: #5ec2a8; --cover-spot: #c5f0de; --cover-ink: #f5fffb; --cover-muted: rgba(245, 255, 251, 0.82); --cover-chip: rgba(245, 255, 251, 0.16); --cover-stroke: rgba(245, 255, 251, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">Visible Touch: Rendering Contact for Visuomotor Policies</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Visible Touch: Rendering Contact for Visuomotor Policies</h1>
+            <div class="detail-meta">2026-09-12 · <a href="http://arxiv.org/abs/2609.14156" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.14156" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.14156</span></div>
+            <p class="detail-summary">论文提出 Visible Touch，目标是将接触/触觉信息集成到视运动策略中，使策略在接触丰富操作任务中更鲁棒。 核心问题是：现代图像条件策略和预训练 VLA 多数仅依赖视觉与本体感觉；现有接触集成方式需要专用触觉硬件、独立触觉编码器或非图像策略骨干，难以适配当前范式。 关键思路是改变接触信息的交付方式：将接触信号渲染为与场景相同的图像空间覆盖层，使其可被任何图像条件策略直接使用，无需架构改动。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of California, Los Angeles (UCLA)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.14156/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Visible Touch，目标是将接触/触觉信息集成到视运动策略中，使策略在接触丰富操作任务中更鲁棒。</p>
+  <ul class="reading-intro-points"><li>论文提出 Visible Touch，目标是将接触/触觉信息集成到视运动策略中，使策略在接触丰富操作任务中更鲁棒。</li><li>核心问题是：现代图像条件策略和预训练 VLA 多数仅依赖视觉与本体感觉；现有接触集成方式需要专用触觉硬件、独立触觉编码器或非图像策略骨干，难以适配当前范式。</li><li>关键思路是改变接触信息的交付方式：将接触信号渲染为与场景相同的图像空间覆盖层，使其可被任何图像条件策略直接使用，无需架构改动。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of California, Los Angeles (UCLA)</strong></li><li>作者包括 <strong>Metin Alp Dogan</strong>、<strong>Edward Sun</strong>、<strong>Feng Xu</strong>、<strong>Daniel Wu</strong>、<strong>Allen Peng</strong>、<strong>Dennis Hong</strong>、<strong>Yuchen Cui</strong></li><li>致谢中提到 <strong>UCLA Department of Computer Science</strong>、<strong>UCLA Robot Intelligence Laboratory</strong> 和 <strong>RoMeLa</strong> 的支持</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Visible Touch</strong>，目标是将接触/触觉信息集成到视运动策略中，使策略在接触丰富操作任务中更鲁棒。</li><li>核心问题是：现代图像条件策略和预训练 VLA 多数仅依赖视觉与本体感觉；现有接触集成方式需要专用触觉硬件、独立触觉编码器或非图像策略骨干，难以适配当前范式。</li><li>关键思路是改变接触信息的交付方式：将接触信号渲染为与场景相同的图像空间覆盖层，使其可被任何图像条件策略直接使用，无需架构改动。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Visible Touch</strong>：一种图像空间接触覆盖方法，无需架构更改和力校准，可跨 <strong>BC-Transformer</strong>、<strong>miniVLA</strong>、<strong>π0.5</strong> 三类策略迁移。</li><li>设计低成本、开源的<strong>磁性接触传感器</strong>和<strong>参数化 CAD-to-mold 管道</strong>，传感器每指 <strong>3×3</strong> 感知单元，<strong>4 mm</strong> 厚，弹性体与磁体零件成本低于 <strong>$5</strong>，组装成本低于 <strong>$50</strong>，并在四个真实接触丰富任务上端到端验证。</li><li>系统表征接触覆盖<strong>何时及如何</strong>有效：增益随任务余量和抓取结构变化，在<strong>多抓取长时程任务</strong>上最大；图像空间渲染优于紧凑状态向量基线和信息匹配的独立流替代方案。</li><li>发现覆盖层粒度存在非单调最优值，且仿真与真实世界的最优粒度相反，与底层接触信号的空间一致性有关。</li><li>在 <strong>LIBERO</strong> 仿真和真实机器人任务上验证：BC-Transformer、miniVLA、π0.5 均获得显著提升，显示跨架构和从仿真到真实部署的迁移能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>将每个触觉传感单元的 <strong>3 轴测量</strong>（仿真中为接触力，真实中为磁通偏转）通过机器人前向运动学和相机标定参数投影到相机图像中。</li><li>每个传感单元渲染为箭头：箭头尾端为投影位置，箭头方向和长度由接触测量决定；渲染结果与 RGB 图像 alpha 混合，不同手指使用不同颜色以保留手指身份。</li><li>覆盖层变体包括：<strong>Multi-arrows</strong>（每个传感单元一个箭头，保留空间结构）、<strong>Avg. Arrow</strong>（每指一个聚合箭头）、<strong>Binbars</strong>（固定位置竖直条，仅表示接触强度，丢弃位置和方向）。</li><li>渲染流程传感器无关，仅需逐单元 3 轴读数，不假设已校准力；归一化与视觉缩放吸收绝对传感器尺度。</li><li>硬件上使用 <strong>3×3 磁性触觉传感器</strong>：软硅胶弹性体嵌入永磁体，底层 <strong>3 轴磁力计阵列</strong>（Allegro A31031），ESP32 以 <strong>50 Hz</strong> 读取；参数化模具管道可从尺寸和磁体布局生成 3D 打印模具。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong> 全部四个套件（<strong>OBJECT</strong>、<strong>GOAL</strong>、<strong>SPATIAL</strong>、<strong>LONG</strong>），并从 MuJoCo 接触数组提取夹爪接触力用于覆盖层渲染。</li><li>预训练 VLA：<strong>miniVLA</strong>，骨干为 <strong>Qwen2.5 0.5B</strong>，视觉编码器为 <strong>DINOv2 + SigLIP</strong>，输入分辨率 <strong>224 px</strong>；在 <strong>LIBERO_90</strong> 上预训练和微调。</li><li>真实世界模型：<strong>π0.5</strong>（<code>pi05_droid</code> 检查点，<strong>2.3B</strong> 参数），使用 <strong>LoRA</strong> 微调。</li><li>真实任务：<strong>Lift</strong>、<strong>Transfer Tube</strong>、<strong>Put Mug in Dishwasher</strong>、<strong>Plug Charger</strong>；每个任务收集 <strong>100</strong> 条遥操作演示（TeleDex），每个条件评估 <strong>30</strong> 次试验。</li><li>机器人平台：<strong>UFactory xArm7</strong>，平行夹爪，两个 <strong>Intel RealSense D435</strong> 相机（腕部与外部），以及自定义 <strong>3×3</strong> 磁性接触传感器。</li><li>训练资源：提供的 HTML 原文未列出具体 GPU/TPU 型号与数量；致谢提到 UCLA 机构与计算支持。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>BC-Transformer 仿真结果：<strong>Visible Touch</strong> 在 <strong>2-view</strong> 设置平均提升 <strong>+15.7 pp</strong>，<strong>1-view</strong> 平均提升 <strong>+12.5 pp</strong>；<strong>LIBERO_LONG</strong> 的 2-view 提升达 <strong>+33.7 pp</strong>。</li><li>接触集成策略对比：图像空间覆盖在 2-view 平均超过 <strong>Proprio</strong> 状态向量基线 <strong>+21.4 pp</strong>，在 <strong>LIBERO_LONG</strong> 超过 <strong>+43.7 pp</strong>；Proprio 在全部套件上低于普通 2-view 基线平均 <strong>-5.7 pp</strong>。</li><li>miniVLA 结果：覆盖层预训练在 <strong>LIBERO_90</strong> 达到 <strong>63.2%</strong>，相比发布检查点 <strong>48.3%</strong> 提升 <strong>+14.9 pp</strong>；微调平均提升 <strong>+25.3 pp</strong>，<strong>LIBERO_LONG</strong> 提升 <strong>+34.1 pp</strong>。</li><li>真实世界 π0.5 结果：<strong>Multi-arrows</strong> 相对 <strong>Baseline</strong> 平均提升 <strong>+30.3 pp</strong>；在最难任务 <strong>Plug Charger</strong> 上，Multi-arrows 是唯一完成插入的条件（<strong>2/30</strong>），并将 Pick 成功率从 <strong>9/30</strong> 提升至 <strong>18/30</strong>。</li><li>覆盖层粒度：仿真中 <strong>Avg. Arrow</strong> 最优，真实世界中 <strong>Multi-arrows</strong> 最优；说明最优粒度与接触信号的空间一致性有关。</li><li>任务结构分析：无抓取任务无明显增益，单抓取任务增益有限，<strong>多抓取长时程任务</strong>增益最大；该模式在 BC-Transformer 和 miniVLA 上均成立。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.14219/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Task-Specified Active Metrological Inspection with Measurement-Steered VLA Manipulation and Deterministic Evidence Gating</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.14146/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">When Faster VLA Deployment Changes Closed-Loop Behavior: Task Success-Latency Analysis of SmolVLA Across PyTorch and ONNX Variants</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
