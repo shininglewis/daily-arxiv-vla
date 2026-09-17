@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DistAL: Distance-based Advantage Learning for VLA Fine-Tuning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DistAL（Distance-based Advantage Learning），用于视觉-语言-动作模型（VLA）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的稠密奖励来改进优势条件（advantage conditioning）训练。 解决的核心问题是：现有优势条件方法仅使用简单的二值成功/失败奖励，导致价值函数无法区分质量不同的状态（例如稳固抓取与勉强持物的不稳定抓取）。 研究目标是利用部署数据，在不依赖人类专家干预的情况下，提升 VLA 在仿真与真实硬件任务上的成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.18392">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.18392.webp" alt="DistAL: Distance-based Advantage Learning for VLA Fine-Tuning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DistAL（Distance-based Advantage Learning），用于视觉-语言-动作模型（VLA）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的稠密奖励来改进优势条件（advantage conditioning）训练。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DistAL: Distance-based Advantage Learning for VLA Fine-Tuning</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.18392" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.18392" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.18392</span></div>
+            <p class="detail-summary">论文提出 DistAL（Distance-based Advantage Learning），用于视觉-语言-动作模型（VLA）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的稠密奖励来改进优势条件（advantage conditioning）训练。 解决的核心问题是：现有优势条件方法仅使用简单的二值成功/失败奖励，导致价值函数无法区分质量不同的状态（例如稳固抓取与勉强持物的不稳定抓取）。 研究目标是利用部署数据，在不依赖人类专家干预的情况下，提升 VLA 在仿真与真实硬件任务上的成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">牛津机器人研究所（Oxford Robotics Institute），牛津大学（University…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.18392/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DistAL（Distance-based Advantage Learning），用于视觉-语言-动作模型（VLA）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的稠密奖励来改进优势条件（advantage conditioning）训练。</p>
+  <ul class="reading-intro-points"><li>论文提出 DistAL（Distance-based Advantage Learning），用于视觉-语言-动作模型（VLA）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的稠密奖励来改进优势条件（advantage conditioning）训练。</li><li>解决的核心问题是：现有优势条件方法仅使用简单的二值成功/失败奖励，导致价值函数无法区分质量不同的状态（例如稳固抓取与勉强持物的不稳定抓取）。</li><li>研究目标是利用部署数据，在不依赖人类专家干预的情况下，提升 VLA 在仿真与真实硬件任务上的成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>牛津机器人研究所（Oxford Robotics Institute）</strong>，<strong>牛津大学（University of Oxford）</strong></li><li>作者：<strong>Reece O'Mahoney</strong>、<strong>Ioannis Havoutis</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DistAL（Distance-based Advantage Learning）</strong>，用于视觉-语言-动作模型（<strong>VLA</strong>）的微调，通过将稀疏的成功/失败奖励替换为基于特征距离的<strong>稠密奖励</strong>来改进优势条件（advantage conditioning）训练。</li><li>解决的核心问题是：现有优势条件方法仅使用简单的二值成功/失败奖励，导致价值函数无法区分质量不同的状态（例如稳固抓取与勉强持物的不稳定抓取）。</li><li>研究目标是利用部署数据，在不依赖人类专家干预的情况下，提升 VLA 在仿真与真实硬件任务上的成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出并比较多种<strong>分布外（OOD）检测方法</strong>作为 VLA 任务失败的预测器，涵盖轨迹级与逐时间步级别，确认<strong>基座 VLA 的 SigLIP 特征空间中的 kNN 距离</strong>是最强信号。</li><li>进行受控研究，将 kNN 距离作为<strong>稠密奖励</strong>用于优势条件训练，其余流水线保持不变，并分析该假设成立与不成立的条件。</li><li>在 <strong>LIBERO</strong> 与 <strong>LIBERO-plus</strong> 仿真基准套件以及两个真实的<strong>双臂灵巧操作任务</strong>上验证方法有效性。</li><li>提出将 OOD 检测信号从"运行时拒绝"重新定位为"离线价值学习的逐时间步奖励"这一新用途。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>kNN 特征距离奖励</strong>：对每个部署观测 $o_t$，用冻结的 <strong>SigLIP</strong> 编码器提取特征，计算其到基座 VLA 训练集特征索引的 $k$ 近邻平均欧氏距离 $s_k(o)$，令奖励 $r_t = -s_k(o_t)$ 并归一化到 $[-1,0]$，采用 $k=10$。</li><li><strong>保留终端失败惩罚</strong>：保留 $\pi^*_{0.6}$（RECAP）中对失败回合的大终端惩罚，防止策略通过停留在熟悉但未完成任务的状态来"刷奖励"。</li><li><strong>价值函数</strong>：由 <strong>Gemma3 270M</strong> 语言模型 + <strong>400M SigLIP</strong> 视觉编码器组成，输出 token 经 2 层 MLP 头预测离散化回报分箱上的类别分布，使用交叉熵损失训练。</li><li><strong>优势条件策略</strong>：基于微调的 <strong>$\pi_{0.5}$</strong>（<strong>PaliGemma 3B</strong> VLM + <strong>300M</strong> 流匹配动作专家）；通过在语言输入末尾追加"Advantage: positive/negative"注入二值优势标签，阈值设定使 30% 标签为正；仅微调动作专家、冻结主干。</li><li><strong>推理</strong>：使用<strong>无分类器引导（CFG）</strong>，引导权重 $w>1$，将速度场推向正优势动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO-10（LIBERO-Long）</strong> 与 <strong>LIBERO-plus</strong>；每个任务收集 <strong>50 条部署回合</strong>。</li><li>真实硬件：<strong>双臂 Piper 机械臂</strong>，每条臂配腕部相机 + 一个外部场景相机；每任务收集 <strong>50 条遥操作演示</strong> + <strong>50 条部署回合</strong>。</li><li>硬件任务：<strong>remove pen lid（移除笔帽）</strong> 与 <strong>remove ethernet cable（拔掉网线）</strong>。</li><li>模型规模：策略 VLM 主干 <strong>3B</strong> + 动作专家 <strong>300M</strong>；价值函数语言模型 <strong>270M</strong> + 视觉编码器 <strong>400M</strong>。</li><li>评测：仿真每配置 3 个种子、每任务 50 回合；硬件每任务 50 回合评测。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>OOD 失败预测（AUROC）</strong>：kNN + SigLIP（pre-LM）在轨迹级（均值 <strong>0.82</strong>）与逐时间步级（均值 <strong>0.67</strong>）均为最强检测器，优于 VAE 似然（0.79 / 0.65）、Mahalanobis 距离（0.71 / 0.58）、post-LM 图像 token（0.57 / 0.51）与动作块方差（0.58 / 0.51）。</li><li><strong>仿真结果（Table III）</strong>：DistAL 在 <strong>LIBERO-10</strong> 达 <strong>96.2%</strong>（最佳）；跨 LIBERO-10 与 LIBERO-plus 总均值 <strong>78.4%</strong>，较基座 <strong>+3.3%</strong>，较二值奖励基线 <strong>+1.2%</strong>；在 <strong>Camera</strong>（+4.8）与 <strong>Texture</strong>（+7.7，达 <strong>100.0%</strong>）扰动上增益最大。</li><li><strong>硬件结果（Table IV）</strong>：<strong>Ethernet</strong> 任务 <strong>87%</strong>（基座 46%、二值奖励 72%）；<strong>Pen lid</strong> 任务 <strong>52%</strong>（基座 42%、二值奖励 48%，差异不显著）；均值 <strong>69.5%</strong>。</li><li><strong>关键结论</strong>：DistAL 在失败与成功<strong>视觉可区分</strong>的任务上收益最大（如 Ethernet、Camera、Texture 扰动）；在失败主要为触觉/接触事件的 Pen lid 任务上收益有限，其逐时间步 AUROC 仅 <strong>0.56</strong>。</li><li><strong>局限</strong>：仅基于图像、忽略力/接触/机器人状态；奖励偏向训练分布可能导致策略"停滞"；仅评估单一基座 VLA（$\pi_{0.5}$）、两个真实任务与三个种子。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.18435/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">WetRobo: A Reproducible Robot Kit for Coding Agents in Biological Laboratories</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.18374/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Decoupling Vision, Language, and Action for Efficient Multi-Task Robot Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

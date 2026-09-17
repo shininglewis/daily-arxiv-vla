@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FIVE-VLA: Fast and EffectIVE Autonomous Driving with Recurrent Action Memory - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 FIVE-VLA（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。 研究目标是让 VLA 能在车载边缘设备上实时运行，同时保持甚至超越当前最优的闭环驾驶性能。 核心思路是：用高效视觉编码器压缩 token、跳过文本生成实现单次前向轨迹预测，并引入动作域的记忆模块提供时序上下文。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.18623">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.18623.webp" alt="FIVE-VLA: Fast and EffectIVE Autonomous Driving with Recurrent Action Memory" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 FIVE-VLA（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FIVE-VLA: Fast and EffectIVE Autonomous Driving with Recurrent Action Memory</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.18623" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.18623" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.18623</span></div>
+            <p class="detail-summary">论文提出 FIVE-VLA（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。 研究目标是让 VLA 能在车载边缘设备上实时运行，同时保持甚至超越当前最优的闭环驾驶性能。 核心思路是：用高效视觉编码器压缩 token、跳过文本生成实现单次前向轨迹预测，并引入动作域的记忆模块提供时序上下文。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Robert Bosch GmbH（德国）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.18623/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 FIVE-VLA（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。</p>
+  <ul class="reading-intro-points"><li>论文提出 FIVE-VLA（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。</li><li>研究目标是让 VLA 能在车载边缘设备上实时运行，同时保持甚至超越当前最优的闭环驾驶性能。</li><li>核心思路是：用高效视觉编码器压缩 token、跳过文本生成实现单次前向轨迹预测，并引入动作域的记忆模块提供时序上下文。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Robert Bosch GmbH</strong>（德国）</li><li><strong>Five AI Ltd.</strong>（英国）</li><li>作者：<strong>Kemal Oksuz</strong>、<strong>Alexandru Buburuzan</strong>、<strong>Yuhan Yao</strong>、<strong>Puneet K. Dokania</strong>（隶属 Bosch ADAS Systems, Software & Services 业务单元）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>FIVE-VLA</strong>（Fast and EffectIVE VLA），面向自动驾驶的轻量高效视觉-语言-动作模型，旨在同时解决现有 VLA 的三类瓶颈：参数量过大、高分辨率图像处理低效、缺乏时序记忆。</li><li>研究目标是让 VLA 能在车载边缘设备上实时运行，同时保持甚至超越当前最优的闭环驾驶性能。</li><li>核心思路是：用高效视觉编码器压缩 token、跳过文本生成实现单次前向轨迹预测，并引入动作域的记忆模块提供时序上下文。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>FIVE-VLA</strong>，在 <strong>Bench2Drive</strong> 与 <strong>Fail2Drive</strong> 泛化划分上分别取得约 <strong>77%</strong> 和 <strong>67%</strong> 的成功率（SR），较此前 SOTA 的 VLA <strong>SimLingo</strong> 绝对提升 <strong>至少 10%</strong>。</li><li>提出 <strong>RAM（Recurrent Action Memory）</strong>：一个轻量级记忆机制，将当前动作预测条件化于上一时刻的动作 token，在<strong>让行、超车、紧急制动</strong>和<strong>行驶平顺性</strong>等最依赖时序推理的能力上带来选择性提升。</li><li>效率方面：仅 <strong>641M</strong> 参数，在 <strong>A100</strong> 上约 <strong>30 fps</strong>、在 <strong>T4</strong>（边缘设备代理）上约 <strong>4 fps</strong>，相比 <strong>ORION</strong> 和 <strong>SimLingo</strong> 分别约 <strong>30×</strong> 和 <strong>8×</strong> 的吞吐提升（总体 8–30× 加速）。</li><li>在真实大规模 <strong>NVIDIA Physical AI AV</strong> 数据集上的非反应式开环仿真中，碰撞违规率比 SimLingo 在单视图和四视图设置下分别低 <strong>10.2%</strong> 和 <strong>7.7%</strong>。</li><li>首次将 <strong>FastVLM</strong> 适配为自动驾驶 VLA，验证了卷积+注意力混合视觉编码器在驾驶任务上的有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>高效视觉骨干</strong>：采用 <strong>FastVLM</strong>（FastViTHD 视觉编码器 + <strong>Qwen2</strong> LLM），处理 <strong>448×896</strong> 高分辨率图像仅生成 <strong>98 个视觉 token</strong>，相比 ViT 减少约 21×、相比 InternViT-300M 减少约 5×，且无需 tile 切分，可在编码器内进行全局 token 交互。</li><li><strong>单次前向轨迹预测（Efficient Driving）</strong>：识别到输出文本 <strong>"Waypoints:"</strong> 在所有输入下恒定，将其直接拼接到输入 token 序列，从而绕过自回归文本生成，实现单次前向输出路径点与速度点。</li><li><strong>RAM 设计</strong>：由 <strong>RAMEncoder</strong>（1 个自注意力 Transformer 块）编码上一时刻动作 token 得到 RAM 状态，再由 <strong>RAMDecoder</strong>（1 个交叉注意力 Transformer 块）让可学习 action query 通过交叉注意力读取该状态；共仅 <strong>2 个 Transformer 块</strong>（对比视觉域记忆通常 8 块）。</li><li><strong>两阶段微调</strong>：先在不含 RAM 情况下完成基础微调，再注入 RAM；关键初始化策略是把交叉/自注意力输出投影层与 MLP 第二层线性层置零，使初始时 <strong>RAM≈恒等映射</strong>（action query 仅经残差连接传播），从而保留预训练知识。</li><li><strong>RAM 累积推理</strong>：训练流长度受显存限制（如 T=4），推理时采用双实例机制——主实例负责生成轨迹，次实例在后台累积记忆，每 <strong>T/2</strong> 步互换，避免周期性重置记忆造成的信息丢失。</li><li><strong>多能力支持</strong>：除默认的高效驾驶模式外，还支持 <strong>CoT 推理</strong>（输入 "What should the ego do next?"）与 <strong>VQA</strong> 问答，用于可解释性；训练样本按时间流（长度 T）组织，每条流仅含单一能力类型。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>闭环训练</strong>：<strong>SimLingo 数据集</strong>，由 <strong>CARLA</strong> 仿真器配合 <strong>PDMLite</strong> 专家采集，约 <strong>200 万张</strong>图像（4 fps），约 <strong>140 小时</strong>驾驶数据，含 CoT 与 VQA 标注。</li><li><strong>闭环评测</strong>：<strong>Bench2Drive</strong>、<strong>Fail2Drive</strong>（含 In-Distribution 与 Generalisation 划分），指标为 <strong>DS（Driving Score）</strong> 与 <strong>SR（Success Rate）</strong>。</li><li><strong>开环评测</strong>：<strong>NVIDIA Physical AI AV</strong> 真实数据集，约 <strong>860 小时</strong>训练 / <strong>350 小时</strong>测试，仅使用驾驶监督；采用 NAVSIM 风格非反应式仿真，指标包括 ADE/FDE、NC-V（责任碰撞率）、TTC-V（碰撞时间违规率）等。</li><li><strong>语言能力评测</strong>：<strong>DriveLM-CARLA</strong> VQA。</li><li><strong>模型规模</strong>：<strong>641M</strong> 参数（基于约 620M 参数的最小号 FastVLM，预训练分辨率至 1024×1024）。</li><li><strong>推理硬件</strong>：<strong>NVIDIA A100</strong>（约 30 fps）与 <strong>NVIDIA T4</strong>（约 4 fps，作为边缘设备代理）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>基准环境</strong>：CARLA 闭环仿真（Bench2Drive、Fail2Drive）+ NAVSIM 风格非反应式开环仿真（NVIDIA Physical AI AV）。</li><li><strong>主要指标</strong>：闭环用 <strong>DS / SR / Mean Ability / HM</strong>；开环用 <strong>ADE / FDE / NC-V / TTC-V</strong>（均为越低越好）。</li><li>关键结果一：FIVE-VLA 在 <strong>Bench2Drive</strong> 上超越包括 SimLingo、AutoVLA、ORION、DriveMoE 在内的所有 VLA 及 E2E-AD 方法，并高出最优纯相机基线至少 <strong>10%</strong> 的绝对 SR 提升。</li><li>关键结果二：在 <strong>Fail2Drive 泛化划分</strong>上 SR 约 <strong>67%</strong>，同样显著领先 SimLingo（SimLingo 的 SR 下降约 30.6%，而 FIVE-VLA 的退化更小，泛化更稳健）。</li><li>关键结果三：在 <strong>NVIDIA Physical AI AV</strong> 开环仿真中，单视图与四视图下碰撞违规率分别比 SimLingo 低 <strong>10.2%</strong> 和 <strong>7.7%</strong>。</li><li>关键结果四（消融）：仅用视频流的非 IID 采样训练会使性能在流长 T>2 后显著下降（图 3a），因此验证了"先无 RAM 训练、再注入 RAM"两阶段策略的必要性；<strong>RAM 累积</strong>推理优于周期重置 RAM。</li><li>关键结果五（效率）：模型在 A100 上约 30 fps、T4 上约 4 fps，较 ORION 约 <strong>30×</strong>、较 SimLingo 约 <strong>8×</strong> 加速。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.18663/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-ULAP: Interleaving Cloud VLA Calls with Ultra-Lightweight Local Action Prediction at the Edge</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.18514/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ActiveScale: Scaling Active Perception for Robots across Model, Data, and Hardware</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

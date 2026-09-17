@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ActiveScale: Scaling Active Perception for Robots across Model, Data, and Hardware - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ActiveScale，一个从模型、数据、硬件三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。 目标是让 VLA 模型能够在视角变化中推理，并主动获取有助于任务执行的信息性观测。 论文构建统一基础设施来系统研究主动感知，并在真实世界遮挡操作与主动搜索定位任务中验证效果。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.18514">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.18514.webp" alt="ActiveScale: Scaling Active Perception for Robots across Model, Data, and Hardware" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 ActiveScale，一个从模型、数据、硬件三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ActiveScale: Scaling Active Perception for Robots across Model, Data, and Hardware</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.18514" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.18514" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.18514</span></div>
+            <p class="detail-summary">论文提出 ActiveScale，一个从模型、数据、硬件三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。 目标是让 VLA 模型能够在视角变化中推理，并主动获取有助于任务执行的信息性观测。 论文构建统一基础设施来系统研究主动感知，并在真实世界遮挡操作与主动搜索定位任务中验证效果。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">卡内基梅隆大学机器人研究所（Robotics Institute, Carnegie Mellon U…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.18514/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ActiveScale，一个从模型、数据、硬件三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 ActiveScale，一个从模型、数据、硬件三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。</li><li>目标是让 VLA 模型能够在视角变化中推理，并主动获取有助于任务执行的信息性观测。</li><li>论文构建统一基础设施来系统研究主动感知，并在真实世界遮挡操作与主动搜索定位任务中验证效果。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>卡内基梅隆大学机器人研究所</strong>（Robotics Institute, Carnegie Mellon University）</li><li><strong>香港科技大学（广州）</strong>（The Hong Kong University of Science and Technology (Guangzhou)）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ActiveScale</strong>，一个从<strong>模型、数据、硬件</strong>三方面协同设计的机器人主动感知框架，解决固定视角下任务相关信息被遮挡或未被观测的问题。</li><li>目标是让 <strong>VLA</strong> 模型能够在视角变化中推理，并主动获取有助于任务执行的信息性观测。</li><li>论文构建统一基础设施来系统研究主动感知，并在真实世界遮挡操作与主动搜索定位任务中验证效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>pose-grounded temporal VLA</strong>，利用历史视频观测和显式相机位姿监督实现跨视角推理与主动感知，在五个真实世界任务上达到领先性能。</li><li>提出<strong>人-机器人 mid-training</strong> 配方，使用大规模第一人称人类与机器人数据，首次将主动感知训练扩展到 <strong>1000 小时</strong>，比先前工作大 <strong>5 倍以上</strong>。</li><li>开发 <strong>AMP</strong> 平台，集成双臂操作、独立驱动相机和移动底座，通过 <strong>Meta Quest 2</strong> 实现单操作者同时控制视角、操作和移动，可扩展收集协调的演示数据。</li><li>通过消融研究验证相机位姿建模和第一人称 mid-training 对主动感知性能的贡献。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>模型基于 <strong>π0.5</strong>：使用 <strong>PaliGemma VLM</strong> 编码多视角视觉、语言和本体感觉状态，并由轻量级 <strong>flow-matching action expert</strong> 生成连续动作块。</li><li>在输入中增加历史前视帧：当前帧与三个过去帧（<strong>t-48、t-32、t-16、t</strong>），每个前视帧后附加可学习 <strong>camera token</strong>。</li><li>camera token 经线性投影送入 <strong>VGGT-style camera head</strong>，预测 9 维相机表示：3D 平移、四元数旋转以及水平/垂直视场角。</li><li>相机监督损失为平移、旋转、视场角三项 <strong>ℓ1</strong> 损失之和，视场角权重 <strong>λ_fov=0.5</strong>；辅助相机头在动作推理时移除。</li><li>对前视历史使用 <strong>block-causal attention</strong>，camera token 不能访问未来帧；手腕、语言和动作 token 可访问所有有效历史块。</li><li>动作空间联合控制左右操作末端执行器、主动相机位姿和两个夹爪命令；移动底座速度单独记录，所有位姿表达在共享机器人中心坐标系 <strong>F_U</strong>。</li><li>训练分两阶段：先进行<strong>人-机器人 mid-training</strong>（人类与机器人数据按 <strong>1:1</strong> 采样），再在 <strong>AMP</strong> 遥操作数据上进行任务特定后训练。</li><li>mid-training 目标包含子任务损失、FAST 动作 token 损失、flow matching 损失和相机损失；后训练目标为 <strong>L_post = L_flow + λ_C L_cam</strong>，<strong>λ_C=0.2</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>人类数据来自 <strong>EgoLive</strong> 和 <strong>EgoVerse</strong>，筛选保留室内家务操作片段，并确保具有有效相机轨迹和任务/动作监督。</li><li>机器人数据来自 <strong>AgiBot World</strong>、<strong>RoboCOIN</strong> 以及 <strong>AMP</strong> 遥操作数据，覆盖多种机器人本体和控制分布。</li><li>总训练数据超过 <strong>1000 小时</strong>的第一人称人类与机器人数据。</li><li>下游五个任务各使用 <strong>150</strong> 条演示进行后训练，数据以 <strong>30 Hz</strong> 同步采集。</li><li>模型基于 <strong>π0.5</strong>，基础 VLM 为 <strong>PaliGemma 3B</strong>；论文未明确给出完整策略总参数量。</li><li>训练使用 <strong>NVIDIA H100 GPU</strong>，推理效率测试使用单张 <strong>RTX 4090</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>AMP</strong> 真实机器人平台上部署评估，基线为直接后训练的 <strong>π0.5</strong>。</li><li>任务分两类：<strong>Bag、Drawer、Table</strong> 属于遮挡驱动操作；<strong>Pot、Box</strong> 属于主动搜索与定位。</li><li>每个任务进行 <strong>20</strong> 次真实世界 rollout，指标为严格任务成功率 <strong>SR</strong> 和任务进度 <strong>TP</strong>。</li><li>主结果：ActiveScale 在全部五个任务上提升 SR 和 TP，平均 SR 从 <strong>30.0%</strong> 提升到 <strong>70.0%</strong>，平均 TP 从 <strong>41.6%</strong> 提升到 <strong>78.4%</strong>。</li><li>消融显示：人-机器人 mid-training 整体提升下游性能；仅加入历史帧效果依任务而定；加入位姿监督的相机 token 在所有五个任务上提升 SR/TP，并恢复 Bag 和 Pot 上的性能下降。</li><li>执行效率：启用 <strong>RTC</strong> 后，ActiveScale 在单张 <strong>RTX 4090</strong> 上以 <strong>264.5 Hz</strong> 生成 50 动作块，异步执行满足 <strong>30 Hz</strong> 控制频率。</li><li>AMP 演示中，单操作者完成主动视角调整、取蔬菜、导航至烹饪区、放入锅中并加盖的多阶段移动操作任务。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.18623/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">FIVE-VLA: Fast and EffectIVE Autonomous Driving with Recurrent Action Memory</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.18497/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TAO-Force: Unifying Force-Aware Perception and Fast-Slow Control for Contact-Rich Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

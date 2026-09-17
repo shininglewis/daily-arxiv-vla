@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WetRobo: A Reproducible Robot Kit for Coding Agents in Biological Laboratories - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 WetRobo，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。 核心目标是解决 VLA（视觉-语言-动作）策略在环境变化时性能下降 的问题：VLA 在 Lab X 微调后可在 Lab X 成功，但难以迁移到 Lab Y。 论文用 OpenAI Codex（gpt-5.6-sol） 在真实实验室中完成三项任务：抬起培养皿盖子、拧开试剂瓶盖、打开培养箱门，并验证跨实验室迁移能力。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.18435">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.18435.webp" alt="WetRobo: A Reproducible Robot Kit for Coding Agents in Biological Laboratories" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 WetRobo，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">WetRobo: A Reproducible Robot Kit for Coding Agents in Biological Laboratories</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.18435" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.18435" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.18435</span></div>
+            <p class="detail-summary">论文提出 WetRobo，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。 核心目标是解决 VLA（视觉-语言-动作）策略在环境变化时性能下降 的问题：VLA 在 Lab X 微调后可在 Lab X 成功，但难以迁移到 Lab Y。 论文用 OpenAI Codex（gpt-5.6-sol） 在真实实验室中完成三项任务：抬起培养皿盖子、拧开试剂瓶盖、打开培养箱门，并验证跨实验室迁移能力。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">The University of Tokyo（日本东京大学，Department of Comput…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.18435/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 WetRobo，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。</p>
+  <ul class="reading-intro-points"><li>论文提出 WetRobo，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。</li><li>核心目标是解决 VLA（视觉-语言-动作）策略在环境变化时性能下降 的问题：VLA 在 Lab X 微调后可在 Lab X 成功，但难以迁移到 Lab Y。</li><li>论文用 OpenAI Codex（gpt-5.6-sol） 在真实实验室中完成三项任务：抬起培养皿盖子、拧开试剂瓶盖、打开培养箱门，并验证跨实验室迁移能力。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>The University of Tokyo</strong>（日本东京大学，Department of Computational Biology and Medical Sciences）</li><li><strong>RIKEN Pioneering Research Institute</strong>（日本理化学研究所）</li><li><strong>New York University</strong>（美国纽约大学）</li><li><strong>Google DeepMind</strong>（美国）</li><li><strong>National Institute for Materials Science</strong>（日本国立材料科学研究所）</li><li><strong>RIKEN Center for Advanced Intelligence Project</strong>（日本理化学研究所先进智能研究中心）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>WetRobo</strong>，一个可在不同生物实验室之间迁移的可复现机器人套件，让湿实验室研究人员无需遥操作采集数据或训练神经网络即可把任务委托给编码智能体。</li><li>核心目标是解决 <strong>VLA（视觉-语言-动作）策略在环境变化时性能下降</strong> 的问题：VLA 在 Lab X 微调后可在 Lab X 成功，但难以迁移到 Lab Y。</li><li>论文用 <strong>OpenAI Codex（gpt-5.6-sol）</strong> 在真实实验室中完成三项任务：抬起培养皿盖子、拧开试剂瓶盖、打开培养箱门，并验证跨实验室迁移能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>WetRobo 套件</strong>：包含 Piper 机械臂、实验室设备（培养箱、试剂瓶、培养皿）、基础代码栈、每任务 15 条遥操作演示以及通用 <strong>AGENTS.md</strong> 技能文件，使生物实验人员无需采集本地遥操作数据或训练神经网络即可委托任务。</li><li>证明编码智能体能够 <strong>自主演化程序并适应实验室环境</strong>，成功完成培养皿盖子抬起、瓶盖移除和培养箱门打开三项真实任务。</li><li>提供证据表明 <strong>编码智能体在瓶盖任务上的跨实验室迁移能力优于 VLA</strong>：微调后的 π0.5 在 Lab X 成功但迁移到 Lab Y 失败，而编码智能体在两个实验室均成功。</li><li>展示了 <strong>代码复用与工具获取机制</strong>：智能体按需引入 OpenCV、NumPy RANSAC、SAM 3、MuJoCo、Record3D 等外部工具，并将前一任务生成的模块复用于后续任务。</li><li>提出将 <strong>AGENTS.md</strong> 作为跨实验室共享知识载体，使每次安装都能积累可复用的操作规则，降低后续适配成本。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>基础代码栈（base stack）</strong>：驱动 Piper 机械臂与相机，包含带工作空间限制的机械臂 RPC 服务器（robot/cone_e.py）、通过 rollout/controller.py 回放 HDF5 演示、笛卡尔偏置设置以及 <strong>SafetyLayer</strong>（保持禁入区与单步运动上限）。</li><li><strong>AGENTS.md 技能文件</strong>：包含安装设置、演示回放加实时偏置的基线工作流，以及针对起始状态、实现、对象和操作行为的规则；要求水平夹爪接近/抓取/运输、运动前暂停进行图像位姿确认、本地测量归位姿态等。</li><li><strong>编码智能体工作流</strong>：智能体直接解释图像、关节角度和夹爪开度，或生成分析程序测量位置、对齐和进度；编写运动/检查协调与执行程序，通过 RPC 调用发送关节运动和夹爪命令。</li><li><strong>自适应技术</strong>：使用 <strong>SAM 3</strong> 分割、<strong>Record3D</strong> 点云与 RGB-D 深度、<strong>MuJoCo</strong> 物理仿真与碰撞检查、<strong>OpenCV</strong> 金字塔 Lucas–Kanade 光流和 AprilTag 位姿估计、<strong>NumPy RANSAC</strong> 平面拟合、岭回归模型学习图像特征残差到末端执行器位移的映射。</li><li><strong>局部雅可比标定</strong>：通过每轴三次运动探针求解图像雅可比矩阵，建立毫米级机械臂位移到像素级图像位移的映射，用于对齐校正，从而适应相机几何变化。</li><li><strong>执行验证</strong>：利用关节力矩、夹爪努力值、夹爪开度区分空闭合与真实抓取；通过开口停止位置（如命令 0.50 实际停在 0.68）和努力值（−1.05 N·m 对比空闭合 −0.1 至 −0.2 N·m）确认抓取成功。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>演示数据</strong>：每个任务 15 条遥操作演示，使用 <strong>Meta Quest</strong> 遥操作界面录制，以 HDF5 格式存储，智能体可选择性回放或参考。</li><li><strong>模型</strong>：编码智能体使用 <strong>OpenAI Codex CLI</strong> 运行 <strong>gpt-5.6-sol</strong>，推理努力设为 medium，审批策略为 never；对比 VLA 为 <strong>π0.5</strong>，在 Lab X 采集的 25 条演示视频上微调 100k 步。</li><li><strong>硬件</strong>：两个六自由度 <strong>AgileX Piper</strong> 机械臂（CAN 通信，实验使用右臂）；头部与腕部相机（各实验室相机数量不同，Lab X 为 2 个，Lab Y 为 3 个）；iPhone 通过 <strong>Record3D</strong> 提供 RGB-D 观测。</li><li><strong>实验室设备</strong>：<strong>EYELA LTI-300</strong> 培养箱（门把手为凹入式水平槽）、<strong>Nacalai Tesque D-PBS</strong> 500 mL 试剂瓶（白色螺旋盖）、<strong>TPP Techno Plastic Products AG 93100</strong> 培养皿。</li><li><strong>训练资源</strong>：论文未明确报告 GPU/TPU 型号与数量；VLA 微调为 100k 步，编码智能体消耗 token 数分别为 Lab X 41.4 M、Lab Y 23.0 M。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：真实实验室 <strong>Lab X</strong>（NYU，使用 NYU 绳驱动 Dynamixel 夹爪、2 个相机、平均亮度 130.10）与 <strong>Lab Y</strong>（使用 Piper 原生夹爪、3 个相机、平均亮度 106.84），两者在机械臂与设备朝向、台面颜色、光照和相机数量上均有差异。</li><li><strong>主要评估指标</strong>：任务成功率、跨实验室迁移能力、首次抓取时间、token 消耗、培养箱门开度相对误差、同一设置下重复执行时间。</li><li><strong>关键结果</strong>：</li></ul>
+<p> - 编码智能体在 <strong>三项任务均成功</strong>：培养皿盖子抬起、瓶盖移除、培养箱门打开。</p>
+<p> - 瓶盖任务中，编码智能体在 <strong>Lab X 和 Lab Y 均成功</strong>；π0.5 VLA 在 Lab X 成功但 <strong>迁移到 Lab Y 失败</strong>。</p>
+<p> - 首次抓取时间：Lab Y 为 <strong>48 分 43 秒</strong>，Lab X 为 <strong>1 小时 02 分</strong>；token 消耗分别为 <strong>23.0 M</strong> 与 <strong>41.4 M</strong>。</p>
+<p> - 培养箱门任务中，门开度相对误差从 <strong>1.417 降至 0.179</strong>，被记录为成功打开；同一设置下重复执行仅需 <strong>3 分 27 秒</strong>。</p>
+<ul><li><strong>局限性</strong>：仅测试单一编码智能体与单一模型；任务结果为单次适配试验中的连续尝试，而非重复独立适配；成功率反映适配后同一设置下的重复执行；相机布局与安装的参考物会影响结果；培养皿仅验证了抬盖，搬运盘体仍未测试。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.18462/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">CSWAM: Better Causal Semantic Representations for Out-of-Distribution Generalization in World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.18392/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DistAL: Distance-based Advantage Learning for VLA Fine-Tuning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
