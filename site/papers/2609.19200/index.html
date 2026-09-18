@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ULOHA: An Underwater Bimanual Robot System for Robot Learning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 ULOHA，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 LeRobot 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。 目标是解决现有水下操作研究多集中于单臂、而双臂模仿学习主要在空中开展的问题，为水下双臂协调任务提供统一的实验基础。 系统研究学习方法和执行策略在空中开发后迁移到水下时面临的新挑战，包括气泡干扰、浮力驱动运动、动作执行时域以及实时分块（RTC），并额外开展单臂水–空跨介质迁移研究。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.19200">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.19200.webp" alt="ULOHA: An Underwater Bimanual Robot System for Robot Learning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 ULOHA，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 LeRobot 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ULOHA: An Underwater Bimanual Robot System for Robot Learning</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.19200" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.19200" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.19200</span></div>
+            <p class="detail-summary">提出 ULOHA，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 LeRobot 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。 目标是解决现有水下操作研究多集中于单臂、而双臂模仿学习主要在空中开展的问题，为水下双臂协调任务提供统一的实验基础。 系统研究学习方法和执行策略在空中开发后迁移到水下时面临的新挑战，包括气泡干扰、浮力驱动运动、动作执行时域以及实时分块（RTC），并额外开展单臂水–空跨介质迁移研究。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">The University of Osaka（大阪大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.19200/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 ULOHA，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 LeRobot 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。</p>
+  <ul class="reading-intro-points"><li>提出 ULOHA，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 LeRobot 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。</li><li>目标是解决现有水下操作研究多集中于单臂、而双臂模仿学习主要在空中开展的问题，为水下双臂协调任务提供统一的实验基础。</li><li>系统研究学习方法和执行策略在空中开发后迁移到水下时面临的新挑战，包括气泡干扰、浮力驱动运动、动作执行时域以及实时分块（RTC），并额外开展单臂水–空跨介质迁移研究。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>The University of Osaka</strong>（大阪大学）</li><li><strong>Kobe University</strong>（神户大学）</li><li>通讯作者邮箱：<strong>kobayashi.masato.cmc@osaka-u.ac.jp</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>ULOHA</strong>，一个面向水下双臂机器人学习的集成实验平台，结合定制主从（leader–follower）硬件与 <strong>LeRobot</strong> 软件扩展，覆盖遥操作、多视角感知、示教采集、策略训练与自主部署全流程。</li><li>目标是解决现有水下操作研究多集中于单臂、而双臂模仿学习主要在空中开展的问题，为水下双臂协调任务提供统一的实验基础。</li><li>系统研究学习方法和执行策略在空中开发后迁移到水下时面临的新挑战，包括气泡干扰、浮力驱动运动、动作执行时域以及实时分块（RTC），并额外开展单臂水–空跨介质迁移研究。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>集成式水下双臂机器人学习平台</strong>：结合适应防水线缆约束的定制主从硬件、多视角感知，以及基于 <strong>LeRobot</strong> 的示教采集、策略训练与部署流程。</li><li>使用既有学习方法完成<strong>真机评估</strong>：覆盖九类涉及不同协调形式的水下任务，以 <strong>ACT</strong> 为主策略，并在部分任务上评估 <strong>Diffusion Policy</strong> 与 <strong>SmolVLA</strong>。</li><li>开展<strong>水下策略部署的实证研究</strong>：考察气泡干扰与浮力驱动拦截的执行策略，包括动作执行时域与实时分块；另有独立的单臂 ACT 研究评估训练介质覆盖对水–空迁移的影响。</li><li>承诺<strong>开源</strong>硬件设计与软件，便于复现与扩展。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>主从硬件</strong>：四条机械臂保持对应关节布局，每条臂含 6 个关节与 1 个驱动夹爪（J1–J6 为臂关节，J7 为夹爪）。主臂使用 <strong>DYNAMIXEL XM430-W350</strong> 舵机（干式），从臂使用防水 <strong>DYNAMIXEL XW430-T333</strong> 舵机，夹爪为定制 3D 打印件。</li><li><strong>防水线缆约束处理</strong>：从臂每个电机需独立防水线缆，无法直接菊花链连接；因此在 J4 处加入机械限位防止结构碰撞，在 J6 处预留连接器空间，使从臂运动范围受连接器几何约束但仍保留与主臂的关节对应关系。</li><li><strong>感知与数据采集</strong>：水箱尺寸 <strong>1.2 m × 0.6 m × 0.6 m</strong>；三台 <strong>TIER IV C1-120 GMSL2</strong> 相机（一台顶部、每臂一台手部相机），原生 1920×1280 UYVY 采集后缩放至 <strong>480×320</strong>，以 <strong>30 fps</strong> 进行 AV1 编码。</li><li><strong>遥操作与模仿学习</strong>：采用从臂力矩关闭的单边遥操作采集示教；以 30 Hz 记录归一化主臂目标、从臂状态和三维图像流。部署时策略输入三张图像与 <strong>14 维</strong>从臂状态，输出归一化动作序列，按可配置前缀以标称 30 Hz 执行后重新规划。</li><li><strong>对比的三种策略方法</strong>：</li></ul>
+<p> - <strong>ACT</strong>：单 <strong>ResNet-18</strong> 骨干跨视角共享，Transformer 宽度 512、8 头注意力，dropout 0.1，KL 权重 10，禁用时间集成，主干与 Transformer 学习率 10⁻⁵。</p>
+<p> - <strong>Diffusion Policy</strong>：两个观测步，随机裁剪比例 0.95，回合结束窗口保护为 31。</p>
+<p> - <strong>SmolVLA</strong>：从公开基础检查点微调，视觉编码器不冻结；采用同步执行与 <strong>RTC</strong>（实时分块）两种执行策略。</p></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>水下双臂任务数据集</strong>：<strong>表面交接</strong>（surface hand-over）与<strong>释放与接取</strong>（release and catch）各使用 <strong>50 条示教</strong>，其余七项双臂任务各使用 <strong>10 条示教</strong>（使用三台相机）。</li><li><strong>单臂数据集</strong>：每个介质 <strong>10 个回合</strong>，混合集为每个介质 <strong>5 条</strong>（使用两台相机）。</li><li><strong>训练配置</strong>：ACT 与 Diffusion Policy 各训练 <strong>50k 步</strong>，批大小分别为 <strong>8</strong> 和 <strong>32</strong>；SmolVLA 训练 <strong>200k 步</strong>，有效批大小 <strong>32</strong>。</li><li><strong>预测/执行时域</strong>：ACT 为 <strong>100/100</strong>，Diffusion Policy 为 <strong>64/32</strong>，同步 SmolVLA 为 <strong>50/50</strong>。</li><li><strong>硬件成本</strong>：主臂约 <strong>2,600 美元/条</strong>，从臂约 <strong>7,000 美元/条</strong>。</li><li>每条臂使用独立的 <strong>U2D2</strong> 总线，电机 ID 在实验配置中指定。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：每个条件 <strong>10 次试验</strong>，双臂任务限时 <strong>60 s</strong>，单臂任务限时 <strong>45 s</strong>；成功需在时限内达到任务特定状态并在回合结束时保持；共计 <strong>250 次试验</strong>（含 90 次 ACT 基线试验、20 次气泡试验、30 次额外执行时域试验、20 次 SmolVLA 试验、70 次单臂试验等）。</li><li><strong>主要指标</strong>：任务成功率（成功次数/总试验次数）。</li><li><strong>ACT 九任务结果</strong>（清晰水体，100 步执行基线）：总计 <strong>68/90</strong>。其中<strong>积木交接 10/10</strong>、<strong>顺序转移 10/10</strong>、<strong>双臂举升 10/10</strong>、<strong>积木堆叠 9/10</strong>、<strong>协作插入 9/10</strong>、<strong>开盖 7/10</strong>、<strong>交接后放置 6/10</strong>、<strong>表面交接 4/10</strong>、<strong>释放与接取 3/10</strong>；两项海绵任务（涉及浮力驱动）成功率最低。</li><li><strong>三方法对比</strong>：在<strong>积木交接</strong>任务上，<strong>ACT、Diffusion Policy、SmolVLA 均达到 10/10</strong>，表明三种方法均可部署于 ULOHA。</li><li><strong>气泡干扰</strong>：<strong>顺序转移</strong>从 <strong>10/10 降至 3/10</strong>，而<strong>双臂举升</strong>保持 <strong>10/10</strong>，显示任务相关的敏感性。</li><li><strong>ACT 执行时域（释放与接取）</strong>：100 步 <strong>3/10</strong>、50 步 <strong>4/10</strong>、30 步 <strong>6/10</strong>（最佳）、15 步 <strong>3/10</strong>，呈现非单调关系。</li><li><strong>SmolVLA 执行策略</strong>：<strong>RTC 6/10</strong> 优于<strong>同步执行 4/10</strong>（同一检查点、不额外训练）。</li><li><strong>单臂水–空迁移</strong>：单介质策略仅在其训练介质中达到 <strong>10/10</strong>，跨介质为 <strong>0/10</strong>；<strong>混合 5+5</strong> 训练的策略在<strong>空气与水中均达 10/10</strong>，且未增加总示教数。</li><li><strong>未见物体迁移</strong>：混合介质策略在水下对训练中未出现的<strong>黑色橡胶块</strong>达到 <strong>7/10</strong>（颜色与硬度同时改变，未隔离颜色泛化）。</li><li><strong>局限性</strong>：每个条件仅十次试验，无法确立方法排序；实验未将视觉变化与流体动力学效应分离。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.19441/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Predict Before You Deploy: Offline Prediction of Quantization-Induced Task Degradation for World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.19104/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">rMuscle: Robotic Muscle Memory for Efficient Vision-Language-Action Model Inference</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

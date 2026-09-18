@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Predict Before You Deploy: Offline Prediction of Quantization-Induced Task Degradation for World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="世界动作模型（WAMs）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。 论文提出 PreDE（Predict Before You Deploy），一个策略校准框架，用离线动作偏差预测量化引起的任务退化，在闭环评估前决定接受、拒绝或推迟新配置。 核心目标：避免对每个量化候选配置进行昂贵的闭环评估，同时识别可能保持任务性能的配置，并标注需要进一步闭环验证的候选。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.19441">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.19441.webp" alt="Predict Before You Deploy: Offline Prediction of Quantization-Induced Task Degradation for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">世界动作模型（WAMs）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Predict Before You Deploy: Offline Prediction of Quantization-Induced Task Degradation for World Action Models</h1>
+            <div class="detail-meta">2026-09-16 · <a href="http://arxiv.org/abs/2609.19441" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.19441" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.19441</span></div>
+            <p class="detail-summary">世界动作模型（WAMs）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。 论文提出 PreDE（Predict Before You Deploy），一个策略校准框架，用离线动作偏差预测量化引起的任务退化，在闭环评估前决定接受、拒绝或推迟新配置。 核心目标：避免对每个量化候选配置进行昂贵的闭环评估，同时识别可能保持任务性能的配置，并标注需要进一步闭环验证的候选。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Robotics Program, Colorado School of Mines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.19441/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">世界动作模型（WAMs）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。</p>
+  <ul class="reading-intro-points"><li>世界动作模型（WAMs）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。</li><li>论文提出 PreDE（Predict Before You Deploy），一个策略校准框架，用离线动作偏差预测量化引起的任务退化，在闭环评估前决定接受、拒绝或推迟新配置。</li><li>核心目标：避免对每个量化候选配置进行昂贵的闭环评估，同时识别可能保持任务性能的配置，并标注需要进一步闭环验证的候选。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Robotics Program, Colorado School of Mines</strong></li><li><strong>Department of Civil and Coastal Engineering, University of Florida</strong></li><li><strong>University of Southern California - Institute for Creative Technology</strong></li><li><strong>Department of Civil and Environmental Engineering, Colorado School of Mines</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>世界动作模型（<strong>WAMs</strong>）部署时依赖视频生成骨干，内存和计算开销大；后训练量化可降低开销，但比特宽度、分组和量化器选择构成巨大配置空间，穷举闭环评估成本极高。</li><li>论文提出 <strong>PreDE</strong>（Predict Before You Deploy），一个策略校准框架，用离线动作偏差预测量化引起的任务退化，在闭环评估前决定接受、拒绝或推迟新配置。</li><li>核心目标：避免对每个量化候选配置进行昂贵的闭环评估，同时识别可能保持任务性能的配置，并标注需要进一步闭环验证的候选。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PreDE</strong>，从离线动作偏差预测量化引起的任务退化，并在 within-setting 标签排序假设下形式化接受、拒绝和推迟区域。</li><li>在来自 <strong>两个 WAM 策略</strong>的 28 个保留配置上评估预测，决策在观察闭环结果前确定，报告决策覆盖率、标签排序和测量灵敏度。</li><li>在 <strong>五个 WAM</strong> 和 <strong>四个基准设置</strong>中表征量化结果，并开展独立的真实机器人研究，分析行为退化及量化带来的延迟和内存收益。</li><li>真实机器人 <strong>450 次 Franka Research 3 试验</strong>表明，测试前划分的高偏差组均出现显著退化；<strong>W4A4</strong> 实现 <strong>1.37×</strong> 动作查询加速和约 <strong>44%</strong> 峰值内存降低。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>离线动作比较：将相同观察输入参考策略和量化策略，测量平均绝对动作分量偏差 \(\bar{\delta}(q;D)\)，参考动作缓存后新候选仅需离线策略查询。</li><li>策略特定校准：利用开发集闭环结果定义可接受损失容差 \(\epsilon_A\) 和退化阈值 \(\epsilon_R\)，将配置标记为可接受、退化或未解决。</li><li>阈值计算：接受阈值 \(\delta_{\mathrm{acc}}\) 为可接受配置的最大偏差，拒绝阈值 \(\delta_{\mathrm{rej}}\) 为退化配置的最小偏差。</li><li>决策规则：偏差 \(\leq \delta_{\mathrm{acc}}\) 接受；偏差 \(\geq \delta_{\mathrm{rej}}\) 拒绝；介于两者之间推迟；若阈值无效则全部推迟。</li><li>理论依据：提出 within-setting 单交叉假设 H，并用 Proposition 1（一致区域）和 Proposition 2（细化）证明决策在阈值一致处做出，在分歧处推迟。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模型：<strong>Cosmos-2B</strong>、<strong>UVA-0.5B</strong>、<strong>mimic-2B</strong>、<strong>RynnVLA-7B</strong>、<strong>Fast-WAM-6B</strong> 五个 WAM。</li><li>仿真基准：<strong>LIBERO</strong>（四个 suite）、<strong>RoboCasa-24</strong>、<strong>PushT</strong>、<strong>PushT-M</strong>。</li><li>量化方法：<strong>RTN</strong>、<strong>HQQ</strong> 权重量化、<strong>ViDiT-Q</strong> INT8、<strong>SVDQuant</strong> 风格 W4A4、<strong>QServe</strong> 风格 W4A8。</li><li>真实机器人：<strong>Franka Research 3</strong>，<strong>RTX 5080</strong> 服务器，16 步动作块，配置执行速率 15 Hz，共 450 次试验。</li><li>训练资源：论文未涉及模型训练，主要进行推理加速和量化评估。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：仿真（<strong>LIBERO</strong>、<strong>RoboCasa-24</strong>、<strong>PushT</strong>、<strong>PushT-M</strong>）和真实机器人（<strong>Franka Research 3</strong>）。</li><li>主要指标：任务成功率、任务损失、离线动作偏差、决策覆盖率、假接受/假拒绝、查询延迟和峰值内存。</li><li>33 个量化模型-基准对中，19 个相对参考损失至多一个百分点；相同比特宽度下，分组和量化器选择可导致巨大性能差异（如 RTN W3 group size 128 达 97.40%，per-channel 仅 20.05%）。</li><li>28 个保留配置（20 个 Cosmos、8 个 UVA）上，<strong>PreDE 发出 21 个决策（75% 覆盖率）</strong>，全部匹配观察到的可接受或退化标签；推迟候选包含可接受结果和 33 个百分点的损失。</li><li>Cosmos 校准阈值 <strong>（0.02191, 0.09736）</strong>，UVA 阈值 <strong>（0.0049, 0.00925）</strong>。</li><li>真实机器人高偏差组均显著退化（杯子 \(p<0.004\)，方块 \(p<0.002\)），低偏差比较无显著退化；<strong>W4A4</strong> 将中位动作查询延迟从 2030 ms 降至 1485 ms，峰值内存从 5.19 GB 降至 2.93 GB。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.19475/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">FASA: Feedback-Aware Sampling Adaptation for Efficient Diffusion-Based VLA Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.19200/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ULOHA: An Underwater Bimanual Robot System for Robot Learning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

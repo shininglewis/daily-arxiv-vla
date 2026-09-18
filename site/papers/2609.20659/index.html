@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HIL-UMI: Bringing Human-in-the-Loop Post-Training of Vision-Language-Action Models to Universal Manipulation Interface - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 HIL-UMI，一个基于 Universal Manipulation Interface (UMI) 的机器人无关（robot-free）人类在环 VLA（Vision-Language-Action） 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。 针对现有 SFT 后训练的两大局限：静态示范数据对策略诱导的 分布外（OOD）状态 覆盖不足，以及标准模仿目标不区分样本对任务进展的贡献大小。 目标是在不依赖真实机器人反复 rollout 与人工干预的前提下，实现可并行、可扩展、策略感知的 VLA 后训练流程。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.20659">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.20659.webp" alt="HIL-UMI: Bringing Human-in-the-Loop Post-Training of Vision-Language-Action Models to Universal Manipulation Interface" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 HIL-UMI，一个基于 Universal Manipulation Interface (UMI) 的机器人无关（robot-free）人类在环 VLA（Vision-Language-Action） 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">HIL-UMI: Bringing Human-in-the-Loop Post-Training of Vision-Language-Action Models to Universal Manipulation Interface</h1>
+            <div class="detail-meta">2026-09-17 · <a href="http://arxiv.org/abs/2609.20659" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.20659" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.20659</span></div>
+            <p class="detail-summary">论文提出 HIL-UMI，一个基于 Universal Manipulation Interface (UMI) 的机器人无关（robot-free）人类在环 VLA（Vision-Language-Action） 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。 针对现有 SFT 后训练的两大局限：静态示范数据对策略诱导的 分布外（OOD）状态 覆盖不足，以及标准模仿目标不区分样本对任务进展的贡献大小。 目标是在不依赖真实机器人反复 rollout 与人工干预的前提下，实现可并行、可扩展、策略感知的 VLA 后训练流程。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">西安交通大学（Xi&#x27;an Jiaotong University），中国</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.20659/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 HIL-UMI，一个基于 Universal Manipulation Interface (UMI) 的机器人无关（robot-free）人类在环 VLA（Vision-Language-Action） 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。</p>
+  <ul class="reading-intro-points"><li>论文提出 HIL-UMI，一个基于 Universal Manipulation Interface (UMI) 的机器人无关（robot-free）人类在环 VLA（Vision-Language-Action） 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。</li><li>针对现有 SFT 后训练的两大局限：静态示范数据对策略诱导的 分布外（OOD）状态 覆盖不足，以及标准模仿目标不区分样本对任务进展的贡献大小。</li><li>目标是在不依赖真实机器人反复 rollout 与人工干预的前提下，实现可并行、可扩展、策略感知的 VLA 后训练流程。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>西安交通大学</strong>（Xi'an Jiaotong University），中国</li><li><strong>北京大学计算机学院多媒体信息处理全国重点实验室</strong>（National Key Laboratory for Multimedia Information Processing, School of Computer Science, Peking University），中国</li><li><strong>北京大学计算机学院前沿计算研究中心</strong>（Center on Frontier Computing Studies, School of Computer Science, Peking University），中国</li><li><strong>PrimeBot</strong>，中国</li><li><strong>京东科技</strong>（JD Technology），中国</li><li>通讯作者：<strong>Hao Dong</strong>（hao.dong@pku.edu.cn），标注为共同贡献与项目负责人</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>HIL-UMI</strong>，一个基于 <strong>Universal Manipulation Interface (UMI)</strong> 的机器人无关（robot-free）人类在环 <strong>VLA（Vision-Language-Action）</strong> 模型后训练框架，把迭代式策略改进从真实机器人上解耦出来。</li><li>针对现有 SFT 后训练的两大局限：静态示范数据对策略诱导的 <strong>分布外（OOD）状态</strong> 覆盖不足，以及标准模仿目标不区分样本对任务进展的贡献大小。</li><li>目标是在不依赖真实机器人反复 rollout 与人工干预的前提下，实现可并行、可扩展、策略感知的 VLA 后训练流程。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出基于 <strong>UMI</strong> 的人类在环框架，将迭代式 VLA 后训练从机器人上迁移到手持设备采集，实现跨操作者、跨地点的可扩展并行数据采集。</li><li>提出实时 <strong>OOD 检测方法</strong>，在 UMI 采集过程中将人类动作轨迹与当前策略的动作分布进行对比（<strong>Energy Score</strong>），实现策略条件化的数据选择。</li><li>设计迭代工作流：每轮在线刷新 <strong>优势模型（advantage estimator）</strong>，并用更新后的优势模型为采集数据打标签，执行 <strong>ACBC（优势条件行为克隆）</strong>。</li><li>在四个真实世界长时序与高精度操作任务上验证有效性，性能一致优于 SFT，并在 <strong>Clean Up Table</strong> 任务上超越 <strong>HG-DAgger</strong>，采集效率提升 <strong>5.63×</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>在线数据采集（两条并行流）</strong>：每条采集流分配相同帧预算（<code>\|D_r^A\|= \|D_r^P\|</code>），分别用于优势模型精修与策略改进。</li><li><strong>策略数据采集与 OOD 定义</strong>：操作者给出手部动作块 <code>H_t</code>，同时对同一观测执行 <strong>N=10</strong> 次随机策略采样得到动作分布 <code>A_t^(n)</code>；用动作块距离 <code>ρ²(A,B)</code>（位置、SO(3) 测地旋转距离、夹爪命令加权组合）计算 <strong>Energy Score</strong>：第一项衡量人类动作与策略样本的距离，第二项衡量策略样本自身离散度，避免退化为逐点误差；<code>ES(H_t) > τ_P</code> 即触发采集（<code>τ_P</code> 全任务共享）。</li><li><strong>优势数据采集</strong>：以 <code>K</code> 帧时间偏移的观测对 <code>f_ψ(o_{t-K}, o_t, c)</code> 预测相对任务进展，<code>Â_t^online < τ_A</code> 时触发采集；<code>τ_A = κ₀/2</code>，其中 <code>κ₀</code> 是按初始优势模型 <code>f_ψ0</code> 在基础数据上取前 <strong>η=0.3</strong> 分位的经验阈值。</li><li><strong>优势模型训练</strong>：直接回归两帧间相对进展 <code>f_ψ(o_u, o_v, c)</code>，避免两次独立预测相减带来的复合误差；基础回合目标 <code>z_{i,t}=t/(L_i-1)</code>，迭代段目标 <code>z_{r,j,t}=(t/(L_{r,j}-1))·(L_{r,j}/L̄₀)</code>，保证段与基础数据进展尺度一致；用 <strong>Mix</strong> 算子混合当前轮与历史数据（系数 α=0.5）后做 MSE 回归。</li><li><strong>策略更新（ACBC）</strong>：基础数据按经验阈值 <code>κ_r</code> 取前 η 分位赋正标签，新采集的策略数据全部赋正标签；将标签拼接到 prompt 中得到 <code>c^b</code>，在混合数据集 <code>D̃_r^P</code> 上以 BC 损失继续训练；推理时使用正优势提示，倾向任务推进行为。</li><li><strong>关键技术点</strong>：策略与优势推理在本地工作站并行执行（策略 OOD 检测延迟 <strong>112 ms</strong>，优势 OOD 检测延迟 <strong>93 ms</strong>），保证人类在环实时性；数据采样与检测分离，策略采样与 UMI 采集并发进行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>基础数据集</strong>：每个任务使用固定的基础 UMI 示范集；长时序任务（<strong>Fold Towel</strong>、<strong>Clean Up Table</strong>）为 <strong>50</strong> 条示范，其余任务（<strong>Stack Cube</strong>、<strong>Stamp</strong>）为 <strong>80</strong> 条示范。</li><li><strong>每轮新增数据预算</strong>：长时序任务 <strong>12,000 帧/轮</strong>，其余任务 <strong>2,500 帧/轮</strong>。</li><li><strong>基础模型</strong>：适配开源 <strong>π0.5</strong> 策略（flow-based VLA）到各任务。</li><li><strong>硬件设备</strong>：自研 UMI 手持设备（<strong>AgiBot OmniPicker</strong> 夹爪 + <strong>Meta Quest 3</strong> 手柄追踪，通过定制连接件耦合），<strong>Intel RealSense D405</strong> 腕部视角 + <strong>Intel RealSense D455</strong> 固定第三人称视角，采集频率 <strong>30 Hz</strong>；推理工作站配备 <strong>NVIDIA RTX 4090D</strong>。</li><li><strong>评测机器人</strong>：单台 <strong>Franka</strong> 机械臂。</li><li><strong>训练超参</strong>：输入分辨率 224×224，动作 horizon 20，优化器 AdamW，策略学习率 1.0×10⁻⁵，优势学习率 5.0×10⁻⁵， cosine 调度，warm-up 500 步，batch size 128，weight decay 1.0×10⁻¹⁰，每轮 5000 更新步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测环境</strong>：四个真实世界操作任务——<strong>Fold Towel</strong>（长时序折叠毛巾）、<strong>Clean Up Table</strong>（长时序收纳笔与玩具、开关抽屉）、<strong>Stack Cube</strong>（精确堆叠方块）、<strong>Stamp</strong>（精度要求在 1 cm 容差内盖章）。</li><li><strong>评测协议</strong>：每个 checkpoint 每任务 <strong>10 次试验</strong>，初始物体位置在 <strong>30 cm × 60 cm</strong> 工作空间内随机变化以测试空间泛化；指标为 <strong>Task Progress Score（TPS）</strong>，对预定义子任务按 0–100 给出部分分（如表 I 中 Fold Towel 各子任务 +25，Clean Up Table 每项 +10，Stack Cube 为 +30/+30/+40，Stamp 为 +20×5）。</li><li><strong>主要结果</strong>：HIL-UMI 在四个任务上相比 SFT 一致提升，SFT 仅取得有限提升并出现平台期/短暂回退；在 <strong>Stack Cube</strong> 上阈值 <code>(τ_P, τ_A) = (1.2, 0.2)</code> 时 TPS 从 base 84 提升到第 3 轮 <strong>100</strong>。</li><li><strong>消融结果</strong>：去掉优势模型、以简单微调替代 ACBC 后性能显著下降，说明按效用区分样本至关重要；阈值消融显示过松或过严都会变差，适度阈值最佳，且 HIL-UMI 在测试范围内均优于 SFT。</li><li><strong>效率对比</strong>：HIL-UMI 每帧采集时间略高于 SFT（如 Clean Up Table 73.40 ms/frame vs 41.70 ms/frame），但 TPS 随采集时间持续上升；与 <strong>HG-DAgger</strong> 相比，HG-DAgger 需 <strong>412.99 ms/frame</strong>，HIL-UMI 仅 <strong>73.40 ms/frame</strong>，效率高 <strong>5.63×</strong>，且最终 TPS 高出约 5 分。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.20709/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">MoWAM: Explicit Future Motion Prediction for Efficient World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.20648/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SkipVLA: Skipping VLA Steps with Classical Planning for Fast Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

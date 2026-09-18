@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond Patch Removal: Persistent Adversarial Effects in Vision-Language-Action Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究视觉-语言-动作（VLA）策略在对抗性补丁被移除后产生的持续对抗效应，即补丁移除后策略可恢复性仍然显著降低的现象。 现有评估主要关注补丁持续存在时的任务成功率或单步动作偏差，无法区分“补丁存在时的即时动作破坏”与“补丁移除后的持续状态影响”。 论文提出状态恢复协议，通过匹配控制（遮挡、动作误差幅度、方向持续性）来量化对抗性补丁造成的额外持续影响，并研究恢复适配器在不同干预延迟下的效果。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.19669">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.19669.webp" alt="Beyond Patch Removal: Persistent Adversarial Effects in Vision-Language-Action Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究视觉-语言-动作（VLA）策略在对抗性补丁被移除后产生的持续对抗效应，即补丁移除后策略可恢复性仍然显著降低的现象。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Beyond Patch Removal: Persistent Adversarial Effects in Vision-Language-Action Policies</h1>
+            <div class="detail-meta">2026-09-17 · <a href="http://arxiv.org/abs/2609.19669" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.19669" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.19669</span></div>
+            <p class="detail-summary">论文研究视觉-语言-动作（VLA）策略在对抗性补丁被移除后产生的持续对抗效应，即补丁移除后策略可恢复性仍然显著降低的现象。 现有评估主要关注补丁持续存在时的任务成功率或单步动作偏差，无法区分“补丁存在时的即时动作破坏”与“补丁移除后的持续状态影响”。 论文提出状态恢复协议，通过匹配控制（遮挡、动作误差幅度、方向持续性）来量化对抗性补丁造成的额外持续影响，并研究恢复适配器在不同干预延迟下的效果。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">UNSW Sydney（悉尼新南威尔士大学），澳大利亚</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.19669/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究视觉-语言-动作（VLA）策略在对抗性补丁被移除后产生的持续对抗效应，即补丁移除后策略可恢复性仍然显著降低的现象。</p>
+  <ul class="reading-intro-points"><li>论文研究视觉-语言-动作（VLA）策略在对抗性补丁被移除后产生的持续对抗效应，即补丁移除后策略可恢复性仍然显著降低的现象。</li><li>现有评估主要关注补丁持续存在时的任务成功率或单步动作偏差，无法区分“补丁存在时的即时动作破坏”与“补丁移除后的持续状态影响”。</li><li>论文提出状态恢复协议，通过匹配控制（遮挡、动作误差幅度、方向持续性）来量化对抗性补丁造成的额外持续影响，并研究恢复适配器在不同干预延迟下的效果。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>UNSW Sydney</strong>（悉尼新南威尔士大学），澳大利亚</li><li><strong>UNSW Canberra</strong>（新南威尔士大学堪培拉校区），澳大利亚</li><li><strong>National University of Singapore</strong>（新加坡国立大学），新加坡</li><li><strong>Southern Cross University</strong>（南十字星大学），澳大利亚</li><li><strong>Griffith University</strong>（格里菲斯大学），澳大利亚</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>视觉-语言-动作（VLA）策略</strong>在对抗性补丁被移除后产生的<strong>持续对抗效应</strong>，即补丁移除后策略可恢复性仍然显著降低的现象。</li><li>现有评估主要关注补丁持续存在时的任务成功率或单步动作偏差，无法区分“补丁存在时的即时动作破坏”与“补丁移除后的持续状态影响”。</li><li>论文提出<strong>状态恢复协议</strong>，通过匹配控制（遮挡、动作误差幅度、方向持续性）来量化对抗性补丁造成的额外持续影响，并研究恢复适配器在不同干预延迟下的效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>状态恢复协议</strong>，在匹配剩余步数预算下测量补丁移除后的可恢复性，并设计遮挡匹配、偏差匹配和固定方向匹配三种控制条件，揭示无法由这些因素解释的持续对抗效应。</li><li>识别并修正<strong>LIBERO仿真器</strong>中三个状态恢复保真度问题（控制器内部命令、恢复边界观测、任务/可视化变量），并提供重放一致性检查以验证精确恢复。</li><li>评估<strong>概念验证恢复适配器</strong>，在攻击诱导状态上训练，表明恢复性能强烈依赖于干预延迟，强调需要从鲁棒性和响应时间两个维度联合评估VLA防御。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>定义<strong>状态条件恢复函数</strong> Q_π(s,H)，衡量从状态 s 出发、在剩余步数 H 内完成任务的概率，并计算各条件下的恢复成功率 SR_c(k) 及对抗性超额 Γ_c(k)。</li><li>构建<strong>匹配控制</strong>：随机补丁控制（匹配遮挡）、偏差匹配控制（匹配每一动作边界上的动作误差幅度）、固定方向控制（额外强制时间方向一致性），以排除简单解释。</li><li>提出<strong>攻击起始点</strong> t* 的定义，基于与随机补丁的偏差阈值校准，避免普通遮挡被误判为攻击起始。</li><li>设计<strong>可恢复检查点</strong> z_t = (x_t, h_t, v_t, o_t)，包含仿真器状态、控制器变量、任务/可视化变量和观测，并通过重放一致性验证恢复的精确性。</li><li>训练<strong>恢复适配器</strong>：使用LoRA微调，在攻击诱导状态上用干净策略的动作作为目标，同时加入干净专家数据正则化，以在补丁可见时直接改变策略行为而非检测或移除补丁。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>LIBERO-Long</strong> 和 <strong>LIBERO-Goal</strong> 两个基准，各包含10个机器人操作任务，基于 <strong>robosuite</strong> 实现。</li><li>主要评估 <strong>OpenVLA-OFT</strong>（预测8步动作块，20Hz），并额外评估 <strong>OpenVLA</strong>（自回归离散动作解码）以验证跨动作解码机制的通用性。</li><li>攻击采用 <strong>EDPA</strong> 补丁攻击，50×50像素补丁（5%面积比），同时应用于第三人称和腕部相机视图；3个补丁用于恢复训练，3个独立补丁用于留出评估。</li><li>恢复适配器使用LoRA rank 32，应用于骨干网络所有线性层，动作头和本体感受投影器冻结；优化器为AdamW，学习率5×10⁻⁵，余弦衰减，梯度裁剪1.0。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>连续攻击下，EDPA将 <strong>LIBERO-Long</strong> 成功率从91.0%降至9.0%，<strong>LIBERO-Goal</strong> 从94.0%降至20.0%，验证了攻击有效性。</li><li>补丁移除后，在 <strong>LIBERO-Long</strong> 的 t*+5 处，对抗分支仅 <strong>36.2%</strong> 可恢复，而固定方向控制为 <strong>87.0%</strong>、偏差匹配控制为 <strong>89.9%</strong>、随机补丁控制为 <strong>95.7%</strong>，对抗性超额 E_fix=50.7pp、E_dev=53.6pp、E_occ=59.4pp。</li><li><strong>LIBERO-Goal</strong> 在 t*+5 处同样呈现持续效应：对抗分支恢复率 <strong>39.3%</strong>，E_fix=46.1pp，且超额随扰动持续时间增加而增长。</li><li>在 <strong>OpenVLA</strong> 上，遮挡匹配的对抗性超额 E_occ 从 t* 的26.5pp增至 t*+5 的 <strong>39.4pp</strong>，表明效应不限于动作块解码机制。</li><li>恢复适配器在 <strong>LIBERO-Long</strong> 上将单块延迟恢复率从 <strong>7.7%</strong> 提升至 <strong>47.4%</strong>，但延迟至五块时降至20.5%；<strong>LIBERO-Goal</strong> 从21.4%提升至88.1%（单块），延迟后降至39.3%，表明干预延迟对恢复有显著影响。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.19878/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Uni-LaDiR: Latent Diffusion Unifies Multimodal Reasoning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.19666/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Towards High-DoF Dexterous Manipulation through VLA Post-Training</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

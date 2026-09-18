@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MM-Future: Multi-Mode Joint World-Action Modeling for Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 MM-Future，一种面向自动驾驶的多模式联合世界–动作模型（World–Action Model, WAM），将多个&quot;场景–动作&quot;配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。 现有世界–动作模型存在两类局限：级联式（Cascaded）WAM 具备多模式覆盖但场景与动作之间是单向条件，无法互相修正；联合式（Joint）WAM 具备双向交互但通常只生成单一场景–动作推演结果。 论文目标是同时实现多模式覆盖与场景–动作双向耦合，解决单结果监督下多样未来学习、多模式推演计算开销大、以及从多个配对假设中选出最优动作三大挑战。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.20377">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.20377.webp" alt="MM-Future: Multi-Mode Joint World-Action Modeling for Autonomous Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 MM-Future，一种面向自动驾驶的多模式联合世界–动作模型（World–Action Model, WAM），将多个&quot;场景–动作&quot;配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">MM-Future: Multi-Mode Joint World-Action Modeling for Autonomous Driving</h1>
+            <div class="detail-meta">2026-09-17 · <a href="http://arxiv.org/abs/2609.20377" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.20377" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.20377</span></div>
+            <p class="detail-summary">论文提出 MM-Future，一种面向自动驾驶的多模式联合世界–动作模型（World–Action Model, WAM），将多个&quot;场景–动作&quot;配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。 现有世界–动作模型存在两类局限：级联式（Cascaded）WAM 具备多模式覆盖但场景与动作之间是单向条件，无法互相修正；联合式（Joint）WAM 具备双向交互但通常只生成单一场景–动作推演结果。 论文目标是同时实现多模式覆盖与场景–动作双向耦合，解决单结果监督下多样未来学习、多模式推演计算开销大、以及从多个配对假设中选出最优动作三大挑战。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NIO（蔚来）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.20377/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 MM-Future，一种面向自动驾驶的多模式联合世界–动作模型（World–Action Model, WAM），将多个&quot;场景–动作&quot;配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。</p>
+  <ul class="reading-intro-points"><li>论文提出 MM-Future，一种面向自动驾驶的多模式联合世界–动作模型（World–Action Model, WAM），将多个&quot;场景–动作&quot;配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。</li><li>现有世界–动作模型存在两类局限：级联式（Cascaded）WAM 具备多模式覆盖但场景与动作之间是单向条件，无法互相修正；联合式（Joint）WAM 具备双向交互但通常只生成单一场景–动作推演结果。</li><li>论文目标是同时实现多模式覆盖与场景–动作双向耦合，解决单结果监督下多样未来学习、多模式推演计算开销大、以及从多个配对假设中选出最优动作三大挑战。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NIO</strong>（蔚来）</li><li><strong>中国科学技术大学 人工智能与数据科学学院/通用人工智能研究所</strong>（Artificial General Intelligence Institute, University of Science and Technology of China）</li><li><strong>中山大学 计算机学院</strong>（School of Computer Science and Engineering, Sun Yat-sen University）</li><li><strong>北京航空航天大学</strong>（Beihang University）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>MM-Future</strong>，一种面向自动驾驶的<strong>多模式联合世界–动作模型</strong>（World–Action Model, WAM），将多个"场景–动作"配对假设进行双向协同演化，以同时刻画驾驶中的决策耦合与多模式不确定性。</li><li>现有世界–动作模型存在两类局限：<strong>级联式（Cascaded）WAM</strong> 具备多模式覆盖但场景与动作之间是单向条件，无法互相修正；<strong>联合式（Joint）WAM</strong> 具备双向交互但通常只生成单一场景–动作推演结果。</li><li>论文目标是同时实现<strong>多模式覆盖</strong>与<strong>场景–动作双向耦合</strong>，解决单结果监督下多样未来学习、多模式推演计算开销大、以及从多个配对假设中选出最优动作三大挑战。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MM-Future</strong>，一种多模式联合世界–动作模型，通过<strong>混合条件流（mixture conditional flow）</strong>从仅有单一真实结果的训练片段中学习多个成对的"场景–动作"假设。</li><li>提出<strong>面向规划的 MM-Tokens</strong>（Planning-Oriented MM-Tokens），一种紧凑的多视角场景表示，用少量规划导向 token 替代稠密视频/BEV 潜变量，使多模式未来推演的计算代价可控。</li><li>设计<strong>未来条件化的提议打分器</strong>（Future-Conditioned Proposal Scorer），联合历史上下文与每个候选自带的预测未来对轨迹进行排序，实现"面向未来"的动作选择。</li><li>实验证明多模式生成、模态感知的场景–动作交互、以及未来条件化打分三者均带来一致提升，并验证多模式联合建模优于单模式与"仅动作"变体。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>整体框架</strong>：输入历史多视角图像序列、自车状态与导航指令，输出 <strong>M</strong> 个成对的场景–动作模式 $\mathcal{H}_m=(\hat{\boldsymbol{\tau}}_m, \hat{\mathbf{X}}^+_m)$，三者由在线 MM-Encoder、模态感知联合生成器与打分器组成。</li><li><strong>MM-Tokens</strong>：用预训练 <strong>ViT</strong> 骨干（LoRA 微调）提取每帧每相机的 register token，按时间分块后用可学习 chunk-wise query 经自注意力聚合，得到 $\mathbf{X}_j\in\mathbb{R}^{N_x\times d}$；训练时用 <strong>EMA</strong> 目标编码器产生未来目标 $\bar{\mathbf{X}}^+$ 并 stop-gradient，<strong>不做 RGB 或 BEV 重建</strong>，由世界–动作建模目标反向塑造表示。</li><li><strong>结构化配对源</strong>：对归一化轨迹做 <strong>K-means</strong> 聚类，用各簇均值/方差参数化<strong>高斯混合噪声（GMN）</strong>采样动作先验 $\boldsymbol{\epsilon}^a_m$，并与独立未来 token 噪声 $\boldsymbol{\epsilon}^x_m\sim\mathcal{N}(\mathbf{0},\mathbf{I})$ 配对，形成每个模式的初始场景–动作源。</li><li><strong>联合条件流</strong>：采用 $x$-prediction 参数化与线性插值路径 $\mathbf{z}^\kappa=(1-\rho^\kappa)\boldsymbol{\epsilon}^\kappa+\rho^\kappa\mathbf{y}^\kappa$，动作与未来流使用<strong>独立流时间</strong>；生成器 $G_{\theta_g}$ 为模态感知 Transformer，共享注意力实现双向交互，模态专属 AdaLN 调制与前馈分支保留各自统计特性；<strong>非对称块掩码</strong>把历史作为干净前缀，历史 query 只看历史，动作与未来 query 互相可见。</li><li><strong>Best-of-Many 监督</strong>：以 L1 解码误差选出最优模式 $m_{\mathrm{win}}$，仅对该模式的动作与场景两个流施加速度回归损失，避免所有模式被拉向同一条件均值。</li><li><strong>未来条件化打分</strong>：$\mathcal{D}_h$ 以历史 MM-Tokens 交叉注意力编码提议，$\mathcal{D}_f$ 只对每个候选自身的未来 $\hat{\mathbf{X}}^+_m$ 做<strong>块对角注意力</strong>，输出 PDMS 各分量的 logits，用 BCEWithLogits 训练；提议与未来 token 均 stop-gradient。</li><li><strong>训练与推理</strong>：总目标 $\mathcal{L}=\mathcal{L}_{\mathrm{BoM}}+\lambda_s\mathcal{L}_{\mathrm{score}}$，在线编码器、生成器与打分器联合优化，目标编码器仅 EMA 更新；推理时编码历史、积分 M 条配对流、逐条打分并返回最高分轨迹。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练与评测数据集：<strong>NAVSIM</strong>（含 <strong>NAVSIM-v1</strong> 与 <strong>NAVSIM-v2</strong> 的 *navtest* 划分）。</li><li>零样本闭环迁移评测：<strong>HUGSIM</strong>。</li><li>视觉骨干初始化自预训练 <strong>ViT</strong> 编码器（论文引用 Oquab et al. 2024），并用 <strong>LoRA</strong> 微调；注意力聚合模块从头训练。</li><li>预测目标为 $T_a$ 步平面自车位姿 $(x,y,\psi)$ 与 $C_f$ 个未来时空块的场景 token；具体参数量、GPU/TPU 等训练资源在所提供的 HTML 文本中<strong>未给出</strong>（实现细节章节仅列出目录，正文被截断）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>NAVSIM navtest（NAVSIM-v1，trainval）</strong>：<strong>PDMS 94.0</strong>，NC 98.7、DAC 99.0、TTC 95.8、EP 91.6；train 设定下 PDMS 93.4。</li><li><strong>NAVSIM-v2 navtest</strong>：<strong>EPDMS 91.5</strong>，NC 99.0、DAC 98.8、DDC 98.8、TL 99.4、EP 92.2、TTC 98.6、LK 95.4、HC 96.3、EC 89.2，优于 DiffusionDriveV2、MeanFuser、UniTeD、DriveWorld-VLA、IRR-Drive-4B、DriveFine、Latent-WAM、GraphWorld、DriveFuture 等 E2E/VLA/WAM 方法。</li><li><strong>HUGSIM 零样本闭环</strong>：<strong>HD-Score 32.3</strong>；Route Completion 平均 44.5（E 64.8、M 51.5、H 39.5、X 22.8），显著优于 VAD、Latent-TF、UniAD、Latent-WAM。</li><li><strong>消融（NAVSIM-v1 navtest）</strong>：</li></ul>
+<p> - 多模式生成：仅动作单模式 PDMS 84.1 → 仅动作 32 模式 92.3 → 配对 32 模式 <strong>92.9</strong>，说明成对建模与多模式覆盖均有增益。</p>
+<p> - 场景–动作交互：Mixture-of-DiT 双向 92.9，优于单向或单 DiT 变体。</p>
+<p> - 打分器：仅历史 92.9 → <strong>历史 + 配对未来 93.3</strong>，验证未来条件化打分的必要性；Efficiency 方面 32 模式推演延迟约 <strong>132 ms</strong>。</p>
+<ul><li>整体结论：多模式联合世界–动作建模在轨迹规划精度、闭环迁移能力与模式多样性上均优于单模式或仅动作建模的基线。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.20646/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">TraceFlow: Guiding Frozen Flow-Matching Robot Policies with Success and Failure Traces</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.19976/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Compliance for Free: Learning Identifiable Impedance via Bilateral Teleoperation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
