@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRIME: Perception Feedback with Situational Memory Embeddings in VLA Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 PRIME（Perception Feedback with Situational Memory Embeddings），在 ORION 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的学习式反馈通路。 指出现有 VLA 模型虽然在感知模块内部保留时序递归，但整体仍是前馈推理：感知对下游推理、导航意图与规划目标&quot;不可见&quot;，只能依赖当前观测从零重建决策上下文。 目标是在极低计算/参数开销下，让感知编码器在&quot;看&quot;之前就被智能体近期的所见、所推理、所预期所调制，即实现 intent-driven perceptual attention。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.22040">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.22040.webp" alt="PRIME: Perception Feedback with Situational Memory Embeddings in VLA Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 PRIME（Perception Feedback with Situational Memory Embeddings），在 ORION 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的学习式反馈通路。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PRIME: Perception Feedback with Situational Memory Embeddings in VLA Models</h1>
+            <div class="detail-meta">2026-09-18 · <a href="http://arxiv.org/abs/2609.22040" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.22040" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.22040</span></div>
+            <p class="detail-summary">论文提出 PRIME（Perception Feedback with Situational Memory Embeddings），在 ORION 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的学习式反馈通路。 指出现有 VLA 模型虽然在感知模块内部保留时序递归，但整体仍是前馈推理：感知对下游推理、导航意图与规划目标&quot;不可见&quot;，只能依赖当前观测从零重建决策上下文。 目标是在极低计算/参数开销下，让感知编码器在&quot;看&quot;之前就被智能体近期的所见、所推理、所预期所调制，即实现 intent-driven perceptual attention。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">13 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">RWTH Aachen University（德国亚琛工业大学）电气工程与信息技术系 — Erik D…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.22040/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 PRIME（Perception Feedback with Situational Memory Embeddings），在 ORION 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的学习式反馈通路。</p>
+  <ul class="reading-intro-points"><li>论文提出 PRIME（Perception Feedback with Situational Memory Embeddings），在 ORION 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的学习式反馈通路。</li><li>指出现有 VLA 模型虽然在感知模块内部保留时序递归，但整体仍是前馈推理：感知对下游推理、导航意图与规划目标&quot;不可见&quot;，只能依赖当前观测从零重建决策上下文。</li><li>目标是在极低计算/参数开销下，让感知编码器在&quot;看&quot;之前就被智能体近期的所见、所推理、所预期所调制，即实现 intent-driven perceptual attention。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>RWTH Aachen University</strong>（德国亚琛工业大学）电气工程与信息技术系 — <strong>Erik Deinzer</strong></li><li><strong>Robert Bosch GmbH</strong>（博世公司）Corporate Research, Renningen — <strong>Naya Baslan</strong>、<strong>Luca Paparusso</strong>、<strong>Narunas Vaskevicius</strong>、<strong>Luigi Palmieri</strong></li><li><strong>RWTH Aachen University</strong> 雷达系统工程讲席（Chair of Radar System Engineering）— <strong>Peter Knott</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PRIME</strong>（Perception Feedback with Situational Memory Embeddings），在 <strong>ORION</strong> 这一 VLA（Vision-Language-Action）端到端自动驾驶架构上引入一条从推理/规划阶段回传到感知前端的<strong>学习式反馈通路</strong>。</li><li>指出现有 VLA 模型虽然在感知模块内部保留时序递归，但整体仍是<strong>前馈推理</strong>：感知对下游推理、导航意图与规划目标"不可见"，只能依赖当前观测从零重建决策上下文。</li><li>目标是在<strong>极低计算/参数开销</strong>下，让感知编码器在"看"之前就被智能体近期的所见、所推理、所预期所调制，即实现 <strong>intent-driven perceptual attention</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Situational Memory</strong> 模块：一个有状态的记忆组件，通过跨注意力在 <strong>L 步时间窗</strong>内聚合 <strong>6 类潜在反馈源</strong>，覆盖场景感知（SA1）、情境理解与导航意图（SA2）、未来行为预测（SA3）三个层级。</li><li>针对结构、基数各异的反馈源，设计两个轻量集成模块：<strong>FiLMXAttn</strong>（处理紧凑源，结合 FiLM 仿射调制与跨注意力）与 <strong>Attention Pooling</strong>（用可学习的 Extraction Queries 压缩高基数结构化记忆）。</li><li>提出基于 <strong>adapter</strong> 的研究范式：冻结主干、只训练源专用反馈通路，从而可<strong>隔离评估单个潜在表征</strong>的作用，无需昂贵的端到端重训。</li><li>对 VLA 驾驶模型中的<strong>跨阶段反馈</strong>进行系统性实证研究，回答"记忆应保留感知表征还是高层推理/规划表征"这一问题。</li><li>在 <strong>Bench2Drive</strong> 闭环基准上验证有效性：<strong>Driving Score 82.47</strong>（较 ORION <strong>+4.73</strong>）、<strong>Success Rate 60.00%</strong>（<strong>+5.38</strong> 个百分点），在所比较的 Think2Drive 训练 VLA 中取得最高报告 Driving Score。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>反馈注入点</strong>：Situational Memory 在 QT-Former 的 Box Decoder（物体级）与 Map Decoder（地图级）解码器查询 <strong>Q = [B; D]</strong> 处理当前相机特征<strong>之前</strong>对其条件化，使有限的查询瓶颈选择"任务相关"信息而非纯自底向上视觉信息。</li><li><strong>记忆构建</strong>：不跨时间步传播梯度，而是维护 <strong>detached rolling buffers</strong>；每步将 6 个反馈源 detach 后写入各自缓冲（最多 L 条有效项），场景间重置或掩码；在 t 时刻从 <strong>M_{t-1}</strong> 检索。</li><li><strong>六个反馈源</strong>：SA1 的 <strong>Q</strong>（QT-Former 联合查询潜在）、<strong>M</strong>（潜在运动预测）；SA2 的 <strong>R</strong>（LLM 潜在推理 token）、<strong>P</strong>（规划导航命令）；SA3 的 <strong>S</strong>（预测自车状态查询）、<strong>T</strong>（多模态自车未来轨迹）。</li><li><strong>FiLMXAttn</strong>（用于 R、P、T）：将查询与记忆投影到共享嵌入空间并加时间编码 → 源特定跨注意力检索（含时间一致性掩码）→ 用 MLP 预测 FiLM 的 γ、β 对查询做特征级仿射调制 → 输出 MLP → Z^(i)。</li><li><strong>Attention Pooling</strong>（用于 Q、M、S）：记忆展平并加<strong>时间 + 位置编码</strong> → 可学习 Extraction Queries 跨注意力池化为固定数量 token → LayerNorm(FFN(·))，充当学习式信息瓶颈。</li><li><strong>共享反馈融合</strong>：各源表示加<strong>源嵌入 e^(i)</strong> 后拼接为 Z_cat，查询经 MLP+位置编码后对 Z_cat 做跨注意力，得到 U_Q，最后以<strong>门控残差</strong>融合：Q̂ = Q + σ(α)·U_Q，门控初始化为 <strong>σ(α)=0.1</strong>，使训练起点接近原 ORION 计算，并允许模型自适应增强或抑制反馈。</li><li><strong>新颖点</strong>：把控制工程中的"状态观测器/反馈"思想引入 VLA —— 反馈调节的是<strong>特征选择</strong>而非提供额外视觉证据，且无需额外前向传播。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>Bench2Drive</strong> 闭环基准，运行于 <strong>CARLA</strong> 仿真器。</li><li>训练示范来自 <strong>Think2Drive (T2D)</strong> 专家策略（对比方法 SpaceDrive、AutoVLA 使用 PDM-Lite 专家）。</li><li>开环感知质量在 <strong>NuScenes</strong> 相关指标上报告 <strong>NDS</strong>。</li><li>基础模型规模约 <strong>7.3B</strong> 参数（ORION 架构）；六源 Situational Memory 最多新增 <strong>29.7M</strong> 可训练参数，仅占 <strong>0.41%</strong>。</li><li>源专用 adapter 的参数量：<strong>R</strong> 为 13.60M、<strong>Q</strong> 为 1.78M、<strong>S</strong> 为 2.66M（三者未做容量匹配）。</li><li>训练模式：<strong>Adapter</strong>（仅反馈模块可训，8 epochs）、<strong>Alignment</strong>（QT-Former + 反馈，4 epochs）、<strong>End-to-End</strong>（QT-Former + LLM(LoRA) + Planner + 反馈，6 epochs）；<strong>PRIME-Full</strong> 采用 4 轮 Alignment → 6 轮 E2E 的顺序配方。</li><li>原文可见部分未给出具体 GPU/TPU 型号与数量（附录 "Training Configurations" 内容被截断）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：CARLA + Bench2Drive 闭环评测；所有 PRIME 变体从收敛的 ORION checkpoint 初始化。</li><li><strong>主要指标</strong>：<strong>Driving Score (DS)</strong>、<strong>Success Rate (SR)</strong>、<strong>NDS</strong>（开环感知）、<strong>mL2</strong>（越小越好），以及场景级 SR（Merge / Overtake / Emergency Brake / Give Way / Traffic Sign）。</li><li><strong>训练配方消融（表 II）</strong>：Alignment-only（DS 59.74、SR 33.63）与直接 E2E（DS 70.96、SR 50.00）均<strong>低于</strong> ORION 基线（DS 77.74、SR 54.62），说明单加反馈不够，必须先对齐 QT-Former 再联合优化。</li><li><strong>PRIME-Full 结果</strong>：NDS <strong>73.62</strong>、mL2 <strong>0.6788</strong>、DS <strong>82.47</strong>、SR <strong>60.00%</strong>，相对 ORION 提升 <strong>+1.90 NDS / +4.73 DS / +5.38 pp SR</strong>。</li><li><strong>单源 adapter 消融（表 III）</strong>：仅 <strong>推理状态 R</strong> 反馈改善闭环（DS 77.74→<strong>79.31</strong>，SR 54.62%→<strong>56.36%</strong>）；感知源 <strong>Q</strong>（DS 61.76、SR 32.72%）与预测源 <strong>S</strong>（DS 62.96、SR 39.09%）虽提升 NDS，却<strong>显著恶化</strong>闭环表现——揭示开环感知指标与驾驶性能的脱节。</li><li><strong>跨阶段源多样性消融（表 IV）</strong>：仅用感知侧源（<strong>PRIME-SA1</strong>，Q+M）NDS 略升至 71.96、mL2 降至 0.6114，但 DS 掉到 <strong>64.18</strong>、SR 仅 <strong>42.27%</strong>；而覆盖 SA1/SA2/SA3 的 PRIME-Full 同时提升感知与驾驶，说明有效反馈依赖<strong>行为相关性</strong>而非单纯保留更多感知历史。</li><li><strong>与 SOTA 对比（表 V）</strong>：UniAD 45.81、VAD 42.35、ORION 77.74、SpaceDrive 78.02（PDM）、AutoVLA 78.84（PDM）、GeRo 81.90；<strong>PRIME-Full 82.47</strong> 为 T2D 训练 VLA 中最高 DS，SR 60.00% 与 GeRo 的 60.10% 相当；PRIME 在 <strong>Merging</strong> 场景最强（47.50），GeRo 在 Overtake / Emergency Brake / Traffic Sign 更强。</li><li><strong>作者指出</strong>：PRIME 改进感知前端，与 GeRo 等改进规划/决策的工作<strong>正交互补</strong>；局限包括仅验证单一骨干与单一专家策略（Think2Drive）、纯相机设置、未评估真实世界分布外失效场景。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2609.21983/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SkelWAM: A Skeleton-Guided World-Action Model for Zero-Shot Cross-Embodiment Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

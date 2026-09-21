@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Skel-WAM，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。 核心目标是解决人类视频与机器人演示之间的具身差距（embodiment gap）：外观差异、动作空间差异，以及人类视频缺乏机器人动作标签的问题。 同时探究人类演示能否在固定任务指令下补充机器人数据中缺失的任务变化（位置、旋转、扰动、高度等），从而扩展机器人的任务覆盖范围。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.21514">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.21514.webp" alt="Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Skel-WAM，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Skel-WAM: A Hand-Skeleton-Conditioned World Action Model for Human-to-Robot Manipulation Transfer</h1>
+            <div class="detail-meta">2026-09-18 · <a href="http://arxiv.org/abs/2609.21514" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.21514" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.21514</span></div>
+            <p class="detail-summary">论文提出 Skel-WAM，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。 核心目标是解决人类视频与机器人演示之间的具身差距（embodiment gap）：外观差异、动作空间差异，以及人类视频缺乏机器人动作标签的问题。 同时探究人类演示能否在固定任务指令下补充机器人数据中缺失的任务变化（位置、旋转、扰动、高度等），从而扩展机器人的任务覆盖范围。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">The Chinese University of Hong Kong（香港中文大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.21514/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Skel-WAM，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。</p>
+  <ul class="reading-intro-points"><li>论文提出 Skel-WAM，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。</li><li>核心目标是解决人类视频与机器人演示之间的具身差距（embodiment gap）：外观差异、动作空间差异，以及人类视频缺乏机器人动作标签的问题。</li><li>同时探究人类演示能否在固定任务指令下补充机器人数据中缺失的任务变化（位置、旋转、扰动、高度等），从而扩展机器人的任务覆盖范围。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>The Chinese University of Hong Kong（香港中文大学）</strong></li><li><strong>Shanghai AI Laboratory（上海人工智能实验室）</strong></li><li><strong>Joy Future Academy</strong></li><li><strong>CPII under InnoHK</strong></li><li>通讯作者来自 <strong>Shanghai AI Laboratory</strong></li><li>项目主页：https://HealorCai.github.io/Skel-WAM/</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Skel-WAM</strong>，一个基于手部骨架条件的世界动作模型（World Action Model），用于将人类视频中的操作经验迁移到机器人操作任务中。</li><li>核心目标是解决人类视频与机器人演示之间的<strong>具身差距（embodiment gap）</strong>：外观差异、动作空间差异，以及人类视频缺乏机器人动作标签的问题。</li><li>同时探究人类演示能否在<strong>固定任务指令下</strong>补充机器人数据中缺失的任务变化（位置、旋转、扰动、高度等），从而扩展机器人的任务覆盖范围。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>统一手部骨架运动接口</strong>，通过 <strong>21 个关键点/手</strong> 的共享双手拓扑对齐人类与机器人运动，包含场景嵌入的视觉骨架叠加（visual overlay）和结构化 <strong>2.5-D 关键点</strong>两种同步表示。</li><li>设计<strong>解耦的 Video-Keypoint Mixture-of-Transformers（MoT）</strong> 与<strong>仅用机器人数据训练的因果 Action Expert</strong>，使人类视频无需机器人动作标签即可监督共享的视觉与骨架动力学。</li><li>在<strong>四个真实世界双臂任务</strong>和<strong>七个仿真任务</strong>上取得一致领先：真实世界平均成功率 <strong>79.86%</strong>，仿真平均成功率 <strong>63.29%</strong>，分别超越最强基线 <strong>22.22</strong> 和 <strong>8.28</strong> 个百分点。</li><li>证明<strong>人机协同训练（human-robot cotraining）</strong> 能将机器人缺失任务变化上的成功率从 <strong>38.89%</strong> 提升到 <strong>86.11%</strong>（+47.22 个百分点）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一骨架接口</strong>：人类手部使用 <strong>WiLoR</strong> 估计 MANO 参数与图像关键点，并通过两阶段相机空间优化恢复度量关键点；机器人手部选择语义对应的 URDF 链接，用前向运动学与标定外参投影到相机帧。</li><li><strong>视觉骨架叠加</strong>：将有效关键点与连接线按深度顺序绘制在 RGB 图像上，提供场景嵌入的共享运动表示；未来叠加图像由 Video Expert 直接生成。</li><li><strong>结构化 2.5-D 关键点</strong>：每个关键点包含归一化图像坐标 (u, v) 和相机空间深度 d（米），使用跨域共享统计量标准化，用 m=±0.5 编码有效性；Hand-Level Keypoint Encoder 将每只手的 21 个关键点映射为单一 token。</li><li><strong>Video-Keypoint MoT</strong>：Video Expert 由 <strong>Wan2.2-TI2V-5B</strong> 初始化，使用冻结的 <strong>Wan VAE</strong>；Keypoint Expert 权重由 Video Expert 参数插值初始化；两者各有 30 个层对齐块但保留模态特定参数。</li><li><strong>流匹配（Flow Matching）</strong>：对视频潜变量、骨架关键点和机器人动作应用条件流匹配，使用 1000 个流时间步，SNR shift 分别为 5（视频）和 1（关键点/动作）；推理时按 V→K→A 顺序采样。</li><li><strong>训练策略</strong>：仅机器人训练联合优化所有专家 80k 步；人机协同训练以 <strong>2:1</strong> 的机器人-人类比例协同训练 MoT 80k 步，再用机器人数据训练 Action Expert 50k 步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实世界数据</strong>：每个任务平均 <strong>50 条机器人演示</strong>（通过 Vive 追踪器遥操作 + MANUS 手套控制灵巧手）和 <strong>25 条人类演示</strong>。</li><li><strong>真实平台</strong>：两台 <strong>Franka Research 3</strong> 机械臂 + <strong>RobotEra XHand1</strong> 灵巧手 + <strong>Intel RealSense D435</strong> 第一视角相机。</li><li><strong>仿真数据</strong>：<strong>EgoVLA-Sim</strong> 的七个任务（Stack Can、Push Box、Open Drawer、Close Drawer、Flip Mug、Pour Balls、Open Laptop），每任务 93 个 episode（27 个分布内 + 66 个含未见桌面/背景）。</li><li><strong>动作空间</strong>：真实机器人 30 Hz、<strong>42 维动作</strong>（每臂 3-D 末端位置 + 6-D 旋转 + 12 手部关节角）；仿真为 <strong>38 维关节角动作</strong>。</li><li><strong>训练资源</strong>：<strong>8 张 NVIDIA A800 GPU</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：Robot、Human、New Background 三种设置，每任务分别 24、9、6 次试验（Stack Cups 用 18 次 Robot 试验）；指标为 <strong>SR（成功率）</strong> 和 <strong>PSR（进度成功率）</strong>。</li><li><strong>对比基线</strong>：<strong>ACT</strong>、<strong>Fast-WAM</strong>、<strong>LDA</strong>、<strong>EgoVLA</strong>。</li><li><strong>真实世界结果</strong>（Table I）：Skel-WAM 平均 <strong>79.86% SR / 89.24% PSR</strong>，超越 EgoVLA 达 <strong>22.22 / 20.14</strong> 个百分点。</li><li><strong>机器人缺失任务变化</strong>（Table II）：协同训练将平均 SR 从 <strong>38.89%</strong> 提升至 <strong>86.11%</strong>，PSR 从 61.11% 提升至 95.14%；抽屉高度任务从 0% 提升到 100%。</li><li><strong>消融实验</strong>：去除叠加后平均 SR 从 86.11% 降至 50.00%，去除关键点后低于 17%，表明两者互补；仿真中去掉关键点 SR 从 63.29% 降至 38.40%。</li><li><strong>背景泛化</strong>（Fig. 8）：未见背景下平均 <strong>58.33% SR / 76.04% PSR</strong>，超越 EgoVLA 达 <strong>20.83 / 19.79</strong> 个百分点。</li><li><strong>仿真结果</strong>（Table III）：平均 <strong>63.29% SR / 78.42% PSR</strong>，超越 EgoVLA 达 <strong>8.28 / 13.11</strong> 个百分点。</li><li><strong>模态贡献分析</strong>（Fig. 10）：动作预测中关键点残差贡献占 <strong>58.3–59.9%</strong>，视频潜变量占 <strong>40.1–41.7%</strong>，两者均有贡献且关键点贡献更大。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.21650/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SynthDemo-RL: Breaking the Zero-Reward Barrier in VLA Adaptation with LLM-Guided Synthetic Demonstrations</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.21461/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">AtomEgo: Exploring Ego-Robot Integration for Embodied Foundation Model Pretraining</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

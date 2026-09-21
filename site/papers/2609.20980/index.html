@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ForeTac-VLA: A Forecasting-Based Tactile-Vision-Language-Action Model for Contact-Rich Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 ForeTac-VLA，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。 针对现有 VLA 模型过度依赖视觉感知、在接触密集场景中难以获取关键物理交互状态的问题，以及现有触觉增强 VLA 方法多为“反应式”而非“预测式”的局限。 核心目标：通过预测未来触觉状态来指导动作生成，使机器人能够对即将发生的接触变化进行推理，而非仅依赖已观测到的触觉反馈。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.20980">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.20980.webp" alt="ForeTac-VLA: A Forecasting-Based Tactile-Vision-Language-Action Model for Contact-Rich Robotic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 ForeTac-VLA，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ForeTac-VLA: A Forecasting-Based Tactile-Vision-Language-Action Model for Contact-Rich Robotic Manipulation</h1>
+            <div class="detail-meta">2026-09-17 · <a href="http://arxiv.org/abs/2609.20980" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.20980" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.20980</span></div>
+            <p class="detail-summary">提出 ForeTac-VLA，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。 针对现有 VLA 模型过度依赖视觉感知、在接触密集场景中难以获取关键物理交互状态的问题，以及现有触觉增强 VLA 方法多为“反应式”而非“预测式”的局限。 核心目标：通过预测未来触觉状态来指导动作生成，使机器人能够对即将发生的接触变化进行推理，而非仅依赖已观测到的触觉反馈。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">德克萨斯农工大学（Texas A&amp;M University），美国德克萨斯州大学城</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.20980/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 ForeTac-VLA，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。</p>
+  <ul class="reading-intro-points"><li>提出 ForeTac-VLA，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。</li><li>针对现有 VLA 模型过度依赖视觉感知、在接触密集场景中难以获取关键物理交互状态的问题，以及现有触觉增强 VLA 方法多为“反应式”而非“预测式”的局限。</li><li>核心目标：通过预测未来触觉状态来指导动作生成，使机器人能够对即将发生的接触变化进行推理，而非仅依赖已观测到的触觉反馈。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>德克萨斯农工大学</strong>（Texas A&M University），美国德克萨斯州大学城</li><li>作者：<strong>Zhengyu Tao</strong>、<strong>Xin Li</strong>、<strong>Xin Wang</strong>（通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>ForeTac-VLA</strong>，一种基于预测的触觉-视觉-语言-动作（Tactile-Vision-Language-Action）模型，面向接触丰富（contact-rich）的机器人操作任务。</li><li>针对现有 VLA 模型过度依赖视觉感知、在接触密集场景中难以获取关键物理交互状态的问题，以及现有触觉增强 VLA 方法多为“反应式”而非“预测式”的局限。</li><li>核心目标：通过预测未来触觉状态来指导动作生成，使机器人能够对即将发生的接触变化进行推理，而非仅依赖已观测到的触觉反馈。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>ForeTac-VLA</strong>，显式预测未来触觉状态并将其用于指导接触丰富操作中的动作生成。</li><li>设计多模态融合策略，实现触觉表征与视觉-语言表征之间的<strong>双向交互</strong>，并利用基于 Transformer 的预测模块预测多步未来触觉状态。</li><li>在四个真实世界接触丰富任务上验证，平均成功率达 <strong>95%</strong>，并展示在低光照与视觉杂乱等挑战性条件下的鲁棒性与泛化能力。</li><li>引入<strong>真值到预测（ground-truth-to-prediction）课程学习</strong>策略，缓解早期预测不可靠对训练稳定性的影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>模型基于预训练的 <strong>π0.5</strong> VLA 模型构建，扩展了时序触觉编码、双向交叉注意力和多步未来触觉预测模块。</li><li>每个控制步输入：腕部与外部相机视觉观测、语言指令、机器人本体感知，以及最近 <strong>K=10</strong> 个时间步的触觉测量。</li><li>视觉观测由预训练 <strong>SigLIP</strong> 视觉编码器编码；语言指令与离散化本体感知通过 <strong>PaliGemma</strong> 分词器嵌入。</li><li>触觉输入：每个夹爪手指提供 <strong>7×4</strong> 触觉阵列，将绝对触觉历史与相对首帧的变化拼接展平后，经轻量级 <strong>MLP</strong> 编码器得到触觉 token。</li><li><strong>双向交叉注意力</strong>：触觉 token 关注视觉-语言 token，同时视觉-语言 token 关注触觉 token，实现跨模态信息交换。</li><li><strong>Transformer 触觉预测器</strong>：将精炼后的触觉与视觉-语言 token 拼接为多模态记忆，预测未来多个时间偏移的触觉状态变化，偏移集合 <strong>O={5,10,15,20}</strong>，对应约 <strong>0.083、0.167、0.250、0.333 秒</strong>（60 Hz 采样）。</li><li>预测的未来触觉状态被编码为未来触觉 token，与精炼视觉-语言 token 拼接为多模态前缀，条件化动作专家生成连续动作块（采用 <strong>flow-matching</strong> 目标）。</li><li>训练策略：从 <strong>π0.5</strong> 检查点初始化，使用 <strong>LoRA</strong> 微调；新增模块与 VLA 主干可训练部分联合优化，其余预训练参数冻结。</li><li>两阶段课程：前 <strong>75%</strong> 训练步使用真值未来触觉 token 条件化动作生成，后 <strong>25%</strong> 替换为模型预测的未来触觉 token，缩小训练与推理差距。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>280 条遥操作演示</strong>，覆盖四个任务，每任务 <strong>70 条</strong>，通过 <strong>GELLO</strong> 遥操作接口采集，视觉、触觉、本体感知与动作以 <strong>60 Hz</strong> 同步记录。</li><li>四个真实世界接触丰富任务：<strong>Peg Insertion</strong>（插销插入）、<strong>Chip Handling</strong>（芯片处理）、<strong>Cap Unscrewing</strong>（拧瓶盖）、<strong>Board Wiping</strong>（擦板）。</li><li>机器人平台：<strong>UR7e</strong> 机械臂，配备 <strong>Robotiq 2F-85</strong> 平行夹爪与双指 <strong>TSF-85</strong> 触觉传感器；视觉由两个 <strong>Intel RealSense D455f</strong> 相机提供（固定外部相机与腕部相机）。</li><li>模型基于预训练 <strong>π0.5</strong> VLA 检查点，涉及 <strong>SigLIP</strong> 与 <strong>PaliGemma</strong> 等预训练组件；论文未明确给出总参数量。</li><li>训练资源：<strong>Intel Core Ultra 9 285K CPU</strong>、<strong>128 GB</strong> 内存、<strong>NVIDIA RTX PRO 6000 Blackwell @ 96 GB GPU</strong>；所有模型训练 <strong>60,000</strong> 优化步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：真实机器人平台，四个接触丰富操作任务，每个模型每任务 <strong>20 次独立试验</strong>，共 <strong>80 次试验</strong>。</li><li>评估指标：<strong>任务成功率（task success rate）</strong>。</li><li>对比基线：<strong>ACT</strong>、<strong>Fine-tuned VLA</strong>（无触觉）、<strong>FiLM-Fusion TacVLA</strong>、<strong>Concat-and-Gating TacVLA</strong>。</li><li>主要结果：<strong>ForeTac-VLA</strong> 平均成功率 <strong>95.00%</strong>，显著优于 <strong>ACT 13.75%</strong>、<strong>Fine-tuned VLA 58.75%</strong>、<strong>FiLM-Fusion TacVLA 71.25%</strong>、<strong>Concat-and-Gating TacVLA 72.50%</strong>。</li><li>相对提升：比微调 VLA 高 <strong>36.25 个百分点</strong>，比 FiLM-Fusion TacVLA 高 <strong>23.75 个百分点</strong>，比 Concat-and-Gating TacVLA 高 <strong>22.50 个百分点</strong>。</li><li>分任务表现：<strong>Peg Insertion 20/20（100%）</strong>、<strong>Chip Handling 19/20（95%）</strong>、<strong>Cap Unscrewing 19/20（95%）</strong>、<strong>Board Wiping 18/20（90%）</strong>。</li><li>消融实验：无触觉 <strong>58.75%</strong>；触觉拼接 <strong>68.75%</strong>；单向/双向交叉注意力 <strong>80.00%</strong>；单向交叉注意力+预测 <strong>81.25%</strong>；完整 ForeTac-VLA <strong>95.00%</strong>。</li><li>触觉预测精度：归一化触觉空间中未来触觉状态预测的平均绝对误差（<strong>MAE</strong>）为 <strong>6.48×10^-3</strong>。</li><li>鲁棒性：低光照环境下 ForeTac-VLA 平均成功率 <strong>80.0%</strong>（Concat-and-Gating TacVLA 55.0%，Fine-tuned VLA 40.0%）；视觉杂乱环境下 <strong>81.25%</strong>（53.75%，27.50%）。</li><li>失败案例分析：插入错位、芯片破损、瓶盖滑脱、抓取位置错误等典型失败模式。</li><li>局限性：当前仅验证单一触觉传感配置与机器人本体；触觉预测器仅在预定义时间偏移上预测。未来工作将探索跨传感器配置的触觉表征、自适应预测时域以及更长时域任务与更多样物体的评估。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.21022/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Catch Me If You Can: Real-Time Feedback Denoising for Responsive VLAs</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.20776/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GeoAAC: Geometry-Based Adaptive Action Chunking from Denoising Trajectories in VLA Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

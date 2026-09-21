@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Outcome-Conditioned End-Effector Geometry Across Vision-Language-Action Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 Vision-Language-Action (VLA) 策略在相同任务、初始状态、指令和视觉条件下的 末端执行器路径几何，并按两条策略的联合结果划分为 both-success (SS)、mixed (SF)、both-failure (FF) 三层。 研究目标是回答仅靠任务成功率无法回答的问题：不同 VLA 策略是否以相似的物理轨迹执行同一操作，以及低跨策略轨迹距离是否意味着策略可互换。 基于 15,000 条 LIBERO 闭环 rollout 和四个策略，论文发现 SS 路径比 SF 更接近；该方向在多种表示下稳定，但距离幅度随表示变化，因此只报告方向而非固定倍数。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.21659">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.21659.webp" alt="Outcome-Conditioned End-Effector Geometry Across Vision-Language-Action Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 Vision-Language-Action (VLA) 策略在相同任务、初始状态、指令和视觉条件下的 末端执行器路径几何，并按两条策略的联合结果划分为 both-success (SS)、mixed (SF)、both-failure (FF) 三层。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Outcome-Conditioned End-Effector Geometry Across Vision-Language-Action Policies</h1>
+            <div class="detail-meta">2026-09-18 · <a href="http://arxiv.org/abs/2609.21659" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.21659" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.21659</span></div>
+            <p class="detail-summary">论文研究 Vision-Language-Action (VLA) 策略在相同任务、初始状态、指令和视觉条件下的 末端执行器路径几何，并按两条策略的联合结果划分为 both-success (SS)、mixed (SF)、both-failure (FF) 三层。 研究目标是回答仅靠任务成功率无法回答的问题：不同 VLA 策略是否以相似的物理轨迹执行同一操作，以及低跨策略轨迹距离是否意味着策略可互换。 基于 15,000 条 LIBERO 闭环 rollout 和四个策略，论文发现 SS 路径比 SF 更接近；该方向在多种表示下稳定，但距离幅度随表示变化，因此只报告方向而非固定倍数。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">华东师范大学软件工程学院：Xingyu Lin、Zhuang Li、Dehui Du</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.21659/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 Vision-Language-Action (VLA) 策略在相同任务、初始状态、指令和视觉条件下的 末端执行器路径几何，并按两条策略的联合结果划分为 both-success (SS)、mixed (SF)、both-failure (FF) 三层。</p>
+  <ul class="reading-intro-points"><li>论文研究 Vision-Language-Action (VLA) 策略在相同任务、初始状态、指令和视觉条件下的 末端执行器路径几何，并按两条策略的联合结果划分为 both-success (SS)、mixed (SF)、both-failure (FF) 三层。</li><li>研究目标是回答仅靠任务成功率无法回答的问题：不同 VLA 策略是否以相似的物理轨迹执行同一操作，以及低跨策略轨迹距离是否意味着策略可互换。</li><li>基于 15,000 条 LIBERO 闭环 rollout 和四个策略，论文发现 SS 路径比 SF 更接近；该方向在多种表示下稳定，但距离幅度随表示变化，因此只报告方向而非固定倍数。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>华东师范大学软件工程学院</strong>：Xingyu Lin、Zhuang Li、Dehui Du</li><li><strong>华东师范大学计算机科学与学院</strong>：Zhongrun Wu</li><li><strong>大连海事大学航运经济与管理学院</strong>：Shouquan Zhou</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>Vision-Language-Action (VLA)</strong> 策略在相同任务、初始状态、指令和视觉条件下的 <strong>末端执行器路径几何</strong>，并按两条策略的联合结果划分为 <strong>both-success (SS)</strong>、<strong>mixed (SF)</strong>、<strong>both-failure (FF)</strong> 三层。</li><li>研究目标是回答仅靠任务成功率无法回答的问题：不同 VLA 策略是否以相似的物理轨迹执行同一操作，以及低跨策略轨迹距离是否意味着策略可互换。</li><li>基于 <strong>15,000</strong> 条 <strong>LIBERO</strong> 闭环 rollout 和四个策略，论文发现 <strong>SS</strong> 路径比 <strong>SF</strong> 更接近；该方向在多种表示下稳定，但距离幅度随表示变化，因此只报告方向而非固定倍数。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>outcome-conditioned</strong> 跨策略末端执行器几何比较设计：以策略对为单位，按联合结果分层，并在匹配配置下比较归一化 <strong>DTW</strong> 距离。</li><li>在 <strong>3,600</strong> 个 clean L0 配置匹配策略对中发现，<strong>SS</strong> 中位距离为 <strong>0.0120 m</strong>，低于 <strong>SF</strong> 的 <strong>0.0380 m</strong> 和 <strong>FF</strong> 的 <strong>0.0439 m</strong>；SS–SF 排序在全部任务、策略对、模板和九种表示中保持。</li><li>引入成功保持控制：同任务换初始状态时中位数为 <strong>0.0157 m</strong>，换任务时为 <strong>0.0817 m</strong>，表明成功执行的一致性主要与任务相关。</li><li>通过 within-policy baseline 和重复实验揭示残余策略差异：同策略中位数 <strong>0.0133 m</strong>，跨策略中位数 <strong>0.0156 m</strong>，说明低跨策略距离不等于策略等价。</li><li>分析复合视觉压力下的性能与比较群体变化：clean ranking 在 <strong>L3</strong> 不再保持，且结果分层中的 pair composition 会随压力改变；<strong>FF</strong> 比较因支撑薄弱仅作探索性报告。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>LIBERO-Spatial</strong> 上进行闭环 rollout，每个 episode 记录末端执行器位置；一个 configuration 固定任务、初始状态、指令模板和视觉等级，并枚举六个无序策略对。</li><li>使用 <strong>outcome-conditioned</strong> 分层：两条执行均成功记为 <strong>SS</strong>，仅一条成功记为 <strong>SF</strong>，均失败记为 <strong>FF</strong>；每条路径每五个记录位置采样一次。</li><li>采用归一化动态时间规整作为核心距离，局部代价为三维末端位置欧氏距离，分母为两条序列长度之和，距离单位为米。</li><li>设计成功保持控制：固定 anchor 策略，将 partner 替换为同策略、同模板但不同初始状态或不同任务的成功轨迹，并设置 within-policy state-variation baseline。</li><li>使用 task–state block bootstrap、九种对齐/重采样表示、固定 <strong>72</strong> 控制窗口诊断、endpoint/duration 回归和 permutation test 检验稳健性。</li><li>设置 <strong>L0–L4</strong> 复合视觉压力：亮度缩放、高斯像素噪声、平移和遮罩；另做 <strong>1,200</strong> 次执行的重复实验，检验确定性策略与随机策略的重跑差异。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>主要数据集为 <strong>LIBERO-Spatial</strong>：<strong>10</strong> 个任务，每个任务前 <strong>20</strong> 个初始状态，<strong>3</strong> 个指令模板，<strong>5</strong> 个视觉等级。</li><li>额外使用 <strong>LIBERO-Object</strong>，但仅覆盖 <strong>π0.5</strong> 策略；跨策略几何分析限制在 <strong>LIBERO-Spatial</strong>。</li><li>四个策略为 <strong>OpenVLA</strong>、<strong>OpenVLA-OFT (OFT)</strong>、<strong>UniVLA</strong>、<strong>π0.5</strong>；每个策略贡献 <strong>3,000</strong> 条 Spatial rollout，共 <strong>12,000</strong> 条 Spatial 执行，另有 <strong>3,000</strong> 条 Object rollout，总计 <strong>15,000</strong> 个不同键。</li><li>L0 clean 网格包含 <strong>600</strong> 个配置、<strong>2,400</strong> 个 episode 和 <strong>3,600</strong> 个配置匹配策略对；L0–L4 对应配置/episode/策略对计数为 <strong>3,000 / 12,000 / 18,000</strong>。</li><li>外部参考使用官方 <strong>LIBERO demonstrations</strong>，共 <strong>500</strong> 条，每个任务 <strong>50</strong> 条，来自固定数据集修订版并逐文件校验。</li><li>原文未报告各策略的参数量，也未报告训练或推理所用 <strong>GPU/TPU</strong> 等计算资源。</li><li>策略接口存在差异：<strong>OpenVLA</strong> 使用外部视图 <strong>224²</strong>、每步查询；<strong>OFT</strong> 使用外部/腕部视图和本体感知 <strong>256²</strong>、8 动作队列；<strong>UniVLA</strong> 使用外部视图 <strong>224²</strong>、每步查询；<strong>π0.5</strong> 使用外部/腕部视图和本体感知 <strong>256²</strong>、5 动作 cadence。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>LIBERO</strong> 模拟器中的闭环 rollout；主要基准为 <strong>LIBERO-Spatial</strong>，<strong>LIBERO-Object</strong> 仅用于 <strong>π0.5</strong> 的辅助分析，官方 demonstrations 用作外部几何参考。</li><li>主要评估指标包括任务成功率、归一化 <strong>DTW</strong> 中位距离（米）、SS/SF/FF 条件中位数、task–state block bootstrap 95% 区间、paired difference、Cliff’s <strong>δ</strong> 与 permutation test <strong>p</strong> 值。</li><li>Clean L0 主要结果：<strong>SS = 0.0120 m</strong>（n=2,588），<strong>SF = 0.0380 m</strong>（n=923），<strong>FF = 0.0439 m</strong>（n=89）；SF−SS bootstrap 区间为 <strong>[0.0235, 0.0284] m</strong>，FF−SS 为 <strong>[0.0245, 0.0506] m</strong>。</li><li>SS–SF 排序在 <strong>10</strong> 个任务、<strong>6</strong> 个策略对、<strong>3</strong> 个模板和九种表示中均保持；策略对 SS 中位数范围为 <strong>0.0109–0.0143 m</strong>，SF 为 <strong>0.0341–0.0431 m</strong>，但 SF/SS 比率范围为 <strong>2.53–6.13</strong>，幅度依赖表示。</li><li>成功控制显示：同任务/同状态为 <strong>0.0120 m</strong>，同任务换状态为 <strong>0.0157 m</strong>，换任务为 <strong>0.0817 m</strong>；中心化后跨任务中位数从 <strong>0.0794 m</strong> 降至 <strong>0.0556 m</strong>，仍高于同任务控制。</li><li>Within-policy baseline 显示同策略 <strong>0.0133 m</strong>、跨策略 <strong>0.0156 m</strong>，中位配对差为 <strong>0.0021 m</strong>；重复实验中跨策略中位数比两策略内中位数均值高 <strong>0.0082 m</strong>，区间 <strong>[0.0077, 0.0085] m</strong>；确定性策略路径字节级一致，随机策略不一致。</li><li>固定 <strong>72</strong> 控制窗口后，SS 为 <strong>0.0140 m</strong>、SF 为 <strong>0.0240 m</strong>、FF 为 <strong>0.0340 m</strong>，SF−SS 对比为 <strong>0.01007 m</strong>（95% 区间 <strong>[0.00842, 0.01172] m</strong>），约为同队列全 episode 对比的 <strong>39%</strong>。</li><li>Endpoint 与 duration 调整后，SF 系数从原始 <strong>0.0294</strong> 降至全模型 <strong>0.0048</strong>，但仍为正；permutation test 中观测 SF−SS 中位对比 <strong>0.0260</strong> 超过全部 <strong>5,000</strong> 次置换，<strong>p = 0.0002</strong>。</li><li>视觉压力下 clean ranking 不保持：L0 成功率为 <strong>OpenVLA 0.762</strong>、<strong>OFT 0.673</strong>、<strong>UniVLA 0.962</strong>、<strong>π0.5 0.992</strong>；L3 排序变为 <strong>π0.5 > OFT > UniVLA > OpenVLA</strong>，UniVLA 从 <strong>577/600</strong> 降至 <strong>66/600</strong>，OFT 从 <strong>404/600</strong> 降至 <strong>192/600</strong>。</li><li>L3 时 SS 中位距离升至 <strong>0.0206 m</strong> 但仅剩 <strong>223</strong> 对，SF 为 <strong>0.0382 m</strong>（n=1,471），FF 为 <strong>0.0446 m</strong>（n=1,906）；L4 无 SS 对，<strong>3,564/3,600</strong> 为 FF，仅 <strong>36</strong> 对 SF，说明距离与样本组成必须联合解读。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.21712/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ZYT-World: A Real-Time Controllable World Model for Closed-Loop Autonomous-Driving Simulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.21650/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SynthDemo-RL: Breaking the Zero-Reward Barrier in VLA Adaptation with LLM-Guided Synthetic Demonstrations</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

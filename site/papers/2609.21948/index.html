@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GALA: Geometry-Aware Latent Action Modeling for Vision-Language-Action Model Pretraining across Embodiments - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 GALA（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 视觉-语言-动作（VLA） 模型的几何感知隐动作建模框架。 针对的问题：不同末端执行器（人手、灵巧手、平行夹爪）动作空间异构，难以共享监督；而现有基于图像的 隐动作模型（LAM） 主要捕捉场景级位移，只能刻画末端执行器&quot;移到哪里&quot;，难以刻画&quot;如何操作&quot;，尤其缺失手指级细粒度几何变化。 研究目标：在无需统一动作空间与点/关节对应关系的前提下，学习跨具身可共享的细粒度动作表征，并将视觉隐动作与几何隐动作联合作为 VLA 预训练监督信号。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2609.21948">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2609.21948.webp" alt="GALA: Geometry-Aware Latent Action Modeling for Vision-Language-Action Model Pretraining across Embodiments" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 GALA（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 视觉-语言-动作（VLA） 模型的几何感知隐动作建模框架。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GALA: Geometry-Aware Latent Action Modeling for Vision-Language-Action Model Pretraining across Embodiments</h1>
+            <div class="detail-meta">2026-09-18 · <a href="http://arxiv.org/abs/2609.21948" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.21948" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.21948</span></div>
+            <p class="detail-summary">提出 GALA（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 视觉-语言-动作（VLA） 模型的几何感知隐动作建模框架。 针对的问题：不同末端执行器（人手、灵巧手、平行夹爪）动作空间异构，难以共享监督；而现有基于图像的 隐动作模型（LAM） 主要捕捉场景级位移，只能刻画末端执行器&quot;移到哪里&quot;，难以刻画&quot;如何操作&quot;，尤其缺失手指级细粒度几何变化。 研究目标：在无需统一动作空间与点/关节对应关系的前提下，学习跨具身可共享的细粒度动作表征，并将视觉隐动作与几何隐动作联合作为 VLA 预训练监督信号。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学 交叉信息研究院（Institute for Interdisciplinary Inform…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2609.21948/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 GALA（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 视觉-语言-动作（VLA） 模型的几何感知隐动作建模框架。</p>
+  <ul class="reading-intro-points"><li>提出 GALA（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 视觉-语言-动作（VLA） 模型的几何感知隐动作建模框架。</li><li>针对的问题：不同末端执行器（人手、灵巧手、平行夹爪）动作空间异构，难以共享监督；而现有基于图像的 隐动作模型（LAM） 主要捕捉场景级位移，只能刻画末端执行器&quot;移到哪里&quot;，难以刻画&quot;如何操作&quot;，尤其缺失手指级细粒度几何变化。</li><li>研究目标：在无需统一动作空间与点/关节对应关系的前提下，学习跨具身可共享的细粒度动作表征，并将视觉隐动作与几何隐动作联合作为 VLA 预训练监督信号。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong> 交叉信息研究院（Institute for Interdisciplinary Information Sciences, Tsinghua University, China）</li><li><strong>上海期智研究院</strong>（Shanghai Qi Zhi Institute, China）</li><li>作者：<strong>Yichen Liu</strong>、<strong>Puzhen Yuan</strong>、<strong>Xiang Zhu</strong>、<strong>Yanjiang Guo</strong>、<strong>Jianyu Chen</strong>（通讯作者，标注同等贡献）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GALA</strong>（Geometry-Aware Latent Action modeling），一种在多具身数据上预训练 <strong>视觉-语言-动作（VLA）</strong> 模型的几何感知隐动作建模框架。</li><li>针对的问题：不同末端执行器（人手、灵巧手、平行夹爪）动作空间异构，难以共享监督；而现有基于图像的 <strong>隐动作模型（LAM）</strong> 主要捕捉场景级位移，只能刻画末端执行器"移到哪里"，难以刻画"如何操作"，尤其缺失手指级细粒度几何变化。</li><li>研究目标：在无需统一动作空间与点/关节对应关系的前提下，学习跨具身可共享的细粒度动作表征，并将视觉隐动作与几何隐动作联合作为 VLA 预训练监督信号。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>GALA</strong> 框架，在图像隐动作之外引入 <strong>3D 末端执行器几何运动</strong>，为跨具身 VLA 预训练提供"场景级 + 关节级"互补监督。</li><li>提出 <strong>UEMR（Unified End-effector Motion Representation）</strong>，在保留细粒度运动信息的同时提升隐动作的跨具身泛化性，无需点、关节或运动学对应。</li><li>设计三项 UEMR 关键机制：<strong>统一双臂运动隐变量</strong>、<strong>成对一致的几何增强</strong>、<strong>双向时序转换学习</strong>。</li><li>在细粒度运动探针、跨具身隐动作检索、<strong>RoboCasa</strong> 仿真与真实机器人任务上系统验证有效性，取得 <strong>68.3% RoboCasa-GR1 成功率</strong>与 <strong>75.5% 真实世界平均成功率</strong>。</li><li>支持从无动作标签的<strong>自我中心人类视频</strong>与多机器人数据中联合学习，保留各具身原生可执行动作空间。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>两阶段框架：<strong>几何感知隐动作学习</strong>（Stage 1）+ <strong>几何感知 VLA 协同训练</strong>（Stage 2）。</li><li><strong>点云生成</strong>：人手用 <strong>WiLoR</strong> 估计左右 <strong>MANO</strong> 网格并采样；机器人具身由 <strong>URDF/MJCF</strong> 模型结合前向运动学采样，统一为腕部/根部为中心的局部坐标系点云，<strong>N = 1024</strong> 点。</li><li><strong>视觉与几何动作编码</strong>：冻结的 <strong>DINOv2</strong> 与 <strong>SigLIP</strong> 编码 RGB，冻结的 <strong>Point Transformer V3 (PTv3)</strong> 编码手部点云，经共享时空 Transformer 与语言条件融合。</li><li><strong>离散化</strong>：几何 token 经共享 <strong>EMA-VQ 码本</strong>量化，编码器、码本、解码器在人手、灵巧手与夹爪间共享；解码器以初始手部几何为条件，用 <strong>Chamfer Distance (CD)</strong> 监督目标点云重建。</li><li><strong>UEMR 三项设计</strong>：双臂共享同一组隐 token（单臂数据左右分支复用同一点云）；对起止点云对施加相同的随机 3D 相似变换 <code>A(P)=aRP+t</code> 以消除数据集坐标偏差；前向（start→goal）与后向（goal→start）双向训练共享编码器/码本/解码器。</li><li><strong>VLA 协同训练</strong>：基于 <strong>GR00T</strong> 架构，向 VLM 输入加入两组可学习 <strong>bridge token</strong>，自回归预测视觉与几何隐动作码（交叉熵损失）；动作专家由共享 <strong>DiT</strong> 加各具身专属动作头组成，采用 <strong>flow matching</strong> 目标，保留原生动作维度与控制语义。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>训练覆盖四种具身：<strong>人手</strong>、<strong>Fourier hand</strong>、<strong>ROBOTERA XHand</strong>、<strong>Robotiq 夹爪</strong>。</li><li>使用数据集：<strong>EgoDex</strong>、<strong>HOI4D</strong>、<strong>DROID</strong>、<strong>RoboCasa-GR1</strong>，以及自采的 <strong>XHand</strong> 与人手操作数据集。</li><li>基线方法：<strong>GALA w/o PC</strong>、<strong>GALA w/o UEMR</strong>、<strong>METIS</strong>、<strong>Native Kinematics</strong>、<strong>OPFA</strong>、<strong>UniVLA</strong>；下游对比含 <strong>OpenVLA</strong>、<strong>OpenVLA-OFT</strong>、<strong>π0</strong>、<strong>π0.5</strong>、<strong>HARP-VLA</strong>、<strong>FLARE</strong>、<strong>DiT4DiT</strong>、<strong>JoyAI-RA</strong>、<strong>UniT</strong>。</li><li>提供的原文（含截断部分）<strong>未给出模型参数量、模型规模及 GPU/TPU 等具体训练资源信息</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估分为三个问题：细粒度运动建模能力（探针）、跨具身语义共享性（检索）、下游 VLA 与具身规模化收益（仿真与真机）。</li><li><strong>细粒度运动探针</strong>（冻结隐动作编码器 + 轻量 MLP，预测平移 Δp、旋转 ΔR、手指关节 Δq）：GALA 在 <strong>Pos. 5.359 / Rot. 7.898 / Finger 7.585</strong> 三项误差上均最优，优于 METIS、Native Kinematics、OPFA 与 GALA w/o PC。</li><li><strong>跨具身隐动作检索</strong>（grasp/hold/release 三类，跨具身检索，宏平均 R@1/P@5/mAP）：人类-机器人赛道 <strong>R@1 45.67、P@5 44.57、mAP 49.49</strong>；纯机器人赛道 <strong>R@1 46.91、P@5 41.74、mAP 46.95</strong>，均优于全部基线。</li><li><strong>RoboCasa-GR1 受控实验</strong>（仅 GR-1 数据，24 个任务）：GALA 成功率 <strong>55.7%</strong>，高于 Native Kinematics（51.8%）、OPFA（53.5%）与 GALA w/o UEMR（54.4%）。</li><li><strong>多具身联合预训练</strong>（Fourier hand + XHand + 人手 + Robotiq）：GALA 达 <strong>68.3%</strong> 成功率，超过 UniT（66.8%）、JoyAI-RA（63.2%）与 UniVLA（53.6%），相比仅 GR-1 训练提升 <strong>+12.6%</strong>。</li><li><strong>真实世界实验</strong>（12-DoF <strong>XHand</strong>，四个任务 Pick / Push / Press / Flip，每任务 50 次试验）：GALA 平均成功率 <strong>75.5%</strong>，比 HARP-VLA 高 4.0 个百分点、比 π0.5 高 7.5 个百分点；去除 UEMR 后平均下降 <strong>7.0</strong> 个百分点。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2609.21983/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SkelWAM: A Skeleton-Guided World-Action Model for Zero-Shot Cross-Embodiment Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2609.21908/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">CommitFlow: Semantic Commitment Verification and Local Correction for Long-Horizon Robot Manipulation VLA Execution</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
