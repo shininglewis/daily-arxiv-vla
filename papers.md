@@ -1,5 +1,24 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-09-22 | Imperfection for Precision: Upcycling Imperfect Data for High-Precision Robotic Manipulation | http://arxiv.org/abs/2609.26672 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | MATE: Multi-Agent Virtual Teleoperation Platform for Humanoid Collaboration Data Collection | http://arxiv.org/abs/2609.26520 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | RouteRLT: Learning When and Which RL Specialist Should Control a Vision-Language-Action Policy | http://arxiv.org/abs/2609.26467 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | SafeLoop: Risk-Aware Rollback for Vision-Language-Action Manipulation | http://arxiv.org/abs/2609.26313 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | RoboTwin-Phys: Do WAMs and VLAs Understand the Physical World? | http://arxiv.org/abs/2609.26292 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | An Action Is Worth One Patch: Unified World-Action Modeling with PatchWAM | http://arxiv.org/abs/2609.25961 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | Beyond Reconstruction Error: Analytical and Data-Driven Action Tokenization for Autoregressive Vision-Language-Action Models | http://arxiv.org/abs/2609.25820 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation | http://arxiv.org/abs/2609.25785 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | MedVLA: A Hierarchical Vision-Language-Action Framework for Closed-Loop Precision Medical Robot Manipulation | http://arxiv.org/abs/2609.25756 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | Fisheye-VLA: Decoupling Coverage and Acuity for Manipulation with a Single Fisheye Camera | http://arxiv.org/abs/2609.25750 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | RoboFollow: Unveiling the Instruction Following Mirage in Embodied Agents | http://arxiv.org/abs/2609.25636 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | MachEmbodied-U0: Unified Understanding and Generation Model for Embodied Intelligence | http://arxiv.org/abs/2609.25627 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | CableVLA: Simulation-Privileged Global-Local Representation Learning for Cable Routing | http://arxiv.org/abs/2609.25606 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | IndustrialVLA-Bench: A Traceable Multi-Axis Evaluation of Open Robot Policy Models | http://arxiv.org/abs/2609.25562 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-22 | HABILIS Brain 0: Geometry-Change Supervision for Vision-Language-Action and Residual Flow Recovery | http://arxiv.org/abs/2609.25558 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-21 | VLAQuantBench: Closed-Loop Evaluation of Post-Training Quantization for Vision-Language-Action Models | http://arxiv.org/abs/2609.25376 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-21 | Capability-Aware Arbitration for Semantic Intent-Based Shared Control | http://arxiv.org/abs/2609.25369 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-21 | X-Planner: Event-Structured Task Planning for Embodied Intelligence | http://arxiv.org/abs/2609.25187 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-21 | Brain-Inspired Hierarchical Modularity for General Continual Learning | http://arxiv.org/abs/2609.25146 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-21 | DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation | http://arxiv.org/abs/2609.24976 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-21 | DualWAM: Dual-System World Action Models for Asynchronous Global Planning and Local Refinement | http://arxiv.org/abs/2609.24868 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-21 | Beyond Visual Quality: A Study of Test-Time Planning with World Action Models | http://arxiv.org/abs/2609.24745 | <details><summary>展开</summary>待生成</details> |
