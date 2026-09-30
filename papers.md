@@ -1,5 +1,41 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-09-29 | Rho: A Foundation for Efficiently Adaptable VLA Models | http://arxiv.org/abs/2609.38164 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Rethinking Representations for World-Action Modeling | http://arxiv.org/abs/2609.38163 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | MotorMind: Scaffolding General Vision Language Models for Zero-Shot Robot Manipulation | http://arxiv.org/abs/2609.38078 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | EVO-WAM: Evolving World Action Models through Video-Action Verification | http://arxiv.org/abs/2609.38057 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | EgoAlign: Bridging the Human-Humanoid Gap for Long-Range Loco-Manipulation | http://arxiv.org/abs/2609.38046 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | PhysWAM: Physically Consistent World Action Model for Autonomous Driving | http://arxiv.org/abs/2609.37970 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | WayFinder: Hierarchical Visual-Language-Action for Zero-Shot Waypoint Generation and Low-Level Kinematic Control | http://arxiv.org/abs/2609.37922 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Explore, Execute, Evolve: A Skill Acquisition and Reuse Loop for Embodied Agents | http://arxiv.org/abs/2609.37810 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | MVG-WAM: Multiple View Geometry-Aware World-Action Modeling for Robotic Manipulation | http://arxiv.org/abs/2609.37793 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Urgent Actions Go First: Urgency-Aware Denoising for Real-Time VLA Control | http://arxiv.org/abs/2609.37772 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Faster and Better? Benchmark Bugs and Design Limitations Distort the Evaluation of Vision-Language-Action Acceleration | http://arxiv.org/abs/2609.37771 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | CogWAM: Aligning Semantic Cognition with World Action Modeling via Event-Driven Interfaces | http://arxiv.org/abs/2609.37721 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | RawVLA: Embodied Neural Image Signal Processor For Robotic Manipulation | http://arxiv.org/abs/2609.37530 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Direct Experience World-Model Optimization: Learning the World Beyond Action Imitation | http://arxiv.org/abs/2609.37398 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Taming VLAs under Robot Execution Errors: Self-Compensation and Stress Testing | http://arxiv.org/abs/2609.37334 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Remember What You Did: Action-History Memory with Dual-Expert Denoising for Long-Horizon Vision-Language-Action Policies | http://arxiv.org/abs/2609.37307 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | V-JEPA Policy: Building Effective World-Action Models on Predictive Visual Latents | http://arxiv.org/abs/2609.37250 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | EgoHumanoid-V2: Human-to-Humanoid Transfer of Coordinated Whole-Body Skills for Loco-Manipulation | http://arxiv.org/abs/2609.37181 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Disentangling Spurious Correlations in Vision-Language-Action Models via Predicting Domain-Invariant Latent Lookahead | http://arxiv.org/abs/2609.37165 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | CoRe-VLA: Preserving Cross-View Coordination in VLAs under Camera Shifts | http://arxiv.org/abs/2609.37150 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | V2X-WAM: A Cooperative World Action Model for End-to-End Autonomous Driving | http://arxiv.org/abs/2609.37098 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Speed in the Blind Spot: An Interpretability Analysis of Dynamic Perception in VLMs for Autonomous Driving | http://arxiv.org/abs/2609.37046 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Beyond Token Importance: Preserving Spatial Scaffolds for Efficient Vision-Language-Action Inference | http://arxiv.org/abs/2609.36967 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | VLALight: A Vision-Language-Action Model for Traffic Signal Control | http://arxiv.org/abs/2609.36934 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | AeroManip-VLA: Scalable Vision-Language-Action Learning for Aerial Manipulation with RL-Generated Demonstrations | http://arxiv.org/abs/2609.36915 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | LexiconVLA: Learning Reusable Atomic Action Codebooks for Unseen Tasks | http://arxiv.org/abs/2609.36774 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | T$^2$Mem: Learning Test-Time Memory for Robotics | http://arxiv.org/abs/2609.36720 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Where Predictive Supervision Goes Shapes What VLA Policies Learn | http://arxiv.org/abs/2609.36645 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Cooperative Multi-Agent Vision-Language-Action Models via Reinforced Fine Tuning | http://arxiv.org/abs/2609.36588 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Reactive Real-Time Flow Policies via Asynchronous Distribution Alignment | http://arxiv.org/abs/2609.36540 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | LIBERO-MAX: Do Robot Policies Adapt When the World Changes? | http://arxiv.org/abs/2609.36518 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | Staircase Policy: Streaming Inference for World-Action Models with Large Action Chunks | http://arxiv.org/abs/2609.36471 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | FineART: Fine-grained Annotated Robotic Trajectory Dataset and Vision-Language-Action Model for Bimanual Manipulation | http://arxiv.org/abs/2609.36416 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-29 | One from Infinity: Actualizing Futures from Pretrained World Models into Robot Actions | http://arxiv.org/abs/2609.36413 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-28 | StructRL: Online Structured Reinforcement Learning for Long-Horizon Vision-Language-Action Tasks | http://arxiv.org/abs/2609.36352 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-28 | The Layer Mystery of VLA: An Information-Theoretical Analysis of VLA Latent Interface | http://arxiv.org/abs/2609.36118 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-28 | DexRoam: Learning Mobile Bimanual Dexterous Manipulation from Egocentric Whole-Body Human Demonstrations | http://arxiv.org/abs/2609.35761 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-28 | Humanoid Loco-Manipulation With Discrete VLA Model | http://arxiv.org/abs/2609.35709 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-28 | F4R: Failure-Driven Recognition, Reconstruction, Refinement, and Redeployment for Continual Robot Self-Improvement | http://arxiv.org/abs/2609.35575 | <details><summary>展开</summary>待生成</details> |
