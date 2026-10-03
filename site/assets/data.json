@@ -1,5 +1,626 @@
 [
   {
+    "date": "2026-10-01",
+    "title": "DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication",
+    "link": "http://arxiv.org/abs/2610.02161",
+    "arxiv_id": "2610.02161",
+    "detail_path": "papers/2610.02161/",
+    "cover_path": "covers/2610.02161/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.02161.webp",
+    "paper_image_full_path": "assets/paper-images/2610.02161.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2610.02120",
+    "arxiv_id": "2610.02120",
+    "detail_path": "papers/2610.02120/",
+    "cover_path": "covers/2610.02120/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.02120.webp",
+    "paper_image_full_path": "assets/paper-images/2610.02120.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "UniWAM: Unified World-Action Model",
+    "link": "http://arxiv.org/abs/2610.02054",
+    "arxiv_id": "2610.02054",
+    "detail_path": "papers/2610.02054/",
+    "cover_path": "covers/2610.02054/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.02054.webp",
+    "paper_image_full_path": "assets/paper-images/2610.02054.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens",
+    "link": "http://arxiv.org/abs/2610.01939",
+    "arxiv_id": "2610.01939",
+    "detail_path": "papers/2610.01939/",
+    "cover_path": "covers/2610.01939/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01939.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01939.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "ChunkVLA-AM: Parallel Action Chunking for Vision-Language-Action Robot Control in Additive Manufacturing",
+    "link": "http://arxiv.org/abs/2610.01856",
+    "arxiv_id": "2610.01856",
+    "detail_path": "papers/2610.01856/",
+    "cover_path": "covers/2610.01856/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01856.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01856.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "Continuous Conditioning of VLAs with Augmenting EMG and Visual Task Descriptors",
+    "link": "http://arxiv.org/abs/2610.01794",
+    "arxiv_id": "2610.01794",
+    "detail_path": "papers/2610.01794/",
+    "cover_path": "covers/2610.01794/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01794.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01794.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection",
+    "link": "http://arxiv.org/abs/2610.01741",
+    "arxiv_id": "2610.01741",
+    "detail_path": "papers/2610.01741/",
+    "cover_path": "covers/2610.01741/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01741.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01741.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "ActiveWAM: Evidence-Aware Active Vision for World-Action Models",
+    "link": "http://arxiv.org/abs/2610.01698",
+    "arxiv_id": "2610.01698",
+    "detail_path": "papers/2610.01698/",
+    "cover_path": "covers/2610.01698/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01698.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01698.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "Completion Aware Guidance for World Action Models",
+    "link": "http://arxiv.org/abs/2610.01559",
+    "arxiv_id": "2610.01559",
+    "detail_path": "papers/2610.01559/",
+    "cover_path": "covers/2610.01559/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01559.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01559.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "Is Success All You Need? Investigating the Impact of Input Perturbations on VLA Behaviour in Tabletop Manipulation Tasks",
+    "link": "http://arxiv.org/abs/2610.01351",
+    "arxiv_id": "2610.01351",
+    "detail_path": "papers/2610.01351/",
+    "cover_path": "covers/2610.01351/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01351.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01351.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "WBAG: A Whole-Body and Attached-Geometry Safety Framework for Vision-Language-Action Manipulation",
+    "link": "http://arxiv.org/abs/2610.01083",
+    "arxiv_id": "2610.01083",
+    "detail_path": "papers/2610.01083/",
+    "cover_path": "covers/2610.01083/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.01083.webp",
+    "paper_image_full_path": "assets/paper-images/2610.01083.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "Divide-and-Remember: Recursive Action-Relevant Memory for Long-Horizon VLA Policies",
+    "link": "http://arxiv.org/abs/2610.00982",
+    "arxiv_id": "2610.00982",
+    "detail_path": "papers/2610.00982/",
+    "cover_path": "covers/2610.00982/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00982.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00982.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "NarrativeFlow: Flow-Based Vision-Language-Action Model Using Robot Velocity Fields",
+    "link": "http://arxiv.org/abs/2610.00981",
+    "arxiv_id": "2610.00981",
+    "detail_path": "papers/2610.00981/",
+    "cover_path": "covers/2610.00981/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00981.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00981.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "eRLT: Efficient VLA Reinforcement Learning via Action-Relevant Token Routing",
+    "link": "http://arxiv.org/abs/2610.00913",
+    "arxiv_id": "2610.00913",
+    "detail_path": "papers/2610.00913/",
+    "cover_path": "covers/2610.00913/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00913.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00913.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "TOAST: Stochastic Robot Action Tokenization for Autoregressive Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2610.00899",
+    "arxiv_id": "2610.00899",
+    "detail_path": "papers/2610.00899/",
+    "cover_path": "covers/2610.00899/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00899.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00899.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-01",
+    "title": "CtrlWAM: Controllable World Action Models with Aligned Intent and Foresight",
+    "link": "http://arxiv.org/abs/2610.00859",
+    "arxiv_id": "2610.00859",
+    "detail_path": "papers/2610.00859/",
+    "cover_path": "covers/2610.00859/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00859.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00859.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "ECoMEM: Explicit Concept Memory for Memory-Dependent Robot Control",
+    "link": "http://arxiv.org/abs/2610.00801",
+    "arxiv_id": "2610.00801",
+    "detail_path": "papers/2610.00801/",
+    "cover_path": "covers/2610.00801/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00801.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00801.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "TacDyn-WAM: Learning Implicit Tactile Dynamics in a Heterogeneous Visuo-Tactile World Action Model",
+    "link": "http://arxiv.org/abs/2610.00638",
+    "arxiv_id": "2610.00638",
+    "detail_path": "papers/2610.00638/",
+    "cover_path": "covers/2610.00638/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00638.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00638.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "MIKASA-Robo-VLA: Benchmarking Memory in VLA Models for Long-Horizon Manipulation",
+    "link": "http://arxiv.org/abs/2610.00604",
+    "arxiv_id": "2610.00604",
+    "detail_path": "papers/2610.00604/",
+    "cover_path": "covers/2610.00604/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00604.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00604.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "When Reasoning Helps Action: Monitoring and Steering Chain-of-Thought in Vision-Language-Action Policies",
+    "link": "http://arxiv.org/abs/2610.00601",
+    "arxiv_id": "2610.00601",
+    "detail_path": "papers/2610.00601/",
+    "cover_path": "covers/2610.00601/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.00601.webp",
+    "paper_image_full_path": "assets/paper-images/2610.00601.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "Token-World: World Modeling in Vision-Language Model Token Space for Robot Manipulation",
+    "link": "http://arxiv.org/abs/2610.00575",
+    "arxiv_id": "2610.00575",
+    "detail_path": "papers/2610.00575/",
+    "cover_path": "covers/2610.00575/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "Same Scene, Different Task: Skill Alignment for Compositional Generalization in VLAs",
+    "link": "http://arxiv.org/abs/2610.00524",
+    "arxiv_id": "2610.00524",
+    "detail_path": "papers/2610.00524/",
+    "cover_path": "covers/2610.00524/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-09-30",
+    "title": "Towards a General Humanoid Loco-Manipulation Model via Egocentric Whole-Body Human Data Pretraining",
+    "link": "http://arxiv.org/abs/2610.00438",
+    "arxiv_id": "2610.00438",
+    "detail_path": "papers/2610.00438/",
+    "cover_path": "covers/2610.00438/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
     "date": "2026-09-30",
     "title": "Ego4WAM: What Matters When Scaling Egocentric Human Data for Robot Learning?",
     "link": "http://arxiv.org/abs/2609.40341",

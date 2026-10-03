@@ -1,5 +1,28 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-01 | DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication | http://arxiv.org/abs/2610.02161 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation | http://arxiv.org/abs/2610.02120 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | UniWAM: Unified World-Action Model | http://arxiv.org/abs/2610.02054 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Fewer Tokens, Better Action: GPT-6 Astra Robot Agents with 14% Higher Success Rate but 65% Fewer Tokens | http://arxiv.org/abs/2610.01939 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | ChunkVLA-AM: Parallel Action Chunking for Vision-Language-Action Robot Control in Additive Manufacturing | http://arxiv.org/abs/2610.01856 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Continuous Conditioning of VLAs with Augmenting EMG and Visual Task Descriptors | http://arxiv.org/abs/2610.01794 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | ATI-VLA: Action-Centric Predictive Vision-Language-Action Models via Actionable Alignment Then Adaptive Injection | http://arxiv.org/abs/2610.01741 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | ActiveWAM: Evidence-Aware Active Vision for World-Action Models | http://arxiv.org/abs/2610.01698 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Completion Aware Guidance for World Action Models | http://arxiv.org/abs/2610.01559 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Is Success All You Need? Investigating the Impact of Input Perturbations on VLA Behaviour in Tabletop Manipulation Tasks | http://arxiv.org/abs/2610.01351 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | WBAG: A Whole-Body and Attached-Geometry Safety Framework for Vision-Language-Action Manipulation | http://arxiv.org/abs/2610.01083 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Divide-and-Remember: Recursive Action-Relevant Memory for Long-Horizon VLA Policies | http://arxiv.org/abs/2610.00982 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | NarrativeFlow: Flow-Based Vision-Language-Action Model Using Robot Velocity Fields | http://arxiv.org/abs/2610.00981 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | eRLT: Efficient VLA Reinforcement Learning via Action-Relevant Token Routing | http://arxiv.org/abs/2610.00913 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | TOAST: Stochastic Robot Action Tokenization for Autoregressive Vision-Language-Action Models | http://arxiv.org/abs/2610.00899 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | CtrlWAM: Controllable World Action Models with Aligned Intent and Foresight | http://arxiv.org/abs/2610.00859 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | ECoMEM: Explicit Concept Memory for Memory-Dependent Robot Control | http://arxiv.org/abs/2610.00801 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | TacDyn-WAM: Learning Implicit Tactile Dynamics in a Heterogeneous Visuo-Tactile World Action Model | http://arxiv.org/abs/2610.00638 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | MIKASA-Robo-VLA: Benchmarking Memory in VLA Models for Long-Horizon Manipulation | http://arxiv.org/abs/2610.00604 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | When Reasoning Helps Action: Monitoring and Steering Chain-of-Thought in Vision-Language-Action Policies | http://arxiv.org/abs/2610.00601 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | Token-World: World Modeling in Vision-Language Model Token Space for Robot Manipulation | http://arxiv.org/abs/2610.00575 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | Same Scene, Different Task: Skill Alignment for Compositional Generalization in VLAs | http://arxiv.org/abs/2610.00524 | <details><summary>展开</summary>待生成</details> |
+| 2026-09-30 | Towards a General Humanoid Loco-Manipulation Model via Egocentric Whole-Body Human Data Pretraining | http://arxiv.org/abs/2610.00438 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-30 | Ego4WAM: What Matters When Scaling Egocentric Human Data for Robot Learning? | http://arxiv.org/abs/2609.40341 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-30 | WorldAuditBench: Interactive 3D World Auditing with Multimodal Agents | http://arxiv.org/abs/2609.40325 | <details><summary>展开</summary>待生成</details> |
 | 2026-09-30 | DynaHarness: A Dynamic Physical Harness for Self-Evolving Robot Agents | http://arxiv.org/abs/2609.40306 | <details><summary>展开</summary>待生成</details> |
