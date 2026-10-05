@@ -1,5 +1,25 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-02 | XGenAct: Geometry-Enhanced World Action Models through Cross-Task Generation | http://arxiv.org/abs/2610.03516 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | Detect and Suppress: A Mechanistic Defense against Adversarial Patches in VLA Models | http://arxiv.org/abs/2610.03498 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | MobiAgent: Dual-Loop Recursive Policy Self-Improvement for Long-Horizon Mobile Manipulation | http://arxiv.org/abs/2610.03476 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | Native Action-Prior Learning from Videos for World Action Models | http://arxiv.org/abs/2610.03391 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | RIFAR: Reliability and Forgetting-Aware Replay for Continual Robot Learning | http://arxiv.org/abs/2610.03079 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | MixVLA: Adaptive Mixing of Non-Invariant Information for Generalizable Vision-Language-Action Models | http://arxiv.org/abs/2610.02898 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | PointWAM: 3D World Action Modeling for Dexterous Robotic Manipulation | http://arxiv.org/abs/2610.02840 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | FastOPD: On-Policy Distillation for Lightweight VLA Deployment | http://arxiv.org/abs/2610.02832 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | SARI: Phase-Split Sim-Real Co-Training for Contact-Rich Manipulation | http://arxiv.org/abs/2610.02804 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | ManiPhysicsBench: Physics-Based Assessment of Object Preservation in VLA Manipulation | http://arxiv.org/abs/2610.02802 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | SimpleTouch: Can Vision-Language-Action Models Master Contact-Rich Manipulation Without Tactile Policy Pretraining? | http://arxiv.org/abs/2610.02784 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | RoboBridge: A Self-Evolving Embodied Agent Framework for Sim-to-Real Transfer | http://arxiv.org/abs/2610.02717 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | CHASE-VLA: Post-Training Quantization Framework for Vision-Language-Action Models with Chunk-Aware Scale Estimation | http://arxiv.org/abs/2610.02666 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | Imagine the Future, Internalize the Gist: Efficient VLA Reasoning via Internalized Spatiotemporal Imagination | http://arxiv.org/abs/2610.02626 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | World Action Modeling with Progressive Visual Planning | http://arxiv.org/abs/2610.02508 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Keep the Effect, Drop the Actor: Programmable Effect-to-Execution World-Action Models | http://arxiv.org/abs/2610.02398 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Rethinking World-Action Model for Compositional and In-Context Robotic Manipulation | http://arxiv.org/abs/2610.02368 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | SocialVLA: A Social Perception Gateway for Human-Reaction-Based Failure Detection and Recovery in VLA Manipulation | http://arxiv.org/abs/2610.02360 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | World-Calibrated Proposal-to-Action Flow for Vision-Language-Action Models | http://arxiv.org/abs/2610.02323 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | Awomo-SimDataEngine: Agentic Simulation-ReadyWorld Generation | http://arxiv.org/abs/2610.02274 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-01 | DuoMind: Enabling Distributed Multi-Robot Coordination with Semantic Communication | http://arxiv.org/abs/2610.02161 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-01 | SkeleWAM: Skeleton World-Action Modeling for Efficient Robotic Manipulation | http://arxiv.org/abs/2610.02120 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-01 | UniWAM: Unified World-Action Model | http://arxiv.org/abs/2610.02054 | <details><summary>展开</summary>待生成</details> |
