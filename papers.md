@@ -1,5 +1,43 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-05 | Recursive Video In-Context Learning for Agentic Robot | http://arxiv.org/abs/2610.06843 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | TAPDreamer: Transferable Adversarial Patches for World Action Models | http://arxiv.org/abs/2610.06814 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | RealtimeWAM: One-Step Asynchronous World Action Models | http://arxiv.org/abs/2610.06617 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | SimForcing: Distilling Simulation Motion Priors into Real-Domain Robot World Models | http://arxiv.org/abs/2610.06598 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Odyssey: A Closed-Loop Benchmark for Long-Horizon Real-World Driving with Explicit Navigation Routes | http://arxiv.org/abs/2610.06469 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Wiring Matters: Injection Topology and Initialization of Affordance Heads in Vision-Language-Action Policies | http://arxiv.org/abs/2610.06318 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Future Anchored Verification and Online Recovery for World Action Models | http://arxiv.org/abs/2610.06280 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | VLA-ZO: Fast Zeroth-Order Adaptation for Vision-Language-Action Models | http://arxiv.org/abs/2610.06271 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Encoded but Not in Control: Revealing the Grounding Gap in Vision-Language Robot Policies | http://arxiv.org/abs/2610.06235 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Arm-wise Compositional Generalization in Dual-Arm Vision-Language-Action Models | http://arxiv.org/abs/2610.06184 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Do VLAs Understand and Adapt to the Objects They Handle, or Simply Replay Learned Behaviors? | http://arxiv.org/abs/2610.06078 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | How (and How Not) to Use Data Augmentation in VLA Post-Training | http://arxiv.org/abs/2610.05994 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | OGAM: Connecting Systematic Testing to Runtime Assurance through Object-Grounded Attention Monitoring for VLA Policies | http://arxiv.org/abs/2610.05878 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | What the Guard Misses, the Robot Executes: Implied Harm in VLA Instructions | http://arxiv.org/abs/2610.05818 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Demonstration-Calibrated Port-Hamiltonian Retuning for Manipulation Policies | http://arxiv.org/abs/2610.05755 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | Beyond In-Distribution Preservation: Recovering Generalization in Quantized VLAs via Vulnerability-Oriented Tuning | http://arxiv.org/abs/2610.05745 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models | http://arxiv.org/abs/2610.05719 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | When Does Retrieval Help? A Study of In-Context Adaptation in Vision-Language-Action Models | http://arxiv.org/abs/2610.05492 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | FLEX-WAM: Flexible Block-Causal World-Action Models for Long-Horizon Imagination and Planning | http://arxiv.org/abs/2610.05483 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | EvoMem-VLA: State-Evolution Memory for Long-Horizon Robot Manipulation | http://arxiv.org/abs/2610.05418 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | When and What to Prune? Stage-Aware Visual Token Pruning for Efficient VLA | http://arxiv.org/abs/2610.05273 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | Vela: Scaling Vision-Language-Action Models with Adaptive Action Curve Parametrization | http://arxiv.org/abs/2610.05230 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | A Safe Action Is Not Enough: Feasible-Future Decoding for Vision-Language-Action Policies | http://arxiv.org/abs/2610.05166 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | GeoBridge-VLA: Geometry-Aware Residual Adaptation for Vision-Language-Action Models | http://arxiv.org/abs/2610.05026 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | Triggering Generalist Reasoning via Predictive Uncertainty for Dual-System VLA | http://arxiv.org/abs/2610.05025 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | DiVeR: Decision-Critical Verifier Learning for VLA Test-Time Scaling | http://arxiv.org/abs/2610.04933 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | $R^2$-WAM: Repair-and-Reject Post-Training for World Action Models | http://arxiv.org/abs/2610.04913 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | ExStereo: Lifting 2D Vision-Language-Action Models to 3D with Explicit Stereo Representations | http://arxiv.org/abs/2610.04805 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | RoboIRS: Inference-Time Internal Representation Steering for Generalist Robot Policies | http://arxiv.org/abs/2610.04681 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | PermVLA: Factorization Order as a Regularizer for VLA Learning | http://arxiv.org/abs/2610.04659 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | PerturBot: Breaking Shortcut Priors in Vision-Language-Action Models with Perturbative Training | http://arxiv.org/abs/2610.04616 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | ForeAct3D: Policy-Grounded Future World Modeling for VLA Policies | http://arxiv.org/abs/2610.04607 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | AgenticTactileVLA: Contact-Guided Execution-Time Supervision for Generalizable Dexterous Manipulation without VLA Retraining | http://arxiv.org/abs/2610.04391 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | What to Preserve in Recursive Computation: A Local Predictive Sufficiency Principle | http://arxiv.org/abs/2610.04303 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | Grounded in Time: A Multi-Source Dataset and Benchmark for Temporal Grounding in Robotic Manipulation | http://arxiv.org/abs/2610.04255 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | SUAVE: Unified Video-Action Models via Masked Diffusion | http://arxiv.org/abs/2610.04009 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | LatentQuant: Preserving the Policy-Facing Latent Contract under NVFP4 VAE Quantization | http://arxiv.org/abs/2610.03959 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-01 | WAMJET: A Harness for World Action Model Acceleration | http://arxiv.org/abs/2610.03797 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-02 | XGenAct: Geometry-Enhanced World Action Models through Cross-Task Generation | http://arxiv.org/abs/2610.03516 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-02 | Detect and Suppress: A Mechanistic Defense against Adversarial Patches in VLA Models | http://arxiv.org/abs/2610.03498 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-02 | MobiAgent: Dual-Loop Recursive Policy Self-Improvement for Long-Horizon Mobile Manipulation | http://arxiv.org/abs/2610.03476 | <details><summary>展开</summary>待生成</details> |
