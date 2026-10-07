@@ -1,5 +1,26 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-06 | EgoLAP: Learning from Egocentric Human Data through Language-Action Reasoning | http://arxiv.org/abs/2610.08726 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | RIWANav: Recursive World-Action Models with Self-Improvement for Urban Navigation | http://arxiv.org/abs/2610.08640 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | WareFly-VLA: A Vision-Language-Action Framework for UAV Navigation and Human Tracking in Smart Warehouses | http://arxiv.org/abs/2610.08526 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | ActTune: Action-Aware Precision and GPU Operating-Point Adaptation for Energy-Efficient Vision-Language-Action Inference | http://arxiv.org/abs/2610.08444 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | MIM-VLA: Learning Physical Interaction Representations from Gripper Motor Feedback | http://arxiv.org/abs/2610.08425 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | VOMMI: Collecting and Leveraging Portable Demonstrations for Mobile Manipulation | http://arxiv.org/abs/2610.08220 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | ViDAL: A Visual Dynamics-Grounded Action Latent Space for Vision-Language-Action Models | http://arxiv.org/abs/2610.08150 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | VLA-ACL: Action-Consistent Visual Token Pruning for Efficient Vision-Language-Action Models | http://arxiv.org/abs/2610.08133 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | AutodidactWAM: Cross-Modal Self-Distillation from Generated Video to Robot Actions | http://arxiv.org/abs/2610.08119 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | Adapting Vision-Language-Action Models to Unknown Visual Disruptions During Execution | http://arxiv.org/abs/2610.07946 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | OpenWAM: An Open Framework for Composable World-Action Models | http://arxiv.org/abs/2610.07922 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | StairVLA: Stage-Aware Hierarchical Action Generation for Vision-Language-Action Models | http://arxiv.org/abs/2610.07756 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | ESP: Energy-Score Policy for One-Step Multimodal Action Generation | http://arxiv.org/abs/2610.07696 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | SMART: Zero-Shot Sim-to-Real Articulated Object Manipulation via Large-Scale Synthetic Pretraining | http://arxiv.org/abs/2610.07652 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | BiGym 2.0: Benchmarking Learned and Agent-Developed Policies for Humanoid Household Manipulation | http://arxiv.org/abs/2610.07594 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | Seeing the Invisible: Physics-Guided Visual Prompting for Temperature- and Radiation-Aware VLA Navigation | http://arxiv.org/abs/2610.07558 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-05 | PlaySuite: A Large-Scale Benchmark for Interactive Visual Intelligence | http://arxiv.org/abs/2610.07127 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-04 | ProactiveVLA: Augmenting Embodied Memory through Proactive Environment Exploration | http://arxiv.org/abs/2610.06999 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | ACG-WAM: World-Action Modeling via Action-Conditioned Geometric Latent Prediction | http://arxiv.org/abs/2610.06965 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-03 | SWAP: Stepwise Action Policy Routing for Vision-Language-Action Models | http://arxiv.org/abs/2610.06926 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-02 | Does a Learned Corrector Beat a Simple Retreat? Evidence from a Frozen VLA | http://arxiv.org/abs/2610.06921 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-05 | Recursive Video In-Context Learning for Agentic Robot | http://arxiv.org/abs/2610.06843 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-05 | TAPDreamer: Transferable Adversarial Patches for World Action Models | http://arxiv.org/abs/2610.06814 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-05 | RealtimeWAM: One-Step Asynchronous World Action Models | http://arxiv.org/abs/2610.06617 | <details><summary>展开</summary>待生成</details> |
