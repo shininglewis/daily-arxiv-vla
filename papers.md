@@ -1,5 +1,28 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-07 | Long-WAM: Scaling the Context of World-Action Models | http://arxiv.org/abs/2610.10528 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Rephrase Before You Act: Characterizing and Mitigating Language Sensitivity in Vision-Language-Action Models | http://arxiv.org/abs/2610.10526 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Q-Learning with Scalar Adjoint Matching | http://arxiv.org/abs/2610.10437 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Explicit Geometric Chain-of-Thought for Vision-Language-Action in Autonomous Driving | http://arxiv.org/abs/2610.10390 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | OpenViTac: Learning and Benchmarking Visuo-Tactile Policies in a Unified Sim-and-Real Framework | http://arxiv.org/abs/2610.10384 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Video Prediction Policy 2: Predict Better, Act Better | http://arxiv.org/abs/2610.10270 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Do Vision-Language-Action Models Understand Instructions? A Mechanistic Interpretability Study on Language Grounding | http://arxiv.org/abs/2610.10178 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | RealtimeWAM: How Fast Can I Run My World Action Model? | http://arxiv.org/abs/2610.10079 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Many Ways to Succeed: Diversity-Driven RL Fine-Tuning for VLA Generalization | http://arxiv.org/abs/2610.09943 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Juno: Taming Predictive Latents for Vision-Language-Action Models | http://arxiv.org/abs/2610.09940 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | ΔWAM: Distilling Action Tangent Fields into World Action Models | http://arxiv.org/abs/2610.09734 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | YUBI-STAG: Contact and Semantic-Rich Alignment for VLAs via Automated Video-Language Grounding | http://arxiv.org/abs/2610.09718 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | SpikingVLA: Asynchronous Spiking Vision-Language-Action Models | http://arxiv.org/abs/2610.09710 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | RoboPace: Contact-Aware Time-Optimal Retiming for Action-Chunk Policies | http://arxiv.org/abs/2610.09696 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Sparse Feature Policy Unlearning Mitigates State Hallucination in Vision-Language-Action Models | http://arxiv.org/abs/2610.09496 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | TMT: Runtime Backdoor Detection for Vision-Language-Action Policies on Unseen Tasks | http://arxiv.org/abs/2610.09462 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | TempoBridge: Language-Guided Tempo Control for Vision-Language-Action Policies | http://arxiv.org/abs/2610.09451 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | Event-Aligned Visual Action Reasoning for World Action Models | http://arxiv.org/abs/2610.09427 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | Co-Evolving Robot Orchestrators and Policies through Deployment | http://arxiv.org/abs/2610.09228 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | Beyond Reconstruction: What Matters in Action Tokenization for Robot Policies? | http://arxiv.org/abs/2610.09170 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | DIVA: Dual-Space Intent-Aware Visual Attenuation for Vision-Language-Action Policies | http://arxiv.org/abs/2610.09144 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | PAIR: Bridging Perception and Action in Vision-Language-Action Models | http://arxiv.org/abs/2610.09016 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-06 | CARE: Certifying Acceleration for Vision-Language-Action Inference | http://arxiv.org/abs/2610.08917 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-06 | EgoLAP: Learning from Egocentric Human Data through Language-Action Reasoning | http://arxiv.org/abs/2610.08726 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-06 | RIWANav: Recursive World-Action Models with Self-Improvement for Urban Navigation | http://arxiv.org/abs/2610.08640 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-06 | WareFly-VLA: A Vision-Language-Action Framework for UAV Navigation and Human Tracking in Smart Warehouses | http://arxiv.org/abs/2610.08526 | <details><summary>展开</summary>待生成</details> |
