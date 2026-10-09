@@ -1,5 +1,35 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-08 | VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation | http://arxiv.org/abs/2610.12451 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | VioLA: Learning Generalist Humanoid Control Policies from Human Data | http://arxiv.org/abs/2610.12435 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC | http://arxiv.org/abs/2610.12407 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | ARC: A Reasoning Recipe for Robot Foundation Models | http://arxiv.org/abs/2610.12386 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Embodied Turing Machines: Stateful Code for Robot Recursive Self-Improvement | http://arxiv.org/abs/2610.12369 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | PLaW-VLA: Predictive Latent World Modeling for Vision-Language-Action Policies | http://arxiv.org/abs/2610.12285 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning | http://arxiv.org/abs/2610.12231 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | MiniWAM: Learning Compact Future Targets for Efficient World-Action Modeling | http://arxiv.org/abs/2610.12194 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | RESETTLE: Robotic Recovery through Disagreement-Triggered Retrieval and Efficient Corrective Control | http://arxiv.org/abs/2610.12185 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | ContourVLA: A Closed-Loop Perception-Action Contour Policy for Generalized Referring Expression Segmentation | http://arxiv.org/abs/2610.12107 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | UNITAS: A 3D-Native World Action Model for Embodied Manipulation | http://arxiv.org/abs/2610.12099 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Recompose and Refine Latent Reasoning Flows for Vision-Language-Action Models | http://arxiv.org/abs/2610.12090 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | ManiUnit: A Manipulation Skill Dataset and Benchmark for Long-Horizon Tasks | http://arxiv.org/abs/2610.12089 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Humanoid World Action Model With Joint State--Action Generation | http://arxiv.org/abs/2610.12026 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | REACT: Rolling Denoising and Dual Decoupling for Reactive Robot Control with VLA Models | http://arxiv.org/abs/2610.12007 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | CAPABLE: Capability-Aware Policy Adaptation via Behavioral Latent Encoding | http://arxiv.org/abs/2610.11971 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Tell Robot What Not to Do: A Negation Understanding Perspective | http://arxiv.org/abs/2610.11952 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | PathTime-VLA: Path-Time Decoupling for Factorized Post-Training of Vision-Language-Action Policies | http://arxiv.org/abs/2610.11771 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | WARP-VLA: Wrist-Camera Adaptation for View-Robust Policy Execution in Vision-Language-Action Models | http://arxiv.org/abs/2610.11508 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | RoboAware: Learning to Coordinate Embodied Skills from Counterfactual Outcomes | http://arxiv.org/abs/2610.11480 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Experience-Guided Initiation Search for Learned Skills in Skill Composition | http://arxiv.org/abs/2610.11418 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Rewiring Semantics, Dynamics, and Control: A Simple yet Effective Action-Centric Tri-Stream Transformer | http://arxiv.org/abs/2610.11416 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | WAM-Cache: Staleness-Bounded KV Reuse for Efficient World Action Models | http://arxiv.org/abs/2610.11401 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | PlanWAM: Planning-Shaped Future Representations for End-to-End Autonomous Driving | http://arxiv.org/abs/2610.11382 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Being-M0.7: A Latent World-Action Model for Humanoid Robots | http://arxiv.org/abs/2610.11283 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | SimVLA: Zero-Shot Sim-to-Real VLA Learning for Mobile Manipulation | http://arxiv.org/abs/2610.11248 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | VGGTWorld-VLA: Intent-Conditioned 3D World Evolution for Autonomous Driving | http://arxiv.org/abs/2610.11161 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | AffordDrive3D: Affordance-Aware World-Action Modeling with Spatial Understanding | http://arxiv.org/abs/2610.11060 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | When Listening Becomes Easier: Scrubbing Visual Cues for Shortcut-Free VLAs | http://arxiv.org/abs/2610.10912 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-07 | NavGPT-3: Harnessing Context in a Hierarchical Navigation Runtime | http://arxiv.org/abs/2610.10787 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-07 | Long-WAM: Scaling the Context of World-Action Models | http://arxiv.org/abs/2610.10528 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-07 | Rephrase Before You Act: Characterizing and Mitigating Language Sensitivity in Vision-Language-Action Models | http://arxiv.org/abs/2610.10526 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-07 | Q-Learning with Scalar Adjoint Matching | http://arxiv.org/abs/2610.10437 | <details><summary>展开</summary>待生成</details> |
