@@ -1,5 +1,27 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-10-09 | Splat2Act: From Captured Scenes to Personalized VLA Manipulation | http://arxiv.org/abs/2610.13945 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Noise Space Learning for VLA Adaptation | http://arxiv.org/abs/2610.13943 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | SimVTA: Simulation-Grounded Video-Trajectory Alignment for Driving World Action Models | http://arxiv.org/abs/2610.13781 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | SmolWAM: A Latent World-Action Model for Robotic Manipulation on Edge Devices | http://arxiv.org/abs/2610.13740 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | LAPT-Scale: Scaling Embodied Policies with Latent Action Pre-Training on Human Videos | http://arxiv.org/abs/2610.13732 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | JitterVLA: A Replay Benchmark for Motion Quality in VLA-Driven Human-Robot Manipulation | http://arxiv.org/abs/2610.13628 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | RARA: Robust Policy Fine-Tuning through Retrieval-Anchored Representation Alignment for Robotic Manipulation | http://arxiv.org/abs/2610.13578 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | RESCUE: Is This Alarm Worth Acting On? Counterfactual Evaluation of VLA Runtime Monitors | http://arxiv.org/abs/2610.13516 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Reflect-VLA: Internalizing Reflective Guidance via Dual-Path On-Policy Self-Distillation for Autonomous Driving | http://arxiv.org/abs/2610.13453 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Dual-Stream Memory for Vision-Language-Action Policies | http://arxiv.org/abs/2610.13262 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Beyond Actions: Learning Future Operation Targets for Vision-Language-Action Models | http://arxiv.org/abs/2610.13212 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Forward Dynamics Models | http://arxiv.org/abs/2610.13117 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | What Visual Representations Do World Action Models Need? | http://arxiv.org/abs/2610.13024 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Evo-World: A Lightweight Vision-Language-Action Model with Future Motion Prediction via Optical-Flow Supervision | http://arxiv.org/abs/2610.12936 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | OGPO: Offline Goal-conditioned Policy Optimization for Recoverable Vision-Language-Action Models | http://arxiv.org/abs/2610.12914 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | LeapBot-JAC: Joint Action Chains for World Action Models | http://arxiv.org/abs/2610.12886 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | Evidence-Guided Counterfactual Learning for Long-Tailed Robotic Policies | http://arxiv.org/abs/2610.12861 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-09 | VLMs are Native Action Models: Unleashing the Manipulation Capabilities of VLMs with Explicit Action-Space Grounding | http://arxiv.org/abs/2610.12832 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Gamma: Grounded Multi-Agent Memory with Mechanical Audit for Memory-Intensive Manipulation | http://arxiv.org/abs/2610.12793 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | StereoEngine: Scaling Stereo Bimanual Robot Data without Stereo Cameras | http://arxiv.org/abs/2610.12734 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | REMM: Revisable Embodied Memory for Manipulation | http://arxiv.org/abs/2610.12710 | <details><summary>展开</summary>待生成</details> |
+| 2026-10-08 | Spa-Bench: A Real-Robot Benchmark for Spatial Grounding in Vision-Language-Action Models | http://arxiv.org/abs/2610.12696 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-08 | VersaCamVLA: Camera-Configurable VLA Policies for Robotic Manipulation | http://arxiv.org/abs/2610.12451 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-08 | VioLA: Learning Generalist Humanoid Control Policies from Human Data | http://arxiv.org/abs/2610.12435 | <details><summary>展开</summary>待生成</details> |
 | 2026-10-08 | LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC | http://arxiv.org/abs/2610.12407 | <details><summary>展开</summary>待生成</details> |
