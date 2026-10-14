@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dynamic Manipulation with World-Action Models via Counterfactual Planning - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文研究如何让基于静态演示训练的 World–Action 模型（WAM） 在目标物体运动的情况下完成动态操作任务，无需额外采集动态数据或重新训练。 指出核心失败模式 target-response collapse：随着执行推进，策略越来越偏向已学行为的延续，对目标位置变化的响应能力显著下降。 提出 Dynamic Predictive Planning（DPP），将&quot;用于生成计划的上下文&quot;与&quot;用于执行的物理状态&quot;解耦，以反事实规划实现实时动态操作。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Dynamic Manipulation with World-Action Models via Counterfactual Planning</h1>
             <div class="detail-meta">2026-09-27 · <a href="http://arxiv.org/abs/2609.33172" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.33172" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.33172</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文研究如何让基于静态演示训练的 World–Action 模型（WAM） 在目标物体运动的情况下完成动态操作任务，无需额外采集动态数据或重新训练。 指出核心失败模式 target-response collapse：随着执行推进，策略越来越偏向已学行为的延续，对目标位置变化的响应能力显著下降。 提出 Dynamic Predictive Planning（DPP），将&quot;用于生成计划的上下文&quot;与&quot;用于执行的物理状态&quot;解耦，以反事实规划实现实时动态操作。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">韩国科学技术院（KAIST） Kim Jaechul 人工智能研究生院</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.33172/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文研究如何让基于静态演示训练的 World–Action 模型（WAM） 在目标物体运动的情况下完成动态操作任务，无需额外采集动态数据或重新训练。</p>
+  <ul class="reading-intro-points"><li>论文研究如何让基于静态演示训练的 World–Action 模型（WAM） 在目标物体运动的情况下完成动态操作任务，无需额外采集动态数据或重新训练。</li><li>指出核心失败模式 target-response collapse：随着执行推进，策略越来越偏向已学行为的延续，对目标位置变化的响应能力显著下降。</li><li>提出 Dynamic Predictive Planning（DPP），将&quot;用于生成计划的上下文&quot;与&quot;用于执行的物理状态&quot;解耦，以反事实规划实现实时动态操作。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>韩国科学技术院（KAIST）</strong> Kim Jaechul 人工智能研究生院</li><li>作者：<strong>Sunwoo Park</strong>、<strong>Wonbin Lee</strong>、<strong>Seonghyun Jin</strong>、<strong>Youngmin Kim</strong>、<strong>Jangho Park</strong>、<strong>Jong Chul Ye</strong>（通讯作者）</li><li>前四位作者为共同第一作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文研究如何让基于<strong>静态演示</strong>训练的 <strong>World–Action 模型（WAM）</strong> 在目标物体运动的情况下完成动态操作任务，无需额外采集动态数据或重新训练。</li><li>指出核心失败模式 <strong>target-response collapse</strong>：随着执行推进，策略越来越偏向已学行为的延续，对目标位置变化的响应能力显著下降。</li><li>提出 <strong>Dynamic Predictive Planning（DPP）</strong>，将"用于生成计划的上下文"与"用于执行的物理状态"解耦，以反事实规划实现实时动态操作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别并实证刻画 <strong>target-response collapse</strong> 失败模式：反应式重规划会把机器人状态与静态演示不支持的移位目标配对，导致策略偏向熟悉但错误的子目标。</li><li>证明将<strong>计划生成上下文</strong>与<strong>执行机器人状态</strong>解耦，可使已学操作技能在目标运动中依然有效。</li><li>提出 <strong>DPP</strong> 框架：结合交互时刻预测、目标位置预测、反事实规范规划与异步计划切换，可适配不同 WAM 主干，无需动态数据再训练。</li><li>在仿真与真实机器人上验证 DPP 优于所有对比基线，包括在仿真中额外用动态数据训练的方法，且单张消费级 GPU 即可实时推理。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>三阶段规划流程</strong>：初始规划（initial planning）→ 规范规划（canonical planning）→ 当前状态规划（current-state planning）。</li><li><strong>交互时刻预测</strong>：用 WAM 预测性 rollout 超出原生 action chunk，通过任务特定谓词 φ_q 判断抓取/释放等关键事件何时发生，并映射到执行时钟得到 τ。</li><li><strong>目标位置预测</strong>：用 <strong>SAM 2</strong> 分割目标、<strong>FoundationPose</strong> 跟踪位置，拟合目标运动假设 x̂(·)，求得 x̂(τ)。</li><li><strong>反事实观测构造</strong>：通过视觉编辑 <code>Edit(O_k, x')</code> 将目标放置到预测交互位置，同时保留熟悉的机器人配置与本体感知，形成近似上下文 C̃(S₀, x̂(τ))。</li><li><strong>激活桥（activation bridge）</strong>：以逆运动学并受关节速度限制，将当前状态 S_k 连接到规范轨迹的入口点，替换剩余动作队列。</li><li><strong>异步执行</strong>：机器人边执行边规划，当前状态规划用新观测与真实状态修正剩余轨迹，交互段保留不重采样。</li><li><strong>多子任务衔接</strong>：按各阶段交互结构连接计划，重用延续段或在新规划周期生成新初始计划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboTwin2.0-Dyn</strong>：基于 <strong>RoboTwin 2.0</strong> 构建的动态操作基准，含 <strong>300 个 Bimanual Grasp（T1）</strong> 与 <strong>192 个 Pick-and-Place（T2）</strong> 回合。</li><li>真实机器人平台：基于 <strong>I2RT</strong> 的平台，FastWAM 仅在静态演示上训练；每个任务 30 次试验。</li><li>骨干模型：<strong>FastWAM</strong>、<strong>ImageWAM</strong>（冻结，不做额外策略训练）。</li><li>基线模型：<strong>π0.5</strong>、<strong>AHA-WAM</strong>、<strong>PUMA</strong>、<strong>DynamicWAM</strong>、Refresh-24/8、Future-Conditioned（Bootstrap / Oracle）。</li><li>计算资源：仿真端单张 <strong>RTX 5090</strong>，真机端单张 <strong>RTX 4090</strong>，渲染使用另一张 GPU，控制频率约 <strong>10 Hz</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：官方 RoboTwin Task Success、物理接触诊断 <strong>Contact</strong>、<strong>Route Completion（RC，0–100）</strong>；Pick-and-Place 需完成两个子任务。</li><li><strong>仿真结果（Table 1）</strong>：DPP 在 Bimanual Grasp 达 <strong>83.33%（FastWAM）</strong> 与 <strong>78.67%（ImageWAM）</strong>；Pick-and-Place 达 <strong>80.73%</strong> 与 <strong>91.15%</strong>；Future-Conditioned Bootstrap 仅 18.33%/48.96%，Oracle 为 27.00%/60.42%；DynamicWAM 最强基线为 52.00%/53.13%。</li><li><strong>真机结果</strong>：Task A 成功率 <strong>76.7%</strong>（Reactive 与 Future-Conditioned 均为 0%）；Task B 达 <strong>86.7%（26/30）</strong>，Reactive (Hybrid) 仅 40.0%。</li><li><strong>目标响应衰减量化</strong>：48 步执行后预测抓取响应面积降至初始值的 <strong>1.47%</strong>；ImageWAM 平均目标响应增益从 <strong>0.885 降至 0.063</strong>。</li><li><strong>消融实验（Table 2）</strong>：去掉初始计划执行 SR 降 <strong>-33.00</strong>，去掉规范状态条件降 <strong>-31.67</strong>，去掉当前状态规划仅降 <strong>-3.33</strong>。</li><li><strong>Oracle 诊断</strong>：真实目标速度使 SR 升至 <strong>92.33%</strong>，速度+观测 Oracle 达 <strong>94.00%</strong>，说明运动估计与观测合成仍有提升空间。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

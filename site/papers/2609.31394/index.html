@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>InternW0-$Δ$: A World Action Model Bridging Predictive Dynamics and Actions with 20K+ Hours of Open Data - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 InternW0-Δ，一个统一的 World Action Model（WAM），将预训练的视觉动态、场景级语义理解、4D 几何与运动先验以及动作生成整合在单一框架中。 目标是解决 &quot;预测未来观测&quot;无法直接转化为机器人控制能力 的核心挑战：动作生成还需要识别任务相关变化、理解物体几何与运动，并将其落地到当前指令与场景。 关键在于把视觉动态建模中的预测知识转化为对动作生成直接有用的表征，同时 推理时无需显式采样未来视频。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">InternW0-$Δ$: A World Action Model Bridging Predictive Dynamics and Actions with 20K+ Hours of Open Data</h1>
             <div class="detail-meta">2026-09-25 · <a href="http://arxiv.org/abs/2609.31394" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.31394" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.31394</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 InternW0-Δ，一个统一的 World Action Model（WAM），将预训练的视觉动态、场景级语义理解、4D 几何与运动先验以及动作生成整合在单一框架中。 目标是解决 &quot;预测未来观测&quot;无法直接转化为机器人控制能力 的核心挑战：动作生成还需要识别任务相关变化、理解物体几何与运动，并将其落地到当前指令与场景。 关键在于把视觉动态建模中的预测知识转化为对动作生成直接有用的表征，同时 推理时无需显式采样未来视频。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Physical Intelligence Team</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,61 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.31394/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 InternW0-Δ，一个统一的 World Action Model（WAM），将预训练的视觉动态、场景级语义理解、4D 几何与运动先验以及动作生成整合在单一框架中。</p>
+  <ul class="reading-intro-points"><li>提出 InternW0-Δ，一个统一的 World Action Model（WAM），将预训练的视觉动态、场景级语义理解、4D 几何与运动先验以及动作生成整合在单一框架中。</li><li>目标是解决 &quot;预测未来观测&quot;无法直接转化为机器人控制能力 的核心挑战：动作生成还需要识别任务相关变化、理解物体几何与运动，并将其落地到当前指令与场景。</li><li>关键在于把视觉动态建模中的预测知识转化为对动作生成直接有用的表征，同时 推理时无需显式采样未来视频。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Physical Intelligence Team</strong></li><li><strong>Shanghai AI Laboratory</strong>（上海人工智能实验室）</li><li>项目页面：<strong>internrobotics.github.io/InternW0-Delta/</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>InternW0-Δ</strong>，一个统一的 <strong>World Action Model（WAM）</strong>，将预训练的视觉动态、场景级语义理解、4D 几何与运动先验以及动作生成整合在单一框架中。</li><li>目标是解决 <strong>"预测未来观测"无法直接转化为机器人控制能力</strong> 的核心挑战：动作生成还需要识别任务相关变化、理解物体几何与运动，并将其落地到当前指令与场景。</li><li>关键在于把视觉动态建模中的预测知识转化为对动作生成直接有用的表征，同时 <strong>推理时无需显式采样未来视频</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>带有动作相关预测表征的世界动作模型</strong>：通过在<strong>定向 Mixture-of-Transformers（MoT）</strong>中耦合预训练视频专家与动作专家，实现未来监督到动作表征的传递。</li><li>提出 <strong>Causal Imprint</strong>：利用仅训练时的未来监督学习与未来相关的场景变化，并将这些预测表征直接暴露给动作专家，推理时无需未来视频 rollout。</li><li>引入 <strong>training-only 4D-aware 表示蒸馏</strong>：从冻结的 <strong>Track4World</strong> 教师向视频专家注入几何与运动先验，推理时不增加额外策略路径。</li><li><strong>可扩展、可复现的"数据到部署"配方</strong>：统一 <strong>20K+ 小时</strong>异构机器人与人类演示数据到规范状态-动作表示，采用两阶段训练并适配目标本体。</li><li><strong>跨本体、从仿真到真机的全面评测</strong>：覆盖单臂、双臂、移动操作及灵巧手真机平台，并承诺开源代码、权重、训练配方、数据过滤索引与部署工具。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>架构</strong>：<strong>30 层定向 MoT</strong> 耦合预训练 <strong>Wan2.2-TI2V-5B</strong> 视频专家与 <strong>ActionDiT</strong> 动作专家；每个耦合块中两专家独立计算 Q/K/V 后拼接做一次掩码联合注意力，再各自走跨注意力、FFN 与残差路径。</li><li><strong>稀疏记忆上下文（Sparse Memory Context）</strong>：仅保留 anchor（片段起始）、recent（上一动作块之前）、current 三帧观测，由冻结 <strong>Wan VAE</strong> 编码为视觉潜变量，兼顾片段级上下文与近期执行历史。</li><li><strong>多模态上下文编码</strong>：T5 路径保留视频预训练的语言先验；额外 <strong>冻结 VLM</strong> 联合处理多视角当前观测、视角标识与指令，为动作专家提供场景级语义（物体、空间构型、机器人-物体关系）。</li><li><strong>明确注意力掩码</strong>：未来帧 token 可用观测上下文做预测，但 <strong>Causal Imprint 与动作 token 无法直接访问真实未来</strong>，实现"未来监督"与"策略推理"的定向分离。</li><li><strong>Causal Imprint</strong>：可学习 token 注入视频专家自注意力层，空间布局对齐当前视频潜变量；训练目标包括 (1) 回归相邻干净潜变量差分 ΔZ_t，(2) 与第 20 层末端未来切片特征做余弦对齐（stop-gradient）。</li><li><strong>4D 蒸馏</strong>：教师输出 clip 级 <strong>1430 维</strong> 4D 描述子并离线缓存；学生分支从第 15 层 VideoDiT 提取 A/R/C 干净特征，经 16 个可学习 query 与两层 Transformer decoder 聚合后对齐，用 MSE 蒸馏。</li><li><strong>训练目标</strong>：视频 flow matching + 动作 flow matching + Causal Imprint 损失 + 对齐损失 + 4D 蒸馏损失加权求和。</li><li><strong>高效推理</strong>：一次视频专家 prefill（缓存各 MoT 层 A/R/C/Δ token 的 K/V）后仅对动作流做 N 步 flow 去噪（从 σ=1 到 σ=0），每步只需重算动作专家；<strong>无需未来视频采样或 VAE 解码</strong>。</li><li><strong>规范动作空间</strong>：所有动作映射到固定语义槽位的 <strong>80 维规范空间</strong>，动作块形如 <strong>H_a×D_a（32×80）</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>总规模</strong>：超过 <strong>20K 小时</strong> 处理后训练数据，据称是同类中最大的开源语料。</li><li><strong>机器人数据</strong>：<strong>AgiBotWorld</strong>、<strong>InternData-A1</strong>、<strong>RoboMIND / RoboMIND 2.0</strong>、<strong>RW-RL</strong>、<strong>Dexora</strong>、<strong>ABC-130K</strong>、<strong>Galaxea Open-World Dataset</strong>、<strong>RoboCOIN</strong>、<strong>RH20T</strong>、<strong>RDT-1B</strong>、<strong>RoboSet</strong>、<strong>RealSource-World</strong>、<strong>MolmoAct2-BimanualYAM</strong>、<strong>HABIT</strong>、<strong>ActionNet</strong>。</li><li><strong>第一人称与 Ego2Robot 数据</strong>：<strong>EgoDex</strong>、<strong>EgoVerse</strong>。</li><li><strong>UMI 数据</strong>：<strong>Hy-UMI-10K</strong>。</li><li><strong>后训练/评测</strong>：<strong>EBench</strong>、<strong>RoboDojo</strong>、<strong>LIBERO / LIBERO-Plus</strong>、<strong>RoboTwin 2.0</strong>。</li><li><strong>数据处理</strong>：信号异常与一致性过滤、静止边界裁剪、视觉质量过滤、动作幅度守卫、指令正确性与视频-指令一致性过滤、人工语义校验；Ego2Robot 需动作对齐、运动学对齐、视觉对齐、动作速度对齐。</li><li><strong>部署硬件</strong>：<strong>单张 NVIDIA RTX 5090 GPU</strong>，灵巧手部署下平均控制器观测往返延迟 <strong>152.8 ms</strong>，相对标准运行时加速 <strong>5.11×</strong>。</li><li><strong>训练基础设施</strong>：视频 VAE 潜变量与冻结视觉语言特征缓存、逐层 MoT 编译、激活检查点。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：<strong>LIBERO-Plus</strong>、<strong>RoboTwin 2.0</strong>、<strong>EBench</strong>、<strong>RoboDojo</strong> 四个仿真基准，覆盖不同本体、任务需求与分布偏移；另有真机部署（两种夹爪平台 + 两种灵巧手平台）。</li><li><strong>主要指标</strong>：任务成功率 / 平均成功率 / 综合得分。</li><li><strong>关键结果</strong>：</li></ul>
+<p> - <strong>LIBERO-Plus</strong>：分布偏移下最佳成功率 <strong>92.8%</strong>。</p>
+<p> - <strong>RoboTwin 2.0</strong>：<strong>Clean2Random 71.9%</strong>（最佳），<strong>Clean2Clean 90.0%</strong>（领先）。</p>
+<p> - <strong>EBench</strong>（移动双臂操作）：最高综合得分 <strong>66.0</strong>。</p>
+<p> - <strong>RoboDojo</strong>（记忆、精度、长时程任务）：最佳平均成功率 <strong>23.9%</strong>，约为最强先前 WAM 的 <strong>两倍</strong>。</p>
+<ul><li><strong>消融实验</strong>：验证 <strong>Sparse Memory Context</strong>、<strong>VLM</strong>、<strong>Causal Imprint</strong>、<strong>4D-aware 表示蒸馏</strong> 各组件的贡献，并做了数据来源消融。</li><li><strong>真机实验</strong>：验证预训练对真机性能的提升、物理条件泛化、跨本体适配以及 <strong>RTC</strong> 连续性对比；另探索 <strong>GPT-Guided Policy</strong>。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

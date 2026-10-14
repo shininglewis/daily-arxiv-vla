@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data-Free Continual Learning for World Action Model with Rectified Generative Replay - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="研究数据自由持续学习，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。 核心思路是让 WAM 自回归重新生成过去任务的完整 rollouts 并进行重放，但原始生成 rollouts 因任务完成后无目的运动和开环生成导致的观察–动作漂移，效果远不如真实数据重放。 提出 R²-WAM，在重放前对生成 rollouts 进行修正，从而在无旧任务数据条件下几乎匹配经验回放（ER）的持续学习效果。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.18038">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.18038.webp" alt="Data-Free Continual Learning for World Action Model with Rectified Generative Replay" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">研究数据自由持续学习，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Data-Free Continual Learning for World Action Model with Rectified Generative Replay</h1>
+            <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.18038" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.18038" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.18038</span></div>
+            <p class="detail-summary">研究数据自由持续学习，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。 核心思路是让 WAM 自回归重新生成过去任务的完整 rollouts 并进行重放，但原始生成 rollouts 因任务完成后无目的运动和开环生成导致的观察–动作漂移，效果远不如真实数据重放。 提出 R²-WAM，在重放前对生成 rollouts 进行修正，从而在无旧任务数据条件下几乎匹配经验回放（ER）的持续学习效果。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">5 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">电子科技大学、上海人工智能实验室、复旦大学、上海交通大学、同济大学、上海创智学院</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.18038/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">研究数据自由持续学习，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。</p>
+  <ul class="reading-intro-points"><li>研究数据自由持续学习，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。</li><li>核心思路是让 WAM 自回归重新生成过去任务的完整 rollouts 并进行重放，但原始生成 rollouts 因任务完成后无目的运动和开环生成导致的观察–动作漂移，效果远不如真实数据重放。</li><li>提出 R²-WAM，在重放前对生成 rollouts 进行修正，从而在无旧任务数据条件下几乎匹配经验回放（ER）的持续学习效果。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>电子科技大学</strong>、<strong>上海人工智能实验室</strong>、<strong>复旦大学</strong>、<strong>上海交通大学</strong>、<strong>同济大学</strong>、<strong>上海创智学院</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>研究<strong>数据自由持续学习</strong>，让世界动作模型（WAM）在顺序微调新任务时不遗忘旧任务，且不依赖任何旧任务的真实数据。</li><li>核心思路是让 <strong>WAM 自回归重新生成过去任务的完整 rollouts</strong> 并进行重放，但原始生成 rollouts 因任务完成后无目的运动和开环生成导致的观察–动作漂移，效果远不如真实数据重放。</li><li>提出 <strong>R²-WAM</strong>，在重放前对生成 rollouts 进行修正，从而在无旧任务数据条件下几乎匹配经验回放（ER）的持续学习效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>证明 <strong>WAM 可通过重放自身生成的 rollouts 缓解灾难性遗忘</strong>，且经修正后几乎匹配 ER。</li><li>提出 <strong>R²-WAM</strong>，使用 <strong>完成感知自适应截断</strong> 和 <strong>基于流的物理一致性过滤</strong> 对生成 rollouts 进行修正。</li><li>在 <strong>LIBERO 四个套件</strong> 和 <strong>五个真实世界任务</strong> 上，R²-WAM 减少超过 <strong>90%</strong> 的遗忘，与 ER 差距约 <strong>2 个百分点</strong>，且不使用任何旧任务数据。</li><li>分析发现 <strong>WAM 的遗忘集中在逆动力学建模</strong>，观察预测能力基本保留，遗忘后的 WAM 仍能生成视觉合理的观察但动作失败。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>LingBot-VA</strong> 作为代表性 WAM，从任务指令出发自回归生成 <strong>M 个候选 rollouts</strong>，逐步预测未来观察和动作。</li><li><strong>完成感知自适应截断</strong>：使用 <strong>VLM agentic evaluator</strong> 判断任务完成点，截断 rollout 并丢弃未完成任务，去除事后无目的运动。</li><li><strong>基于流的物理一致性过滤</strong>：在 <strong>机器人-only 模拟器</strong> 中执行生成动作得到模拟光流，用 <strong>Track4World</strong> 从生成观察估计光流，计算一致性分数 <strong>s_flow</strong> 并保留 top-N 可执行 rollouts。</li><li>将修正后的 rollouts 与新任务演示混合，以行为克隆目标微调 WAM，实现数据自由持续学习。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>模拟数据集：<strong>LIBERO</strong> 四个套件（<strong>LIBERO-Spatial</strong>、<strong>LIBERO-Object</strong>、<strong>LIBERO-Goal</strong>、<strong>LIBERO-10</strong>），每个套件包含 10 个任务、每任务 50 个演示。</li><li>真实世界数据集：五个顺序三明治制作任务，每任务 <strong>50 个遥操作演示</strong>；机器人配备 <strong>7-DoF 机械臂</strong> 和 <strong>20-DoF 灵巧手</strong>，使用头相机和腕相机。</li><li>模型骨干：<strong>LingBot-VA</strong> 作为 WAM。</li><li>训练资源：原文未明确给出 GPU/TPU 具体型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：<strong>LIBERO 模拟</strong> 和 <strong>真实机器人</strong>；模拟每任务 50 次试验，真实每任务 20 次试验，报告 <strong>SR</strong>、<strong>NBT</strong>、<strong>Plasticity</strong>。</li><li>LIBERO 结果：<strong>R²-WAM</strong> 平均 <strong>SR 92.7%</strong>、<strong>NBT 2.33</strong>；<strong>ER</strong> 上限 <strong>SR 94.6%</strong>、<strong>NBT 0.09</strong>；<strong>Seq-FT</strong> 平均 <strong>SR 12.5%</strong>、<strong>NBT 80.19</strong>。</li><li>真实世界结果：<strong>R²-WAM</strong> <strong>SR 89.5%</strong>、<strong>NBT 3.45</strong>；<strong>ER</strong> <strong>SR 91.8%</strong>、<strong>NBT 2.27</strong>；<strong>Seq-FT</strong> <strong>SR 28.5%</strong>、<strong>NBT 65.62</strong>。</li><li>消融表明 <strong>截断和过滤均为必要</strong>；<strong>s_flow</strong> 与 rollout 可执行性正相关；生成重放随缓冲区增大可接近真实重放效果。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.18373/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DR-VLA: Learning Human-Like Quadruped Navigation from Egocentric Web Videos via Domain-Invariant Scene Representations</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.17999/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TRACE: Efficient Transfer Learning for Neural Whole-Body Control Across Humanoid Embodiments</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

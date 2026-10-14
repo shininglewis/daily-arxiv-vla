@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>G$^2$WAM: World Action Models for Efficient and Geometry Grounded Image-Goal Navigation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 G²WAM（Geometry Grounded World Action Model），面向图像目标导航（Image-Goal Navigation），目标是让智能体在目标不在当前视野内时仍能高效、稳定地抵达目标图像所示位置。 现有方法要么在目标任务上微调预训练模型，空间先验利用不足；要么依赖外部 3D 重建，计算开销大、难以实际部署；同时传统世界模型存在多步 rollout 误差累积、CEM 式规划推理代价高、开环轨迹转闭环路点引入额外误差等问题。 核心思路：人类导航并不依赖精确几何模型，而依赖以自身为中心的相对位姿表示，因此用估计位姿构成的相对几何上下文替代显式 3D 重建，并在隐空间中联合预测未来状态与动作。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.16558">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #177e89; --cover-to: #5ec2a8; --cover-spot: #c5f0de; --cover-ink: #f5fffb; --cover-muted: rgba(245, 255, 251, 0.82); --cover-chip: rgba(245, 255, 251, 0.16); --cover-stroke: rgba(245, 255, 251, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">G$^2$WAM: World Action Models for Efficient and Geometry Grounded Image-Goal Navigation</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">G$^2$WAM: World Action Models for Efficient and Geometry Grounded Image-Goal Navigation</h1>
+            <div class="detail-meta">2026-10-12 · <a href="http://arxiv.org/abs/2610.16558" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.16558" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.16558</span></div>
+            <p class="detail-summary">论文提出 G²WAM（Geometry Grounded World Action Model），面向图像目标导航（Image-Goal Navigation），目标是让智能体在目标不在当前视野内时仍能高效、稳定地抵达目标图像所示位置。 现有方法要么在目标任务上微调预训练模型，空间先验利用不足；要么依赖外部 3D 重建，计算开销大、难以实际部署；同时传统世界模型存在多步 rollout 误差累积、CEM 式规划推理代价高、开环轨迹转闭环路点引入额外误差等问题。 核心思路：人类导航并不依赖精确几何模型，而依赖以自身为中心的相对位姿表示，因此用估计位姿构成的相对几何上下文替代显式 3D 重建，并在隐空间中联合预测未来状态与动作。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">国防科技大学（National University of Defense Technology, C…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.16558/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 G²WAM（Geometry Grounded World Action Model），面向图像目标导航（Image-Goal Navigation），目标是让智能体在目标不在当前视野内时仍能高效、稳定地抵达目标图像所示位置。</p>
+  <ul class="reading-intro-points"><li>论文提出 G²WAM（Geometry Grounded World Action Model），面向图像目标导航（Image-Goal Navigation），目标是让智能体在目标不在当前视野内时仍能高效、稳定地抵达目标图像所示位置。</li><li>现有方法要么在目标任务上微调预训练模型，空间先验利用不足；要么依赖外部 3D 重建，计算开销大、难以实际部署；同时传统世界模型存在多步 rollout 误差累积、CEM 式规划推理代价高、开环轨迹转闭环路点引入额外误差等问题。</li><li>核心思路：人类导航并不依赖精确几何模型，而依赖以自身为中心的相对位姿表示，因此用估计位姿构成的相对几何上下文替代显式 3D 重建，并在隐空间中联合预测未来状态与动作。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>国防科技大学（National University of Defense Technology, China）</strong> — 智能科学学院（College of Intelligence Science and Technology）</li><li><strong>国防科技大学装备状态感知与智能保障全国重点实验室（National Key Laboratory of Equipment State Sensing and Smart Support）</strong></li><li><strong>国防科技大学未来技术学院（School of Future Technology）</strong></li><li>作者：<strong>Ke Gui、Chenghao Shi、Ziyue Wang、Longwen Chen、Xieyuanli Chen、Huimin Lu</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>G²WAM（Geometry Grounded World Action Model）</strong>，面向<strong>图像目标导航（Image-Goal Navigation）</strong>，目标是让智能体在目标不在当前视野内时仍能高效、稳定地抵达目标图像所示位置。</li><li>现有方法要么在目标任务上微调预训练模型，空间先验利用不足；要么依赖外部 3D 重建，计算开销大、难以实际部署；同时传统世界模型存在多步 rollout 误差累积、<strong>CEM 式规划</strong>推理代价高、开环轨迹转闭环路点引入额外误差等问题。</li><li>核心思路：人类导航并不依赖精确几何模型，而依赖以自身为中心的相对位姿表示，因此用<strong>估计位姿构成的相对几何上下文</strong>替代显式 3D 重建，并在隐空间中联合预测未来状态与动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>G²WAM</strong>，一种面向导航的隐式世界动作模型，<strong>联合预测潜在未来状态与可执行动作块（action chunks）</strong>，避免昂贵的 CEM 式规划与像素级重建。</li><li>提出新的空间上下文辅助范式：不重建显式几何，而是通过统一的端到端定位网络将<strong>当前帧、目标帧与历史帧锚定到共享场景坐标系</strong>，提供连续且几何一致的空间上下文。</li><li>设计了<strong>相对位姿条件与因果运动条件</strong>的分工机制（位姿提供目标几何、运动刻画历史轨迹并驱动动作适配），并保持定位模块的<strong>即插即用</strong>特性。</li><li>实验证明在轨迹预测与闭环导航上均取得最优性能与高效率：ATE/RPE 平均降低 <strong>40.1%/35.2%</strong>，成功率从 <strong>54% 提升至 63%</strong>，SPL 从 <strong>36.4% 提升至 59.2%</strong>，并承诺开源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>场景坐标锚定（Scene-Coordinate Anchoring）</strong>：用定位模块 <strong>f_loc</strong> 估计当前、目标与历史帧在共享场景系 S 中的 SE(3) 位姿，进而组合出<strong>当前到目标的相对变换</strong>与<strong>连续运动增量</strong>；默认使用 <strong>R-SCoRe</strong> 作为端到端定位器（6-DoF 位姿估计，单次查询 140–270 ms，RTX 2080）。</li><li><strong>隐式世界动作模型</strong>：冻结的 <strong>DINOv3</strong> 编码器将观测历史与目标图像编码为 patch 潜变量（上下文长度 <strong>H=4</strong>，潜维 <strong>D=384</strong>），通过 Transition 模块融合潜历史、目标嵌入与相对位姿条件，生成 patch 级上下文，再经池化与位姿/运动嵌入得到步状态。</li><li><strong>联合解码与自回归 rollout</strong>：联合解码器 <strong>J</strong> 同时输出下一潜变量候选与规范路点增量 <strong>(Δx, Δy, Δθ)</strong>，并与基础转移结果按权重混合、归一化后追加进定长历史，实现无图像解码的 8 步自回归潜空间 rollout。</li><li><strong>条件与动作适配</strong>：位姿条件将平移方向、目标距离与相对偏航分离编码后融合；运动条件编码中位步距、平均偏航变化及数据集尺度；<strong>规范运动适配器 A</strong> 把规范预测转换为平台可执行动作（含二维归一化与裁剪）。</li><li><strong>训练目标</strong>：多项损失加权组合 —— 潜损失（余弦 + 0.3×MSE）、规范动作的平滑 ℓ1 损失（对转弯步加权以防"只会前进"塌缩）、累计路点与偏航的 ℓ1 监督；权重为 <strong>0.3 / 3.0 / 2.0 / 0.5</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>轨迹预测数据集</strong>：<strong>RECON</strong>、<strong>SACSoN</strong>、<strong>TartanDrive</strong>、<strong>SCAND</strong>（每个数据集 100 条固定测试查询）；<strong>Go Stanford</strong> 用于零样本跨场景迁移测试。</li><li><strong>闭环导航数据集</strong>：<strong>Habitat-Sim</strong> 中 <strong>Gibson</strong> 已知场景 <strong>Mosquito</strong> 的 100 个固定验证 episode（与模型微调及定位训练用轨迹不重叠）。</li><li><strong>模型组件</strong>：冻结 <strong>DINOv3</strong> 视觉编码器；潜维 <strong>D=384</strong>，上下文长度 <strong>H=4</strong>，rollout 步数 8；定位模块默认 <strong>R-SCoRe</strong>。</li><li><strong>训练配置</strong>：<strong>AdamW</strong>，batch size <strong>32</strong>，零权重衰减，梯度范数裁剪阈值 <strong>10</strong>；定位接口单独训练。</li><li><strong>推理硬件</strong>：单步/16 步 rollout 延迟在 <strong>NVIDIA H800 PCIe GPU</strong>（bfloat16、batch size 16）上测量；R-SCoRe 定位在 <strong>RTX 2080</strong> 上约 140–270 ms/查询。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准与指标</strong>：轨迹预测报告 <strong>ATE</strong>（8 步终点平均欧氏误差）与 <strong>RPE</strong>（逐步增量平均误差）；导航报告 <strong>SR</strong>、<strong>SPL</strong> 与最终测地距离 <strong>DTG</strong>（低于 2 m 触发 STOP）。</li><li><strong>对比方法</strong>：GNM、NoMaD、NWM、DINO-WM、DreamerV3、LeWM、LS-NWM、EvoWorld、Geometry Forcing；Spatial-perceiving WAM、NavWAM、WAM-Nav 因官方实现不可得未做定量比较。</li><li><strong>轨迹预测</strong>：G²WAM 平均 ATE/RPE 达 <strong>1.82/0.46</strong>，相对次优基线降低 <strong>40.1%/35.2%</strong>；在 SACSoN（1.18/0.40）与 TartanDrive（2.70/0.63）提升最显著；SCAND 上因跨平台运动、操作者差异与动态行人损害定位性能而退化；使用真值位姿的 <strong>G²WAM-GT</strong> 平均达 <strong>0.78/0.28</strong>，显示更大潜力。</li><li><strong>零样本迁移</strong>：在 <strong>Go Stanford</strong> 上无空间上下文时性能与基线相当（G²WAM 2.3096/0.6510），带位姿辅助的 <strong>G²WAM-PoseFT</strong> 提升 ATE/RPE 约 <strong>14.0%/16.5%</strong>（1.9866/0.5434）。</li><li><strong>闭环导航</strong>：SR <strong>63.0%</strong>、SPL <strong>59.2%</strong>、DTG <strong>3.39 m</strong>，较最强基线 DINO-WM（54.0%/36.4%）分别提升 <strong>9.0</strong> 与 <strong>22.8</strong> 个百分点；<strong>G²WAM-GT</strong> 达 71.0% SR、70.0% SPL、3.04 m，说明仍有提升空间。</li><li><strong>消融实验</strong>：位姿与运动条件互补且缺一不可；在 R-SCoRe 估计下分别带来 ATE/RPE <strong>39.1%/35.2%</strong> 的平均增益，理想位姿下可扩大至 <strong>73.9%/60.6%</strong>（GT+GT 平均 0.78/0.28，无空间上下文为 2.99/0.71）。</li><li><strong>运行效率</strong>：单步 <strong>4 ms</strong>、16 步 <strong>47 ms</strong>、动作选择 <strong>0.51 s</strong>，与最优 L-WM 方法相当且明显优于需 CEM 规划的图像/几何世界模型（如 NWM 的单步 705 ms、EvoWorld 动作选择 8.7 s），定位耗时 0.42 s 亦优于 EvoWorld 的几何上下文编码 0.57 s。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.16567/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-GAUGE: Systematically Evaluating Generalization and Robustness in Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.16517/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Trust-Calibrated VLA Policy Post-Training with Evolving Imagination</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

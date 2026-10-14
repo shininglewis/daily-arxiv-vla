@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ForceWAM（Force World Action Model），一种面向接触丰富操作（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。 核心问题：专家演示（task data）只展示如何完成任务，却缺乏“不同动作如何改变接触力”的覆盖；而任务无关的 play data 虽记录了丰富的接触动力学，却不体现任务目标。现有端到端力感知策略把“什么转变推进任务”与“哪个动作实现该转变”耦合在一个任务监督映射中，难以充分利用两类数据。 研究目标：用视觉–力旋量未来（visual-wrench future）作为接口，把“任务相容的交互结果知识”与“局部动作如何改变接触的知识”解耦，从而同时利用演示与 play 数据。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.18852">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.18852.webp" alt="ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 ForceWAM（Force World Action Model），一种面向接触丰富操作（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ForceWAM: Decoupling Future and Response Learning from Demo and Play Data for Contact-Rich Manipulation</h1>
+            <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.18852" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.18852" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.18852</span></div>
+            <p class="detail-summary">论文提出 ForceWAM（Force World Action Model），一种面向接触丰富操作（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。 核心问题：专家演示（task data）只展示如何完成任务，却缺乏“不同动作如何改变接触力”的覆盖；而任务无关的 play data 虽记录了丰富的接触动力学，却不体现任务目标。现有端到端力感知策略把“什么转变推进任务”与“哪个动作实现该转变”耦合在一个任务监督映射中，难以充分利用两类数据。 研究目标：用视觉–力旋量未来（visual-wrench future）作为接口，把“任务相容的交互结果知识”与“局部动作如何改变接触的知识”解耦，从而同时利用演示与 play 数据。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学（Fudan University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.18852/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ForceWAM（Force World Action Model），一种面向接触丰富操作（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。</p>
+  <ul class="reading-intro-points"><li>论文提出 ForceWAM（Force World Action Model），一种面向接触丰富操作（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。</li><li>核心问题：专家演示（task data）只展示如何完成任务，却缺乏“不同动作如何改变接触力”的覆盖；而任务无关的 play data 虽记录了丰富的接触动力学，却不体现任务目标。现有端到端力感知策略把“什么转变推进任务”与“哪个动作实现该转变”耦合在一个任务监督映射中，难以充分利用两类数据。</li><li>研究目标：用视觉–力旋量未来（visual-wrench future）作为接口，把“任务相容的交互结果知识”与“局部动作如何改变接触的知识”解耦，从而同时利用演示与 play 数据。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>（Fudan University）</li><li><strong>上海交通大学</strong>（Shanghai Jiao Tong University）</li><li><strong>东南大学</strong>（Southeast University）</li><li><strong>上海创智学院</strong>（Shanghai Innovation Institute）</li><li><strong>南方科技大学</strong>（Southern University of Science and Technology）</li><li><strong>Noematrix Ltd.</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ForceWAM</strong>（Force World Action Model），一种面向<strong>接触丰富操作</strong>（contact-rich manipulation）的力觉世界动作模型，目标是从专家演示与无目标任务无关“玩数据”（play data）中，学习完整的力中心操作任务。</li><li>核心问题：专家演示（task data）只展示如何完成任务，却缺乏“不同动作如何改变接触力”的覆盖；而任务无关的 play data 虽记录了丰富的接触动力学，却不体现任务目标。现有端到端力感知策略把“什么转变推进任务”与“哪个动作实现该转变”耦合在一个任务监督映射中，难以充分利用两类数据。</li><li>研究目标：用<strong>视觉–力旋量未来（visual-wrench future）</strong>作为接口，把“任务相容的交互结果知识”与“局部动作如何改变接触的知识”解耦，从而同时利用演示与 play 数据。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出将接触执行建模为<strong>以视觉–力旋量未来为条件的逆动力学</strong>（inverse dynamics conditioned on visual-wrench futures），使不同类型的交互数据都能为动作预测提供监督。</li><li>提出 <strong>ForceWAM</strong>：其 <strong>ForceWM</strong> 仅从成功演示中学习联合预测未来视频与六轴力/力矩轨迹；<strong>IDM</strong> 从任务与 play 数据中学习，把生成/记录的视觉–力旋量未来映射为动作，并在块内（within-chunk）用实测力反馈进行反应式修正。</li><li>在四类真实机器人接触条件下，保持任务演示、ForceWM 与 IDM 优化器更新不变时，加入 play 数据可将成功率提升 <strong>15–45 个百分点</strong>。</li><li>未来条件消融表明：视觉未来与力旋量未来<strong>联合条件</strong>最优，单独任一模态均不优于无条件基线，验证了两者互补。</li><li>提出训练期<strong>未来条件增强</strong>（对记录的视觉–力旋量未来做随机 dropout 与扰动），提升部署时对 ForceWM 预测误差的鲁棒性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>概率分解</strong>：将联合分布分解为 <code>p(g_t\|o_t, ℓ)·p(A_t\|o_t, g_t)</code>，第一项为 ForceWM（世界模型），第二项为 IDM（逆动力学模型）；IDM 不再需要单独的任务指令 ℓ，从而让任务与 play 共享同一逆动力学目标。</li><li><strong>ForceWM</strong>：以预训练的<strong>时空视频扩散模型</strong>为骨干，将隐输入排成五个语义槽——空白前缀、当前力旋量、当前图像、未来力旋量轨迹、未来视觉隐变量；前三个槽在去噪全程被 clamp（冻结），后两个槽联合生成；用固定 packing adapter 把低维力旋量重复铺展到视频隐槽的空间尺寸上。训练目标为 <strong>EDM（Elucidated Diffusion Model）</strong> 去噪器损失，噪声 σ 从混合 log-normal 与高噪声均匀分布采样。</li><li><strong>力旋量归一化</strong>：未来目标 <code>g_t = (z_t, W_t)</code>，其中 <code>z_t</code> 编码未来腕部图像，<code>W_t</code> 为归一化未来力旋量轨迹。</li><li><strong>IDM</strong>：条件扩散模型（v-prediction 形式的 DDPM 目标），输入为当前图像、未来条件 <code>g_t</code>（或增强后的 <code>g̃_t</code>）、动作率下的力旋量序列与动作序列；使用相对窗口起始位姿的 TCP 位姿表示，并预测执行时丢弃的力相关辅助目标（与 ImplicitRDP 保持一致）。</li><li><strong>时间因果 IDM 与慢–快结构</strong>：慢编码器处理当前观测、当前力旋量与未来条件，得到固定 slow token；循环式快编码器把实测力旋量前缀编码为逐时刻 fast token，支持流式推理。对动作自注意力与动作–实测力旋量注意力施加<strong>下三角掩码</strong>，并额外遮挡参考力旋量在窗口偏移 ≤ k 处的 token，避免未来信息泄漏并减小训练–推理分布偏移；未来视觉 token 全局可见。</li><li><strong>慢–快执行</strong>：ForceWM 周期性生成 <code>ĝ_r</code> 并缓存 slow token、扩散噪声 <code>ξ_r</code> 与基准 TCP 位姿 <code>T_r</code>；IDM 在同一噪声下做<strong>确定性 DDIM 重去噪</strong>，仅解码当前动作 token 并发送给底层控制器；随实测力反馈前缀增长，新预测动作 token 的条件不断更新，实现块内力反馈反应式修正。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实机器人任务族（3 类 / 4 种条件）</strong>：力调节滑动（Sliding）、盒子翻转（Flip）与带外部扰动翻转（Flip-D）、汉诺塔套环放置（Hanoi）；均使用六轴力/力矩反馈。</li><li><strong>数据采集</strong>：每个任务族收集 <strong>200 条任务演示</strong> 与 <strong>200 条 play 回合</strong>；Flip 与 Flip-D 共用同一训练数据。两类数据均含同步的腕部 RGB 图像、六轴 TCP 力/力矩与机器人动作；play 数据在无评估任务指令下采集，包含探索性按压、滑动与接触建立/断开。</li><li><strong>模型规模与训练资源</strong>：给定原文正文中未明确给出 ForceWM/IDM 的参数量、网络深度及 GPU/TPU 训练资源（相关细节指向附录 D、E，原文已截断）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：真实机器人上每个任务从匹配初始状态执行 <strong>20 次试验</strong>，在相同安全限制与控制接口下进行；试验在无安全停止、无人工干预时视为成功，Sliding 还需满足全程路径与 <strong>5–15 N</strong> 接触力准则，报告平均成功率。</li><li><strong>对比基线</strong>：RDP、ImplicitRDP、ForceVLA、Cosmos Policy（含 +Play 变体）、Fast-WAM、FA-WAM、<strong>π0.5</strong>；另设 ForceWAM 的 Task-only IDM 与 Full-play IDM 两个版本。</li><li><strong>Q1 总体性能</strong>（Table 1）：ForceWAM（Full-play IDM）在四条件均最优，为 <strong>Sliding 85%、Flip 95%、Flip-D 85%、Hanoi 90%</strong>；Task-only IDM 也已超过所有外部基线（40%/75%/65%/75%）。最强外部基线 FA-WAM 为 20%/60%/40%/50%，Fast-WAM 在 Hanoi 达 65%，Cosmos Policy、ForceVLA、π0.5 在 Hanoi 约 60%。</li><li><strong>Q2 play 数据增益</strong>（Figure 4）：固定任务演示、ForceWM 与优化步数，随 play 回合从 0→200 增加，Sliding 由 <strong>40%→85%</strong>，Flip 由 <strong>75%→95%</strong>，Flip-D 由 <strong>65%→85%</strong>，Hanoi 由 <strong>75%→90%</strong>；而端到端模型 ImplicitRDP 与 Cosmos Policy 加入 play 后性能反而下降（如 ImplicitRDP +Play 仅 10%/25%/10%/30%）。</li><li><strong>Q3 可视化</strong>（Figure 5）：闭环盒子翻转中，ForceWM 预测的视觉未来再现了接近—旋转—分离的几何演进，力未来再现了加载—维持—卸载的接触载荷阶段，虽局部视觉细节与峰值力有偏差，但保留了主要交互阶段。</li><li><strong>Q4 未来条件消融</strong>（Table 2）：联合视觉+力旋量条件最优（<strong>85%/95%/85%/90%</strong>）；仅视觉为 15%/40%/30%/70%，仅力旋量为 20%/30%/25%/30%，无未来条件为 15%/30%/35%/50%，不加训练期条件增强为 65%/80%/70%/75%。联合条件相比仅视觉分别提升 55/55/20/70 个百分点，相比无条件提升 40–70 个百分点。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.18855/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Interaction Latents as Actions for Contact-Rich Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.18843/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">LIBERO-RIG: A Hardware-Setup Robustness Benchmark for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

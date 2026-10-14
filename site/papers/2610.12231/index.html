@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对预测残差的统计建模方式不同。 研究发现真实机器人演示数据中的动作残差具有输入依赖的尺度变化与重尾分布，而 MSE 隐含的固定尺度高斯残差模型与此不匹配，导致大残差样本主导梯度、其他样本欠拟合。 论文目标是提出一种无需迭代推理、可复用预训练流匹配网络作为骨干的直接回归策略，在匹配生成式策略性能的同时提升训练与推理效率。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2610.12231.webp" alt="Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对预测残差的统计建模方式不同。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Residual Modeling Closes the Regression and Generative Policy Gap in Robot Learning</h1>
             <div class="detail-meta">2026-10-08 · <a href="http://arxiv.org/abs/2610.12231" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.12231" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.12231</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对预测残差的统计建模方式不同。 研究发现真实机器人演示数据中的动作残差具有输入依赖的尺度变化与重尾分布，而 MSE 隐含的固定尺度高斯残差模型与此不匹配，导致大残差样本主导梯度、其他样本欠拟合。 论文目标是提出一种无需迭代推理、可复用预训练流匹配网络作为骨干的直接回归策略，在匹配生成式策略性能的同时提升训练与推理效率。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Pennsylvania（宾夕法尼亚大学）</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.12231/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对预测残差的统计建模方式不同。</p>
+  <ul class="reading-intro-points"><li>论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对预测残差的统计建模方式不同。</li><li>研究发现真实机器人演示数据中的动作残差具有输入依赖的尺度变化与重尾分布，而 MSE 隐含的固定尺度高斯残差模型与此不匹配，导致大残差样本主导梯度、其他样本欠拟合。</li><li>论文目标是提出一种无需迭代推理、可复用预训练流匹配网络作为骨干的直接回归策略，在匹配生成式策略性能的同时提升训练与推理效率。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Pennsylvania</strong>（宾夕法尼亚大学）</li><li><strong>Tsinghua University</strong>（清华大学）</li><li><strong>UC San Diego</strong>（加州大学圣地亚哥分校）</li><li>作者：<strong>Yuchen Zhou</strong>、<strong>Jiacheng You</strong>、<strong>Weikang Wan</strong>、<strong>Weijun Dong</strong>、<strong>Yang Gao</strong>、<strong>Jiayuan Mao</strong>（前两位为共同第一作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文重新审视机器人模仿学习中「直接动作回归策略（MSE-Policies）」与「生成式策略（Flow/Diffusion-Policies）」之间的性能差距，指出该差距通常被归因于多模态演示，但更合理的解释在于对<strong>预测残差的统计建模方式</strong>不同。</li><li>研究发现真实机器人演示数据中的动作残差具有<strong>输入依赖的尺度变化</strong>与<strong>重尾分布</strong>，而 MSE 隐含的固定尺度高斯残差模型与此不匹配，导致大残差样本主导梯度、其他样本欠拟合。</li><li>论文目标是提出一种无需迭代推理、可复用预训练流匹配网络作为骨干的直接回归策略，在匹配生成式策略性能的同时提升训练与推理效率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>刻画了机器人策略残差的统计结构，揭示其<strong>输入依赖尺度</strong>与<strong>重尾特性</strong>，指出这与 MSE 的固定尺度高斯假设存在根本性错配。</li><li>分析并解释了 MSE 为何过度强调大残差样本，而 Flow-Matching 的去噪目标（尤其低噪声区间）能更均匀地分配梯度。</li><li>提出<strong>HT-Policies（Heteroscedastic Student-t action regression）</strong>，显式建模输入依赖尺度与重尾残差，单次前馈即可预测动作块。</li><li>验证 HT-Policies 可从预训练的 <strong>VLA / WAM</strong> 模型（π0.5、GR00T N1.7、Cosmos3-Nano）微调而来，在仿真与真机上匹配甚至超越生成式基线。</li><li>展示更高的训练效率与推理效率（如 Cosmos3-Nano 端到端推理加速 <strong>17.83×</strong>）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>HT 损失</strong>：假设残差 <code>r = f_θ(o) − a</code> 服从零均值多元 <strong>Student-t</strong> 分布，模型同时预测动作 <code>f_θ(o)</code> 与输入依赖尺度 <code>σ_θ(o)</code>，通过最大化似然训练。</li><li><strong>梯度分析</strong>：损失对预测动作的梯度为 <code>r/σ²(o) · w(‖r‖²/σ²(o))</code>，权重 <code>w(s)=(ν+d)/(ν+s)</code> 随残差增大而衰减，从而抑制极端残差样本的影响。</li><li><strong>自由度参数化</strong>：令 <code>ν = c·d</code>（d 为动作维度），权重改写为 <code>(c+1)/(c+s/d)</code>，使超参 <code>c</code> 与动作维度无关；当 <code>c→∞</code> 时退化为异方差高斯。</li><li><strong>复用预训练流模型</strong>：将流网络的动作输入置零、时间步设为纯噪声端点，读出 <code>f_θ(o)=v_θ(0,0,o)</code>（反向路径下为 <code>−v_θ(0,1,o)</code>）；仅新增一个尺度预测头并使用 HT 损失微调。</li><li>实现简便：唯一架构改动是增加随机初始化的尺度预测头，其余沿用原模型微调配置；仅需调新尺度的学习率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>RoboMimic</strong>（9 个任务，含 Tool-Hang，state 与 image 设置）、<strong>RoboCasa-GR1</strong>、<strong>LIBERO</strong>（4 个 suite）与 <strong>LIBERO-10</strong>、<strong>SIMPLER</strong>（Bridge、Fractal）。</li><li><strong>真实机器人任务</strong>：<strong>Push-T</strong>、<strong>Peel-Note</strong>、<strong>Insert-T</strong>。</li><li><strong>预训练模型骨干</strong>：<strong>π0.5</strong>、<strong>GR00T N1.7</strong>、<strong>Cosmos3-Nano</strong>，以及 U-Net / Transformer 从零训练策略。</li><li><strong>推理硬件</strong>：单张 <strong>NVIDIA RTX 5090</strong>（batch size 1），另在 <strong>NVIDIA A800</strong> GPU 上补充实验。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估方式</strong>：以任务<strong>成功率（%）</strong>为主要指标；微调实验在 10 个评估种子上报告均值与标准误；训练效率以收敛所需训练步数衡量。</li><li><strong>从零训练</strong>：RoboMimic 上 HT-Policy（U-Net 95.3/85.6）与生成式策略持平并大幅优于 MSE；RoboCasa-GR1 上 HT（33.5%）显著优于 Flow（14.0%）与 MSE（5.8%）。</li><li><strong>微调预训练模型</strong>：HT 在全部 5 个设置中超过 MSE，在 3 个设置中超过 Flow（如 GR00T N1.7 在 RoboCasa-GR1 达 <strong>50.01%</strong> vs 官方 Flow 44.5%，SIMPLER/Bridge 达 <strong>62.31%</strong>，Cosmos3-Nano 在 LIBERO-10 达 <strong>96.50%</strong>）。</li><li><strong>梯度分配</strong>：HT 损失使各残差分位数点的梯度贡献更均衡，接近低噪声（t>0.5）Flow-Matching 的表现。</li><li><strong>似然与性能相关性</strong>：在 8 种目标函数下，校准后的平均对数似然与成功率强相关（Spearman <strong>ρ=0.86</strong>，Pearson <strong>r=0.83</strong>），HT 似然与成功率最高。</li><li><strong>效率提升</strong>：HT 训练收敛更快；推理端 GR00T N1.7 吞吐由 21.65 提升至 <strong>40.78 FPS</strong>（1.88×），Cosmos3-Nano 由 0.79 提升至 <strong>14.02 FPS</strong>（<strong>17.83×</strong>）。</li><li><strong>消融</strong>：<code>ν</code> 取中间值时性能最佳，<code>c=4</code>（即 <strong>ν=4d</strong>）在 RoboCasa-GR1、Bridge、LIBERO 上均为最优测试设置。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

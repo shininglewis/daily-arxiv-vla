@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sparse-WAM: Accelerating World Action Models via Action-Guided Sparse Imagination - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 Sparse-WAM，一个免训练（training-free）框架，通过 动作引导的稀疏想象（action-guided sparse imagination） 加速 世界动作模型（WAMs） 的推理。 研究目标：解决 WAM 在联合去噪未来视觉状态与动作时，密集未来帧 token 被反复处理导致的推理延迟高、控制频率受限问题。 关键问题：现有 token 剪枝方法（面向视频扩散保真度或 VLA 观测输入）未利用 动作相关性 来决定在 WAM 联合去噪中应保留哪些未来帧 token，且朴素稀疏实现会引入额外的注意力打分与 token 打包开销。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.38984.webp" alt="Sparse-WAM: Accelerating World Action Models via Action-Guided Sparse Imagination" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">论文提出 Sparse-WAM，一个免训练（training-free）框架，通过 动作引导的稀疏想象（action-guided sparse imagination） 加速 世界动作模型（WAMs） 的推理。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Sparse-WAM: Accelerating World Action Models via Action-Guided Sparse Imagination</h1>
             <div class="detail-meta">2026-09-30 · <a href="http://arxiv.org/abs/2609.38984" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.38984" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.38984</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 Sparse-WAM，一个免训练（training-free）框架，通过 动作引导的稀疏想象（action-guided sparse imagination） 加速 世界动作模型（WAMs） 的推理。 研究目标：解决 WAM 在联合去噪未来视觉状态与动作时，密集未来帧 token 被反复处理导致的推理延迟高、控制频率受限问题。 关键问题：现有 token 剪枝方法（面向视频扩散保真度或 VLA 观测输入）未利用 动作相关性 来决定在 WAM 联合去噪中应保留哪些未来帧 token，且朴素稀疏实现会引入额外的注意力打分与 token 打包开销。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NJU（南京大学）</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.38984/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 Sparse-WAM，一个免训练（training-free）框架，通过 动作引导的稀疏想象（action-guided sparse imagination） 加速 世界动作模型（WAMs） 的推理。</p>
+  <ul class="reading-intro-points"><li>论文提出 Sparse-WAM，一个免训练（training-free）框架，通过 动作引导的稀疏想象（action-guided sparse imagination） 加速 世界动作模型（WAMs） 的推理。</li><li>研究目标：解决 WAM 在联合去噪未来视觉状态与动作时，密集未来帧 token 被反复处理导致的推理延迟高、控制频率受限问题。</li><li>关键问题：现有 token 剪枝方法（面向视频扩散保真度或 VLA 观测输入）未利用 动作相关性 来决定在 WAM 联合去噪中应保留哪些未来帧 token，且朴素稀疏实现会引入额外的注意力打分与 token 打包开销。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NJU</strong>（南京大学）</li><li><strong>HKUST</strong>（香港科技大学）</li><li><strong>HIT</strong>（哈尔滨工业大学）</li><li><strong>EPFL</strong>（洛桑联邦理工学院）</li><li>注：论文标注第一作者与第二作者为同等贡献（Equal contribution），部分工作于 HKUST 实习期间完成</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Sparse-WAM</strong>，一个免训练（training-free）框架，通过 <strong>动作引导的稀疏想象（action-guided sparse imagination）</strong> 加速 <strong>世界动作模型（WAMs）</strong> 的推理。</li><li>研究目标：解决 WAM 在联合去噪未来视觉状态与动作时，密集未来帧 token 被反复处理导致的推理延迟高、控制频率受限问题。</li><li>关键问题：现有 token 剪枝方法（面向视频扩散保真度或 VLA 观测输入）未利用 <strong>动作相关性</strong> 来决定在 WAM 联合去噪中应保留哪些未来帧 token，且朴素稀疏实现会引入额外的注意力打分与 token 打包开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>揭示了连续去噪步之间 <strong>action-to-future attention</strong> 在空间分布上存在显著重叠（尽管未来表征持续更新），为跨步复用 token 选择提供依据。</li><li>提出 <strong>Action-Guided Token Selection</strong>：利用时间对齐的动作查询为每帧打分，保留 <strong>frame-specific core tokens</strong> 与跨帧共享的 <strong>shared spatial anchor tokens</strong>，仅压缩未来帧 token，完整保留观测与动作 token。</li><li>提出高效执行引擎 <strong>Pilot</strong>：通过轻量注意力打分（复用 log-sum-exp 归一化器）与跨步选择/打包元数据复用，降低选择与稀疏执行开销。</li><li>在三个 WAM（<strong>FastWAM-Joint</strong>、<strong>Cosmos 3 Edge</strong>、<strong>Cosmos 3 Nano Policy</strong>）及多个基准与真实机器人任务上验证有效性。</li><li>在 <strong>LIBERO</strong> 上实现 <strong>1.98×</strong> 加速，平均成功率仅下降 <strong>0.30 个百分点</strong>；在 <strong>RoboLab-120</strong> 上约 <strong>1.8×</strong> 加速。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Action-to-Future Attention</strong>：将各注意力头上「动作 token 查询 → 未来帧 token 键」的注意力权重按头平均，得到 U_ℓ(i,f,j)，作为 token 相关性的低成本代理指标。</li><li><strong>帧对齐打分</strong>：假设动作 token 数 H 可被未来帧数 F 整除，将其划分为 F 组（每帧约 H/F 个查询），按组内加权聚合得到空间分数 S_ℓ(f,j)；中心查询权重更大，以缓解边界查询跨帧关注的影响。</li><li><strong>层质量筛选</strong>：以 Q_ℓ = R_ℓ(1−E_ℓ) 衡量各层注意力是否既帧对齐（R）又空间集中（低归一化熵 E），选取得分最高的若干层形成核心层集合 L_core，加权聚合得到 V(f,j)。</li><li><strong>Core Tokens（公式 4–5）</strong>：先以 max_f V(f,j) 构建大小为 N_s−K_s 的公共候选池 𝒫，再由每帧自身分数 TopK 选出 K_c 个帧特定核心位置，使选择能跟随帧间漂移的热点。</li><li><strong>Shared Anchors（公式 6）</strong>：在未被选为核心的候选位置中，按 μ_j/(1+CV_j) 选取 K_s 个「注意力强且跨帧一致」的锚点位置，与核心集互斥，保证每帧恰好 K_c+K_s 个 token、序列长度固定。</li><li><strong>Pilot 低开销剖析</strong>：直接复用密集条件前向中的 query–key 乘积与原始 LSE 归一化器，避免物化完整注意力矩阵或额外前向。</li><li><strong>跨步复用与紧凑执行</strong>：默认仅在动作 chunk 的初始步执行完整计算，后续稀疏步复用选择与视觉速度预测缓存，并复用位置索引与打包元数据。</li><li><strong>被省略区域的采样更新（公式 7）</strong>：ṽ = M_v ⊙ v^(τ) + (1−M_v) ⊙ v^(τ_d)，保留位置用当前预测、其余位置用缓存预测，使所有未来 latent 仍参与采样，而动作预测每步重算。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong>（四个操作套件）、<strong>LIBERO-Plus</strong>（七类扰动）、<strong>RoboLab-120</strong>（三级难度 120 个任务）。</li><li>真实世界任务：物体装箱、叠杯子、电池装配，平台为 <strong>AgileX Cobot Magic</strong>（1 个主视角相机 + 2 个腕部相机）。</li><li>评测模型：<strong>FastWAM-Joint</strong>、<strong>Cosmos 3 Nano Policy</strong>、<strong>Cosmos 3 Edge</strong>。</li><li>对照方法：<strong>ToCa</strong>、<strong>WorldCache</strong>、<strong>SpecPrune-VLA</strong>、<strong>C³ache</strong>。</li><li>硬件：<strong>NVIDIA RTX 4090</strong>，延迟用 CUDA events 测量。</li><li>Token 预算示例：Cosmos 3 Nano Policy 上每帧保留 184/360 个 token（K_c=80 核心 + K_s=104 锚点）。</li><li>注：所给 HTML 原文未明确给出模型参数量与训练资源细节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标：任务成功率（SR）、相对密集 eager 推理的平均加速比、FLOPs 占密集推理的百分比。</li><li><strong>LIBERO（FastWAM-Joint）</strong>：<strong>1.98×</strong> 加速、FLOPs 降至 <strong>49.65%</strong>、平均成功率 <strong>98.45%</strong>（密集为 98.75%，仅降 0.30 个百分点）；ToCa、WorldCache、C³ache 最高仅约 1.62×；SpecPrune-VLA 成功率下降较大，长时任务尤甚。</li><li><strong>RoboLab-120（Cosmos 3 Edge）</strong>：<strong>1.85×</strong> 加速，平均成功率 <strong>23.00%</strong>（密集 22.90%）；<strong>Cosmos 3 Nano Policy</strong>：<strong>1.81×</strong> 加速，成功率 <strong>35.50%</strong>（密集 36.75%），均为加速变体中最高。</li><li>观察到 FLOPs 少不必然延迟低：Edge 上 Sparse-WAM 用 60.73% FLOPs 取得 1.85×，快于 50.35% FLOPs 的 SpecPrune-VLA 适配版（1.52×），归因于固定稀疏序列长度与复用支持编译执行。</li><li><strong>真实世界</strong>：<strong>2.08×</strong> 加速（延迟 501 ms → <strong>242 ms</strong>），平均成功率 <strong>75.00%</strong>（密集 77.78%）。</li><li>消融：核心 token + 稳定锚点组合达 35.5%，优于仅核心、仅锚点与随机选择（31.7%）；剪枝率从 28.89% 提升到 68.89% 时加速由 <strong>1.45×</strong> 升至 <strong>2.36×</strong>，成功率由 37.5% 降至 28.3%，体现效率–控制权衡。</li><li>局限性：仅在 RTX 4090 上评测、仅覆盖三个 WAM、环境扰动下性能下降，未来拟引入自适应 token 选择机制。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

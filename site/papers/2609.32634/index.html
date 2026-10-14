@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>PF-RL: Progress Field Reinforcement Learning via Goal-Conditioned Value Geometry for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 PF-RL（Progress Field Reinforcement Learning），面向 Vision-Language-Action（VLA） 模型的强化微调（RFT）。 针对长时程操作中稀疏任务级奖励导致中间过渡信用分配困难的问题，利用预训练 VLA 特征学习结构化的 目标条件进度表示。 核心目标是将任务进度建模为 目标条件价值几何，而非显式标量预测，从而为离线策略改进和在线强化微调提供密集、细粒度的进度优势。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">PF-RL: Progress Field Reinforcement Learning via Goal-Conditioned Value Geometry for Vision-Language-Action Models</h1>
             <div class="detail-meta">2026-09-26 · <a href="http://arxiv.org/abs/2609.32634" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.32634" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.32634</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 PF-RL（Progress Field Reinforcement Learning），面向 Vision-Language-Action（VLA） 模型的强化微调（RFT）。 针对长时程操作中稀疏任务级奖励导致中间过渡信用分配困难的问题，利用预训练 VLA 特征学习结构化的 目标条件进度表示。 核心目标是将任务进度建模为 目标条件价值几何，而非显式标量预测，从而为离线策略改进和在线强化微调提供密集、细粒度的进度优势。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学、南洋理工大学、香港中文大学（深圳）、上海人工智能实验室</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.32634/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 PF-RL（Progress Field Reinforcement Learning），面向 Vision-Language-Action（VLA） 模型的强化微调（RFT）。</p>
+  <ul class="reading-intro-points"><li>论文提出 PF-RL（Progress Field Reinforcement Learning），面向 Vision-Language-Action（VLA） 模型的强化微调（RFT）。</li><li>针对长时程操作中稀疏任务级奖励导致中间过渡信用分配困难的问题，利用预训练 VLA 特征学习结构化的 目标条件进度表示。</li><li>核心目标是将任务进度建模为 目标条件价值几何，而非显式标量预测，从而为离线策略改进和在线强化微调提供密集、细粒度的进度优势。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学</strong>、<strong>南洋理工大学</strong>、<strong>香港中文大学（深圳）</strong>、<strong>上海人工智能实验室</strong></li><li><strong>卡内基梅隆大学</strong>、<strong>哈尔滨工业大学</strong>、<strong>复旦大学</strong>、<strong>香港理工大学</strong></li><li><strong>ACE Robotics</strong>、<strong>浙江实验室</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PF-RL（Progress Field Reinforcement Learning）</strong>，面向 <strong>Vision-Language-Action（VLA）</strong> 模型的强化微调（RFT）。</li><li>针对长时程操作中稀疏任务级奖励导致中间过渡信用分配困难的问题，利用预训练 VLA 特征学习结构化的 <strong>目标条件进度表示</strong>。</li><li>核心目标是将任务进度建模为 <strong>目标条件价值几何</strong>，而非显式标量预测，从而为离线策略改进和在线强化微调提供密集、细粒度的进度优势。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Progress Field</strong>：在预训练 VLA 特征上学习轻量结构化进度表示，将当前与目标观测映射到共享目标条件空间，用几何距离诱导价值。</li><li>提出 <strong>PF-RL</strong> 框架：将 Progress Field 中转移级价值变化转化为密集进度优势，用于离线策略改进和在线强化微调。</li><li>在 <strong>LIBERO</strong>、<strong>RoboTwin2.0</strong> 和真实双臂操作任务上验证 PF-RL 优于 SFT、RFT 和进度感知基线。</li><li>证明 Progress Field 表示比直接标量进度预测具有更清晰的任务进度结构，并能提升长时程任务信用分配。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>从 VLA 骨干提取当前观测、目标观测和语言指令的最后一层隐藏表示。</li><li>使用共享轻量 <strong>Progress Field 头</strong>将当前与目标表示映射到紧凑进度空间，得到进度嵌入。</li><li>定义 <strong>目标条件价值几何</strong>：进度嵌入距离越近，对应价值越高；由此组织观测与任务目标的关系。</li><li>学习目标包括：<strong>Bellman 一致性</strong>、<strong>step-to-goal 校准</strong>、<strong>目标对比学习</strong> 和 <strong>辅助子目标 shaping</strong>。</li><li>策略优化时计算 <strong>进度优势</strong>，衡量每个过渡是靠近还是偏离任务目标。</li><li>离线阶段使用优势加权回归重加权 VLA 模仿目标；在线仿真使用 GRPO 优势与进度优势结合；真实机器人使用进度优势重加权 <strong>π0.5</strong> 的流匹配目标。</li><li>进度场学习与离线/在线策略优化交错进行，梯度在 VLA 表示处停止，以保留底层 VLA 特征供策略优化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真数据集：<strong>LIBERO</strong>（Spatial、Object、Goal、Long 四个套件，共 40 个任务，每任务 30 条专家演示用于离线训练）。</li><li>仿真数据集：<strong>RoboTwin2.0</strong>（双臂操作，复杂接触丰富任务；离线数据按 Li et al. 2026 协议构建）。</li><li>真实世界平台：<strong>Agilex Cobot Magic</strong> 双臂平台，包含 <strong>Fold Clothes</strong>、<strong>Stack all Plates</strong>、<strong>Put all Blocks into Bucket</strong>、<strong>Fill Vase and Arrange Flowers</strong> 四个任务。</li><li>仿真实验从 <strong>OpenVLA-OFT checkpoint</strong> 初始化；真实世界实验从 <strong>π0.5 官方 JAX checkpoint</strong> 初始化。</li><li>对比基线包括 <strong>RLinf-GRPO</strong>、SFT、RFT 和进度感知方法（<strong>ProgressVLA</strong>、<strong>ProgVLA</strong>、<strong>EVOLVE-VLA</strong> 等）。</li><li>可见原文未明确给出 GPU/TPU 具体型号、数量和总训练时长；模型具体参数量也未在截断原文中列出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：<strong>LIBERO</strong>、<strong>RoboTwin2.0</strong> 仿真基准，以及 <strong>Agilex Cobot Magic</strong> 真实双臂机器人平台。</li><li>主要指标：任务 <strong>成功率（%）</strong>，部分实验结果报告 3 个独立训练种子的标准差。</li><li><strong>LIBERO</strong>：PF-RL 在线微调后平均成功率达 <strong>99.1%</strong>；相比 RLinf-GRPO 平均提升 <strong>2.0 个百分点</strong>，在 LIBERO-Long 上提升 <strong>2.2 个百分点</strong>；收敛更快且最终成功率更高。</li><li><strong>RoboTwin2.0</strong>：OpenVLA-OFT + PF-RL（offline→online）平均成功率达 <strong>92%</strong>，四个任务均优于 RLinf-GRPO（平均 79%），例如 Beat Block Hammer 从 25% 提升至 91%、Pick Dual Bottles 从 19% 提升至 93%、Stack Bowls Two 从 53% 提升至 86%、Place Empty Cup 从 64% 提升至 96%。</li><li><strong>真实世界</strong>：π0.5 + PF-RL 在 <strong>Fold Clothes</strong> 上从 80% 提升至 <strong>95%</strong>，在 <strong>Stack all Plates</strong> 上从 85% 提升至 <strong>95%</strong>；在未见物体、背景和光照变化下也保持较强鲁棒性。</li><li>消融表明：<strong>Progress Field 公式</strong>优于直接标量进度预测，且各训练目标（Bellman 一致性、step-to-goal 校准、对比学习、辅助子目标）对最终性能有贡献。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

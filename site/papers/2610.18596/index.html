@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ACCRUE（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（RFMs）的持续离线策略强化学习框架。 研究目标是让机器人在部署后能够持续学习新任务（如新零件装配），同时复用先前 RL 阶段获得的行为与价值知识，并避免遗忘已有技能。 要解决的问题：现有基于 VLA 的持续 RL 方法多依赖 on-policy 更新、前向迁移有限；而 off-policy 方法虽提升单任务样本效率，却未解决学习器跨任务的持久性问题。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.18596">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.18596.webp" alt="ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 ACCRUE（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（RFMs）的持续离线策略强化学习框架。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ACCRUE: Continual Off-Policy Reinforcement Learning for Robot Foundation Models</h1>
+            <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.18596" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.18596" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.18596</span></div>
+            <p class="detail-summary">论文提出 ACCRUE（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（RFMs）的持续离线策略强化学习框架。 研究目标是让机器人在部署后能够持续学习新任务（如新零件装配），同时复用先前 RL 阶段获得的行为与价值知识，并避免遗忘已有技能。 要解决的问题：现有基于 VLA 的持续 RL 方法多依赖 on-policy 更新、前向迁移有限；而 off-policy 方法虽提升单任务样本效率，却未解决学习器跨任务的持久性问题。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NVIDIA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.18596/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ACCRUE（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（RFMs）的持续离线策略强化学习框架。</p>
+  <ul class="reading-intro-points"><li>论文提出 ACCRUE（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（RFMs）的持续离线策略强化学习框架。</li><li>研究目标是让机器人在部署后能够持续学习新任务（如新零件装配），同时复用先前 RL 阶段获得的行为与价值知识，并避免遗忘已有技能。</li><li>要解决的问题：现有基于 VLA 的持续 RL 方法多依赖 on-policy 更新、前向迁移有限；而 off-policy 方法虽提升单任务样本效率，却未解决学习器跨任务的持久性问题。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NVIDIA</strong></li><li><strong>KAIST</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ACCRUE</strong>（Actor–Critic Carryover for continual off-policy Reinforcement learning Using retained Experience），一个面向机器人基础模型（<strong>RFMs</strong>）的持续离线策略强化学习框架。</li><li>研究目标是让机器人在部署后能够持续学习新任务（如新零件装配），同时复用先前 RL 阶段获得的行为与价值知识，并避免遗忘已有技能。</li><li>要解决的问题：现有基于 VLA 的持续 RL 方法多依赖 on-policy 更新、前向迁移有限；而 off-policy 方法虽提升单任务样本效率，却未解决学习器跨任务的持久性问题。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出跨任务继承轻量 <strong>actor</strong> 与 <strong>critic</strong> 网络的持续离线 RL 框架，让后续任务复用前序 RL 中学到的行为先验与价值先验，降低新任务所需的交互量。</li><li>设计非对称更新机制：继承的 critic 仅在<strong>当前任务</strong>转移上适配并指导 actor 学习，而先验行为通过在少量保留回合上对 actor 做蒸馏（向缓存的前阶段输出对齐）来保持。</li><li>采用<strong>固定外部视觉编码器</strong>保证继承学习器与其 replay 在基座策略反复微调时仍保持输入表征一致，并用参考动作条件化让轻量学习器只做局部精炼。</li><li>在仿真（<strong>FORGE</strong>、<strong>AutoMate</strong>）与真实机器人硬件上验证：仿真中持续 AUC 最高提升 <strong>21.0%</strong>，负向后向迁移（NBT）最多降低 <strong>70.0%</strong>；真机上后续任务训练时间减少 <strong>31.0%–68.5%</strong>，且前序任务平均成功率约 <strong>97%</strong>。</li><li>通过消融实验表明 critic 继承支撑前向迁移，将当前任务 RL 与先验任务 actor 保持分离能在有限 replay 下改善保留效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基座策略 <strong>π_base</strong>（VLA 或 WAM）在每个阶段用截至当前的所有演示 <strong>D^{1:k}</strong> 微调得到 <strong>π_base^k</strong>，并在该阶段的 RL 过程中保持固定，仅通过输入–输出接口使用。</li><li>Actor–critic 输入为 <strong>s_t = (E(I_t), q_t)</strong>，其中 <strong>E</strong> 为固定的现成视觉编码器（DINOv3），在各阶段保持冻结，使早期阶段存储的转移表征跨阶段兼容。</li><li>Actor 与 critic 均以基座策略提出的参考动作块 <strong>ã_t</strong> 为条件（配合参考动作 dropout），学习对基座动作分布的局部精炼而非从零搜索高维动作空间。</li><li>当前任务 RL 使用离线 actor–critic 算法（<strong>FastSAC</strong>）在动作块（chunk）级别做 H 步备份，actor 目标包含 critic 价值最大化与对参考动作的偏离惩罚 β。</li><li>Critic 仅在当前任务 buffer <strong>B^k</strong> 上做离线 TD 学习；先验任务保留记忆 <strong>B^{<k}</strong> 只用于将当前 actor 蒸馏到前阶段 actor 在相同输入下的缓存输出，不参与 critic 更新或 actor RL 目标。</li><li>每当阶段 k>1 时，actor–critic 从前一阶段 checkpoint 初始化；每完成一个任务保留最后 <strong>N</strong> 个训练回合进入池化记忆 <strong>B^{<k}</strong>，actor 更新使用当前任务与先验任务样本 1:1 的比例。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>AutoMate</strong>（基于 <strong>Isaac Lab</strong> 的插接装配任务，组织为 4 个五阶段序列）与 <strong>FORGE</strong>（3 个接触丰富任务：peg insertion、gear meshing、nut threading，3 阶段序列，随机采样 4 种任务顺序）。</li><li>真实环境：<strong>NIST Assembly Task Board</strong> 上的三段插入任务序列，以及真实 3D 打印件的 <strong>AutoMate</strong> 五阶段序列；论文目录中还包含 <strong>DROID</strong> 相关实验章节。</li><li>基座策略：仿真使用 <strong>GR00T N1.7</strong>（VLA），实验覆盖 VLA 与 WAM 两类基座策略以及不同离线 RL 算法。</li><li>演示数据预算：AutoMate 每阶段 1 条演示，FORGE 的 gear meshing、nut threading、peg insertion 分别使用 10、20、50 条演示；总体为 1–50 条轨迹。</li><li>RL 配置：chunk 长度 <strong>H=16</strong>，在冻结的 <strong>DINOv3</strong> 特征上训练，每阶段 64 个并行环境、<strong>500K</strong> 环境步预算、每 <strong>50K</strong> 步评估一次，折扣因子 <strong>γ=0.997</strong>，每个任务保留 <strong>50（AutoMate）/ 100（FORGE）</strong> 个回合（主实验每任务 20–100 回合）。</li><li>超参数：蒸馏权重 <strong>λ=1.0</strong>（差异化较大的 NIST 序列）或 <strong>0.1</strong>（相近的 AutoMate 装配）；参考偏离惩罚 <strong>β=0.1</strong>（仿真）或 <strong>10.0</strong>（真机）。</li><li>训练资源：原文（可见部分）未明确给出 GPU/TPU 具体型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：仿真（<strong>AutoMate</strong>、<strong>FORGE</strong>，结果在 4 个种子与多任务顺序上聚合）与真实机器人硬件（NIST 装配板、真实 AutoMate 序列）。</li><li>主要指标：前向迁移 <strong>FWT</strong>（越高越好）、负向后向迁移 <strong>NBT</strong>（越低越好）、<strong>Continual AUC</strong>（综合学习效率与保留）、最终准确率 <strong>ACC_final</strong>、最终遗忘 <strong>F_final</strong>。</li><li>对比基线：共享 actor–critic 的 <strong>Sequential</strong>、<strong>ER</strong>、<strong>EWC</strong>、<strong>RETAIN</strong>；参考方法 <strong>Simple Recipe</strong>（on-policy 直接微调 VLA）、<strong>Single-task RL</strong>、<strong>Isolated</strong>。</li><li>FORGE 结果：<strong>ACCRUE</strong> 取得最低 NBT <strong>0.065</strong> 与最低 F_final <strong>0.068</strong>，最高 AUC <strong>0.869</strong>、ACC_final <strong>0.917</strong>，优于所有匹配的共享 actor–critic 方法。</li><li>AutoMate 结果：<strong>ACCRUE</strong> 取得最佳 NBT <strong>0.047</strong>、最高 FWT <strong>0.848</strong>、最高 AUC <strong>0.858</strong>、最高 ACC_final <strong>0.863</strong>、最低 F_final <strong>0.054</strong>，接近拥有特权信息的 Isolated 参考，且只维护单一共享 actor–critic 对。</li><li>整体结论：在相同阶段交互预算下，<strong>ACCRUE</strong> 同时实现加速的后续任务学习与近乎零遗忘；真机上相较每任务重训 actor–critic 方案减少 <strong>31.0%–68.5%</strong> 的交互时间，前序任务平均成功率约 <strong>97%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.18650/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ForkCast: Predictive Recovery for Vision-Language-Action Policies via Counterfactual Futures</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.18568/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">WAVE-0: Bridging VLA Policies and WAMs with Lightweight Latent Future Prediction</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

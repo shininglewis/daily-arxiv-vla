@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>InfraVLA: Extending Vision-Language-Action Navigation with Infrastructure Cameras - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 InfraVLA，一种将预训练导航视觉-语言-动作（VLA）模型扩展到静态基础设施摄像头（CCTV）视图的端到端方法。 目标是在仓库、办公室、医院等已有摄像头的室内环境中，让机器人利用外部摄像头看到自身机载视角无法覆盖的区域。 论文指出仅加入 CCTV 编码器并不够，策略在微调后仍可能忽略外部视图，因此需要专门的两阶段训练方案。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">InfraVLA: Extending Vision-Language-Action Navigation with Infrastructure Cameras</h1>
             <div class="detail-meta">2026-09-27 · <a href="http://arxiv.org/abs/2609.33647" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.33647" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.33647</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 InfraVLA，一种将预训练导航视觉-语言-动作（VLA）模型扩展到静态基础设施摄像头（CCTV）视图的端到端方法。 目标是在仓库、办公室、医院等已有摄像头的室内环境中，让机器人利用外部摄像头看到自身机载视角无法覆盖的区域。 论文指出仅加入 CCTV 编码器并不够，策略在微调后仍可能忽略外部视图，因此需要专门的两阶段训练方案。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">5 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">牛津大学计算机科学系（Dept. of Computer Science）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.33647/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 InfraVLA，一种将预训练导航视觉-语言-动作（VLA）模型扩展到静态基础设施摄像头（CCTV）视图的端到端方法。</p>
+  <ul class="reading-intro-points"><li>论文提出 InfraVLA，一种将预训练导航视觉-语言-动作（VLA）模型扩展到静态基础设施摄像头（CCTV）视图的端到端方法。</li><li>目标是在仓库、办公室、医院等已有摄像头的室内环境中，让机器人利用外部摄像头看到自身机载视角无法覆盖的区域。</li><li>论文指出仅加入 CCTV 编码器并不够，策略在微调后仍可能忽略外部视图，因此需要专门的两阶段训练方案。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>牛津大学计算机科学系（Dept. of Computer Science）</strong></li><li><strong>牛津机器人研究所（Oxford Robotics Institute, University of Oxford）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>InfraVLA</strong>，一种将预训练导航视觉-语言-动作（VLA）模型扩展到静态基础设施摄像头（CCTV）视图的端到端方法。</li><li>目标是在仓库、办公室、医院等已有摄像头的室内环境中，让机器人利用外部摄像头看到自身机载视角无法覆盖的区域。</li><li>论文指出仅加入 CCTV 编码器并不够，策略在微调后仍可能忽略外部视图，因此需要专门的两阶段训练方案。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出一种<strong>模型架构</strong>，将预训练导航 VLA 扩展到多视角静态 CCTV 相机设置，并进行端到端训练。</li><li>提出一种<strong>两阶段训练配方</strong>，基于上采样反事实数据和恢复数据，使策略学会使用多视角输入。</li><li>证明训练后的策略能完成目标任务，并在未见配置、仿真环境和真实机器人实验中保持有效。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基础模型为 <strong>OmniVLA</strong>，其机载图像由 <strong>DINOv2</strong> 和 <strong>SigLIP</strong> 编码，特征投影到 <strong>LLaMA 2 7B</strong> 骨干网络，并预测未来 <strong>H=8</strong> 个 waypoint。</li><li>新增专用 <strong>CCTV 编码器</strong>，将每个基础设施视图编码为 <strong>256</strong> 个 token，再通过 <strong>2×2 平均池化</strong>压缩到 <strong>64</strong> 个 token，插入到机载 token 之后。</li><li>CCTV 编码器与投影器从机载编码器和投影器初始化，线性层使用 <strong>LoRA</strong> 微调，其余模型保持不变。</li><li>损失函数保留 waypoint 回归和光滑项，去掉原始语言跟随损失，避免最后一个 waypoint 被拉向原点。</li><li><strong>阶段一</strong>：构造反事实对，即同一观测下因指令或场景配置不同而产生不同动作，并上采样路径分叉处的反事实片段。</li><li><strong>阶段二</strong>：在反事实片段内挖掘恢复数据，采用类似 <strong>HG-DAgger</strong> 的方式，当策略偏离演示路径后由 **A* oracle** 接管并记录返回段。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真环境为 <strong>Isaac Sim 仓库</strong>，包含语义任务和空间任务两类。</li><li>语义任务使用 <strong>4</strong> 个 CCTV 相机、语言目标模态，训练数据为 <strong>552/48</strong> 条轨迹，共 <strong>3.03 小时</strong>。</li><li>空间任务使用 <strong>4</strong> 个 CCTV 相机、2D 位姿目标模态，训练数据为 <strong>481/46</strong> 条轨迹，共 <strong>6.89 小时</strong>。</li><li>真实机器人任务使用 <strong>2</strong> 个 CCTV 相机、语言目标模态，训练数据为 <strong>75</strong> 条轨迹，共 <strong>0.16 小时</strong>，即少于 <strong>10 分钟</strong>演示。</li><li>测试 rollout 数量分别为 <strong>50</strong>、<strong>72</strong> 和 <strong>24</strong>。</li><li>模型骨干为 <strong>LLaMA 2 7B</strong>，原文未明确说明具体 GPU/TPU 训练资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在分布内仿真语义任务中，<strong>InfraVLA</strong> 成功率达到 <strong>100%</strong>，而无 CCTV 输入的基线为 <strong>34.0%</strong>。</li><li>在分布内仿真空间任务中，<strong>InfraVLA</strong> 成功率达到 <strong>100%</strong>，基线为 <strong>73.6%</strong>，且更常选择最短路线。</li><li>在分布外测试中，语义任务成功率为 <strong>88.2%</strong>，空间任务成功率为 <strong>88.9%</strong>。</li><li>在真实 <strong>Boston Dynamics Spot</strong> 四足机器人上，使用少于 <strong>10 分钟</strong>演示微调后，<strong>InfraVLA</strong> 达到 <strong>24</strong> 个目标中的 <strong>20</strong> 个，而仅使用机载视角的基线为 <strong>7/24</strong>。</li><li>主要评估指标为成功率，仿真中成功定义为到达目标 <strong>1 米</strong>范围内，真实任务由人工判定。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

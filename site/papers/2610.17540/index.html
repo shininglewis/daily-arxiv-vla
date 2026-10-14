@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 推理型视觉-语言-动作（VLA）模型中“先推理再行动”带来的延迟问题，核心提问是：动作是否必须条件于当前生成的推理文本，还是“学会生成推理”本身就已足够？ 作者提出 TacitVLA，其动作专家（action expert）在训练和部署时都不关注（mask）当前调用所生成的推理 token，从而在保留推理监督收益的同时消除推理延迟。 在记忆任务（推理文本兼作情节记忆）上，推理条目改为在动作执行期间异步生成，而非在行动前生成，因此不阻塞动作输出。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.17540">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">TacitVLA: Reasoning Vision-Language-Action Models Without Reasoning Latency</h1>
+            <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.17540" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.17540" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.17540</span></div>
+            <p class="detail-summary">论文研究 推理型视觉-语言-动作（VLA）模型中“先推理再行动”带来的延迟问题，核心提问是：动作是否必须条件于当前生成的推理文本，还是“学会生成推理”本身就已足够？ 作者提出 TacitVLA，其动作专家（action expert）在训练和部署时都不关注（mask）当前调用所生成的推理 token，从而在保留推理监督收益的同时消除推理延迟。 在记忆任务（推理文本兼作情节记忆）上，推理条目改为在动作执行期间异步生成，而非在行动前生成，因此不阻塞动作输出。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NVIDIA（主要完成单位，多数作者所属）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.17540/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 推理型视觉-语言-动作（VLA）模型中“先推理再行动”带来的延迟问题，核心提问是：动作是否必须条件于当前生成的推理文本，还是“学会生成推理”本身就已足够？</p>
+  <ul class="reading-intro-points"><li>论文研究 推理型视觉-语言-动作（VLA）模型中“先推理再行动”带来的延迟问题，核心提问是：动作是否必须条件于当前生成的推理文本，还是“学会生成推理”本身就已足够？</li><li>作者提出 TacitVLA，其动作专家（action expert）在训练和部署时都不关注（mask）当前调用所生成的推理 token，从而在保留推理监督收益的同时消除推理延迟。</li><li>在记忆任务（推理文本兼作情节记忆）上，推理条目改为在动作执行期间异步生成，而非在行动前生成，因此不阻塞动作输出。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NVIDIA</strong>（主要完成单位，多数作者所属）</li><li><strong>New York University</strong>（Jack Lu）</li><li><strong>University of California, Berkeley</strong>（Boyi Li）</li><li><strong>Johns Hopkins University</strong>（Chaowei Xiao）</li><li><strong>Stanford University</strong>（Marco Pavone）</li><li>部分工作于 NVIDIA 实习期间完成；Marco Pavone 与 Yan Wang 为共同指导（Equal advising）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>推理型视觉-语言-动作（VLA）模型</strong>中“先推理再行动”带来的延迟问题，核心提问是：动作是否必须条件于当前生成的推理文本，还是“学会生成推理”本身就已足够？</li><li>作者提出 <strong>TacitVLA</strong>，其动作专家（action expert）在训练和部署时都<strong>不关注（mask）当前调用所生成的推理 token</strong>，从而在保留推理监督收益的同时消除推理延迟。</li><li>在记忆任务（推理文本兼作情节记忆）上，推理条目改为在动作执行期间<strong>异步生成</strong>，而非在行动前生成，因此不阻塞动作输出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>受控实验证明“动作专家不条件于当前推理”与“条件于推理”性能相当</strong>：在相同序列、数据、提示与优化器下，仅改变动作专家对推理 token 的注意力掩码。</li><li><strong>TacitVLA 以 No Reasoning 的延迟达到 Explicit Reasoning 的成功率</strong>：延迟最高降低 <strong>1.7×</strong>（记忆任务）与 <strong>3.4×</strong>（非记忆任务），同时相对无推理基线成功率提升最多 <strong>+17.1%</strong>。</li><li><strong>首次将“训练期推理监督、部署期不生成推理”的对比扩展到记忆任务</strong>，并证明推理条目可在动作执行窗口内异步生成且不损失记忆精度。</li><li><strong>在四个基准上刷新或追平已发表最优结果</strong>：RoboMME Counting 达 <strong>82.7%</strong>（此前最佳 66.8%）、RMBench 达 <strong>77.5%</strong>（此前最佳 56.5%）、LIBERO-Plus 达 <strong>72.9%</strong>、PhysicalAI-AV 闭环场景得分 <strong>52.5%</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>Mixture-of-Transformers</strong> 架构：视觉-语言骨干（backbone）生成推理文本，<strong>flow-matching 动作专家</strong>通过 <strong>K 步 Euler 去噪</strong>生成动作块（action chunk），二者权重分离但共享注意力。</li><li>训练目标为 <strong>L = L_flow-matching(a_t) + λ·L_cross-entropy(r_t, ã_t)</strong>，其中骨干同时以交叉熵预测推理文本与 token 化的动作（FAST+ tokens 或驾驶轨迹 tokens）。</li><li><strong>关键创新</strong>：Explicit Reasoning 的动作专家关注 c_t 与 r_t；<strong>TacitVLA 的动作专家只关注 c_t</strong>，两者共享同一训练序列，仅差一个注意力掩码单元，实现严格受控对比。</li><li><strong>延迟消除机制</strong>：非记忆任务上不生成推理，延迟为 <strong>T_action</strong>；记忆任务上先算动作、执行期间再生成 ledger 条目，延迟为 <strong>T_action + max(0, T_reason − T_exec)</strong>。</li><li>推理增益通过两条路径传递：骨干的交叉熵监督改善表征（TacitVLA 保留），以及动作专家直接关注 r_t（TacitVLA 舍弃，实验证明该路径只增加计算不增加信息）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboMME</strong>（16 任务记忆基准，含 4 个计数任务，200/800 案例）</li><li><strong>RMBench</strong>（长时程操作记忆，选取 WLA-0 报告的四项任务，各 100 案例）</li><li><strong>LIBERO</strong>（四个 10 任务标准套件，2,000 案例）与 <strong>LIBERO-Plus</strong>（7 类扰动、10,030 案例零样本测试）</li><li><strong>PhysicalAI-AV</strong>：训练用 <strong>380 万条驾驶事件</strong>专有语料（含 chain-of-causation 标注），评测用公开版 <strong>1,434 段</strong>留出片段（开环）与 AlpaSim 中 <strong>441 场景</strong>公开划分（闭环）</li><li><strong>模型规模</strong>：RoboMME 用 <strong>PaliGemma (π₀.₅)</strong> 骨干 <strong>3.7B</strong>；RMBench 用 <strong>RynnBrain-2B</strong>（2.6B）；LIBERO 用 <strong>RynnBrain-2B</strong>（2.5B）；PhysicalAI-AV 用 <strong>Qwen3-VL-2B</strong>（3.9B）</li><li><strong>训练资源</strong>：全部训练在 <strong>8× H100 GPU 节点</strong>上完成；延迟测量统一在<strong>单张 H100</strong> 上进行</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估协议</strong>：三个机器人基准沿用量官方协议与案例，成功率为三个评测种子的均值 ± 标准差；闭环驾驶为每场景三次 rollout 的均值；三套策略使用完全相同的推理实现以公平比较延迟。</li><li><strong>主要指标</strong>：任务成功率（%）、场景分数（闭环驾驶）、调用延迟（T_action 与 T_reason）。</li><li><strong>RoboMME</strong>：全 16 任务上 <strong>TacitVLA 48.1%</strong> > Explicit Reasoning 45.8% > No Reasoning 46.5%，超过此前最佳 FrameSamp+Modulator 的 <strong>44.5%</strong>；Counting 套件 82.7%，接近使用 oracle 子目标的 83.9/82.6。</li><li><strong>RMBench</strong>：四项任务均值 <strong>77.5%</strong>（Explicit 77.0%、No Reasoning 60.4%），超过 WLA-0 的 <strong>56.5%</strong>；在 Press Button 上 74.3% 对比无推理的 7.7%，两者 ledger 正确率均达 <strong>99.7%</strong>。</li><li><strong>LIBERO</strong>：标准套件 98.1%（No Reasoning 98.5%、Explicit 98.1%）；LIBERO-Plus 零样本 <strong>72.9%</strong>（Explicit 73.5%、No Reasoning 67.6%），优于 π₀.₅ 的 69.0%。</li><li><strong>PhysicalAI-AV</strong>：闭环挑战公开划分场景得分 <strong>52.5%</strong>。</li><li><strong>延迟</strong>：TacitVLA 在记忆任务上延迟最高降低 <strong>1.7×</strong>、非记忆任务上降低 <strong>3.4×</strong>，与 No Reasoning 相当而成功率提升最多 <strong>+17.1%</strong>；推理生成本占原延迟的 <strong>53%–70%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.17638/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Acting Through Registers</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.17526/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Box-WAM: Box Trajectories as Compact State Representations for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

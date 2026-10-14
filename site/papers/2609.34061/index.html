@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Quantile Head for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="针对 Vision-Language-Action（VLA）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。 提出将回归与流匹配统一到同一监督目标下，并由此推导出分位数（quantile）目标，进而设计 Quantile Head：一次前向传播即可预测中位数与正间隔，形成有序的边缘动作分位数。 目标是兼顾单次前向预测的高效性与对条件动作分布的显式建模能力，并提升 VLA 控制的成功率与推理效率。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.34061.webp" alt="Quantile Head for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">针对 Vision-Language-Action（VLA）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Quantile Head for Vision-Language-Action Models</h1>
             <div class="detail-meta">2026-09-28 · <a href="http://arxiv.org/abs/2609.34061" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.34061" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.34061</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">针对 Vision-Language-Action（VLA）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。 提出将回归与流匹配统一到同一监督目标下，并由此推导出分位数（quantile）目标，进而设计 Quantile Head：一次前向传播即可预测中位数与正间隔，形成有序的边缘动作分位数。 目标是兼顾单次前向预测的高效性与对条件动作分布的显式建模能力，并提升 VLA 控制的成功率与推理效率。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学自动化系（Department of Automation, Tsinghua Univers…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.34061/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">针对 Vision-Language-Action（VLA）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。</p>
+  <ul class="reading-intro-points"><li>针对 Vision-Language-Action（VLA）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。</li><li>提出将回归与流匹配统一到同一监督目标下，并由此推导出分位数（quantile）目标，进而设计 Quantile Head：一次前向传播即可预测中位数与正间隔，形成有序的边缘动作分位数。</li><li>目标是兼顾单次前向预测的高效性与对条件动作分布的显式建模能力，并提升 VLA 控制的成功率与推理效率。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学自动化系（Department of Automation, Tsinghua University）</strong></li><li>作者：<strong>Xuan Wang</strong>、<strong>Yinan Wu</strong>、<strong>Haoran Duan</strong>、<strong>Jungong Han</strong>（通讯作者）</li><li>联系邮箱：xwangrs@gmail.com、yinanwu@ieee.org、haoran.duan@ieee.org、jghan@tsinghua.edu.cn</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>针对 Vision-Language-Action（<strong>VLA</strong>）模型中动作头（action head）设计的局限：点回归只能给出动作分布的点估计，而标准流匹配（flow matching）采样需要昂贵的迭代推理。</li><li>提出将回归与流匹配统一到同一监督目标下，并由此推导出分位数（quantile）目标，进而设计 <strong>Quantile Head</strong>：一次前向传播即可预测中位数与正间隔，形成有序的边缘动作分位数。</li><li>目标是兼顾单次前向预测的高效性与对条件动作分布的显式建模能力，并提升 VLA 控制的成功率与推理效率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>理论贡献</strong>：从回归与流匹配的统一监督框架出发，推导出用于动作分布建模的分位数目标（Theorem 1：积分 pinball 损失与 CDF 监督等价，仅差因子 2），并证明在标定分位数、固定间隔与匹配修正速度条件下，联合分位数监督可降低直接中位数更新的方差（Theorem 2）。</li><li><strong>Quantile Head 设计</strong>：提出一种分位数动作头，在单次前向中预测有序分位数；以中位数加正值间隔累加构造左右分位数，天然避免分位数交叉，并支持默认中位数解码与可选的分位数采样。</li><li><strong>Masked Pinball Loss</strong>：提出掩码 pinball 损失，按动作坐标随机扣留监督（同一坐标的所有分位数共享同一掩码），以缓解对示教数据的过拟合。</li><li><strong>实验验证</strong>：在 <strong>LIBERO</strong>、<strong>LIBERO-Plus</strong>、<strong>LIBERO-Pro</strong> 及两个真实机器人任务上取得领先性能，并在匹配的 LIBERO 基线上取得最短平均回合时间。</li><li><strong>开源代码</strong>：代码发布于 https://github.com/xwangrs/Quantile-Head-for-VLA。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一目标</strong>：定义参考路径上的共享监督 $\mathcal{L}_{\nu,\pi}(\theta)=\mathbb{E}\|f_\theta(X,A_\alpha,\alpha)-(Y-B)\|^2$，其中 $A_\alpha=(1-\alpha)B+\alpha Y$；取 $B=\alpha=0$ 退化为平方回归，取高斯参考与采样时间则得到条件流匹配（CFM）的速度监督。</li><li><strong>分位数目标</strong>：将平方监督扩展到阈值标签 $Z_z=\mathbf{1}\{Y\le z\}$，Theorem 1 证明其 CDF 监督等价于积分 pinball 损失，从而可用有限个分位数表示每个动作坐标的条件分布。</li><li><strong>架构</strong>：冻结预训练 <strong>VLM</strong>（SigLIP 图像嵌入 + 任务文本嵌入 + 离散化机器人状态），插入 $N_p=16$ 个<strong>可学习提示（prompt）token</strong>；采用块自注意力掩码，使 prompt 读取 VLM 特征、action token 读取 VLM 与 prompt 特征，VLM token 仅内部双向注意。</li><li><strong>有序分位数头</strong>：两个共享的线性投影分别预测中位数 $m$ 与两侧原始间隔 $r_i^\pm$，经 $g_i^\pm=\frac{\delta_0}{\log 2}\mathrm{softplus}(r_i^\pm)$ 映射为正间隔，再围绕中位数累加得 $q_{c-j}=m-\sum_{i=1}^{j}g_i^-$、$q_{c+j}=m+\sum_{i=1}^{j}g_i^+$。</li><li><strong>超参数</strong>：分位数层数 $K=21$，$\tau_k=0.025+0.95k/20$，$\tau_c=0.5$，间隔尺度 $\delta_0=0.02$；训练与推理均将时间条件固定为零。</li><li><strong>损失</strong>：对每个动作坐标的 $K$ 个有序分位数施加 pinball 损失 $\rho_\tau(e)=\max\{\tau e,(\tau-1)e\}$，并按样本对保留坐标与分位数层取平均。</li><li><strong>坐标掩码</strong>：每个训练前向随机无放回地丢弃 $\min(\lceil rN_b\rceil,\max(N_b-1,0))$ 个有效坐标（$r=0.1$），掩码在所有分位数间共享；评估时使用全部有效坐标且不丢弃。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>LIBERO</strong>（Spatial、Object、Goal、Long/LIBERO-10 四个套件，各 10 个任务）、<strong>LIBERO-Plus</strong>（对 40 个任务扰动生成 10,030 个实例，含相机视角、机器人初始状态、语言指令、光照、背景、传感器噪声、物体布局）、<strong>LIBERO-Pro</strong>（物体、位置、指令、任务目标与环境鲁棒性）。</li><li><strong>真实机器人任务</strong>：两个操作任务——"Place apple on yellow plate"（放苹果到黄盘）与"Remove cuboid from blue plate"（从蓝盘移除长方体）。</li><li><strong>模型组件</strong>：冻结的预训练 <strong>VLM</strong>（SigLIP 视觉编码 + 文本嵌入）、可学习提示（$N_p=16$）、动作专家与输出头。</li><li><strong>训练资源</strong>：原文所提供内容中未明确说明 GPU/TPU 型号、数量与训练时长。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：仿真基准 + 两个真实机器人任务；默认使用中位数解码（单次前向），并对比 <strong>Diffusion Policy</strong>、<strong>OpenVLA</strong>、<strong>OpenVLA-OFT</strong>、<strong>π₀</strong>、<strong>π₀-FAST</strong>、<strong>π₀.₅</strong>、<strong>VLANeXt</strong>、<strong>SimVLA</strong>、<strong>WLA-0</strong>、<strong>InternVLA-A1.5</strong>、<strong>GAM</strong>、<strong>GE-Act 2.0</strong>、<strong>ACoT-VLA</strong>、<strong>MemoryVLA(++)</strong>、<strong>X-VLA</strong>、<strong>VLA-Adapter</strong>、<strong>MolmoAct</strong>、<strong>SUREFlow</strong> 等方法。</li><li><strong>主要指标</strong>：任务成功率（%）、LIBERO 上的平均回合时间（s）、零样本与微调迁移成功率。</li><li><strong>LIBERO（中位数解码）</strong>：平均 <strong>99.3%</strong>，Spatial <strong>99.0</strong>、Object <strong>100.0</strong>、Goal <strong>99.6</strong>、Long <strong>98.6</strong>，比最强对比基线高 0.4 个百分点。</li><li><strong>LIBERO-Pro</strong>：<strong>60.2%</strong>（无需额外训练），超过 π₀.₅ 的 53.3% 达 6.9 个百分点；任务类 26.0%、位置 31.3%、物体 85.8%、语义 97.8%。</li><li><strong>LIBERO-Plus</strong>：零样本 <strong>87.1%</strong>、微调 <strong>89.1%</strong>，分别超过最强对比基线 1.4 与 5.0 个百分点。</li><li><strong>真实机器人</strong>：平均 <strong>75.0%</strong>，对比 π₀.₅ 的 58.5% 提升 <strong>16.5 个百分点</strong>；放苹果由 31% 提升至 52%（+21），移除长方体由 86% 提升至 98%（+12）。</li><li><strong>推理效率</strong>：平均回合时间从 $L_1$ 的 8.13 s 降至 <strong>5.88 s</strong>，减少 <strong>27.7%</strong>，为匹配 LIBERO 基线中最快。</li><li><strong>消融结果（LIBERO 平均成功率）</strong>：完整头 <strong>99.3%</strong>；Median-Only <strong>97.5%</strong>；Detached Median Anchor <strong>98.7%</strong>；Symmetric Quantiles <strong>97.9%</strong>；Noise Query <strong>93.8%</strong>；VLM Query <strong>92.8%</strong>；默认全零动作查询优于两类替代查询。</li><li><strong>联合监督效果</strong>：在四种 prompt/标签掩码配置下，联合分位数监督均提升平均评估成功率（83.5→91.8、95.5→98.8、86.0→97.0、97.5→99.3），即便推理仅使用中位数。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

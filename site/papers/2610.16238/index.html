@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embodied Skill Bench: Benchmarking How Well Agents with Embodied Skills Perform on Physical Tasks - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 EmbodiedSkillBench，用于评估 LLM 智能体在物理任务中如何有效、高效地复用可复用的具身模块（VLA 策略、感知模型、程序化控制接口、经验知识）。 核心问题是：异构具身模块的 API、数据格式、本体假设与适用条件各不相同，难以被智能体直接复用，因此&quot;提供模块能带来多少收益&quot;此前无法被清晰量化与隔离。 论文将模块统一封装为&quot;具身技能&quot;（embodied skills），并在同一任务、同一交互协议下对比有技能/无技能、不同技能组合的表现，从而把技能使用轨迹与任务成功率和执行开销联系起来。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.16238">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #3f6ee8; --cover-to: #6fa7ff; --cover-spot: #d5e6ff; --cover-ink: #f7fbff; --cover-muted: rgba(247, 251, 255, 0.82); --cover-chip: rgba(247, 251, 255, 0.16); --cover-stroke: rgba(247, 251, 255, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">Embodied Skill Bench: Benchmarking How Well Agents with Embodied Skills Perform on Physical Tasks</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Embodied Skill Bench: Benchmarking How Well Agents with Embodied Skills Perform on Physical Tasks</h1>
+            <div class="detail-meta">2026-10-12 · <a href="http://arxiv.org/abs/2610.16238" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.16238" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.16238</span></div>
+            <p class="detail-summary">论文提出 EmbodiedSkillBench，用于评估 LLM 智能体在物理任务中如何有效、高效地复用可复用的具身模块（VLA 策略、感知模型、程序化控制接口、经验知识）。 核心问题是：异构具身模块的 API、数据格式、本体假设与适用条件各不相同，难以被智能体直接复用，因此&quot;提供模块能带来多少收益&quot;此前无法被清晰量化与隔离。 论文将模块统一封装为&quot;具身技能&quot;（embodied skills），并在同一任务、同一交互协议下对比有技能/无技能、不同技能组合的表现，从而把技能使用轨迹与任务成功率和执行开销联系起来。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海交通大学（Shanghai Jiao Tong University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.16238/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 EmbodiedSkillBench，用于评估 LLM 智能体在物理任务中如何有效、高效地复用可复用的具身模块（VLA 策略、感知模型、程序化控制接口、经验知识）。</p>
+  <ul class="reading-intro-points"><li>论文提出 EmbodiedSkillBench，用于评估 LLM 智能体在物理任务中如何有效、高效地复用可复用的具身模块（VLA 策略、感知模型、程序化控制接口、经验知识）。</li><li>核心问题是：异构具身模块的 API、数据格式、本体假设与适用条件各不相同，难以被智能体直接复用，因此&quot;提供模块能带来多少收益&quot;此前无法被清晰量化与隔离。</li><li>论文将模块统一封装为&quot;具身技能&quot;（embodied skills），并在同一任务、同一交互协议下对比有技能/无技能、不同技能组合的表现，从而把技能使用轨迹与任务成功率和执行开销联系起来。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海交通大学</strong>（Shanghai Jiao Tong University）</li><li><strong>上海人工智能实验室</strong>（Shanghai Artificial Intelligence Laboratory）</li><li><strong>中山大学</strong>（Sun Yat-Sen University）</li><li><strong>吉林大学</strong>（Jilin University）</li><li><strong>北京航空航天大学</strong>（Beijing University of Aeronautics and Astronautics）</li><li>标注 <strong>Equal contribution</strong>，<strong>Weinan Zhang</strong> 与 <strong>Yang Li</strong> 为共同通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>EmbodiedSkillBench</strong>，用于评估 LLM 智能体在物理任务中如何有效、高效地复用可复用的具身模块（VLA 策略、感知模型、程序化控制接口、经验知识）。</li><li>核心问题是：异构具身模块的 API、数据格式、本体假设与适用条件各不相同，难以被智能体直接复用，因此"提供模块能带来多少收益"此前无法被清晰量化与隔离。</li><li>论文将模块统一封装为"具身技能"（embodied skills），并在同一任务、同一交互协议下对比有技能/无技能、不同技能组合的表现，从而把技能使用轨迹与任务成功率和执行开销联系起来。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>具身技能（embodied skill）</strong> 的统一抽象，用显式的本体假设、接口需求、适用条件与反馈解释规则扩展智能体技能，并从 <strong>1,052</strong> 条资源构建了包含 <strong>250</strong> 个技能的 <strong>Embodied Skill Repository</strong>（133 个动作技能、20 个感知技能、97 个经验技能）。</li><li>发布 <strong>EmbodiedSkillBench</strong> 基准：在共享的多轮"观察—动作"闭环中支持多种智能体与灵活的技能组合，记录成功率、动作数、token 数与墙钟时间。</li><li>实验发现技能对智能体的帮助上限取决于"技能是否超出其原有能力"：技能可显著提升较弱智能体并大幅降低开销，但会限制更强的 <strong>GPT-6-Astra</strong>。</li><li>提出 <strong>Agent-Directed Reuse（ADR）</strong> 新交互范式，允许智能体保留原生控制能力的同时，对每个技能自行决定调用、修改或忽略。</li><li>将 <strong>Jev</strong> 封装为航点执行技能，让智能体保留规划与恢复能力、仅委托局部运动决策，实现成功率与效率的更好权衡。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>将技能表示为 <strong>s = ⟨m, I, S, R, A⟩</strong>：<strong>m</strong> 为元数据（名称与能力描述）、<strong>I</strong> 为使用与反馈解读及恢复指令、<strong>S</strong> 为控制与模型调用脚本、<strong>R</strong> 为方法文档与过程经验、<strong>A</strong> 为模型描述符与配置等资产。</li><li>遵循开放的 <strong>Agent Skills</strong> 格式，元数据与指令写入 <strong>SKILL.md</strong>，可选组件分别组织在 <strong>scripts / references / assets</strong> 目录；模型权重与推理服务作为外部依赖，不打包进技能。</li><li>技能构建流程分三步：<strong>模块收集（Module collection）→ 组件结构化（Component structuring）→ 智能体辅助技能装配（Agent-assisted skill assembly）</strong>，并由智能体撰写适用条件、调用步骤、验证与有界恢复规则。</li><li>模块按来源分为 <strong>模型模块、代码模块、文本模块</strong> 三类；模块与技能为多对多映射。</li><li>环境提供 <strong>Observe</strong>（场景与腕部 RGB、机器人状态、执行反馈）和 <strong>Act</strong>（末端执行器运动、旋转、夹爪控制或调用 VLA 技能）共享接口，形成多轮闭环直至任务终止或预算耗尽。</li><li>评估器分三阶段：<strong>Rollout Logging</strong>、<strong>Per-Task Metric Computation</strong>、<strong>Cross-Task Aggregation</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估数据集为 <strong>LIBERO-Pro</strong> 的 <strong>Clean100</strong>：25 个基础任务 × 语言/物体/任务/交换四类扰动各 25 例，共 <strong>100</strong> 个任务用例。</li><li>任务域覆盖 <strong>LIBERO-10（24）、Goal（28）、Object（24）、Spatial（24）</strong>。</li><li>技能仓库源自 <strong>1,052</strong> 条去重资源记录（227 控制资源、33 感知接口、20 模型描述符、417 经验材料、23 论文引用、13 仓库引用、319 支撑资产），结构化为 260 个 <strong>S</strong> 资源、453 个 <strong>R</strong> 资源、339 个 <strong>A</strong> 资源。</li><li>VLA 模型覆盖 <strong>四个模型族、五个配置</strong>：两个 <strong>π0.5</strong> 检查点（RLinf、Madokalif）、<strong>OpenVLA-OFT</strong>、<strong>SmolVLA</strong>、<strong>X-VLA</strong>。</li><li>感知模型包括 <strong>SAM3</strong>、<strong>Molmo2</strong>、<strong>Contact-GraspNet</strong>；动作技能覆盖 grasp、place-in、place-on、place-next-to、open、close、toggle、push 八类任务范围。</li><li>被评估的智能体为 <strong>gpt-5.6-sol</strong>、<strong>gpt-6-astra</strong>（Codex CLI v0.148.0）、<strong>Kimi-K3</strong>（Kimi Code CLI v0.40.0）、<strong>claude-opus-5</strong>（Claude Code v2.1.186）。</li><li>技能检索基线使用 <strong>BM25</strong> 与 <strong>BGE-small-en-v1.5</strong> 嵌入；论文未报告训练所需的 GPU/TPU 规模。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>主要指标：<strong>成功率（SR，主要指标）</strong>，以及平均动作数、记录 token 数、耗时（分钟）作为执行开销度量。</li><li><strong>RQ1（有效性）</strong>：技能将 <strong>GPT-5.6-Sol</strong> 从 11% 提升至 63%，<strong>Kimi-K3</strong> 与 <strong>Claude-Opus-5</strong> 各提升约 20 个百分点，同时 token 用量降低 <strong>58%–85%</strong>；三者的平均动作数分别下降 90.9%、75.6%、62.9%。</li><li>但三者在共享技能供给下最终收敛到 <strong>61%–64%</strong>，且 <strong>L10</strong> 域均仅有 <strong>41.7%</strong>，说明多阶段任务仍是共同瓶颈，模型差异未被技能抹平。</li><li><strong>RQ2（组合）</strong>：五种技能配置差异显著——<strong>HarnessVLA (ESB)</strong> 77% > <strong>Zetta (ESB)</strong> 69% > <strong>Selected</strong> 63% > <strong>Embedding</strong> 42% > <strong>BM25</strong> 36%；检索更广不等于更高效，Embedding 在 7 个任务上未提供任何动作技能且全部失败。</li><li><strong>RQ3（互补性）</strong>：<strong>GPT-6-Astra</strong> 原生控制达 <strong>92%</strong>，纯技能执行仅 <strong>61%</strong>，说明其已内化部分具身能力；但技能仍将动作数减少 86.50%、token 减少 75.51%、时间减少 83.43%。</li><li><strong>Agent-Directed Reuse（ADR）</strong> 让 GPT-6-Astra 回升至 <strong>85%</strong>（较纯技能 +24 点，仅落后原生控制 7 点），同时 token 减少 <strong>14.1%</strong>、时间减少 <strong>11.9%</strong>。</li><li><strong>Jev 技能</strong>配置达到 <strong>81%</strong> 成功率，平均耗时从 <strong>20.52 分钟降至 8.74 分钟</strong>，token 减少约 50%。</li><li>结论：随着智能体变强，具身技能的角色从"补充缺失能力"转向"降低执行成本"。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.16242/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Same Goal, Different Words: Spatial Instruction Sensitivity in World-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.16160/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FlowVLA: Enabling World Dynamics Understanding through Pluggable 3D Flow Learning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

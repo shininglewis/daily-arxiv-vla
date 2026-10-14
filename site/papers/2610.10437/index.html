@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Q-Learning with Scalar Adjoint Matching - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文研究如何用离策略（off-policy）强化学习对预训练 Flow 策略进行微调，使其超越示范数据的表现。 核心难点在于：Flow 策略通过多步采样生成动作，价值函数只告诉最终动作的好坏，而标准的 adjoint matching 需要逐步进行 vector–Jacobian product，计算代价随流步数和策略规模增长。 作者发现预训练 Flow 策略的批量平均速度 Jacobian 高度集中在对角线上，据此推导出闭式标量伴随，并配套设计了对策略生成动作处的价值惩罚，提出 SQAM。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2610.10437.webp" alt="Q-Learning with Scalar Adjoint Matching" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">论文研究如何用离策略（off-policy）强化学习对预训练 Flow 策略进行微调，使其超越示范数据的表现。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Q-Learning with Scalar Adjoint Matching</h1>
             <div class="detail-meta">2026-10-07 · <a href="http://arxiv.org/abs/2610.10437" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.10437" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.10437</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文研究如何用离策略（off-policy）强化学习对预训练 Flow 策略进行微调，使其超越示范数据的表现。 核心难点在于：Flow 策略通过多步采样生成动作，价值函数只告诉最终动作的好坏，而标准的 adjoint matching 需要逐步进行 vector–Jacobian product，计算代价随流步数和策略规模增长。 作者发现预训练 Flow 策略的批量平均速度 Jacobian 高度集中在对角线上，据此推导出闭式标量伴随，并配套设计了对策略生成动作处的价值惩罚，提出 SQAM。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">KAIST（Yonghoon Dong、Minsung Yoon、Jaehyuk Kim、Jungwo…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,60 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.10437/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文研究如何用离策略（off-policy）强化学习对预训练 Flow 策略进行微调，使其超越示范数据的表现。</p>
+  <ul class="reading-intro-points"><li>论文研究如何用离策略（off-policy）强化学习对预训练 Flow 策略进行微调，使其超越示范数据的表现。</li><li>核心难点在于：Flow 策略通过多步采样生成动作，价值函数只告诉最终动作的好坏，而标准的 adjoint matching 需要逐步进行 vector–Jacobian product，计算代价随流步数和策略规模增长。</li><li>作者发现预训练 Flow 策略的批量平均速度 Jacobian 高度集中在对角线上，据此推导出闭式标量伴随，并配套设计了对策略生成动作处的价值惩罚，提出 SQAM。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>KAIST</strong>（Yonghoon Dong、Minsung Yoon、Jaehyuk Kim、Jungwoo Park、Changyeon Kim、Jinwoo Shin）</li><li><strong>RLWRLD</strong>（Minsung Yoon、Jinwoo Shin）</li><li>通讯作者：Yonghoon Dong、Jinwoo Shin（<code>{yonghoon.dong, jinwoos}@kaist.ac.kr</code>）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文研究如何用离策略（off-policy）强化学习对<strong>预训练 Flow 策略</strong>进行微调，使其超越示范数据的表现。</li><li>核心难点在于：Flow 策略通过多步采样生成动作，价值函数只告诉最终动作的好坏，而标准的 <strong>adjoint matching</strong> 需要逐步进行 <strong>vector–Jacobian product</strong>，计算代价随流步数和策略规模增长。</li><li>作者发现预训练 Flow 策略的批量平均速度 Jacobian 高度集中在<strong>对角线</strong>上，据此推导出闭式标量伴随，并配套设计了对策略生成动作处的价值惩罚，提出 <strong>SQAM</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>SQAM</strong>（Q-Learning with Scalar Adjoint Matching），用闭式<strong>标量伴随（scalar adjoint）</strong>替换 adjoint matching 中每步的 vector–Jacobian product，显著降低了离策略微调 Flow 策略的计算成本（Proposition 1）。</li><li>发现标量伴随使性能<strong>依赖于价值学习方案</strong>，并证明关键在于控制<strong>当前策略所生成动作处</strong>的 critic 值，据此提出 <strong>value penalty</strong>（在策略生成动作处惩罚 critic）。</li><li>在 <strong>50 个 OGBench 任务</strong>上验证：SQAM 在离线与离线到在线 RL 中均优于已有方法，且增益集中在该基准最难的四个域，成功率比各域最强基线高 <strong>18–35 个百分点</strong>。</li><li>将 SQAM 扩展至<strong>大规模预训练 VLA 策略</strong>在真实双臂机器人上的离线到在线微调，三个操作任务上均优于监督微调（SFT），而残差微调（residual fine-tuning）在同设置下表现不佳。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>flow matching</strong>：训练速度场 $v_\theta(x,\tau)$ 沿线性插值路径 $X_\tau=(1-\tau)X_0+\tau X_1$ 将噪声传输到动作分布。</li><li>关键经验发现：预训练 Flow 策略的批量平均速度 Jacobian $J_\tau=\nabla_{X_\tau}v^{\text{base}}(X_\tau,\tau)$ <strong>以对角线为主</strong>，故近似 $J_\tau = c_\tau I$。</li><li><strong>Proposition 1</strong>：在等速 Jacobian 假设下，lean adjoint ODE 存在闭式解 $\tilde{a}_\tau = -\tau \exp(2\int_\tau^1 c_s ds)\,\nabla_{X_1}Q^\pi(s,X_1)$，即各流时刻的伴随都沿最终动作处 critic 梯度的负方向。</li><li>实际使用的<strong>标量伴随</strong>去掉指数缩放因子：$\hat{a}_\tau = -\tau \nabla_{X_1}Q^\pi(s,X_1)$，只需在采样动作处计算<strong>一次</strong> critic 梯度，<strong>完全不需要每步的 vector–Jacobian product</strong>。</li><li>训练目标沿用 adjoint matching 形式（替换精确伴随为标量伴随），默认保留 TRQAM 的<strong>路径空间 KL 信任域</strong>以保证训练稳定。</li><li><strong>Value penalty</strong>：$\mathcal{L}_{\mathrm{critic}} \mathrel{+}= c\cdot\big(Q^{\pi}(s,\operatorname{sg}(a_{\pi}))-Q^{\pi}(s,a_{\mathrm{data}})\big)$，在策略已生成的动作处约束 critic，恰是标量伴随所用梯度的位置，且不引入额外采样开销（与 CQL 不同）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>主要基准：<strong>OGBench</strong> 中基于奖励的单任务变体，共 <strong>10 个域 × 5 个任务 = 50 个任务</strong>；操作域使用 chunk size 为 <strong>5</strong> 的动作分块策略。</li><li>真实机器人实验：<strong>RB-Y1</strong>（Rainbow Robotics）双臂机器人 + 两只 <strong>20-DoF</strong> 灵巧手（Wuji Hand 2），微调一个预训练 <strong>vision-language-action</strong> 策略。</li><li>训练流程：Flow 策略先经 <strong>behavior cloning 预训练 300K 步</strong>；离线微调 <strong>1M 步</strong>，在线阶段延伸至 <strong>1.5M 步</strong>；结果在 <strong>8 个随机种子</strong>上取平均。</li><li>对比基线（7 个离策略微调方法）：<strong>FQL、CGQL-L、DSRL、IFQL、QAM、QAM-E、TRQAM</strong>。</li><li>代码与博客：<code>github.com/yonghdong/sqam</code>、<code>yonghdong.github.io/blog/sqam/</code>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：OGBench 的<strong>离线 RL</strong> 与<strong>离线到在线 RL</strong>两种设置，指标为<strong>平均成功率（%）</strong>（8 seeds，±1 标准差）。</li><li><strong>离线结果（1M 步）</strong>：SQAM 在四个最难域上大幅领先最强基线——<code>antmaze-giant</code> <strong>+21</strong>、<code>humanoidmaze-large</code> <strong>+18</strong>、<code>cube-triple</code> <strong>+22</strong>、<code>cube-quadruple</code> <strong>+35</strong> 个百分点（后者最强基线 19 而 SQAM 达 54）。</li><li><strong>总体表现</strong>：50 个任务平均成功率 <strong>75%</strong>，优于最强基线 <strong>TRQAM 的 68%</strong>；该优势在在线阶段同样保持。</li><li><strong>消融与分析</strong>：</li></ul>
+<p> - 标量伴随与精确伴随对比表明其<strong>保留了精确传播的定性趋势</strong>；且伴随范数随流时刻的变化趋势与精确解一致。</p>
+<p> - 价值学习方案对比显示：仅在数据集动作（如 in-sample critic）或动作距离（如 ReBRAC 式行为正则）上做正则的方法收益很小，<strong>在策略生成动作处施加 value penalty</strong> 的方法才有效。</p>
+<p> - 进一步分析了 value penalty 系数 $c$ 与 KL 预算 $\epsilon_{\text{KL}}$ 的影响，并考察了无信任域、TRQAM 中的 value penalty、单次更新开销等其他实验。</p>
+<ul><li>真实机器人：SQAM 在三个双臂操作任务上均<strong>优于监督微调</strong>，而 residual fine-tuning 在相同设定下表现困难。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

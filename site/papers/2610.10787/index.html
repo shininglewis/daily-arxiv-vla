@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NavGPT-3: Harnessing Context in a Hierarchical Navigation Runtime - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 NavGPT-3，用一套完整导航 harness（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 runtime（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。 核心问题是：语言模型推理能力强但按自身时钟运行、无法满足物理执行的低延迟要求，而动作策略（VLA）响应快但指令遵循弱、长程会漂移；两者之间缺少一个可检查、可修正、可中断的具身交互接口。 目标是在真实机器人和仿真基准上实现&quot;推理—执行—监控&quot;异步协同，让机器人能在推理未完成时对突发世界事件做出停止/切换线程的反应。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2610.10787.webp" alt="NavGPT-3: Harnessing Context in a Hierarchical Navigation Runtime" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">论文提出 NavGPT-3，用一套完整导航 harness（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 runtime（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">NavGPT-3: Harnessing Context in a Hierarchical Navigation Runtime</h1>
             <div class="detail-meta">2026-10-07 · <a href="http://arxiv.org/abs/2610.10787" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.10787" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.10787</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 NavGPT-3，用一套完整导航 harness（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 runtime（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。 核心问题是：语言模型推理能力强但按自身时钟运行、无法满足物理执行的低延迟要求，而动作策略（VLA）响应快但指令遵循弱、长程会漂移；两者之间缺少一个可检查、可修正、可中断的具身交互接口。 目标是在真实机器人和仿真基准上实现&quot;推理—执行—监控&quot;异步协同，让机器人能在推理未完成时对突发世界事件做出停止/切换线程的反应。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">16 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">AIML, Adelaide University（阿德莱德大学澳大利亚机器学习研究所）：Gengze…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.10787/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 NavGPT-3，用一套完整导航 harness（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 runtime（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。</p>
+  <ul class="reading-intro-points"><li>论文提出 NavGPT-3，用一套完整导航 harness（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 runtime（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。</li><li>核心问题是：语言模型推理能力强但按自身时钟运行、无法满足物理执行的低延迟要求，而动作策略（VLA）响应快但指令遵循弱、长程会漂移；两者之间缺少一个可检查、可修正、可中断的具身交互接口。</li><li>目标是在真实机器人和仿真基准上实现&quot;推理—执行—监控&quot;异步协同，让机器人能在推理未完成时对突发世界事件做出停止/切换线程的反应。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>AIML, Adelaide University</strong>（阿德莱德大学澳大利亚机器学习研究所）：Gengze Zhou、Xunyi Zhao、Jian Zhou、Anton van den Hengel、Qi Wu</li><li><strong>Roblox</strong>：Yicong Hong</li><li><strong>PKU</strong>（北京大学）：Jiazhao Zhang、Xionghui Chen</li><li><strong>SJTU</strong>（上海交通大学）：Zixing Lei</li><li><strong>UNC Chapel Hill</strong>（北卡罗来纳大学教堂山分校）：Zun Wang</li><li><strong>UNSW</strong>（新南威尔士大学）：Chongyang Zhao</li><li><strong>Metacognition</strong>：Stephen Gould、Anton van den Hengel</li><li><strong>ANU</strong>（澳大利亚国立大学）：Stephen Gould</li><li>通讯作者：<strong>gengze.zhou / qi.wu01@adelaide.edu.au</strong>；项目主页：<strong>https://metacognitionai.github.io/NavGPT3/</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>NavGPT-3</strong>，用一套完整导航 <strong>harness</strong>（上下文、空间工具、持久状态、执行反馈）加上类似操作系统的 <strong>runtime</strong>（线程调度与运动权限控制），把擅长长程推理的语言模型与低延迟的动作策略连接起来。</li><li>核心问题是：语言模型推理能力强但按自身时钟运行、无法满足物理执行的低延迟要求，而动作策略（VLA）响应快但指令遵循弱、长程会漂移；两者之间缺少一个可检查、可修正、可中断的具身交互接口。</li><li>目标是在真实机器人和仿真基准上实现"推理—执行—监控"异步协同，让机器人能在推理未完成时对突发世界事件做出停止/切换线程的反应。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>NavGPT-3 harness</strong>：把上下文管理、空间工具（observe、delegate、revise、annotate、terminate 四类操作）、持久路线状态与模型执行统一为具身接口，使 VLA 执行结果可被 Planner 检视、回溯、局部修复并显式决定任务完成。</li><li>设计 <strong>OS-like runtime</strong>：推理、执行、监控作为独立线程以各自上下文、工具与权限运行，runtime 通过 <strong>motion authority</strong>（运动权限）与事件优先级进行调度、切换与撤销（如安全监控可直接夺权），支持中断与线程切换。</li><li>提出 <strong>NavGPT VLA</strong>：以 <strong>Qwen3-VL-Instruct</strong> 为骨干、加 MLP 动作头，单步预测 8 个 waypoint；在 <strong>19.28M</strong> 有效样本上训练 4B 与 8B 两个规模，作为可跨任务、跨具身的导航基础模型。</li><li>提出 <strong>Codec allocation</strong> 视觉 token 分配策略：借鉴 I 帧/P 帧视频编码，按场景变化量（P 帧的像素差）与位置权重联合分配视觉 token，使有限视觉预算流向真正发生变化的视图。</li><li>用 <strong>Recursive Self-Improvement (RSI)</strong>（KDLoop 风格树搜索，含 Think/Critic/Experiment/Distill/Reflect）自动迭代 harness 的工具定义与视觉提示，形成最终接口。</li><li>首次让自主智能体在 <strong>RxR-CE</strong> 上达到人类水平，并开源模型、代码与评测记录。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Harness 层</strong>：构建 Planner 所见的观测与历史上下文，维护空间引用与标注，校验并执行工具调用，返回证据供下一轮决策；Planner 通过 $\pi_{\mathrm{Planner}}(\cdot\mid C_k,\mathcal{T}_k)$ 选择工具调用，harness 负责校验与执行。</li><li><strong>Runtime 层</strong>：将活动组织为逻辑线程，用控制转移规则 $f_{\ell+1}=\sigma(S_{\ell},f_{\ell},e_{\ell})$ 决定运动权限归属，用 $\operatorname{eligible}_{\ell}(j,a)=\mathbf{1}[j=f_{\ell}\wedge a\in\mathcal{P}_j]$ 判定某线程是否有资格发起任务运动；保护性事件优先级最高，陈旧事件不能恢复已作废操作。</li><li><strong>工具分组</strong>：basic（<code>observe_forward</code>、<code>observe_panorama</code>、<code>navigate_relative</code>、<code>terminate_episode</code>）+ VLA（<code>navigate_by_instruction</code>）+ Map（<code>observe_map</code>）+ Backtrack（<code>navigate_to_node</code>、<code>annotate_node</code>）；VLA 的 stop 只结束一次委派，回合终止权始终在 Planner。</li><li><strong>NavGPT VLA</strong>：输入指令与最多 16 个保留观测（每观测前/右/后/左四视图），输出 8 个累计目标 $\tau_n=((x_{n,r},y_{n,r},\theta_{n,r}))_{r=1}^{8}$，每步只执行第一个 waypoint 后重新预测。</li><li><strong>Codec token 分配</strong>：对相邻保留图像做 64×64 缩略图 L1 差分 $\delta_{h,v}$，首帧为 I 帧（$s^{\text{change}}=1$），后续 P 帧为 $\operatorname{clip}(5\delta_{h,v},0.05,1)$；权重 $w^{\text{codec}}_{h,v}=w^{\text{pos}}_{h,v}s^{\text{change}}_{h,v}$，在预算与容量比 $\rho_{\text{vis}}<1$ 时把 token 从低变化图移向高变化图。</li><li><strong>训练目标</strong>：$\mathcal{L}=\mathcal{L}_{\text{nav}}+\mathcal{L}_{\text{NTP}}$，其中 $\mathcal{L}_{\text{nav}}$ 是 24 维 waypoint 的 L2 回归，两种损失等权；导航样本不参与下一 token 监督，QA/grounding 样本无动作目标、被掩码而非当零运动学习。</li><li><strong>数据加工</strong>：Habitat 离散动作模拟为 0.25 m 前进/15° 转向/补零停止，归一化尺度为 $(1.0,0.433,2.094)$；几何感知重采样降低前进动作偏置、提升转弯与停止占比；SRDF 的 DAgger 轨迹用"当前位置到目标的最短路径方向"重新标注，把在轨状态变为可恢复的偏离状态监督。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>导航训练数据（83 个来源、11 个家族、约 19.28M 有效记录/epoch）</strong>：四视图 VLN 3.938M、单视图 VLN 2.113M、SRDF 0.516M、point-goal 0.984M、object-goal 2.000M、target tracking 1.486M、outdoor driving 1.608M、Embodied QA/dialogue 1.532M、通用视觉语言 1.640M、空间推理 1.149M、LocateAnything grounding 2.311M</li><li><strong>监督构成</strong>：65.6% 为动作回归、34.4% 仅下一 token 预测；grounding + 空间推理约占 18%，通用视觉语言数据 8.5%</li><li><strong>评测数据集</strong>：<strong>R2R-CE</strong> 与 <strong>RxR-CE</strong> 的 Val-Unseen 全集；<strong>ObjectNav</strong>（MP3D、HM3D v2）；具身问答；消融使用 100 条 R2R 子集（10 个 MP3D 场景）</li><li><strong>数据来源</strong>：R2R-CE、RxR-CE、SRDF（HM3D）、VLNVerse、RoboCasa、OpenScene、nuScenes、LocateAnything-Data（138M 查询/785M 框/12M 图像）、LLaVA-OneVision-2；指令与图像用 <strong>Gemini 3.1 Pro</strong> 与 <strong>Qwen-Image-Edit</strong> 精炼</li><li><strong>模型规模</strong>：<strong>4B</strong> 与 <strong>8B</strong> 两个 NavGPT VLA，均从 <strong>Qwen3-VL-Instruct</strong> 初始化</li><li><strong>训练资源</strong>：两种规模均使用 <strong>32 张 GPU</strong>，全局 batch size <strong>256</strong>，约 <strong>75.3k</strong> 步（1 epoch），序列长度 <strong>8192</strong>，学习率 <strong>5×10⁻⁶</strong>，动作头学习率 <strong>10⁻³</strong></li><li><strong>Planner 模型</strong>：<strong>GPT-6 Astra</strong>（Codex scaffold）与 <strong>Claude Opus 5</strong>（Claude Code scaffold）</li><li><strong>真实机器人</strong>：<strong>Unitree Go2</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：SR（成功率）、SPL（路径长度加权成功率）、nDTW（归一化动态时间规整）、OSR（oracle 成功率）、NE（导航误差）；QA 任务报告准确率与归一化步数</li><li><strong>单模型性能</strong>：8B <strong>NavGPT VLA</strong> 单独在 <strong>R2R-CE</strong> 达 <strong>76.94 SR</strong>，在 <strong>RxR-CE</strong> 以 <strong>82.39 SR</strong> 领先已发表方法</li><li><strong>完整系统性能</strong>：<strong>NavGPT-3</strong> 在 <strong>R2R-CE</strong> 达 <strong>81.51 SR</strong>（SOTA）；在 <strong>RxR-CE</strong> 达到人类水平——<strong>90.43 SR vs 人类 90.4</strong>，<strong>78.47 nDTW vs 人类 77.7</strong>，每回合 <strong>1 分 22 秒</strong>（人类约 3 分钟）</li><li><strong>反应时间</strong>：纯语言模型决策的反应间隔为 <strong>3–19 s</strong>；由 VLA 执行路线时降到 <strong>0.5–1 s/步（1–2 Hz）</strong>，大幅缩短推理回路</li><li><strong>工具消融（100 条 R2R-CE 子集，8B VLA）</strong>：GPT-6 Astra 仅 basic+Map+Backtrack 时 SR 72%；加 VLA 后 75–76%；VLA+Map+Backtrack 全开达 <strong>SR 82、OSR 84、NE 3.34、成本 $0.391</strong>；Opus 5 相应最佳为 <strong>SR 81、SPL 69.29</strong></li><li><strong>RSI 开发过程</strong>：单视图+原始步进 66% SR → VLA 委派 72%（4B）/76%（8B）→ VLA+空间工具开发最佳 81%；早期 place-graph 接口仅 54%，整合接口 77%</li><li><strong>资源开销</strong>：VLA-only 配置下语义 PLanner 推理开销为零，最省成本（$0.391–0.469/回合）；纯 Planner 配置 token 消耗高达 325k–721k、成本 $0.593–0.690、反应延迟 8.9–105.7 s</li><li><strong>跨任务迁移</strong>：同一 runtime 可迁移到 object-goal navigation 与具身问答；真实 <strong>Unitree Go2</strong> 上完成部署验证与"玻璃门执行可视化"恢复案例</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

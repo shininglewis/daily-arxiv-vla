@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 LeWAM，一种统一的、无重建（reconstruction-free）的 World Action Model（WAM），在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。 针对现有 WAM 依赖像素级重建、潜空间被迫编码噪声与任务无关信息（如视觉干扰物）的问题，LeWAM 完全去掉像素解码器、Tokenizer 和像素空间损失。 进一步解决采样式 MPC 在原始动作空间规划时容易利用动力学模型误差、优化&quot;幻觉未来&quot;导致部署失败的问题，提出 Diffusion Steering（DS）：在策略头的噪声空间而非动作空间进行规划。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2610.12407.webp" alt="LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 LeWAM，一种统一的、无重建（reconstruction-free）的 World Action Model（WAM），在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">LeWAM: A JEPA World Action Model with Diffusion-Steering-Based MPC</h1>
             <div class="detail-meta">2026-10-08 · <a href="http://arxiv.org/abs/2610.12407" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.12407" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.12407</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 LeWAM，一种统一的、无重建（reconstruction-free）的 World Action Model（WAM），在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。 针对现有 WAM 依赖像素级重建、潜空间被迫编码噪声与任务无关信息（如视觉干扰物）的问题，LeWAM 完全去掉像素解码器、Tokenizer 和像素空间损失。 进一步解决采样式 MPC 在原始动作空间规划时容易利用动力学模型误差、优化&quot;幻觉未来&quot;导致部署失败的问题，提出 Diffusion Steering（DS）：在策略头的噪声空间而非动作空间进行规划。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NVIDIA</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,60 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.12407/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 LeWAM，一种统一的、无重建（reconstruction-free）的 World Action Model（WAM），在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。</p>
+  <ul class="reading-intro-points"><li>提出 LeWAM，一种统一的、无重建（reconstruction-free）的 World Action Model（WAM），在无解码器的 JEPA 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。</li><li>针对现有 WAM 依赖像素级重建、潜空间被迫编码噪声与任务无关信息（如视觉干扰物）的问题，LeWAM 完全去掉像素解码器、Tokenizer 和像素空间损失。</li><li>进一步解决采样式 MPC 在原始动作空间规划时容易利用动力学模型误差、优化&quot;幻觉未来&quot;导致部署失败的问题，提出 Diffusion Steering（DS）：在策略头的噪声空间而非动作空间进行规划。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NVIDIA</strong></li><li>作者：<strong>Shashank Hegde</strong>、<strong>Alexander Popov</strong>、<strong>Elie Aljalbout</strong>、<strong>Nikolai Smolyanskiy</strong></li><li>发表于 arXiv（<strong>arXiv:2610.12407v1</strong>，cs.RO，2026 年 10 月 8 日）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>LeWAM</strong>，一种统一的、无重建（reconstruction-free）的 <strong>World Action Model（WAM）</strong>，在无解码器的 <strong>JEPA</strong> 潜空间上端到端训练一个双向 Transformer，同时支持前向动力学、后向动力学、逆动力学与策略预测四种模式。</li><li>针对现有 WAM 依赖像素级重建、潜空间被迫编码噪声与任务无关信息（如视觉干扰物）的问题，LeWAM 完全去掉像素解码器、Tokenizer 和像素空间损失。</li><li>进一步解决采样式 <strong>MPC</strong> 在原始动作空间规划时容易利用动力学模型误差、优化"幻觉未来"导致部署失败的问题，提出 <strong>Diffusion Steering（DS）</strong>：在策略头的噪声空间而非动作空间进行规划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>对齐（Alignment）</strong>：线性探针显示 LeWAM 潜空间对机器人与物体状态的可读性优于前向-only 的 <strong>LeWM</strong>，同时对视觉干扰物的忽略程度与 LeWM 相当，远好于基于重建的 WAM。</li><li><strong>执行（Acting）</strong>：内嵌的 flow-matching 策略在同尺寸、同编码器条件下与标准行为克隆策略性能持平，同时额外提供世界模型能力。</li><li><strong>规划（Planning）</strong>：将采样式 MPC 的决策变量从动作空间迁移到策略的确定性噪声空间，避免利用动力学误差，显著提升闭环性能。</li><li><strong>架构统一</strong>：用单个双向 Transformer 通过掩码同时服务四种训练模式，无需像素解码器、Tokenizer 或像素/Token 级损失（见 Table 1 与 UWM、Cosmos Policy 的对比）。</li><li><strong>典型集投影（Projection onto the sampler's typical set）</strong>：将候选噪声投影回半径 √A 的球面，保证搜索仅在策略头被训练过的动作支撑集上进行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>四模式骨架</strong>：训练窗口含 4 帧（frameskip 5）与 3 个 5 步动作块；通过掩码切换模式：<strong>Forward</strong>（掩掉末帧潜变量，MSE 回归 z_{t+1}）、<strong>Backward</strong>（掩掉首帧潜变量）、<strong>Inverse</strong>（用带噪 flow-matching 样本替换目标动作块，预测速度）、<strong>Policy</strong>（同时掩掉末帧与目标动作块，历史动作替换为 learned unknown-action token）。</li><li><strong>编码器与潜变量</strong>：每帧独立编码，分辨率 <strong>224</strong>，使用 <strong>ViT-tiny/14</strong>（DINOv2 small 架构）但完全从零训练；[CLS] token 经 BatchNorm MLP 投影得到单一潜向量 <strong>z_t ∈ R^384</strong>，不使用 EMA 目标网络或 stop-gradient。</li><li><strong>防坍缩正则</strong>：采用 <strong>SIGReg</strong>，将一批潜变量推向各向同性高斯分布；Forward/Backward 模式与 SIGReg 共同施加 JEPA 结构，Inverse/Policy 模式使潜空间更任务对齐。</li><li><strong>动作生成</strong>：<strong>rectified flow</strong>，训练时采样 σ~U(0,1) 构造 a_σ=(1-σ)a+σε 并预测速度 ε−a；测试时从 ε~N(0,I) 用 <strong>8 步 Euler 积分</strong>得到确定性映射 <strong>a = g(ε; z_t)</strong>。</li><li><strong>主干网络</strong>：深度 <strong>8</strong>、宽度 <strong>512</strong>、<strong>16 头</strong>的双向 Transformer，输入带 modality、frame 与 σ 嵌入。</li><li><strong>Diffusion Steering</strong>：在想象的潜轨迹上逐块解码动作（a_h = g(ε_h; ẑ_{h−1})，ẑ_h = f̂(ẑ_{h−1}, a_h)，shift 更新上下文），用目标潜距离 <strong>(1) 式 ‖f̂(z_t,a) − z_g‖₂</strong> 打分；搜索从先验 <strong>N(0,I)</strong> 出发，第一轮即等价于 best-of-N 排序；DS 更新规则可兼容 <strong>CEM / MPPI / CMA-ES</strong>（DS-CEM、DS-MPPI、DS-CMA-ES 共享预算 64×3、horizon 5）。</li><li><strong>投影步骤</strong>：ε ← √A·ε/‖ε‖，把每个候选映回采样器典型集，搜索分布保持欧氏，仅投影候选（见 Algorithm 1，消融见 Table 4）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>PushT</strong>：使用 Chi et al. 的 <strong>206 条人类演示</strong>，动作是 10 Hz 的绝对目标位置，动作块长 5；额外叠加两类与动作无关的干扰物（Lissajous 曲线上的点、顶部滑动的条）。</li><li><strong>robomimic</strong>：<strong>Lift、Can、Square、ToolHang、Transport</strong> 五个任务，各使用 <strong>200 条熟练人类演示</strong>在 robosuite 中回放；加入两个比任务物体更大的灰色抖动干扰盒。</li><li>所有模型仅用像素训练（pixels in, actions out），<strong>不使用本体感知或状态信息</strong>。</li><li><strong>模型规模</strong>：LeWAM 约 <strong>41.0M</strong> 可训练参数，基线被缩放到大致相同规模。</li><li><strong>训练配置</strong>：<strong>300 epochs</strong>、<strong>5 个随机种子</strong>、90% 训练 / 10% 评估划分；评估在同一模拟器中且保留干扰物（具体 GPU/TPU 型号在可见正文中未给出）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>潜空间分析</strong>：对每个模型/任务用岭回归从冻结潜变量预测状态，报告 MSE、Pearson r 与 R²（含对任务相关状态与干扰物）。</li><li><strong>关键数值（跨任务平均，Table 2）</strong>：</li></ul>
+<p> - 任务状态 R²：<strong>LeWAM 0.80 ± 0.00</strong> > RecWAM 0.78 > Dreamer 0.68 > LeWM+diff. head 0.62。</p>
+<p> - 干扰物 R²：<strong>LeWAM 0.00</strong>，LeWM+diff. head 0.00，而 <strong>RecWAM 高达 0.73</strong>（说明重建式 WAM 会编码干扰物）。</p>
+<p> - Pearson r（任务状态）：<strong>LeWAM 0.89</strong>，MSE 最低 <strong>0.21</strong>。</p>
+<ul><li><strong>想象 rollout 可视化</strong>（Figure 4）：PushT 中 T 块位置被稳定识别但旋转模糊；干扰物在想象帧中几乎完全消失，Lift 中干扰块或缺失或被错误预测（判定为解码器幻觉伪影）。</li><li><strong>闭环评估</strong>：6 个任务、含视觉干扰物，每模型 <strong>250 次 rollout（5 训练种子 × 50 评估种子）</strong>；目标潜为演示中距当前潜最近帧之后 25 步的潜。</li><li><strong>闭环结果</strong>（Figure 5）：<strong>LeWAM 策略与 BC-only flow-matching 参考持平</strong>；RecWAM 略低于参考（容量被像素重建消耗）；Dreamer 与 LeWM+diff head 表现极差；在噪声空间采样对 LeWAM 与 RecWAM 均带来推理期增益，而<strong>动作空间 MPC 使所有模型坍缩到 3–8% 成功率</strong>，证实规划器会利用动力学误差。</li><li><strong>模式消融</strong>（Table 3，Lift 任务示例）：四模式完整模型策略成功率 <strong>94.0 ± 4.2%</strong>、DS-CEM <strong>97.6 ± 0.8%</strong>；去掉 forward 模式后降为 91.6 ± 2.3%（后续数据在给定 HTML 中被截断）。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

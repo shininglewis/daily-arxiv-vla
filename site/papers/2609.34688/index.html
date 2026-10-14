@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Unified Trajectory Matching Policy Optimization: Diverse T2I Generation and VLA Generalization - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 Uni-TMPO（Unified Trajectory Matching Policy Optimization），一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 T2I 图像生成与 VLA 视觉-语言-动作任务。 核心问题是奖励最大化式 RL 后训练会导致 策略模式坍缩（mode collapse）：即使加入参考 KL 或熵正则，策略仍收敛到单一高奖励模式，在 T2I 中表现为图像同质化与 reward hacking，在 VLA 中表现为备选成功策略消失、任务与场景泛化能力下降。 研究目标是：用共享的优化目标保留多样的图像模式与动作策略，同时适配 T2I 与 VLA 两类不同的轨迹结构，并提升 OOD 泛化。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.34688.webp" alt="Unified Trajectory Matching Policy Optimization: Diverse T2I Generation and VLA Generalization" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 Uni-TMPO（Unified Trajectory Matching Policy Optimization），一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 T2I 图像生成与 VLA 视觉-语言-动作任务。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Unified Trajectory Matching Policy Optimization: Diverse T2I Generation and VLA Generalization</h1>
             <div class="detail-meta">2026-09-28 · <a href="http://arxiv.org/abs/2609.34688" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.34688" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.34688</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 Uni-TMPO（Unified Trajectory Matching Policy Optimization），一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 T2I 图像生成与 VLA 视觉-语言-动作任务。 核心问题是奖励最大化式 RL 后训练会导致 策略模式坍缩（mode collapse）：即使加入参考 KL 或熵正则，策略仍收敛到单一高奖励模式，在 T2I 中表现为图像同质化与 reward hacking，在 VLA 中表现为备选成功策略消失、任务与场景泛化能力下降。 研究目标是：用共享的优化目标保留多样的图像模式与动作策略，同时适配 T2I 与 VLA 两类不同的轨迹结构，并提升 OOD 泛化。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">华中科技大学 计算机科学与技术学院（Z. Ma、J. Li、L. Li、D. Liang、J. Li）…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.34688/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 Uni-TMPO（Unified Trajectory Matching Policy Optimization），一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 T2I 图像生成与 VLA 视觉-语言-动作任务。</p>
+  <ul class="reading-intro-points"><li>提出 Uni-TMPO（Unified Trajectory Matching Policy Optimization），一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 T2I 图像生成与 VLA 视觉-语言-动作任务。</li><li>核心问题是奖励最大化式 RL 后训练会导致 策略模式坍缩（mode collapse）：即使加入参考 KL 或熵正则，策略仍收敛到单一高奖励模式，在 T2I 中表现为图像同质化与 reward hacking，在 VLA 中表现为备选成功策略消失、任务与场景泛化能力下降。</li><li>研究目标是：用共享的优化目标保留多样的图像模式与动作策略，同时适配 T2I 与 VLA 两类不同的轨迹结构，并提升 OOD 泛化。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>华中科技大学</strong> 计算机科学与技术学院（Z. Ma、J. Li、L. Li、D. Liang、J. Li）与软件工程学院（X. Bai，通讯作者）</li><li><strong>中国科学院信息工程研究所</strong>（Yu Liu）</li><li><strong>上海交通大学</strong> 计算机科学与技术学院（Xuekai Zhu）</li><li><strong>Frontis.AI</strong>（Kaiyan Zhang）</li><li><strong>清华大学</strong> 电子工程系（Bowen Zhou）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>Uni-TMPO（Unified Trajectory Matching Policy Optimization）</strong>，一个面向随机扩散与流匹配策略的统一强化学习后训练框架，同时适用于 <strong>T2I 图像生成</strong>与 <strong>VLA 视觉-语言-动作</strong>任务。</li><li>核心问题是奖励最大化式 RL 后训练会导致 <strong>策略模式坍缩（mode collapse）</strong>：即使加入参考 KL 或熵正则，策略仍收敛到单一高奖励模式，在 T2I 中表现为图像同质化与 reward hacking，在 VLA 中表现为备选成功策略消失、任务与场景泛化能力下降。</li><li>研究目标是：用共享的优化目标保留多样的图像模式与动作策略，同时适配 T2I 与 VLA 两类不同的轨迹结构，并提升 OOD 泛化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>统一的 RL 后训练框架</strong>：将标准化奖励转化为组内目标分布，用<strong>组内前向 KL</strong> 匹配奖励诱导分布与策略诱导分布，替代传统的期望奖励最大化。</li><li><strong>进度条件化由粗到细（progress-conditioned coarse-to-fine）T2I 采样</strong>：训练早期在较早去噪步分支以探索全局结构，后期移到较晚步以细化局部细节，相比 <strong>TreeGRPO</strong> 调度器提升奖励与多样性并将迭代时间减少 <strong>10.2%</strong>。</li><li><strong>反馈条件化动作块（feedback-conditioned action-chunk）VLA 采样</strong>：每条轨迹由多次策略查询产生的动作块组成，各块转移对数概率共同决定轨迹在组内的相对概率。</li><li><strong>去除学习式归一化器</strong>：在组内同时归一化奖励目标与轨迹概率，使共享归一化项相互抵消，无需 FlowRL 中的 $Z_\phi$。</li><li><strong>全面实验验证</strong>：在 T2I 单奖励与联合奖励优化下取得最优的奖励–多样性–效率权衡（LGMD 最高比最强基线高 <strong>28.4%</strong>），VLA 在任务 OOD 上平均超出最强奖励最大化基线 <strong>8.0</strong> 个百分点、场景 OOD 超出 <strong>4.8</strong> 个百分点，并包含真机实验。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一轨迹表示</strong>：将 T2I 的完整去噪轨迹与 VLA 的动作块序列统一为上下文条件 $c$ 下的随机轨迹 $\tau$，每个样本组返回 $\{(\tau_i, R_i, s_{\theta,i})\}_{i=1}^{K}$。</li><li><strong>奖励诱导目标分布</strong>：对组内奖励做标准化得 $\widetilde{R}_i$，构造 Boltzmann 目标 $q_i = \exp(\beta\widetilde{R}_i)/\sum_j \exp(\beta\widetilde{R}_j)$，温度 $\beta$ 控制偏好的强弱。</li><li><strong>策略分布</strong>：由轨迹分数经组内 softmax 得到 $p_{\theta,i} = \exp(s_{\theta,i})/\sum_j \exp(s_{\theta,j})$（log-softmax 稳定实现）。</li><li><strong>前向 KL 匹配损失</strong>：$\mathcal{L}_{\mathrm{TM}}(\theta)=\frac{1}{\|\mathcal{B}_{\mathrm{valid}}\|}\sum_{\mathcal{G}}\mathrm{KL}(q_{\mathcal{G}}\\|p_{\theta,\mathcal{G}})$，仅优化奖励跨度超过阈值 $\epsilon_R$ 的有效组；梯度形式为 $\sum_i (p_{\theta,i}-q_i)\nabla_\theta s_{\theta,i}$。</li><li><strong>T2I 轨迹构造</strong>：共享前缀分支 + 有界 Beta 进度调度器选择分支层级，轨迹分数为各随机转移对数密度之和（式 12）。</li><li><strong>VLA 轨迹构造</strong>：每次查询由动作专家依据当前观测与语言指令生成动作块，执行前缀后重新规划，轨迹分数为各有效块分数的长度归一化平均（式 14）。</li><li><strong>在线策略更新</strong>：奖励与环境转移不可微且被 detach，梯度仅通过随机策略转移传播；VLA 中梯度通过可训练的动作专家，视觉-语言主干保持冻结。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>T2I 基础模型</strong>：<strong>FLUX.1-dev</strong>，在三个任务上后训练：组合式图像生成（<strong>GenEval</strong>）、视觉文字渲染（OCR 准确率）、人类偏好对齐（<strong>PickScore</strong>）。</li><li><strong>T2I 评估指标</strong>：GenEval、OCR、PickScore、HPS、ImgRwd、<strong>LGMD</strong>、Cos.Div.、迭代时间（秒）。</li><li><strong>VLA 评测环境与基准</strong>：<strong>MetaWorld</strong>（留出任务）、<strong>CALVIN</strong>（场景迁移）、Colosseum 风格受控基准，以及真机实验；基线包含 <strong>$\pi_{\mathrm{RL}}$</strong>（对应 π₀ / π₀.₅ 的奖励最大化基线）。</li><li><strong>模型规模与训练资源</strong>：提供的 HTML 原文（含截断部分）未给出参数量、GPU/TPU 数量与训练时长等具体信息。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境与基线</strong>：T2I 对比 <strong>DAG-DB、DGFS-SubTB、Flow-GRPO、TreeGRPO、GARDO</strong> 与未后训练的 FLUX.1-dev；VLA 对比奖励最大化类方法（如 π_RL、GRAPE、ConRFT、SimpleVLA-RL 等）。</li><li><strong>T2I 主要结果（Table I）</strong>：Uni-TMPO 在组合生成任务取得 GenEval <strong>0.954</strong>、PickScore <strong>22.967</strong>、HPS <strong>0.305</strong>、ImgRwd <strong>1.163</strong>、LGMD <strong>0.136</strong>、Cos.Div. <strong>0.248</strong>，迭代时间仅 <strong>91.9 s</strong>（TreeGRPO 为 126.2 s）。</li><li><strong>文字渲染任务</strong>：OCR <strong>0.951</strong>、PickScore <strong>22.281</strong>、HPS <strong>0.316</strong>、ImgRwd <strong>1.118</strong>、LGMD <strong>0.115</strong>、Cos.Div. <strong>0.235</strong>，时间 <strong>76.3 s</strong>。</li><li><strong>人类偏好对齐任务</strong>：PickScore <strong>24.301</strong>、HPS <strong>0.380</strong>、ImgRwd <strong>1.605</strong>、LGMD <strong>0.199</strong>、Cos.Div. <strong>0.258</strong>，时间 <strong>68.3 s</strong>，均为最优或次优。</li><li><strong>多样性与效率</strong>：LGMD 最高比最强基线提升 <strong>28.4%</strong>，定性对比显示相同提示下 Uni-TMPO 在物体外观、美学风格与空间布局上的变化明显大于 Flow-GRPO；迭代时间较 TreeGRPO 减少 <strong>10.2%</strong>。</li><li><strong>VLA 结果</strong>：在 ID 成功率上取得最佳，OOD 任务泛化平均超出最强奖励最大化基线 <strong>8.0</strong> 个百分点，OOD 场景泛化超出 <strong>4.8</strong> 个百分点。</li><li><strong>真机验证</strong>：当原本更高奖励的目标不可达时，多样的备选动作策略仍能支持任务完成，验证了保持多模式的实际价值。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Train Together or Merge Later? Unifying VLA Experts via a Shared Action Interface - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 PolicyWeave，研究如何在不进行联合后训练的前提下，把多个独立训练的任务专家（VLA 策略）统一为一个多任务策略。 核心问题是：协同训练（co-training） 多任务 VLA 策略往往不如单任务独立训练；而直接对独立专家做模型合并（model merging） 时，强单体专家并不必然产生强合并策略。 作者识别出&quot;不兼容性&quot;的一个来源是动作接口（action interface），即动作归一化统计量以及动作编码器/解码器；任务特定的接口改动会被隐藏层参数补偿，合并两者会破坏这种补偿关系。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Train Together or Merge Later? Unifying VLA Experts via a Shared Action Interface</h1>
             <div class="detail-meta">2026-09-27 · <a href="http://arxiv.org/abs/2609.33125" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.33125" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.33125</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 PolicyWeave，研究如何在不进行联合后训练的前提下，把多个独立训练的任务专家（VLA 策略）统一为一个多任务策略。 核心问题是：协同训练（co-training） 多任务 VLA 策略往往不如单任务独立训练；而直接对独立专家做模型合并（model merging） 时，强单体专家并不必然产生强合并策略。 作者识别出&quot;不兼容性&quot;的一个来源是动作接口（action interface），即动作归一化统计量以及动作编码器/解码器；任务特定的接口改动会被隐藏层参数补偿，合并两者会破坏这种补偿关系。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">UQMM Lab, The University of Queensland（昆士兰大学）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.33125/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 PolicyWeave，研究如何在不进行联合后训练的前提下，把多个独立训练的任务专家（VLA 策略）统一为一个多任务策略。</p>
+  <ul class="reading-intro-points"><li>论文提出 PolicyWeave，研究如何在不进行联合后训练的前提下，把多个独立训练的任务专家（VLA 策略）统一为一个多任务策略。</li><li>核心问题是：协同训练（co-training） 多任务 VLA 策略往往不如单任务独立训练；而直接对独立专家做模型合并（model merging） 时，强单体专家并不必然产生强合并策略。</li><li>作者识别出&quot;不兼容性&quot;的一个来源是动作接口（action interface），即动作归一化统计量以及动作编码器/解码器；任务特定的接口改动会被隐藏层参数补偿，合并两者会破坏这种补偿关系。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>UQMM Lab, The University of Queensland</strong>（昆士兰大学）</li><li>作者：<strong>Zhizhen Zhang</strong>、<strong>Yuxia Fu</strong>、<strong>Zijian Wang</strong>、<strong>Zi Huang</strong>、<strong>Yadan Luo</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PolicyWeave</strong>，研究如何在<strong>不进行联合后训练</strong>的前提下，把多个独立训练的任务专家（VLA 策略）统一为一个多任务策略。</li><li>核心问题是：<strong>协同训练（co-training）</strong> 多任务 VLA 策略往往不如单任务独立训练；而直接对独立专家做<strong>模型合并（model merging）</strong> 时，强单体专家并不必然产生强合并策略。</li><li>作者识别出"不兼容性"的一个来源是<strong>动作接口（action interface）</strong>，即动作归一化统计量以及动作编码器/解码器；任务特定的接口改动会被隐藏层参数补偿，合并两者会破坏这种补偿关系。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>定位了 VLA 专家合并失败的<strong>动作接口不兼容</strong>问题：即使各专家输出相同动作，参数平均也可能改变输出（附录给出线性示例）。</li><li>提出<strong>合并兼容的 VLA 后训练（merge-compatible post-training）</strong>：所有专家保留基座策略共享的动作接口与归一化统计量，冻结动作编码器、解码器与 VLM，仅训练动作模型隐藏层的 <strong>LoRA</strong> 更新。</li><li>提出<strong>上下文引导的稀疏合并（context-guided sparse merging）</strong>：利用初始视觉-语言上下文对专家 LoRA 更新打分，通过 <strong>leave-one-layer-out 排序稳定性</strong> 决定选取单个专家还是稀疏专家集合，并做固定权重的稀疏加权合并，无需路由器或标定轨迹。</li><li>验证了任务特定 <strong>RL</strong> 增益可以在多任务部署中被保留：PolicyWeave 在 RL 后达到 <strong>74.1%</strong>，超过联合 RL 的 <strong>60.7%</strong>。</li><li>在仿真与真实机器人上验证了独立学习技能的长期程与真实世界部署能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>合并兼容后训练</strong>：给定共享基座 $\theta_0$，为每个任务独立训练 LoRA 专家，更新量 $\Delta_t=\theta_t-\theta_0$；合并策略为 $\theta_{\text{merge}}=\theta_0+\mathcal{M}(\{\Delta_t\})$。</li><li>关键约束：在共享的具身与动作空间内，<strong>保留基座的动作归一化统计量</strong>，冻结动作编码器、动作解码器和 VLM。</li><li><strong>专家相关性打分</strong>：用基座模型一次前向（禁用任务适配器）获得共享的 key 投影输入 $\mathbf{H}_\ell$，以专家 key 投影的 LoRA 更新 $\Delta\mathbf{W}^K_{t,\ell}$ 对该上下文的响应作为层得分 $e_{t,\ell}$，聚和为专家得分 $s_t$（对更新幅度与上下文幅度做归一化，8 个动作交叉注意力 key 投影层参与打分）。</li><li><strong>专家选择</strong>：对每个打分层做留一剔除，得到 $s_t^{(-\ell)}$ 与最优专家 $t_\ell^\star$；若第一专家始终稳定则只选它，否则取包含所有"层剔除后第一名"的最小 top-$k$ 集合 $\mathcal{I}^\star$，权重 $\gamma_t=s_t/\sum_{j\in\mathcal{I}^\star}s_j$。</li><li><strong>合并更新按层加权</strong>：$\Delta\mathbf{W}_u(c)=\sum_{t\in\mathcal{I}^\star(c)}\gamma_t(c)\Delta\mathbf{W}_{t,u}$，合并权重跨层一致，且由<strong>初始上下文</strong>确定后在整段 episode 内固定不变。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基座模型：<strong>GR00T N1.5</strong>（由各 benchmark 对应的基座 checkpoint 初始化）。</li><li><strong>RoboCasa365</strong>：18 个原子任务；每个 SFT 专家仅用 <strong>50 条示范（约 10% 目标任务数据）</strong>。</li><li><strong>LIBERO-10</strong>：10 个长期程任务，SFT 专家库平均每任务 <strong>38 条示范</strong>。</li><li><strong>真实机器人</strong>：<strong>AgileX Piper</strong> 机械臂，4 个操作任务。</li><li>训练配置：动作模型中的 <strong>rank-8 LoRA</strong> 专家；RL 采用 <strong>Flow-SDE</strong>（$\pi_{\mathrm{RL}}$）形式；联合训练基线继续 <strong>600 步 RL</strong>（与任务特定续训合计 610 步相当）；打分使用 <strong>8 个动作交叉注意力 key 投影</strong>。</li><li>训练所用 GPU/TPU 等算力资源在所提供的原文片段中未明确说明。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>对比基线</strong>：WA、TIES、ISO-CTS、TSV-Merge、SSR-Merge 五种代表性事后合并方法，以及 <strong>Indiv.</strong>（单专家）与 <strong>Co-training</strong>（协同训练）。</li><li><strong>评估指标</strong>：每个任务 <strong>50 条 episode 的平均成功率</strong>；LIBERO-10 额外报告 <strong>partial success</strong>（episode 中同时满足的目标谓词最大比例的平均值）。</li><li><strong>共享接口效果</strong>：四种静态合并方法的 18 任务平均成功率从 <strong>17.0%</strong> 提升至 <strong>52.8%</strong>；同一个 WA 规则下，任务特定接口的 OpenDrawer rollout 失败，共享接口成功。</li><li><strong>单专家性能保持</strong>：共享接口下为 <strong>65.6%</strong>，对比任务特定接口的 <strong>64.1%</strong>，即不牺牲单体能力。</li><li><strong>主结果</strong>：使用同一共享接口 SFT 专家库，PolicyWeave 达到 <strong>64.7%</strong>（SFT）与 <strong>74.1%</strong>（SFT→RL），显著优于联合 RL 的 <strong>60.7%</strong>。</li><li><strong>任务级示例</strong>：Open drawer <strong>82%→82%</strong>、Open mixer head <strong>92%→92%</strong>、Close fridge <strong>78%→76%</strong>、Navigate kitchen <strong>20%→62%</strong>（PolicyWeave 均为最优或并列最优）。</li><li><strong>其他验证</strong>：LIBERO-10 长期程多阶段控制能力得到保留；4 个 Piper 机械臂真实任务上 PolicyWeave 优于协同训练基线，支持独立学习技能的物理机器人多任务部署。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

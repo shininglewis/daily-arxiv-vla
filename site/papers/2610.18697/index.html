@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UniW(A)M: A Unified Mixture-of-Experts Framework for World and World-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 UniW(A)M：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将动作条件世界模型（AC-WM）与四种世界-动作模型（WAM）接口整合在同一骨干网络中联合训练。 解决的核心问题是：世界模型与世界-动作模型虽共享物理动力学与交互语义，但通常被孤立训练，导致预测与控制之间无法复用知识，数据效率低下。 进一步解决部署问题：不同 WAM 接口在未来视频预测使用方式与推理开销上差异显著，需要按执行片段（chunk）动态选择最合适接口，以兼顾任务成功率与执行效率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.18697">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.18697.webp" alt="UniW(A)M: A Unified Mixture-of-Experts Framework for World and World-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 UniW(A)M：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将动作条件世界模型（AC-WM）与四种世界-动作模型（WAM）接口整合在同一骨干网络中联合训练。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">UniW(A)M: A Unified Mixture-of-Experts Framework for World and World-Action Models</h1>
+            <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.18697" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.18697" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.18697</span></div>
+            <p class="detail-summary">提出 UniW(A)M：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将动作条件世界模型（AC-WM）与四种世界-动作模型（WAM）接口整合在同一骨干网络中联合训练。 解决的核心问题是：世界模型与世界-动作模型虽共享物理动力学与交互语义，但通常被孤立训练，导致预测与控制之间无法复用知识，数据效率低下。 进一步解决部署问题：不同 WAM 接口在未来视频预测使用方式与推理开销上差异显著，需要按执行片段（chunk）动态选择最合适接口，以兼顾任务成功率与执行效率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）：Jingbo Xu、Jianjie Fang、Zh…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.18697/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 UniW(A)M：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将动作条件世界模型（AC-WM）与四种世界-动作模型（WAM）接口整合在同一骨干网络中联合训练。</p>
+  <ul class="reading-intro-points"><li>提出 UniW(A)M：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将动作条件世界模型（AC-WM）与四种世界-动作模型（WAM）接口整合在同一骨干网络中联合训练。</li><li>解决的核心问题是：世界模型与世界-动作模型虽共享物理动力学与交互语义，但通常被孤立训练，导致预测与控制之间无法复用知识，数据效率低下。</li><li>进一步解决部署问题：不同 WAM 接口在未来视频预测使用方式与推理开销上差异显著，需要按执行片段（chunk）动态选择最合适接口，以兼顾任务成功率与执行效率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）：Jingbo Xu、Jianjie Fang、Zhuohang Li、Zihao Song、Yinzhou Tang、Chen Gao、Yong Li</li><li><strong>中关村学院</strong>（Zhongguancun Academy）：Zhaolu Wang、Chen Gao</li><li><strong>华东师范大学</strong>（East China Normal University）：Xvyuan Liu</li><li><strong>Manifold AI</strong>：Xin Zhang、Haisheng Su、Wei Wu</li><li><strong>Jingbo Xu</strong> 与 <strong>Jianjie Fang</strong> 为共同第一作者；<strong>Chen Gao</strong>、<strong>Wei Wu</strong>、<strong>Yong Li</strong> 为通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>UniW(A)M</strong>：一个基于扩散 Transformer 的混合专家（MoE）统一框架，将<strong>动作条件世界模型（AC-WM）</strong>与四种<strong>世界-动作模型（WAM）</strong>接口整合在同一骨干网络中联合训练。</li><li>解决的核心问题是：世界模型与世界-动作模型虽共享物理动力学与交互语义，但通常被<strong>孤立训练</strong>，导致预测与控制之间无法复用知识，数据效率低下。</li><li>进一步解决部署问题：不同 WAM 接口在未来视频预测使用方式与推理开销上差异显著，需要<strong>按执行片段（chunk）动态选择</strong>最合适接口，以兼顾任务成功率与执行效率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>UniW(A)M</strong> 统一框架，通过视频–动作可见性掩码（video–action visibility masks）统一 <strong>AC-WM 与四种 WAM 接口</strong>，共享动力学专家与原子能力专家，使各接口保留各自的条件通路。</li><li>提出 <strong>CATR（Capability-Aligned Token Routing）</strong>：按模态与预测角色为视频/动作目标 token 组分配可用专家集合，并在集合内学习混合权重，实现能力对齐的专家路由。</li><li>提出 <strong>PAIR（Plug-in Adaptive Interface Router）</strong>：在骨干网络冻结的前提下，仅用少量目标任务的 chunk 场景离线训练一个轻量分类头，实现 chunk 级接口自适应选择。</li><li>实验验证：AC-WM 联合训练对<strong>所有四种动作接口</strong>（包括部署时不预测未来视频的接口）均有增益，统一模型在动作条件世界预测上领先。</li><li>PAIR 将分布外（OOD）平均成功率从 <strong>63.3% 提升至 76.7%</strong>，并改善执行效率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一接口建模</strong>：将轨迹（观测历史、语言指令、未来观测、未来动作）组织为五种接口，通过视频–动作注意力掩码显式指定各接口的条件依赖关系。</li><li><strong>四种原子能力</strong>：<strong>VGM</strong>（无动作视频预测）、<strong>VLA</strong>（直接动作生成）、<strong>WM</strong>（动作条件视频预测）、<strong>IDM</strong>（视频条件动作生成）；视频类目标使用 VGM/WM 专家，动作类目标使用 VLA/IDM 专家，并共享公共专家。</li><li><strong>五种接口</strong>：<strong>AC-WM</strong>、<strong>Joint-WAM</strong>（VGM+IDM，双向可见、联合去噪）、<strong>IDM-WAM</strong>（VGM+IDM，单向顺序依赖）、<strong>Action-Centric-WAM</strong>（VLA+WM，动作先验、视频仅作辅助监督）、<strong>Action-Only-WAM</strong>（VLA+VGM，未来跨模态注意力关闭，部署时不生成未来视频）。</li><li><strong>架构</strong>：将扩散 Transformer 的稠密 FFN 子层替换为 MoE 模块，并由预训练稠密子层初始化；每个接口使用各自的注意力掩码。</li><li><strong>PAIR 训练目标</strong>：以四接口对同一 chunk 的动作预测 MAE 归一化后构造软标签，在误差最小的接口 1% 范围内优先选择更快接口；用交叉熵训练路由器，部署时按最高概率选择接口，骨干保持冻结。</li><li><strong>关键技术点</strong>：接口级可见性掩码、能力对齐的组级专家路由（区别于 sample-level 路由）、以及冻结骨干下的 plug-in 路由适配。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>LIBERO</strong>、<strong>RoboTwin 2.0</strong>（Clean-to-Clean 与 Clean-to-Randomized 设置，各 50 个任务平均）。</li><li><strong>世界模型基准</strong>：<strong>WorldArena</strong>（评价动作驱动与交互指标，含 JEPA Similarity、Motion Smoothness、Interaction Quality、Trajectory Accuracy、Instruction Following、EWMScore-P）。</li><li><strong>真实世界任务</strong>：衣物折叠（可变形）、纸盒折叠（接触丰富）、桌面清理（长时程），每个任务 20 次试验。</li><li><strong>模型规模</strong>：基于扩散 Transformer（DiT）骨干，稠密基线为 <strong>Wan2.1-I2V-14B</strong>，其上扩展为混合专家结构；论文原文未给出融合后参数量与专家数量的具体数值。</li><li><strong>训练与适配资源</strong>：统一训练时五种范式均匀采样、每步优化一个范式，去噪步数配置为 16；PAIR 每任务使用 <strong>2,000</strong> 个目标任务 chunk 场景；具体 GPU/TPU 型号与数量原文未明确说明。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>真实世界（标准配置）</strong>：<strong>IDM-WAM</strong> 平均成功率 <strong>88.3%</strong>，较最强基线 <strong>WorldScape Policy 2.0（76.7%）</strong> 提升约 11.7 个百分点；四种 UniW(A)M 接口均超过该基线（Joint-WAM 86.7%、Action-Centric-WAM 81.7%、Action-Only-WAM 80.0%）。</li><li><strong>LIBERO</strong>：平均成功率 <strong>97.5%</strong>，其中 Spatial 子任务达 <strong>99.2%</strong>。</li><li><strong>RoboTwin 2.0</strong>：仅用干净数据训练时，C2C 达 <strong>84.38%</strong>，C2R 达 <strong>66.60%</strong>，C2R 超过基线 <strong>π0.5</strong> 达 <strong>20.60</strong> 个百分点。</li><li><strong>WorldArena</strong>：在三个真实任务上 <strong>EWMScore-P 均为最高</strong>，动作条件世界建模全面领先 Cosmos-Predict 2.5 与 CtrlWorld。</li><li><strong>OOD 适配</strong>：PEAR 路由仅适配（骨干冻结）将平均成功率由最强单接口的 <strong>63.3%</strong> 提升至 <strong>76.7%</strong>；PAIR 在接近阶段偏好 Action-Centric/Action-Only-WAM，在接触与精细操作阶段更多选择 Joint-WAM/IDM-WAM。</li><li><strong>效率</strong>：chunk 推理时间（除以 16 步）Action-Centric-WAM <strong>154.3 ms</strong>、Action-Only-WAM <strong>225.8 ms</strong>、Joint-WAM <strong>428.1 ms</strong>、IDM-WAM <strong>532.7 ms</strong>；PAIR 集成预测约 <strong>2 ms</strong>，含共享专家特征计算的路由平均约 <strong>63 ms</strong>；UniW(A)M+PAIR 处于成功率–耗时 Pareto 前沿（76.7% 成功率、308.9 s 平均完成时间）。</li><li><strong>消融</strong>：去除 AC-WM 共同训练使 Joint-WAM/IDM-WAM 平均成功率下降 <strong>15.0</strong> 个百分点，Action-Centric-WAM 与 Action-Only-WAM 分别下降 <strong>31.7</strong> 与 <strong>43.3</strong> 个百分点；单一稠密 DiT 基线最高仅 <strong>16.7%</strong>；sample-level 路由下两个纯动作接口仅 <strong>10.0%</strong>，<strong>CATR</strong> 将其提升至 <strong>81.7%</strong> 与 <strong>80.0%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.18774/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">GreenWAM: A World Foundation Model for Robotics</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.18650/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">ForkCast: Predictive Recovery for Vision-Language-Action Policies via Counterfactual Futures</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

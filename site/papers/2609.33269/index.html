@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Q-WAM: 4-Bit Quantization of World Action Models with Action-Subspace Protection - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="世界动作模型（World Action Models, WAMs） 通过迭代扩散过程联合生成视频与机器人动作，在机器人操作任务中表现强劲，但其高昂的计算与内存成本（如 ImageWAM 在 bf16 下需 19.9 GB GPU 内存）严重阻碍部署。 现有 训练后量化（PTQ） 方法（如平滑、旋转）通过减少激活异常值来压缩模型，但无法保持动作生成精度，因为逐层局部误差并不能反映误差经过完整去噪过程后对最终动作的影响。 论文提出 Q-WAM，一种针对 WAMs 的 4-bit 权重-激活（W4A4）量化框架，通过追踪量化误差对最终动作的下游影响，选择性保护对动作最敏感的激活方向。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Q-WAM: 4-Bit Quantization of World Action Models with Action-Subspace Protection</h1>
             <div class="detail-meta">2026-09-27 · <a href="http://arxiv.org/abs/2609.33269" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.33269" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.33269</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">世界动作模型（World Action Models, WAMs） 通过迭代扩散过程联合生成视频与机器人动作，在机器人操作任务中表现强劲，但其高昂的计算与内存成本（如 ImageWAM 在 bf16 下需 19.9 GB GPU 内存）严重阻碍部署。 现有 训练后量化（PTQ） 方法（如平滑、旋转）通过减少激活异常值来压缩模型，但无法保持动作生成精度，因为逐层局部误差并不能反映误差经过完整去噪过程后对最终动作的影响。 论文提出 Q-WAM，一种针对 WAMs 的 4-bit 权重-激活（W4A4）量化框架，通过追踪量化误差对最终动作的下游影响，选择性保护对动作最敏感的激活方向。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Northeastern University（东北大学）：Jingwu Luo、Yuhao Lei、…</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.33269/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">世界动作模型（World Action Models, WAMs） 通过迭代扩散过程联合生成视频与机器人动作，在机器人操作任务中表现强劲，但其高昂的计算与内存成本（如 ImageWAM 在 bf16 下需 19.9 GB GPU 内存）严重阻碍部署。</p>
+  <ul class="reading-intro-points"><li>世界动作模型（World Action Models, WAMs） 通过迭代扩散过程联合生成视频与机器人动作，在机器人操作任务中表现强劲，但其高昂的计算与内存成本（如 ImageWAM 在 bf16 下需 19.9 GB GPU 内存）严重阻碍部署。</li><li>现有 训练后量化（PTQ） 方法（如平滑、旋转）通过减少激活异常值来压缩模型，但无法保持动作生成精度，因为逐层局部误差并不能反映误差经过完整去噪过程后对最终动作的影响。</li><li>论文提出 Q-WAM，一种针对 WAMs 的 4-bit 权重-激活（W4A4）量化框架，通过追踪量化误差对最终动作的下游影响，选择性保护对动作最敏感的激活方向。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Northeastern University</strong>（东北大学）：Jingwu Luo、Yuhao Lei、Yi Gao、Xuan Zhang、Yanzhi Wang、Arash Akbari、Arman Akbari</li><li><strong>EmbodyX</strong>：Weiwei Chen</li><li><strong>University of Minnesota - Twin Cities</strong>（明尼苏达大学双城分校）：Zhenman Fang</li><li><strong>University of Georgia</strong>（佐治亚大学）：Geng Yuan</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li><strong>世界动作模型（World Action Models, WAMs）</strong> 通过迭代扩散过程联合生成视频与机器人动作，在机器人操作任务中表现强劲，但其高昂的计算与内存成本（如 <strong>ImageWAM</strong> 在 bf16 下需 19.9 GB GPU 内存）严重阻碍部署。</li><li>现有 <strong>训练后量化（PTQ）</strong> 方法（如平滑、旋转）通过减少激活异常值来压缩模型，但无法保持动作生成精度，因为逐层局部误差并不能反映误差经过完整去噪过程后对最终动作的影响。</li><li>论文提出 <strong>Q-WAM</strong>，一种针对 WAMs 的 4-bit 权重-激活（W4A4）量化框架，通过追踪量化误差对最终动作的下游影响，选择性保护对动作最敏感的激活方向。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>动作可观测性格拉姆矩阵（Action Observability Gramian, AOG）</strong>：一种逐层敏感度矩阵，预测每一层输入通道加权组合的舍入误差如何通过所有去噪步骤改变最终动作，并使用无标签随机探针在标定阶段估计。</li><li>提出 <strong>动作子空间保护（Action-Subspace Protection, ASP）</strong>：将每个受保护线性层拆分为两个稠密矩阵乘法分支——一个小的 16-bit 低秩分支保护最动作敏感的通道组合，其余权重与激活量化为 4-bit。</li><li>提出基于 <strong>AOG 的动作质量（action mass）聚合方法</strong>，用于在混合专家（Mixture-of-Transformers）架构中识别并对最影响动作生成的专家应用 ASP，以最小开销保留动作质量。</li><li>在 <strong>Fast-WAM</strong>、<strong>ImageWAM</strong> 与 <strong>LingBot-VA</strong> 三种 WAM 上验证，覆盖 <strong>RoboTwin 2.0</strong> 仿真（50 个任务）与真实机器人部署，证明方法在显著降低内存的同时保持接近 bf16 的动作生成精度。</li><li>在 <strong>Unitree G1</strong> 人形机器人和双臂 <strong>UR3</strong> 机器人上验证，物理任务成功率优于最强基线 <strong>SVDQuant</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>AOG 定义与估计</strong>：对每层输入做一阶泰勒展开，得到雅可比矩阵 \(J^{(i)}_{\ell}\)，定义 \(G_{\ell}=\mathbb{E}[\sum_{i} J^{(i)\top}_{\ell} J^{(i)}_{\ell}]\) 为 AOG；利用随机探针 \(u\sim\mathcal{N}(0,I_m)\) 的单次反向传播即可同时获得所有层的 \(J^{\top}u\)，实现无标签、低成本的估计（\(P{=}12\) 个探针，比精确计算快约 37 倍）。</li><li><strong>ASP 层拆分</strong>：对输入激活进行平滑（SmoothQuant）与 Hadamard 旋转预处理后，对 AOG 特征分解取前 \(r\) 个特征向量构成动作子空间 \(V\)；激活拆分为 \(V(V^{\top}\tilde{x})\)（16-bit 保护分量）与 \(\tilde{x}_{\perp}=(I-\Pi)\tilde{x}\)（4-bit 残差分量），权重相应分解为 \(\widetilde{W}_{\perp}=(I-\Pi)\widetilde{W}\)。</li><li><strong>最优性保证</strong>：在旋转后舍入误差呈各向同性的假设下，保护 top-\(r\) 特征向量可最小化动作畸变的局部近似（附录 A.3 给出证明）。</li><li><strong>专家选择</strong>：以动作质量 \(\mu_E=\sum_{\ell\in E}\mathrm{tr}(\widetilde{G}_{\ell})\) 衡量专家对动作的敏感度，仅对动作质量最高的专家（如 MoT 中的动作专家）应用 ASP；实验显示动作专家仅占不到五分之一参数却承载 Fast-WAM 上 <strong>89.3%</strong>、ImageWAM 上 <strong>99.99%</strong> 的动作质量。</li><li><strong>实现特性</strong>：两个分支均为可在 GPU 上高效运行的稠密 GEMM，16-bit 低秩分支开销可忽略（附录 B.2）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据集</strong>：<strong>RoboTwin 2.0</strong>（50 个任务，clean 与 randomized 两种条件，100 条演示）。</li><li><strong>真实世界任务</strong>：<strong>Unitree G1</strong> 人形机器人（工具分类、物品分拣）与双臂 <strong>UR3</strong> 机器人（桌面清理、方块堆叠、抽屉操作），每任务 25 次试验。</li><li><strong>评估模型</strong>：<strong>Fast-WAM</strong>、<strong>ImageWAM</strong>（2-expert MoT）、<strong>LingBot-VA</strong>（共享骨干）。</li><li><strong>量化配置</strong>：保护秩 <strong>\(r=32\)</strong>，分组 W4A4 量化，组大小 <strong>32</strong>，受保护分支保持 16-bit。</li><li><strong>训练/标定资源</strong>：标定在 <strong>NVIDIA H100 GPU</strong> 上运行；仿真评估在 <strong>NVIDIA L40S GPU</strong> 上运行；真实世界推理使用 <strong>NVIDIA RTX 5090</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境与基准</strong>：仿真在 <strong>RoboTwin 2.0</strong> 上进行（clean 与 randomized 设置），真实世界在两个具身平台上的五个任务上评估；基线包括 <strong>bf16</strong>、<strong>SmoothQuant</strong>、<strong>ViDiT-Q</strong>、<strong>SVDQuant</strong>。</li><li><strong>主要评估指标</strong>：任务成功率（%）、每权重有效比特数（BPW）、目标块内存（GB）。</li><li><strong>RoboTwin 2.0 仿真结果</strong>：Q-WAM 达到 <strong>89.6–93.0%</strong> 平均成功率，距 16-bit 模型仅 <strong>1.1 个百分点</strong>，量化块内存降低 <strong>3.1–3.4 倍</strong>；比最强基线 SVDQuant 高 <strong>2.5–8.7 个百分点</strong>。</li><li><strong>具体数值示例</strong>：Fast-WAM 上 Q-WAM 达 90.78%（bf16 为 91.81%），BPW 4.62，内存 3.44 GB（bf16 为 11.85 GB）；ImageWAM 上达 92.97%（bf16 为 93.26%），内存 2.69 GB（bf16 为 9.11 GB）。</li><li><strong>真实世界结果</strong>：在 <strong>Unitree G1</strong> 与双臂 <strong>UR3</strong> 上，Q-WAM 相比 SVDQuant 成功率提升 <strong>12.8–17.6 个百分点</strong>。</li><li><strong>消融分析</strong>：验证了子空间保护、权重量化器（如 SVDQuant 作为权重量化器）、专家选择的有效性；AOG 预测与实际动作损伤的 Pearson 相关系数达 <strong>\(\rho{=}0.95\)</strong>，而局部误差仅为 <strong>\(\rho{=}0.04\)</strong>。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DeltaWAM: Change-Centric Visual Foresight via Delta Tokens for an Efficient World-Action Model - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 DeltaWAM，一种以变化为中心（change-centric）的 World-Action Model，用 delta token 替代整帧或全场景未来预测。 解决现有 WAM 在像素空间或全 latent 状态预测中的时空冗余、计算开销大、任务无关信息浪费等问题。 核心思想：连续帧共享大量静态上下文，动作策略真正需要预测的是低维、结构化的动态变化，如物体位移和末端执行器运动。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">DeltaWAM: Change-Centric Visual Foresight via Delta Tokens for an Efficient World-Action Model</h1>
             <div class="detail-meta">2026-09-27 · <a href="http://arxiv.org/abs/2609.33177" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.33177" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.33177</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 DeltaWAM，一种以变化为中心（change-centric）的 World-Action Model，用 delta token 替代整帧或全场景未来预测。 解决现有 WAM 在像素空间或全 latent 状态预测中的时空冗余、计算开销大、任务无关信息浪费等问题。 核心思想：连续帧共享大量静态上下文，动作策略真正需要预测的是低维、结构化的动态变化，如物体位移和末端执行器运动。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学：Tianyun Jiang</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.33177/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 DeltaWAM，一种以变化为中心（change-centric）的 World-Action Model，用 delta token 替代整帧或全场景未来预测。</p>
+  <ul class="reading-intro-points"><li>提出 DeltaWAM，一种以变化为中心（change-centric）的 World-Action Model，用 delta token 替代整帧或全场景未来预测。</li><li>解决现有 WAM 在像素空间或全 latent 状态预测中的时空冗余、计算开销大、任务无关信息浪费等问题。</li><li>核心思想：连续帧共享大量静态上下文，动作策略真正需要预测的是低维、结构化的动态变化，如物体位移和末端执行器运动。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>：Tianyun Jiang</li><li><strong>中佛罗里达大学</strong>：Wenrui Bao、Yu Tian、Yuzhang Shang（通讯作者）</li><li><strong>南加州大学</strong>：Bingxin Xu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>DeltaWAM</strong>，一种以变化为中心（change-centric）的 <strong>World-Action Model</strong>，用 <strong>delta token</strong> 替代整帧或全场景未来预测。</li><li>解决现有 WAM 在像素空间或全 latent 状态预测中的时空冗余、计算开销大、任务无关信息浪费等问题。</li><li>核心思想：连续帧共享大量静态上下文，动作策略真正需要预测的是低维、结构化的动态变化，如物体位移和末端执行器运动。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别现有 WAM 的时空冗余，将视觉前瞻分解为<strong>静态视觉锚点</strong>和<strong>动态转移 token</strong>，把世界建模从场景重建转向变化预测。</li><li>提出轻量高效的 <strong>DeltaWAM</strong>：总计 <strong>0.725B</strong> 参数，推理峰值显存 <strong>3.86GB</strong>，单动作块延迟 <strong>142.1ms</strong>。</li><li>设计任务条件 <strong>DeltaWorld</strong>：通过 <strong>Gated AdaLN</strong> 注入语言指令，使预测的未来与任务意图对齐，避免无条件 rollout 误导策略。</li><li>实验证明压缩 <strong>delta token</strong> 比完整未来 DINO 状态更具动作引导性，在 <strong>LIBERO</strong> 达 <strong>92.8%</strong> 成功率，在 <strong>LIBERO-Pro</strong> 任务扰动下平均 <strong>17.85%</strong>。</li><li>在 <strong>AgileX PiPER</strong> 六自由度机械臂上完成真实世界拾放任务部署，验证方法可行性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>DeltaWorld</strong> 的 delta tokenization：用冻结 <strong>DINOv3</strong> 提取 patch 级特征，将相邻帧 DINO 特征差压缩为单个 1D <strong>delta token</strong>。</li><li><strong>DeltaWorld Predictor</strong> 根据观测历史 delta token 和任务嵌入，自回归预测未来 delta token 序列，每个未来帧对应一个 token。</li><li>使用冻结 <strong>T5</strong> 编码语言指令，并通过 <strong>Gated AdaLN</strong> 的 scale、shift、residual gate 调制每个 DeltaWorld block，实现任务条件世界建模。</li><li><strong>Action DiT</strong> 采用 <strong>flow-matching</strong>，条件于当前观测的密集 DINO patch 特征（空间锚点）和预测的未来 delta token 序列（动态子目标），生成动作块。</li><li>两阶段训练：Stage 1 用 <strong>Best-of-Many (BoM)</strong> 训练任务条件 DeltaWorld；Stage 2 冻结 DeltaWorld，用 oracle 选择或随机采样的未来分支训练 Action DiT。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>预训练视频数据：<strong>Kinetics-700</strong></li><li>模拟基准：<strong>LIBERO</strong>（Spatial、Object、Goal、LIBERO-10/Long）与 <strong>LIBERO-Pro</strong> 任务扰动；附录还评估 <strong>LIBERO-Plus</strong></li><li>真实机器人数据：<strong>AgileX PiPER</strong> 六自由度机械臂，150 episodes 拾放数据，30 Hz，前视与腕部 RGB 观测及 14 维机器人状态</li><li>模型规模：总计 <strong>0.725B</strong> 参数，其中 <strong>120.3M</strong> 可训练参数</li><li>训练资源：<strong>2 张 H100 GPU</strong>，总计 <strong>256 GPU hours</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：<strong>LIBERO</strong> 模拟基准和 <strong>PiPER</strong> 真实机械臂；每个任务评估 50 次，使用 3 个随机种子</li><li>主要评估指标：任务成功率、动作块查询延迟、推理峰值显存、每动作 TFLOPs</li><li><strong>LIBERO</strong> 平均成功率 <strong>92.8%</strong>：Spatial 92.6%，Object 97.0%，Goal 95.8%，Long 85.8%</li><li>推理效率：<strong>142.1 ms</strong> 每动作块，峰值显存 <strong>3.86 GB</strong>，约 <strong>0.584 TFLOPs/action</strong></li><li><strong>LIBERO-Pro</strong> 任务扰动平均成功率 <strong>17.85%</strong>，显著高于多数接近 0% 的基线</li><li>消融实验：仅使用当前 DINO 条件降至 <strong>73.9%</strong>；解码未来 DINO 条件降至 <strong>79.0%</strong>；预测 delta token 更有效</li><li>相比最强预训练 VLA/WAM 基线成功率仍偏低，但以轻量、低延迟和程序性鲁棒性为主要优势。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

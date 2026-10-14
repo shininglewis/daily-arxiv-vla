@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CFG-Policy: Unified Diffusion Policy Learning Framework via Classifier-free Guidance - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 CFG-Policy，一个统一的、即插即用的扩散策略学习框架，通过无分类器引导（Classifier-free Guidance, CFG）将探索与利用分离为两个独立的生成策略，并在采样过程中组合它们的分数或速度场。 解决的问题：扩散策略在强化学习（RL）中优化时会降低行为多样性、限制探索能力；在 RL 后训练中直接微调预训练策略会破坏其已有能力，而动作空间残差方法的表达能力有限。 核心目标：在提升任务性能的同时，保留持续适应所需的行为多样性和能力，统一在线 RL 与离线到在线 RL 后训练两种学习范式。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.14936">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">CFG-Policy: Unified Diffusion Policy Learning Framework via Classifier-free Guidance</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">CFG-Policy: Unified Diffusion Policy Learning Framework via Classifier-free Guidance</h1>
+            <div class="detail-meta">2026-10-10 · <a href="http://arxiv.org/abs/2610.14936" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.14936" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.14936</span></div>
+            <p class="detail-summary">论文提出 CFG-Policy，一个统一的、即插即用的扩散策略学习框架，通过无分类器引导（Classifier-free Guidance, CFG）将探索与利用分离为两个独立的生成策略，并在采样过程中组合它们的分数或速度场。 解决的问题：扩散策略在强化学习（RL）中优化时会降低行为多样性、限制探索能力；在 RL 后训练中直接微调预训练策略会破坏其已有能力，而动作空间残差方法的表达能力有限。 核心目标：在提升任务性能的同时，保留持续适应所需的行为多样性和能力，统一在线 RL 与离线到在线 RL 后训练两种学习范式。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海科技大学（ShanghaiTech University），上海，中国</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.14936/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 CFG-Policy，一个统一的、即插即用的扩散策略学习框架，通过无分类器引导（Classifier-free Guidance, CFG）将探索与利用分离为两个独立的生成策略，并在采样过程中组合它们的分数或速度场。</p>
+  <ul class="reading-intro-points"><li>论文提出 CFG-Policy，一个统一的、即插即用的扩散策略学习框架，通过无分类器引导（Classifier-free Guidance, CFG）将探索与利用分离为两个独立的生成策略，并在采样过程中组合它们的分数或速度场。</li><li>解决的问题：扩散策略在强化学习（RL）中优化时会降低行为多样性、限制探索能力；在 RL 后训练中直接微调预训练策略会破坏其已有能力，而动作空间残差方法的表达能力有限。</li><li>核心目标：在提升任务性能的同时，保留持续适应所需的行为多样性和能力，统一在线 RL 与离线到在线 RL 后训练两种学习范式。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海科技大学</strong>（ShanghaiTech University），上海，中国</li><li><strong>InstAdapt</strong>，上海，中国</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>CFG-Policy</strong>，一个统一的、即插即用的扩散策略学习框架，通过无分类器引导（Classifier-free Guidance, CFG）将探索与利用分离为两个独立的生成策略，并在采样过程中组合它们的分数或速度场。</li><li>解决的问题：扩散策略在强化学习（RL）中优化时会降低行为多样性、限制探索能力；在 RL 后训练中直接微调预训练策略会破坏其已有能力，而动作空间残差方法的表达能力有限。</li><li>核心目标：在提升任务性能的同时，保留持续适应所需的行为多样性和能力，统一在线 RL 与离线到在线 RL 后训练两种学习范式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出在线 RL 与离线到在线 RL 后训练的统一探索–利用视角：前者需在保留探索的同时学习利用，后者需在保留已获得策略的同时学习适应性行为。</li><li>提出 <strong>CFG-Policy</strong>，一个即插即用框架，通过在生成采样过程中组合独立的探索策略与利用策略来实现上述视角，同时保留底层 RL 优化目标不变。</li><li>在两种学习范式中验证了框架的有效性与通用性：在 <strong>MuJoCo</strong> 控制任务上改进 <strong>QSM</strong> 和 <strong>QVPO</strong>，在 <strong>RoboTwin</strong> 操作任务上改进 <strong>Flow-SDE+PPO</strong>。</li><li>提出自适应组合机制，通过 critic 值代理与路径差异下界约束动态调整引导权重，优于固定引导系数和动作空间插值。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>核心机制：给定两个策略的生成场 <strong>v_A</strong> 和 <strong>v_B</strong>，构造组合场 <strong>v_w = v_A + w(v_B − v_A)</strong>，其中 <strong>w</strong> 控制相对贡献；两个场作用于同一中间样本，从而引导整个生成轨迹而非对最终动作插值。</li><li>在线 RL：冻结探索策略 <strong>π_E</strong>，从任务奖励学习利用策略 <strong>π_X</strong>，组合场为 <strong>v_w = (1−w)v_E + wv_X</strong>；组合策略 π_w 作为行为策略收集数据，critic 与 π_X 用原算法目标更新。</li><li>RL 后训练：冻结预训练策略 <strong>π_X⁰</strong>，优化可训练引导策略 <strong>π_E^θ</strong>，组合场为 <strong>v_w^θ = (1−w)v_E^θ + wv_X⁰</strong>；梯度只回传至 π_E^θ，保留预训练动作生成器不变。</li><li>理论分析：命题 1 给出路径一致性条件下的端点解释，即采样诱导端点分布近似为几何组合 <strong>π_A^(1−w)·π_B^w</strong>；定理 1 证明在锐化假设下引导权重越大组合策略熵越低。</li><li>自适应组合：以 TRPO 为灵感，求解 <strong>max_w J_Q(w) s.t. D_path(w) ≥ δ</strong>，用拉格朗日法对 w 做上升更新、对 λ 做对偶下降更新，采用中位数统计的路径差异估计量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>MuJoCo</strong> 任务（在线 RL）：<strong>HalfCheetah-v4</strong>、<strong>Walker2d-v4</strong>、<strong>Ant-v4</strong>、<strong>Humanoid-v4</strong>、<strong>Hopper-v4</strong>。</li><li><strong>RoboTwin</strong> 任务（RL 后训练）：<strong>Adjust Bottle</strong>、<strong>Pick Dual Bottles</strong>、<strong>Rotate QR Code</strong>、<strong>Grab Roller</strong>。</li><li>预训练模型：<strong>π₀</strong> 和 <strong>π₀.₅</strong> 视觉-语言-动作（VLA）流匹配模型。</li><li>探索分支：单独预训练的 <strong>RND</strong>（Random Network Distillation）探索策略。</li><li>训练资源：论文未明确给出 GPU/TPU 数量与模型参数量，仅致谢中提及上海科技大学 <strong>HPC 平台</strong>及 <strong>Fcloud CO., LTD</strong> 提供的计算资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：5 个 MuJoCo 连续控制任务（在线 RL）与 4 个 RoboTwin 双臂操作任务（RL 后训练）；每个任务报告 5 次运行的均值与样本标准差，机器人任务报告成功率。</li><li>在线 RL 主要结果：<strong>QSM</strong> 在 HalfCheetah-v4 提升 <strong>+23.9%</strong>、Walker2d-v4 <strong>+15.1%</strong>、Ant-v4 <strong>+6141.3%</strong>（从 −24 到 1425±308）、Humanoid-v4 <strong>+2.90%</strong>、Hopper-v4 <strong>+12.7%</strong>。</li><li>QVPO 主要结果：HalfCheetah-v4 <strong>+16.3%</strong>、Walker2d-v4 <strong>+9.0%</strong>、Ant-v4 <strong>+3.4%</strong>、Humanoid-v4 <strong>+6.49%</strong>、Hopper-v4 <strong>+3.8%</strong>，全部任务均取得提升。</li><li>RL 后训练结果：<strong>π₀</strong> 上 Adjust Bottle 成功率从 <strong>82.81%</strong> 提升至 <strong>98.44%</strong>，Pick Dual Bottles 从 <strong>43.75%</strong> 提升至 <strong>57.81%</strong>，Rotate QR Code 从 <strong>34.38%</strong> 提升至 <strong>42.19%</strong>，Grab Roller 从 <strong>92.19%</strong> 提升至 <strong>93.75%</strong>；<strong>π₀.₅</strong> 在非饱和任务上同样提升，Grab Roller 保持 <strong>100%</strong>。</li><li>消融实验：自适应引导在 HalfCheetah-v4 上优于固定系数 <strong>w∈{0.8, 0.98}</strong>；动作空间混合在所有混合系数下均显著劣于原 <strong>QVPO</strong>（最高下降 <strong>−105.44%</strong>），而生成空间组合效果更佳。</li><li>结论与局限：CFG-Policy 作为即插即用的采样接口可同时适用于两种学习范式；但最优引导权重 <strong>w</strong> 在不同任务间差异较大，任务特定调参仍可能优于自适应策略，开发更有效的任务感知引导自适应是未来方向。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.14997/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Barrier-Constrained Guidance For Real-time Asynchronous VLA Execution</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.14885/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Verify, Act, Distill: Turning Test-Time Compute into Test-Time Adaptation for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

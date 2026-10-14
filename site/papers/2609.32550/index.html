@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Are Vision-Language-Action Models Robust to One-Step Observation Perturbations? - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文系统研究了 Vision-Language-Action (VLA) 模型对单步观测扰动（one-step perturbations）的鲁棒性，即在一个 episode 中仅某一个时间步的观测被严重破坏。 与以往关注持续扰动（persistent perturbations）的安全研究不同，本文聚焦瞬时观测损坏（如过曝、运动模糊、通信短时故障）这一被忽视的安全威胁。 目标是揭示当前 VLA 在关键时间步上的脆弱性，并提出兼顾鲁棒性、任务性能与计算效率的解决方案。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Are Vision-Language-Action Models Robust to One-Step Observation Perturbations?</h1>
             <div class="detail-meta">2026-09-26 · <a href="http://arxiv.org/abs/2609.32550" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.32550" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.32550</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文系统研究了 Vision-Language-Action (VLA) 模型对单步观测扰动（one-step perturbations）的鲁棒性，即在一个 episode 中仅某一个时间步的观测被严重破坏。 与以往关注持续扰动（persistent perturbations）的安全研究不同，本文聚焦瞬时观测损坏（如过曝、运动模糊、通信短时故障）这一被忽视的安全威胁。 目标是揭示当前 VLA 在关键时间步上的脆弱性，并提出兼顾鲁棒性、任务性能与计算效率的解决方案。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Shojiro Yamabe — Science Tokyo（邮箱域名 isct.ac.jp）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.32550/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文系统研究了 Vision-Language-Action (VLA) 模型对单步观测扰动（one-step perturbations）的鲁棒性，即在一个 episode 中仅某一个时间步的观测被严重破坏。</p>
+  <ul class="reading-intro-points"><li>论文系统研究了 Vision-Language-Action (VLA) 模型对单步观测扰动（one-step perturbations）的鲁棒性，即在一个 episode 中仅某一个时间步的观测被严重破坏。</li><li>与以往关注持续扰动（persistent perturbations）的安全研究不同，本文聚焦瞬时观测损坏（如过曝、运动模糊、通信短时故障）这一被忽视的安全威胁。</li><li>目标是揭示当前 VLA 在关键时间步上的脆弱性，并提出兼顾鲁棒性、任务性能与计算效率的解决方案。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Shojiro Yamabe</strong> — <strong>Science Tokyo</strong>（邮箱域名 isct.ac.jp）</li><li><strong>Jun Sakuma</strong> — <strong>Science Tokyo</strong> 与 <strong>RIKEN</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文系统研究了 <strong>Vision-Language-Action (VLA)</strong> 模型对<strong>单步观测扰动（one-step perturbations）</strong>的鲁棒性，即在一个 episode 中仅某一个时间步的观测被严重破坏。</li><li>与以往关注<strong>持续扰动（persistent perturbations）</strong>的安全研究不同，本文聚焦瞬时观测损坏（如过曝、运动模糊、通信短时故障）这一被忽视的安全威胁。</li><li>目标是揭示当前 VLA 在关键时间步上的脆弱性，并提出兼顾鲁棒性、任务性能与计算效率的解决方案。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次对 VLA 模型在<strong>单步扰动</strong>下的鲁棒性进行系统性研究，发现关键时间步的扰动可造成 <strong>50 个百分点以上</strong>的性能下降。</li><li>分析并指出<strong>动作分块执行长度（execution length, H）</strong>是放大单步扰动影响的关键因素，执行长度越长，鲁棒性越差。</li><li>提出 <strong>CARE（Consistency-Aware Robust Execution length selection）</strong>，一种基于动作块预测一致性的自适应执行长度选择方法。</li><li>CARE <strong>无需额外训练、无需额外策略推理、不改变模型架构</strong>，可广泛适用于各类预测动作块的 VLA 模型。</li><li>在多个模型、多个基准和真实机器人上验证 CARE 能显著提升鲁棒性且基本保持干净任务性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>在每一步推理时，将当前新预测的动作块与上一次预测中<strong>尚未执行的部分</strong>进行比较，作为"干净动作"的代理参考。</li><li>通过<strong>不一致度函数 D(·,·)</strong> 判断是否需要缩短执行长度：不一致度大则说明观测或预测不稳定，采用短执行长度；否则保留长执行长度。</li><li>不一致度函数基于<strong>归一化欧氏距离</strong>：r_i = \|\|a_{t+i} − â_{t+i}\|\|₂ / (\|\|a_{t+i}\|\|₂ + \|\|â_{t+i}\|\|₂ + ε)。</li><li>采用<strong>折扣累积不一致度</strong> D = Σ γ^i r_i（γ∈(0,1)），强调持续多步的不一致，抑制单步跳变（如夹爪开合翻转）带来的过度反应。</li><li>执行长度选择公式：H_t = max{H ∈ {1,…,H_max} \|D(A_t^{1:H}, Â^{…}) ≤ τ}，其中 <strong>H_max = ⌊K/2⌋</strong>，与现有 VLA 部署中执行长度小于动作块一半的惯例一致。</li><li>创新点在于首次将<strong>时间一致性</strong>用于自适应执行长度选择，从而在扰动时缩短执行长度以限制错误动作的持续影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong> 的四个任务套件（共 40 个任务）、<strong>Meta-World</strong>。</li><li>真实机器人实验（附录 C.5，硬件与任务细节见原文）。</li><li>评估的 VLA 模型共五个：<strong>π₀</strong>、<strong>π₀-FAST</strong>、<strong>π₀.₅</strong>、<strong>SmolVLA</strong>、<strong>X-VLA</strong>。</li><li>干净条件下的最优执行长度：<strong>π₀、π₀.₅、X-VLA 使用 H=15</strong>，<strong>π₀-FAST 与 SmolVLA 使用 H=10</strong>（候选集 H ∈ {1,5,10,15,20,25,30}）。</li><li>超参数：折扣因子 <strong>γ=0.85</strong>，阈值 <strong>τ=1.5</strong>（π₀、π₀-FAST、SmolVLA）与 <strong>τ=1.0</strong>（π₀.₅、X-VLA），最大执行长度 15。</li><li>训练资源（GPU/TPU 等）在附录 C.1 中给出，所提供 HTML 未包含具体内容。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估协议：对每个推理步作为独立 rollout 的干预时刻，每个 episode 仅施加一次扰动；每个模型、任务、扰动在每个干预步运行 <strong>10 个 episode</strong>。</li><li>扰动类型共 <strong>8 种</strong>：图像类（<strong>Overexposure、Blackout、Motion blur、Packet loss</strong>）、状态类（<strong>Zero fill、State spike、Random state</strong>）、图像+状态类（<strong>Data loss</strong>）。</li><li>主要指标：<strong>干净成功率</strong>与 <strong>Bottom10%-SR</strong>（所有干预步成功率中最低 10% 的均值），用于衡量最脆弱时刻的表现。</li><li>关键发现 1：所有评估模型在至少一种扰动下 Bottom10%-SR 比干净成功率低 <strong>超过 50 个百分点</strong>，如 X-VLA 在 State Spike 下从 96.4% 降至 2.8%（↓93.6）。</li><li>关键发现 2：扰动影响强烈依赖<strong>发生时机</strong>，越早的扰动通常造成更严重的下降（可能与模仿学习中的误差累积有关）。</li><li>关键发现 3：<strong>执行长度越长，扰动影响被放大越明显</strong>；H=1 时差距最小（每步可重新规划）。</li><li>基线方法：<strong>RobustVLA</strong>、<strong>VLA-Corrector</strong>、<strong>AAC</strong>。</li><li>CARE 效果（LIBERO，Table 2）：π₀ 干净性能 70.9→72.5，状态扰动 Bottom10%-SR 由 5.9→51.2、13.8→47.4、19.6→50.5；π₀.₅ 在 Data loss 下由 47.2→92.4；π₀-FAST 在图像扰动下由 44.4→62.5、45.0→63.4。</li><li>CARE 在大多数模型上基本保持干净任务性能，部分模型（如 π₀、π₀.₅）干净性能甚至略有提升。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>
