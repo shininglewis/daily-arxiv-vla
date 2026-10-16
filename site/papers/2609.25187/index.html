@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>X-Planner: Event-Structured Task Planning for Embodied Intelligence - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 X-Planner，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。 指出当前 VLA（Vision–Language–Action）系统与 CoT 规划器存在三大缺口：数据缺口（任务级标注掩盖事件边界与失败重试）、粒度缺口（固定语义粒度，不贴合行为边界）、延迟缺口（逐 token 自回归推理形成串行关键路径且易误差传播）。 以语义事件（如 reaching、grasping、lifting、placing）作为规划单元，为下游 world-action 模型提供可读文本或连续隐状态的规划条件。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.25187.webp" alt="X-Planner: Event-Structured Task Planning for Embodied Intelligence" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 X-Planner，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">X-Planner: Event-Structured Task Planning for Embodied Intelligence</h1>
             <div class="detail-meta">2026-09-21 · <a href="http://arxiv.org/abs/2609.25187" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.25187" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.25187</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 X-Planner，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。 指出当前 VLA（Vision–Language–Action）系统与 CoT 规划器存在三大缺口：数据缺口（任务级标注掩盖事件边界与失败重试）、粒度缺口（固定语义粒度，不贴合行为边界）、延迟缺口（逐 token 自回归推理形成串行关键路径且易误差传播）。 以语义事件（如 reaching、grasping、lifting、placing）作为规划单元，为下游 world-action 模型提供可读文本或连续隐状态的规划条件。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">X Square Robot Team（X Square Robot 团队），论文以团队名义署名</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.25187/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 X-Planner，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。</p>
+  <ul class="reading-intro-points"><li>提出 X-Planner，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。</li><li>指出当前 VLA（Vision–Language–Action）系统与 CoT 规划器存在三大缺口：数据缺口（任务级标注掩盖事件边界与失败重试）、粒度缺口（固定语义粒度，不贴合行为边界）、延迟缺口（逐 token 自回归推理形成串行关键路径且易误差传播）。</li><li>以语义事件（如 reaching、grasping、lifting、placing）作为规划单元，为下游 world-action 模型提供可读文本或连续隐状态的规划条件。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>X Square Robot Team</strong>（X Square Robot 团队），论文以团队名义署名</li><li>贡献者名单包括 <strong>Howard Lu</strong>、<strong>Shalfun Li</strong>（项目负责人）、<strong>Porter Pan</strong>、<strong>Cris</strong> 等核心贡献者，<strong>Hao Wang</strong> 为通讯作者</li><li>代码开源地址：<strong>https://github.com/X-Square-Robot/Xplanner</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>X-Planner</strong>，一个面向具身智能的事件结构化（event-structured）任务规划前端，将高层指令与低层控制之间的中间规划结构显式化。</li><li>指出当前 VLA（Vision–Language–Action）系统与 CoT 规划器存在三大缺口：<strong>数据缺口</strong>（任务级标注掩盖事件边界与失败重试）、<strong>粒度缺口</strong>（固定语义粒度，不贴合行为边界）、<strong>延迟缺口</strong>（逐 token 自回归推理形成串行关键路径且易误差传播）。</li><li>以<strong>语义事件</strong>（如 reaching、grasping、lifting、placing）作为规划单元，为下游 world-action 模型提供可读文本或连续隐状态的规划条件。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>多源分层规划监督数据</strong>：融合 <strong>Ego</strong>、<strong>UMI</strong> 与<strong>遥操作</strong>数据，采用 <strong>L3 Task / L2 Subtask / L1 Action / L0 Segment</strong> 四级层级；遥操作数据含全部四级，Ego 与 UMI 仅保留 L1–L3。</li><li><strong>失败感知的进行中监督</strong>：利用标注的<strong>接管时刻（takeover-time）</strong>监督执行中的错误识别，并补充人工设计的失败演示以降低对单一策略失败分布的依赖。</li><li><strong>Staircase Decoding 双形态规划</strong>：共享 VLM 主干同时支持<strong>离散事件状态</strong>（可解释）与<strong>连续隐式 CoT</strong>（跨错位 Transformer 深度并行传递），避免规划器内部逐 token 串行化。</li><li><strong>冻结的隐到文重建目标</strong>：以冻结语言模型从隐状态前缀重建文本 CoT，为紧凑隐表示提供语义锚点，仅优化 staircase 分支与前缀投影器。</li><li><strong>离线与真机双重评测</strong>：离线评估两步规划文本质量，真机评估完整 event-mode 系统的任务进度与泛化能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>骨干网络</strong>：采用 <strong>Qwen 系列 VLM</strong> 作为共享视觉–语言主干，负责场景 grounding、事件分解与进度估计。</li><li><strong>离散形态</strong>：输出结构化事件状态（初始有序事件计划、进行中进度/当前事件/下一事件/继续状态/错误识别、episode 结束标记），可被人类或上游 agent 检查与编辑。</li><li><strong>隐式形态与 Staircase Decoding</strong>：在<strong>relay depth</strong> 处分区 Transformer，下层编码共享视觉–语言上下文，上层跨推理步并行更新，每位置使用独立因果缓存。</li><li><strong>文本条件接口</strong>：通过边界掩码选取文本 token 状态，经可学习投影 $\mathcal{P}_Q$ 与下游原生文本 MLP $\mathcal{M}_T$ 映射进 world-action 模型的交叉注意力通路。</li><li><strong>训练目标</strong>：结构化 JSON 上的自回归 SFT 损失、与下游文本特征几何对齐的距离损失、以及冻结隐到文重建损失。</li><li><strong>推理耦合</strong>：<strong>event mode</strong> 发出事件描述文本控制下游模型；<strong>unified mode</strong> 直接以连续 CoT 隐状态通过相同交叉注意力接口条件化固定长度动作块。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据来源</strong>：<strong>Ego</strong>（第一视角）、<strong>UMI</strong>、<strong>遥操作</strong>三类演示数据，同步视觉与动作流后标注。</li><li><strong>分析子集</strong>：从 1,654 个候选 episode 中确定性筛选出 <strong>1,500 个</strong> episode，覆盖 <strong>167 个数据集</strong>、<strong>30 个命名任务类别</strong>及未知标签。</li><li><strong>覆盖统计</strong>：物体以刚性物体为主（<strong>58.2%</strong>），场景以 office/public 为主（<strong>28.5%</strong>）；子任务数中位数 5、90 分位 15，最长 episode 达 <strong>822.7 秒</strong>。</li><li><strong>动作标签</strong>：含 <strong>41 个</strong>原子动作标签，Move/Grasp/Place 分别覆盖 <strong>68.4%/57.0%/40.3%</strong> 的 episode。</li><li><strong>训练资源</strong>：原文未披露具体 GPU/TPU 型号与规模，也未给出模型参数量；下游 world-action 模型在训练全程保持<strong>冻结</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>离线两步规划评测</strong>：指标为 <strong>BERTScore-F1</strong>（不加基线重缩放）与 <strong>Doubao Judge Overall</strong> 综合评分；对比 <strong>Qwen</strong>、<strong>Doubao</strong>、<strong>kimi3</strong>。</li><li><strong>离线结果</strong>：<strong>X-Planner</strong> 以 BERTScore-F1 <strong>0.9011</strong>、Overall <strong>1.411</strong> 排名第二，优于 Qwen（0.8878 / 1.367）与 Doubao（0.8846 / 1.366），低于 kimi3（0.9108 / 1.434）。</li><li><strong>真机设置</strong>：桌面<strong>双臂机器人</strong>+同步多视图观测，主指标为 <strong>Task Progress</strong>（0–100 的密集分数，按任务评分细则计分）；事件模式运行。</li><li><strong>Reasoning Manipulation</strong>：<strong>X-Planner</strong> 平均 <strong>71.60%</strong> 最高，领先 <strong>U-Scratch</strong>（59.50%）<strong>12.10</strong> 个百分点，远超 $\pi_{0.5}$（56.40%）、<strong>DreamZero</strong>（32.70%）、<strong>LingBot-VA</strong>（31.60%）。</li><li><strong>Generalization</strong>：<strong>X-Planner</strong> 平均 <strong>53.75%</strong>，领先最强基线 DreamZero（28.50%）<strong>25.25</strong> 个百分点，$\pi_{0.5}$ 为 24.00%、U-Scratch 为 18.50%；LingBot-VA 在此设置无结果。</li><li><strong>结论与局限</strong>：两套评测中 X-Planner 真机平均任务进度最高；但作者强调实验<strong>未做组件消融</strong>、未提供方差或显著性检验，也<strong>未证实端到端延迟优势</strong>，隐式形态与离散形态的受控对比留待未来工作。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

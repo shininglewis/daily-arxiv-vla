@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Causal Analysis of Robot Foundation Models Enables Efficiency Gains - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文以机制可解释性方法研究视觉-语言-动作（VLA）模型如何将感知与语义表征转化为动作，聚焦于 VLM 主干与动作专家（AE）之间的信息传递通路。 论文要解决的问题是：VLA 模型内部&quot;从感知到动作&quot;的映射仍是黑箱，尤其是主干各层表征如何被动作专家读取、以何种信息形式（视觉/语义/几何）传入，尚不清楚。 研究同时将因果分析发现直接转化为模型效率改进：通过只保留因果关键的接口层来削减计算量，而不损失任务成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.20750">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #3f6ee8; --cover-to: #6fa7ff; --cover-spot: #d5e6ff; --cover-ink: #f7fbff; --cover-muted: rgba(247, 251, 255, 0.82); --cover-chip: rgba(247, 251, 255, 0.16); --cover-stroke: rgba(247, 251, 255, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">Causal Analysis of Robot Foundation Models Enables Efficiency Gains</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Causal Analysis of Robot Foundation Models Enables Efficiency Gains</h1>
+            <div class="detail-meta">2026-10-14 · <a href="http://arxiv.org/abs/2610.20750" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.20750" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.20750</span></div>
+            <p class="detail-summary">本文以机制可解释性方法研究视觉-语言-动作（VLA）模型如何将感知与语义表征转化为动作，聚焦于 VLM 主干与动作专家（AE）之间的信息传递通路。 论文要解决的问题是：VLA 模型内部&quot;从感知到动作&quot;的映射仍是黑箱，尤其是主干各层表征如何被动作专家读取、以何种信息形式（视觉/语义/几何）传入，尚不清楚。 研究同时将因果分析发现直接转化为模型效率改进：通过只保留因果关键的接口层来削减计算量，而不损失任务成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Goodfire（主要研究机构）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.20750/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文以机制可解释性方法研究视觉-语言-动作（VLA）模型如何将感知与语义表征转化为动作，聚焦于 VLM 主干与动作专家（AE）之间的信息传递通路。</p>
+  <ul class="reading-intro-points"><li>本文以机制可解释性方法研究视觉-语言-动作（VLA）模型如何将感知与语义表征转化为动作，聚焦于 VLM 主干与动作专家（AE）之间的信息传递通路。</li><li>论文要解决的问题是：VLA 模型内部&quot;从感知到动作&quot;的映射仍是黑箱，尤其是主干各层表征如何被动作专家读取、以何种信息形式（视觉/语义/几何）传入，尚不清楚。</li><li>研究同时将因果分析发现直接转化为模型效率改进：通过只保留因果关键的接口层来削减计算量，而不损失任务成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Goodfire</strong>（主要研究机构）</li><li><strong>Stanford University</strong>（斯坦福大学）</li><li><strong>University of California, Santa Barbara</strong>（加州大学圣塔芭芭拉分校）</li><li><strong>Harvard University</strong>（哈佛大学）</li><li>论文作者包括 <strong>Aiden Swann</strong>、<strong>Mathilde Papillon</strong>、<strong>Mozes Jacobs</strong> 等（⋆ 为核心贡献者，† 为同等资深贡献者）</li><li>代码开源：<strong>https://github.com/goodfire-ai/robotics_causal_analysis</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文以机制可解释性方法研究<strong>视觉-语言-动作（VLA）模型</strong>如何将感知与语义表征转化为动作，聚焦于 VLM 主干与动作专家（AE）之间的信息传递通路。</li><li>论文要解决的问题是：VLA 模型内部"从感知到动作"的映射仍是黑箱，尤其是主干各层表征如何被动作专家读取、以何种信息形式（视觉/语义/几何）传入，尚不清楚。</li><li>研究同时将因果分析发现直接转化为模型效率改进：通过只保留因果关键的接口层来削减计算量，而不损失任务成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>发现"动作条件接口"（action-conditioning interface）</strong>：在 <strong>π_0.5</strong>、<strong>MolmoAct2</strong>、<strong>MolmoBot</strong> 三个前沿 VLA 中，主干对动作生成的因果影响集中于中后段 1-3 层交叉注意力层的窄带，该接口主要传递关于目标物体的几何信息。</li><li><strong>机制指导的架构改进</strong>：据此设计更稀疏的 VLM–动作专家连接，将 <strong>MolmoBot</strong> 的估计总运算量降低最多 <strong>33%</strong>，并在仿真与真机上验证性能保持。</li><li><strong>给出接口所接收信息的因果解释</strong>：构建包含 <strong>156 组反事实配对</strong>（13 组物体对、26 个场景）的数据集，运行超过 <strong>775,000 次激活修补干预</strong>，区分视觉、语义、几何三类表征的作用。</li><li><strong>刻画信息在主干中的形成路径</strong>：早期图像 token 承载视觉布局信息，早期目标名词 token 决定选择哪个物体，中后期文本 token（以及 π_0.5 的图像 token）承载目标空间位置即几何变量。</li><li><strong>实证接口定位的重要性</strong>：保留接口层（如第 24 层）显著优于保留接口外任意层（如第 12 层），证明机制识别优于启发式层次选择。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用<strong>激活修补（activation patching）</strong> / 交换干预（interchange intervention）：将供体（donor）run 的内部表征替换到受体（recipient）run 中，测量行为变化。</li><li>定义两类干预：<strong>接口修补</strong>（替换动作专家若干 block 所接收的条件 C_j）与<strong>主干修补</strong>（替换第 ℓ 层指定 token 位置的残差流激活 z_{ℓ,T}）。</li><li>使用归一化轨迹偏移量 <strong>E</strong> 量化行为迁移：通过前向运动学 τ=FK(a) 重建轨迹，E=0 表示无影响，E=1 表示完全转移到参考轨迹。</li><li>构建高层因果模型：视觉变量 <strong>V</strong>、语义变量 <strong>S</strong> 与几何变量 <strong>G := V(S)</strong>，并用三种反事实比较 A/B/C 区分不同变量的因果签名。</li><li>关键创新：把"机制可解释性发现"直接用于剪枝交叉注意力连接并截断 VLM 后段层，实现可解释性驱动的 <strong>intentional design</strong>（有意设计）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>反事实数据集</strong>：13 组物体对，共 26 个场景（含左右交换），156 组反事实配对，每对正反两方向测试，每组配 8 个噪声种子，得到每次比较 416 次干预。</li><li><strong>仿真评测</strong>：<strong>MolmoBot</strong> 论文官方基准与 <strong>MolmoSpaces</strong> 模拟器，三个任务 <strong>Pick</strong>、<strong>Pick & Place</strong>、<strong>Next-To</strong>，每任务 1,000 个 episode（共 3,000 次评估）。</li><li><strong>真机评测</strong>：<strong>π_0.5</strong> 在 7 个桌面任务（fruit in basket、[noun] in bin、marker in mug、stack bowls 等）上每策略共 100 次试验。</li><li><strong>模型规模</strong>：<strong>MolmoBot</strong>（基于 MolmoBot-DROID，主干 36 层）、<strong>MolmoAct2</strong>、<strong>π_0.5</strong>（主干 18 层，动作专家读取共享多模态前缀的 keys/values）。</li><li><strong>训练与推理资源</strong>：单张 <strong>H100</strong> GPU，batch size 64；适配训练使用 50K 次微调更新；论文未明确给出各模型参数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：MolmoSpaces 仿真闭环评测（每基准 1,000 episode，各模型评测 episode 完全一致）+ π_0.5 真机闭环部署。</li><li><strong>主要指标</strong>：任务成功率（含 Oracle 与 Final，95% 二项置信区间）、估计 FLOPs、实测延迟与吞吐、成功试验的中位任务耗时。</li><li><strong>MolmoBot 结果</strong>：仅保留 3/36 层（第 23-25 层）平均成功率 <strong>46.7% vs 46.9%</strong>（原始全连接模型），仅保留第 24 层为 <strong>45.6%</strong>；剪掉 <strong>92%</strong> 交叉注意力参数，计算量从 <strong>11.93 → 7.96 TFLOPs</strong>（-33%）。</li><li><strong>效率提升</strong>：单 H100、batch 64 下生成一个 action chunk 从 <strong>311 ms 降至 209 ms</strong>（-33% 延迟），吞吐从 <strong>21.5 提升至 30.9 chunks/s（+44%）</strong>。</li><li><strong>消融对照</strong>：同样 50K 更新预算下，保留接口外的第 12 层仅得 25.7% Pick 成功率，远低于保留第 24 层的 54.7%，说明接口层选择是关键。</li><li><strong>π_0.5 真机结果</strong>：将动作专家注意力限制在第 14-16 层，成功率 <strong>67/100</strong> 对比原始 <strong>64/100</strong>（无统计显著差异），成功试验中位任务时间从 <strong>34.9 s 降至 26.5 s</strong>（约 -24%）。</li><li><strong>接口性质验证</strong>：比较 A（目标位置不变）在所有连接与三层窗口上 \|E\|≤ 0.022，而 B、C（目标位置变化）可达 0.42–0.88，支持接口传递的是几何变量而非视觉或语义变量。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.20767/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Multi-Dimensional Featurizers Yield Fine-Grained Steering and Data Shaping in Robot Foundation Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.20609/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

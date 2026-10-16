@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LIBERO-PeRM: Benchmarking Personalized Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 LIBERO-PeRM，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。 现有通用机器人操作研究虽广泛，但缺乏统一 formulation 与标准化评估协议，且已有基准多侧重高层导航或语义选择，缺少细粒度操作偏好与多偏好冲突评估。 基于 LIBERO 框架构建，围绕五个核心研究问题：零样本偏好遵循、单偏好学习、学习效率、跨布局/任务泛化、以及多偏好组合与冲突处理。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.22372">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.22372.webp" alt="LIBERO-PeRM: Benchmarking Personalized Robotic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 LIBERO-PeRM，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">LIBERO-PeRM: Benchmarking Personalized Robotic Manipulation</h1>
+            <div class="detail-meta">2026-10-15 · <a href="http://arxiv.org/abs/2610.22372" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.22372" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.22372</span></div>
+            <p class="detail-summary">论文提出 LIBERO-PeRM，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。 现有通用机器人操作研究虽广泛，但缺乏统一 formulation 与标准化评估协议，且已有基准多侧重高层导航或语义选择，缺少细粒度操作偏好与多偏好冲突评估。 基于 LIBERO 框架构建，围绕五个核心研究问题：零样本偏好遵循、单偏好学习、学习效率、跨布局/任务泛化、以及多偏好组合与冲突处理。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of California, Riverside</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.22372/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 LIBERO-PeRM，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。</p>
+  <ul class="reading-intro-points"><li>论文提出 LIBERO-PeRM，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。</li><li>现有通用机器人操作研究虽广泛，但缺乏统一 formulation 与标准化评估协议，且已有基准多侧重高层导航或语义选择，缺少细粒度操作偏好与多偏好冲突评估。</li><li>基于 LIBERO 框架构建，围绕五个核心研究问题：零样本偏好遵循、单偏好学习、学习效率、跨布局/任务泛化、以及多偏好组合与冲突处理。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of California, Riverside</strong></li><li><strong>Yale University</strong></li><li><strong>Georgia Institute of Technology</strong></li><li><strong>University of Michigan, Ann Arbor</strong></li><li><strong>University of Toronto</strong></li><li>注：标注 Zhixu Li 等人为同等贡献（Equal Contribution），Jiachen Li 为通讯作者（jiachen_li@gatech.edu）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>LIBERO-PeRM</strong>，一个面向个性化机器人操作（Personalized Robotic Manipulation, PeRM）的受控基准，旨在将任务完成与用户偏好满足两个维度分离评估。</li><li>现有通用机器人操作研究虽广泛，但缺乏统一 formulation 与标准化评估协议，且已有基准多侧重高层导航或语义选择，缺少细粒度操作偏好与多偏好冲突评估。</li><li>基于 <strong>LIBERO</strong> 框架构建，围绕五个核心研究问题：零样本偏好遵循、单偏好学习、学习效率、跨布局/任务泛化、以及多偏好组合与冲突处理。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>仿真环境中可观测偏好</strong> 的受控分类体系与 formulation，覆盖 <strong>Motion Preference</strong>（轨迹约束）、<strong>Skill Preference</strong>（技能策略）、<strong>User Profile</strong>（语义偏好）三类，并限定为可用语言表达、不改变任务目标、可自动评估且可跨任务复用。</li><li>构建可扩展的程序化 <strong>偏好条件数据生成流水线</strong>，自动生成配对（含/不含偏好）演示、丰富元数据（子任务、语言指令、目标图像、物理属性）及 <strong>偏好满足度指标</strong>（Satisfaction Score/Label）。</li><li>发布 <strong>五个任务套件共 312 个偏好条件任务</strong>：<strong>LIBERO-SinglePref</strong>（单偏好学习）、<strong>LIBERO-PrefScale</strong>（数据/任务/布局扩展）、<strong>LIBERO-PrefConflict</strong>（偏好-偏好与任务-偏好冲突）、<strong>LIBERO-PrefCompose</strong>（多偏好组合）、<strong>LIBERO-ComprePref</strong>（基于上下文语言的隐式偏好推理）。</li><li>提供 <strong>37 个单偏好实例</strong>（8 Motion + 14 Skill + 15 User Profile）与 <strong>18 个双偏好组合</strong>，支持可控的个性化研究。</li><li>通过 15 名参与者的用户调研进行人工验证，演示类人度均分 9.11，偏好现实合理性均分 8.35。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>偏好定义与策略输入</strong>：偏好被视为与任务目标独立的变量，仅约束"如何完成"；prompt 格式为 <code>"Task: {task_language}. Preference: {preference_language}."</code>，策略 π_θ(a_t \|I_agent, I_hand, ℓ_task ‖ ℓ_pref) 接收 AgentView 与 Eye-in-Hand 图像 + 拼接语言输入输出动作。</li><li><strong>数据生成流水线三阶段</strong>：（1）偏好选择与布局最小化修改（用 VLM 操作）；（2）偏好条件子任务与轨迹生成（VLM 生成子任务计划 + 启发式技能库 + OMPL 规划器 + 随机初始状态）；（3）满足度指标生成（Motion 用轨迹量、Skill 用关键点与 VLM 图像检查、User Profile 用子任务计划监控）。</li><li><strong>满足度标签映射</strong>：将连续满足度分箱为四级离散标签 d ∈ {0, 1/4, 3/4, 1}，连续分数用于训练，离散标签用于推理评估。</li><li><strong>评估指标</strong>：<strong>SR</strong>（任务成功率）与 <strong>SA</strong>（偏好满足度，SA = (1/N) Σ I[G(τ_n)]·d_n，仅在任务成功时计分）。</li><li><strong>冲突处理策略</strong>：任务-偏好冲突时任务优先；偏好-偏好冲突取两者较高满足度（失败回合贡献 0）。</li><li><strong>泛化评估</strong>：in-domain、task-or-layout 泛化、preference-level 泛化三种设置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>LIBERO</strong> 基准构建，包含 <strong>40.8K 轨迹回合</strong>、<strong>312 个任务</strong>，平均每任务超过 100 条轨迹。</li><li>五个任务套件规模：<strong>LIBERO-SinglePref</strong> 100 任务、<strong>LIBERO-PrefScale</strong> 100 任务、<strong>LIBERO-PrefConflict</strong> 48 任务、<strong>LIBERO-PrefCompose</strong> 64 任务、<strong>LIBERO-ComprePref</strong> 复用已有任务重写 prompt。</li><li>元数据丰富：子任务目标、子目标图像、轨迹统计、偏好满足度信号。</li><li>训练资源：正文中未明确给出 GPU/TPU 具体信息，训练细节见附录 A.2（原文截断部分）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估模型</strong>：六个代表性 VLA 策略 —— <strong>OpenVLA-OFT</strong>、<strong>π₀-fast</strong>、<strong>π₀.₅</strong>、<strong>GR00T-N1.6</strong>、<strong>SmolVLA</strong>、<strong>UniVLA</strong>；非零样本实验主要使用 <strong>π₀.₅</strong> + LoRA 微调。</li><li><strong>Q1 零样本个性化</strong>：现有 VLA 在无偏好任务上 SR 高（π₀.₅ 达 97.6%），但在偏好条件任务上 SA 极低；π₀.₅ 在 Motion/Skill 偏好上 SR 分别为 97.50%/100.00%，而 SA 仅 24.38%/25.00%；User Profile 场景 SR 骤降至 19.12%。说明布局编辑不损伤原任务分布，低 SA 反映偏好遵循失败。</li><li><strong>Q2 学习能力</strong>：SFT 使偏好可学习。<strong>Seq-LoRA</strong>（序列适应）退化无偏好性能（No-Pref SR 52.33%）；<strong>Mix-LoRA</strong>（混合训练）保留 No-Pref SR 91.00% 且 All-Pref SR 达 84.55%，ComprePref 上下文鲁棒性更好（SR/SA 72.83%/70.07% vs 偏好专用 LoRA 的 44.00%/42.64%），但削弱 Motion Preference（SR 从 90.00% 降至 66.88%）。</li><li><strong>Q3 学习效率</strong>：在相同数据规模下，<strong>增加布局多样性比增加演示数量更有效</strong>；额外加入匹配的无偏好数据（L4 vs L2）能进一步帮助解耦偏好行为与任务/布局线索。</li><li><strong>Q4 泛化</strong>：in-domain 偏好学习一致良好，SR 与 SA 高度对齐；但泛化（尤其未见布局+不同任务）性能显著低于 in-domain，联合实现任务成功与偏好满足仍困难。</li><li><strong>Q5 组合与冲突</strong>：偏好<strong>组合部分可学</strong>（P_A + P_B 获得 25.0% Eval SR/SA），但<strong>分解失败</strong>（推断 P_B 时 Eval SR 37.5% 而 SA 为 0.0%）。偏好-偏好冲突下 SR/SA 降至 66.00%/47.75%，Pref-Dom. 仅 11.25%；任务-偏好冲突下 Follow Task 33.3% vs Follow Preference 29.2%，37.5% 为不完整执行，冲突常导致失败而非清晰解决。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2610.22363/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Perceive, Predict, and Plan: a Unified World Action Model for Egocentric Dexterous Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

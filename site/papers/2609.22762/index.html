@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DriveReferee: Geometric Safety Verdicts Need Not Be Learned for Driving World-Action Models - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。 核心问题是：闭环 evaluator 已能检查碰撞和可行驶区域违规，但其依赖的 privileged scene state 在部署时不可用；现有方法通常从传感器特征学习 verifier，把“场景推断”和“几何规则计算”混在一起。 论文提出 DriveReferee：几何安全规则本身已知且明确，部署时缺失的是规则输入；因此只学习从相机观测预测场景状态，再直接执行几何规则，而不是学习最终 verdict。训练时用 referee 在 GT 状态上构造偏好并蒸馏进策略，部署时在预测状态上执行 alarm-gated 候选选择。" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.22762.webp" alt="DriveReferee: Geometric Safety Verdicts Need Not Be Learned for Driving World-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">DriveReferee: Geometric Safety Verdicts Need Not Be Learned for Driving World-Action Models</h1>
             <div class="detail-meta">2026-09-19 · <a href="http://arxiv.org/abs/2609.22762" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.22762" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.22762</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。 核心问题是：闭环 evaluator 已能检查碰撞和可行驶区域违规，但其依赖的 privileged scene state 在部署时不可用；现有方法通常从传感器特征学习 verifier，把“场景推断”和“几何规则计算”混在一起。 论文提出 DriveReferee：几何安全规则本身已知且明确，部署时缺失的是规则输入；因此只学习从相机观测预测场景状态，再直接执行几何规则，而不是学习最终 verdict。训练时用 referee 在 GT 状态上构造偏好并蒸馏进策略，部署时在预测状态上执行 alarm-gated 候选选择。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">16 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Southern California (USC)：Fengcheng Y…</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.22762/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。</p>
+  <ul class="reading-intro-points"><li>论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。</li><li>核心问题是：闭环 evaluator 已能检查碰撞和可行驶区域违规，但其依赖的 privileged scene state 在部署时不可用；现有方法通常从传感器特征学习 verifier，把“场景推断”和“几何规则计算”混在一起。</li><li>论文提出 DriveReferee：几何安全规则本身已知且明确，部署时缺失的是规则输入；因此只学习从相机观测预测场景状态，再直接执行几何规则，而不是学习最终 verdict。训练时用 referee 在 GT 状态上构造偏好并蒸馏进策略，部署时在预测状态上执行 alarm-gated 候选选择。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Southern California (USC)</strong>：Fengcheng Yu、Dhruv Parikh、Junjie Ye</li><li><strong>Woven by Toyota</strong>：Maulik Bhatt、Thang Vu</li><li><strong>Toyota Research Institute (TRI)</strong>：Igor Vasiljevic（†Equal advising）</li><li><strong>Vitor Guizilini、Yue Wang</strong>：所属机构在给定 HTML 中未完整显示。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文面向生成式世界-动作模型（WAM），研究如何在不依赖部署时特权场景状态的情况下，对生成轨迹进行几何安全验证。</li><li>核心问题是：闭环 evaluator 已能检查碰撞和可行驶区域违规，但其依赖的 privileged scene state 在部署时不可用；现有方法通常从传感器特征学习 verifier，把“场景推断”和“几何规则计算”混在一起。</li><li>论文提出 <strong>DriveReferee</strong>：几何安全规则本身已知且明确，部署时缺失的是规则输入；因此只学习从相机观测预测场景状态，再直接执行几何规则，而不是学习最终 verdict。训练时用 referee 在 GT 状态上构造偏好并蒸馏进策略，部署时在预测状态上执行 alarm-gated 候选选择。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出面向驾驶 WAM 的 verification decomposition，将 learned scene-state inference 与 analytic geometric verdict computation 分离，使已知安全规则可直接在预测状态上执行。</li><li>提出 <strong>DriveReferee</strong> 框架，复用同一零参数 analytic referee：训练时在 GT maps 上做 preference distillation，部署时在 self-predicted maps 上做 alarm-gated candidate selection。</li><li>通过 matched-budget comparisons 与 same-map learned replacement 控制实验，隔离“学习最终 verdict”的价值；发现学习 verdict 没有可测量收益，即使使用 <strong>66,385</strong> 个 evaluator-labeled 训练样本。</li><li>在完整 <strong>NAVSIM navtest</strong> 上以单目视觉输入、无外部训练数据达到 <strong>92.02 PDMS / 91.56 EPDMS</strong>，并保持视频生成质量。</li><li>显示增益不来自策略规模：在 <strong>4B Cosmos3-Edge</strong> 上同样将 PDMS 从 <strong>90.47</strong> 提升到 <strong>91.50</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>问题设定：输入为 <strong>H+1</strong> 帧前视相机历史 <strong>I</strong>、导航命令 <strong>c</strong>、当前 ego 速度与全局朝向 <strong>s0</strong>；未来规划表示为 <strong>τ</strong>；readout 额外接收 ego pose history <strong>P</strong>。</li><li>世界-动作策略 <strong>π_θ</strong>：基于 <strong>Cosmos3</strong> 联合生成未来视频和动作 token；冻结 reasoner tower，仅训练 generation tower；重复采样可产生多候选轨迹，无需额外 proposal network。</li><li>感知 readout <strong>g_φ</strong>：从冻结视觉特征出发，采用 LSS/Simple-BEV 式 depth distribution + BEV lifting + ego-pose 对齐，预测静态可行驶区域图 <strong>M_drv</strong> 和 <strong>1+T_f</strong> 时间索引车辆占据图 <strong>M_veh</strong>；训练时冻结视觉 backbone，仅优化 φ。</li><li>Analytic referee <strong>R(τ,M)</strong>：零学习参数；先使用 <strong>LQR tracker + kinematic bicycle model</strong> 对离散 waypoints 做闭环运动学 rollout；在每步 ego footprint 的四个角点和中心查询；检查是否越出可行驶区域或进入车辆占据栅格；输出违规计数 <strong>n_dac, n_nc</strong> 与距离变换 clearance margins <strong>m_dac, m_nc</strong>，并聚合为 <strong>n(τ)</strong> 和 <strong>m(τ)</strong>。</li><li>训练时偏好蒸馏：策略自采样 <strong>K_t</strong> 条轨迹，分为通过集合 <strong>P</strong> 与违规集合 <strong>V</strong>；保留两者均非空的场景；winner 为通过候选中 margin 最大者，loser 为违规候选中距专家轨迹最近者；使用 reference-free pairwise preference objective（flow-matching losses + logistic preference term）训练，仅 loser 选择用到专家轨迹。</li><li>部署时门控选择：默认计划 <strong>bar τ</strong> 用预测 <strong>M_hat</strong> 评估；若 <strong>n(bar τ)>0</strong> 或 <strong>m(bar τ)≤Δ</strong> 则告警；再采样 <strong>K-1</strong> 个候选，在同一 <strong>M_hat</strong> 上按“违规数少、clearance 大、距默认计划近”排序；仅当违规数减少至少 <strong>δ_n</strong> 或同等违规数下 clearance 提升至少 <strong>Δ</strong> 时替换。</li><li>关键设计：margin 在同一 predicted map 上做相对比较，而非绝对安全证书，以降低共享局部地图偏差的影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集：<strong>NAVSIM</strong> 的完整 <strong>navtest</strong> split，共 <strong>12,146</strong> 个场景；训练使用 <strong>navtrain</strong>；评估采用官方 one-stage 设置和非反应式 log-replay 交通智能体；<strong>PDMS</strong> 对应 NAVSIM v1，<strong>EPDMS</strong> 对应 NAVSIM v2。</li><li>模型：主策略 <strong>Cosmos3-Nano</strong>，总参数量 <strong>16B</strong>，可训练 generation tower <strong>8B</strong>，reasoner tower 冻结；对照 <strong>Cosmos3-Edge</strong>，总参数量 <strong>4B</strong>，可训练 generation tower <strong>2B</strong>。</li><li>感知 readout：训练时冻结视觉 backbone，仅训练 φ；使用栅格化特权标注；部署时预测 maps 与 GT maps 保持相同时空表示。</li><li>Same-map learned verifier 对照：<strong>4.15M</strong> 参数，使用 <strong>66,385</strong> 个 evaluator-labeled 训练候选。</li><li>训练细节：偏好训练 <strong>850 steps</strong>、<strong>462 pairs</strong>、学习率 <strong>2e-5</strong>；偏好构造每场景 <strong>K_t=5</strong> 个自采样；视频 <strong>832×480 @ 2Hz</strong>，输入 4 历史帧加当前帧，预测 8 未来帧。</li><li>部署参数：occupancy grid <strong>0.4 m</strong>，clearance threshold <strong>Δ=0.4 m</strong>，compute-matched 比较用 <strong>K=2</strong>；operating point 在 held-out driving logs 上固定。</li><li>训练硬件：给定 HTML 截断，未显示具体 GPU/TPU 型号、数量和训练时长。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：完整 <strong>NAVSIM navtest</strong>（12,146 场景），scene-level paired comparisons，bootstrap 95% CI over 10,000 resamples；内部受控比较默认使用 <strong>EPDMS</strong>。</li><li>主要指标：<strong>PDMS</strong>、<strong>EPDMS</strong>，并报告 <strong>NC</strong>、<strong>DAC</strong>、<strong>TTC</strong>、<strong>Comfort</strong>、<strong>EP</strong> 等子项。</li><li>主结果：<strong>Ours (full, 16B)</strong> 达 <strong>92.02 PDMS / 91.56 EPDMS</strong>，NC 99.49、DAC 98.64、TTC 97.91、Comf 100.00、EP 84.99；仅蒸馏策略单次通过达 <strong>91.96 PDMS / 91.61 EPDMS</strong>。</li><li>规模对照：<strong>Ours (full, 4B)</strong> 从 base 的 <strong>90.47 PDMS / 90.03 EPDMS</strong> 提升到 <strong>91.50 PDMS / 91.08 EPDMS</strong>，说明增益不依赖更大 backbone。</li><li>Referee fidelity：在 1,060 个 base policy 零分场景、每场景 5 条轨迹共 5,300 候选上，referee 与官方 evaluator 的 gate 决策一致率 <strong>91.0%</strong>（always-safe 基线 73.5%）；DAC precision 0.995/recall 0.631，collision precision 0.931/recall 0.792。</li><li>Map-source fidelity：同一 referee 在 GT map 与预测 map 上，默认计划的 <strong>m_dac</strong> 相关系数 <strong>0.895</strong>，平均绝对差 <strong>0.502 m</strong>。</li><li>是否必须学习 verdict：matched-budget 下，最佳 learned verifiers 提升 EPDMS <strong>+0.23</strong> 和 <strong>+0.26</strong>，analytic referee 为 <strong>+0.30</strong>；same-map learned verifier 与 analytic referee 差异 <strong>-0.01 ΔEPDMS</strong>（95% CI [-0.15,+0.14]），83.4% 场景选同一计划，且平均 1.57 次采样/场景 vs analytic 1.35 次。</li><li>监督 scaling：learned verifier 使用 5%/10%/25%/50%/100% 的 66,385 训练候选，分别提升 <strong>+0.00/+0.07/+0.17/+0.33/+0.27 ΔEPDMS</strong>；analytic referee 无 verdict-training label 即达 <strong>+0.35 ΔEPDMS</strong>。</li><li>两种 placement：训练时偏好蒸馏给 undistilled base 带来 <strong>+0.92 ΔEPDMS</strong>（95% CI [+0.71,+1.13]）；部署时 gated selection 在 undistilled base 上带来 <strong>+0.30</strong>（95% CI [+0.18,+0.42]）；蒸馏后再加部署选择仅 <strong>+0.06 PDMS</strong> 和 <strong>-0.04 EPDMS</strong>，说明大部分收益已被蒸馏学习。</li><li>Ablations：去掉 pairwise term（<strong>β=0</strong>）后只有 <strong>+0.56 ΔEPDMS</strong>（完整 <strong>+0.92</strong>）；winner 若选“距专家最近”而非“safety margin 最大”，从 <strong>+0.92</strong> 降至 <strong>+0.63</strong>，配对差 <strong>+0.29</strong>（95% CI [+0.14,+0.45]）。</li><li>视频生成质量：referee distillation 后 FVD 23.90→<strong>24.25</strong>，LPIPS 0.4166→<strong>0.4126</strong>，PSNR 18.75→<strong>18.92</strong>，无明显损失。</li><li>部署干预：在 undistilled base policy 上，部署选择修复 <strong>53</strong> 个官方 hard safety-gate failure，引入 <strong>9</strong> 个；剩余错误主要来自预测地图与官方 evaluator 所用场景几何不一致。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

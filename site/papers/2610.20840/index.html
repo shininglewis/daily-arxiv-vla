@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Phenomenology of Neural Geometry in Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文研究视觉-语言-动作（VLA）模型内部如何几何化地表征机器人操作任务中的关键变量，提出&quot;realized geometry（实现几何）&quot;这一新分析视角。 指出现有可解释性工作（线性探针、稀疏自编码器 SAE）仅能证明某个概念可被线性读取（readability），但无法刻画该概念在激活空间中实际呈现的几何形状（可能弯曲、多维、受约束）。 通过受控扫描、自然 rollout、线性探针和激活干预，系统性地刻画 VLA 策略中任务概念的真实内部几何结构，并验证其在真实机器人数据上的可迁移性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.20840">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.20840.webp" alt="A Phenomenology of Neural Geometry in Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文研究视觉-语言-动作（VLA）模型内部如何几何化地表征机器人操作任务中的关键变量，提出&quot;realized geometry（实现几何）&quot;这一新分析视角。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">A Phenomenology of Neural Geometry in Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-10-14 · <a href="http://arxiv.org/abs/2610.20840" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.20840" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.20840</span></div>
+            <p class="detail-summary">本文研究视觉-语言-动作（VLA）模型内部如何几何化地表征机器人操作任务中的关键变量，提出&quot;realized geometry（实现几何）&quot;这一新分析视角。 指出现有可解释性工作（线性探针、稀疏自编码器 SAE）仅能证明某个概念可被线性读取（readability），但无法刻画该概念在激活空间中实际呈现的几何形状（可能弯曲、多维、受约束）。 通过受控扫描、自然 rollout、线性探针和激活干预，系统性地刻画 VLA 策略中任务概念的真实内部几何结构，并验证其在真实机器人数据上的可迁移性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Goodfire（主要研究机构，论文来自 Goodfire AI）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.20840/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文研究视觉-语言-动作（VLA）模型内部如何几何化地表征机器人操作任务中的关键变量，提出&quot;realized geometry（实现几何）&quot;这一新分析视角。</p>
+  <ul class="reading-intro-points"><li>本文研究视觉-语言-动作（VLA）模型内部如何几何化地表征机器人操作任务中的关键变量，提出&quot;realized geometry（实现几何）&quot;这一新分析视角。</li><li>指出现有可解释性工作（线性探针、稀疏自编码器 SAE）仅能证明某个概念可被线性读取（readability），但无法刻画该概念在激活空间中实际呈现的几何形状（可能弯曲、多维、受约束）。</li><li>通过受控扫描、自然 rollout、线性探针和激活干预，系统性地刻画 VLA 策略中任务概念的真实内部几何结构，并验证其在真实机器人数据上的可迁移性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Goodfire</strong>（主要研究机构，论文来自 Goodfire AI）</li><li><strong>Harvard University</strong>（哈佛大学）</li><li><strong>Stanford University</strong>（斯坦福大学）</li><li><strong>University of California, Santa Barbara</strong>（加州大学圣塔芭芭拉分校，UCSB）</li><li>项目代码开源地址：https://github.com/goodfire-ai/vla-geometry</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文研究<strong>视觉-语言-动作（VLA）模型</strong>内部如何几何化地表征机器人操作任务中的关键变量，提出"<strong>realized geometry（实现几何）</strong>"这一新分析视角。</li><li>指出现有可解释性工作（线性探针、稀疏自编码器 SAE）仅能证明某个概念<strong>可被线性读取（readability）</strong>，但无法刻画该概念在激活空间中<strong>实际呈现的几何形状</strong>（可能弯曲、多维、受约束）。</li><li>通过受控扫描、自然 rollout、线性探针和激活干预，系统性地刻画 VLA 策略中任务概念的真实内部几何结构，并验证其在真实机器人数据上的可迁移性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出并形式化区分<strong>概念实现（concept realization）</strong>与<strong>实现几何（realized geometry）</strong>：前者关注信息可提取性，后者关注激活随概念变化时描绘的结构，并强调"形状"与"可读性"同等重要。</li><li>构建 <strong>MolmoBot</strong> 中七类控制概念的实现几何分类学：夹爪状态、末端执行器位置、目标物体位置、到目标距离、接触、任务阶段、手腕朝向。</li><li>发现实现几何<strong>多为多维且受物理约束塑造</strong>：手腕朝向因关节限位呈现为<strong>开放弧</strong>而非闭合圆；标量"距离"被编码在<strong>两个近正交子空间</strong>中，形成粗尺度（米级）与细尺度（厘米级）两把"尺子"。</li><li>验证上述几何结构在真实世界数据上的<strong>跨模型可重现性</strong>：在 <strong>π0.5</strong> 和 <strong>MolmoAct2</strong> 于 <strong>DROID</strong> 数据集上复现，表明其既非模型特有、也非仿真伪影。</li><li>展示发现具有<strong>可操作性</strong>：通过沿几何结构进行激活引导（steering）干预策略行为，并揭示"信念编辑"（belief edit）与"动作编辑"（action edit）的区别。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>形式化数据生成过程：$\bm{z}\sim p_{\bm{z}}$、$\bm{x}=\bm{g}(\bm{z})$、$\bm{a}=\bm{f}(\bm{x})$，将每个概念建模为结构化域 $(\mathcal{Z}_i, d_i)$ 而非单一向量。</li><li><strong>定义 1（概念实现）</strong>：通过读出类 $\mathcal{V}$ 和容差 $\varepsilon$ 判定概念是否被实现；主案例采用<strong>仿射读出</strong>（线性可读性）。</li><li><strong>定义 2（实现几何）</strong>：固定上下文后，概念激活映射 $\bm{\varphi}_i(\bm{v};\bm{c})$ 的像 $\mathcal{M}_i(\bm{c})$ 即为该概念的实现几何。</li><li>技术手段：<strong>受控扫描（controlled sweeps）</strong>、<strong>自然 rollout</strong>、<strong>线性/岭回归探针</strong>、<strong>LDA 判别</strong>、<strong>PCA</strong>、<strong>激活擦除（erasure）</strong>、<strong>teleport 干预</strong>、<strong>Procrustes 对齐</strong>、<strong>pullback 引导向量</strong>、<strong>MLP 自编码器</strong>（将手腕激活映射到精确圆）。</li><li>创新点：不预设线性表征假设（LRH），而是主动探测并恢复概念在激活空间中的真实（可能弯曲、多维）几何。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>MolmoSpaces</strong>：仿真环境，提供真值任务变量并支持 rollout 中途干预。</li><li><strong>DROID 数据集</strong>：真实世界机器人数据集，用于验证跨模型几何可迁移性。</li><li><strong>ProcTHOR</strong>：程序化生成场景，用于构建训练/测试房屋。</li><li>研究的模型：<strong>MolmoBot</strong>（主力分析对象，VLM + 动作专家，动作专家经 flow matching 生成动作块）、<strong>π0.5</strong>、<strong>MolmoAct2</strong>。</li><li>关键层与维度：VLM 末端执行器位置层 20、目标物体层 21、接触层 24；动作专家层 24（相位）、层 9（手腕朝向）、层 32（夹爪），激活维度 768。</li><li>论文未明确披露训练所用 GPU/TPU 等具体算力资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>位置几何</strong>：末端执行器位置和物体目标位置均需且仅需 <strong>3 维子空间</strong>，held-out $R^2$ 分别达 <strong>0.92</strong>（末端执行器）和 <strong>0.75</strong>（目标），空间位移可用<strong>正交（Procrustes）映射</strong>良好拟合，直线世界路径在子空间内近乎保持笔直。</li><li><strong>距离双尺</strong>：近程（<15 cm）和远程（15–70 cm）探针<strong>近正交</strong>（cosine <strong>0.04</strong> vs 分半上限约 0.23）；擦除远程方向使远程 $R^2$ 从 <strong>0.84</strong> 降至近零而近程保持 <strong>0.71</strong>；激活在两读出上呈"L 形"轨迹。</li><li><strong>接触</strong>：LDA 探针在自然 rollout 上解码接触准确率 <strong>91.3%</strong>，且在强制早接触/滑落等分布外干预下仍显著高于随机。</li><li><strong>任务阶段</strong>：冻结机械臂会使解码相位向 grasp 偏移；冻结使夹爪闭合指令比例在 reach 阶段上升 <strong>43 个百分点</strong>，在 place 阶段下降 <strong>68 个百分点</strong>。</li><li><strong>手腕朝向</strong>：完整扫描呈现开放弧；沿几何编辑产生<strong>补偿效应</strong>，单次编辑产生 <strong>0.33±0.08</strong> 反向旋转，持续编辑累计反向 <strong>1.0–1.3×</strong> 写入角度。</li><li><strong>夹爪</strong>：pullback 引导向量第一主成分解释约 <strong>70%</strong> 方差，足以翻转夹爪命令，但会泄漏到机械臂关节。</li><li><strong>真实数据迁移</strong>：三个模型均恢复四类变量，跨模型 Procrustes 相似度显著高于随机置换零假设；夹爪一致性最高，手腕朝向最弱。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.21152/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">KODA: Kinematics--Observation Data Alignment for Humanoid Learning from Human Egocentric Demonstration</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.20767/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Multi-Dimensional Featurizers Yield Fine-Grained Steering and Data Shaping in Robot Foundation Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

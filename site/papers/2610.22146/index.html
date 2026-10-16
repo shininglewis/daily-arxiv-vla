@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FastVLA: Task-Conditioned and Temporally Adaptive Visual Token Compression for Efficient Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 FastVLA，一个面向 Vision-Language-Action (VLA) 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。 要解决的问题是：VLA 每个控制步都需处理高分辨率、常为多视角的图像，产生数百个视觉 token，主导 LLM 主干计算与延迟；而现有 VLM/VLA token 压缩方法多采用静态压缩率，无法适应 VLA 顺序决策中“任务相关 token”和“每步所需 token 数量”动态变化的特点。 核心目标是：在不显著牺牲任务成功率的前提下，减少 VLA 模型 LLM 主干的 FLOPs 和动作预测延迟，并提升真实机器人控制频率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.22146">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.22146.webp" alt="FastVLA: Task-Conditioned and Temporally Adaptive Visual Token Compression for Efficient Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 FastVLA，一个面向 Vision-Language-Action (VLA) 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FastVLA: Task-Conditioned and Temporally Adaptive Visual Token Compression for Efficient Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-10-15 · <a href="http://arxiv.org/abs/2610.22146" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.22146" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.22146</span></div>
+            <p class="detail-summary">论文提出 FastVLA，一个面向 Vision-Language-Action (VLA) 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。 要解决的问题是：VLA 每个控制步都需处理高分辨率、常为多视角的图像，产生数百个视觉 token，主导 LLM 主干计算与延迟；而现有 VLM/VLA token 压缩方法多采用静态压缩率，无法适应 VLA 顺序决策中“任务相关 token”和“每步所需 token 数量”动态变化的特点。 核心目标是：在不显著牺牲任务成功率的前提下，减少 VLA 模型 LLM 主干的 FLOPs 和动作预测延迟，并提升真实机器人控制频率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Jiuyi Xu、Yangming Shi：Colorado School of Mines</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.22146/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 FastVLA，一个面向 Vision-Language-Action (VLA) 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。</p>
+  <ul class="reading-intro-points"><li>论文提出 FastVLA，一个面向 Vision-Language-Action (VLA) 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。</li><li>要解决的问题是：VLA 每个控制步都需处理高分辨率、常为多视角的图像，产生数百个视觉 token，主导 LLM 主干计算与延迟；而现有 VLM/VLA token 压缩方法多采用静态压缩率，无法适应 VLA 顺序决策中“任务相关 token”和“每步所需 token 数量”动态变化的特点。</li><li>核心目标是：在不显著牺牲任务成功率的前提下，减少 VLA 模型 LLM 主干的 FLOPs 和动作预测延迟，并提升真实机器人控制频率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Jiuyi Xu</strong>、<strong>Yangming Shi</strong>：<strong>Colorado School of Mines</strong></li><li><strong>Chengyuan Qian</strong>、<strong>Zhengzhong Tu</strong>：<strong>Texas A&M University</strong></li><li><strong>Yang Sui</strong>：<strong>Microsoft AI</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>FastVLA</strong>，一个面向 <strong>Vision-Language-Action (VLA)</strong> 模型的训练无关、任务感知、时序自适应视觉 token 压缩框架，用于加速闭环机器人操作中的推理。</li><li>要解决的问题是：VLA 每个控制步都需处理高分辨率、常为多视角的图像，产生数百个视觉 token，主导 LLM 主干计算与延迟；而现有 VLM/VLA token 压缩方法多采用静态压缩率，无法适应 VLA 顺序决策中“任务相关 token”和“每步所需 token 数量”动态变化的特点。</li><li>核心目标是：在不显著牺牲任务成功率的前提下，减少 VLA 模型 LLM 主干的 FLOPs 和动作预测延迟，并提升真实机器人控制频率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>FastVLA</strong>，一个训练无关、即插即用的视觉 token 压缩框架，可在每个动作步独立执行任务条件化的 token 剪枝，无需缓存或额外训练。</li><li>设计 <strong>步骤自适应压缩策略</strong>：根据当前步视觉 token 重要性分布的集中程度，动态设定每步的 token 预算与压缩率，而不是使用固定压缩率。</li><li>采用 <strong>task-to-vision attention</strong> 作为视觉 token 重要性信号，并通过实验证明其比 vision-to-vision 和 all-to-vision 注意力更适合 VLA 动作预测。</li><li>使用 <strong>inverse-Simpson uniformity</strong> 度量重要性分布的有效 token 数，并结合 <strong>在线滑动窗口校准</strong>，将分布均匀性映射为受限于 <code>[ρ-τ, ρ+τ]</code> 的逐时间步压缩率。</li><li>在 <strong>OpenVLA</strong>、<strong>OpenVLA-OFT</strong>、<strong>CogACT</strong> 以及真实 <strong>Franka Research 3</strong> 机器人上验证，仿真中减少 LLM 主干 FLOPs 35–59%、动作延迟 9–32%，真机实现约 1.25 倍端到端加速且成功率相当。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>FastVLA 在每一步基于 <strong>task tokens</strong> 对 <strong>visual tokens</strong> 的注意力计算重要性：对 task 和 visual 表示做 RMSNorm，计算缩放点积注意力并对 visual tokens 做 softmax，再对任务 token 子集平均，得到每个视觉 token 的重要性分数。</li><li>根据目标压缩率 <strong>ρ</strong> 和偏差因子 <strong>τ</strong>，先确定最小保留预算 <code>K = ceil((1-(ρ+τ))N)</code>，并取 Top-K 重要性 token。</li><li>通过 <strong>inverse Simpson</strong> 度量当前步重要性分布的均匀性：归一化 Top-K 权重后计算有效 token 数 <code>K_eff</code>，再得到 <code>U(t) = K_eff / K</code>；<code>U(t)</code> 越小表示注意力越集中，越大表示分布越均匀。</li><li>使用长度为 <strong>T</strong> 的在线滑动窗口维护历史 <code>U</code>，计算当前步在窗口极值间的相对位置 <code>α(t)</code>，再映射为逐时间步压缩率：<code>ρ(t) = clip(ρ + τ(1-2α(t)), ρ-τ, ρ+τ)</code>。</li><li>当 <code>α(t)</code> 小（比近期更集中）时更激进剪枝；当 <code>α(t)</code> 大（需要更广上下文）时更保守剪枝；该方法属于 <strong>hard token pruning</strong>，每步独立执行，无需训练和跨步缓存。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong>，包含 <strong>Spatial</strong>、<strong>Object</strong>、<strong>Goal</strong>、<strong>Long/10</strong> 四个评估套件。</li><li>仿真基准：<strong>SIMPLER</strong>，包含 <strong>Visual Matching</strong> 和 <strong>Variant Aggregation</strong> 两种设置，任务包括 <strong>Pick Coke Can</strong>、<strong>Move Near</strong>、<strong>Open/Close Drawer</strong>、<strong>Put Apple in Drawer</strong>。</li><li>真实机器人：<strong>Franka Research 3</strong>，评估 <strong>pick</strong> 和 <strong>pick and place</strong> 两个桌面操作任务；策略为基于 LoRA 微调的 <strong>OpenVLA-OFT</strong>。</li><li>使用模型：<strong>OpenVLA</strong>、<strong>OpenVLA-OFT</strong>、<strong>CogACT-base</strong>。</li><li>计算资源：所有实验在单张 <strong>NVIDIA RTX 4090 GPU</strong> 上完成；FastVLA 本身为训练无关方法，不需要额外训练压缩模块。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估指标包括：<strong>成功率 (SR)</strong>、<strong>LLM 主干 FLOPs</strong>、<strong>动作预测延迟</strong>、<strong>控制频率</strong>、<strong>CUDA 延迟</strong> 和 <strong>端到端加速比</strong>。</li><li>仿真中，FastVLA 将 LLM 主干 FLOPs 降低 <strong>35–59%</strong>，动作延迟降低 <strong>9–32%</strong>，实现 <strong>1.09×–1.46×</strong> 加速，同时保持与基线相当的任务成功率。</li><li>在 <strong>OpenVLA-OFT + LIBERO</strong> 上，平均成功率 <strong>96.5%</strong>（基线 97.0%），LLM FLOPs 从 <strong>3.98T</strong> 降至 <strong>1.65T</strong>，延迟从 <strong>118.52 ms</strong> 降至 <strong>81.17 ms</strong>，加速 <strong>1.46×</strong>。</li><li>在 <strong>OpenVLA + LIBERO</strong> 上，平均成功率 <strong>75.8%</strong>（基线 76.4%），延迟从 <strong>186.64 ms</strong> 降至 <strong>161.53 ms</strong>，FLOPs 从 <strong>1.86T</strong> 降至 <strong>1.20T</strong>，加速 <strong>1.16×</strong>。</li><li>在 <strong>CogACT-base + SIMPLER</strong> 上，Visual Matching 平均成功率 <strong>77.1%</strong>（基线 77.5%），Variant Aggregation 平均成功率 <strong>61.9%</strong>（基线 60.9%），分别实现约 <strong>1.09×</strong> 和 <strong>1.11×</strong> 加速。</li><li>在真实 <strong>Franka Research 3</strong> 上，FastVLA 将端到端延迟降低约 <strong>20%</strong>，实现 <strong>1.25×</strong> 加速，控制频率最高提升 <strong>25%</strong>；Pick 任务成功率 <strong>80%</strong>（基线 84%），Pick and place 成功率 <strong>66%</strong>（基线 68%）。</li><li>消融实验表明，在相同 token 预算下，<strong>自适应压缩率</strong> 优于固定压缩率，例如 LIBERO Spatial 成功率 <strong>97.8%</strong> vs 预算匹配固定策略 <strong>96.5%</strong>，Object <strong>98.0%</strong> vs <strong>97.1%</strong>，Goal <strong>97.0%</strong> vs <strong>95.7%</strong>，Long/10 <strong>93.1%</strong> vs <strong>92.0%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.22178/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">REKI: Registering Knowledge in VLAs</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.22070/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Memory as Weights: Internalizing Long-Term History for Streaming Videos</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

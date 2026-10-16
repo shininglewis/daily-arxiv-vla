@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Paraphrase Consensus Is Not Self-Consistency: Instruction Reliance and Robustness in VLA Policies - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="研究视觉-语言-动作（VLA）策略对自然语言指令改写的鲁棒性，以及测试时改写共识能否像语言模型中的自一致性那样恢复性能。 发现测试时聚合（paraphrase consensus）不仅不能恢复改写带来的损失，反而会因成员不可交换而放大偏差；真正的修复是在训练时用改写指令进行增强。 提出指令依赖探针（wrong-instruction probe），衡量策略成功中必须依赖指令的比例，并揭示改写代价只在依赖度高的场景出现。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Paraphrase Consensus Is Not Self-Consistency: Instruction Reliance and Robustness in VLA Policies</h1>
             <div class="detail-meta">2026-10-14 · <a href="http://arxiv.org/abs/2610.19438" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.19438" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.19438</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">研究视觉-语言-动作（VLA）策略对自然语言指令改写的鲁棒性，以及测试时改写共识能否像语言模型中的自一致性那样恢复性能。 发现测试时聚合（paraphrase consensus）不仅不能恢复改写带来的损失，反而会因成员不可交换而放大偏差；真正的修复是在训练时用改写指令进行增强。 提出指令依赖探针（wrong-instruction probe），衡量策略成功中必须依赖指令的比例，并揭示改写代价只在依赖度高的场景出现。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Institute of Science Tokyo, Tokyo, Japan</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.19438/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">研究视觉-语言-动作（VLA）策略对自然语言指令改写的鲁棒性，以及测试时改写共识能否像语言模型中的自一致性那样恢复性能。</p>
+  <ul class="reading-intro-points"><li>研究视觉-语言-动作（VLA）策略对自然语言指令改写的鲁棒性，以及测试时改写共识能否像语言模型中的自一致性那样恢复性能。</li><li>发现测试时聚合（paraphrase consensus）不仅不能恢复改写带来的损失，反而会因成员不可交换而放大偏差；真正的修复是在训练时用改写指令进行增强。</li><li>提出指令依赖探针（wrong-instruction probe），衡量策略成功中必须依赖指令的比例，并揭示改写代价只在依赖度高的场景出现。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Institute of Science Tokyo, Tokyo, Japan</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>研究<strong>视觉-语言-动作（VLA）策略</strong>对自然语言指令改写的鲁棒性，以及测试时改写共识能否像语言模型中的自一致性那样恢复性能。</li><li>发现测试时聚合（paraphrase consensus）不仅不能恢复改写带来的损失，反而会因成员不可交换而放大偏差；真正的修复是在训练时用改写指令进行增强。</li><li>提出<strong>指令依赖探针（wrong-instruction probe）</strong>，衡量策略成功中必须依赖指令的比例，并揭示改写代价只在依赖度高的场景出现。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出并系统测量<strong>paraphrase consensus</strong>在VLA策略上的效果，通过逐时间步日志揭示其失败机制：改写成员不可交换，聚合只能降方差不能消偏差。</li><li>设计<strong>指令依赖探针</strong>，用同场景下其他任务的指令测试策略，在LIBERO四个套件和三种策略上发现改写代价与指令依赖度强相关。</li><li>证明<strong>训练时指令增强</strong>（LoRA在改写指令上后训练）可将单改写惩罚从 <strong>-38.0</strong> 点变为 <strong>+2.0</strong> 点，而匹配对照仍为 <strong>-32.0</strong> 点。</li><li>引入三个控制实验：匹配训练控制、迁移到留出改写、接地检查（确保策略仍读取指令），弥补此前补救措施未报告的验证。</li><li>发布多种类型的改写集（<strong>llm / easy / hard / adversarial / held-out</strong>），并给出配对统计与可复现细节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Paraphrase Consensus (LCC)</strong>：对同一任务用 <strong>K</strong> 个语义等价的改写指令查询冻结策略，取动作块的中位数（medoid）执行；用检查点自身的动作统计归一化距离，支持连续动作空间。</li><li><strong>改写集生成</strong>：LLM生成候选，经独立LLM判定等价且与训练指令的句嵌入余弦超阈值，再用贪心最大-最小选择距离，构建每任务的 <strong>llm / easy / hard / adversarial / held-out</strong> 集合。</li><li><strong>指令依赖探针</strong>：将当前任务的指令替换为同一套件中另一任务的训练指令，场景、初始状态和成功谓词保持不变；成功即表示策略未依赖指令。</li><li><strong>训练时增强</strong>：在原始演示上保留真实动作，将每个样本的指令替换为同任务改写，用 <strong>LoRA</strong>（rank 32, lr 1e-4, 2000步）后训练 <strong>OpenVLA</strong>，并设置仅用原始指令训练的匹配控制。</li><li>创新点在于指出改写轴与采样轴的本质区别：自一致性聚合的是同一条件分布的样本，而改写共识聚合的是 <strong>K</strong> 个不同条件分布，只有一个是策略拟合过的。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>LIBERO</strong> 模拟基准的四个套件：<strong>Spatial、Object、Goal、Long</strong>，以及 <strong>LIBERO-PRO</strong> 中带干扰物 mug 的分布偏移 Spatial 版本。</li><li>策略模型包括 <strong>OpenVLA</strong>（7B Llama-2 骨干）、<strong>OpenVLA-OFT</strong>（7B，同骨干，加并行解码与连续动作头）和 <strong>π0.5</strong>（PaliGemma-based flow-matching 策略）。</li><li>训练资源：LoRA 后训练约 <strong>1 小时</strong>；延迟测量在空闲 <strong>A100 GPU</strong> 上进行，<strong>K=4</strong> 时即使批处理仍为单次查询的 <strong>2.98×</strong> 成本。</li><li>评估采用配对初始状态，每任务 50、25 或 10 个 episode，并报告 Wilson 95% 区间、bootstrap 95% CI 和 Holm 校正的 McNemar 检验。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>LIBERO</strong> 模拟套件，基准策略均复现其发表数值（OFT 在 ±2 点门限内，base OpenVLA 在 Wilson 区间内）。</li><li>主要指标为任务<strong>成功率（%）</strong>及相对于规范控制器的配对差值 <strong>Δ</strong>，辅以任务聚类区间和按任务的依赖度分析。</li><li>在 base OpenVLA / LIBERO-Spatial 上，单一改写使成功率变化 <strong>-38.0</strong> 点；含训练指令的共识损失 <strong>-16.8</strong> 点，无训练指令的改写中位数损失 <strong>-32.4</strong> 点，置信度选择损失 <strong>-28.0</strong> 点。</li><li>对强策略 <strong>OpenVLA-OFT</strong>，Spatial 上共识为零效应；在 <strong>Goal</strong> 上（依赖度 100%）共识仍损失 <strong>-4.0</strong> 点，单改写损失 <strong>-10.4</strong> 点。</li><li>指令依赖探针显示：base OpenVLA 在所有套件需 <strong>97–100%</strong> 的成功依赖指令；OpenVLA-OFT 仅在 Goal 需 <strong>100%</strong>，在 Object 仅 <strong>2%</strong>；<strong>π0.5</strong> 在 Goal 需 <strong>100%</strong>、Object 需 <strong>67%</strong>。</li><li>训练时增强将单改写效应从 <strong>-38.0</strong> 点降至 <strong>+2.0</strong> 点，匹配控制保持 <strong>-32.0</strong> 点；该结果在第二个种子和 <strong>OpenVLA-OFT</strong> 上复现，并迁移到留出改写，且错误指令探针显示策略的语言份额仍为 <strong>97%</strong>。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

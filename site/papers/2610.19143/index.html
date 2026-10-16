@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Post-Training, Finetuning, and Steering:A Field Guide for Curating Training Data - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文面向机器人基础模型（尤其是 Vision-Language-Action (VLA) 模型）的策略适配（policy adaptation）问题，系统比较不同适配方法在不同数据场景下的表现。 核心问题是：在给定可用轨迹数据与计算资源的前提下，从业者应如何选择监督微调（SFT）、基于 critic 的引导/steering（CBS）还是策略梯度类强化学习等方法，目前文献缺乏可靠指导。 论文以&quot;领域指南（Field Guide）&quot;的形式，围绕数据来源（on-policy / off-policy）、数据是否包含失败轨迹、以及离线 vs 在线训练三个维度展开受控实验，给出实用选型建议。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Post-Training, Finetuning, and Steering:A Field Guide for Curating Training Data</h1>
             <div class="detail-meta">2026-10-13 · <a href="http://arxiv.org/abs/2610.19143" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.19143" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.19143</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文面向机器人基础模型（尤其是 Vision-Language-Action (VLA) 模型）的策略适配（policy adaptation）问题，系统比较不同适配方法在不同数据场景下的表现。 核心问题是：在给定可用轨迹数据与计算资源的前提下，从业者应如何选择监督微调（SFT）、基于 critic 的引导/steering（CBS）还是策略梯度类强化学习等方法，目前文献缺乏可靠指导。 论文以&quot;领域指南（Field Guide）&quot;的形式，围绕数据来源（on-policy / off-policy）、数据是否包含失败轨迹、以及离线 vs 在线训练三个维度展开受控实验，给出实用选型建议。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Toronto（多伦多大学）：Maria Attarian*、Yifan…</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.19143/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文面向机器人基础模型（尤其是 Vision-Language-Action (VLA) 模型）的策略适配（policy adaptation）问题，系统比较不同适配方法在不同数据场景下的表现。</p>
+  <ul class="reading-intro-points"><li>论文面向机器人基础模型（尤其是 Vision-Language-Action (VLA) 模型）的策略适配（policy adaptation）问题，系统比较不同适配方法在不同数据场景下的表现。</li><li>核心问题是：在给定可用轨迹数据与计算资源的前提下，从业者应如何选择监督微调（SFT）、基于 critic 的引导/steering（CBS）还是策略梯度类强化学习等方法，目前文献缺乏可靠指导。</li><li>论文以&quot;领域指南（Field Guide）&quot;的形式，围绕数据来源（on-policy / off-policy）、数据是否包含失败轨迹、以及离线 vs 在线训练三个维度展开受控实验，给出实用选型建议。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Toronto</strong>（多伦多大学）：Maria Attarian*、Yifan Ruan*、Chenyang Cao、Nicholas Rhinehart、Igor Gilitschenski</li><li><strong>University of Texas at Austin</strong>（德州大学奥斯汀分校）：Claas Voelcker*、Amy Zhang、Peter Stone</li><li>注：带 * 号者为共同第一作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文面向机器人基础模型（尤其是 <strong>Vision-Language-Action (VLA)</strong> 模型）的<strong>策略适配（policy adaptation）</strong>问题，系统比较不同适配方法在不同数据场景下的表现。</li><li>核心问题是：在给定可用轨迹数据与计算资源的前提下，从业者应如何选择<strong>监督微调（SFT）</strong>、<strong>基于 critic 的引导/steering（CBS）</strong>还是<strong>策略梯度类强化学习</strong>等方法，目前文献缺乏可靠指导。</li><li>论文以"领域指南（Field Guide）"的形式，围绕数据来源（on-policy / off-policy）、数据是否包含失败轨迹、以及离线 vs 在线训练三个维度展开受控实验，给出实用选型建议。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次在统一实验框架下系统比较 <strong>SFT</strong>、<strong>critic-based steering（CBS）</strong>（MC、SARSA、IQL、IVR 等 critic 目标）与 <strong>策略梯度微调</strong>（PPO、GRPO、DSRL）在多种数据制度下的表现。</li><li>提出并检验四条假设（<strong>H1</strong>：失败数据使 steering 优于 SFT；<strong>H2</strong>：steering 需要 on-policy 数据；<strong>H3</strong>：离线 RL（如 IQL）能利用多样 off-policy 数据大幅提升；<strong>H4</strong>：在线策略梯度适配更快更高效、steering 适合离线）。</li><li>发现 <strong>CBS 在含失败数据的场景下显著优于 SFT</strong>；在仅有成功轨迹时两者提升幅度相当，方法选择可交由推理速度与算力决定。</li><li>发现 <strong>离线 RL 的 critic 训练目标（IQL/IVR）并不优于简单的 Monte-Carlo 回归</strong>，说明离线 RL 方法学进展在操作任务适配中收益有限。</li><li>发现在<strong>在线</strong>设定中 CBS（尤其 IQL/IVR）样本效率显著高于策略梯度微调（PPO/GRPO），但<strong>性能上限低于全量微调</strong>。</li><li>在真实 <strong>Franka / DROID</strong> 平台上验证了"数据分布比算法细节更重要"这一主要结论。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>形式化定义<strong>有限时域上下文 MDP</strong>，将适配目标写为目标任务上的期望成功率最大化（公式 1）。</li><li>划分三类数据制度：<strong>offline on-policy</strong>（用基策略 π₀ 采集）、<strong>offline off-policy</strong>（用其他策略采集）、<strong>online</strong>（边训练边采集），并区分"仅成功轨迹"与"成功+失败混合轨迹"。</li><li>将方法归纳为 2×2 网格：<strong>策略权重微调</strong> vs <strong>策略引导（guidance/steering）</strong> × <strong>监督学习</strong> vs <strong>强化学习</strong>。</li><li><strong>SFT</strong>：在成功轨迹上用最大似然估计（公式 2）训练策略参数，实现中用 <strong>rank-16 LoRA</strong> 只微调 action expert，冻结 VLM backbone 以防灾难性遗忘。</li><li><strong>RL 策略微调</strong>：使用 REINFORCE 风格的策略梯度更新（公式 3），在线实验采用 <strong>PPO</strong>，并只微调 action expert 扩散模型。</li><li><strong>Critic-based steering</strong>：不改动策略权重，训练 critic Q_φ 引导推理时动作选择；采用 <strong>forward universal guidance + UF-OPS</strong>，在线场景另加 <strong>DSRL</strong>。</li><li>Critic 训练目标对比：<strong>Monte-Carlo 回归</strong>（公式 4）、<strong>SARSA</strong>（公式 5）、<strong>IQL</strong>（10 成员 Q ensemble，expectile τ=0.9，推理取 min Q）、<strong>IVR</strong>（alpha=0.002，sql loss）。</li><li>Critic 输入使用 VLA backbone 最后一个 state token 的 embedding，附加 <strong>MUSE 任务嵌入</strong>、本体感知与 episode 时间步；γ=0.99，Polyak 平均 τ=0.005。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong>（Spatial、Object、Goal、Long 共 40 个任务用于基策略微调），评估使用 <strong>LIBERO-90</strong> 中筛选出的 11 个非零成功率任务（Task ID：12、26、28、31、38、43、59、60、64、77、79）。</li><li>基础策略：<strong>π₀.₅</strong> 的微调 checkpoint，在分布内 LIBERO 任务上达 <strong>98%</strong> 成功率。</li><li>离线数据规模：每个目标任务采集至少 <strong>500 条成功</strong>与 <strong>1000 条失败</strong>轨迹；off-policy 数据由在 LIBERO 专家演示上训练的 <strong>factorized diffusion policy</strong>（4 个 expert）采集；off-policy 实验每任务使用 <strong>1500 条</strong>轨迹。</li><li>真实世界：<strong>Franka</strong> 机械臂（按 <strong>DROID</strong> 配置），使用 DROID 数据微调的 <strong>π₀.₅</strong> 作为基策略；4 个任务：ball-to-bowl、stack-cups、block-cardboard、remove-marker；每任务采集 50 条 on-policy 轨迹，评测每任务 20 次尝试。</li><li>训练细节：replay buffer，<strong>UTD=5</strong>，batch size <strong>256</strong>；真实在线 IQL 的 UTD 提升至 <strong>30</strong>，critic 隐层维度加大到 <strong>1024</strong>；steering 系数离线为 0.1、在线为 0.2；每个 critic 训练 3 个随机种子，每种子每任务 100 次 rollout。</li><li>论文未明确说明所用 GPU/TPU 型号与数量，仅在致谢中说明使用 LLM 编码助手生成实验代码与绘图代码，并由人工逐项验证。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：<strong>LIBERO</strong> 仿真基准（离线 on-policy、离线 off-policy、在线三种制度）+ 真实 <strong>Franka/DROID</strong> 平台四任务。</li><li>主要指标：<strong>任务成功率（Success Rate）</strong>，在线场景另观察样本效率（达到给定成功率所需的 env steps）。</li><li><strong>H1 得到验证</strong>：存在失败数据时，CBS 在数据量固定与增加两种设置下均优于 SFT；CBS 性能随数据量适度提升。</li><li><strong>H2 部分验证</strong>：纯 off-policy 数据效果略差，但仍优于仅用成功数据的 on-policy SFT；混合 on/off-policy 数据可与纯 on-policy 持平甚至更好，说明 on-policy 数据"有利但非必需"。</li><li><strong>H3 未获支持</strong>：离线 off-policy 场景下 IQL、IVR 等离线 RL critic 目标与 MC、SARSA 差异不显著，简单稳定的 MC 方法即可胜任。</li><li><strong>H4 部分被反驳</strong>：在线设定中 CBS（含 DSRL）明显更快、更样本高效，IQL/IVR 因可自举值函数表现尤佳；但策略梯度全量微调（PPO 优于 GRPO）虽慢却能达到更高性能上限。</li><li>真实世界结果与仿真一致：仅用成功轨迹训练的 MC critic 未带来收益，而基于失败数据或在线 IQL 的 steering 在 4 个真实任务上取得显著提升。</li><li>作者结论：数据构成（是否含失败、是否 on-policy）对适配效果的影响<strong>往往大于 critic 学习目标或策略更新算法的选择</strong>，未来应更重视适配数据集的构建与离线到在线混合适配范式。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

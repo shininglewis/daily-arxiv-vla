@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>An Agentic Framework for Proactive Robots with Procedural Assistance Memory - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决&quot;何时帮忙、帮什么&quot;的主动式服务问题。 核心观察是：真实世界的日常作息具有高度重复性，学习这些模式可以消解&quot;相同观察对应不同需求&quot;的歧义（例如摆出空碗可能是要麦片，也可能是要收碗）。 采用 System 1–2 架构：高层 VLM 任务预测器读取记忆与当前观测决定主动任务，低层 VLA 执行器负责原子动作执行。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.21211">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.21211.webp" alt="An Agentic Framework for Proactive Robots with Procedural Assistance Memory" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决&quot;何时帮忙、帮什么&quot;的主动式服务问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">An Agentic Framework for Proactive Robots with Procedural Assistance Memory</h1>
+            <div class="detail-meta">2026-10-15 · <a href="http://arxiv.org/abs/2610.21211" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.21211" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.21211</span></div>
+            <p class="detail-summary">提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决&quot;何时帮忙、帮什么&quot;的主动式服务问题。 核心观察是：真实世界的日常作息具有高度重复性，学习这些模式可以消解&quot;相同观察对应不同需求&quot;的歧义（例如摆出空碗可能是要麦片，也可能是要收碗）。 采用 System 1–2 架构：高层 VLM 任务预测器读取记忆与当前观测决定主动任务，低层 VLA 执行器负责原子动作执行。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">KAIST AI（韩国科学技术院人工智能研究生院）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.21211/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决&quot;何时帮忙、帮什么&quot;的主动式服务问题。</p>
+  <ul class="reading-intro-points"><li>提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决&quot;何时帮忙、帮什么&quot;的主动式服务问题。</li><li>核心观察是：真实世界的日常作息具有高度重复性，学习这些模式可以消解&quot;相同观察对应不同需求&quot;的歧义（例如摆出空碗可能是要麦片，也可能是要收碗）。</li><li>采用 System 1–2 架构：高层 VLM 任务预测器读取记忆与当前观测决定主动任务，低层 VLA 执行器负责原子动作执行。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>KAIST AI</strong>（韩国科学技术院人工智能研究生院）</li><li>作者：<strong>Dohyun Lee</strong>、<strong>Minho Park</strong>、<strong>Jeonghoon Park</strong>、<strong>Dongyoon Hwang</strong>、<strong>Junha Hyung</strong>、<strong>Sungwon Hwang</strong>、<strong>Byungkun Lee</strong>、<strong>Jaegul Choo</strong>（前两位为共同第一作者）</li><li>项目主页：<strong>DAVIAN-Robotics.github.io/PAM</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出一种基于记忆的智能体框架，让机器人在用户明确提出请求之前就主动提供协助，解决"何时帮忙、帮什么"的主动式服务问题。</li><li>核心观察是：真实世界的日常作息具有高度重复性，学习这些模式可以消解"相同观察对应不同需求"的歧义（例如摆出空碗可能是要麦片，也可能是要收碗）。</li><li>采用 <strong>System 1–2</strong> 架构：高层 VLM 任务预测器读取记忆与当前观测决定主动任务，低层 <strong>VLA</strong> 执行器负责原子动作执行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>基于记忆的智能体框架</strong>用于主动机器人协助，通过用户特定作息上下文让高层 VLM 在无显式指令下决定"何时协助"与"执行什么任务"。</li><li>提出 <strong>Procedural Assistance Memory (PAM)</strong>，一种以<strong>有限状态机（FSM）</strong>组织的记忆结构，包含活动阶段状态、状态内触发–动作规则以及事件驱动转移，利用用户与活动上下文降低协助需求歧义。</li><li>设计<strong>自演化记忆闭环</strong>：反射器（reflector）每天离线根据当日行为与用户反馈修订 PAM，实现作息学习、变化适应与反馈吸收，全程<strong>无需微调或重训练权重</strong>。</li><li>通过消融验证 <strong>FSM 结构本身</strong>（而非单纯增加记忆）是性能提升来源，并证明 System 1–2 分解优于单体 VLA。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>任务预测器作为 <strong>System 2</strong>：以 1 Hz 频率接收最近 <strong>W=5</strong> 帧视频（stride=2）、文本化的 PAM 以及固定指令 *"Proactively help the user before they ask."*，输出自然语言任务或 <code>NO_ACT</code>，推理时<strong>关闭 thinking 模式</strong>以保证实时性。</li><li>PAM 序列化为结构化文本（如 JSON）注入提示词，包含状态描述、触发–动作对与转移；仅当任务可立即执行时才选择，否则输出 <code>NO_ACT</code>。</li><li>记忆反射器作为离线更新模块，<strong>开启 thinking 模式</strong>，输入当日采样帧、上一版 PAM、当日动作历史摘要与用户反馈，识别被遗漏的协助机会、推断重复模式，并新增或修订状态、规则与转移。</li><li>PAM 在单日内保持固定，适应完全通过每日修订实现；VLA 执行器采用 <strong>π₀.₅</strong> 骨干，每个任务采集 10 条示教微调。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>自建 <strong>5 天桌面协助数据集</strong>：单一用户重复执行标准早餐桌面流程，每日录像约 3.5–4.5 分钟，按 1 fps 采样，共 <strong>1,146 帧</strong>标注（<code>NO_ACT</code> 673 帧，T1–T6 共 473 帧）。</li><li>六个主动任务：<strong>T1 Cereal→Person</strong>、<strong>T2 Milk→Person</strong>、<strong>T3 Cereal→Storage</strong>、<strong>T4 Milk→Storage</strong>、<strong>T5 Bowl→Storage</strong>、<strong>T6 Wet wipe→Trash</strong>。</li><li>另有 <strong>Scenario B</strong>（改吃维生素的变体作息）用于评估作息变化后的记忆适应。</li><li>VLM：<strong>Qwen 3.5–27B</strong>（任务预测器与反射器共用，经 <strong>vLLM</strong> 部署）。</li><li>VLA：<strong>π₀.₅</strong> 骨干，三种变体（executor / monolithic / monolithic+reasoning）均微调 <strong>50,000</strong> 步，AdamW，学习率 1e−4 余弦衰减，有效 batch size 64，动作 chunk 长度 50，训练使用 <strong>NVIDIA B200 GPU</strong>。</li><li>硬件：<strong>Franka Research 3 (FR3)</strong> 7-DoF 机械臂 + Deoxys 实时控制器（20 Hz），3 个 <strong>Intel RealSense</strong> 相机（左右后视 30 fps + 腕部相机），VR 遥操接口 <strong>TactAR</strong>（Meta Quest 3）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估协议：将主动任务预测形式化为<strong>逐帧分类</strong>问题（6 个任务 + <code>NO_ACT</code>），报告各类 precision/recall/F1 及宏平均，并报告 <strong>first-fire delay</strong>（应协助时刻到首次预测出任务的时间差）。</li><li>基线：无记忆的 <strong>LIT</strong>、<strong>Event-driven VLM</strong>、<strong>Zero-shot VLM</strong>，以及 <strong>Ours w/ List Memory</strong>（扁平规则表）和 <strong>Ours w/ FSM Memory</strong>；执行层面与 <strong>π₀.₅</strong> 及 <strong>π₀.₅ (Reasoning)</strong> 单体 VLA 对比。</li><li>无记忆基线整体保守，T1–T6 召回率接近零且五天基本持平；记忆变体随天数持续提升，<strong>Ours w/ FSM Memory</strong> 取得最高的 precision、recall 和 F1，并将 <strong>first-fire delay 从 Day 1 的约 5 秒降至 Day 5 的约 1 秒</strong>。</li><li>FSM 记忆随天数持续改进，而 List Memory 因缺乏状态抽象而早早饱和，说明增益来自 FSM 结构；代价是其 <code>NO_ACT</code> 召回略低于保守基线（但 <code>NO_ACT</code> F1 持平）。</li><li>作息切换（A→B）实验中，A-Evolving 在 Day 1 因旧记忆干扰而低于 Zero-shot VLM，但<strong>经过一次记忆更新</strong>后 Day 2 的 recall/F1 即恢复至与 Scratch-Evolving 相当，而 A-Frozen 始终低于 Zero-shot VLM。</li><li>定性分析显示缺失的触发–动作对被逐日补全；作息变化后（如先吃维生素），反射器会把"人坐下→递麦片"的转移修订为"人坐下→递维生素"。</li><li>与单体 VLA 对比中，<strong>Ours</strong> 在全部六个原子任务上成功率最高（如 Cereal→Person 9/10、Cereal→Storage 8/10、Bowl→Storage 8/10、Wet Wipe→Trash 8/10），远超 π₀.₅ 与 π₀.₅ (Reasoning)。</li><li>局限：FSM 记忆在用户短暂触碰触发物而未真正进入该阶段时会误触发；且受限于开源 VLA 能力，评估仅限于已见场景，未覆盖新物体、新布局与新用户。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.21251/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Do VLAs Really Follow Instructions? Diagnosing How-Level Instruction Following in Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.21160/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">When to Ask for Help: A Decision-Theoretic Account and Measurement Standard for Slow-Module Scheduling in Dual-System Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

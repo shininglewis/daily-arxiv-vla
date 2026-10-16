@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Don&#x27;t Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="研究 Vision-Language-Action (VLA) 模型在边缘机器人部署中的压缩问题，发现剪枝会导致 VLA 性能严重崩溃和安全违规增加。 通过谱分析揭示 VLA 权重结构与 LLM/VLM 的差异，提出 GLUESTICK 后剪枝恢复方法，无需训练即可恢复性能与安全性。 目标是将剪枝重新纳入 VLA 压缩工具箱，同时保留结构化稀疏带来的内存和速度优势。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Don&#x27;t Run with Scissors: Pruning Breaks VLA Models but They Can Be Recovered</h1>
             <div class="detail-meta">2025-10-09 · <a href="http://arxiv.org/abs/2510.08464" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2510.08464" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2510.08464</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">研究 Vision-Language-Action (VLA) 模型在边缘机器人部署中的压缩问题，发现剪枝会导致 VLA 性能严重崩溃和安全违规增加。 通过谱分析揭示 VLA 权重结构与 LLM/VLM 的差异，提出 GLUESTICK 后剪枝恢复方法，无需训练即可恢复性能与安全性。 目标是将剪枝重新纳入 VLA 压缩工具箱，同时保留结构化稀疏带来的内存和速度优势。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">FieldAI</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2510.08464/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">研究 Vision-Language-Action (VLA) 模型在边缘机器人部署中的压缩问题，发现剪枝会导致 VLA 性能严重崩溃和安全违规增加。</p>
+  <ul class="reading-intro-points"><li>研究 Vision-Language-Action (VLA) 模型在边缘机器人部署中的压缩问题，发现剪枝会导致 VLA 性能严重崩溃和安全违规增加。</li><li>通过谱分析揭示 VLA 权重结构与 LLM/VLM 的差异，提出 GLUESTICK 后剪枝恢复方法，无需训练即可恢复性能与安全性。</li><li>目标是将剪枝重新纳入 VLA 压缩工具箱，同时保留结构化稀疏带来的内存和速度优势。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>FieldAI</strong></li><li><strong>Harvard University</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>研究 <strong>Vision-Language-Action (VLA)</strong> 模型在边缘机器人部署中的压缩问题，发现剪枝会导致 VLA 性能严重崩溃和安全违规增加。</li><li>通过谱分析揭示 VLA 权重结构与 LLM/VLM 的差异，提出 <strong>GLUESTICK</strong> 后剪枝恢复方法，无需训练即可恢复性能与安全性。</li><li>目标是将剪枝重新纳入 VLA 压缩工具箱，同时保留结构化稀疏带来的内存和速度优势。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次系统研究表明，在 LLM/VLM 上有效的剪枝方法应用于 VLA 时会导致成功率近乎完全崩溃，并显著增加安全违规。</li><li>通过谱分析发现 VLA 权重谱衰减更平坦、能量分散在多方向，缺乏 LLM/VLM 的集中谱结构，解释了其剪枝脆弱性。</li><li>提出 <strong>GLUESTICK</strong>，一种与剪枝算法无关、无需训练的后剪枝恢复方法，通过低秩权重空间校正恢复丢失信号。</li><li>在多种 VLA 架构、操作与导航任务、仿真与真实机器人上验证，恢复高达 100% 成功率并保持接近密集模型的安全性。</li><li>实现最多 <strong>5 GB</strong> 内存节省和最高 <strong>1.75×</strong> 推理加速，并可与其他压缩技术（如量化、token 剪枝）组合。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>GLUESTICK</strong> 作用于剪枝后的线性层，计算密集权重与剪枝权重之间的差距矩阵 <strong>W_gap = W_dense − W_pruned</strong>。</li><li>对差距矩阵进行截断 SVD，保留前 <strong>r</strong> 个奇异分量，得到紧凑校正矩阵 <strong>A = U_r Σ_r</strong> 和 <strong>B = V_r</strong>。</li><li>推理时每个剪枝层应用校正：<strong>h(x) = W_pruned x + A(Bᵀx)</strong>，在保留稀疏矩阵乘法效率的同时重新注入主导丢失方向。</li><li>额外参数量为 <strong>(d_in + d_out)r</strong>，计算开销为 <strong>(d_in + d_out)r</strong>，远小于密集层的 <strong>d_in × d_out</strong>。</li><li>超参数 <strong>r</strong> 提供内存与恢复性能的权衡调节，<strong>GLUESTICK-r</strong> 可灵活选择。</li><li>方法完全在权重空间操作，无需额外训练，且与剪枝算法（如 Magnitude、Wanda）和稀疏模式（2:4、4:8）无关。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>操作任务基准：<strong>LIBERO</strong>，包含 Spatial、Object、Goal、Long 四个任务套件，使用 <strong>Franka Panda</strong> 机械臂。</li><li>导航任务基准：<strong>VLN-CE-Isaac</strong>，模拟腿式机器人在室内环境导航。</li><li>评估模型：<strong>OpenVLA 7B</strong>、<strong>WorldVLA 7B</strong>、<strong>NaVILA 8B</strong>。</li><li>剪枝设置：默认使用 <strong>Wanda</strong> 实现 <strong>50% 2:4 结构化稀疏</strong>，也测试 Magnitude 和不同稀疏率（30%、50%、70%）。</li><li>边缘推理硬件：<strong>NVIDIA Jetson Thor</strong> 和 <strong>Jetson Orin NX</strong>。</li><li>训练资源：方法无需额外训练，仅需一次性离线 SVD 计算；评估在边缘设备上进行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>剪枝崩溃</strong>：OpenVLA 在 LIBERO 上成功率从 <strong>85.2%</strong> 降至 <strong>0.0%</strong>，不安全率从 <strong>33.4%</strong> 升至 <strong>51.6%</strong>；NaVILA 在导航任务上成功率从 <strong>43.0%</strong> 降至 <strong>0.0%</strong>，不安全率从 <strong>23.0%</strong> 升至 <strong>100.0%</strong>。</li><li><strong>任务恢复</strong>：GLUESTICK 在导航上恢复 <strong>100%</strong> 丢失性能（达 <strong>44.0%</strong>，与密集模型持平）；在操作上平均成功率从 <strong>3.6%</strong> 恢复至 <strong>40.4%</strong>，Spatial 套件从 <strong>0.0%</strong> 恢复至 <strong>54.0%</strong>。</li><li><strong>安全性恢复</strong>：相比 Full Sparse，GLUESTICK 在操作和导航上分别减少 <strong>89%</strong> 和 <strong>100%</strong> 的不安全情节，接近密集模型安全水平。</li><li><strong>推理加速</strong>：在 Jetson Thor 上，剪枝加速 <strong>1.83×–1.89×</strong>；GLUESTICK-200 仍保持 <strong>1.75×</strong>（OpenVLA）和 <strong>1.67×</strong>（WorldVLA）加速，GLUESTICK-500 保持 <strong>1.48×–1.51×</strong>。</li><li><strong>内存节省</strong>：GLUESTICK-200 节省 <strong>5.36 GB</strong> VRAM，接近完全稀疏模型的 <strong>5.74 GB</strong>，同时恢复近乎全部密集成功率。</li><li><strong>组合能力</strong>：与 Int8 量化结合时，Sparse/Int8/GLUESTICK 在 LIBERO Spatial 上达 <strong>62.2%</strong> 成功率；与 VLA-Pruner 结合时加速比提升至 <strong>1.64×</strong>。</li><li><strong>真实机器人</strong>：在 <strong>Unitree G1</strong> 操作任务中，GLUESTICK 将成功率从 <strong>0%</strong> 恢复至 <strong>60%</strong>，不安全率从 <strong>90%</strong> 降至 <strong>0%</strong>；在 <strong>Boston Dynamics Spot</strong> 导航中减少 <strong>50%</strong> 路径偏差。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Back on Track: Deployment-time Policy Improvement via World Model Planning - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文标题为 Back on Track: Deployment-time Policy Improvement via World Model Planning，研究在部署时仅通过黑盒访问改进已训练视觉运动策略的问题。 核心思路是离线训练一个监控-干预框架：学习策略条件 liveness value 来监测任务进展，并用紧凑 latent world model 规划短时纠正动作。 目标是在不重新训练或修改名义策略的前提下，提高策略在部署中的成功率和鲁棒性，同时满足实时控制要求。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Back on Track: Deployment-time Policy Improvement via World Model Planning</h1>
             <div class="detail-meta">2026-10-14 · <a href="http://arxiv.org/abs/2610.19579" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.19579" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.19579</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文标题为 Back on Track: Deployment-time Policy Improvement via World Model Planning，研究在部署时仅通过黑盒访问改进已训练视觉运动策略的问题。 核心思路是离线训练一个监控-干预框架：学习策略条件 liveness value 来监测任务进展，并用紧凑 latent world model 规划短时纠正动作。 目标是在不重新训练或修改名义策略的前提下，提高策略在部署中的成功率和鲁棒性，同时满足实时控制要求。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">斯坦福大学航空航天系（Aeronautics and Astronautics Department…</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.19579/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文标题为 Back on Track: Deployment-time Policy Improvement via World Model Planning，研究在部署时仅通过黑盒访问改进已训练视觉运动策略的问题。</p>
+  <ul class="reading-intro-points"><li>论文标题为 Back on Track: Deployment-time Policy Improvement via World Model Planning，研究在部署时仅通过黑盒访问改进已训练视觉运动策略的问题。</li><li>核心思路是离线训练一个监控-干预框架：学习策略条件 liveness value 来监测任务进展，并用紧凑 latent world model 规划短时纠正动作。</li><li>目标是在不重新训练或修改名义策略的前提下，提高策略在部署中的成功率和鲁棒性，同时满足实时控制要求。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>斯坦福大学航空航天系</strong>（Aeronautics and Astronautics Department, Stanford University）</li><li><strong>南加州大学 Ming Hsieh 电气与计算机工程系</strong>（Ming Hsieh Department of Electrical and Computer Engineering, University of Southern California）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文标题为 <strong>Back on Track: Deployment-time Policy Improvement via World Model Planning</strong>，研究在部署时仅通过黑盒访问改进已训练视觉运动策略的问题。</li><li>核心思路是离线训练一个监控-干预框架：学习策略条件 <strong>liveness value</strong> 来监测任务进展，并用紧凑 <strong>latent world model</strong> 规划短时纠正动作。</li><li>目标是在不重新训练或修改名义策略的前提下，提高策略在部署中的成功率和鲁棒性，同时满足实时控制要求。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>形式化黑盒访问下的部署时策略改进问题，并提出 <strong>liveness filtering</strong>：外部 wrapper 短暂干预，将固定名义策略恢复到其成功 basin。</li><li>提出实时实例化：单一策略条件 <strong>liveness value</strong> 同时用于监控执行和引导纠正规划，并在紧凑 <strong>latent world model</strong> 中搜索动作，使用数据 informed action proposal 提高搜索效率。</li><li>在 <strong>LIBERO-Goal</strong> 十任务套件上将 <strong>π0.5</strong> 从 <strong>72.6%</strong> 提升至 <strong>81.5%</strong>，优于 offline-RL 和 safety-filtering 基线。</li><li>在 <strong>Franka Panda</strong> 机械臂上使 <strong>diffusion policy</strong> 从 <strong>40%</strong> 提升至 <strong>60%</strong>，并保持实时控制（规划周期 <strong>108 ms</strong>，循环 <strong>>10 Hz</strong>）。</li><li>方法仅需稀疏 episode-level 成功/失败标签和黑盒策略查询，无需访问策略参数或内部表示。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>monitoring-and-intervention</strong> 框架：名义策略默认执行，monitor 检测到进展丧失时触发 fallback planner 进行短时纠正，随后交还控制。</li><li><strong>Monitor</strong> 使用策略条件 <strong>liveness value function V_{π_b}</strong>，通过带 min 算子的 Bellman 更新从 on-policy rollouts 学习，并集成 ensemble、时间平滑和随时间衰减的阈值来减少误报。</li><li><strong>Planner</strong> 学习一个 <strong>29.6M 参数的四层 ViT world model φ</strong>，在紧凑状态表示上自回归预测下一状态；使用 <strong>CEM</strong> 优化动作序列，目标是最小化沿想象轨迹的累积 liveness value。</li><li>动作采样采用 <strong>数据 informed proposal</strong>：从训练动作块估计经验协方差，用 PCA 主成分生成时间相干扰动，避免不可行动作导致 world model 被利用。</li><li>World model 训练使用策略 rollouts 和辅助 <strong>play data</strong>，并采用 rollout-length curriculum 自回归训练（从 1 到 16 步）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>主要评估环境为 <strong>LIBERO-Goal</strong> 十任务套件，扰动初始机械臂配置和物体位置；硬件实验使用 <strong>Franka Panda</strong> 机械臂。</li><li>名义策略包括 <strong>π0.5</strong>（LIBERO checkpoint）和 <strong>diffusion policy</strong>。</li><li>每个任务收集 <strong>200 条</strong> π_b rollouts（每条最多 300 步），提供稀疏 episode-level 成功/失败标签；补充 <strong>53 分钟</strong> LIBERO-Goal 示教数据作为 play data。</li><li>World model 参数量约 <strong>29.6M</strong>；π0.5 约 <strong>3.3B</strong> 参数（用于白盒参考 Filtered-BC 微调）。</li><li>训练在单张 <strong>NVIDIA GeForce RTX 4090 GPU</strong> 上进行；部署规划周期 <strong>108 ms</strong>，amortized 后监控-规划循环 <strong>>10 Hz</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准为 <strong>LIBERO-Goal</strong> 十任务套件，每任务 <strong>300 个配对 episode</strong>；另在 <strong>Franka Panda</strong> 硬件上测试。</li><li>主要指标为任务成功率、干预的 <strong>Rescued/Broken</strong> 次数及差值 <strong>Δ</strong>。</li><li>十任务上，<strong>π0.5</strong> 从 <strong>72.6%</strong> 提升至 <strong>81.5%</strong>（<strong>+8.9pp</strong>）；monitor 在 <strong>94%</strong> 的失败 trial 上触发，仅在 <strong>16%</strong> 的成功 trial 上触发；共拯救 <strong>369</strong> 次失败，破坏 <strong>102</strong> 次成功，净增 <strong>267</strong> 次成功。</li><li>四任务对比：本方法平均 <strong>80.9%</strong>，优于 <strong>LatentSafe</strong>（59.2%）、<strong>IQL</strong>（42.2%）、<strong>TD3+BC</strong>（39.6%）；接近白盒参考 <strong>Filtered-BC</strong>（78.2%），且可叠加提升至 <strong>79.8%</strong>。</li><li>任务 0 提升最大（<strong>+27.0pp</strong>），任务 2 唯一退步（<strong>-1.0pp</strong>，world model 对细酒瓶抓取产生幻觉）；任务 7 接近天花板。</li><li>硬件实验中，diffusion policy 从 <strong>40%</strong> 提升至 <strong>60%</strong>；增加 50% 扰动仍保持增益；消融验证 ensemble、时间平滑和阈值 schedule 的作用。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

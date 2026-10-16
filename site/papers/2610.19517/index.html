@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VLRLA: Deployment-Time Adaptation of Vision-Language-Action Models through In-Context Reinforcement Learning - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="论文提出 VLRLA，一个为现有 Vision-Language-Action（VLA） 模型赋予上下文强化学习（In-Context RL）能力的通用框架，使其能在部署阶段利用积累的交互经验逐步提升任务成功率。 核心问题是：传统基于示教训练的 VLA 策略缺乏部署后渐进适应的机制，而在线深度 RL / 交互式模仿学习需要数十到数小时样本采集、任务特定的超参调优以及逐环境的参数更新，难以扩展。 解决思路是：让动作生成以历史观测、动作、奖励与终止信号构成的记忆为条件，保持模型参数完全冻结，仅通过上下文中不断累积的交互经验实现自适应。" />
     <script>
       (function() {
         try {
@@ -69,11 +69,11 @@
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">VLRLA: Deployment-Time Adaptation of Vision-Language-Action Models through In-Context Reinforcement Learning</h1>
             <div class="detail-meta">2026-10-14 · <a href="http://arxiv.org/abs/2610.19517" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.19517" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.19517</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">论文提出 VLRLA，一个为现有 Vision-Language-Action（VLA） 模型赋予上下文强化学习（In-Context RL）能力的通用框架，使其能在部署阶段利用积累的交互经验逐步提升任务成功率。 核心问题是：传统基于示教训练的 VLA 策略缺乏部署后渐进适应的机制，而在线深度 RL / 交互式模仿学习需要数十到数小时样本采集、任务特定的超参调优以及逐环境的参数更新，难以扩展。 解决思路是：让动作生成以历史观测、动作、奖励与终止信号构成的记忆为条件，保持模型参数完全冻结，仅通过上下文中不断累积的交互经验实现自适应。</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Diyuan Shi（浙江大学、西湖大学）</span>
             </div>
           </div>
         </div>
@@ -87,16 +87,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2610.19517/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">论文提出 VLRLA，一个为现有 Vision-Language-Action（VLA） 模型赋予上下文强化学习（In-Context RL）能力的通用框架，使其能在部署阶段利用积累的交互经验逐步提升任务成功率。</p>
+  <ul class="reading-intro-points"><li>论文提出 VLRLA，一个为现有 Vision-Language-Action（VLA） 模型赋予上下文强化学习（In-Context RL）能力的通用框架，使其能在部署阶段利用积累的交互经验逐步提升任务成功率。</li><li>核心问题是：传统基于示教训练的 VLA 策略缺乏部署后渐进适应的机制，而在线深度 RL / 交互式模仿学习需要数十到数小时样本采集、任务特定的超参调优以及逐环境的参数更新，难以扩展。</li><li>解决思路是：让动作生成以历史观测、动作、奖励与终止信号构成的记忆为条件，保持模型参数完全冻结，仅通过上下文中不断累积的交互经验实现自适应。</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Diyuan Shi</strong>（<strong>浙江大学</strong>、<strong>西湖大学</strong>）</li><li><strong>Yiqi Tang</strong>（<strong>西湖大学</strong>）</li><li><strong>Hongyin Zhang</strong>（<strong>西湖大学</strong>）</li><li><strong>You Wu</strong>（<strong>西湖大学</strong>）</li><li><strong>Donglin Wang</strong>（<strong>西湖大学</strong>，通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>VLRLA</strong>，一个为现有 <strong>Vision-Language-Action（VLA）</strong> 模型赋予<strong>上下文强化学习（In-Context RL）</strong>能力的通用框架，使其能在<strong>部署阶段</strong>利用积累的交互经验逐步提升任务成功率。</li><li>核心问题是：传统基于示教训练的 VLA 策略缺乏部署后渐进适应的机制，而在线深度 RL / 交互式模仿学习需要数十到数小时样本采集、任务特定的超参调优以及逐环境的参数更新，难以扩展。</li><li>解决思路是：让动作生成以历史观测、动作、奖励与终止信号构成的记忆为条件，<strong>保持模型参数完全冻结</strong>，仅通过上下文中不断累积的交互经验实现自适应。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次将 VLA 模型的<strong>部署时适应</strong>形式化为<strong>上下文强化学习问题</strong>，用累积交互与奖励反馈指导后续决策，且不更新模型参数。</li><li>提出<strong>通用框架</strong>，统一了<strong>学习历史构造</strong>（learning history construction）与<strong>适应模块集成</strong>策略，可兼容多种数据构建方式、模型架构与部署任务。</li><li>设计两种策略实例：面向简单/仿真场景的 <strong>VLRLA-simp</strong>（冻结 VLM 编码器 + 可训练循环动作模块 RLA）与面向复杂/真实场景的 <strong>VLRLA-bridge</strong>（复用预训练编码器与动作专家，通过桥接模块修改 KV 缓存）。</li><li>支持三种学习历史构建策略：<strong>仿真 RL</strong>、<strong>人在回路课程（HITL Curriculum）</strong>、<strong>后见重标记（Hindsight Relabeling / HER）</strong>。</li><li>在仿真与真实机器人上系统验证了框架有效性，证明其能跨多种预训练骨干适配，并在未见任务上随经验积累持续提升成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>Algorithm Distillation（AD）</strong> 思想，在有序学习历史序列上训练因果序列模型，蒸馏源 RL 算法的适应行为，保留跨 episode 的学习顺序以学到"动作生成随经验变化"的规律。</li><li>采用类似 <strong>Transformer-XL</strong> 的<strong>循环记忆（Recurrent Memory）</strong>机制：局部窗口内做因果注意力，并对早期窗口的缓存表示做注意力，以降低长 trial（跨多个 episode、数千 token）的显存与算力开销。</li><li>复用预训练 VLA 的<strong>视觉-语言表示</strong>，提供两种接口：<strong>前缀嵌入（prefix embeddings）</strong>与 <strong>KV 缓存（KV cache）</strong>；编码器参数冻结，仅训练下游循环策略。</li><li><strong>VLRLA-simp</strong>：冻结 VLM 编码器 + 可训练 RLA（含循环记忆的 Transformer + MLP），输出确定性动作块，以 <strong>MSE 重建损失</strong>训练。</li><li><strong>VLRLA-bridge</strong>：冻结编码器与动作专家，训练一个桥接模块产生与 KV 缓存同结构的残差 <strong>Δz_t</strong>，得到修正缓存 <strong>z'_t = z_t + Δz_t</strong>，再驱动冻结的流式动作专家；采用 <strong>flow-matching 目标</strong>训练，梯度经冻结专家回传到桥接模块。</li><li><strong>学习历史构造</strong>：仿真 RL 使用域随机化采样同任务多环境实例并行收集 on-policy 轨迹；HITL 课程按 1/3 → 2/3 → 3/3 逐步增加人工干预比例；HER 通过语言指令重标记 <code>(o_t, a_t, R_ℓ, o_{t+1}, ℓ)</code> 复用轨迹。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真测试平台：<strong>RoboTwin</strong> 基准，含 6 个seen任务与 6 个unseen任务。</li><li>仿真数据采集：使用 <strong>RLinf</strong> 框架通过在线 RL 收集数据，支持 <strong>PPO</strong>、<strong>GRPO</strong> 等算法。</li><li>预训练骨干：<strong>π0.5</strong>、<strong>LingBot-VLA（lingbotvla）</strong>、<strong>FastWAM</strong>（world action model）。</li><li>训练资源：GRPO 并行 on-policy 数据收集需 <strong>8 张 NVIDIA A100-80G GPU</strong>。</li><li>真实机器人数据：约 <strong>80 条遥操作 episode</strong> 用于微调 π0.5 基座，另有 <strong>3×20 条</strong> HITL 修正 episode；跨 episode 记忆任务使用后见重标记组装数据。</li><li>评估规模：仿真每任务 <strong>128 个随机环境实例</strong>取平均；真实实验分别进行 <strong>45 次</strong>（seen 水果）、<strong>25 次</strong>（unseen 辣椒）、<strong>44 次</strong>（跨 episode 记忆）评测；消融实验为 <strong>5 个随机种子</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境与基准：<strong>RoboTwin</strong> 仿真（seen/unseen 任务）+ 真实机器人操作（水果放置、跨 episode 记忆任务），对比 <strong>监督微调 π0.5</strong>、<strong>RL 微调 GRPO</strong>、<strong>RoboTTT</strong>。</li><li>主要指标：任务<strong>成功率（%）</strong>、随交互历史累积的成功率变化曲线、各任务平均提升（Δ，百分点）。</li><li>仿真结果：<strong>VLRLA-bridge</strong> 在全部 12 个任务上均优于 π0.5，<strong>总体平均 63.4%</strong>，优于 <strong>GRPO（60.0%）</strong>与 <strong>RoboTTT（58.2%）</strong>；seen 任务平均 66.2%（π0.5 为 48.6%），unseen 任务平均 60.6%（π0.5 为 53.3%），相对 π0.5 分别提升 <strong>17.6</strong> 与 <strong>7.3</strong> 个百分点。</li><li>消融结论：上下文长度 <strong>h=4</strong> 与 <strong>h=8</strong> 表现相近；<strong>无历史（no history）</strong>设置成功率接近 0 且无持续提升；<strong>重复历史（repeat history）</strong>仅在首次可用时有提升随后停滞，说明持续累积交互历史是关键。</li><li>历史迁移：将一次 rollout 的交互历史迁移到同任务不同初始状态的 rollout，初始成功率显著提高（如 <code>adjust_bottle</code> 约 0.7 vs 0.55，<code>place_empty_cup</code> 约 0.85 vs 0.65）。</li><li>真实世界结果：水果放置任务中，随交互累积 VLRLA 稳定超越 π0.5，Apple <strong>+13.3%</strong>、Starfruit <strong>+26.7%</strong>、Grape <strong>+6.7%</strong>（VLRLA₄ 与 π0.5 对比）；在未见任务"put the pepper into the pot"上同样持续优于基线；跨 episode 记忆任务中，奖励反馈出现后成功率稳步上升，表明策略能利用跨 episode 奖励指导后续选择。</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>

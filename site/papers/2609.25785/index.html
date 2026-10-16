@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation - VLA / World Action Model 每日论文卡</title>
-    <meta name="description" content="待生成" />
+    <meta name="description" content="提出 VisForce，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将当前执行器力与任务期望力统一表示为图像空间中的视觉线索 解决的核心问题：现有 VLA（Vision-Language-Action）模型把力/触觉作为独立状态向量、隐式 token 或专用融合通路处理，难以显式表达&quot;力的数值&quot;与&quot;对应指尖视觉位置&quot;之间的空间对应关系；而视觉目标（goal image）方法虽然给出期望手/物配置，却不包含期望力 目标是把&quot;如何抓&quot;（手/物配置）与&quot;用多大力抓&quot;（期望力）编码进同一个视觉表征，使力信息可直接复用 VLA 已有的视觉通路，无需额外的力编码器" />
     <script>
       (function() {
         try {
@@ -61,17 +61,17 @@
         <div class="detail-hero-grid">
           <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
   <img class="paper-figure-image" src="../../assets/paper-images/2609.25785.webp" alt="VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
-  <figcaption class="paper-figure-caption">待生成</figcaption>
+  <figcaption class="paper-figure-caption">提出 VisForce，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将当前执行器力与任务期望力统一表示为图像空间中的视觉线索</figcaption>
 </figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">VisForce: Visual Grounding of Current and Desired Forces for Goal-Conditioned Dexterous Manipulation</h1>
             <div class="detail-meta">2026-09-22 · <a href="http://arxiv.org/abs/2609.25785" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2609.25785" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2609.25785</span></div>
-            <p class="detail-summary">待生成</p>
+            <p class="detail-summary">提出 VisForce，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将当前执行器力与任务期望力统一表示为图像空间中的视觉线索 解决的核心问题：现有 VLA（Vision-Language-Action）模型把力/触觉作为独立状态向量、隐式 token 或专用融合通路处理，难以显式表达&quot;力的数值&quot;与&quot;对应指尖视觉位置&quot;之间的空间对应关系；而视觉目标（goal image）方法虽然给出期望手/物配置，却不包含期望力 目标是把&quot;如何抓&quot;（手/物配置）与&quot;用多大力抓&quot;（期望力）编码进同一个视觉表征，使力信息可直接复用 VLA 已有的视觉通路，无需额外的力编码器</p>
             <div class="detail-micro-meta">
-              <span class="meta-pill">1 分钟读完</span>
-              <span class="meta-pill">1 张阅读卡</span>
-              
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者为 Jung-Woo Lee 与 Soo-Chul Lim（通讯作者，标注 *）</span>
             </div>
           </div>
         </div>
@@ -85,16 +85,56 @@
     <span class="reading-badge">一眼看懂</span>
     <a class="cover-preview-link" href="../../covers/2609.25785/">封面预览</a>
   </div>
-  <p class="reading-intro-hook">待生成</p>
-  <ul class="reading-intro-points"><li>待生成</li></ul>
+  <p class="reading-intro-hook">提出 VisForce，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将当前执行器力与任务期望力统一表示为图像空间中的视觉线索</p>
+  <ul class="reading-intro-points"><li>提出 VisForce，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将当前执行器力与任务期望力统一表示为图像空间中的视觉线索</li><li>解决的核心问题：现有 VLA（Vision-Language-Action）模型把力/触觉作为独立状态向量、隐式 token 或专用融合通路处理，难以显式表达&quot;力的数值&quot;与&quot;对应指尖视觉位置&quot;之间的空间对应关系；而视觉目标（goal image）方法虽然给出期望手/物配置，却不包含期望力</li><li>目标是把&quot;如何抓&quot;（手/物配置）与&quot;用多大力抓&quot;（期望力）编码进同一个视觉表征，使力信息可直接复用 VLA 已有的视觉通路，无需额外的力编码器</li></ul>
 </section>
 <section class="reading-card reading-card-section">
   <div class="reading-card-topline">
     <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者为 <strong>Jung-Woo Lee</strong> 与 <strong>Soo-Chul Lim</strong>（通讯作者，标注 *）</li><li>所提供的 arXiv HTML 原文中未显式列出作者的具体院系与机构名称（未见 affiliation 字段）</li><li>从实验平台（<strong>Inspire RH56F1</strong> 灵巧手、<strong>UR10</strong> 机械臂、<strong>RealSense D405</strong>）与作者信息看，研究为韩国的机器人/机械工程方向团队完成</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
     <span class="reading-step-note">论文概述</span>
   </div>
   <h2>论文概述</h2>
-  <div class="reading-card-content"><p>待生成</p></div>
+  <div class="reading-card-content"><ul><li>提出 <strong>VisForce</strong>，一种用于灵巧手操作（dexterous manipulation）的力感知视觉条件化方法，将<strong>当前执行器力</strong>与<strong>任务期望力</strong>统一表示为图像空间中的视觉线索</li><li>解决的核心问题：现有 VLA（Vision-Language-Action）模型把力/触觉作为独立状态向量、隐式 token 或专用融合通路处理，难以显式表达"力的数值"与"对应指尖视觉位置"之间的空间对应关系；而视觉目标（goal image）方法虽然给出期望手/物配置，却不包含期望力</li><li>目标是把"如何抓"（手/物配置）与"用多大力抓"（期望力）编码进同一个视觉表征，使力信息可直接复用 VLA 已有的视觉通路，无需额外的力编码器</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>力落地的当前视觉表征</strong>：将每根手指的执行器力与其对应指尖位置在同一腕部相机图像中空间对齐（渲染为指尖处的 3D 箭头力线索）</li><li>提出 <strong>力落地的目标表征</strong>：构建前景隔离的力目标图像，统一表达任务相关的手/物期望配置与逐指期望力</li><li>提出 <strong>目标条件交叉注意力（goal-conditioned cross-attention）</strong>：让当前腕部 token 显式关注任务相关的前景目标 token，实现当前观测与期望目标的耦合，进而生成力感知动作</li><li>在真实机器人上验证：跨期望力条件呈现一致的抓取力响应，并在力敏感抓取与多阶段力感知操作任务上优于多种力条件化基线</li><li>证明该方法在<strong>指尖被物体遮挡</strong>与<strong>保持持续工具接触下反复调整力</strong>两类困难场景中的有效性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基础模型为 <strong>π0.5</strong> VLA 模型，在其之上新增两个组件：力落地视觉表征与目标条件交叉注意力</li><li><strong>腕部相机对齐渲染</strong>：在 <strong>MuJoCo</strong> 中复现真实机器人构型，通过手部掩码 <strong>IoU</strong> 与边缘 <strong>Chamfer</strong> 损失优化模拟腕部相机的 6-DoF 外参；真实掩码由 <strong>GroundingDINO</strong> + <strong>SAM2</strong> 获得；采用 <strong>Differential Evolution</strong> 粗优化 + <strong>Powell</strong> 精优化</li><li><strong>力视觉线索生成</strong>：以指尖位置 <code>p_t^i</code> 与法向 <code>d_t^i</code> 构造向量 <code>v_t^i = α f_t^i d_t^i</code>（α = 1×10⁻⁴），按手指特定颜色渲染为 3D 箭头，仅对超过阈值（滤除小幅执行器波动）的力渲染，再叠加到真实腕部图像</li><li><strong>力目标图像构建</strong>（离线）：从参考示范中选取测量执行器力最接近预设期望力 <code>F_k^g</code> 的代表帧 → 用 GroundingDINO + SAM2 分割手与物体得到前景隔离图 → 在同一渲染流程下在指尖位置渲染期望力，推理时按子任务检索，无需在线分割</li><li><strong>GoalAttnBlock</strong>：预 LayerNorm 交叉注意力，8 个注意力头；使用 <strong>14×14</strong> patch 级前景掩码 <code>M_fg</code> 限制 key/value 仅为前景目标 token；残差连接 + 两层 FFN（扩张比 4，GELU）</li><li>腕部图、目标图与外部相机图共享同一 <strong>SigLIP</strong> 视觉编码器；交叉注意力仅作用于腕部流，外部相机 token 走 π0.5 原视觉通路；训练损失沿用基模型的 <strong>flow-matching</strong> 损失</li><li>训练策略：视觉编码器与交叉注意力模块全参数更新，VLM 主干与动作专家用 <strong>LoRA</strong>（rank r=16，scaling α=16）微调，所有对比方法使用相同 LoRA 配置</li><li>动作定义为 12 维 delta 动作：<code>[Δa_arm (6), Δa_hand (6)]</code>，输出长度为 H 的动作块</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>自采真实机器人演示数据</strong>（无公开数据集）：T1–T4 分别采集 <strong>30 / 25 / 30 / 30</strong> 条示范</li><li>数据模态：腕部相机图像、外部相机图像、本体状态、动作、执行器力、任务期望力</li><li>采集频率：相机 <strong>30 Hz</strong>，机器人状态/动作/力 <strong>200 Hz</strong>，按相机时间戳最近邻同步</li><li>硬件平台：<strong>Universal Robots UR10</strong> 6-DoF 机械臂 + <strong>Inspire RH56F1</strong> 6-DoF 灵巧手 + 两个 <strong>Intel RealSense D405</strong>（腕部 + 外部）</li><li>计算资源：策略推理与训练在配备 <strong>NVIDIA RTX A6000</strong> GPU 的工作站上进行；机器人控制与相机输入由独立控制 PC 处理</li><li>未在原文中给出模型总参数量等具体规模信息</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>真实机器人评估，每任务 <strong>N = 20</strong> 次独立试验；T2–T4 采用<strong>累计阶段成功率</strong>（要求前序阶段全部成功），报告 95% <strong>Wilson 置信区间</strong></li><li>四个评估维度/任务：<strong>T1 力条件抓取</strong>（刚性物体、鸡蛋、牙膏）、<strong>T2 杯子插入与瓶子倒水</strong>、<strong>T3 夹钳辅助面包转移</strong>、<strong>T4 滑移调制的 peg-in-hole</strong></li><li>对比方法：<strong>π0.5</strong>（无力信息）、<strong>State Force + Text Force Goal</strong>（力作为状态 + 文本期望力）、<strong>Visual Force + Text Force Goal</strong>（力落地腕图 + 文本期望力）、<strong>VisForce w/o CA</strong>（去掉交叉注意力，直接拼接），以及 <strong>VisForce</strong>（完整方法）</li><li>T1 结果：随期望力增大，VisForce 的聚合执行器力一致上升且三种力水平清晰分离（对比方法区分度有限）；鸡蛋抓取-提升成功率 <strong>70%</strong>、牙膏 <strong>80%</strong>（对比：Visual Force + Text Force Goal 为 40%/20%，State Force + Text Force Goal 为 35%/5%）</li><li>多阶段任务最终成功率：VisForce 在 <strong>T2 达 70%</strong>、<strong>T3 达 55%</strong>、<strong>T4 达 40%</strong>；对应 Visual Force + Text Force Goal 为 65%/20%/20%，State Force + Text Force Goal 为 20%/5%/5%，π0.5 为 20%/5%/5%</li><li>交叉注意力消融：VisForce w/o CA 在 T2/T3/T4 仅 <strong>10%/5%/15%</strong>，远低于 VisForce 的 70%/55%/40%，说明目标条件交叉注意力比简单 token 拼接更有效</li><li>结论：指尖对齐的视觉力表征可有效用于 VLA 灵巧手操作中的力感知条件化，尤其在指尖遮挡与持续接触下反复调整期望力的场景中优势明显</li></ul></div>
 </section></article>
         <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
           <p class="detail-toc-title">阅读目录</p>
