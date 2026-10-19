@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NestedVLA: Learning to Consolidate and Generate Skills for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 Vision-Language-Action（VLA）模型的技能整合（skill consolidation）问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。 指出现有做法存在两类困境：联合多任务训练受任务间干扰，且要求数据可集中；模型合并（静态或动态）在 VLA 上会因参数冲突严重失效，简单平均几乎丢失全部性能。 提出 NestedVLA，将范式从 “参数聚合” 转为 “参数生成”：先独立学习技能，再做后验（post-hoc）整合，实现存储高效、任务条件化的技能复用。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.23271">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.23271.webp" alt="NestedVLA: Learning to Consolidate and Generate Skills for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 Vision-Language-Action（VLA）模型的技能整合（skill consolidation）问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">NestedVLA: Learning to Consolidate and Generate Skills for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-10-16 · <a href="http://arxiv.org/abs/2610.23271" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.23271" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.23271</span></div>
+            <p class="detail-summary">论文研究 Vision-Language-Action（VLA）模型的技能整合（skill consolidation）问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。 指出现有做法存在两类困境：联合多任务训练受任务间干扰，且要求数据可集中；模型合并（静态或动态）在 VLA 上会因参数冲突严重失效，简单平均几乎丢失全部性能。 提出 NestedVLA，将范式从 “参数聚合” 转为 “参数生成”：先独立学习技能，再做后验（post-hoc）整合，实现存储高效、任务条件化的技能复用。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Guodong Du、Wanyu Lin（通讯作者）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.23271/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 Vision-Language-Action（VLA）模型的技能整合（skill consolidation）问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。</p>
+  <ul class="reading-intro-points"><li>论文研究 Vision-Language-Action（VLA）模型的技能整合（skill consolidation）问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。</li><li>指出现有做法存在两类困境：联合多任务训练受任务间干扰，且要求数据可集中；模型合并（静态或动态）在 VLA 上会因参数冲突严重失效，简单平均几乎丢失全部性能。</li><li>提出 NestedVLA，将范式从 “参数聚合” 转为 “参数生成”：先独立学习技能，再做后验（post-hoc）整合，实现存储高效、任务条件化的技能复用。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Guodong Du</strong>、<strong>Wanyu Lin</strong>（通讯作者）</li><li>所属机构：<strong>香港理工大学计算学系</strong>（Department of Computing, The Hong Kong Polytechnic University）</li><li>代码开源地址：<strong>https://github.com/WanyuGroup/NeurIPS2026-NestedVLA</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>Vision-Language-Action（VLA）模型</strong>的<strong>技能整合（skill consolidation）</strong>问题，即如何在不汇聚各方原始训练数据的前提下，把独立微调得到的多个任务策略合并为一个统一模型。</li><li>指出现有做法存在两类困境：联合多任务训练受任务间干扰，且要求数据可集中；模型合并（静态或动态）在 VLA 上会因参数冲突严重失效，简单平均几乎丢失全部性能。</li><li>提出 <strong>NestedVLA</strong>，将范式从 <strong>“参数聚合”</strong> 转为 <strong>“参数生成”</strong>：先独立学习技能，再做后验（post-hoc）整合，实现存储高效、任务条件化的技能复用。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>把技能整合重构为参数生成问题：用嵌入 VLA 的<strong>嵌套超网络（nested hypernetwork）</strong> 以任务标识为条件，直接生成动作专家（action expert）的稀疏参数增量，而非从固定参数集中选取或插值。</li><li>提出 <strong>drop-and-rescale 压缩算子</strong>：对任务向量做模块级 top-K 稀疏化并全局重缩放，把十亿级稠密增量压缩为可学习的稀疏技能表示，在保真度—压缩率权衡上优于量化与低秩分解。</li><li>设计完整的三阶段框架：<strong>技能获取 → 技能整合 → 推理时技能生成</strong>；训练后模型可直接部署，<strong>无需改动前向架构、无需专家路由、无需运行时混合计算</strong>。</li><li>在 <strong>MetaWorld、ManiSkill、CALVIN</strong> 三个闭环操作基准上，比最强模型合并基线平均高出 <strong>41 个百分点</strong>，且在任务条件化方法中存储开销最低（<strong>1.5×</strong> 单模型）。</li><li>给出存储核算与消融分析，指出性能瓶颈来自“从固定基值中做选择”这一范式本身，而非存储预算。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>技能获取</strong>：对每个任务数据集独立微调共享基座 Θ₀ 得到 Θ_m，任务向量 τ_m = Θ_m − Θ₀；训练信号不限（监督微调、强化学习均可）。</li><li><strong>drop-and-rescale 压缩</strong>：按模块计算 top-K 二值掩码 M_m，得到 z_m = α · τ_m ⊙ M_m；α 为全局重缩放因子，被离线预计算并外部存储，不交由超网络预测，以避免高杠杆标量污染回归目标。</li><li><strong>基于 patch 的参数 tokenization</strong>：把权重张量切分为 H_patch × W_patch 的二维 patch 网格，每个 patch 由四元组 <strong>(ptype, layer, patch_h, patch_w)</strong> 唯一寻址，使输出维度可控并保留结构化空间布局。</li><li><strong>超网络架构（五个可训练组件）</strong>：</li></ul>
+<p> - <strong>逐任务 patch embedding</strong>：四类索引各经一张按任务索引的嵌入表，拼接为 patch 特征。</p>
+<p> - <strong>任务编码器</strong>：任务 id → 任务嵌入 → 轻量 2D 卷积 + 全局平均池化 → 单一任务特征 f_task。</p>
+<p> - <strong>拼接与广播</strong>：f_task 广播到所有 patch，与 patch 嵌入拼接，是任务信息与参数布局唯一的交汇点。</p>
+<p> - <strong>共享 FC 主干 + 逐任务 LoRA 路径</strong>：主干提供任务无关的特征传输，LoRA 让各任务轻度扰动表示。</p>
+<p> - <strong>多头输出</strong>：每个任务独占一个 FC 投影，显著缓解多任务干扰。</p>
+<ul><li><strong>训练目标</strong>：多任务掩码回归损失，只在 M_m = 1 的位置计算，并用任务平衡权重 w_m 补偿各基准可学习性的差异；基座 Θ₀ 全程冻结，仅优化 φ。</li><li><strong>推理时生成</strong>：查询一次超网络，施加预计算掩码与重缩放得到动作专家增量，检索压缩后的 VLM 残差，二者与冻结基座相加即实例化完整任务专用 VLA。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基座模型：<strong>π₀.₅</strong>，分解为 <strong>VLM 部分约 3.21B</strong> 参数与<strong>动作专家约 0.40B</strong> 参数（合计约 <strong>3.61B</strong>）。</li><li>技能来源：用 <strong>FlowSDE</strong> 在三个基准上分别独立微调，得到 3 个任务向量。</li><li>基准数据集：<strong>MetaWorld</strong>（32 任务，256 条轨迹）、<strong>ManiSkill</strong>（25 任务，320 条轨迹）、<strong>CALVIN ABC-D</strong>（96 次 rollout，每次 5 段子任务链）。</li><li>超网络规模：覆盖 <strong>18 个 transformer block、9 类权重（162 个张量）</strong>，切分为 <strong>256×256 patch（每任务 T = 6,480 个 patch）</strong>；共享 FC 隐藏宽度 <strong>h = 2048</strong>，逐任务 <strong>LoRA 秩 1024</strong>，多头输出为每任务 h→65,536 投影，共约 <strong>430M 可训练参数</strong>。</li><li>压缩设置：模块级 <strong>top-K = 10%</strong>，全局重缩放 <strong>α = 1.1</strong>。</li><li>训练配置：<strong>6,000 步</strong>，batch size 3，基础学习率 <strong>3×10⁻⁴</strong>，LoRA 乘子 3.0，600 步 warmup + 1,500 步 cosine 衰减，任务权重 (1.0, 0.4, 1.0) 对应 (MW, MA, CA)。</li><li>计算资源：单张 <strong>A6000 GPU</strong>，约 <strong>10 小时</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：全部使用官方 <strong>RLinf</strong> 流水线，3 个随机种子取平均（典型标准差 <strong>±2.7%</strong>）。</li><li>主要指标：MetaWorld / ManiSkill 用 <strong>success_once</strong>（rollout 中任意时刻达成目标即成功）；CALVIN 用 <strong>success_at_end</strong>（完成五段任务链的比例）。</li><li>主结果（Table 1）：</li></ul>
+<p> - <strong>NestedVLA 平均 66.7%</strong>，超越所有静态与动态合并基线 <strong>41–54 个百分点</strong>。</p>
+<p> - <strong>ManiSkill 87.2%</strong>，距逐任务 FlowSDE 上限（88.1%）仅 <strong>0.9 pp</strong>。</p>
+<p> - <strong>CALVIN 75.0%</strong>，说明单一共享 φ 足以支撑链式完成的精度要求。</p>
+<p> - <strong>MetaWorld 37.9%</strong>，是剩余差距（平均 −13.8 pp）的主要来源。</p>
+<ul><li>基线表现：静态合并全面失效（Averaging 14.8%、TIES 13.1%、WUDI 11.8%、TSV-Merging 13.4%，CALVIN 全为 <strong>0%</strong>）；动态合并最优为 <strong>Free-Merging 25.6%</strong>（2.16×），EMR-Merging 2.89× 存储仅得 23.0%，四者挤在 3 pp 带宽内，说明瓶颈在“选择”范式而非存储。</li><li>存储分析：NestedVLA 总预算 <strong>1.5×</strong>——VLM 侧逐任务 top-10% 压缩残差约 <strong>0.35×</strong>，动作专家仅存每任务掩码约 <strong>0.01×</strong>、由超网络生成增量，超网络本身约 <strong>0.43B（≈0.12×）</strong>；容量集中在更难整合的动作侧。</li><li>消融（Table 2）：<strong>多头输出</strong>贡献最大（移除后损失上升 0.2–0.5）；<strong>逐任务 patch embedding</strong> 增益有限（<0.1）；<strong>LoRA 路径可去掉</strong>，移除后在三个基准上均取得最低损失，且仅需默认参数的 97%。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.23288/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.23123/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GRASP: Global-Local Representation Alignment and Spatial-Physical Grounding for Bimanual Robotic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

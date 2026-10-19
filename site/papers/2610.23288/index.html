@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 CoEvolve，将多机器人团队协作表示为建立在固定机器人运动技能之上的可执行代码，使协作策略能够在物理执行过程中被实例化、验证和修订。 研究目标是解决“单机器人受本体能力限制、多机器人系统难以在共享物理约束下动态调整协作”的问题，重点关注双足人形机器人协同搬运共享负载。 核心问题是：在个体运动技能固定的前提下，如何根据物理执行偏差动态修改团队协作关系，而不仅是进行任务分解、分配或重规划。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.23288">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.23288.webp" alt="CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 CoEvolve，将多机器人团队协作表示为建立在固定机器人运动技能之上的可执行代码，使协作策略能够在物理执行过程中被实例化、验证和修订。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">CoEvolve: Self-Evolving Code Policies from Skills to Strategies for Humanoid Robots</h1>
+            <div class="detail-meta">2026-10-16 · <a href="http://arxiv.org/abs/2610.23288" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.23288" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.23288</span></div>
+            <p class="detail-summary">论文提出 CoEvolve，将多机器人团队协作表示为建立在固定机器人运动技能之上的可执行代码，使协作策略能够在物理执行过程中被实例化、验证和修订。 研究目标是解决“单机器人受本体能力限制、多机器人系统难以在共享物理约束下动态调整协作”的问题，重点关注双足人形机器人协同搬运共享负载。 核心问题是：在个体运动技能固定的前提下，如何根据物理执行偏差动态修改团队协作关系，而不仅是进行任务分解、分配或重规划。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京大学：Zicheng Liu、Hao Tang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.23288/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 CoEvolve，将多机器人团队协作表示为建立在固定机器人运动技能之上的可执行代码，使协作策略能够在物理执行过程中被实例化、验证和修订。</p>
+  <ul class="reading-intro-points"><li>论文提出 CoEvolve，将多机器人团队协作表示为建立在固定机器人运动技能之上的可执行代码，使协作策略能够在物理执行过程中被实例化、验证和修订。</li><li>研究目标是解决“单机器人受本体能力限制、多机器人系统难以在共享物理约束下动态调整协作”的问题，重点关注双足人形机器人协同搬运共享负载。</li><li>核心问题是：在个体运动技能固定的前提下，如何根据物理执行偏差动态修改团队协作关系，而不仅是进行任务分解、分配或重规划。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京大学</strong>：Zicheng Liu、Hao Tang</li><li><strong>中国人民大学</strong>：Haochen Wu、Suyun Zhao、Cheng Chi</li><li><strong>北京XYZ具身智能有限公司</strong>：Jiawei He</li><li><strong>北京智源人工智能研究院（BAAI）</strong>：Huan Yang</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>CoEvolve</strong>，将多机器人团队协作表示为建立在固定机器人运动技能之上的<strong>可执行代码</strong>，使协作策略能够在物理执行过程中被实例化、验证和修订。</li><li>研究目标是解决“单机器人受本体能力限制、多机器人系统难以在共享物理约束下动态调整协作”的问题，重点关注双足人形机器人协同搬运共享负载。</li><li>核心问题是：在个体运动技能固定的前提下，如何根据物理执行偏差动态修改团队协作关系，而不仅是进行任务分解、分配或重规划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出一种<strong>可执行的团队协作表示</strong>，将固定的个体运动能力与当前物理情境下的协作策略分离。</li><li>提出 <strong>Verifier Guided Coordination Evolution</strong>，结合物理验证、结构化策略修订和可复用协作经验，在执行过程中自适应调整协作。</li><li>在 <strong>3 个多模态基础模型家族</strong>、多个外部基线、额外走廊布局和跨模型经验复用设置下进行系统评估。</li><li>区分“局部执行被接受”与“长期任务持续推进”，并分析运动精度、接触稳定性和物理恢复等剩余局限。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用<strong>语义计划</strong>表示任务阶段、完成条件和状态，主机提供路线几何与进度约束，模型决定机器人在约束内如何协作。</li><li>采用 <strong>Code as Policies</strong> 思路生成成对机器人策略：Task Orchestrator 选择协作原语、语义目标、同步/非同步模式和临时角色，Policy Coder 生成有界执行参数。</li><li>每个机器人获得独立策略，包含一个允许的动作调用和显式停止；主机将成对策略作为一个<strong>团队事务</strong>校验并分发到不同运动执行端。</li><li><strong>Verifier Guided Coordination Evolution</strong> 根据任务进度、负载支撑与稳定性、机器人构型和环境接触判断转换是否被接受。</li><li>被拒绝的执行触发<strong>类型化修订</strong>，修订范围限定为 <strong>Strategy / Coordination / Parameter</strong>，分别修改协作原语与目标、角色关系与模式、或执行参数。</li><li>修订后的策略从最近一次被接受的检查点重新评估；验证通过的经验进入策略记忆和动作示例记忆，未执行的修复提案不会被当作成功经验。</li><li>基础模型与运动策略权重保持冻结，适应发生在任务计划、协作策略和存储经验层面。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>MuJoCo</strong> 仿真，使用两个 <strong>Unitree G1</strong> 人形机器人协同搬运一个 <strong>0.5 kg</strong> 的自由支撑刚性负载，通过受限走廊。</li><li>基础任务要求完成协同运输、转角协商、目标放置、释放，并要求两个机器人保持直立后退。</li><li>基础评估使用 <strong>GPT-5.4-mini</strong>、<strong>Gemini-3.5-Flash</strong>、<strong>Claude-Sonnet-4.6</strong> 三个多模态基础模型骨干。</li><li>每个机器人使用独立的 <strong>SONIC</strong> 部署，运动策略权重冻结，并配有任务特定技能封装和支撑姿态控制。</li><li>论文未报告基础模型参数量、训练 GPU/TPU 资源；方法不训练新的基础模型或运动策略。</li><li>代码计划开源于 <code>https://github.com/Innovationlzc/CoEvolve</code>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>基础评估包含 <strong>15 次运行</strong>，每个骨干 <strong>5 次</strong>，预算为 <strong>80 个物理事务</strong>；成功需完成放置、释放和机器人后退。</li><li>主要指标包括 <strong>SR@80</strong>、<strong>Verified Progress（VP）</strong>、<strong>Execution Acceptance（EA）</strong> 和 <strong>Progress AUC（PAUC@80）</strong>。</li><li><strong>GPT-5.4-mini</strong>：成功率 <strong>3/5（60.0%）</strong>，VP <strong>86.7%</strong>，EA <strong>85.4%</strong>，PAUC@80 <strong>61.9%</strong>。</li><li><strong>Gemini-3.5-Flash</strong>：成功率 <strong>3/5（60.0%）</strong>，VP <strong>76.7%</strong>，EA <strong>66.7%</strong>，PAUC@80 <strong>60.2%</strong>。</li><li><strong>Claude-Sonnet-4.6</strong>：成功率 <strong>2/5（40.0%）</strong>，VP <strong>76.7%</strong>，EA <strong>86.5%</strong>，PAUC@80 <strong>64.5%</strong>。</li><li>三个骨干合计完成 <strong>8/15</strong> 个基础任务，所有骨干均至少实现一次端到端成功。</li><li>与 <strong>REMAC、COHERENT、CaP-Agent0、ASPIRE</strong> 等基线相比，只有 <strong>CoEvolve</strong> 在基础任务上实现完整任务完成；移除动态经验后 VP 为 <strong>60.0%</strong>，但成功率为 <strong>0/5</strong>。</li><li>额外布局评估中，Layout 2 和 Layout 4 各完成 <strong>1/3</strong> 次经验证放置，Layout 3 为 <strong>0/3</strong>，尽管其 VP 达 <strong>58.3%</strong>，说明局部进度不保证后续物理可行性。</li><li>跨模型经验复用中，以 <strong>GPT-5.4-mini</strong> 为目标，使用 <strong>Gemini</strong> 经验库达到 <strong>2/5</strong> 次经验证放置，使用 <strong>GPT</strong> 经验库为 <strong>1/5</strong>，使用 <strong>Claude</strong> 经验库为 <strong>0/5</strong>。</li><li>论文指出仍存在<strong>运动精度不足、接触稳定性有限、依赖仿真状态与路线参考、真实机器人恢复能力不足</strong>等限制。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.23319/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">From Sliding Windows to Self-evolving Lifelong Memory: A Dual-perspective Survey of Memory Paradigms for Long-Horizon Robotics VLA Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.23271/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">NestedVLA: Learning to Consolidate and Generate Skills for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

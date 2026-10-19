@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enhancing Visual Task-Redirection Attacks on Vision-Language-Action Models via Closed-Loop Optimization - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 视觉-语言-动作（VLA）模型在视觉对抗攻击下的安全性，具体关注任务重定向攻击：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。 指出现有攻击用优化前固定好的目标监督（预采集的目标轨迹或预设动作目标），而扰动一旦改变早期动作，后续到达的物理状态就会偏离记录轨迹，固定监督便不再匹配实际所需行为，降低平均动作误差并不等于任务成功。 提出 TRACO（Task-Redirection Attacks via Closed-Loop Optimization），通过执行反馈构建“攻击优化—执行”闭环，在攻击诱导状态上重建监督并决定优化聚焦位置。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.23566">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.23566.webp" alt="Enhancing Visual Task-Redirection Attacks on Vision-Language-Action Models via Closed-Loop Optimization" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 视觉-语言-动作（VLA）模型在视觉对抗攻击下的安全性，具体关注任务重定向攻击：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Enhancing Visual Task-Redirection Attacks on Vision-Language-Action Models via Closed-Loop Optimization</h1>
+            <div class="detail-meta">2026-10-16 · <a href="http://arxiv.org/abs/2610.23566" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.23566" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.23566</span></div>
+            <p class="detail-summary">论文研究 视觉-语言-动作（VLA）模型在视觉对抗攻击下的安全性，具体关注任务重定向攻击：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。 指出现有攻击用优化前固定好的目标监督（预采集的目标轨迹或预设动作目标），而扰动一旦改变早期动作，后续到达的物理状态就会偏离记录轨迹，固定监督便不再匹配实际所需行为，降低平均动作误差并不等于任务成功。 提出 TRACO（Task-Redirection Attacks via Closed-Loop Optimization），通过执行反馈构建“攻击优化—执行”闭环，在攻击诱导状态上重建监督并决定优化聚焦位置。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">中山大学（Sun Yat-sen University，深圳 518107）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.23566/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 视觉-语言-动作（VLA）模型在视觉对抗攻击下的安全性，具体关注任务重定向攻击：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。</p>
+  <ul class="reading-intro-points"><li>论文研究 视觉-语言-动作（VLA）模型在视觉对抗攻击下的安全性，具体关注任务重定向攻击：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。</li><li>指出现有攻击用优化前固定好的目标监督（预采集的目标轨迹或预设动作目标），而扰动一旦改变早期动作，后续到达的物理状态就会偏离记录轨迹，固定监督便不再匹配实际所需行为，降低平均动作误差并不等于任务成功。</li><li>提出 TRACO（Task-Redirection Attacks via Closed-Loop Optimization），通过执行反馈构建“攻击优化—执行”闭环，在攻击诱导状态上重建监督并决定优化聚焦位置。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>中山大学</strong>（Sun Yat-sen University，深圳 518107）</li><li><strong>中关村学院</strong>（Zhongguancun Academy，北京 100094）</li><li><strong>武汉大学</strong>（Wuhan University，武汉 430072）</li><li><strong>深圳零一学院/深圳循环经济区域研究院</strong>（Shenzhen Loop Area Institute，深圳 518000）</li><li><strong>天津大学</strong>（Tianjin University，天津 300350）</li><li><strong>中国科学院大学</strong>（University of Chinese Academy of Sciences，北京 100049）</li><li>通讯作者为 <strong>Xiaochun Cao</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>视觉-语言-动作（VLA）模型</strong>在视觉对抗攻击下的安全性，具体关注<strong>任务重定向攻击</strong>：机器人仍接收用户原始指令，但视觉扰动使其转而完成攻击者指定的目标任务。</li><li>指出现有攻击用<strong>优化前固定好的目标监督</strong>（预采集的目标轨迹或预设动作目标），而扰动一旦改变早期动作，后续到达的物理状态就会偏离记录轨迹，固定监督便不再匹配实际所需行为，降低平均动作误差并不等于任务成功。</li><li>提出 <strong>TRACO</strong>（Task-Redirection Attacks via Closed-Loop Optimization），通过执行反馈构建“攻击优化—执行”闭环，在攻击诱导状态上重建监督并决定优化聚焦位置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>TRACO</strong> 框架，将 VLA 视觉任务重定向攻击从离线固定监督扩展为<strong>闭环优化</strong>；其 <strong>Execution-Driven Supervision（EDS）</strong> 在实际被攻击到达的状态上重建目标监督，使已有攻击方法可保留自身对齐目标而获得状态自适应能力。</li><li>提出 <strong>Progress-Guided Selection（PGS）</strong>，依据与成功目标轨迹的有序进度划分“<strong>前沿（frontier）</strong>”与“<strong>前缀（prefix）</strong>”状态，在推进目标任务的同时保留到达该点所需的早期行为。</li><li>设计了自适应的组损失组合（对两组均值取平方后加权），在推进前沿与保持前缀之间动态平衡，缓解共享同一扰动的多步行为互相干扰的问题。</li><li>在<strong>多种 VLA 模型</strong>（PI、GR00T、LangForce、FAST、OFT、InstructVLA）与多个仿真环境（LIBERO、SimplerEnv）上验证有效性，并补充了<strong>真机实验</strong>与消融分析。</li><li>揭示了闭环攻击优化的安全含义：动作匹配误差更低 ≠ 任务重定向成功率更高。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>威胁模型</strong>：白盒攻击者，可访问 VLA 参数与梯度；优化得到的<strong>单一固定扰动</strong>在整个 rollout 的每次策略查询上施加；支持两类设置——<strong>全局数字扰动</strong>（ℓ∞ 球约束）与<strong>局部对抗补丁</strong>（二值掩码 M 指定区域）。</li><li><strong>攻击目标</strong>：在 VLA 始终接收源指令 c_src 的情况下，最大化完成目标指令 c_tgt 对应任务的构造 rollout 成功数。</li><li><strong>EDS（执行驱动监督）</strong>：每轮在当前扰动下运行冻结 VLA 并记录到达状态及其干净观测；对选定状态用目标指令查询同一 VLA 得到目标监督 u^tgt，与源预测 u^src 在同一物理状态上配对。</li><li><strong>PGS（进度引导选择）</strong>：用成功目标轨迹的末端执行器位置构造有序锚点 (t_j, ȳ_j)，按位置误差与容差 κ 计算最长连续通过前缀，其最后锚点即“前沿” f；将 {0,…,f} 划分为前沿组与前缀组，跨 rollout 池化为 F_r、P_r。</li><li><strong>目标对齐</strong>：沿用原攻击的对齐损失 𝒟——连续动作块用平方误差，动作 token/CoT 序列用教师强制下的负对数似然，流匹配策略在同一流时间与流状态下比较向量场，联合目标则组合多项损失。</li><li><strong>扰动优化</strong>：组内取均值后按 ½[ℓ̄_F² + ℓ̄_P²] 组合，用 <strong>K 步投影符号梯度（sign-gradient）</strong>更新并投影回可行集 Δ；每轮结束后重新 rollout 刷新监督，并保留<strong>目标任务成功数最高</strong>的 δ_best，最多 R 轮，全部 rollout 成功则提前停止。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>LIBERO</strong>（表 I，覆盖全局扰动与对抗补丁、Seen/Unseen 任务划分）；<strong>SimplerEnv</strong>（表 II，针对 <strong>InstructVLA</strong> 的对抗补丁攻击）。</li><li><strong>被测 VLA 模型</strong>：<strong>PI</strong>（π 系列）、<strong>GR00T</strong>、<strong>LangForce</strong>、<strong>FAST</strong>、<strong>OFT</strong>、<strong>InstructVLA</strong>，附录 D 给出各模型细节。</li><li><strong>对比方法</strong>：<strong>Random Noise</strong>、<strong>Action Attack</strong>（固定目标监督的代表性攻击），以及任务层面的 <strong>TRAP</strong> 等被讨论的相关工作。</li><li><strong>训练资源</strong>：所提供 HTML 原文中未给出 GPU/TPU 型号、数量或训练时长等信息（正文在此处被截断）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：<strong>ASR (%)</strong>（任务重定向成功率，越高越好）与 <strong>H ↑</strong>（与任务进度/轨迹匹配相关的辅助指标，越高越好）；分 <strong>Seen</strong> 与 <strong>Unseen</strong> 两种任务泛化设置。</li><li><strong>LIBERO 主要结果（全局扰动，Seen）</strong>：<strong>PI 89.2%</strong>（Action Attack 54.8%）、<strong>GR00T 96.4%</strong>（63.2%）、<strong>LangForce 89.6%</strong>（76.4%）、<strong>FAST 56.8%</strong>（11.6%）、<strong>OFT 94.0%</strong>（28.4%）。</li><li><strong>跨模型平均</strong>：全局扰动下 TRACO 达 <strong>85.2% / H 0.5887（Seen）</strong>与 <strong>75.9% / 0.4819（Unseen）</strong>；对抗补丁下为 <strong>53.5% / 0.3428（Seen）</strong>与 <strong>50.6% / 0.3149（Unseen）</strong>，均显著优于 Action Attack（全局 Seen 平均 46.9%）与随机噪声（≈0%）。</li><li><strong>SimperEnv（InstructVLA，补丁攻击）</strong>：随机噪声 Seen ASR 0.0%、Unseen 1.6%，Action Attack 数据在该处被截断，TRACO 具体数值未能从所给原文获取。</li><li><strong>消融与分析</strong>：组件消融、EDS 对<strong>目标动作误差</strong>的影响、PGS 对<strong>任务进度</strong>的影响，以及当前轮监督与历史聚合、参数敏感性、指令变化、跨策略变体迁移等额外评估；并报告了<strong>真机实验</strong>与构造代价/局限性讨论。</li><li><strong>关键结论</strong>：更低的目标动作 MSE 并不意味着更高的重定向成功率（图 1 中三个离线扰动 MSE 更低但执行失败），闭环刷新监督才是提升任务级成功率的关键。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2610.23396/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">AWAM: Active Trajectory-Conditioned View Imagination for Robust Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
