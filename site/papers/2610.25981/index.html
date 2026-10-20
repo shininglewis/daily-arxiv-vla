@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 FR-VLA，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。 核心问题：现有力感知 VLA 只是把力/力矩 (wrench) 测量通过固定通路注入模型，没有显式判断力反馈在当前任务阶段是否相关，因此只是“力暴露”而非“力接地”。 目标：让视觉-语言上下文先估计物理反馈的任务相关性与可采纳性，再决定何时、以多强的程度让力影响动作生成。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.25981">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.25981.webp" alt="FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 FR-VLA，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.25981" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.25981" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.25981</span></div>
+            <p class="detail-summary">论文提出 FR-VLA，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。 核心问题：现有力感知 VLA 只是把力/力矩 (wrench) 测量通过固定通路注入模型，没有显式判断力反馈在当前任务阶段是否相关，因此只是“力暴露”而非“力接地”。 目标：让视觉-语言上下文先估计物理反馈的任务相关性与可采纳性，再决定何时、以多强的程度让力影响动作生成。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">南洋理工大学 (NTU) 电气与电子工程学院，新加坡</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.25981/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 FR-VLA，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 FR-VLA，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。</li><li>核心问题：现有力感知 VLA 只是把力/力矩 (wrench) 测量通过固定通路注入模型，没有显式判断力反馈在当前任务阶段是否相关，因此只是“力暴露”而非“力接地”。</li><li>目标：让视觉-语言上下文先估计物理反馈的任务相关性与可采纳性，再决定何时、以多强的程度让力影响动作生成。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>南洋理工大学 (NTU)</strong> 电气与电子工程学院，新加坡</li><li><strong>新加坡制造技术研究院 (SIMTech)</strong>，新加坡科技研究局 (A*STAR)</li><li>通讯作者：<strong>Haiyue Zhu</strong> (zhu_haiyue@a-star.edu.sg)</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>FR-VLA</strong>，一种面向接触丰富操作任务的隐式力推理视觉-语言-动作 (VLA) 模型，将力觉融合重新定义为“模态接地 (modality grounding)”问题。</li><li>核心问题：现有力感知 VLA 只是把力/力矩 (wrench) 测量通过固定通路注入模型，<strong>没有显式判断力反馈在当前任务阶段是否相关</strong>，因此只是“力暴露”而非“力接地”。</li><li>目标：让视觉-语言上下文先估计物理反馈的任务相关性与可采纳性，再决定何时、以多强的程度让力影响动作生成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将力感知 VLA 形式化为<strong>低维物理反馈的模态接地问题</strong>，力相关性由视觉-语言任务上下文推断，而非假定“有传感器即可用”。</li><li>提出<strong>力准入 (force admission) 架构</strong>：视觉-语言状态决定力何时可影响动作生成，测量的力历史则在独立的动作侧通路中编码。</li><li>引入<strong>力查询 token (force query tokens)</strong> 与离线接触阶段监督，使 VLM 内部即可推断交互阶段而不携带原始力数值。</li><li>通过<strong>准入条件化注意力 (admission-conditioned attention)</strong> 在动作桥中统一调制力 token 的注意力质量。</li><li>分析表明学到的力准入行为<strong>遵循任务阶段的交互规律</strong>，而非瞬时力幅值大小。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>隐式力推理模块</strong>：力查询 token 经跨注意力与视觉特征接地，由阶段推断头输出运动阶段分布，再由熵正则化的门控函数生成带符号的准入信号 <code>g^f_t</code>。</li><li><strong>阶段监督</strong>：利用 6D 力/力矩测量与夹爪状态离线生成 free / approach / contact 阶段标签，采用自适应参考、迟滞与时间持续性检测接触事件。</li><li><strong>Force Tokenizer</strong>：冻结的 <strong>VQ-VAE</strong> 将短时力历史离散为接触语义码本 (K=8)，码嵌入仅用于生成 <strong>FiLM</strong> 缩放/平移参数调节连续力 token，保留细粒度力信息。</li><li><strong>准入条件化注意力</strong>：在 <strong>VLA-Adapter</strong> 式动作桥上，将准入信号与每头偏置 <code>β_m</code> 加到力 token 的注意力分数上，再与 self / adapter / vision 分数联合 softmax。</li><li><strong>训练目标</strong>：两阶段训练（先预训练并冻结 Force Tokenizer，再用行为克隆 L1 损失 + 阶段交叉熵监督训练），阶段 logits 在下游梯度上做 detach。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实世界自建基准</strong>，5 个接触丰富任务：<strong>Gear Assembly、Switch Cable Connection（顶部以太网 + 侧向电源两级）、Curved Surface Cleaning、Screw Tightening、Seat Belt Buckle Insertion</strong>。</li><li>每任务 <strong>70–90 条人类演示</strong>，通过 3D 鼠标 + 笛卡尔阻抗控制器采集。</li><li>机器人平台：<strong>UR5e</strong> 与 <strong>UR3e</strong>，使用内置 6D 力/力矩传感；相机为 <strong>Intel RealSense D455</strong>（第三视角）+ <strong>D405</strong>（腕部）。</li><li>模型配置：动作块长 H=8，力历史 L=16，Tokenizer 输入窗口 8 帧 6D 力，码本大小 8，阶段损失权重 λ_p=0.5。</li><li>算力：训练使用 <strong>2× NVIDIA RTX A6000</strong>，推理使用 <strong>1× NVIDIA RTX 3090</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估方式：真实世界每个方法/阶段 <strong>20 次试验</strong>，与 <strong>VLA-Adapter、VLA-Adapter w/F、ForceVLA、TA-VLA</strong> 四个基线在相同数据和环境下对比。</li><li>主要指标：各阶段成功率、六阶段平均成功率、阶段推断平衡准确率、扰动鲁棒性成功率。</li><li><strong>主结果</strong>：FR-VLA 在全部六个评估阶段取得最高成功率，平均 <strong>58.3%</strong>，比最强基线高 <strong>20.8 个百分点</strong>。</li><li><strong>消融</strong>：移除力准入降至 <strong>35.0%</strong>，移除力 token 化降至 <strong>40.0%</strong>（完整模型 58.3%）。</li><li><strong>与力幅值门控对比</strong>：Gear Assembly 上 <strong>90% vs 70%</strong>，说明仅用力幅值无法反映力的决策相关性。</li><li><strong>阶段推断平衡准确率</strong>：Gear 93.7%、Switch 90.5%、Buckle 88.5%、Screw 86.2%、Cleaning 80.6%。</li><li><strong>鲁棒性</strong>：未见齿轮 <strong>85% vs 60%</strong>、目标位置扰动 <strong>75% vs 50%</strong>（均高出 25 个百分点）；未见线缆初始位置下 4 组分别为 4/10、6/10、5/10、5/10。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.26287/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Robotic Photography System based on Vision-Language-Action Model</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.25961/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PaceVLA: Adaptive Temporal Action Quantization in Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HandsOn: A Large-Scale Simulation Benchmark for Generalizable Dexterous Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 HandsOn，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。 现有灵巧操作基准的人类示教数据规模小、且缺少专门留出的评测任务，难以区分“初步取得进展”与“可靠完成任务”，HandsOn 旨在填补这一空白。 平台支持 5 种机械臂、6 种灵巧手、约 200 个刚体/铰接/可形变资产，并提供 18,000 条人工示教与 66 个人工核验任务。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.26765">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.26765.webp" alt="HandsOn: A Large-Scale Simulation Benchmark for Generalizable Dexterous Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 HandsOn，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">HandsOn: A Large-Scale Simulation Benchmark for Generalizable Dexterous Manipulation</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.26765" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.26765" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.26765</span></div>
+            <p class="detail-summary">论文提出 HandsOn，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。 现有灵巧操作基准的人类示教数据规模小、且缺少专门留出的评测任务，难以区分“初步取得进展”与“可靠完成任务”，HandsOn 旨在填补这一空白。 平台支持 5 种机械臂、6 种灵巧手、约 200 个刚体/铰接/可形变资产，并提供 18,000 条人工示教与 66 个人工核验任务。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.26765/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 HandsOn，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。</p>
+  <ul class="reading-intro-points"><li>论文提出 HandsOn，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。</li><li>现有灵巧操作基准的人类示教数据规模小、且缺少专门留出的评测任务，难以区分“初步取得进展”与“可靠完成任务”，HandsOn 旨在填补这一空白。</li><li>平台支持 5 种机械臂、6 种灵巧手、约 200 个刚体/铰接/可形变资产，并提供 18,000 条人工示教与 66 个人工核验任务。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>北京邮电大学</strong>（Beijing University of Posts and Telecommunications）</li><li><strong>北京大学</strong>（Peking University）</li><li><strong>NatureWill</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>HandsOn</strong>，一个面向跨实体灵巧操作的大规模可组合仿真平台与基准，用于系统评估机器人在不同机械臂、灵巧手、物体和任务需求下的泛化能力。</li><li>现有灵巧操作基准的人类示教数据规模小、且缺少专门留出的评测任务，难以区分“初步取得进展”与“可靠完成任务”，HandsOn 旨在填补这一空白。</li><li>平台支持 <strong>5 种机械臂</strong>、<strong>6 种灵巧手</strong>、约 <strong>200 个刚体/铰接/可形变资产</strong>，并提供 <strong>18,000 条</strong>人工示教与 <strong>66 个</strong>人工核验任务。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建了大规模人类示教数据集：<strong>18,000 条</strong>精选仿真轨迹（约 <strong>56 小时</strong>交互、三路同步视角），并进行视觉与指令重渲染随机化。</li><li>提出两个互补任务套件：<strong>Core-50</strong>（50 个带示教的任务，用于策略学习与执行评测）与 <strong>Transfer-16</strong>（16 个仅评测的资产关系迁移、技能组合与可形变操作任务）。</li><li>对 <strong>Diffusion Policy</strong>、<strong>5 个 VLA 模型</strong>、<strong>3 个世界-动作模型（WAM）</strong> 进行统一对比，并引入协变量校正的技能分析与语言条件探测。</li><li>给出 <strong>660 次试验</strong>的免微调 <strong>GPT-6</strong>（<code>move_eef</code> 接口）提示式 VLM 控制器评测，作为与训练策略分离的补充参照。</li><li>通过分阶段诊断定位失败点：接触建立、双手协同、目标保持，以及组合任务中的步骤顺序错误。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>数据采集</strong>：在 <strong>NVIDIA Isaac Sim 5.1</strong> 中遥操作采集，使用 <strong>MANUS Prime I</strong> 数据手套捕捉手指关节、<strong>HTC VIVE Trackers</strong> 记录手腕位姿，经运动学重定向映射到 20 自由度 <strong>Wuji Hand</strong>。</li><li><strong>数据平台</strong>：采集后通过高保真重渲染在固定状态/动作监督下改变材质、背景、光照、相机外参，实现视觉域随机化；语言端维护 <strong>108 条</strong>任务-指令条目（<strong>91 条</strong>在最终清单中生效），每条含 <strong>32 条</strong>训练改写与 <strong>8 条</strong>留出改写。</li><li><strong>任务与评测协议</strong>：每个任务配备任务卡（目标、初始/终态、独立于成功标志的完成证据、时限、版本哈希），由采集员、独立审核员、仲裁者三方分离流程核验；采用原生任务专属成功谓词、固定物理时间预算（基于示教 P75 时长的 3 倍）与 30 Hz 执行协议。</li><li><strong>诊断体系</strong>：记录有序进度（<code>P_e = L_e / K_i</code>）、能力专属诊断（工具获取 vs. 功能激活、稳定性、滑移）以及 Wilson 区间与自助法不确定性。</li><li><strong>可移植性设计</strong>：任务与资产层与硬件解耦，支持 ROKAE/KUKA/UR/ABB/FANUC 机械臂、多代 Wuji 与 Sharpa 灵巧手，以及 <strong>NVIDIA PhysX</strong> 与 <strong>Newton</strong> 两种物理后端。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集</strong>：HandsOn 自建数据集，<strong>18,000 条</strong>精选轨迹（<strong>15,178</strong> 训练 / <strong>2,822</strong> 验证），共 <strong>6,053,555</strong> 个时间步、<strong>54,000</strong> 段相机视频（3 视角 × 18,000）；单任务训练轨迹 <strong>46–463</strong> 条（中位 <strong>268</strong>），专家 P75 时长 <strong>2.5–49.2 s</strong>（中位 <strong>12.7 s</strong>）。</li><li><strong>任务规模</strong>：<strong>Core-50</strong>（50 任务）+ <strong>Transfer-16</strong>（16 任务，含 6 个组合、7 个泛化、3 个可形变），另含 54 个原生任务身份、52 个配额组。</li><li><strong>模型规模</strong>：评测 <strong>10 种方法</strong>——单任务 Diffusion Policy（每任务 30,000 次更新）、5 个 VLA（<strong>π0.5</strong>、<strong>DM0.5</strong>、<strong>LingBot-VLA</strong>、<strong>HY-Embodied-0.5-VLA</strong>、<strong>Spatial Forcing</strong>）、3 个 WAM（<strong>OpenWAM</strong>、<strong>FastWAM</strong>、<strong>Motus</strong>），以及免微调的 <strong>GPT-6 Astra</strong>（推理强度 medium）。</li><li><strong>训练资源</strong>：正文可见部分未明确报告 GPU/TPU 型号与数量，仅给出各检查点更新步数（70,000–151,000 次）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测设置</strong>：学习型检查点在 <strong>Core-50</strong> 上每任务 <strong>100</strong> 回合评测（8 个多任务检查点）；<strong>GPT-6</strong> 在 66 个任务上每任务 <strong>10</strong> 次试验，共 <strong>660</strong> 次（Core-50 上 500 次、Transfer-16 上 160 次），无 HandsOn 示教与微调。</li><li><strong>主要指标</strong>：任务宏平均成功率（task-macro success）、95% 区间、专家 P75 时长内的成功率（@1×）、早期失败率（Early）、停滞率（Stall）、有序进度，以及按能力分组（primitive 17 / functional 18 / contact-rich 15）的分项指标。</li><li><strong>关键结果</strong>：最佳训练多任务策略 <strong>OpenWAM</strong> 取得 <strong>29.1%</strong> Core-50 成功率（11 个任务 ≥50%）；<strong>FastWAM</strong> 26.4%、<strong>π0.5</strong> 24.9%、<strong>DM0.5</strong> 21.4%。</li><li><strong>失败集中点</strong>：工具使用与精密装配近乎未解决；部分 VLA 检查点几乎不依据指令中的物体进行条件化；失败主要发生在“闭合抓握时误触发按钮”“双手需同时保持目标”“已达成目标无法保持”，组合任务还叠加步骤重复/提前启动问题。</li><li><strong>GPT-6 表现</strong>：Core-50 <strong>5.2%</strong>、Transfer-16 <strong>1.9%</strong>，仅在 66 个任务中的 <strong>12 个</strong>上取得过成功；动作轨迹显示其具备任务级规划潜力，但高维灵巧执行仍需更丰富的智能体接口。</li><li><strong>有效性与覆盖</strong>：50 个 Core-50 任务中，<strong>47 个</strong>至少被一个多任务检查点成功完成至少一次；所有任务在发布前均经采集员在真实环境中人工核验，低成功率反映的是策略能力差距而非任务不可行。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.26813/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PICA-WAM: Visual Perturbation Invariance via Cross-Appearance Self-Alignment in World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.26717/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Robot Learning with Vision-Language-Action Models for Agricultural Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EndoVLA-OOV: Language-Conditioned Out-of-View Target Acquisition in Robotic Endoscopy - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 EndoVLA-OOV，一种面向机器人内镜的、由语言条件的视觉-语言-动作（VLA）策略，用于完成“先扫描、再回访”工作流中的视野外（OOV）目标获取。 要解决的问题是：操作者用解剖区域与目标外观描述下达指令，而当前图像只显示胃内局部视野；策略需从部分观测中推断相机运动，把此前观察过、现已移出视野的可疑病灶重新找回到视野内。 研究目标是在光照、湿镜、未见胃模型、离体组织与不同机器人平台之间验证该策略的可迁移性，并量化数据规模对获取成功率的影响。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.24747">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #d84f61; --cover-to: #f29c6b; --cover-spot: #ffd6c4; --cover-ink: #fff7f4; --cover-muted: rgba(255, 247, 244, 0.82); --cover-chip: rgba(255, 247, 244, 0.16); --cover-stroke: rgba(255, 247, 244, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">EndoVLA-OOV: Language-Conditioned Out-of-View Target Acquisition in Robotic Endoscopy</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">EndoVLA-OOV: Language-Conditioned Out-of-View Target Acquisition in Robotic Endoscopy</h1>
+            <div class="detail-meta">2026-10-17 · <a href="http://arxiv.org/abs/2610.24747" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.24747" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.24747</span></div>
+            <p class="detail-summary">论文提出 EndoVLA-OOV，一种面向机器人内镜的、由语言条件的视觉-语言-动作（VLA）策略，用于完成“先扫描、再回访”工作流中的视野外（OOV）目标获取。 要解决的问题是：操作者用解剖区域与目标外观描述下达指令，而当前图像只显示胃内局部视野；策略需从部分观测中推断相机运动，把此前观察过、现已移出视野的可疑病灶重新找回到视野内。 研究目标是在光照、湿镜、未见胃模型、离体组织与不同机器人平台之间验证该策略的可迁移性，并量化数据规模对获取成功率的影响。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">香港中文大学电子工程系（The Chinese University of Hong Kong，中国香…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.24747/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 EndoVLA-OOV，一种面向机器人内镜的、由语言条件的视觉-语言-动作（VLA）策略，用于完成“先扫描、再回访”工作流中的视野外（OOV）目标获取。</p>
+  <ul class="reading-intro-points"><li>论文提出 EndoVLA-OOV，一种面向机器人内镜的、由语言条件的视觉-语言-动作（VLA）策略，用于完成“先扫描、再回访”工作流中的视野外（OOV）目标获取。</li><li>要解决的问题是：操作者用解剖区域与目标外观描述下达指令，而当前图像只显示胃内局部视野；策略需从部分观测中推断相机运动，把此前观察过、现已移出视野的可疑病灶重新找回到视野内。</li><li>研究目标是在光照、湿镜、未见胃模型、离体组织与不同机器人平台之间验证该策略的可迁移性，并量化数据规模对获取成功率的影响。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>香港中文大学电子工程系</strong>（The Chinese University of Hong Kong，中国香港特别行政区）</li><li><strong>中山大学附属第六医院</strong>（The Sixth Affiliated Hospital of Sun Yat-sen University，广州）</li><li><strong>香港中文大学威尔士亲王医院外科系</strong>（Department of Surgery, Prince of Wales Hospital）</li><li><strong>香港中文大学内科及药物治疗学系</strong>（Department of Medicine and Therapeutics）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>EndoVLA-OOV</strong>，一种面向机器人内镜的、由语言条件的视觉-语言-动作（VLA）策略，用于完成“先扫描、再回访”工作流中的<strong>视野外（OOV）目标获取</strong>。</li><li>要解决的问题是：操作者用解剖区域与目标外观描述下达指令，而当前图像只显示胃内局部视野；策略需从部分观测中推断相机运动，把此前观察过、现已移出视野的可疑病灶重新找回到视野内。</li><li>研究目标是在光照、湿镜、未见胃模型、离体组织与不同机器人平台之间验证该策略的可迁移性，并量化数据规模对获取成功率的影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>构建内镜具身数据集</strong>：提供 <strong>1,050 条 episode</strong>、<strong>6 类任务</strong>、约 <strong>262k 观测–动作对</strong> 的 VLA 数据集，覆盖目标跟踪与 OOV 搜索获取，为指令条件内镜策略提供统一的数据与控制基础。</li><li><strong>提出时序上下文 VLA 控制方法</strong>：将预训练动作分块策略适配到<strong>连续两自由度（2-DoF）远端弯曲</strong>控制，并融合<strong>初始全局视图、近邻历史视图与当前帧</strong>来引导搜索。</li><li><strong>验证跨本体可迁移获取能力</strong>：在未见离体环境中，R1 上训练的模型零样本迁移到 R2，目标获取成功率达 <strong>93.3%（28/30）</strong>。</li><li><strong>量化数据规模收益</strong>：在相同模型、训练与测试配置下，语料从 <strong>312</strong> 条扩展到 <strong>1,050</strong> 条 episode，获取成功率从 <strong>40.0%</strong> 提升至 <strong>90.0%</strong>。</li><li><strong>通过物理干预实验支持语言与时序上下文的作用</strong>：竞争目标指令、错误区域指令、空指令以及视图掩码实验均显示出可测量的性能差异。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>以预训练 <strong>π0.5 动作分块主干</strong> 为基础，通过 <strong>LoRA</strong>（语言 Transformer 秩 16、动作专家秩 32）进行域适配，主干其余参数冻结。</li><li>输入包括：语言指令、三帧图像（全局初始帧、近邻历史帧、当前帧）、<strong>12 维连续机器人状态</strong>（相对位移、绝对位姿、四元数姿态、两路弯曲电机位置代理）。</li><li>将状态经小型学习编码器（12→256→1024 MLP）映射为状态 token，直接注入动作专家；动作输入为 2→1024 投影，输出为 1024→256→2 MLP。</li><li>输出 <strong>H=20</strong> 的二维弯曲速度动作分块（约 1 秒，20 Hz 电机下发），采用 <strong>flow matching</strong> 目标，仅在两个物理动作维度上计算损失。</li><li>与基线方法的关键差异在于：自行训练<strong>连续状态编码器与重映射动作头</strong>，而非保留 32 维接口再做零填充与坐标截取。</li><li>插补与轴旋转在自主试验中保持固定，形成有界的远端弯曲动作接口。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集包含 <strong>6 个任务</strong>：T0–T2（目标可见的跟踪任务）与 A–C（目标初始不可见的搜索任务，对应胃大弯 GC、幽门窦 PA、胃小弯 LC）。</li><li>子集 <strong>A</strong>：<strong>312 条 episode</strong>、<strong>79,310</strong> 对；全语料 <strong>B</strong>：<strong>1,050 条 episode</strong>、<strong>261,614</strong> 对（episode 数为 A 的 3.37 倍，对数 3.30 倍）。</li><li>另有 <strong>两个私有跟踪语料</strong>：共 <strong>544 条 episode</strong>、<strong>139,836 帧</strong>标注（含 138,840 个框），由 YOLOv8n 提议加逐帧人工复核完成标注。</li><li>采集平台 <strong>R1</strong> 使用 6 mm 内镜、DJI RoboMaster M2006 P36 电机、Xbox 遥操作，分辨率 <strong>640×480</strong>、<strong>20 Hz</strong>；<strong>R2</strong> 为 3.9 mm 内镜，弯曲速度统一乘以 0.3 系数。</li><li>训练资源：<strong>单块 RTX 5090 GPU</strong>，有效批大小 32（微批 4 × 8 步梯度累积），<strong>40,000</strong> 次监督/流匹配更新；EndoVLA 基线额外 10,000 次 GRPO 更新。</li><li>推理基准环境：<strong>RTX 5090（32 GB）</strong> + <strong>Intel Core Ultra 9 285K</strong>，300 次输入–输出计时。</li><li>论文未明确给出本文模型的参数总量（基线对比中含 OpenVLA-7B）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估分三类：R1 上的<strong>系统级基线对比</strong>（EndoVLA、OpenVLA-7B、π0、π0.5、两名学生操作者）、<strong>环境迁移</strong>（两个未见胃模型、离体组织）、<strong>跨本体零样本迁移</strong>（R1→R2，exA–exF 六块离体标本）。</li><li>主要指标：<strong>Find</strong>（3,000 帧内连续 100 帧可见目标，即 5 秒）与 <strong>Center / FT</strong>（目标框中心进入图像中央 0.5W×0.5H 区域并保持 2 秒），配合 95% Wilson 区间。</li><li>R1 训练模型下，Ours-A 在 HD/HW/LD/LW 四种外观条件下 Find 为 <strong>8/9、7/9、8/9、6/9</strong>，复合 FT 为 <strong>8/9、6/9、8/9、5/9</strong>；其他 VLA 基线的 FT 均为 <strong>0/9</strong>。</li><li>π0 与 π0.5 基线在 R1 各外观条件下 Find 仅为 <strong>1/36</strong> 与 <strong>3/36</strong>，而 Ours-A 为 <strong>29/36</strong>。</li><li>R2 跨本体标准试验：Ours-B 在 exA/exB/exC 上 Find 为 <strong>10/10、9/10、9/10</strong>（合计 <strong>28/30，93.3%</strong>），Center 为 <strong>8/10、6/10、6/10</strong>（合计 <strong>20/30，66.7%</strong>）。</li><li>训练数据受控对比（exD–F）：Find 由 <strong>12/30（40.0%）</strong> 提升到 <strong>27/30（90.0%）</strong>，Center 由 <strong>7/30（23.3%）</strong> 提升到 <strong>19/30（63.3%）</strong>，三个器官方向一致。</li><li>指令干预：exC 空指令 Find 降至 <strong>3/10</strong>；exA 错误区域指令针对参考目标仅 <strong>2/10</strong>；exB 未见但正确的措辞仍达 <strong>10/10</strong>。</li><li>视觉上下文消融（固定检查点）：仅当前帧 Find/Center 为 <strong>6/10、5/10</strong>，三视图全用提升至 <strong>9/10、9/10</strong>。</li><li>效率：Ours 感知率 <strong>A=14.27 Hz</strong>（70.1 ms/次），理论最大分块等效控制率 <strong>B=285.4 actions/s</strong>，实际电机下发为 20 Hz；论文指出严格居中仍是最具挑战的环节。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.24804/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SARAM: Sparse Adapter Allocation with Reuse and Merging for Lifelong Robot Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.24705/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Relational Spatial Alignment for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

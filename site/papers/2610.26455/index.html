@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ALIGN: Aligning Condition Estimation and Expression in Advantage-Conditioned Behavior Cloning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 ALIGN，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。 核心论点是：AC-BC 能否奏效取决于两个环节——条件构建（从离线轨迹中准确估计出策略所需的条件标签）和条件表达（策略是否真正利用该条件改变动作向量场），而现有流水线在这两个环节都会削弱条件信号。 现有方法先用连续价值、进度或奖励打分，再对两个时刻的分数做差并做阈值化，从而得到离散标签；这种方式脆弱，因为差值会放大噪声，阈值还会把边界误差变成标签翻转。同时，条件仅通过 prompt 传入，对流式动作专家的影响微弱。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.26455">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.26455.webp" alt="ALIGN: Aligning Condition Estimation and Expression in Advantage-Conditioned Behavior Cloning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 ALIGN，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">ALIGN: Aligning Condition Estimation and Expression in Advantage-Conditioned Behavior Cloning</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.26455" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.26455" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.26455</span></div>
+            <p class="detail-summary">论文提出 ALIGN，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。 核心论点是：AC-BC 能否奏效取决于两个环节——条件构建（从离线轨迹中准确估计出策略所需的条件标签）和条件表达（策略是否真正利用该条件改变动作向量场），而现有流水线在这两个环节都会削弱条件信号。 现有方法先用连续价值、进度或奖励打分，再对两个时刻的分数做差并做阈值化，从而得到离散标签；这种方式脆弱，因为差值会放大噪声，阈值还会把边界误差变成标签翻转。同时，条件仅通过 prompt 传入，对流式动作专家的影响微弱。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海科技大学（ShanghaiTech University）：Zechen Wang、Wanting…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.26455/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 ALIGN，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 ALIGN，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。</li><li>核心论点是：AC-BC 能否奏效取决于两个环节——条件构建（从离线轨迹中准确估计出策略所需的条件标签）和条件表达（策略是否真正利用该条件改变动作向量场），而现有流水线在这两个环节都会削弱条件信号。</li><li>现有方法先用连续价值、进度或奖励打分，再对两个时刻的分数做差并做阈值化，从而得到离散标签；这种方式脆弱，因为差值会放大噪声，阈值还会把边界误差变成标签翻转。同时，条件仅通过 prompt 传入，对流式动作专家的影响微弱。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海科技大学</strong>（ShanghaiTech University）：Zechen Wang、Wanting Xu</li><li><strong>上海交通大学</strong>（Shanghai Jiao Tong University）：Houlong Xiong</li><li><strong>浙江大学</strong>（Zhejiang University）：Suohang Zhang</li><li><strong>PrimeBot</strong>：Yiyu Ren、Hongfei Niu、Ran Cheng</li><li><strong>新加坡国立大学</strong>（National University of Singapore）：Chengyang He</li><li>论文标注 Chengyang He 等为共同第一作者，Qian Zhu 等为通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>ALIGN</strong>，一个面向视觉-语言-动作（VLA）策略的“条件对齐”优势条件行为克隆（AC-BC）框架，目标是解决由人类遥操作采集的机器人数据中成功行为与重试、停顿、恢复、失败混杂的问题。</li><li>核心论点是：AC-BC 能否奏效取决于两个环节——<strong>条件构建</strong>（从离线轨迹中准确估计出策略所需的条件标签）和<strong>条件表达</strong>（策略是否真正利用该条件改变动作向量场），而现有流水线在这两个环节都会削弱条件信号。</li><li>现有方法先用连续价值、进度或奖励打分，再对两个时刻的分数做差并做阈值化，从而得到离散标签；这种方式脆弱，因为差值会放大噪声，阈值还会把边界误差变成标签翻转。同时，条件仅通过 prompt 传入，对流式动作专家的影响微弱。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将混合质量机器人数据上的 AC-BC 形式化为两个耦合问题：<strong>条件构建</strong>与<strong>条件表达</strong>，并提出两个诊断指标 <strong>ACF</strong>（AC-BC Condition Fidelity，条件保真度）与 <strong>CVFS</strong>（Conditional Vector-Field Separability，条件向量场可分性）。</li><li>提出<strong>直接分类式成对条件估计器</strong>，在策略实际消费的标签空间中直接预测离散条件，避免对连续标量分数做事后阈值化所带来的转换误差。</li><li>提出 <strong>AdaRMS 动作专家注入</strong>机制：将分类条件与流匹配时间嵌入融合，通过自适应归一化调制注入 DiT 动作专家，使条件对向量场计算产生直接且逐层重复的影响。</li><li>在两个真实机器人本体（ARX X5、Franka）上，用受控的“标准 + 重试密集”混合数据验证方法，显示条件保真度、条件相关向量场分离度与闭环成功率同时提升。</li><li>补充的多任务探针实验表明，CVFS 与动作专家注入所体现的“分类可控性”并不限于优势标签，也可迁移到任务类别注入。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>条件中介分解</strong>：将 AC-BC 写成两阶段——条件构建 <code>c_t = g_φ(D_mix)</code> 与条件表达 <code>v_t = v_θ(x_t, t, o_t, c_t)</code>，其中 <code>v_θ</code> 是流匹配动作专家预测的向量场。</li><li><strong>直接分类成对估计器</strong>：在同轨迹随机采样帧对 <code>(o_i, o_j)</code> 上，用前向时间间隔 <code>j - i > τ</code>（τ = 30 帧）定义分类监督 <code>c̃_{i,j} = g_τ(j - i)</code>，以交叉熵 <code>L_cls = -log p_φ(c̃_{i,j} \|o_i, o_j)</code> 训练；推理时用固定局部对比窗口 <code>N = 50</code> 取 <code>argmax</code> 得到帧级条件。</li><li><strong>阈值前置</strong>：阈值只用于构造分类监督标签，而非在推理后离散化噪声标量预测，从而减少近边界误差。</li><li><strong>条件表达设计</strong>：将标量条件标签映射到流匹配时间嵌入维度并与处理后的时间嵌入相加，再由求和嵌入参数化每层动作专家的 AdaRMS 的 scale、shift、gate，使条件直接调制动作嵌入特征（幅度与残差更新强度）。</li><li><strong>注入机制渐进对比</strong>：prompt/prefix 条件 → 动作侧嵌入相加 → 逐层加性注入 → outcome token → AdaRMS，用于分离“绕过 VLM 通路”“逐层重复条件”“自适应特征调制”各自的收益。</li><li><strong>CVFS 诊断</strong>：对固定探针（观测、噪声动作、流时间）只改变条件，计算条件间散度 <code>B</code> 与条件内散度 <code>W</code>，定义 <code>CVFS = B / (B + W + ε)</code>；值高表示向量场变化按条件一致聚类。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实机器人平台</strong>：<strong>ARX X5</strong>（ALOHA 风格双臂，双 6-DoF 臂 + 平行夹爪，前视 + 双腕 RGB 相机 30 Hz，100 Hz 位置控制）用于三碗堆叠；<strong>Franka Research 3</strong>（双 7-DoF 臂，前视 + 双腕 RGB 30 Hz，200 Hz 笛卡尔阻抗控制）用于挂钥匙任务。</li><li><strong>训练数据</strong>：每个任务混合 <strong>100 条标准采集轨迹 + 100 条重试密集轨迹</strong>（重试动作由设计插入，含错误段与恢复段）。</li><li><strong>验证数据</strong>：独立 <code>D_val</code>，每任务含 100 条标准轨迹、100 条插入重试轨迹、50 条设计失败轨迹；失败轨迹仅用于留出条件评估，不参与策略训练。</li><li><strong>标注协议</strong>：人工标注重试/失败事件起始帧 τ，重试事件后续 <code>K_r = 20</code> 帧、失败事件后续 <code>K_f = 30</code> 帧标为负，重叠时负标签优先。</li><li><strong>模型规模与参数量</strong>：提供的 HTML 片段未给出 VLA 骨干与 DiT 动作专家的具体参数量。</li><li><strong>训练资源（GPU/TPU）</strong>：截断文本中未出现具体硬件配置描述。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：每个策略变体在固定装置与固定初始状态、物体位姿下做 <strong>30 次闭环 rollout</strong> 进行配对比较；仅当任务目标在无人工干预下完成才计为成功。</li><li><strong>主要指标</strong>：估计器用 <strong>ACF-Precision / Recall / F1</strong>（正类）；策略用<strong>闭环成功率</strong>；注入机制用 <strong>CVFS</strong>（含流时间平均 <code>CVFS̄</code>）。</li><li><strong>条件估计结果（表 1）</strong>：直接二分类估计器在 ARX X5 上 Precision 97.7% / Recall <strong>79.2%</strong> / F1 <strong>87.5%</strong>，在 Franka 上 90.7% / <strong>89.1%</strong> / <strong>89.9%</strong>，F1 与召回均优于 <code>π*_0.6</code> 式（82.5% / 88.5%）与 <code>χ_0</code> 式（82.3% / 83.3%）阈值基线；三分类变体接近但略弱。</li><li><strong>闭环成功率（表 2）</strong>：纯 SFT 为 46.7% / 6.7%，加入重试轨迹后一致性改善不明显（50.0% / 3.3%）；固定 prompt 注入时，直接二分类估计器达 <strong>70.0% / 40.0%</strong>，优于 <code>π*_0.6</code>（50.0% / 26.7%）与 <code>χ_0</code>（56.7% / 33.3%）。</li><li><strong>注入消融</strong>：固定同一估计器，ARX 成功率从 prompt 的 70.0% → embedding 相加 76.7% → 逐层加性 83.3% → outcome token 76.7% → <strong>AdaRMS 90.0%</strong>；Franka 从 40.0% 提升至 <strong>56.7%</strong>（outcome token 为 53.3%）。</li><li><strong>整体对比</strong>：ALIGN 达到 <strong>90.0%</strong>（ARX 堆碗）与 <strong>56.7%</strong>（Franka 挂钥匙），最强 AC-BC 基线为 <strong>56.7%</strong> 与 <strong>33.3%</strong>；CVFS 与成功率呈正相关，AdaRMS 在两者上均最高。</li><li><strong>多任务泛化探针</strong>：在 Franka 三任务设置下用 AdaRMS 注入任务类别，拧瓶盖 0.0% → <strong>73.3%</strong>、堆碗 26.7% → <strong>80.0%</strong>、挂钥匙 0.0% → <strong>50.0%</strong>。</li><li><strong>局限性</strong>：方法仍是任务特定的，估计器不追求跨任务/本体语义泛化；二值条件无法区分正类内部更细的质量差异；CVFS 只是开环诊断，可分性不必然带来行为提升；注入机制对比并不穷尽。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.26487/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">SPAR: Structural Pruning and Action Recovery for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.26287/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Robotic Photography System based on Vision-Language-Action Model</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

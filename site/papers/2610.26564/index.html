@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PrismWAM: Decoupling State Representations in World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究世界动作模型（World Action Models, WAMs）中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。 核心论点是：视频隐变量把“世界看起来怎样”（纹理、颜色等语义上下文）与“世界在动作下如何演化”（占据、位姿等物理状态）纠缠在一起，使表示远丰富于动作建模所需，从而增加学习难度。 研究目标是解耦物理与语义，并联合建模状态与动作，将具身任务分解为 Semantic Planning → Physical Rollout → Executable Action 的流水线。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.26564">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.26564.webp" alt="PrismWAM: Decoupling State Representations in World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究世界动作模型（World Action Models, WAMs）中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PrismWAM: Decoupling State Representations in World Action Models</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.26564" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.26564" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.26564</span></div>
+            <p class="detail-summary">论文研究世界动作模型（World Action Models, WAMs）中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。 核心论点是：视频隐变量把“世界看起来怎样”（纹理、颜色等语义上下文）与“世界在动作下如何演化”（占据、位姿等物理状态）纠缠在一起，使表示远丰富于动作建模所需，从而增加学习难度。 研究目标是解耦物理与语义，并联合建模状态与动作，将具身任务分解为 Semantic Planning → Physical Rollout → Executable Action 的流水线。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.26564/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究世界动作模型（World Action Models, WAMs）中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。</p>
+  <ul class="reading-intro-points"><li>论文研究世界动作模型（World Action Models, WAMs）中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。</li><li>核心论点是：视频隐变量把“世界看起来怎样”（纹理、颜色等语义上下文）与“世界在动作下如何演化”（占据、位姿等物理状态）纠缠在一起，使表示远丰富于动作建模所需，从而增加学习难度。</li><li>研究目标是解耦物理与语义，并联合建模状态与动作，将具身任务分解为 Semantic Planning → Physical Rollout → Executable Action 的流水线。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>英伟达</strong>（NVIDIA）</li><li>作者：Tianyu Xin、Wanqi Zhong、Bowen Hu、Zhangchi Guo、Lijie Wang、Yiming Wang、Haoran Liao、Heyang Yu、Xiaoyu Tian、Zhiding Yu、Yiming Li（标注为共同一作与通讯作者）</li><li>项目主页：https://prism-wam.github.io/</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>世界动作模型（World Action Models, WAMs）</strong>中“世界状态应当由什么构成”这一被忽视的问题，指出现有方法直接复用预训练视频模型的隐变量（video latents）作为状态表示。</li><li>核心论点是：视频隐变量把“世界看起来怎样”（纹理、颜色等<strong>语义上下文</strong>）与“世界在动作下如何演化”（占据、位姿等<strong>物理状态</strong>）纠缠在一起，使表示远丰富于动作建模所需，从而增加学习难度。</li><li>研究目标是解耦物理与语义，并联合建模状态与动作，将具身任务分解为 <strong>Semantic Planning → Physical Rollout → Executable Action</strong> 的流水线。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出面向 WAM 的<strong>解耦原则</strong>：识别视频隐变量中语义与物理的纠缠是现有 WAM 的根本局限，阻碍动作生成同时区分高层任务规划与细粒度物理状态迁移。</li><li>提出 <strong>PrismWAM</strong> 架构：基于 <strong>Mixture-of-Transformers（MoT）</strong>，由 RGB 语义规划器引导基于深度的物理 rollout，并设计稠密深度监督 + 稀疏 RGB 目标监督的学习流程，推理时无需显式预测 RGB 目标帧。</li><li>提出<strong>链式注意力（Chain Attention）</strong>结构化掩码，定向控制 RGB、深度、动作三路 token 的信息流，保证动作只通过演化中的深度特征获得物理信息。</li><li>验证强性能与数据效率：无任何具身动作预训练、无额外数据增强，在仿真与真实世界均取得强操作性能，甚至超越 <strong>OpenWAM-α</strong> 等大规模具身动作预训练模型。</li><li>提出范式转变：把世界动作模型从建模“世界看起来如何”转向建模“世界如何响应动作”，为以占据、光流、触觉、本体感知等为基础的以动作为中心的世界模型铺路。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>问题建模</strong>：将策略写成对未来世界状态轨迹的边缘化积分 π(a\|x0,c)=∫p(a\|x1:F,x0,c)·p(x1:F\|x0,c)dx，再进一步分解为语义规划、物理 rollout、可执行动作三层。</li><li><strong>双流非对称时序监督</strong>：RGB 流用<strong>稀疏监督</strong>预测单张目标未来帧（学习任务语义）；深度流用<strong>稠密监督</strong>预测深度序列 d1:F（提供引导动作的中间空间状态）。</li><li><strong>主干与模块</strong>：基于预训练视频骨干 <strong>WAN</strong>，RGB 与深度共享视觉 block、各自保留模态相关的输入/条件/输出投影；动作塔独立参数化；冻结的 RGB/深度 VAE 与 T5 文本编码器；交叉注意力注入语言指令与本体感知上下文。</li><li><strong>链式注意力</strong>：未来 token 可读观测 token，反之不可；深度 token 仅额外读取观测 RGB token；动作 token 读取动作自身与观测/未来深度 token，完全不接触 RGB；各分支使用独立噪声等级嵌入。</li><li><strong>训练策略</strong>：深度 VAE 由 Wan VAE 初始化并在 2300 小时深度数据上预训练；策略训练分两阶段——先在深度空间适配 WAN 骨干，再联合优化 RGB 流、深度流、动作塔与条件投影。</li><li><strong>优化目标</strong>：联合 <strong>flow matching</strong> 损失 L = L_R + L_D + L_A，各模态独立采样噪声与噪声等级，仅在预测目标上加高斯扰动。</li><li><strong>推理</strong>：RGB 流只编码一次历史观测并缓存特征，不生成未来 RGB 帧；未来深度隐变量与动作块从高斯噪声联合去噪，可解码深度序列用于可视化但非必需，执行动作前缀后重规划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>RoboTwin</strong>（clean-to-random，C2R）、<strong>LIBERO</strong>、<strong>LIBERO-Plus</strong>、<strong>LIBERO-Pro</strong>、<strong>RoboDojo</strong>。</li><li><strong>训练数据</strong>：约 <strong>2,300 小时深度数据</strong>用于深度 VAE 预训练；无具身动作预训练数据。</li><li><strong>模型规模</strong>：基于预训练 <strong>WAN</strong> 视频骨干的 MoT 结构，另设探索性放大版本 <strong>PrismWAM\</strong>*；具体参数量在所给 HTML 片段中未明确给出。</li><li><strong>训练资源</strong>：GPU/TPU 具体配置在所给 HTML 片段中未展开（训练配方见附录 A.1，深度 VAE 配方见附录 A.2）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：覆盖分布内操作（LIBERO）与分布外迁移（RoboTwin C2R、LIBERO-Plus、LIBERO-Pro、RoboDojo），并做真实世界验证；对比 starVLA、FastWAM（无动作预训练）、π0.5、OpenWAM-α（有动作预训练）、X-WAM、Spatial-Forcing、4D-WAM（引入空间信息）等。</li><li><strong>主要指标</strong>：任务成功率（%）、RoboDojo 的 Score（/100）与成功率（SR, %），LIBERO-Plus/LIBERO-Pro 按扰动维度（相机、机器人、语言、光照、背景、噪声、布局、物体、位置、语义、任务、环境）分组统计。</li><li><strong>RoboTwin-C2R</strong>：随机场景成功率 53.16%，较 starVLA（3.16%）提升 50.00 pp，较 FastWAM（1.90%）提升 51.26 pp；clean/random 平均 70.57%，超过预训练 OpenWAM-α 的 69.05%；放大版 <strong>PrismWAM\</strong>* 达 83.67%。</li><li><strong>LIBERO</strong>：总体成功率 <strong>99.35%</strong>，优于 4D-WAM 的 98.60%；<strong>LIBERO-Plus</strong> 总体 79.44%（OpenWAM-α 68.79%、FastWAM 52.56%），布局扰动下 81.70% 对 77.38%；<strong>LIBERO-Pro</strong> 物体属性变化下 88.65%，优于 OpenWAM-α 84.45% 与 FastWAM 73.00%。</li><li><strong>RoboDojo</strong>：<strong>PrismWAM\</strong>* 总分 <strong>36.23</strong>（成功率 29.30），较 G0.5（20.23）高 16.00 分、较 Xiaomi-Robotics-1（20.07）高 16.16 分；Precision 任务上 PrismWAM 19.50% 对 OpenWAM-α 9.25%，PrismWAM\* 达 31.08%。</li><li><strong>鲁棒性（RQ2）</strong>：在 Metric Jitter、Edge Missing、Patch Hole 三类递进深度损坏下，最强损坏等级平均性能仅下降 <strong>2.45 pp</strong>。</li><li><strong>消融（RQ3）</strong>：去掉 RGB 流或深度流均降低干净场景与迁移表现（平均从 70.75% 降至 59.60%/42.70%）；允许观测 RGB 直连动作提升干净成功率但削弱迁移（64.70%）；将未来 RGB 暴露给深度流同样降低迁移（68.50%）；去掉未来 RGB 监督降至 66.50%，去掉深度单独训练阶段降至 57.00%，验证各设计互补且需协同工作。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.26584/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">HAF-VLA: Hierarchical Action Flow Framework for Humanoid Vision-Language-Action Control</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.26487/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SPAR: Structural Pruning and Action Recovery for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

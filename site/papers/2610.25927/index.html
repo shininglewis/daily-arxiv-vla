@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CondenseVLA: Learnable History Condensation for Efficient Multi-Frame VLA - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 CondenseVLA，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。 核心问题：机器人操作依赖短暂接触、临时遮挡、中间物体状态等单帧无法判定的线索；但单纯扩大历史窗口计算昂贵（增加 4 帧可让前向速度下降约 35%），且邻近帧高度冗余、固定间隔采样会漏掉关键事件，收益有限甚至为负。 目标：在固定、可控的解码端 token 预算下，自适应地压缩并筛选任务相关的近期视觉证据，而非“无脑加长历史”。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.25927">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.25927.webp" alt="CondenseVLA: Learnable History Condensation for Efficient Multi-Frame VLA" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 CondenseVLA，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">CondenseVLA: Learnable History Condensation for Efficient Multi-Frame VLA</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.25927" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.25927" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.25927</span></div>
+            <p class="detail-summary">论文提出 CondenseVLA，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。 核心问题：机器人操作依赖短暂接触、临时遮挡、中间物体状态等单帧无法判定的线索；但单纯扩大历史窗口计算昂贵（增加 4 帧可让前向速度下降约 35%），且邻近帧高度冗余、固定间隔采样会漏掉关键事件，收益有限甚至为负。 目标：在固定、可控的解码端 token 预算下，自适应地压缩并筛选任务相关的近期视觉证据，而非“无脑加长历史”。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">哈尔滨工业大学（深圳）：Feiyang Hong、Shuo Yang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.25927/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 CondenseVLA，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。</p>
+  <ul class="reading-intro-points"><li>论文提出 CondenseVLA，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。</li><li>核心问题：机器人操作依赖短暂接触、临时遮挡、中间物体状态等单帧无法判定的线索；但单纯扩大历史窗口计算昂贵（增加 4 帧可让前向速度下降约 35%），且邻近帧高度冗余、固定间隔采样会漏掉关键事件，收益有限甚至为负。</li><li>目标：在固定、可控的解码端 token 预算下，自适应地压缩并筛选任务相关的近期视觉证据，而非“无脑加长历史”。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>哈尔滨工业大学（深圳）</strong>：Feiyang Hong、Shuo Yang</li><li><strong>哈尔滨工业大学</strong>：Yujie Wei、Hongxun Yao</li><li><strong>上海交通大学</strong>：Xiu Su</li><li><strong>中南大学</strong>：Xiu Su</li><li>通讯作者：Shuo Yang（shuoyang@hit.edu.cn）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>CondenseVLA</strong>，一种面向多帧视觉-语言-动作（VLA）策略的可学习历史压缩机制，用于把机器人操作中的短期视觉历史注入动作解码过程。</li><li>核心问题：机器人操作依赖短暂接触、临时遮挡、中间物体状态等单帧无法判定的线索；但单纯扩大历史窗口计算昂贵（增加 4 帧可让前向速度下降约 35%），且邻近帧高度冗余、固定间隔采样会漏掉关键事件，收益有限甚至为负。</li><li>目标：在固定、可控的解码端 token 预算下，自适应地压缩并筛选任务相关的近期视觉证据，而非“无脑加长历史”。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>方法层面</strong>：提出解码端可学习历史压缩模块 <strong>LHC（Learnable History Condensation）</strong>，将缓存的近期 VLM 帧特征蒸馏为固定数量的 slot token 作为动作条件。</li><li><strong>正则化设计</strong>：引入简单辅助正则（注意力图多样性约束 + slot 嵌入去相关），鼓励 slot 关注互补的历史片段、减少冗余。</li><li><strong>实证结果</strong>：在 Simpler-WidowX、LIBERO、RMBench 与真实机器人平台上一致优于 <strong>CronusVLA</strong> 基线（如 Simpler-WidowX 从 58.7% 提升至 69.8%）。</li><li><strong>机理性发现</strong>：长历史中存在大量冗余，学习式任务相关压缩比朴素扩展历史窗口或刚性采样更可靠。</li><li>提供项目主页与开源代码（github.com/FeiyangHong/CondenseVLA）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>整体流程</strong>：每步 VLM 只编码当前观测得到 \(f_t\)；FIFO 缓存最近 \(M\) 个历史特征 \(F_t\)；LHC 将其压缩为 \(K\) 个 slot（\(K \ll M\)）；扩散解码器以定长序列 \(Z_t=[\tilde F_t; f_t]\) 为条件。</li><li><strong>LHC 结构</strong>：\(K\) 个可学习 slot query 通过多头交叉注意力对 \(M\) 个历史特征做 key/value 聚合；每个 slot 由基查询、slot 嵌入和一个固定相对标量（经 MLP 注入）构成，仅用于打破置换对称性，不强加硬性时间分配。</li><li><strong>时间位置编码</strong>：历史位置嵌入只进入 value 路径，并带初始化为 0 的可学习缩放。</li><li><strong>训练目标</strong>：\(L = L_{\text{diff}} + \lambda_{\text{div}} L_{\text{div}} + \lambda_{\text{slot}} L_{\text{slot}}\)；\(L_{\text{div}}\) 用 \(\mathrm{MSE}(\bar A \bar A^\top, I)\) 惩罚 slot 注意力重叠，\(L_{\text{slot}}\) 对中间 slot 对（\(2 \le i < j \le K-1\)）做余弦相似度平方去相关。</li><li><strong>微调范围</strong>：冻结视觉编码器与语言模型，仅训练多模态投影器、LHC 和扩散动作解码器；历史特征使用 stop-gradient。</li><li><strong>计算成本</strong>：LHC 注意力混合为 \(\mathcal{O}(KMD)\)，解码器条件 token 数为 \(K+6\)，与 \(M\) 无关。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>SimplerEnv / Simpler-WidowX</strong>（Spoon on Towel、Carrot on Plate、Stack Cube、Eggplant in Basket 四项）、<strong>LIBERO</strong>（Spatial / Object / Goal / Long 四个套件）、<strong>RMBench</strong>（9 个记忆依赖任务，含 \(M(1)\) 与 \(M(n)\) 类别，每任务 50 条演示、100 次评测）。</li><li><strong>真实平台</strong>：<strong>Galaxea R1 Lite</strong> 机器人 + 顶部中心第三人称 RGB 相机，5 个任务，每任务 50 条训练演示、每方法 50 次评测。</li><li><strong>基线模型</strong>：以 <strong>CronusVLA</strong>（基于 OpenVLA + DiT 风格扩散解码器）为主干与同协议基线，另对比 OpenVLA、OpenVLA-OFT、π₀、TraceVLA、SpatialVLA、MemoryVLA、GR00T-N1.5、HAMLET、ContextVLA、HPT 类方法等。</li><li><strong>模型规模</strong>：冻结的视觉/语言主干约 <strong>7.47B</strong> 参数；动作解码器 <strong>134.7M</strong>；<strong>LHC 约 100.8M</strong>（约占主干 1.35%，约为解码器的 74.8%）。</li><li><strong>超参设置</strong>：Simpler/RMBench/真机用 \(M=20, K=6\)；LIBERO 用 \(M=10, K=3\)。</li><li><strong>计算资源</strong>：延迟/速度测试使用 <strong>A100-SXM4-80GB</strong>、batch size 1、10 步 DDIM；完整训练硬件细节置于附录（原文未展开）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：任务成功率（%）、多阶段任务的中间阶段成功率与最终成功率、策略前向延迟/推理速度（Hz）。</li><li><strong>Simpler-WidowX</strong>：平均成功率 <strong>69.8%</strong> vs. CronusVLA <strong>58.7%</strong>（+11.1 pp）；分任务增益 +13.9/+15.3/+11.1/+4.2 pp。</li><li><strong>LIBERO</strong>：平均 <strong>97.2%</strong> vs. CronusVLA 96.3%；Long 套件 94.6% vs. 94.0%（接近饱和，不能单独证明记忆能力）。</li><li><strong>RMBench</strong>：总体 <strong>21.6%</strong> vs. 稠密历史 CronusVLA 14.3%（+7.2 pp）；\(M(1)\) 提升 +10.6 pp，\(M(n)\) 仅 +3.0 pp，暴露有限窗口的局限（Press Button 三方法全失败）。</li><li><strong>真实机器人（Galaxea R1 Lite）</strong>：平均最终成功率 <strong>52.8%</strong> vs. CronusVLA 45.2%（+7.6 pp）；三个多阶段任务平均由 37.3% 升至 46.7%（+9.3 pp）。</li><li><strong>消融</strong>：去掉稠密历史、MHA 压缩、注意力多样性、slot 去相关逐项验证；\(K/M\) 网格显示 \(M=20,K=6\)（70.8%）与 \(M=30,K=10\)（64.6%）的交互效应；与静态索引（55.2%）、静态权重（54.2%）、等间隔采样（59.4%）相比，学习式压缩最优。</li><li><strong>效率</strong>：固定 \(K=6\) 时，\(M=10\) 延迟略高 0.25%，而 \(M=20\)、\(M=30\) 时分别降低 3.8%、7.4%；但 LHC 自身开销随 \(M\) 增长，不构成普适端到端加速。</li><li><strong>局限</strong>：FIFO 无法检索窗口外事件；\(M\)、\(K\) 无独立验证集调参；仅单一 VLA 主干与单一实机平台；新增 LHC 容量使增益无法完全归因于时间选择。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.25961/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PaceVLA: Adaptive Temporal Action Quantization in Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.25874/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Vision-Language-Delta-Action: Learning Compact Deltas as Actionable Transition Interfaces for Robotic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

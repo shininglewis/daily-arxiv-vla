@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GazeAct: A Human-Gaze-Annotated Manipulation Dataset for Attention-Regularized Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 GazeAct，这是一个将真实人类注视（gaze）与多相机机器人观测对齐的实机操作数据集，以及配套的注意力正则化训练框架。 核心问题是：VLA（视觉-语言-动作）策略需要判断“该看哪里”才能可靠操作，而现有大规模机器人数据集只记录图像、本体感知和动作，不含人类注视；已有的带注视数据集又多采用头戴式或单视角采集，无法监督现代多视角 VLA 策略的视觉输入。 目标是在不改变推理接口、推理时不依赖注视信号的前提下，利用训练期的真实注视提升语言条件下的视觉定位与操作成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.24507">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #d84f61; --cover-to: #f29c6b; --cover-spot: #ffd6c4; --cover-ink: #fff7f4; --cover-muted: rgba(255, 247, 244, 0.82); --cover-chip: rgba(255, 247, 244, 0.16); --cover-stroke: rgba(255, 247, 244, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">GazeAct: A Human-Gaze-Annotated Manipulation Dataset for Attention-Regularized Policies</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">GazeAct: A Human-Gaze-Annotated Manipulation Dataset for Attention-Regularized Policies</h1>
+            <div class="detail-meta">2026-10-17 · <a href="http://arxiv.org/abs/2610.24507" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.24507" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.24507</span></div>
+            <p class="detail-summary">论文提出 GazeAct，这是一个将真实人类注视（gaze）与多相机机器人观测对齐的实机操作数据集，以及配套的注意力正则化训练框架。 核心问题是：VLA（视觉-语言-动作）策略需要判断“该看哪里”才能可靠操作，而现有大规模机器人数据集只记录图像、本体感知和动作，不含人类注视；已有的带注视数据集又多采用头戴式或单视角采集，无法监督现代多视角 VLA 策略的视觉输入。 目标是在不改变推理接口、推理时不依赖注视信号的前提下，利用训练期的真实注视提升语言条件下的视觉定位与操作成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Anupam Pani、Wang Yuan、Qifan Wang、Yanchao Yang：HKU M…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.24507/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 GazeAct，这是一个将真实人类注视（gaze）与多相机机器人观测对齐的实机操作数据集，以及配套的注意力正则化训练框架。</p>
+  <ul class="reading-intro-points"><li>论文提出 GazeAct，这是一个将真实人类注视（gaze）与多相机机器人观测对齐的实机操作数据集，以及配套的注意力正则化训练框架。</li><li>核心问题是：VLA（视觉-语言-动作）策略需要判断“该看哪里”才能可靠操作，而现有大规模机器人数据集只记录图像、本体感知和动作，不含人类注视；已有的带注视数据集又多采用头戴式或单视角采集，无法监督现代多视角 VLA 策略的视觉输入。</li><li>目标是在不改变推理接口、推理时不依赖注视信号的前提下，利用训练期的真实注视提升语言条件下的视觉定位与操作成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Anupam Pani</strong>、<strong>Wang Yuan</strong>、<strong>Qifan Wang</strong>、<strong>Yanchao Yang</strong>：<strong>HKU Musketeers Foundation Institute of Data Science</strong>（香港大学马斯基基金会数据科学研究院）</li><li><strong>Yanchao Yang</strong> 另外隶属于<strong>香港大学电机电子工程系</strong>（Department of Electrical and Electronic Engineering, The University of Hong Kong）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>GazeAct</strong>，这是一个将真实人类注视（gaze）与多相机机器人观测对齐的实机操作数据集，以及配套的注意力正则化训练框架。</li><li>核心问题是：VLA（视觉-语言-动作）策略需要判断“该看哪里”才能可靠操作，而现有大规模机器人数据集只记录图像、本体感知和动作，不含人类注视；已有的带注视数据集又多采用头戴式或单视角采集，无法监督现代多视角 VLA 策略的视觉输入。</li><li>目标是在不改变推理接口、推理时不依赖注视信号的前提下，利用训练期的真实注视提升语言条件下的视觉定位与操作成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>GazeAct</strong> 数据集：人类注视直接标注在机器人相机画面坐标系中，并通过跨视角对齐扩展为多视角注视监督（12,000 条示教、40 个任务、5 个场景域、300 Hz 注视）。</li><li>设计基于屏幕遥操作、硬件 TTL 触发与时钟同步的数据采集与跨视角注视迁移流程，实现高频注视与多视角图像、本体感知、动作的精确对齐。</li><li>提出<strong>注意力正则化</strong>方法：将注视转换为视觉 token 上的 patch 级分布，用 KL 散度约束语言条件下的视觉注意力，训练期使用、部署期移除。</li><li>在 18 个实机任务上验证有效性（平均成功率 48.1% → 58.6%，单任务最多提升 25 个百分点），并证明方法可跨架构（π0.5、OpenVLA）与跨场景（LIBERO-Spatial）迁移。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>数据采集</strong>：在 <strong>ALOHA</strong> 遥操作平台上，操作员观看屏幕上的机器人相机画面（左腕、右腕、固定俯视三视角），由 <strong>Tobii Pro Spectrum</strong> 眼动仪以 300 Hz 记录注视点，注视点天然表达在机器人图像坐标中。</li><li><strong>时间同步</strong>：硬件 TTL 触发定义试验起止边界，chrony/NTP 同步时钟将每个 300 Hz 注视样本对齐到最近的机器人时间步与相机帧。</li><li><strong>跨视角注视迁移</strong>：先用棋盘格标定多相机内外参，将源视角注视点反向投影为 3D 点并投影到目标视角得到几何候选；再用 <strong>LightGlue</strong> 局部特征匹配在几何引导的搜索区域内精修；不可靠时回退到中心先验。</li><li><strong>Patch 级注视分布</strong>：以高斯核在注视位置生成热图，并在短时间窗内聚合以抑制微跳视与抖动，再按视觉 token 网格池化为归一化分布 \(G_t^i\)。</li><li><strong>注意力正则化</strong>：取最终视觉-语言融合层中语言查询对视觉 key 的注意力 \(S_t^i\)，损失为 \(\mathcal{L}_{\text{attention}}=\lambda D_{\mathrm{KL}}(G_t^i \\|S_t^i)\)，与动作损失相加联合训练；推理时与基线 VLA 完全相同。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>GazeAct 数据集</strong>：12,000 条实机示教，40 个任务，5 个域（<strong>home / hospital / kitchen / laboratory / sports</strong>），20 名参与者，每任务 300 条示教，平均轨迹约 30 秒。</li><li><strong>同步模态</strong>：多视角 RGB 图像、本体感知、动作、300 Hz 注视（含时间戳、归一化 2D 坐标、当前激活视角）。</li><li><strong>模型骨干</strong>：主实验使用 <strong>π0.5</strong>，泛化实验使用 <strong>OpenVLA</strong>；动作块长度 h = 50。</li><li><strong>训练设置</strong>：实机策略训练 40k 步；LIBERO-Spatial 结果报告 30k 步。</li><li>论文未披露具体 GPU/TPU 型号与数量，也未给出模型参数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>实机评估</strong>：18 个真实任务，每任务每方法 100 次 rollout（50 次标准 + 50 次鲁棒性试验，后者改变物体位置、外观或加入干扰物），报告 95% Wilson 置信区间。</li><li><strong>主要指标</strong>：标准成功率、鲁棒性成功率、总体成功率、绝对提升百分点（pp）。</li><li><strong>实机主结果</strong>：标准 55.8% → 66.8%，鲁棒性 40.3% → 50.3%，总体 48.1% → 58.6%（+10.5 pp）；所有任务均有提升，最大增益为 “pick cup and place on plate” 的 +25 pp（39% → 64%）。</li><li><strong>正则化强度消融</strong>：λ=0.001 最优（平均 73.5%，基线 59.5%），λ=10 时在所有任务上低于基线，说明注视更适合作为“软监督”。</li><li><strong>注视来源消融</strong>：真实人类注视平均 73.5% 最优，伪注视（显著性估计器）67.2%、中心先验 55.5%、均匀分布 49.5%，说明增益并非来自通用注意力塑形。</li><li><strong>跨架构</strong>：π0.5 平均 51.0% → 66.0%（单任务 +9~25 pp），OpenVLA 平均 45.2% → 55.7%（单任务 +7~14 pp）。</li><li><strong>仿真迁移</strong>：<strong>LIBERO-Spatial</strong> 上 57.9% → 69.6%，全部 10 种空间配置均有提升。</li><li><strong>注意力可视化</strong>：基线注意力较分散或偏向背景，正则化后更集中于按钮、工具、接触点与目标区域等可操作区域。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.24573/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Retrieval-triggered Action Projection Adjustment for Frozen VLA Policies: An Empirical Study and Failure Analysis</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.24349/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FlashRT-PAI: Fast Kernels Are Not Fast Pipelines for Physical AI Inference</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

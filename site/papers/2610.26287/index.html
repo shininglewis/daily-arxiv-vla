@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robotic Photography System based on Vision-Language-Action Model - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 RoboPhoto-VLA，将机器人摄影建模为美学感知的 Vision-Language-Action（VLA） 学习问题，统一建模场景感知、摄影意图理解与相机控制。 目标是让机器人根据自然语言摄影指令自主规划相机运动，并生成符合人类审美偏好的照片。 针对现有模块化摄影系统难以理解抽象摄影意图、通用 VLA 偏重任务完成而非照片质量、机器人摄影数据稀缺等问题，提出结构化摄影推理、审美偏好优化和新数据集。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.26287">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.26287.webp" alt="Robotic Photography System based on Vision-Language-Action Model" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 RoboPhoto-VLA，将机器人摄影建模为美学感知的 Vision-Language-Action（VLA） 学习问题，统一建模场景感知、摄影意图理解与相机控制。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Robotic Photography System based on Vision-Language-Action Model</h1>
+            <div class="detail-meta">2026-10-19 · <a href="http://arxiv.org/abs/2610.26287" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.26287" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.26287</span></div>
+            <p class="detail-summary">论文提出 RoboPhoto-VLA，将机器人摄影建模为美学感知的 Vision-Language-Action（VLA） 学习问题，统一建模场景感知、摄影意图理解与相机控制。 目标是让机器人根据自然语言摄影指令自主规划相机运动，并生成符合人类审美偏好的照片。 针对现有模块化摄影系统难以理解抽象摄影意图、通用 VLA 偏重任务完成而非照片质量、机器人摄影数据稀缺等问题，提出结构化摄影推理、审美偏好优化和新数据集。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学深圳国际研究生院（Shenzhen International Graduate School…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.26287/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 RoboPhoto-VLA，将机器人摄影建模为美学感知的 Vision-Language-Action（VLA） 学习问题，统一建模场景感知、摄影意图理解与相机控制。</p>
+  <ul class="reading-intro-points"><li>论文提出 RoboPhoto-VLA，将机器人摄影建模为美学感知的 Vision-Language-Action（VLA） 学习问题，统一建模场景感知、摄影意图理解与相机控制。</li><li>目标是让机器人根据自然语言摄影指令自主规划相机运动，并生成符合人类审美偏好的照片。</li><li>针对现有模块化摄影系统难以理解抽象摄影意图、通用 VLA 偏重任务完成而非照片质量、机器人摄影数据稀缺等问题，提出结构化摄影推理、审美偏好优化和新数据集。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学深圳国际研究生院</strong>（Shenzhen International Graduate School, Tsinghua University）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>RoboPhoto-VLA</strong>，将机器人摄影建模为美学感知的 <strong>Vision-Language-Action（VLA）</strong> 学习问题，统一建模场景感知、摄影意图理解与相机控制。</li><li>目标是让机器人根据自然语言摄影指令自主规划相机运动，并生成符合人类审美偏好的照片。</li><li>针对现有模块化摄影系统难以理解抽象摄影意图、通用 VLA 偏重任务完成而非照片质量、机器人摄影数据稀缺等问题，提出结构化摄影推理、审美偏好优化和新数据集。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>RoboPhoto-VLA</strong>，一个面向自主机器人摄影的统一 VLA 框架，联合建模感知、推理和相机动作控制。</li><li>提出 <strong>PhotoCoT</strong>，将抽象摄影意图分解为目标主体、视角、构图和场景约束，并进一步生成多步相机调整推理与可执行轨迹。</li><li>提出 <strong>Aesthetical Direct Preference Optimization（ADPO）</strong>，通过轨迹级偏好学习将相机行为与人类审美偏好对齐。</li><li>构建 <strong>OpenPhotography</strong>，包含语言引导演示和审美偏好对的机器人摄影数据集，用于训练与真实世界评估。</li><li>在真实机器人实验中验证了方法在跨主体、跨视角、跨姿态场景下优于通用 VLA 和现有机器人摄影系统。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>OpenVLA-7B</strong> 作为策略骨干，使用 <strong>SigLIP</strong> 和 <strong>DINOv2</strong> 双视觉编码器提取视觉特征，并通过投影器与语言指令一起输入 LLM。</li><li>延续 OpenVLA 的动作建模方式，将每个连续动作维度按训练分布的 1% 和 99% 分位数离散为 <strong>256 个 bin</strong>，以语言 token 形式自回归预测相机轨迹。</li><li><strong>PhotoCoT</strong> 将策略学习分解为摄影 grounding 和相机规划：先预测主体、视角、构图、场景约束，再生成多步调整推理序列，最后输出相机轨迹。</li><li><strong>ADPO</strong> 将审美对齐建模为轨迹级偏好学习：执行多条候选轨迹，用多模态审美评估模型打分，构造高低分偏好对。</li><li>ADPO 引入自适应置信权重，结合审美分差与 <strong>LPIPS</strong> 感知差异对偏好对加权，降低不可靠或受无关视觉内容变化影响的偏好对权重。</li><li>训练采用两阶段范式：先使用 PhotoCoT 推理轨迹进行监督微调，再用 ADPO 优化审美偏好；整体损失为 <strong>SFT 损失 + λ·ADPO 损失</strong>，实验中 <strong>λ=0.1</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>OpenPhotography</strong> 数据集，包含 <strong>600 条演示</strong>、<strong>42 条指令</strong>，覆盖不同主体、视角、相机高度和人体姿态。</li><li>每条演示包含 RGB 观测、语言指令、经人工校验的 <strong>Qwen3-VL</strong> 生成的 PhotoCoT 推理轨迹、相机轨迹和最终照片。</li><li>数据按 <strong>6:2:2</strong> 划分为训练、验证和测试集；OOD 评估按 <strong>7:3</strong> 划分分布内与分布外样本，OOD 样本不参与训练和偏好优化。</li><li>偏好学习阶段保留 <strong>200 个轨迹级偏好对</strong>，由多模态审美评估模型对 SFT 策略生成的多条轨迹照片打分后构造。</li><li>模型规模为 <strong>OpenVLA-7B</strong>（约 7B 参数）。</li><li>实验平台为 <strong>UR 系列机械臂</strong>和 <strong>Intel RealSense D435i RGB-D 相机</strong>。</li><li>论文未明确说明训练所用 GPU/TPU 型号、数量及训练时长。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在真实机器人平台上进行评估，对比 <strong>RT-2-X</strong>、<strong>π₀</strong>、<strong>OpenVLA</strong> 三个通用 VLA 模型，以及 <strong>ANSEL</strong>、<strong>Snapbot</strong> 两个机器人摄影系统。</li><li>使用三个指标：<strong>Quality Score（QS）</strong> 衡量图像质量，<strong>Aesthetic Score（AS）</strong> 衡量构图与视觉美感，<strong>Instruction–Image Alignment（IIA）</strong> 用 CLIP 相似度衡量图像与指令对齐程度。</li><li>评估覆盖跨主体（单人/多人）、跨视角（45°、90°、135°）和跨姿态（HoP/HOP）等设置。</li><li><strong>RoboPhoto-VLA 在所有设置下均取得最佳结果</strong>；例如单人多场景达到 QS 0.86、AS 0.91、IIA 0.87，多人场景达到 QS 0.89、AS 0.90、IIA 0.91。</li><li>相比通用 VLA 和传统摄影机器人，RoboPhoto-VLA 在审美质量和指令对齐上均有明显提升，尤其在多人场景和困难视角下增益更大。</li><li>消融实验显示：移除 <strong>PhotoCoT</strong> 会导致 <strong>IIA</strong> 最大幅度下降；将 <strong>ADPO</strong> 替换为监督微调或标准 DPO 主要导致 <strong>AS</strong> 下降，说明 ADPO 对审美对齐有效。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.26455/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ALIGN: Aligning Condition Estimation and Expression in Advantage-Conditioned Behavior Cloning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.25981/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FR-VLA: Implicit Force Reasoning VLA for Contact-Rich Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

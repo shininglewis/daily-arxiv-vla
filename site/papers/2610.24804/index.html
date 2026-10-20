@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SARAM: Sparse Adapter Allocation with Reuse and Merging for Lifelong Robot Learning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文面向终身机器人学习（lifelong robot learning）场景：机器人在固定板载资源预算下，需要顺序学习新任务且不遗忘旧任务。 现有基于大型预训练 VLA（Vision-Language-Action） 主干的适配器方法虽然能有效缓解灾难性遗忘，但任务专属适配器与选择模块会随任务流不断累积，导致磁盘存储与部署开销（GPU 显存、单步推理成本）随任务数增长。 论文提出 SARAM 框架，目标是在保持（甚至超过）适配器基线成功率的同时，让存储增长受限，并使 GPU 显存与控制频率与任务流长度无关。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.24804">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #d84f61; --cover-to: #f29c6b; --cover-spot: #ffd6c4; --cover-ink: #fff7f4; --cover-muted: rgba(255, 247, 244, 0.82); --cover-chip: rgba(255, 247, 244, 0.16); --cover-stroke: rgba(255, 247, 244, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">SARAM: Sparse Adapter Allocation with Reuse and Merging for Lifelong Robot Learning</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">SARAM: Sparse Adapter Allocation with Reuse and Merging for Lifelong Robot Learning</h1>
+            <div class="detail-meta">2026-10-17 · <a href="http://arxiv.org/abs/2610.24804" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.24804" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.24804</span></div>
+            <p class="detail-summary">论文面向终身机器人学习（lifelong robot learning）场景：机器人在固定板载资源预算下，需要顺序学习新任务且不遗忘旧任务。 现有基于大型预训练 VLA（Vision-Language-Action） 主干的适配器方法虽然能有效缓解灾难性遗忘，但任务专属适配器与选择模块会随任务流不断累积，导致磁盘存储与部署开销（GPU 显存、单步推理成本）随任务数增长。 论文提出 SARAM 框架，目标是在保持（甚至超过）适配器基线成功率的同时，让存储增长受限，并使 GPU 显存与控制频率与任务流长度无关。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Seoul National University（首尔大学）：SeongJun Jeong、Chun…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.24804/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文面向终身机器人学习（lifelong robot learning）场景：机器人在固定板载资源预算下，需要顺序学习新任务且不遗忘旧任务。</p>
+  <ul class="reading-intro-points"><li>论文面向终身机器人学习（lifelong robot learning）场景：机器人在固定板载资源预算下，需要顺序学习新任务且不遗忘旧任务。</li><li>现有基于大型预训练 VLA（Vision-Language-Action） 主干的适配器方法虽然能有效缓解灾难性遗忘，但任务专属适配器与选择模块会随任务流不断累积，导致磁盘存储与部署开销（GPU 显存、单步推理成本）随任务数增长。</li><li>论文提出 SARAM 框架，目标是在保持（甚至超过）适配器基线成功率的同时，让存储增长受限，并使 GPU 显存与控制频率与任务流长度无关。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Seoul National University</strong>（首尔大学）：SeongJun Jeong、Chungwoo Lee、Byoung-Tak Zhang</li><li><strong>Ajou University</strong>（亚洲大学）：Gi-Cheon Kang</li><li>论文受韩国政府 IITP、NRF、KEIT、KIAT 等基金资助</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文面向<strong>终身机器人学习</strong>（lifelong robot learning）场景：机器人在固定板载资源预算下，需要顺序学习新任务且不遗忘旧任务。</li><li>现有基于大型预训练 <strong>VLA（Vision-Language-Action）</strong> 主干的适配器方法虽然能有效缓解灾难性遗忘，但任务专属适配器与选择模块会随任务流不断累积，导致<strong>磁盘存储</strong>与<strong>部署开销</strong>（GPU 显存、单步推理成本）随任务数增长。</li><li>论文提出 <strong>SARAM</strong> 框架，目标是在保持（甚至超过）适配器基线成功率的同时，让存储增长受限，并使 GPU 显存与控制频率与任务流长度无关。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>SARAM</strong>，一种基于适配器的终身机器人学习方法，通过<strong>适配器复用</strong>、<strong>稀疏分配</strong>与<strong>紧凑任务签名</strong>（替代学习式选择模块）限制每个任务带来的额外存储。</li><li>部署阶段将任务选择移出控制回路：用一次无适配器前向得到任务签名匹配任务，并把该任务的线性更新<strong>合并进主干权重</strong>，使 GPU 显存与单步推理成本与已学任务数无关。</li><li>在四个 <strong>LIBERO</strong> 套件上取得最高的最终成功率 <strong>SR_final</strong> 与 <strong>AUC</strong>，且每任务磁盘状态最多减少 <strong>4.5×</strong>；并在搭载不同 VLA 主干与 <strong>UR5</strong> 真机上的七任务序列中验证了方法可迁移到真实机器人。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>线性增量表示</strong>：每个任务在层 ℓ 的更新写为冻结 LoRA 适配器的线性组合加上新分配的适配器（式 1），因此整个任务更新是<strong>权重空间中的单一线性增量</strong>，可直接加进主干权重而无需作为独立模块求值。</li><li><strong>阶段一（库复用）</strong>：先冻结所有新适配器，仅训练组合系数 c^(t) 以拟合模仿损失 L_im，损失平台后停止，剩余误差指示库无法表达的部分。</li><li><strong>阶段二（稀疏分配）</strong>：为每层附加候选适配器与标量门控 γ_ℓ，在 L_im 上加 <strong>ℓ1 惩罚</strong>，用<strong>近端梯度下降</strong>（软阈值算子）优化；门控为零的层被丢弃，得到稀疏层集合 S_t。门控不加权重衰减，避免用更大 LoRA 因子补偿小门控。</li><li><strong>阶段三（去重惩罚）</strong>：联合训练新适配器与系数，加入 <strong>duplication penalty</strong>，用库适配器两两内积矩阵 M_ℓ 与新适配器内积 b_ℓ 计算新适配器被库张成空间解释的比例，鼓励新适配器捕捉互补方向；库冻结使逆矩阵每任务只算一次。</li><li><strong>任务签名与选择</strong>：用冻结主干在演示初始观测与指令上的逐层激活 <strong>Gram 矩阵</strong>做 top-k 特征分解，仅存 U_ℓ^(t)（Σ k·d_ℓ 个值），不保留原始样本；部署时用<strong>非中心化线性 CKA</strong> 相似度对签名打分取最大（式 6、7），每回合只做一次选择。</li><li><strong>部署合并</strong>：按式 8 将 ΔW^(t*) 直接加到主干权重，控制回路中不再有适配器、系数或选择模块。由于 t* 在回合开始固定且 c^(t*) 与输入无关，合并是精确的。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准为 <strong>LIBERO</strong> 的四个套件：<strong>LIBERO-Long、LIBERO-Goal、LIBERO-Spatial、LIBERO-Object</strong>，每个套件是 <strong>T=10</strong> 个顺序学习任务的流。</li><li>训练协议：每任务 <strong>10k</strong> 训练步（含 SARAM 的三个阶段）、每 <strong>800</strong> 步做 <strong>20</strong> 回合探测、留存评估用 <strong>40</strong> 回合、共 <strong>3</strong> 个随机种子；评估时不提供 oracle 任务 ID。</li><li>真机实验：<strong>UR5</strong> 机械臂，使用<strong>不同的 VLA 主干</strong>，七任务序列。</li><li>部署开销：十任务后 GPU 显存 <strong>748 MB</strong>、控制频率 <strong>15.2 Hz</strong>；主干规模、适配器秩 r 的具体取值、GPU 型号与训练资源在所提供的原文片段中未给出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>指标</strong>：FWT（训练中学习效果）、<strong>SR_final</strong>（流结束后各任务成功率）、<strong>NBT</strong>（回访时相对部署分数的平均下降，越低越好）、<strong>AUC</strong>（学习—保持全轨迹的综合），另报告 SR_learn。</li><li><strong>基线</strong>：SeqFFT、SeqLoRA、PackNet、EWC、ER、SHARE、<strong>CLARE</strong>、<strong>DMPEL</strong>，以及各方法自带的（无 oracle 的）任务选择。</li><li><strong>主要结果</strong>：SARAM 在四个套件上取得最高 SR_final 与 AUC，例如 LIBERO-Long SR_final <strong>83.7</strong>（CLARE 60.3、DMPEL 72.9）、LIBERO-Goal <strong>90.9</strong>（CLARE 84.2、DMPEL 72.8）、LIBERO-Spatial <strong>87.6</strong>、LIBERO-Object <strong>95.3</strong>；同时每任务磁盘状态比适配器基线最多少 <strong>4.5×</strong>。</li><li><strong>部署成本</strong>：十任务后 SARAM 仍为 <strong>748 MB / 15.2 Hz</strong>（与纯主干一致），而 CLARE 增至 <strong>922 MB、10.1 Hz</strong>，DMPEL 增至 <strong>829 MB、5.0 Hz</strong>。</li><li><strong>真机结果</strong>：在七任务 UR5 序列中，SARAM 结束时的成功率与各任务刚学会时持平，说明方法可迁移到真实机器人和不同主干架构。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.25043/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-Rolling: Fewer Denoising Steps, Better Control via Adaptive Action Reuse</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.24747/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">EndoVLA-OOV: Language-Conditioned Out-of-View Target Acquisition in Robotic Endoscopy</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AQUAACT: A Joystick-Level Underwater Teleoperation Dataset and Closed-Loop Benchmark - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 AquaAct，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的摇杆指令配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。 现有水下数据要么完全来自仿真，并且动作由脚本专家生成（如 USIM），要么只覆盖水池中的机械臂操作（如 AquaBot），还没有把开放水域观测与飞行员摇杆指令配对的数据集。 论文目标有两个：一是验证仿真采集的水下示范能否迁移到真实数据并减少真实数据需求；二是在闭环仿真中对现有通用机器人策略进行基准测试，衡量它们离“可自主执行水下任务”还有多远。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.25534">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.25534.webp" alt="AQUAACT: A Joystick-Level Underwater Teleoperation Dataset and Closed-Loop Benchmark" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 AquaAct，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的摇杆指令配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">AQUAACT: A Joystick-Level Underwater Teleoperation Dataset and Closed-Loop Benchmark</h1>
+            <div class="detail-meta">2026-10-18 · <a href="http://arxiv.org/abs/2610.25534" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.25534" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.25534</span></div>
+            <p class="detail-summary">论文提出 AquaAct，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的摇杆指令配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。 现有水下数据要么完全来自仿真，并且动作由脚本专家生成（如 USIM），要么只覆盖水池中的机械臂操作（如 AquaBot），还没有把开放水域观测与飞行员摇杆指令配对的数据集。 论文目标有两个：一是验证仿真采集的水下示范能否迁移到真实数据并减少真实数据需求；二是在闭环仿真中对现有通用机器人策略进行基准测试，衡量它们离“可自主执行水下任务”还有多远。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">13 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">南佛罗里达大学（University of South Florida, Tampa, FL, USA…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.25534/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 AquaAct，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的摇杆指令配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。</p>
+  <ul class="reading-intro-points"><li>论文提出 AquaAct，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的摇杆指令配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。</li><li>现有水下数据要么完全来自仿真，并且动作由脚本专家生成（如 USIM），要么只覆盖水池中的机械臂操作（如 AquaBot），还没有把开放水域观测与飞行员摇杆指令配对的数据集。</li><li>论文目标有两个：一是验证仿真采集的水下示范能否迁移到真实数据并减少真实数据需求；二是在闭环仿真中对现有通用机器人策略进行基准测试，衡量它们离“可自主执行水下任务”还有多远。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>南佛罗里达大学</strong>（University of South Florida, Tampa, FL, USA）：Zhenqi Wu、Trung Tien Dong、Mohamed A. Fouad、Menna A. Fouad、Mingyang Mao、Xiaomin Lin</li><li><strong>佛罗里达大学</strong>（University of Florida, Gainesville, FL, USA）：Aditya Penumarti</li><li><strong>首尔国立大学</strong>（Seoul National University, Seoul, Republic of Korea）：Jane Jaejeong Shin</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>AquaAct</strong>，这是据作者所知首个公开的、带语言标注的水下机器人数据集。该数据集把前视相机图像与人类飞行员真实发出的<strong>摇杆指令</strong>配对，填补了水下 VLA（视觉-语言-动作）训练数据缺失的空白。</li><li>现有水下数据要么完全来自仿真，并且动作由脚本专家生成（如 <strong>USIM</strong>），要么只覆盖水池中的机械臂操作（如 <strong>AquaBot</strong>），还没有把开放水域观测与飞行员摇杆指令配对的数据集。</li><li>论文目标有两个：一是验证仿真采集的水下示范能否迁移到真实数据并减少真实数据需求；二是在闭环仿真中对现有通用机器人策略进行基准测试，衡量它们离“可自主执行水下任务”还有多远。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>发布 <strong>AquaAct</strong> 数据集：包含 2.0 小时真实与 17.9 小时仿真的 ROV 示范，视觉、惯性、摇杆三类数据同步，并且带语言指令标注。</li><li>设计<strong>固件在环（firmware-in-the-loop）仿真管线</strong>：飞行员通过真实摇杆、<strong>QGroundControl</strong> 地面站和 <strong>ArduSub</strong> 飞控固件驾驶仿真载体，实现在与真机相同控制链路上采集示范。</li><li>对仿真器进行<strong>动力学与外观双校准</strong>：与真实 BlueROV2 Heavy 的稳态响应逐轴比对，并使水下成像效果贴合真实水域。</li><li>完成<strong>仿真到真实迁移实验</strong>：证明用仿真数据预训练能显著降低真实数据需求（1 条真实 episode 约等于 24 分钟真实驾驶的效果）。</li><li>构建<strong>七策略闭环基准</strong>，并对失败模式做定量归因，揭示了陆地预训练模型在水下“学不会持续完成任务”的关键差距。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>动作空间即摇杆指令</strong>：记录飞行员发出的 surge、sway、heave、yaw 四通道 RC 指令（脉宽 1100–1900 μs，归一化为 a=(pwm−1500)/400 ∈ [−1,1]），roll 和 pitch 由飞控保持，不纳入动作。</li><li><strong>观测</strong>：前视相机图像 + 6 维惯性状态（机体角速度与含重力的线加速度）；流以 15 Hz 记录、对齐后以 10 Hz 导出。</li><li><strong>仿真管线</strong>：用 <strong>NVIDIA Isaac Sim</strong> 渲染与刚体物理，叠加源自 <strong>MarineGym</strong> 的水动力模块（浮力、附加质量、线性与二次阻尼、单推进器推力），并以 62.5 Hz lock-step 运行真机同款 ArduSub 固件（参数从真机拷贝）。</li><li><strong>动力学校准</strong>：基于公开 BlueROV2 Heavy 系数，在真机上逐轴激励并释放摇杆，拟合附加质量与阻尼；浮心—重心偏移采用实测 0.024 m（优于 CAD 的 0.01 m）；平移用多普勒计程仪校验稳态速度。因参数存在区间，定义 <strong>3 档动力学等级</strong>随录制随机选择并随数据保存。</li><li><strong>外观校准</strong>：采用修正的水下成像模型，对 Blue Grotto 实拍拟合参数，无实景对应的场景用 <strong>SUCRe</strong> 在公开水下图像上拟合，定义 <strong>4 档水体条件</strong>（从清澈到浑浊）。</li><li><strong>基准策略</strong>：<strong>BC</strong>、<strong>ACT</strong>、<strong>Diffusion Policy</strong>（无语言输入，指令以 one-hot 拼入状态）、<strong>SmolVLA</strong>、<strong>π0.5</strong>、<strong>MemoryVLA</strong>、<strong>U0</strong>；各模型沿用官方微调配方与学习率，不针对水下任务调参。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>真实部分</strong>：在佛罗里达 <strong>Blue Grotto</strong> 淡水泉潜点、6 个外场日采集，9 类任务；清洗后 <strong>53 个 episode / 71,741 帧 / 2.0 小时</strong>（diver following 10 个、deck scan 18 个、其余 7 类共 25 个）；另有 2.0 小时无可用动作标签的真实影像，用于视觉预训练与域统计。</li><li><strong>仿真部分</strong>：7 类任务族（diver following、shipwreck scan、oyster-reef inspection、deck scan、pipeline follow、wind turbine、electrical box），<strong>394 段录制 / 646,167 帧 / 17.9 小时</strong>，切分为 <strong>513 个任务 episode</strong>，共 <strong>13 条语言指令</strong>。</li><li><strong>划分</strong>：按整段录制日划分，<strong>365 训练 / 25 验证 / 123 测试</strong>，每族在三个集合中均有出现。</li><li><strong>硬件平台</strong>：<strong>BlueROV2 Heavy</strong> 八推进器载体，飞控运行 <strong>ArduSub</strong>，全程使用定深（depth-hold）模式。</li><li><strong>训练细节</strong>：Sim-to-real 预训练 6,000 步（61 个仿真 episode，68,101 帧）；微调 batch 为 SmolVLA 64、π0.5 16，最多 6,000 步并早停；基准实验按每 32,000 样本检查验证损失、patience 为 5，MemoryVLA 在 8,900 步后停止。</li><li>论文 HTML 原文未明确给出 GPU/TPU 型号与卡数等算力清单。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>开环指标（实验 1）</strong>：与飞行员指令的相关系数、方向准确率（仅在 \|a\|>0.05 的清晰指令帧上统计）、平均绝对误差；测试集为某录制日的 4 个 deck episode（3,765 帧），不参与训练与选模。</li><li><strong>闭环指标（实验 2）</strong>：在同一仿真管线中每模型跑 <strong>50 个 episode</strong>，报告 Full（全部判据满足）、Collision-free、以及完成度 ≥75/50/25%；判分先由程序基于真值位姿自动判定，再经人工复核。</li><li><strong>仿真到真实迁移有效</strong>：仅用 1 条真实 episode（3.7 分钟）时，从公开权重微调的 SmolVLA/π0.5 的 sway 相关系数为 <strong>−0.05 / 0.00</strong>、方向准确率约 50%；而经 AquaAct 仿真预训练后达到 <strong>0.73 / 0.59</strong> 的相关系数与 <strong>0.88 / 0.84</strong> 的方向准确率，四通道平均误差分别降低 0.015 与 0.055（95% bootstrap 区间不含 0）。对 SmolVLA 而言，预训练+1 条真实 episode 已接近“从公开权重用全部 13 条”的效果，相当于替代约 <strong>24 分钟</strong>真实驾驶。</li><li><strong>闭环任务远未解决</strong>：Full 判据下最好成绩仅 <strong>18–20%</strong>（π0.5 10/50、ACT 9/50、Diffusion Policy 9/50）；要求无碰撞后降至 <strong>4–12%</strong>，全部 episode 中 <strong>72%</strong> 至少发生一次碰撞。</li><li><strong>模型规模与陆地预训练无明显优势</strong>：无预训练视觉-语言主干的 ACT、Diffusion Policy 与 π0.5 持平；SmolVLA 与 MemoryVLA 各 4%，专为水下设计的 <strong>U0</strong> 全部失败（0/50），说明记忆机制与水下预训练（面向推进器 PWM 而非摇杆）均未带来收益。</li><li><strong>任务层面</strong>：最好单族成功率为 shipwreck 50%（π0.5，且仅右→左方向全部成功）、deck 30%、electrical box 20%；长时程任务几乎全败——pipeline following 70 个 episode 中 0 成功、仅 2 次抵达远端，oyster inspection 0 成功（最佳仅看到 37% 的牡蛎）。唯一例外是 Diffusion Policy 的 diver following 5/5 全成功（150 s 环路中中位 148 s 保持目标在画面内）。</li><li><strong>失败归因</strong>（350 个 episode 统计）：偏离目标 <strong>103</strong> 次、触碰海床 <strong>139</strong> 次、原地打转 <strong>58</strong> 次、环绕 90–180° 后停止 <strong>46</strong> 次；把判据放宽到 25% 完成度时各模型升至 28–52%，说明失败主要在“<strong>难以持续维持任务</strong>”而非“无法起步”。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.25600/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Vector-Quantized World Model: Latent Feedback Motion Planning for Robot Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.25459/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">BiDex-100: A Comprehensive Benchmark for Bimanual Dexterous Manipulation Across 100+ Simulation Tasks</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
