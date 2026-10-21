@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KPHarness: Co-Evolving Knowledge and Probing for Long-Horizon Gaming Harnesses - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 KPHarness，一个在冻结的视觉-语言-动作（VLA）模型外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。 核心问题是：游戏轨迹失败往往只揭示“发生了什么”，而不揭示“为何失败”（如攻击失败可能源于丢失目标、距离不足、有障碍或持续性不足），因此仅凭结果驱动的 harness 搜索效率极低。 论文将 harness 演化重新表述为“假设生成—主动诊断—经验验证”的序列过程，让恢复知识与探测策略相互促进、共同演化。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.27417">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.27417.webp" alt="KPHarness: Co-Evolving Knowledge and Probing for Long-Horizon Gaming Harnesses" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 KPHarness，一个在冻结的视觉-语言-动作（VLA）模型外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">KPHarness: Co-Evolving Knowledge and Probing for Long-Horizon Gaming Harnesses</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.27417" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.27417" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.27417</span></div>
+            <p class="detail-summary">论文提出 KPHarness，一个在冻结的视觉-语言-动作（VLA）模型外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。 核心问题是：游戏轨迹失败往往只揭示“发生了什么”，而不揭示“为何失败”（如攻击失败可能源于丢失目标、距离不足、有障碍或持续性不足），因此仅凭结果驱动的 harness 搜索效率极低。 论文将 harness 演化重新表述为“假设生成—主动诊断—经验验证”的序列过程，让恢复知识与探测策略相互促进、共同演化。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Zhikang Chen、Yueqing Sun、Ziang Ye、Yu Wang</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.27417/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 KPHarness，一个在冻结的视觉-语言-动作（VLA）模型外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。</p>
+  <ul class="reading-intro-points"><li>论文提出 KPHarness，一个在冻结的视觉-语言-动作（VLA）模型外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。</li><li>核心问题是：游戏轨迹失败往往只揭示“发生了什么”，而不揭示“为何失败”（如攻击失败可能源于丢失目标、距离不足、有障碍或持续性不足），因此仅凭结果驱动的 harness 搜索效率极低。</li><li>论文将 harness 演化重新表述为“假设生成—主动诊断—经验验证”的序列过程，让恢复知识与探测策略相互促进、共同演化。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Zhikang Chen</strong>、<strong>Yueqing Sun</strong>、<strong>Ziang Ye</strong>、<strong>Yu Wang</strong></li><li><strong>Sen Cui</strong>：<strong>University of Oxford</strong>、<strong>Meituan</strong>、<strong>Tsinghua University</strong></li><li><strong>Yan Feng</strong>、<strong>Xierui Song</strong>（通讯作者）</li><li><strong>Yu Zhang</strong>：<strong>Southern University of Science and Technology</strong>（通讯作者）</li><li><strong>Tingting Zhu</strong>（通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>KPHarness</strong>，一个在<strong>冻结的视觉-语言-动作（VLA）模型</strong>外围进行“测试时执行框架（harness）演化”的框架，用于长时程游戏任务（Minecraft）。</li><li>核心问题是：游戏轨迹失败往往只揭示“发生了什么”，而不揭示“为何失败”（如攻击失败可能源于丢失目标、距离不足、有障碍或持续性不足），因此仅凭结果驱动的 harness 搜索效率极低。</li><li>论文将 harness 演化重新表述为“假设生成—主动诊断—经验验证”的序列过程，让<strong>恢复知识</strong>与<strong>探测策略</strong>相互促进、共同演化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>证据引导的测试时 harness 演化</strong>：指出结果驱动的自动 harness 搜索在视觉歧义环境中的局限，并在冻结 VLA 上形式化该问题。</li><li><strong>知识与探测协同演化（knowledge–probing co-evolution）</strong>：知识提供上下文相关的干预假设，探测收集假设适用性的证据，验证后的执行结果同时更新未来的知识与探测选择。</li><li><strong>沙箱落地的积累与迁移</strong>：候选 harness 修改必须通过与现任 harness 的<strong>配对环境交互</strong>才能被接受，验证成功的恢复经验被提升为可迁移知识以指导后续任务。</li><li><strong>由探测驱动的失败前沿扩展</strong>：将失败反思与探测歧义转化为有针对性的后续测试用例，暴露新的失败模式以引导后续演化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>快慢双时间尺度</strong>：快循环由冻结 VLA 执行低层动作；慢循环由视觉-语言研究员（<strong>Gemini-2.5-Flash</strong>，温度 0）负责诊断、提案与验证，不参与延迟敏感的执行环路。</li><li><strong>自适应游戏探测</strong>：外部状态包含情节经验、恢复知识库 <strong>K_k</strong>、动作探测策略 <strong>B^a_k</strong> 与知识探测策略 <strong>B^z_k</strong>；失败停滞时构造/特化探测动作，再用探测证据细化失败属性，并据此选择恢复策略。</li><li><strong>UCB 式上下文选择规则</strong>（Eq. 7）：融合上下文内累计效用与跨上下文全局均值（λ 控制迁移），加探索奖励（β 控制探索）。</li><li><strong>即时效用与延迟信用</strong>（Eq. 8、Eq. 9）：即时项包含进度变化、奖励、新颖性、探测成本与失败惩罚；成功情节按时间距离 γ^d 分配延迟成功奖励。</li><li><strong>证据落地的 harness 提案</strong>：研究员接收现任 harness、失败模式与探测记录、相关知识，返回失败诊断、证据关联理由与对结构化 <strong>harness configuration</strong> 的<strong>有界编辑</strong>。</li><li><strong>配对验证与知识迁移</strong>（Eq. 10–11）：候选与现任在同一任务-种子对、相同外部状态快照下比较，配对增益 ≥ ε_pair 才接受；接受者在<strong>不相交 holdout 种子</strong>上再评估，成功恢复被去任务化后晋升为可迁移知识。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>OpenHA / MineExplorer</strong> 环境：<strong>149</strong> 个评估任务（50 mining、49 combat、50 crafting），另含 <strong>60</strong> 个未见任务与 <strong>32</strong> 个交互式训练任务。</li><li>基座模型：<strong>Qwen3-VL-8B-Instruct</strong>（8B 规模），先冷启动 <strong>SFT</strong>（取 step 16,200 检查点），再做 <strong>400 步 GRPO</strong>。</li><li>慢循环提案模型：<strong>Gemini-2.5-Flash</strong>（temperature 0）。</li><li>公开资源：Hugging Face 上发布 SFT 权重、GRPO 权重与 149 任务测试集。</li><li>训练算力（GPU/TPU 型号与数量）在附录 H/L 中说明，所给 HTML 原文已截断，未包含具体数值。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：同一冻结 GRPO 检查点对比 <strong>Bare</strong>、<strong>Fixed</strong>（手工重试/恢复规则）、<strong>Auto-K</strong>（仅知识搜索、非自适应探测）与 <strong>KPHarness</strong>；每回合最多 100 次 VLA 决策、每次 4×50 ms 动作，总计最多 400 个时序相关动作。</li><li><strong>协议</strong>：主设置为 <strong>legacy</strong>（温度 0.7，仅当前观测）；另在 <strong>mtv1</strong>（温度 0，恢复最近 10 轮观测-动作）下评估 Bare 与 Fixed。</li><li><strong>主要指标</strong>：任务成功率/覆盖率、Rescued 数量、HO-win（holdout 增益）、P-only（仅探测恢复）、Replay 成功数。</li><li><strong>主结果</strong>（legacy, T=0.7）：<strong>KPHarness 70/149（47.0%）</strong>，优于 Auto-K 63（42.3%）、Fixed 50（33.6%）、Bare 39（26.2%）；并取得 17 个探测带来的重放成功，其中 3 个为知识搜索失败而纯探测成功的严格案例。</li><li><strong>多随机种子稳健性</strong>（110 个 Bare 失败任务）：救援数从 Auto-K 的 <strong>15.7±8.0</strong> 提升至 <strong>28.7±3.2</strong>（26.1%±2.9%），三个种子均为正增益。</li><li><strong>未见任务迁移</strong>：冻结 harness、知识库与探测策略后在 60 个新任务上，<strong>KPHarness 15/60</strong>，对比 Bare 8/60、Auto-K 7/60，无需额外搜索或写回。</li><li><strong>消融</strong>：Bare → Fixed → Auto-K → KPHarness 逐级提升，说明外部恢复、可迁移知识与自适应知识-探测协同演化各自贡献增益；固定注入恢复库无法复现完整沙箱演化流程的效果。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.27657/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PLaCA: Learning Patch-Level Future Latent Change for Action Generation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.27277/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">What Would Removing This Corruption Change? Failure Attribution for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

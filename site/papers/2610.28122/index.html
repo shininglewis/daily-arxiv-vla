@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>De-Diffusing WAMs: Action-Sufficient Direct Prediction for Robot Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究级联式世界-动作模型（Cascade WAMs）的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。 核心问题：单步预测的未来表示究竟需要保留什么信息，才能支撑准确的下游单步动作预测？论文指出，视频扩散的重建目标与下游控制目标并不天然对齐。 目标是去掉扩散的迭代采样与随机性，同时保留显式的&quot;未来→动作&quot;级联接口，将预训练专家转换为确定性的单步直接预测器。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.28122">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.28122.webp" alt="De-Diffusing WAMs: Action-Sufficient Direct Prediction for Robot Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究级联式世界-动作模型（Cascade WAMs）的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">De-Diffusing WAMs: Action-Sufficient Direct Prediction for Robot Control</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.28122" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.28122" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.28122</span></div>
+            <p class="detail-summary">论文研究级联式世界-动作模型（Cascade WAMs）的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。 核心问题：单步预测的未来表示究竟需要保留什么信息，才能支撑准确的下游单步动作预测？论文指出，视频扩散的重建目标与下游控制目标并不天然对齐。 目标是去掉扩散的迭代采样与随机性，同时保留显式的&quot;未来→动作&quot;级联接口，将预训练专家转换为确定性的单步直接预测器。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">ByteDance（字节跳动）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.28122/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究级联式世界-动作模型（Cascade WAMs）的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。</p>
+  <ul class="reading-intro-points"><li>论文研究级联式世界-动作模型（Cascade WAMs）的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。</li><li>核心问题：单步预测的未来表示究竟需要保留什么信息，才能支撑准确的下游单步动作预测？论文指出，视频扩散的重建目标与下游控制目标并不天然对齐。</li><li>目标是去掉扩散的迭代采样与随机性，同时保留显式的&quot;未来→动作&quot;级联接口，将预训练专家转换为确定性的单步直接预测器。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>ByteDance</strong>（字节跳动）</li><li><strong>New York University (NYU)</strong>（纽约大学）</li><li>通讯作者：<strong>Shengji Wan</strong>（sw5973@nyu.edu）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>级联式世界-动作模型（Cascade WAMs）</strong>的推理加速问题：该类模型先用扩散预训练视频模型预测视觉未来帧，再用逆动力学模型（IDM）将未来帧解码为动作。</li><li>核心问题：单步预测的未来表示究竟需要保留什么信息，才能支撑准确的下游单步动作预测？论文指出，视频扩散的重建目标与下游控制目标并不天然对齐。</li><li>目标是去掉扩散的迭代采样与随机性，同时保留显式的"未来→动作"级联接口，将预训练专家转换为确定性的单步直接预测器。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>分离随机采样与迭代精化</strong>：在级联 WAM 中，视频噪声重采样对下游动作影响极小，但将视频流和动作流都简单地截断为一步会显著降低任务成功率。</li><li><strong>提出"动作充分性（Action Sufficiency）"学习准则</strong>：未来预测误差的大小并不能可靠反映其对动作精度的影响，因此应以解码出的动作质量而非表示匹配度来定义单步未来的优劣。</li><li><strong>提出 DirectWAM</strong>：通过"动作充分性蒸馏"把扩散预训练的视觉与动作专家转换为确定性的单步未来-动作级联模型。</li><li><strong>方法不绑定接口</strong>：不引入新的语义或几何目标空间，而是在学生生成的未来与其动作消费者之间的接口处设置学习目标。</li><li>在仿真与真实机器人任务上均验证有效性，相对全迭代教师实现 <strong>28.0×</strong> 推理加速。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>第一阶段（单步动作模型）</strong>：在视频通路冻结的条件下，以教师强制（teacher forcing）接口训练动作模型 $G_\psi$ 一次性输出动作块；监督直接施加在最终动作预测上，该单步动作模型随后冻结。</li><li><strong>第二阶段（动作充分性蒸馏）</strong>：未来预测器 $F_\theta$ 生成未来表示后，经冻结的单步动作模型解码出动作，用示范动作误差反向传播更新未来预测器：$\mathcal{L}_{\mathrm{ASD}}=\mathbb{E}_{\mathcal{D}}[\ell_{\mathrm{act}}(G_\psi(F_\theta(h_t),h_t),a^\star_{t:t+K-1})]$。</li><li><strong>可选未来锚定</strong>：加入未来潜变量重建项 $\mathcal{L}_{\mathrm{anchor}}$ 作为正则，总损失 $\mathcal{L}_{\mathrm{train}}=\mathcal{L}_{\mathrm{ASD}}+\lambda_v\mathcal{L}_{\mathrm{anchor}}$；$\lambda_v=0$ 时即纯动作监督。</li><li><strong>关键技术洞察</strong>：用冻结动作模型的局部雅可比将未来表示误差分解为"动作敏感分量"与正交补分量，发现动作敏感分量仅占 <strong>0.63%–0.85%</strong> 的误差能量，却能恢复 <strong>19.8%–34.0%</strong> 的离线动作误差改进，说明表示空间距离不是控制相关性的可靠代理。</li><li><strong>实例化</strong>：基于 <strong>LingBot-VA</strong> 架构实现。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据集</strong>：<strong>LIBERO</strong>（每任务 100 个评估回合）、<strong>RoboTwin 2.0</strong>（全部 50 个任务，每任务 50 或 10 个回合）。</li><li><strong>真实世界数据</strong>：<strong>Galaxea A1</strong> 机械臂 + 夹爪，外置相机 <strong>RealSense D435</strong> 与腕部相机 <strong>RealSense D405</strong>；三个桌面操作任务（Grasp Banana、Pouring Water、Place Teapot），每任务 <strong>50 条示范轨迹</strong>、<strong>20 次评估试验</strong>。</li><li><strong>模型规模与参数量</strong>：原文未给出具体参数规模，主干为预训练的 LingBot-VA。</li><li><strong>计算资源</strong>：单张 <strong>80 GB</strong> 显存 GPU，FP32 标称峰值 <strong>67 TFLOP/s</strong>，BF16 稠密矩阵运算约 <strong>990 TFLOP/s</strong>；延迟为 500 次预热后 500 次计时的中位数。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>对比基线</strong>：全迭代 LingBot-VA 教师、朴素步数截断（2/1、1/2、1/1）、<strong>Flash-WAM</strong>；另在效率对比中提及 FastWAM、FasterWAM。</li><li><strong>主要指标</strong>：任务成功率（%）、推理延迟（ms）与加速比、成功率–延迟帕累托前沿。</li><li><strong>仿真结果</strong>：<strong>DirectWAM</strong> 在 <strong>LIBERO 平均 97.1%</strong>、<strong>RoboTwin 2.0 平均 85.4%</strong>（Clean 87.0%、Randomized 83.7%），优于同预算下的 <strong>Flash-WAM（78.2%）</strong>，在随机化设置下领先扩大至 9.5 个百分点。</li><li><strong>学习策略对比</strong>：RoboTwin 上朴素 1/1 截断仅 <strong>54.9%</strong>，视频空间监督（对齐教师/真值未来）为 <strong>76.0%/78.2%</strong>，DirectWAM 达 <strong>85.4%</strong>，说明仅靠表示空间保真度无法补足控制差距。</li><li><strong>效率</strong>：推理延迟从教师的 <strong>5042 ms</strong> 降至 <strong>180 ms</strong>，加速 <strong>28.0×</strong>，且处于实测的帕累托前沿。</li><li><strong>真实世界结果</strong>：Grasp Banana <strong>19/20</strong>、Pouring Water <strong>11/20</strong>、Place Teapot <strong>12/20</strong>，接近教师水平（19/20、9/20、12/20），显著优于 Flash-WAM（18/20、2/20、8/20）。</li><li><strong>可解释性验证</strong>：尽管以动作监督为主，DirectWAM 生成的未来帧仍保持可解码的场景结构，伪影与局部颜色/纹理扭曲少于朴素单步教师，未出现隐空间崩塌。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.28164/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">From Predictive Geometry to Action: Learning Complementary Predictive Representations for Embodied Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.28109/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FIT-MAC: A Closed-Loop Multi-Agent Framework for Robust Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

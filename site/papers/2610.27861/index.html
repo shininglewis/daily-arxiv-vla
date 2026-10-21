@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboCasa-Shift: Stage-Aware Robustness Evaluation of Vision-Language-Action Policies in Long-Horizon Household Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 RoboCasa-Shift：一个建立在 RoboCasa365 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。 指出现有评测普遍用聚合成功率（SR）概括鲁棒性，掩盖了两件事：单条执行在分布偏移下如何变化，以及长程任务中失败究竟发生在哪一步。 目标是把鲁棒性从“单一端到端指标”重构为执行层面的多维属性：结果退化 + 配对样本级敏感性 + 失败发生的语义深度。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.27861">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.27861.webp" alt="RoboCasa-Shift: Stage-Aware Robustness Evaluation of Vision-Language-Action Policies in Long-Horizon Household Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 RoboCasa-Shift：一个建立在 RoboCasa365 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">RoboCasa-Shift: Stage-Aware Robustness Evaluation of Vision-Language-Action Policies in Long-Horizon Household Manipulation</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.27861" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.27861" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.27861</span></div>
+            <p class="detail-summary">提出 RoboCasa-Shift：一个建立在 RoboCasa365 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。 指出现有评测普遍用聚合成功率（SR）概括鲁棒性，掩盖了两件事：单条执行在分布偏移下如何变化，以及长程任务中失败究竟发生在哪一步。 目标是把鲁棒性从“单一端到端指标”重构为执行层面的多维属性：结果退化 + 配对样本级敏感性 + 失败发生的语义深度。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学（Haocheng Wang、Youquan Liu）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.27861/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 RoboCasa-Shift：一个建立在 RoboCasa365 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。</p>
+  <ul class="reading-intro-points"><li>提出 RoboCasa-Shift：一个建立在 RoboCasa365 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。</li><li>指出现有评测普遍用聚合成功率（SR）概括鲁棒性，掩盖了两件事：单条执行在分布偏移下如何变化，以及长程任务中失败究竟发生在哪一步。</li><li>目标是把鲁棒性从“单一端到端指标”重构为执行层面的多维属性：结果退化 + 配对样本级敏感性 + 失败发生的语义深度。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>（Haocheng Wang、Youquan Liu）</li><li><strong>深圳零一学院 / Shenzhen Loop Area Institute</strong>（Haocheng Wang、Aokai Zhang）</li><li><strong>香港中文大学</strong>（Weiyu Guo、Sha Zhang）</li><li><strong>中国科学院大学</strong>（Donghang Wu）</li><li><strong>上海交通大学</strong>（Hongyu Liu）</li><li>Weidong Yang、Ben Fei（原文未标注所属机构）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>RoboCasa-Shift</strong>：一个建立在 <strong>RoboCasa365</strong> 之上的“诊断式”鲁棒性评测基准，面向长程家庭操作任务中的视觉-语言-动作（VLA）策略。</li><li>指出现有评测普遍用<strong>聚合成功率（SR）</strong>概括鲁棒性，掩盖了两件事：单条执行在分布偏移下如何变化，以及长程任务中失败究竟发生在哪一步。</li><li>目标是把鲁棒性从“单一端到端指标”重构为<strong>执行层面的多维属性</strong>：结果退化 + 配对样本级敏感性 + 失败发生的语义深度。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>RoboCasa-Shift</strong> 基准：定义多档冻结严重度的<strong>单因素分布偏移</strong>，并采用<strong>干净-扰动配对的反事实协议</strong>，使鲁棒性变化可在匹配的任务条件下被观测。</li><li>提出基于仿真器状态谓词的<strong>阶段感知诊断（StageTracker）</strong>：把长程任务表示为有序语义子目标序列，跟踪执行进度与首个未完成子目标，实现失败定位。</li><li>在 4 个通过干净能力筛选的长程 RoboCasa 任务上，跨 4 种扰动因素 × 3 个严重度开展受控研究，联合分析端到端结果、反事实逐回合变化与阶段深度。</li><li>揭示聚合成功率无法反映的现象：严重度与退化<strong>非单调</strong>、聚合退化相同但失败深度不同、强扰动把失败推向更早阶段。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>任务筛选（clean-competence gate）</strong>：先对 16 个 RoboCasa365 Composite-Seen 候选任务做 10 次干净回合初筛（≤3 次成功即剔除为“地板”案例），其余扩到 20 次，仅保留 <strong>≥12/20</strong> 成功者，最终得 4 个任务。</li><li><strong>受控单因素偏移</strong>：光照强度缩放 α={0.8,0.6,0.4}；第三人称相机偏航/俯仰 θ_max={2°,6°,10°}（保留腕部视角）；机器人底座初始化 σ_xy={0.02,0.05,0.10} m、σ_ψ={2°,5°,10°}；高斯模糊 σ={1,2,4}。严重度在正式评测前通过无模型的渲染与复位状态校验<strong>冻结标定</strong>，与策略成功率无关。</li><li><strong>反事实配对协议</strong>：每条基回合构造 clean 与 perturbed 两条 rollout，共享任务与指令、场景/物体配置、初始仿真状态、回合时域、策略，以及<strong>同一回合级策略随机种子</strong>（非每步重置），使目标扰动成为唯一受控差异；并通过初始状态指纹与动作序列可重复性验证配对完整性。</li><li><strong>StageTracker</strong>：按序评估每个子目标对应的仿真器状态谓词，首次满足即记录完成步并前移；已完成子目标<strong>锁存</strong>，从而报告“最深已达语义里程碑”与“首个未完成子目标”，而非终态满足集合。</li><li><strong>阶段感知度量</strong>：归一化子目标进度 Progress_i = m_i/K；子目标 k 的到达率 R_k = (1/N)Σ𝕀[m_i ≥ k]；失败定位量 f_i = g_{m_i+1}（首个未完成子目标）。</li><li><strong>统计方案</strong>：ΔSR = SR_clean − SR_p,s（正值表示退化），跨任务采用<strong>等权宏平均</strong>而非回合池化，置信区间由 <strong>10,000 次配对 bootstrap</strong> 得到。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基础平台：<strong>RoboCasa365</strong>（Composite-Seen 任务、target 划分），渲染使用 <strong>OSMesa</strong>。</li><li>正式任务套件（4 个，含时域 / 移动性 / 诊断里程碑数）：<strong>PreSoakPan</strong>（2400，非移动，3）、<strong>RinseSinkBasin</strong>（1350，非移动，3）、<strong>StackBowlsCabinet</strong>（2100，移动，2）、<strong>WashLettuce</strong>（1650，非移动，3）。</li><li>评测策略：<strong>GR00T N1.5</strong> 官方 Composite-Seen checkpoint（训练范围与目标任务匹配）。</li><li>评测规模：每任务 20 条固定基回合 ×（1 干净 + 12 扰动）= <strong>260 条 rollout/任务</strong>，合计 <strong>1,040 条正式 rollout</strong>，全部通过基态、策略种子、渲染器与 StageTracker 一致性审计。</li><li>额外筛选的两个 VLA checkpoint：<strong>SmolVLA RoboCasa</strong> 与 <strong>π₀ RoboCasa365 Human300</strong>，接口与定种可重复性检查通过，但干净成功率仅 <strong>1/40</strong> 与 <strong>2/40</strong>，无任务过门槛，故未进入扰动评测。</li><li>原文（可见部分）未给出参数量与 GPU/TPU 训练资源细节；相关配置位于附录实现细节一节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>基准与指标</strong>：以 RoboCasa 官方二值任务成功为主指标（SR），辅以配对退化 ΔSR、四类反事实结果转移（S→S / S→F / F→S / F→F）、归一化子目标进度与首个未完成子目标分布；失败定位仅统计“干净成功→扰动失败”的匹配对，共观测到 <strong>247</strong> 个条件级 S→F 转移。</li><li><strong>整体水平</strong>：干净宏平均成功率为 <strong>0.738</strong>；四种扰动因素呈现明显不同的严重度响应曲线。</li><li><strong>高斯模糊</strong>：退化最一致且随严重度加深，宏 SR 由 0.550(L1)→0.225(L2)→0(L3)，ΔSR = <strong>0.188 / 0.513 / 0.738</strong>，三档配对 95% CI 均排除零；L3 出现 <strong>59 个 S→F、0 个 F→S</strong>。</li><li><strong>底座初始化</strong>：宏层面呈梯度响应，ΔSR = <strong>0.075 / 0.150 / 0.263</strong>，仅 L2、L3 的 CI 排除零；但任务层面并不一致（RinseSinkBasin 0.25→0.40→0.55，PreSoakPan 0.05→0.20→0.05）。</li><li><strong>相机朝向</strong>：ΔSR = <strong>0.000 / 0.188 / 0.138</strong>，L3 反而小于 L2，说明严重度升高不必然带来单调退化。</li><li><strong>光照</strong>：宏效应很小，ΔSR = <strong>0.012 / −0.025 / 0.025</strong>，三档 CI 均含零，但任务层面正负方向并存。</li><li><strong>聚合掩盖敏感性</strong>：相机 L1 的 ΔSR = 0，但 80 对匹配回合中有 <strong>8 对</strong>结果改变（4 个 S→F 与 4 个 F→S 恰好抵消）；光照 L2 在 12 对改变的情况下 ΔSR = −0.025。</li><li><strong>同退化、不同失败深度</strong>：相机 L2 与高斯模糊 L1 的 ΔSR 同为 <strong>0.188</strong>，但平均归一化进度分别为 <strong>0.437 vs 0.356</strong>，首阶段失败比例分别为 <strong>19.0% vs 36.4%</strong>。</li><li><strong>严重度推移失败位置</strong>：高斯模糊 S→F 事件 22→44→59，平均进度 0.356→0.223→<strong>0.000</strong>，首阶段失败比例 36.4%→59.1%→<strong>100%</strong>；底座偏移首阶段失败比例 14.3%→31.6%→33.3%；相机与光照无稳定单调定位模式。</li><li><strong>局限性（作者自述）</strong>：仅 GR00T N1.5 单模型、4 任务、纯仿真；阶段诊断依赖审计过的仿真状态谓词而非官方逐帧阶段标注，应视为执行诊断而非真值标签；向真实机器人迁移尚待验证。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.27917/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">EventSync: Event-Driven Memory Updates for History-Dependent Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.27698/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">VLA-Retain: Benchmarking Cross-Dimension Effects of Vision Tuning in VLAs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

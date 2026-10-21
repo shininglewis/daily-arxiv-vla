@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Predictive Geometry to Action: Learning Complementary Predictive Representations for Embodied Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 CPR（Complementary Predictive Representations，互补预测表征）。 研究目标是同时捕获场景的空间几何结构与该结构在交互下的演化，并把二者有效地迁移到下游 VLA 与世界动作模型（WAM）策略中。 解决现有方法的不足：以输入为中心（input-centric）的方法只把几何当作当前观测的额外输入；以预测为中心（prediction-centric）的方法只把未来几何作为稠密观测或整体隐状态的辅助监督，未显式区分“维持世界一致性所需的几何”与“对动作有用的几何变化”。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.28164">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.28164.webp" alt="From Predictive Geometry to Action: Learning Complementary Predictive Representations for Embodied Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 CPR（Complementary Predictive Representations，互补预测表征）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">From Predictive Geometry to Action: Learning Complementary Predictive Representations for Embodied Manipulation</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.28164" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.28164" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.28164</span></div>
+            <p class="detail-summary">论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 CPR（Complementary Predictive Representations，互补预测表征）。 研究目标是同时捕获场景的空间几何结构与该结构在交互下的演化，并把二者有效地迁移到下游 VLA 与世界动作模型（WAM）策略中。 解决现有方法的不足：以输入为中心（input-centric）的方法只把几何当作当前观测的额外输入；以预测为中心（prediction-centric）的方法只把未来几何作为稠密观测或整体隐状态的辅助监督，未显式区分“维持世界一致性所需的几何”与“对动作有用的几何变化”。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京航空航天大学（Beihang University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.28164/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 CPR（Complementary Predictive Representations，互补预测表征）。</p>
+  <ul class="reading-intro-points"><li>论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 CPR（Complementary Predictive Representations，互补预测表征）。</li><li>研究目标是同时捕获场景的空间几何结构与该结构在交互下的演化，并把二者有效地迁移到下游 VLA 与世界动作模型（WAM）策略中。</li><li>解决现有方法的不足：以输入为中心（input-centric）的方法只把几何当作当前观测的额外输入；以预测为中心（prediction-centric）的方法只把未来几何作为稠密观测或整体隐状态的辅助监督，未显式区分“维持世界一致性所需的几何”与“对动作有用的几何变化”。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京航空航天大学</strong>（Beihang University）</li><li><strong>上海人工智能实验室</strong>（Shanghai Artificial Intelligence Laboratory）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文关注具身操作策略学习中“预测几何”应如何表征才能更好地服务动作生成，提出两阶段框架 <strong>CPR</strong>（Complementary Predictive Representations，互补预测表征）。</li><li>研究目标是同时捕获场景的<strong>空间几何结构</strong>与<strong>该结构在交互下的演化</strong>，并把二者有效地迁移到下游 VLA 与世界动作模型（WAM）策略中。</li><li>解决现有方法的不足：以输入为中心（input-centric）的方法只把几何当作当前观测的额外输入；以预测为中心（prediction-centric）的方法只把未来几何作为稠密观测或整体隐状态的辅助监督，未显式区分“维持世界一致性所需的几何”与“对动作有用的几何变化”。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>明确预测几何建模与动作生成对表征的偏好不同：前者需保留结构化场景几何，后者需突出与动作相关的几何变化，从而提出“预测几何表征 + 运动表征”的互补分工。</li><li>设计两阶段框架：先在大规模异构交互视频上学习互补预测表征，再通过角色专用的引导通路迁移到下游策略。</li><li>提出分层几何 Token 化（Hierarchical Geometric Tokenization）与因果 Slot-Temporal Mixer，配合几何重建、掩码几何表征预测、几何转移预测三个目标学习紧凑的时序几何表征。</li><li>在 LIBERO、LIBERO-Plus、SimplerEnv（WidowX）与真实双臂/单臂任务上一致提升，并在 3 种 VLA 架构与 FastWAM 上验证可迁移性。</li><li>未来观测与预训练表征模型仅在训练时作为特权监督，<strong>推理阶段不需要</strong>，不增加部署开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>第一阶段：互补预测表征预训练</strong></li></ul>
+<p> - 用<strong>冻结的 3D 基础模型</strong>对多视角视频的每帧-视角对提取稠密几何特征。</p>
+<p> - 分层查询式编码器先按视角做 cross-attention 压缩为帧级几何状态，再沿时间维压缩（保留首帧作为时间锚点，每 4 帧聚合为一个 temporal slot），得到紧凑几何序列。</p>
+<p> - 因果 <strong>Slot-Temporal Mixer</strong>（因果注意力堆叠）沿时间前向建模，得到预测几何表征 <strong>G</strong>。</p>
+<p> - 三个目标共同塑形：几何重建（SmoothL1 回归冻结 3D 特征，保留空间结构）、掩码几何表征预测（含 variance-covariance 正则防退化）、几何转移预测（预测相邻状态的残差 ΔG，建模演化方向）。</p>
+<p> - <strong>运动表征学习</strong>：以几何转移 ΔG 为键/值，用可学习 motor queries 做 cross-attention 得到运动表征 <strong>Z</strong>，并由动作预测头以 L1 动作监督提取动作相关成分。</p>
+<ul><li><strong>第二阶段：表征引导的策略后训练</strong></li></ul>
+<p> - 用冻结预训练模型对含未来观测的片段提取目标 <strong>G</strong> 与 <strong>Z</strong>，仅作特权监督。</p>
+<p> - 通过 <strong>geometry queries</strong> 让策略从当前输入推断预测几何表征，用 SmoothL1 对齐 G；用余弦距离把动作生成通路上的中间特征与 Z 对齐。</p>
+<p> - 总损失为策略原生动作损失 + 几何引导项 + 运动对齐项；推理时不使用未来观测与预训练模型。</p>
+<ul><li>创新点：把“几何保真”和“动作相关性”解耦为两个互补表征，并以两条不同接口分别迁移，而非让单一表征兼顾两种角色。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>预训练数据</strong>：大规模异构交互视频（引文涉及 Open X-Embodiment、Something-Something、LIBERO 等公开机器人/视频数据源）。</li><li><strong>评测数据集/环境</strong>：<strong>LIBERO</strong>、<strong>LIBERO-Plus</strong>（零样本分布偏移）、<strong>SimplerEnv</strong> 的 <strong>WidowX</strong> 机器人、LIBERO-90（表征探测）、以及 4 个真实机器人任务（3 个双臂任务：Remove Stopper、Pick up Tubes into Box、Transfer Liquid into Erlenmeyer；1 个单臂任务：Make a Burger）。</li><li><strong>下游策略</strong>：默认基线为 <strong>QwenOFT</strong>（记为 *Ours w/o CPR*），另迁移到 <strong>GR00T</strong> 风格、<strong>π0</strong> 风格 VLA 与 <strong>FastWAM</strong>。</li><li><strong>模型规模与训练资源</strong>：可见正文未给出具体参数量与 GPU/TPU 配置（详见原文附录 B 训练细节）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：仿真（LIBERO、LIBERO-Plus、SimplerEnv/WidowX）+ 真实机器人；对比标准策略基线（OpenVLA-OFT、π0）、输入中心方法（GeoVLA、3D-CAVLA、SpatialVLA、FALCON）与预测中心方法（4D-WAM、ELAN4D、QDepth-VLA、WoG）；指标为任务成功率。</li><li><strong>LIBERO</strong>：平均成功率由 <strong>96.6% → 98.6%</strong>（+2.0 个百分点），Spatial 与 Long 套件提升明显；Object 达 100.0%。</li><li><strong>LIBERO-Plus</strong>（零样本）：总体成功率由 <strong>75.0% → 81.7%</strong>。</li><li><strong>WidowX（SimplerEnv）</strong>：平均成功率由 <strong>61.5% → 71.9%</strong>，<strong>绝对提升 10.4 个百分点</strong>；Stack Cube 等需要相对位姿推理的任务收益显著。</li><li><strong>跨范式迁移</strong>：GR00T 由 <strong>62.5% → 74.0%</strong>；π0 由 <strong>59.4% → 68.8%</strong>（+9.4）；FastWAM 在 LIBERO 上由 <strong>97.6% → 98.5%</strong>，同时改善未来世界预测与动作预测。</li><li><strong>消融</strong>：单独使用预测几何表征 66.7%、单独使用运动表征 67.7%，二者结合达 <strong>71.9%</strong>；统一单一表征仅 67.7%，说明互补分工优于合并；探测实验显示运动表征动作误差更低、预测几何表征深度/结构保持更好。</li><li><strong>真实世界</strong>：在 Remove Stopper、Transfer Liquid 等细粒度任务上提升最明显，说明增益可从仿真迁移到真实操作。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.28166/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Reasoning as a Distribution: Generative Plan Latents for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.28122/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">De-Diffusing WAMs: Action-Sufficient Direct Prediction for Robot Control</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

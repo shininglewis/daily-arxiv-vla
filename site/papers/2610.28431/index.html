@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plausible Future, Wrong Choice: Steering World-Action Models toward Intended Future - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文关注 World-Action Models（WAMs） 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的任务阶段，作者将这一现象命名为 Stage Confusion（阶段混淆）。 现有 WAM 仅从任务指令、当前观测和原始历史中隐式推断阶段进展，当相似观测-动作片段在不同任务/阶段重复出现时会发生跨任务混淆与任务内混淆（阶段重复或跳步）。 研究目标是让 WAM 显式地在“任务要求”和“执行进度”双重约束下生成符合意图的未来，并建立一个可控的多阶段评测基准。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.28431">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.28431.webp" alt="Plausible Future, Wrong Choice: Steering World-Action Models toward Intended Future" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文关注 World-Action Models（WAMs） 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的任务阶段，作者将这一现象命名为 Stage Confusion（阶段混淆）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Plausible Future, Wrong Choice: Steering World-Action Models toward Intended Future</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.28431" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.28431" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.28431</span></div>
+            <p class="detail-summary">论文关注 World-Action Models（WAMs） 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的任务阶段，作者将这一现象命名为 Stage Confusion（阶段混淆）。 现有 WAM 仅从任务指令、当前观测和原始历史中隐式推断阶段进展，当相似观测-动作片段在不同任务/阶段重复出现时会发生跨任务混淆与任务内混淆（阶段重复或跳步）。 研究目标是让 WAM 显式地在“任务要求”和“执行进度”双重约束下生成符合意图的未来，并建立一个可控的多阶段评测基准。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">中山大学（Sun Yat-sen University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.28431/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文关注 World-Action Models（WAMs） 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的任务阶段，作者将这一现象命名为 Stage Confusion（阶段混淆）。</p>
+  <ul class="reading-intro-points"><li>论文关注 World-Action Models（WAMs） 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的任务阶段，作者将这一现象命名为 Stage Confusion（阶段混淆）。</li><li>现有 WAM 仅从任务指令、当前观测和原始历史中隐式推断阶段进展，当相似观测-动作片段在不同任务/阶段重复出现时会发生跨任务混淆与任务内混淆（阶段重复或跳步）。</li><li>研究目标是让 WAM 显式地在“任务要求”和“执行进度”双重约束下生成符合意图的未来，并建立一个可控的多阶段评测基准。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>中山大学</strong>（Sun Yat-sen University）</li><li><strong>深圳零一研究院</strong>（Shenzhen Loop Area Institute）</li><li><strong>香港科技大学（广州）</strong></li><li><strong>西安交通大学</strong></li><li><strong>南方科技大学</strong></li><li><strong>北京理工大学</strong></li><li><strong>鹏城实验室</strong></li><li><strong>香港中文大学（深圳）</strong></li><li><strong>阿伊诺罗</strong>（Ainoro）</li><li><strong>阿卜杜拉国王科技大学</strong>（KAUST）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文关注 <strong>World-Action Models（WAMs）</strong> 在长时序机器人操作中的失败模式：模型能生成视觉上合理、物理上可行的未来，却把执行引向错误的<strong>任务阶段</strong>，作者将这一现象命名为 <strong>Stage Confusion（阶段混淆）</strong>。</li><li>现有 WAM 仅从任务指令、当前观测和原始历史中隐式推断阶段进展，当相似观测-动作片段在不同任务/阶段重复出现时会发生跨任务混淆与任务内混淆（阶段重复或跳步）。</li><li>研究目标是让 WAM 显式地在“任务要求”和“执行进度”双重约束下生成<strong>符合意图的未来</strong>，并建立一个可控的多阶段评测基准。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次识别并形式化了世界-动作建模中的 <strong>Stage Confusion</strong> 问题，区分 <strong>Cross-task confusion</strong>（走向其他任务的阶段）与 <strong>Within-task confusion</strong>（同任务内相似阶段重复/跳过）。</li><li>提出 <strong>TaskWAM</strong> 闭环、阶段感知框架：用 <strong>Mode Tokens</strong> 编码细粒度任务要求，用 <strong>State Tokens</strong> 跟踪执行进度，构成结构化任务状态并据此引导世界-动作生成。</li><li>提出 <strong>Task-State Conditioned Future Steering</strong>，通过注意力条件注入、层间 AdaLN 调制和残差流（velocity residual）校正，将世界流与动作流同时导向意图未来。</li><li>构建 <strong>StageBench</strong>：基于 LIBERO 与 RoboTwin 2.0 的可控多阶段操作基准，覆盖 8–10 个任务族、参数化阶段变体（顺序、时序、重复、双臂分配）与自动化阶段级评测器。</li><li>在仿真与真实世界、以及单臂/双臂夹爪/灵巧手/人形等多种本体和异构 WAM 主干上验证了即插即用的迁移能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Structured Task-State Grounding</strong>：任务状态表示为 <strong>T_t = [M; S_t]</strong>，其中 <strong>M</strong> 为 Mode Tokens、<strong>S_t</strong> 为 State Tokens。</li><li><strong>Mode Tokens</strong>：用预训练 <strong>T5</strong> 编码指令，路由头预测对 <strong>K_prior</strong> 个可学习模式的软分配，从模式码本 <strong>E</strong> 中软检索槽位，再以检索槽位为 query 对语言 token 做交叉注意力（<code>Q_ground</code>）完成指令接地，获得持久保留的细粒度执行要求表示。</li><li><strong>State Tokens</strong>：每个历史槽将上一动作块 <strong>A_{k-1}</strong>、<strong>Wan Video VAE</strong> 编码的视觉隐变量 <strong>F_k</strong> 及其差分 <strong>ΔF_k</strong> 拼接，经 <strong>Q-Former</strong> 聚合为单 token，再由因果时序编码器按执行顺序建模最近 <strong>K</strong> 次交互，实现闭环执行进度跟踪。</li><li><strong>Task-State Conditioning</strong>：把 <strong>T_t</strong> 追加到世界流与动作流的 key-value 上下文，并将 Mode Tokens 池化为 <strong>m̄</strong> 做逐层 <strong>AdaLN</strong> 调制，保持主干原有 world-action 注意力结构以支持异构主干。</li><li><strong>World-Action Flow Steering</strong>：轻量交叉注意力头 <strong>R_b</strong> 以隐藏状态查询 <strong>T_t</strong>，预测速度残差 <strong>Δv</strong>，以可学习有界尺度 <strong>γ_b</strong> 修正世界与动作速度（Cosmos Policy 则在原生 EDM 形式下校正去噪潜变量）。</li><li><strong>训练目标</strong>：端到端沿用主干原生生成目标，<strong>L = L_world + L_action</strong>（flow matching 或 EDM denoising）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>StageBench</strong>：基于 <strong>LIBERO</strong>（单臂）与 <strong>RoboTwin 2.0</strong>（双臂）构建，覆盖厨房与家庭多阶段场景，共约 10 个任务族。</li><li>数据规模：<strong>超过 220 万帧</strong>演示数据，含约 <strong>12 小时</strong>人工遥操作（3D 鼠标遥操作 + 自动数据生成）。</li><li><strong>RoboTwin 2.0</strong> 评测：每任务 50 条干净场景演示（共 2,500 条）与 500 条随机化场景演示（共 25,000 条），50 个任务。</li><li>真实世界数据：每任务 <strong>100–150 条</strong>遥操作演示，采集工具包括 <strong>Gello</strong>（夹爪臂）、<strong>TypeTele</strong>（灵巧手）、<strong>SONIC</strong>（人形），相机为 <strong>RealSense D435</strong>。</li><li>训练资源：<strong>16× NVIDIA H100 80GB</strong> GPU；效率测试在单张 <strong>RTX 5090</strong> 上进行（30 次预热 + 100 次计时）。</li><li>真实平台：<strong>Franka Research 3</strong>、双臂 <strong>AgileX Piper（6-DoF）</strong> 与 <strong>Nero（7-DoF）</strong>、<strong>Unitree G1</strong> 人形 + <strong>BrainCo Revo2</strong> 灵巧手。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测环境</strong>：StageBench 仿真、RoboTwin 2.0（Clean / Randomized）、四类真实世界多阶段任务；仿真结果均为 100 次试验平均。</li><li><strong>主要指标</strong>：任务成功率 <strong>Suc.</strong>、阶段进展率 <strong>SPR</strong>（Stage Progress Rate）、逐阶段累计完成率 <strong>S_k</strong>、端到端推理时延。</li><li><strong>StageBench 主结果</strong>：Fast-WAM 从 <strong>40.9% → 69.4%（+28.5%）</strong>，超过最强单模基线 <strong>π0.5（54.5%）</strong>；Cosmos Policy 从 <strong>32.6% → 45.5%（+12.9%）</strong>；单臂任务提升 15–25%，双臂任务提升 28–54%，最大提升为 Size-Order Cubes（11% → 65%）。</li><li><strong>RoboTwin 2.0</strong>：平均成功率 Clean <strong>92.70（+0.82）</strong>、Randomized <strong>93.06（+1.28）</strong>，随机化设置下取得最佳结果。</li><li><strong>阶段混淆缓解</strong>：<strong>SPR 从 68.4% 提升到 87.1%</strong>；在 Cooking & Cleanup 案例中后段阶段的优势随执行推进而扩大。</li><li><strong>消融实验</strong>：基线 40.9 → +Mode Tokens <strong>56.4</strong> → +State Tokens <strong>61.6</strong> → +Residual Flow <strong>69.4</strong>，各组件均有稳定增益。</li><li><strong>真实世界</strong>：最终阶段成功率较 FastWAM 提升 <strong>15–35%</strong>；在近 2 分钟的 Bread Toasting & Spreading 任务中，FastWAM 末阶段仅 5.0%，TaskWAM 保持 <strong>20.0%</strong>。</li><li><strong>效率</strong>：时延从 <strong>0.190s 增至 0.209s</strong>，以极小推理开销换取显著的多阶段可靠性提升。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.28589/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">AgenticRoboRL: Bringing Coding-Agent Post-Training to Agentic Robotics</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.28184/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Perceives but Doesn&#x27;t Brake: A Perception-Action Binding Gap in Reasoning Driving VLAs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

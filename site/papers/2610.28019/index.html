@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PACT-VLA: Speculative Action-Chunk Verification with Pre-Commit Observations - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文聚焦 VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。 论文提出 PACT-VLA，其核心洞察是“把推理延迟当作决策时间”：在候选动作块生成期间，利用临近提交前到达的 pre-commit observation 完成对整段动作块的选择，而不是在执行中反复切换。 目标是在不重新训练、不引入额外验证器的前提下，缓解预测与执行之间的观测陈旧问题，并保持执行动作序列的连续性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.28019">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.28019.webp" alt="PACT-VLA: Speculative Action-Chunk Verification with Pre-Commit Observations" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文聚焦 VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PACT-VLA: Speculative Action-Chunk Verification with Pre-Commit Observations</h1>
+            <div class="detail-meta">2026-10-20 · <a href="http://arxiv.org/abs/2610.28019" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.28019" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.28019</span></div>
+            <p class="detail-summary">论文聚焦 VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。 论文提出 PACT-VLA，其核心洞察是“把推理延迟当作决策时间”：在候选动作块生成期间，利用临近提交前到达的 pre-commit observation 完成对整段动作块的选择，而不是在执行中反复切换。 目标是在不重新训练、不引入额外验证器的前提下，缓解预测与执行之间的观测陈旧问题，并保持执行动作序列的连续性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">香港科技大学（广州）（The Hong Kong University of Science and…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.28019/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文聚焦 VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。</p>
+  <ul class="reading-intro-points"><li>论文聚焦 VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。</li><li>论文提出 PACT-VLA，其核心洞察是“把推理延迟当作决策时间”：在候选动作块生成期间，利用临近提交前到达的 pre-commit observation 完成对整段动作块的选择，而不是在执行中反复切换。</li><li>目标是在不重新训练、不引入额外验证器的前提下，缓解预测与执行之间的观测陈旧问题，并保持执行动作序列的连续性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>香港科技大学（广州）</strong>（The Hong Kong University of Science and Technology (Guangzhou)）</li><li><strong>One Robotics</strong></li><li>作者：Yixiang Zhu、Ruilong Wu、Yonghao Chen、Jiaxiang Zou、Yusong Hu、Xinyu Chen</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文聚焦 <strong>VLA（视觉-语言-动作）策略在异步推理延迟下的动作块执行失配问题</strong>：动作块基于推理开始时的旧观测生成，等到真正可执行时机器人与场景已经变化，任务成功率随延迟增大而急剧下降。</li><li>论文提出 <strong>PACT-VLA</strong>，其核心洞察是“把推理延迟当作决策时间”：在候选动作块生成期间，利用临近提交前到达的 <strong>pre-commit observation</strong> 完成对整段动作块的选择，而不是在执行中反复切换。</li><li>目标是在<strong>不重新训练、不引入额外验证器</strong>的前提下，缓解预测与执行之间的观测陈旧问题，并保持执行动作序列的连续性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PACT-VLA</strong>，一个<strong>免训练（training-free）</strong>的动作选择框架，在提交前用推理期间到达的观测从固定候选池中选出完整动作块，缩小预测-执行失配。</li><li>提出 <strong>FlowRes</strong> 候选验证方法：复用<strong>冻结的流匹配 VLA 策略</strong>，在 pre-commit 观测下度量候选隐含流方向与策略预测速度之间的残差，无需额外训练或独立验证器。</li><li>设计<strong>流水线式实现</strong>：将 pre-commit 观测处理与候选生成重叠，并对全部候选做批量打分，使选择过程不额外增加控制步延迟。</li><li>在 <strong>Kinetix、LIBERO 与三个真实机器人任务</strong>上验证有效性，并可叠加在 VLASH、DEFLECT、REMAC 等已有抗延迟方法之上进一步提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>候选生成</strong>：在控制步 t 用策略原有生成流程与推理起始观测采样出固定候选池 𝒜_t = {A_t^(1), …, A_t^(N)}，后续观测不修改该池。</li><li><strong>pre-commit 观测</strong>：取计划切换步 t+d 前一步的观测 o_{t+d-1}，留出一个控制步间隔用于观测处理与候选选择。</li><li><strong>FlowRes 打分</strong>：对每个候选构造流时间输入 x_τ = (1−τ)A + τε^ver、隐含速度 u = ε^ver − A，查询冻结策略得到 v̂_θ(x_τ, τ \|o_{t+d-1}, l_t)，对动作维度（掩码 m）、动作位置（权重 w_j）与多个验证流时间 τ_i 聚合残差得 E_n，取最小者。</li><li><strong>共享验证噪声</strong>：所有候选与所有验证流时间共用同一 ε^ver，保证比较时噪声实现固定、验证点落在同一插值路径上。</li><li><strong>高效流水线</strong>：利用可复用的视觉-语言前缀缓存（KV cache），候选池与缓存就绪后一次性批量执行动作专家前向；无该模块分离的流策略则退化为批量速度查询。</li><li><strong>执行规则</strong>：在预定的 t+d 控制节拍切换到所选块，之后不再于执行中切换候选，保证动作序列连续。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>Kinetix</strong>（12 个动态控制任务，投掷/接取/平衡等，动作块长度 H=8，N=4 候选）；<strong>LIBERO</strong>（Spatial、Object、Goal、LIBERO-10 四个套件，每套件 10 任务，N=8 候选）。</li><li><strong>真实机器人</strong>：双臂 <strong>AgileX PiperX</strong> 平台（两个 6-DoF 臂）、3 个 <strong>Intel RealSense D435i</strong> 相机（1 个俯视 + 每臂 1 个腕部相机），系统基于 <strong>LeRobot</strong>；任务为 Toasting Bread、Loading Dishwasher、Pouring Coffee Beans；动作块长度 H=50，10 步去噪，30 Hz 控制。</li><li><strong>使用模型</strong>：<strong>π0.5</strong> 与 <strong>GR00T N1.7</strong> 两个流式 VLA，均使用<strong>冻结的预训练/SFT 检查点</strong>，PACT-VLA 本身不训练；论文未报告具体参数量。</li><li><strong>计算硬件</strong>：延迟测试在 <strong>RTX 5090、H100、RTX Pro 6000</strong> 三款 GPU 上进行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：Kinetix 每个方法每个延迟 2,048 次 rollout，延迟 d∈{0,1,2,3,4}；LIBERO 每套件每延迟 500 episodes，d∈{1,2,3,4}；真机每任务每方法 50 次试验，指标为全任务成功率。</li><li><strong>Kinetix</strong>：平均成功率 <strong>85.8%</strong>，优于 RTC 的 <strong>77.8%</strong>、Training-time RTC 的 <strong>81.7%</strong>、DreamChunk 的 <strong>74.7%</strong>、Naive Async 的 <strong>63.5%</strong>；d=4 时 <strong>77.2%</strong> vs RTC <strong>62.2%</strong>（+15.0 个百分点），延迟越大增益越明显。</li><li><strong>与已有抗延迟方法结合</strong>：VLASH 84.7%→<strong>87.5%</strong>、DEFLECT 88.6%→<strong>90.1%</strong>、REMAC 83.7%→<strong>85.2%</strong>，每个延迟均有提升且 d=4 增益最大。</li><li><strong>LIBERO</strong>：d=4 时 π0.5 由 <strong>60.0%</strong> 提升至 <strong>63.5%</strong>（+3.5），GR00T N1.7 由 <strong>51.2%</strong> 提升至 <strong>56.4%</strong>（+5.2）；d=1 时因验证观测未更新而略有下降，d=2/3/4 均一致提升；d=4 时优于随机选择（+4.2）与用生成观测打分的 FlowRes（+3.8）。</li><li><strong>真实机器人</strong>：平均成功率由 Naive Async 的 <strong>60.0%</strong> 提升至 <strong>82.0%</strong>（VLASH 66.0%、Old-FlowRes 64.7%），相对 Old-FlowRes 平均提升 17.3 个百分点，相对 VLASH 提升 16.0 个百分点，且使用同一冻结检查点。</li><li><strong>部署延迟</strong>：30 Hz 下 RTX 5090 单候选生成 35.4 ms vs 四候选生成+验证 60.2 ms，H100 42.5 vs 58.8 ms，RTX Pro 6000 48.7 vs 64.8 ms；三种 GPU 上均落在同一控制步延迟档 <strong>d=2</strong>，即选择过程不额外增加控制步延迟。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.28109/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">FIT-MAC: A Closed-Loop Multi-Agent Framework for Robust Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.27917/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">EventSync: Event-Driven Memory Updates for History-Dependent Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
