@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SimPT: An Automated Simulation Framework for Intervention-Based VLA Post-Training - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 SimPT（Simulation-based Post-Training），一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。 要解决的问题是：传统 human-in-the-loop（HIL）后训练依赖昂贵的人工接管与反复真机评测，环境和硬件差异还会带来不可复现性，因而限制了 HIL/VLA 后训练算法的系统化探索。 目标是让“何时干预、如何恢复”这一环节在仿真中全自动完成，从而低成本、可复现地比较与迭代各类后训练算法，并迁移到真机。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.29161">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.29161.webp" alt="SimPT: An Automated Simulation Framework for Intervention-Based VLA Post-Training" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 SimPT（Simulation-based Post-Training），一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">SimPT: An Automated Simulation Framework for Intervention-Based VLA Post-Training</h1>
+            <div class="detail-meta">2026-10-21 · <a href="http://arxiv.org/abs/2610.29161" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.29161" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.29161</span></div>
+            <p class="detail-summary">论文提出 SimPT（Simulation-based Post-Training），一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。 要解决的问题是：传统 human-in-the-loop（HIL）后训练依赖昂贵的人工接管与反复真机评测，环境和硬件差异还会带来不可复现性，因而限制了 HIL/VLA 后训练算法的系统化探索。 目标是让“何时干预、如何恢复”这一环节在仿真中全自动完成，从而低成本、可复现地比较与迭代各类后训练算法，并迁移到真机。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者包括 Caicheng Wang、Zipeng Ye（通讯作者）、Zhexuan Zhou、Z…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.29161/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 SimPT（Simulation-based Post-Training），一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。</p>
+  <ul class="reading-intro-points"><li>论文提出 SimPT（Simulation-based Post-Training），一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。</li><li>要解决的问题是：传统 human-in-the-loop（HIL）后训练依赖昂贵的人工接管与反复真机评测，环境和硬件差异还会带来不可复现性，因而限制了 HIL/VLA 后训练算法的系统化探索。</li><li>目标是让“何时干预、如何恢复”这一环节在仿真中全自动完成，从而低成本、可复现地比较与迭代各类后训练算法，并迁移到真机。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者包括 <strong>Caicheng Wang</strong>、<strong>Zipeng Ye</strong>（通讯作者）、<strong>Zhexuan Zhou</strong>、<strong>Zilong Huang</strong>、<strong>Xi Zhang</strong>、<strong>Yuchen Xie</strong></li><li>全体作者隶属于 <strong>Meituan（美团）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>SimPT（Simulation-based Post-Training）</strong>，一个在仿真中自动完成基于干预的 VLA（视觉-语言-动作）策略后训练的框架，把策略 rollout、纠正数据采集、策略训练与独立评测整合为一条自动化流水线。</li><li>要解决的问题是：传统 human-in-the-loop（HIL）后训练依赖昂贵的人工接管与反复真机评测，环境和硬件差异还会带来不可复现性，因而限制了 HIL/VLA 后训练算法的系统化探索。</li><li>目标是让“何时干预、如何恢复”这一环节在仿真中全自动完成，从而低成本、可复现地比较与迭代各类后训练算法，并迁移到真机。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>SimPT</strong> 仿真框架，自动化干预式 VLA 后训练的完整工作流，支持算法系统化探索与开发。</li><li>设计 <strong>Agent-Compiled Progress Graph（智能体编译的任务进度图）</strong>：由 LLM/Codex 智能体依据任务源码自动编译任务阶段图，在策略执行中跟踪进度并保留稳定快照；rollout 失败后从更靠后的阶段开始恢复专家尝试，失败则回退到更早阶段。</li><li>在 <strong>7 个 RoboTwin 操作任务</strong>上实现并对比 <strong>RECAP</strong>、<strong>HG-DAgger</strong>、<strong>DPO+SFT</strong>、<strong>FlowPRO</strong> 四种后训练方法，形成可复现的对比基准。</li><li>借助 SimPT 开发出 <strong>RECAP-CF-LPF</strong>：用五折交叉拟合（CF）加 Butterworth 低通滤波（LPF）改进 RECAP 的价值预测与优势标签，在仿真与真机 HIL 后训练中均带来提升。</li><li>相对固定间隔快照基线，进度图将恢复尝试次数减少 <strong>75.0%</strong>，恢复成功率由 <strong>93.4%</strong> 提升至 <strong>98.9%</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>框架总览</strong>：语言模型智能体将 RoboTwin 任务源码解析为结构化规格（指令、物体/机械臂分配、可用状态字段、阶段依赖、成功判据），编译为候选进度图，再经静态校验、筛选与阈值标定后固定使用。</li><li><strong>进度图</strong>：由任务阶段节点集与有向边（前进边/回退边）构成；前进边在完成条件满足时激活后续阶段，回退边在回归条件触发时重新激活早期阶段（如夹爪脱落检测触发回到 approach 阶段）。检查基于仿真器的特权状态（物体位姿、夹爪状态、接触量测），无需反复查询 VLM。</li><li><strong>阈值标定</strong>：数据相关阈值（如左右臂接近距离阈值）由仿真专家轨迹的完成时刻距离上分位数估计，抓取丢失阈值保持图中先验，最终图与参数在采集期间固定。</li><li><strong>快照与专家恢复</strong>：每个任务阶段保留最新快照（仿真状态、活跃阶段、采集步）；失败后按从后往前顺序恢复状态并调用 <strong>CuRobo</strong> 程序化专家完成任务，成功轨迹作为纠正数据，初始态快照作为最终兜底。</li><li><strong>数据与训练</strong>：训练缓冲由成功 rollout、失败 rollout、专家纠正数据组成；对需要完整轨迹的方法，将策略前缀与专家恢复片段拼接构造纠正轨迹 τ⁺。</li><li><strong>RECAP-CF-LPF 改进</strong>：用五折交叉拟合获得折外价值预测以缓解价值模型过拟合，再对 30 Hz 价值序列施加 1 Hz 截止的二阶零相位 Butterworth 低通滤波，之后计算 50 步优势。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>RoboTwin</strong> 的 7 个双臂操作任务——<strong>Lift Pot</strong>、<strong>Move Can Pot</strong>、<strong>Place Empty Cup</strong>、<strong>Beat Block Hammer</strong>、<strong>Place Can Basket</strong>、<strong>Handover Block</strong>、<strong>Stack Blocks Two</strong>，覆盖双臂协同、精细放置、工具使用与多阶段操作。</li><li>基础策略：统一采用 <strong>π0.5</strong> 骨干，动作 chunk 长度 <strong>50</strong>；每个任务用 <strong>50 条专家演示</strong>做 SFT 得到父策略。</li><li>采集设置：Naive 与 PG 使用同一父策略检查点、<strong>240 个</strong>预设环境种子与 CuRobo 专家；Naive 每 50 步存快照并倒序尝试恢复。</li><li>训练与评测：所有方法训练 <strong>10,000 步</strong>；每任务 40 个验证种子调参，<strong>200 个</strong>留出种子做最终评测（每方法共 1,400 次试验）。</li><li>真机数据：Ethernet 网线插入任务使用 <strong>1,672 条</strong>训练轨迹（200 条人类演示 + 802 条带人工干预回合 + 670 条全自主 rollout）；平台为两条 <strong>AgileX PiPER</strong> 机械臂 + 3 个 RGB 相机（1 头部 + 每臂 1 腕部）。</li><li>论文未给出模型参数量与具体 GPU/TPU 训练资源说明。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>图构建效率</strong>：7 个任务的候选图静态校验通过率 <strong>100%（21/21）</strong>，其中 9 个（42.9%）首次即通过，其余平均 1.17 次自动修订；生成加校验平均 <strong>8.0 分钟/任务</strong>（4.5–11.5 分钟）。</li><li><strong>恢复效率（表 I）</strong>：总恢复尝试由 <strong>3,781</strong> 降至 <strong>945</strong>（<strong>-75.0%</strong>），每次成功恢复的平均尝试由 <strong>7.62</strong> 降至 <strong>1.79</strong>，整体恢复成功率由 <strong>93.4%</strong> 升至 <strong>98.9%</strong>；Handover Block 降幅最大（1,329→192 次，成功率 83.6%→98.3%）。</li><li><strong>后训练方法对比（PG 数据，1,400 次留出试验）</strong>：<strong>HG-DAgger 82.14%</strong> 最优（7 任务中 5 个最佳），<strong>RECAP 76.50%</strong>，<strong>FlowPRO 71.86%</strong>，<strong>DPO+SFT 63.14%</strong>，均对比 <strong>SFT 基线 67.29%</strong>。</li><li><strong>采集方式对比（表 II）</strong>：PG 相对 Naive 使 RECAP <strong>+9.86 pp</strong>（66.64%→76.50%，7 任务全部提升）、HG-DAgger <strong>+1.93 pp</strong>、DPO+SFT <strong>+0.50 pp</strong>；FlowPRO 例外，<strong>-4.21 pp</strong>（76.07%→71.86%）。</li><li><strong>RECAP-CF-LPF</strong>：验证集整体成功率 <strong>81.43%→85.00%</strong>（+3.57 pp，6 个任务提升）；留出评测 <strong>76.50%→79.36%</strong>（<strong>+2.86 pp</strong>，95% 置信区间 0.36–5.36 pp）。</li><li><strong>真机验证</strong>：Ethernet 网线插入 25 个场景中，RECAP-CF-LPF 成功 <strong>24/25（96%）</strong>，标准 RECAP 为 <strong>18/25（72%）</strong>；累计进度分 <strong>72/75</strong> 对 <strong>59/75</strong>，且标准 RECAP 解出的 18 个场景全部被新方法覆盖。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.29168/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">How Representational Priors Shape Generalization in World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.28880/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Real2Sem2Real: 3D Semantic Augmentations for Robot Learning from a Single Human RGB Demonstration</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

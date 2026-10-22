@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="聚焦历史依赖（history-dependent）机器人操作中的非马尔可夫决策问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。 指出现有记忆增强策略与分层规划架构虽提供基础，但缺乏对&quot;任务上下文持续维护&quot;与&quot;从执行经验改进规划流程&quot;的统一机制。 提出 SERA（Self-Evolving Robotic Agent）：把高层 VLM 规划器组织为可编辑 harness（执行框架/挽具） 中的智能体，配合固定的低层 VLA 执行器，并通过执行驱动自演化改进 harness。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.29560">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.29560.webp" alt="From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">聚焦历史依赖（history-dependent）机器人操作中的非马尔可夫决策问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation</h1>
+            <div class="detail-meta">2026-10-21 · <a href="http://arxiv.org/abs/2610.29560" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.29560" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.29560</span></div>
+            <p class="detail-summary">聚焦历史依赖（history-dependent）机器人操作中的非马尔可夫决策问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。 指出现有记忆增强策略与分层规划架构虽提供基础，但缺乏对&quot;任务上下文持续维护&quot;与&quot;从执行经验改进规划流程&quot;的统一机制。 提出 SERA（Self-Evolving Robotic Agent）：把高层 VLM 规划器组织为可编辑 harness（执行框架/挽具） 中的智能体，配合固定的低层 VLA 执行器，并通过执行驱动自演化改进 harness。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">中国科学技术大学（University of Science and Technology of Ch…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.29560/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">聚焦历史依赖（history-dependent）机器人操作中的非马尔可夫决策问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。</p>
+  <ul class="reading-intro-points"><li>聚焦历史依赖（history-dependent）机器人操作中的非马尔可夫决策问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。</li><li>指出现有记忆增强策略与分层规划架构虽提供基础，但缺乏对&quot;任务上下文持续维护&quot;与&quot;从执行经验改进规划流程&quot;的统一机制。</li><li>提出 SERA（Self-Evolving Robotic Agent）：把高层 VLM 规划器组织为可编辑 harness（执行框架/挽具） 中的智能体，配合固定的低层 VLA 执行器，并通过执行驱动自演化改进 harness。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>中国科学技术大学</strong>（University of Science and Technology of China）</li><li><strong>上海人工智能实验室</strong>（Shanghai Artificial Intelligence Laboratory）</li><li><strong>上海交通大学</strong>（Shanghai Jiao Tong University）</li><li><strong>穆罕默德·本·扎耶德人工智能大学</strong>（Mohamed bin Zayed University of Artificial Intelligence）</li><li><strong>浙江大学</strong>（Zhejiang University）</li><li>作者：Tingwen Du、Haoyu Guo、Hanxue Zhang、Xuanxu Wang、Junting Dong、Chao Gao、Mingfei Han、Tao Lu、Mulin Yu、Chunhua Shen、Xiaojun Chang、Zhihui Li</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>聚焦<strong>历史依赖（history-dependent）机器人操作</strong>中的<strong>非马尔可夫决策</strong>问题：相似观测可能因任务进度、已执行动作顺序或先前演示信息而需要不同决策。</li><li>指出现有记忆增强策略与分层规划架构虽提供基础，但缺乏对"任务上下文持续维护"与"从执行经验改进规划流程"的统一机制。</li><li>提出 <strong>SERA（Self-Evolving Robotic Agent）</strong>：把高层 VLM 规划器组织为可编辑 <strong>harness（执行框架/挽具）</strong> 中的智能体，配合固定的低层 VLA 执行器，并通过执行驱动自演化改进 harness。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>智能体化规划框架</strong>：将高层 VLM 置于可编辑 harness 中，在长时序任务中持续管理任务上下文，跟踪任务进度与执行反馈以引导固定的 VLA 执行器。</li><li>提出<strong>执行驱动自演化流程</strong>：从 rollout 反馈中自动诊断失败、提出并评估对<strong>规划引导（planning guidance）</strong>、<strong>评估准则（assessment criteria）</strong>、<strong>控制规则（control rules）</strong> 的修订，无需构建 SFT 数据集微调高层 VLM。</li><li>在 <strong>RoboMME</strong> 基准上验证：SERA 取得 <strong>51.38%</strong> 总体成功率，相比无自演化的 <strong>44.38%</strong> 提升 <strong>7.00 个百分点</strong>。</li><li>提供执行案例（VideoPlaceOrder、PatternLock）说明上下文维护与 harness 修订如何修复具体失败模式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>问题形式化</strong>：给定语言指令 i 与初始上下文 c₀，交互历史 h_t = (c₀, o₀, a₀, …, a_{t−1}, o_t)，策略以历史为条件预测动作块 A_t ~ π(·\|i, h_t)。</li><li><strong>Harness 配置 H</strong>：规定输入如何组装、任务上下文如何维护、命令如何校验、执行反馈如何用于后续决策。</li><li><strong>回合初始化与任务上下文</strong>：由指令与初始上下文导出回合引导 g；运行时上下文 c_n 记录任务进度、决策相关事实、执行结果与未解决不确定性，并含检测停滞的控制状态。</li><li><strong>上下文感知规划</strong>：每轮向 VLM 提供 g、近期观测 V_n、上下文 c_n、上一条命令 u_{n−1} 及候选动作集 A_cand,n；VLM 在<strong>同一次调用</strong>中先评估上条命令效果，再同时输出更新后的上下文与新高层命令，即 (c_{n+1}, u_n) = P_H(g, V_n, c_n, u_{n−1}; A_cand,n)。</li><li><strong>执行与反馈</strong>：harness 将命令转换为执行器输入格式，固定参数 θ 的 VLA 预测动作块并执行有界前缀；下一轮结合执行证据决定继续、推进或恢复缺失前置条件。</li><li><strong>执行驱动自演化</strong>：包含失败诊断（分析智能体定位首次偏离）、候选修订生成、验证器基于环境 rollout 与缓存基线对比（修复的失败/退化的成功/不变）、迭代修订与选择部署；选定配置 H* 在留出测试前固定，测试期仅上下文继续更新。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>主基准：<strong>RoboMME</strong>，含 <strong>16 个历史依赖操作任务</strong>，分四个套件：<strong>Counting、Permanence、Reference、Imitation</strong>；每任务评测 <strong>50 回合</strong>，共 <strong>800 回合</strong>。</li><li>探索性额外评估：<strong>RoboMemArena</strong>（用于讨论执行级干预）。</li><li>高层规划器：<strong>gpt-5.6-sol</strong>（通过 Codex，reasoning effort 设为 <strong>high</strong>）。</li><li>低层执行器：固定参数的 <strong>VLA</strong> 执行器（对比基线含 <strong>π0.5</strong>、<strong>SAM2Act</strong>、<strong>FrameSamp+Modul</strong>、<strong>MemER</strong> 等）。</li><li>训练资源（GPU/TPU 型号与数量、训练时长）：原文未明确给出；方法本身不额外训练高层 VLM 或执行器。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：RoboMME 四个套件、每任务 50 回合；指标为成功率（SR），先任务内平均、再在套件内与 16 个任务上等权平均；基线采用官方排行榜结果，SERA 采用自主选择（autonomous selection）配置。</li><li><strong>总体结果</strong>：SERA <strong>51.38%</strong>，优于 <strong>MemER 42.38%</strong>、<strong>FrameSamp+Modul 44.51%</strong>、<strong>GroundSG+QwenVL 32.70%</strong>、<strong>SimpleSG+QwenVL 29.00%</strong> 等。</li><li><strong>分套件</strong>：Counting <strong>49.00</strong>（次优）、Permanence <strong>57.00</strong>（最优）、Reference <strong>69.50</strong>（最优）、Imitation <strong>30.00</strong>（次优）；Reference 与 Permanence 依赖对早期观测的利用。</li><li><strong>自演化增益</strong>：从 <strong>44.38%</strong> 提升至 <strong>51.38%</strong>（+7.00 pp）；修订修复了空间方向映射不一致、推进任务阶段前检查不足、候选动作缺失等问题（如 SwingXtimes、PatternLock）。</li><li><strong>修订过程示例</strong>：PatternLock 六回合修订面板上，初始 harness 成功 2/6，第一次修订 3/6，第二次修订补齐方向候选后达 5/6（均为测试前结果）。</li><li><strong>附录逐任务</strong>：本地复现 MemER 为 <strong>363/800</strong>，SERA 为 <strong>411/800</strong>（如 VideoPlaceButton 14→49/50，VideoPlaceOrder 18→46/50，VideoUnmaskSwap 18→46/50，PatternLock 10→30/50；部分任务如 ButtonUnmask、MoveCube、InsertPeg、RouteStick 下降）。</li><li><strong>局限</strong>：VLM 推理带来规划延迟，长时序下累积开销大；仅靠规划侧重规划难以纠正执行偏差，需探索执行级干预机制。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.29646/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">From Association to Decision Value: Testing Paired Instruction Dependence for VLA Corpus Selection</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.29329/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

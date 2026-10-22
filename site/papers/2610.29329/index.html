@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 PAL（Plan First, Act Later）。 PAL 将流式视觉观测增量转换为语义事件和可执行子任务列表，执行时由高层 VLM 选择当前相关子任务并交给低层 VLA 策略，从而降低执行时的记忆检索与推理负担。 论文通过两阶段训练让模型学习“向记忆写入什么”和“何时更新记忆”，并在 RoboMME 仿真基准与真实机器人任务上验证方法有效性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.29329">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.29329.webp" alt="Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 PAL（Plan First, Act Later）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control</h1>
+            <div class="detail-meta">2026-10-21 · <a href="http://arxiv.org/abs/2610.29329" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.29329" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.29329</span></div>
+            <p class="detail-summary">论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 PAL（Plan First, Act Later）。 PAL 将流式视觉观测增量转换为语义事件和可执行子任务列表，执行时由高层 VLM 选择当前相关子任务并交给低层 VLA 策略，从而降低执行时的记忆检索与推理负担。 论文通过两阶段训练让模型学习“向记忆写入什么”和“何时更新记忆”，并在 RoboMME 仿真基准与真实机器人任务上验证方法有效性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京大学</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.29329/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 PAL（Plan First, Act Later）。</p>
+  <ul class="reading-intro-points"><li>论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 PAL（Plan First, Act Later）。</li><li>PAL 将流式视觉观测增量转换为语义事件和可执行子任务列表，执行时由高层 VLM 选择当前相关子任务并交给低层 VLA 策略，从而降低执行时的记忆检索与推理负担。</li><li>论文通过两阶段训练让模型学习“向记忆写入什么”和“何时更新记忆”，并在 RoboMME 仿真基准与真实机器人任务上验证方法有效性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京大学</strong></li><li><strong>PKU-FirstMoveAI Lab</strong></li><li><strong>京东物流</strong></li><li><strong>加州大学伯克利分校</strong></li><li><strong>复旦大学</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文针对长时程机器人操作中策略依赖短观测窗口、难以利用早期历史信息的问题，提出分层记忆框架 <strong>PAL</strong>（<strong>Plan First, Act Later</strong>）。</li><li><strong>PAL</strong> 将流式视觉观测增量转换为语义事件和可执行子任务列表，执行时由高层 <strong>VLM</strong> 选择当前相关子任务并交给低层 <strong>VLA</strong> 策略，从而降低执行时的记忆检索与推理负担。</li><li>论文通过两阶段训练让模型学习“向记忆写入什么”和“何时更新记忆”，并在 <strong>RoboMME</strong> 仿真基准与真实机器人任务上验证方法有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PAL</strong> 分层记忆架构，包含短期视觉缓冲、语义事件记忆和可执行 <strong>subtask_list</strong>，将流式观测逐步压缩为结构化记忆。</li><li>设计“先规划、后执行”的流式推理机制：当未来子任务所需证据出现时提前写入子任务列表，执行时直接选取，减少对大规模历史记忆库的搜索。</li><li>提出两阶段训练流程：先用稠密更新时机监督扩展稀疏标注，再用带任务接地验证的自标注使训练数据更接近模型执行时的状态分布。</li><li>在 <strong>RoboMME</strong> 和真实 <strong>Franka Research 3</strong> 机器人四类任务上验证 <strong>PAL</strong> 优于多种 VLA 与记忆增强基线。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用三层记忆结构：短期视觉缓冲 <strong>V_t</strong> 保存近期 RGB 观测，语义事件记忆 <strong>E_t</strong> 保存任务相关事件，可执行记忆 <strong>P_t</strong> 为 <strong>subtask_list</strong>。</li><li>每个查询时刻，高层 <strong>VLM</strong> 输入上一时刻记忆、当前观测块和任务指令，输出新事件 <strong>ΔE_t</strong>、新子任务 <strong>ΔP_t</strong> 以及当前执行子任务 <strong>ℓ_t</strong>。</li><li>若证据不足，模型输出空事件或空子任务；子任务列表通过追加 <strong>ΔP_t</strong> 更新，事件记忆通过追加 <strong>ΔE_t</strong> 更新，视觉缓冲在记忆更新后清空以避免证据过度累积。</li><li>低层 <strong>VLA</strong> 根据当前观测、所选子任务和语言指令生成动作：<strong>a_t = π_VLA(o_t, ℓ_t, L)</strong>。</li><li><strong>Stage 1</strong> 将稀疏更新标注扩展为多个查询时刻的稠密监督，使模型接触更新边界附近不同长度的视觉证据。</li><li><strong>Stage 2</strong> 在训练集上回放 <strong>Stage 1</strong> 模型，用任务接地验证器过滤错误更新、重复更新和未按时完成更新的轨迹，再在自标注轨迹上微调。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真实验使用 <strong>RoboMME</strong> 基准，包含长时程、记忆依赖的机器人操作任务。</li><li>真实实验使用 <strong>Franka Research 3</strong> 机械臂，评估 <strong>PickXtimes</strong>、<strong>VideoUnmask</strong>、<strong>VideoPlaceOrder</strong>、<strong>PatternLock</strong> 四类任务。</li><li>对比基线包括 <strong>π_0.5</strong>、<strong>FrameSamp-Modul</strong>、<strong>MemER</strong>、<strong>EventVLA</strong>、<strong>GPT-6-astra + VLA</strong>；消融变体包括 <strong>Sparse Label</strong>、<strong>Stage 1 Only</strong>、<strong>Update Gate</strong>。</li><li>给定 HTML 原文未明确给出高层 <strong>VLM</strong> 与低层 <strong>VLA</strong> 的具体参数量，也未列出 GPU/TPU 型号与数量；附录仅标注了训练细节章节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>主要评估指标为任务成功率；消融部分还分析 <strong>subtask_list</strong> 更新频率和最终列表准确率。</li><li>在 <strong>RoboMME</strong> 上，<strong>PAL</strong> 总体成功率为 <strong>56.05% ± 1.38</strong>，优于最强基线 <strong>FrameSamp-Modul</strong> 的 <strong>44.51% ± 0.77</strong>，提升 <strong>11.54</strong> 个百分点。</li><li><strong>PAL</strong> 在 <strong>RoboMME</strong> 各任务组上表现：<strong>Short-video 45.26%</strong>、<strong>Long-video 81.60%</strong>、<strong>In-context 46.20%</strong>、<strong>Episode-start 77.33%</strong>，其中 <strong>Long-video</strong> 相对 <strong>FrameSamp-Modul</strong> 的 <strong>46.00%</strong> 提升显著。</li><li>真实机器人实验中，<strong>PAL</strong> 总体成功率为 <strong>60.83% ± 3.82</strong>，优于 <strong>MemER</strong> 的 <strong>45.00% ± 6.61</strong> 和 <strong>FrameSamp-Modul</strong> 的 <strong>28.33% ± 3.82</strong>；在 <strong>PickXtimes</strong> 上达到 <strong>53.33%</strong>，而 <strong>MemER</strong> 为 <strong>0.00%</strong>。</li><li>消融显示：<strong>Stage 1 Only</strong> 总体 <strong>37.35%</strong>，<strong>Sparse Label</strong> 为 <strong>43.39%</strong>，完整 <strong>PAL</strong> 达 <strong>56.05%</strong>；<strong>Stage 1</strong> 倾向过度更新，稀疏监督则更新不足，<strong>PAL</strong> 的更新频率更接近真实值并取得更高最终列表准确率。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.29560/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">From VLM Planners to Robotic Agents: Self-Evolving Harnesses for History-Dependent Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.29282/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Relational Geometry Forcing for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

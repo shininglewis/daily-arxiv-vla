@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Relational Geometry Forcing for World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文关注 World Action Models（WAMs），这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。 现有做法一是增加深度或 4D 预测分支，二是用预训练 3D 基础模型对 WAM 中间特征做 pointwise（逐点）表征对齐；作者发现逐点对齐对视频特征有益，却会损害动作学习。 论文提出 Relational Geometry Forcing（RGF），通过对齐“成对特征关系”而非逐点特征来迁移几何先验，在无显式几何重建、无额外推理模块的前提下提升操作性能。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.29282">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.29282.webp" alt="Relational Geometry Forcing for World Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文关注 World Action Models（WAMs），这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Relational Geometry Forcing for World Action Models</h1>
+            <div class="detail-meta">2026-10-21 · <a href="http://arxiv.org/abs/2610.29282" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.29282" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.29282</span></div>
+            <p class="detail-summary">论文关注 World Action Models（WAMs），这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。 现有做法一是增加深度或 4D 预测分支，二是用预训练 3D 基础模型对 WAM 中间特征做 pointwise（逐点）表征对齐；作者发现逐点对齐对视频特征有益，却会损害动作学习。 论文提出 Relational Geometry Forcing（RGF），通过对齐“成对特征关系”而非逐点特征来迁移几何先验，在无显式几何重建、无额外推理模块的前提下提升操作性能。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">CASIA（中国科学院自动化研究所）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.29282/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文关注 World Action Models（WAMs），这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。</p>
+  <ul class="reading-intro-points"><li>论文关注 World Action Models（WAMs），这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。</li><li>现有做法一是增加深度或 4D 预测分支，二是用预训练 3D 基础模型对 WAM 中间特征做 pointwise（逐点）表征对齐；作者发现逐点对齐对视频特征有益，却会损害动作学习。</li><li>论文提出 Relational Geometry Forcing（RGF），通过对齐“成对特征关系”而非逐点特征来迁移几何先验，在无显式几何重建、无额外推理模块的前提下提升操作性能。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>CASIA</strong>（中国科学院自动化研究所）</li><li><strong>UCAS</strong>（中国科学院大学）</li><li><strong>Alibaba Group</strong>（阿里巴巴集团）</li><li><strong>FiveAges</strong></li><li>第一作者邮箱标注为 <code>yuan.xu@nlpr.ia.ac.cn</code>（NLPR 实验室）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文关注 <strong>World Action Models（WAMs）</strong>，这类模型联合学习视觉动态预测与可执行动作生成，但视频与动作目标中并未显式约束对精细操作至关重要的 3D 几何。</li><li>现有做法一是增加深度或 4D 预测分支，二是用预训练 3D 基础模型对 WAM 中间特征做 <strong>pointwise（逐点）表征对齐</strong>；作者发现逐点对齐对视频特征有益，却会<strong>损害动作学习</strong>。</li><li>论文提出 <strong>Relational Geometry Forcing（RGF）</strong>，通过对齐“成对特征关系”而非逐点特征来迁移几何先验，在无显式几何重建、无额外推理模块的前提下提升操作性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>揭示并解释了逐点对齐中的<strong>表征失配</strong>问题：稠密几何目标与紧凑动作特征所编码的内容角色不同，将逐点对齐扩展到动作专家会使成功率低于未对齐基线。</li><li>提出 <strong>RGF</strong>，通过 <strong>intra-frame（帧内）</strong>、<strong>cross-view（跨视角）</strong>、<strong>action-temporal（动作-时序）</strong> 三类关系目标，将场景几何、多视角对应关系与几何场景演化迁移到 WAM 表示中。</li><li>RGF 仅在训练阶段使用，推理时完全移除教师模型与投影头，<strong>不改变原推理路径</strong>，也不需要深度/4D 预测分支。</li><li>在 <strong>LIBERO</strong>、<strong>RoboTwin 2.0</strong> 与真实 <strong>Franka</strong> 机器人上验证有效性，并在三种 WAM 范式（Uncond / Joint / IDM）上取得一致增益。</li><li>真实场景中展现出对未见物体、背景干扰物与高度变化的泛化能力。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>几何教师</strong>：使用冻结的 <strong>VGGT（Visual Geometry Grounded Transformer）</strong>，对每个时刻的同步多视角图像联合编码，得到逐视角 patch 特征；动作监督则对每视角特征做空间池化并拼接成场景向量。</li><li><strong>关系算子</strong>：对 token 集合做行级 L2 归一化后计算余弦相似度矩阵，定义自关系 <code>R(X)=X̄X̄ᵀ</code> 与跨关系 <code>R(X,Y)=X̄Ȳᵀ</code>；关系矩阵形状与特征维度无关，从而绕开维度/嵌入空间不一致的问题。</li><li><strong>损失函数</strong>：在有效项集合 Ω（排除对角线、padding token）上使用 <strong>Huber（smooth L1）</strong> 逐元素损失；相比 KL 散度，Huber 保留关系幅值。</li><li><strong>三类关系目标</strong>：</li></ul>
+<p> - 帧内目标：对齐每个视角内部的 patch 关系（几何重采样后对齐分辨率）。</p>
+<p> - 跨视角目标：对所有视角对 <code>v<u</code> 匹配跨视角相似度矩阵，传递多视角对应关系。</p>
+<p> - 动作-时序目标：将动作 token 的时序相似度结构与多视角场景演化的时序相似度结构对齐，而非直接回归场景向量。</p>
+<ul><li><strong>投影头</strong>：使用可训练的 <code>g_vid</code> 与 <code>g_act</code> 将监督特征与隐藏状态解耦。</li><li><strong>总体目标</strong>：<code>L = L_FM^v + L_FM^a + λ_RGF (w_i L_intra + w_c L_cross + w_t L_temporal)</code>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>LIBERO</strong>（Spatial / Object / Goal / Long 四个 suite，共 40 个任务、每任务 500 条演示，每 suite 500 次 rollout，共 2000 次）；<strong>RoboTwin 2.0</strong>（50 个双臂操作任务，clean 50 条演示、随机化 500 条演示，每设置 100 次 rollout）。</li><li><strong>真实机器人</strong>：<strong>Franka Research 3</strong> 机械臂 + 3 台 <strong>ZED 2i</strong> 相机，每任务 50 条演示、每设置 20 次 rollout。</li><li><strong>模型规模</strong>：基于 <strong>Wan2.2-TI2V-5B</strong> 视频专家 + <strong>1B Action DiT</strong> 动作专家；几何教师为冻结的 <strong>VGGT-1B</strong>（对比实验另用 <strong>DINOv2</strong>）。</li><li><strong>训练配置</strong>：动作 horizon <strong>H=32</strong>、每训练块 9 帧视频、推理 10 步去噪、CFG scale 1.0；默认在 WAM 第 <strong>15</strong> 层施加三类关系目标，等权重，<code>λ_RGF=0.5</code>。</li><li>论文附录设有 "Compute Usage" 小节，但所给 HTML 内容在参考文献处被截断，<strong>具体 GPU/TPU 数量未在可见文本中给出</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：LIBERO 与 RoboTwin 2.0 仿真基准 + 真实 Franka 机器人；指标为任务<strong>成功率（%）</strong>；对比 VLA（OpenVLA-OFT、π0.5、Spatial Forcing）与 WAM（LingBot-VA、Motus、Fast-WAM、X-WAM、GeoSem-WAM、WAM4D、MECo-WAM）。</li><li><strong>LIBERO</strong>：RGF-WAM 平均成功率 <strong>98.65%</strong>，为所有对比方法最高；相对 Fast-WAM 在 Spatial / Goal / Long 分别提升 <strong>+1.2 / +1.6 / +1.4</strong>，Object 两者均为 100%。</li><li><strong>RoboTwin 2.0</strong>：平均 <strong>92.71%</strong>（最高），clean 从 91.88% 提升到 <strong>92.92%</strong>，randomized 从 91.78% 提升到 <strong>92.50%</strong>，且无需具身策略预训练；超过 MECo-WAM 0.09 个百分点。</li><li><strong>几何迁移分析</strong>：逐点对齐用于视频仅带来小幅增益（VGGT +0.30），扩展到动作后降至 <strong>-0.05</strong>；关系对齐在 Uncond / Joint / IDM 上分别提升 <strong>+1.05 / +0.60 / +0.55</strong>；关系式 DINOv2（98.35%）甚至优于逐点 VGGT（97.90%），说明对齐方式比特征来源更关键。</li><li><strong>消融</strong>：单一关系目标收益有限，跨视角监督最关键；三者联合达 <strong>+1.05</strong>，优于最佳双目标组合（+0.40），体现非加性互补；Huber（98.65%）优于 KL（98.05%）。</li><li><strong>真实世界</strong>：平均成功率 <strong>65.71%</strong>，比 Fast-WAM（57.14%）高 <strong>8.6</strong> 个百分点；在两阶段多物体任务上提升最大（+10、+15），在未见颜色 / 干扰物 / 高度变化下分别提升 <strong>+5 / +5 / +20</strong>。</li><li><strong>定性结果</strong>：RGF 的帧内相似度图更平滑且贴近真值 3D 距离图，跨视角最高相似 patch 落在真值对应附近，动作-时序相似度矩阵能复现非匀速运动下的非均匀带状结构。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.29329/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Plan First, Act Later: Streaming Reasoning for Executable Memory in Robot Control</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.29203/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">NavBind: Diagnosing Instruction-Action Binding at Route Forks in Navigation VLAs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
