@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 HiSTEVE 1.0，这是一个面向 Minecraft 这类开放世界游戏的层级式 VLA（视觉-语言-动作）智能体，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。 论文要解决的问题是：现有智能体大多只具备其中一种能力——要么具备原生视觉运动控制能力，但缺乏长程自主性；要么依靠环境 API 或预定义技能进行高层规划，无法直接操作键鼠。 核心思路是把“慢时间尺度的高层规划与验证”和“快时间尺度的原生键鼠执行”结合起来，从而在规划-执行闭环中持续跟踪任务状态、判定子任务完成并进行失败恢复。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.31162">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.31162.webp" alt="HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 HiSTEVE 1.0，这是一个面向 Minecraft 这类开放世界游戏的层级式 VLA（视觉-语言-动作）智能体，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games</h1>
+            <div class="detail-meta">2026-10-22 · <a href="http://arxiv.org/abs/2610.31162" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.31162" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.31162</span></div>
+            <p class="detail-summary">论文提出 HiSTEVE 1.0，这是一个面向 Minecraft 这类开放世界游戏的层级式 VLA（视觉-语言-动作）智能体，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。 论文要解决的问题是：现有智能体大多只具备其中一种能力——要么具备原生视觉运动控制能力，但缺乏长程自主性；要么依靠环境 API 或预定义技能进行高层规划，无法直接操作键鼠。 核心思路是把“慢时间尺度的高层规划与验证”和“快时间尺度的原生键鼠执行”结合起来，从而在规划-执行闭环中持续跟踪任务状态、判定子任务完成并进行失败恢复。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">作者：Zecong Tang、Zian Guan、Yuncheng Guo、Zhanqiu Zhang…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.31162/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 HiSTEVE 1.0，这是一个面向 Minecraft 这类开放世界游戏的层级式 VLA（视觉-语言-动作）智能体，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。</p>
+  <ul class="reading-intro-points"><li>论文提出 HiSTEVE 1.0，这是一个面向 Minecraft 这类开放世界游戏的层级式 VLA（视觉-语言-动作）智能体，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。</li><li>论文要解决的问题是：现有智能体大多只具备其中一种能力——要么具备原生视觉运动控制能力，但缺乏长程自主性；要么依靠环境 API 或预定义技能进行高层规划，无法直接操作键鼠。</li><li>核心思路是把“慢时间尺度的高层规划与验证”和“快时间尺度的原生键鼠执行”结合起来，从而在规划-执行闭环中持续跟踪任务状态、判定子任务完成并进行失败恢复。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>作者：<strong>Zecong Tang</strong>、<strong>Zian Guan</strong>、<strong>Yuncheng Guo</strong>、<strong>Zhanqiu Zhang</strong>、<strong>Yiwen Guo</strong>、<strong>Bo Dai</strong></li><li>所提供的 HTML 原文中未明确标注作者的具体隶属机构（单位信息可能位于截断部分或 PDF 首页）</li><li>论文项目主页与代码仓库：<strong>https://github.com/Andytonglove/HiSTEVE-1.0</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>HiSTEVE 1.0</strong>，这是一个面向 <strong>Minecraft</strong> 这类开放世界游戏的层级式 <strong>VLA（视觉-语言-动作）智能体</strong>，目标是让智能体像人类玩家一样，在同样的键鼠接口约束下长期自主行动。</li><li>论文要解决的问题是：现有智能体大多只具备其中一种能力——要么具备原生视觉运动控制能力，但缺乏长程自主性；要么依靠环境 API 或预定义技能进行高层规划，无法直接操作键鼠。</li><li>核心思路是把“慢时间尺度的高层规划与验证”和“快时间尺度的原生键鼠执行”结合起来，从而在规划-执行闭环中持续跟踪任务状态、判定子任务完成并进行失败恢复。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>HiSTEVE</strong> 层级式 VLA 智能体与 <strong>能力感知智能体框架（capability-aware agent harness）</strong>，使智能体在长程执行中维持目标并自适应调整计划。</li><li>设计 <strong>能力受限规划</strong>、<strong>证据驱动的交接与恢复协议</strong> 以及 <strong>结构化记忆</strong>（工作记忆、情景记忆、程序记忆、世界记忆），形成可验证的规划-执行闭环。</li><li>提出 <strong>RS-Norm（Regime-Specific RMSNorm）</strong> 与 <strong>Dual-Mouse</strong> 分离式鼠标位移 token 表示，缓解 GUI 与非 GUI 异构交互之间的负迁移。</li><li>提出 <strong>策略耦合的任务完成状态检测器</strong>，以 VLA 策略上下文为条件输出候选完成信号，其精度优于通用 VLM 的提示式判断。</li><li>采用 <strong>世界知识注入 → 模仿学习 → 环境反馈强化学习</strong> 三阶段训练，并实现 SOTA 原子任务性能与“从零打造铁镐”等长程任务。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>高层编排（Harness）</strong>：由 <strong>GPT-4o</strong> 担任 VLM 规划器，在能力受限的原子子任务模式集合中选择并实例化子任务，输出语义目标而非脚本动作。</li><li><strong>能力受限规划</strong>：每个子任务模式规定适用条件、参数、可视觉观测的进度/完成条件、可识别失败条件与执行预算，保证计划落在 VLA 能力范围内。</li><li><strong>证据驱动交接与恢复</strong>：检测器给出完成概率，超过阈值或预算耗尽时交还控制权；harness 依据观测验证并记录 <strong>success / failure / interrupted</strong>，决定前进、局部恢复或重规划。</li><li><strong>结构化记忆</strong>：工作记忆承载当前规划状态，情景记忆记录每次调用的前后状态与结果，程序记忆沉淀子任务依赖，世界记忆存储地标与空间关系。</li><li><strong>VLA 策略</strong>：以 <strong>Qwen2.5-VL-7B</strong> 初始化，20 Hz 自回归输出离散化键鼠动作 token；动作空间沿用 <strong>VPT</strong> 风格分组，鼠标位移经 <strong>μ-law</strong> 变换后量化。</li><li><strong>RS-Norm</strong>：每层注意力前与 MLP 前的 RMSNorm 各维护非 GUI / GUI 两组可学习尺度向量，仅增加 <strong>2Ld</strong> 参数。</li><li><strong>Dual-Mouse</strong>：为非 GUI 与 GUI 分配不相交的鼠标位移 token 子集，并加入交互类型 token，两者解码回同一物理动作码表。</li><li><strong>三阶段训练</strong>：世界知识注入建立概念与视觉 grounding；模仿学习学习指令到键鼠动作的映射；RL 阶段用同起点分支组相对优势（<strong>GRPO</strong> 裁剪更新）+ 匹配状态片段的 DPO 式成对损失，并加入世界动作回放与对参考策略的 KL 正则。</li><li><strong>完成检测器</strong>：以 <strong>Qwen2.5-VL-3B</strong> 为骨干，共享 VLA 图像编码器，采样 800/600/400/200 ms 历史帧，将 VLA 前缀末层隐状态作为策略上下文，每隔 4 层通过交叉注意力注入，并用 Wanda 式通道评分将 FFN 中间宽度剪枝至约 1/3。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>评测基准</strong>：<strong>MineStudio Bench</strong>（20 个任务、每任务 3 次试验）、<strong>OpenHA</strong>（Embodied / GUI / Combat 三个任务族）、<strong>LongBench</strong>（14 个仅给目标的任务、49 个隐藏诊断节点，含 R&C、E&M、Rec.、Open 四族）。</li><li><strong>训练数据</strong>：<strong>VPT</strong> 人类 gameplay 轨迹用于模仿学习与完成检测器标签构建；检测器验证集为类别平衡的 <strong>4,674</strong> 个样本。</li><li><strong>模型规模</strong>：VLA 主干 <strong>Qwen2.5-VL-7B</strong>；完成检测器骨干 <strong>Qwen2.5-VL-3B</strong>，剪枝后报告为 <strong>1.4B</strong> 参数；高层规划器为 <strong>GPT-4o</strong>。</li><li><strong>训练资源</strong>：所给 HTML 原文未披露 GPU/TPU 型号、数量与训练时长等算力细节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测设置</strong>：原子任务采用严格 <strong>pass@1</strong>（MineStudio）与族级 episode 成功率（OpenHA），长程任务采用 <strong>final-goal success</strong>（LongBench），隐藏诊断节点仅用于进度分析；对照 <strong>VPT、STEVE-1、ROCKET-1、JARVIS-VLA、LatentHA、MotionHA、GroundingHA、TextVLA、Text/CoA</strong> 等基线。</li><li><strong>MineStudio Bench</strong>：Mine <strong>93.3%</strong>、Kill <strong>86.7%</strong>、Craft <strong>66.7%</strong>、Smelt <strong>93.3%</strong>，平均 <strong>85.0%</strong>，较最强基线平均提升 <strong>20.0</strong> 个百分点；Craft 提升最大（+26.7）但仍是最弱类别。</li><li><strong>OpenHA</strong>：平均 <strong>37.4%</strong>（Embodied <strong>46.0%</strong>、GUI <strong>27.2%</strong>、Combat <strong>39.0%</strong>），较 Text/CoA 的 36.8% 略高，增益主要集中在 Embodied。</li><li><strong>LongBench</strong>：R&C <strong>42.9%</strong>、E&M <strong>28.6%</strong>、Rec. <strong>14.3%</strong>、Open <strong>14.3%</strong>，相对基线分别提升 <strong>28.6 / 21.5 / 11.4 / 12.9</strong> 个百分点，多阶段资源生产与探索信息复用任务增益最大。</li><li><strong>完成检测</strong>：准确率与 F1 均达 <strong>0.863</strong>，精确率 <strong>0.861</strong>、召回率 <strong>0.865</strong>、FPR <strong>0.140</strong>、FNR <strong>0.135</strong>，显著优于 GPT-4o（F1 0.690）、GPT-5.5（F1 0.776）与 Qwen3.5（9B/35B）等提示式基线。</li><li><strong>消融</strong>：仅模仿学习 MineStudio 平均 50.4 → 加世界知识注入 65.1 → 加环境反馈 RL 80.7；共享表示 41.1 → 加 RS-Norm 57.3 → 加 Dual-Mouse 61.9，验证各组件互补有效。</li><li><strong>关键结论</strong>：固定 VLA 时，完整 harness 相比固定步数交接可使长程目标成功率提升一倍以上，说明围绕持久任务状态组织局部执行是长程性能的关键。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31166/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Memory before Goal: Role of Pre-History Memory for Humanoid Loco-Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.30991/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">UniFlowWAM: A Unified World-Action Model with Visual Semantics and 4D Geometry</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Echo，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。 针对现有方法的两大痛点：学习任务状态信号往往依赖帧级细粒度进度标注、外部监控模型或复杂架构；且预测出的信号通常只用于监控，未用于直接改进动作生成。 目标是让状态信号在无需帧级标注的前提下被准确学习，并在去噪过程中真正引导动作生成（包括可恢复失败的纠正行为）。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.31569">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.31569.webp" alt="Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Echo，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models</h1>
+            <div class="detail-meta">2026-10-22 · <a href="http://arxiv.org/abs/2610.31569" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.31569" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.31569</span></div>
+            <p class="detail-summary">论文提出 Echo，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。 针对现有方法的两大痛点：学习任务状态信号往往依赖帧级细粒度进度标注、外部监控模型或复杂架构；且预测出的信号通常只用于监控，未用于直接改进动作生成。 目标是让状态信号在无需帧级标注的前提下被准确学习，并在去噪过程中真正引导动作生成（包括可恢复失败的纠正行为）。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海交通大学（SJTU）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.31569/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Echo，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。</p>
+  <ul class="reading-intro-points"><li>论文提出 Echo，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。</li><li>针对现有方法的两大痛点：学习任务状态信号往往依赖帧级细粒度进度标注、外部监控模型或复杂架构；且预测出的信号通常只用于监控，未用于直接改进动作生成。</li><li>目标是让状态信号在无需帧级标注的前提下被准确学习，并在去噪过程中真正引导动作生成（包括可恢复失败的纠正行为）。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海交通大学（SJTU）</strong></li><li><strong>Spirit AI</strong>（主要参与单位，多数作者署名）</li><li><strong>清华大学（THU）</strong></li><li><strong>中国科学技术大学（USTC）</strong></li><li><strong>同济大学（Tongji）</strong></li><li><strong>哈尔滨工业大学（HIT）</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Echo</strong>，一个在单一 VLA（Vision Language Action）模型内联合去噪机器人动作与任务状态信号的紧凑框架，用于判断任务正在执行、成功完成还是失败。</li><li>针对现有方法的两大痛点：学习任务状态信号往往依赖<strong>帧级细粒度进度标注</strong>、外部监控模型或复杂架构；且预测出的信号通常只用于监控，<strong>未用于直接改进动作生成</strong>。</li><li>目标是让状态信号在无需帧级标注的前提下被准确学习，并在去噪过程中真正引导动作生成（包括可恢复失败的纠正行为）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出紧凑的任务状态表示：将<strong>停止信号（SS）</strong>与<strong>失败信号（FS）</strong>作为动作 chunk 的两个额外维度拼接，与动作一起去噪，仅带来极小参数开销。</li><li>设计无需帧级进度标注的监督方案：利用<strong>成功示范、失败 rollout、干预前失败片段和恢复示范</strong>四类数据的互补性质，结合填充掩码（padding mask）自动构造 SS/FS 目标。</li><li>设计<strong>受控的信号与动作交互</strong>与<strong>异步去噪</strong>机制：动作与两类信号双向注意力交互但屏蔽 SS–FS 直接交互，并让信号比动作更早收敛，使后续动作去噪步骤以更干净的状态估计为条件。</li><li>在五个真实世界操作任务上验证了状态预测的准确性以及策略性能的一致提升，并给出组件消融、信号干预和失败数据量的扩展性分析。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>flow matching</strong> 的 VLA 策略（<strong>π0.5</strong> 为骨干），以观测、机器人状态和语言指令为条件预测速度场。</li><li>使用动作 chunk 的<strong>填充掩码</strong>同时完成两件事：屏蔽越界动作，并提供边界级信号标签（如成功段末端即停止位置）。</li><li>状态语义：低 SS 表示执行中（此时 FS 升高代表可恢复失败）；高 SS + 低 FS 表示成功；高 SS + 高 FS 表示终止性失败；块内取均值得到标量估计，并按阈值 δs、δf 分类。</li><li>四类数据的监督规则不同：成功/恢复示范提供动作监督（失败动作被排除出模仿），恢复段仅监督非填充位置；恢复段的 FS 目标用随恢复进度线性下降的二值序列构造。</li><li>注意力控制：动作 token 关注多模态前缀与两个信号组，信号 token 关注动作 token；<strong>阻断 SS–FS 双向注意力</strong>以保持语义分离。</li><li>异步去噪：将 flow time 从每样本一个值扩展为每 token 一个值，信号组使用 τq = max(0, (τA − τclean)/(1 − τclean))，使其在动作去噪结束前达到干净端点并保持固定。</li><li>损失为三组（A/S/F）掩码加权的速度匹配均方误差，λ 权重用于平衡有/无填充样本数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>真实世界数据：遥操作成功示范、策略测试中的终止失败 rollout、操作员接管前的失败片段，以及恢复示范（多轮数据聚合迭代更新策略）。</li><li>五个真实机器人操作任务：<strong>Insert Flower</strong>、<strong>Capsule Toy</strong>、<strong>Insert Pen</strong>、<strong>Make Tanghulu</strong>、<strong>Open Drawer</strong>，覆盖抓取、精细插入与铰接物体交互。</li><li>策略骨干为 <strong>π0.5</strong>，Echo 与仅动作基线使用相同的成功/恢复示范、匹配的训练步数与优化器设置。</li><li>具体 GPU/TPU 训练资源与超参数位于附录 A.4（所给 HTML 正文已截断，未包含具体数值）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：五个真实世界操作任务，每个模型每任务 <strong>30 次试验</strong>；SS/FS 判定阈值均为 <strong>0.5</strong>，轨迹级决策窗口为 <strong>15 帧（0.2 s 推理间隔下约 3 s）</strong>。</li><li>评估指标：<strong>Task Completion Score</strong>（0–10 归一化分数）、<strong>帧级 Macro-F1</strong>（与进行中/成功/失败逐帧标注比对）、<strong>轨迹级 F1</strong>（固定窗口内是否正确识别结果），报告均值 ± 标准误。</li><li>主结果（Echo vs. 仅动作 π0.5 分数）：Insert Flower <strong>5.67 → 8.33</strong>、Insert Pen <strong>6.87 → 8.60</strong>、Open Drawer <strong>5.40 → 7.90</strong>、Make Tanghulu <strong>4.33 → 5.33</strong>、Capsule Toy <strong>8.40 → 8.57</strong>。</li><li>状态预测精度：各任务帧级 F1 约 <strong>88–92%</strong>，轨迹级 F1 约 <strong>90–100%</strong>（Capsule Toy 达 100.00 ± 0.00）。</li><li>方法对比（Insert Flower）：<strong>CycleVLA</strong> 得分 3.00、帧级 F1 43.10、轨迹级 F1 36.67；<strong>VLA-Corrector</strong> 得分 5.67；<strong>Echo</strong> 得分 8.33、帧级 F1 92.18、轨迹级 F1 96.67。</li><li>消融与机制分析涵盖域内/分布外（OOD）表现、组件消融、信号干预验证状态信号对动作生成的影响，以及失败数据数量的扩展性；仿真实验见附录 A.10。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31613/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Progress Probes $P^2$: Lightweight Runtime Monitoring for Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.31429/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

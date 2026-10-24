@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FastHarness: Experience-Driven Review Scheduling for Vision-Language-Action Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文面向 智能体化机器人系统（agentic robot systems），研究如何在 视觉-语言-动作（VLA）策略 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。 现有做法 GPT-as-Policy 对每个 action chunk 都调用 GPT-6 Astra 进行审查，即使在已熟练掌握的任务阶段也重复付费，导致执行缓慢、成本高昂。 论文提出 FastHarness：利用跨 episode 的累积经验（阶段记忆 + 已审查结果）自适应决定&quot;何时需要审查&quot;，并把监督预算集中投入到错误恢复上；VLA 策略权重保持冻结，无需额外训练。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.31427">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.31427.webp" alt="FastHarness: Experience-Driven Review Scheduling for Vision-Language-Action Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文面向 智能体化机器人系统（agentic robot systems），研究如何在 视觉-语言-动作（VLA）策略 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">FastHarness: Experience-Driven Review Scheduling for Vision-Language-Action Policies</h1>
+            <div class="detail-meta">2026-10-22 · <a href="http://arxiv.org/abs/2610.31427" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.31427" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.31427</span></div>
+            <p class="detail-summary">论文面向 智能体化机器人系统（agentic robot systems），研究如何在 视觉-语言-动作（VLA）策略 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。 现有做法 GPT-as-Policy 对每个 action chunk 都调用 GPT-6 Astra 进行审查，即使在已熟练掌握的任务阶段也重复付费，导致执行缓慢、成本高昂。 论文提出 FastHarness：利用跨 episode 的累积经验（阶段记忆 + 已审查结果）自适应决定&quot;何时需要审查&quot;，并把监督预算集中投入到错误恢复上；VLA 策略权重保持冻结，无需额外训练。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海交通大学人工智能学院（School of AI, Shanghai Jiao Tong Unive…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.31427/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文面向 智能体化机器人系统（agentic robot systems），研究如何在 视觉-语言-动作（VLA）策略 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。</p>
+  <ul class="reading-intro-points"><li>论文面向 智能体化机器人系统（agentic robot systems），研究如何在 视觉-语言-动作（VLA）策略 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。</li><li>现有做法 GPT-as-Policy 对每个 action chunk 都调用 GPT-6 Astra 进行审查，即使在已熟练掌握的任务阶段也重复付费，导致执行缓慢、成本高昂。</li><li>论文提出 FastHarness：利用跨 episode 的累积经验（阶段记忆 + 已审查结果）自适应决定&quot;何时需要审查&quot;，并把监督预算集中投入到错误恢复上；VLA 策略权重保持冻结，无需额外训练。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海交通大学人工智能学院（School of AI, Shanghai Jiao Tong University）</strong>：Tao Lin、Yuxin Du、Zile Zhong、Bo Zhao（通讯作者）</li><li><strong>浙江大学（Zhejiang University）</strong>：Haoxiao Wang</li><li>代码开源于 <code>github.com/FastHarness/fast-harness</code></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文面向 <strong>智能体化机器人系统</strong>（agentic robot systems），研究如何在 <strong>视觉-语言-动作（VLA）策略</strong> 执行过程中调度大模型监督（review），以降低推理开销而不牺牲任务成功率。</li><li>现有做法 <strong>GPT-as-Policy</strong> 对每个 action chunk 都调用 <strong>GPT-6 Astra</strong> 进行审查，即使在已熟练掌握的任务阶段也重复付费，导致执行缓慢、成本高昂。</li><li>论文提出 <strong>FastHarness</strong>：利用跨 episode 的累积经验（阶段记忆 + 已审查结果）自适应决定"何时需要审查"，并把监督预算集中投入到错误恢复上；<strong>VLA 策略权重保持冻结</strong>，无需额外训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>经验驱动的快路径（Experience-Driven Fast Path）</strong>：通过阶段识别与结果记忆，按阶段成功率动态拉长审查间隔，跳过冗余审查。</li><li>提出配套的 <strong>错误恢复路径（Error Recovery Path）</strong>：检测到错误后逐 chunk 持续审查，先局部修复，必要时回退到本 episode 中已验证的 waypoint 目标。</li><li>设计 <strong>恢复验证与恢复后接续机制</strong>：只有审查器确认故障解除才恢复正常调度，同时保留失败记录用于后续"错误邻近"触发。</li><li>在策略完全冻结、不增加任何模型训练的前提下，同时实现效率提升与成功率提升，验证"自适应监督"是可行的工程路线。</li><li>给出可复现的实现细节（匹配阈值、置信下界打分、间隔函数、触发优先级、控制步预算等）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>整体框架</strong>：在原有 GPT-as-Policy 执行骨架上加一个调度器，对每个新观测由 <strong>π_0.5</strong> 生成 action chunk，调度器决定是否送 <strong>GPT-6 Astra</strong> 审查。</li><li><strong>记忆表示</strong>：590 维特征 = 3 个 <strong>8×8 RGB 缩略图</strong>（576 维）+ 12 个关节角归一化 + 2 个夹爪指令；用 <strong>RMS 距离</strong> 做最近邻匹配，匹配阈值 <strong>0.06</strong>，歧义间隔 <strong>0.01</strong>，错误邻近半径 <strong>0.04</strong>，每阶段最多保留 <strong>128</strong> 个样本。</li><li><strong>保守可靠性打分</strong>：对每阶段的成功/失败计数计算 Wilson 型置信下界 <code>r_s</code>（z = 1.96），仅在样本量与连续成功足够时才允许放宽审查。</li><li><strong>审查间隔函数</strong>：<code>I_s = 1 + ⌊(L-1)·r_s²·min(C, T_s/m)⌋</code>，取 <strong>L=20、m=2、C=6</strong>，冷启动或错误后连续成功不足 <strong>c_min=3</strong> 时强制 <code>I_s = 1</code>（每 chunk 必审）。</li><li><strong>触发优先级</strong>（取首个满足条件）：强制审查模式 → episode 开始 → 恢复进行中 → 未知/歧义上下文 → 阶段切换 → 上次结果不确定 → 监控告警 → 错误邻近 → 控制步预算（<strong>120 步</strong>）→ 计划间隔 → <strong>随机抽检（概率 0.03）</strong>。</li><li><strong>观测条件化执行</strong>：跳过审查时并不回放旧轨迹，而是在剩余预算内执行当前新提案的前缀，随后重新取观测与提案。</li><li><strong>恢复流程</strong>：局部修复（每次尝试最多 8 个 chunk）→ 连续两次失败后转向最近的已验证 waypoint → 验证返回目标后再独立评估原始故障 → 恢复正常调度。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真环境</strong>：<strong>RoboDojo</strong> 标准操作任务（Isaac Sim 5.1.0、双 X5 机械臂、CPU 物理仿真）。</li><li><strong>四个任务</strong>：<strong>Build tower</strong>（16 episodes）、<strong>Fold clothes</strong>（20）、<strong>Bottle disposal</strong>（20）、<strong>Classify objects</strong>（9）。</li><li><strong>策略模型</strong>：<strong>π_0.5</strong>（OpenPI/JAX 实现，配置 <code>pi05_base_aloha_full_sim_arx-x5_seed_0</code>，checkpoint <code>59999</code>，权重固定不更新）。</li><li><strong>审查模型</strong>：<strong>GPT-6 Astra</strong>（<code>gpt-6-astra</code>，reasoning effort = <code>xhigh</code>，Responses 协议结构化输出）。</li><li><strong>硬件与软件</strong>：<strong>NVIDIA H20</strong>；Python 3.11.15、JAX/JAXlib 0.5.3、Flax 0.10.2、NumPy 1.26.4。</li><li><strong>训练资源</strong>：论文未进行任何模型训练，也未报告参数量（π_0.5 与 GPT-6 Astra 均直接使用现成权重/接口）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估协议</strong>：同一任务链内共享记忆、重复执行；效率对比 <strong>首个评估 episode</strong> 与 <strong>最后 5 个 episode 均值</strong>；成功率由环境原生 <code>native_success</code> 判定。</li><li><strong>主要指标</strong>：审查调用次数、review-skip rate（自动执行的 chunk 比例）、记录 token 数（输入+输出，缓存只计一次）、wall-clock 时间、原生任务成功率。</li><li><strong>Token 效率</strong>：平均每任务降低 <strong>57.2%</strong>；等任务均值从 <strong>1.83M → 0.93M</strong> tokens/episode（Build tower 1.47→0.47M，Fold clothes 0.72→0.25M，Bottle disposal 1.64→0.58M，Classify objects 3.50→2.42M）。</li><li><strong>执行时间</strong>：等任务平均 episode 时间从 <strong>85.5 分钟降至 52.0 分钟</strong>（约 <strong>39%</strong> 下降）；审查交互占总 wall-clock 的 <strong>82.0%</strong>（Fold clothes）与 <strong>89.7%</strong>（Bottle disposal）。</li><li><strong>成功率</strong>：平均 <strong>97.19%</strong> vs. 基线 GPT-as-Policy（π_0.5 + GPT-6 Astra）<strong>80%</strong>，提升 <strong>17.19</strong> 个百分点；Build tower 60%→<strong>93.75%</strong>、Classify objects 60%→<strong>100%</strong>、Bottle disposal 100%→<strong>100%</strong>、Fold clothes 100%→<strong>95%</strong>。</li><li><strong>审查分配</strong>：Build tower 调用次数 40→<strong>13.4</strong>（约 75% chunk 自动执行）；Classify objects 94→<strong>68.2</strong>（约 24% 自动执行）；未知上下文触发从 35→16（Fold clothes）、142→64（Bottle disposal）。</li><li><strong>自动执行跨度</strong>：连续无审查 chunk 的中位跨度由 <strong>30 → 60</strong> 控制步（约 2 → 4 个 chunk）。</li><li><strong>恢复行为</strong>：Classify objects 前 8 个 episode 中 <strong>16/16</strong> 次恢复事件均回到正常调度；但存在未被检测的任务级失败（Fold clothes 第 17 个 episode 审查 20 次仍未触发恢复，原生得分 0.2）。</li><li><strong>局限性</strong>：仅四个仿真任务、单一策略/审查器组合；记忆表示依赖 RGB + 本体状态，更换传感器接口需适配；绝对时间收益受审查器延迟与硬件影响。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31429/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.31423/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FocusVLA: Future-Intent Guided Dynamic View Routing for Vision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

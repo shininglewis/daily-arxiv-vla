@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 PhysTrace，一个免训练（training-free）框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。 论文同时提出 IntPhys2-Timing 数据集，为 IntPhys2 的 impossible 视频补充物理违规的时间区间标注，用于评测时序定位能力。 研究目标是解决现有方法（物理合理性打分、表征探测、预测惊讶度）只能给出视频级分数、无法指出“哪一条由历史条件推出的物理预期与实际观测发生了冲突”的问题。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.31429">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.31429.webp" alt="PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 PhysTrace，一个免训练（training-free）框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PhysTrace: Interpretable Temporal Evaluation of Physical Consistency in Video Generative Models</h1>
+            <div class="detail-meta">2026-10-22 · <a href="http://arxiv.org/abs/2610.31429" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.31429" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.31429</span></div>
+            <p class="detail-summary">论文提出 PhysTrace，一个免训练（training-free）框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。 论文同时提出 IntPhys2-Timing 数据集，为 IntPhys2 的 impossible 视频补充物理违规的时间区间标注，用于评测时序定位能力。 研究目标是解决现有方法（物理合理性打分、表征探测、预测惊讶度）只能给出视频级分数、无法指出“哪一条由历史条件推出的物理预期与实际观测发生了冲突”的问题。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Taekoan Yoo, Wonkyung Jung, Kyunghun Kim：Independen…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.31429/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 PhysTrace，一个免训练（training-free）框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。</p>
+  <ul class="reading-intro-points"><li>论文提出 PhysTrace，一个免训练（training-free）框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。</li><li>论文同时提出 IntPhys2-Timing 数据集，为 IntPhys2 的 impossible 视频补充物理违规的时间区间标注，用于评测时序定位能力。</li><li>研究目标是解决现有方法（物理合理性打分、表征探测、预测惊讶度）只能给出视频级分数、无法指出“哪一条由历史条件推出的物理预期与实际观测发生了冲突”的问题。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Taekoan Yoo, Wonkyung Jung, Kyunghun Kim</strong>：Independent Researcher, Korea（韩国独立研究者）</li><li><strong>Kyeongbo Kong</strong>：Pusan National University, Korea（韩国釜山国立大学）</li><li>论文附有开源项目地址：https://github.com/PhysTrace/PhysTrace</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PhysTrace</strong>，一个<strong>免训练（training-free）</strong>框架，用于沿时间维度追踪视频中的物理一致性，并定位物理违规发生的时间区间。</li><li>论文同时提出 <strong>IntPhys2-Timing</strong> 数据集，为 <strong>IntPhys2</strong> 的 impossible 视频补充物理违规的时间区间标注，用于评测时序定位能力。</li><li>研究目标是解决现有方法（物理合理性打分、表征探测、预测惊讶度）只能给出视频级分数、无法指出“哪一条由历史条件推出的物理预期与实际观测发生了冲突”的问题。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PhysTrace</strong> 免训练框架：利用 MLLM 生成“历史条件下的预期状态”，并与当前视频窗口在共享多模态嵌入空间中对齐，从而在时间上定位物理违规。</li><li>提出“<strong>Prediction</strong>（预期状态）+ <strong>State</strong>（观测状态）”文本对，使物理违规的诊断结果可解释，能说明具体是哪个预期与观测不符。</li><li>构建并发布 <strong>IntPhys2-Timing</strong> 基准，为 IntPhys2 的 impossible 视频标注违规区间，支持时序定位评测。</li><li>将 PhysTrace 应用于 <strong>Wan2.1</strong> 与 <strong>Cosmos-Predict2</strong> 的生成轨迹（通过视频反演做输出空间读出），揭示物理违规可检测性随扩散时间步与物理属性的变化规律。</li><li>在 IntPhys2-Timing 上取得最高 <strong>70.7%</strong> 的 Hit Rate，并在 IntPhys2 的 possible–impossible 判别上取得 <strong>59.9%</strong> 的总体最优准确率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>时序窗口切分</strong>：将视频划分为固定时长 $T_w$（默认 2s）的窗口，窗口间 hop 为 $\Delta t$（默认 1s），每个窗口采样固定帧数送入 MLLM。</li><li><strong>双文本生成</strong>：MLLM 对每个窗口输出 <strong>State</strong>（仅描述当前窗口直接观测到的物体与动态，不使用历史作为视觉证据）与 <strong>Prediction</strong>（基于历史 $\mathcal{H}_{i-1}$ 推导出的“应当出现”的状态），并受限于仅含可视觉验证信息（物体身份、属性、运动）。</li><li><strong>选择性历史保留</strong>：MLLM 额外输出 <strong>Trusted</strong> 指示 $t_i\in\{0,1\}$，仅当出现新物体、新运动或历史中未有的有意义状态变化时才将 $s_i$ 存入历史，避免冗余信息稀释显著事件，并使对齐轨迹更强调“首次偏离”的转折点。</li><li><strong>对齐打分</strong>：用视频/文本嵌入函数 $f_{\mathrm{video}}$、$f_{\mathrm{text}}$ 计算余弦相似度 $a_i$，得到时序对齐轨迹 $\mathcal{A}(V)=\{a_1,\dots,a_N\}$；可用统一多模态嵌入模型或分离的对比对齐编码器。</li><li><strong>违规判定与定位</strong>：取轨迹中的最低分 <strong>MAS（Minimum Alignment Score）</strong> 作为视频级物理不一致度量，其对应时间区间即预测的违规位置；若轨迹极差小于阈值 $\tau$ 则判为未检测到违规（计入 miss）。</li><li><strong>生成轨迹分析</strong>：对输入视频做 VAE 编码得到 $z_0$，沿确定性反演路径恢复轨迹，在每个噪声级用模型原生读出得到 $\hat{z}_0^{(t)}$ 并解码为 $\hat{x}^{(t)}$，再对重建视频施加同一 PhysTrace 流程。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集</strong>：<strong>IntPhys2</strong>（原始 506 个视频对，剔除 7 个无效对后为 499 对，论文进一步保留 16 类中的 8 类用于时序标注）；自建 <strong>IntPhys2-Timing</strong>（含违规区间标注）。</li><li><strong>视频原始规格</strong>：636 帧、60 fps、约 10.6 s、512×512；实验中重建视频统一缩放至 256×256。</li><li><strong>MLLM</strong>：<strong>Qwen3-VL-8B-Thinking</strong>（最大生成长度 8,000 tokens，推理预算 3,000 tokens）；对比实验还用到 Qwen-VL 8B/32B、Cosmos-Reason2 8B、GLM-4.1V。</li><li><strong>对齐模型</strong>：<strong>PE-AV-Large</strong>（主实验）；表 1 的文本距离分析使用 <strong>Qwen3-Embedding</strong>。</li><li><strong>被评测的生成模型</strong>：<strong>Wan2.1-T2V-1.3B</strong>（81 帧）与 <strong>Cosmos-Predict2</strong>（93 帧），文本条件设为空字符串。</li><li><strong>训练资源</strong>：方法<strong>无需训练</strong>；所有实验在 <strong>NVIDIA A100 80GB GPU</strong> 上运行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：<strong>IntPhys2-Timing</strong>（时序定位，指标 <strong>Hit Rate</strong>：MAS 对应区间与标注违规区间重叠即命中）与 <strong>IntPhys2</strong>（possible–impossible 判别准确率，基于 MAS 成对比较）。</li><li><strong>对比方法</strong>：基于 <strong>V-JEPA2</strong> 的 VoE 惊讶度基线，以及 GPT-4o、Qwen-VL 2.5 (72B)、Gemini-2.5 Pro/Flash、VideoMAEv2、V-JEPA2。</li><li><strong>时序定位（Table 2，Hit Rate %）</strong>：PhysTrace 在 Continuity <strong>63.2</strong>、Immutability <strong>70.7</strong>、Permanence 56.6、Solidity <strong>69.6</strong>；对应 VoE 基线为 61.8 / 54.7 / <strong>59.2</strong> / 53.6——在四类物理原则中的三类优于基线，最高达 <strong>70.7%</strong>。</li><li><strong>可能/不可能判别（Table 3，Overall %）</strong>：PhysTrace <strong>59.9</strong>，优于 Gemini-2.5 Flash 55.6、Gemini-2.5 Pro 55.4、GPT-4o 52.3、V-JEPA2 51.6、Qwen2.5-VL-72B 49.6、VideoMAEv2 49.6；在 Medium（63.0）、Hard（56.5）、Unknown（59.3）子集上均为最佳。</li><li><strong>窗口消融</strong>：2s/1s 默认配置优于 1s/0.5s 短窗配置；更长窗口能捕捉“球撞向木障碍后停住”等更完整动态，但过小 hop 会因 MLLM 文本描述波动导致对齐轨迹抖动、最小值位置不稳。</li><li><strong>生成轨迹分析</strong>：Hit Rate 随噪声水平下降而总体上升；Continuity 在 $\sigma=0.9$ 仍最稳健，Immutability 在 $\sigma\ge0.8$ 时下降超 10%，Permanence 与 Solidity 即使 $\sigma=0$ 也较弱（如遮挡导致“消失/重现”线索不足、盒子底部是否为开口的固有歧义）。</li><li><strong>局限性</strong>：方法依赖 MLLM 的上下文推理能力与 prompt 设计，需按物理属性定制属性专属 prompt 约束以提升鲁棒性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31569/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Echo: Coupled Action and Task Status Signal Denoising for Vision Language Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.31427/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FastHarness: Experience-Driven Review Scheduling for Vision-Language-Action Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

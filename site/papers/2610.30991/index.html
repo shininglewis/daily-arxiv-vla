@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UniFlowWAM: A Unified World-Action Model with Visual Semantics and 4D Geometry - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 UniFlowWAM，一个统一的世界–动作模型（World–Action Model），把场景级 3D 流（scene-level 3D flow）提升为与视觉、动作并列的第三模态，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。 解决的问题：机器人示教只记录“看到了什么、做了什么”，却不描述 3D 场景在两者之间如何变化；此前的流方法都把流当作独立模块、推理期先验或额外预测头，流始终位于策略之外。 核心研究问题：预训练的视觉–动作模型能否学会场景 3D 点的运动，以及学习这一能力是否能反过来提升动作预测质量。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.30991">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.30991.webp" alt="UniFlowWAM: A Unified World-Action Model with Visual Semantics and 4D Geometry" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 UniFlowWAM，一个统一的世界–动作模型（World–Action Model），把场景级 3D 流（scene-level 3D flow）提升为与视觉、动作并列的第三模态，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">UniFlowWAM: A Unified World-Action Model with Visual Semantics and 4D Geometry</h1>
+            <div class="detail-meta">2026-10-22 · <a href="http://arxiv.org/abs/2610.30991" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.30991" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.30991</span></div>
+            <p class="detail-summary">提出 UniFlowWAM，一个统一的世界–动作模型（World–Action Model），把场景级 3D 流（scene-level 3D flow）提升为与视觉、动作并列的第三模态，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。 解决的问题：机器人示教只记录“看到了什么、做了什么”，却不描述 3D 场景在两者之间如何变化；此前的流方法都把流当作独立模块、推理期先验或额外预测头，流始终位于策略之外。 核心研究问题：预训练的视觉–动作模型能否学会场景 3D 点的运动，以及学习这一能力是否能反过来提升动作预测质量。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">MVIG@SJTU（上海交通大学机器视觉与智能实验室）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.30991/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 UniFlowWAM，一个统一的世界–动作模型（World–Action Model），把场景级 3D 流（scene-level 3D flow）提升为与视觉、动作并列的第三模态，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。</p>
+  <ul class="reading-intro-points"><li>提出 UniFlowWAM，一个统一的世界–动作模型（World–Action Model），把场景级 3D 流（scene-level 3D flow）提升为与视觉、动作并列的第三模态，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。</li><li>解决的问题：机器人示教只记录“看到了什么、做了什么”，却不描述 3D 场景在两者之间如何变化；此前的流方法都把流当作独立模块、推理期先验或额外预测头，流始终位于策略之外。</li><li>核心研究问题：预训练的视觉–动作模型能否学会场景 3D 点的运动，以及学习这一能力是否能反过来提升动作预测质量。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>MVIG@SJTU</strong>（上海交通大学机器视觉与智能实验室）</li><li><strong>Shanghai Innovation Institute</strong>（上海创智学院）</li><li><strong>Noematrix</strong></li><li>作者：Jialin Tian、Zhuofan Li、Xinkai Wang、Bokai Lin、Chenyi Wang、Xinyu Zhan、Cewu Lu、Lixin Yang</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>UniFlowWAM</strong>，一个统一的世界–动作模型（World–Action Model），把<strong>场景级 3D 流（scene-level 3D flow）</strong>提升为与视觉、动作<strong>并列的第三模态</strong>，其世界表征同时覆盖视觉语义（未来 DINOv3 特征）与 4D 几何（3D 流）。</li><li>解决的问题：机器人示教只记录“看到了什么、做了什么”，却不描述 3D 场景在两者之间如何变化；此前的流方法都把流当作独立模块、推理期先验或额外预测头，流始终位于策略之外。</li><li>核心研究问题：预训练的视觉–动作模型能否学会场景 3D 点的运动，以及学习这一能力是否能反过来提升动作预测质量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将场景级 3D 流做成统一视觉–动作模型的<strong>对等模态</strong>，通过专门的 flow expert 与联合 mid-training / post-training，在同一批示教数据上引入，而非外挂模块或跟踪输入。</li><li>设计<strong>十个角色条件目标（role grid）</strong>：每个模态在目标中被赋予 target / condition / absent 之一，使流既可作预测目标也可作条件，同时保留一个<strong>测试时不需要流输入</strong>的直接策略（用可学习占位符填充流槽位）。</li><li>在 <strong>RoboCasa-GR1</strong> 上把基座模型成功率从 52.1% 提升到 56.4%（+4.27 点），且增益集中在基座最弱的 10 个任务上（平均 +6.47 点）。</li><li>在 <strong>LIBERO</strong> 上保持分布内 98.1%，在 <strong>LIBERO-Plus</strong> 零样本达到 87.7%，相机扰动下 96.9%（对比最强基线 76.6%）。</li><li>真实机器人双臂操作平均成功率 87.0%（过程分 92.3），显著优于最强基线 <strong>π0.5</strong> 的 68.5%；完整十目标后训练比只用策略目标在每个任务上高 12–18 点。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>MMDiT</strong>（多模态扩散 Transformer）架构，在 <strong>LDA</strong> 的视觉–动作骨干上为 3D 流新增一个独立专家，三个专家（动作 / 流 / 视觉）各有私有归一化、Q/K/V 投影、FFN 与 AdaLN 调制，仅通过<strong>联合自注意力</strong>交换信息。</li><li>3D 流表征：用冻结的单目密集 3D 点跟踪器 <strong>Track4World</strong> 离线提取点图与逐帧位移，再用冻结的 <strong>MotionCrafter 4D VAE</strong> 分别编码几何与位移并沿通道拼接成 latent。</li><li>位置编码：在基座绝对位置嵌入之外引入 <strong>MM-RoPE</strong>，将三个专家的 query/key 统一旋转到共享的 (t, h, w) 时空坐标系；流 token 每两帧合并、时间戳按 2t′ 对齐到视觉 patch 网格。</li><li>训练目标：每个样本采样一个目标角色，损失为仅在 target 槽位上计算的<strong>流匹配速度损失</strong>；任务均衡采样器保证每个 batch 覆盖全部十个目标。</li><li>训练策略：从 <strong>LDA</strong> 公开预训练 checkpoint 初始化，先做引入流的 <strong>mid-training</strong>，再在各下游域做 <strong>post-training</strong>；视觉/动作专家用预训练权重初始化，流专家从零训练，Qwen3-VL-4B 与 DINOv3 编码器全程冻结。</li><li>关键工程选择：放弃用图像 VAE（SDXL）编码 3D 位移（会产生流坍缩），改用几何–流训练的 4D VAE；也放弃了逐层门控渐进引入流的设计（反而掉 3.3 点）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>Mid-training 数据（三个公开机器人示教数据集混合）：<strong>RoboCOIN</strong> 47,050 条（6 个平台）、<strong>RoboMIND 2.0</strong> 140,231 条（3 种本体，含 Franka、UR）、<strong>MolmoAct2-BimanualYAM</strong> 27,162 条；合计 <strong>214,443 条 episode、1.33 亿帧、10 种本体</strong>，采样 16 步 chunk、3 帧间隔，约 <strong>4,200 万个训练窗口</strong>。</li><li>仿真评测：<strong>RoboCasa-GR1</strong>（24 个桌面任务，每任务 1,000 条示教，共 24,000 条 / 约 836 万帧 / 83.6 小时 @20fps，29 维关节控制）、<strong>LIBERO</strong>（4 个 suite × 10 任务，Franka Panda，no-noops 版本）、<strong>LIBERO-Plus</strong>（7 类扰动共 10,030 条 episode，零样本协议）。</li><li>真机平台：<strong>AgileX Cobot Magic</strong>（ALOHA 式，双 6-DoF PiPER 臂 + 平行夹爪，1 顶视 + 2 腕视相机，14 维状态/动作），4 个任务各 50 条示教、每任务 50 次试验。</li><li>模型规模：基于 <strong>LDA-1B</strong> 约 1B 参数的视觉–动作骨干，外加新增 3D 流专家；<strong>Qwen3-VL-4B</strong> 提供视觉–语言条件（冻结），<strong>DINOv3</strong> 提供未来视觉特征目标（冻结）。</li><li>训练资源：<strong>48 张 NVIDIA H200 GPU</strong>，全局 batch size 1,536。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评测环境：仿真（RoboCasa-GR1、LIBERO、LIBERO-Plus）+ 真实 ALOHA 式双臂机器人；指标为成功率（SR）与过程分（milestone 完成比例）。</li><li><strong>RoboCasa-GR1</strong>：11 个共享随机种子（每任务每种子 50 条）下，带 mid-training 的 UniFlowWAM 达 <strong>56.38 ± 1.47%</strong>，优于 released LDA 的 52.11 ± 2.24% 与复现 LDA 的 52.76 ± 1.16%；不带 mid-training 为 54.84 ± 1.00%。</li><li><strong>LIBERO / LIBERO-Plus</strong>：LIBERO 平均 <strong>98.05%</strong>（该基准已饱和，仅用于验证分布内性能未退化）；LIBERO-Plus 最佳 checkpoint <strong>87.65%</strong>，7 类扰动中相机扰动优势最大（96.9% vs 基线 76.6%）。</li><li><strong>真实机器人</strong>：平均成功率 <strong>87.0%</strong>（过程分 92.3），对比 π0.5 的 68.5%/77.0、DreamZero 的 30.0%/34.5、LDA 的 15.5%/17.8；四任务全部最优，失败样本仍能拿到 41/100 里程碑分（π0.5 为 27，LDA 仅 3）。</li><li><strong>目标消融（真机，SR%）</strong>：仅策略目标 76/76/72 → 四目标无流 92/80/76 → 流仅作条件 92/88/76 → 完整十目标 94/90/84（chili/pen/towel），流目标在更难的 pen、towel 上分别贡献 +10、+8 点。</li><li><strong>分布外泛化</strong>：增益集中在示教覆盖稀疏处——辣椒横向 90° 姿态组中，仅策略目标成功率 20%，完整目标达 80%。</li><li><strong>位置编码消融</strong>：去掉 MM-RoPE 使 LIBERO-Plus 在各 checkpoint 上降 1.1–2.8 点（最佳点 −2.5），损失集中在机器人初始状态扰动；去掉绝对位置嵌入最佳点降 1.5 点。</li><li><strong>局限</strong>：流伪标签来自 Track4World 存在时序噪声（用 SAM 分割仅保留前景流缓解）；流 mid-training 仅约 1,200 小时示教，远小于 LDA 预训练所用的 EI-30k 语料。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31162/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">HiSTEVE 1.0: Harnessing Human-Interface VLA Agents for Open-World Games</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.30953/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Measuring the Reasoning-Action Coupling in Driving Vision-Language-Action Models through Counterfactuals</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
