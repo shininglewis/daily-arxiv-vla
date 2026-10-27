@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OSWAM: An Effective World Action Model with One-Step Action Generation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 OSWAM，一种面向自动驾驶与具身控制的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到单步，实现实时动作生成。 现有 direct-policy WAM（如 Fast-WAM、SimWAM）虽已避免测试时视频推演，但仍需数十步动作去噪；直接减少步数会使性能在 NAVSIM 上掉约 20%、在 RoboTwin 上掉约 40%。 作者将问题根源归结为：高斯随机噪声初始化缺乏结构化动作先验，单步更新无法一蹴而就地恢复时序与物理一致的动作序列。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.35850">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.35850.webp" alt="OSWAM: An Effective World Action Model with One-Step Action Generation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 OSWAM，一种面向自动驾驶与具身控制的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到单步，实现实时动作生成。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">OSWAM: An Effective World Action Model with One-Step Action Generation</h1>
+            <div class="detail-meta">2026-10-26 · <a href="http://arxiv.org/abs/2610.35850" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.35850" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.35850</span></div>
+            <p class="detail-summary">论文提出 OSWAM，一种面向自动驾驶与具身控制的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到单步，实现实时动作生成。 现有 direct-policy WAM（如 Fast-WAM、SimWAM）虽已避免测试时视频推演，但仍需数十步动作去噪；直接减少步数会使性能在 NAVSIM 上掉约 20%、在 RoboTwin 上掉约 40%。 作者将问题根源归结为：高斯随机噪声初始化缺乏结构化动作先验，单步更新无法一蹴而就地恢复时序与物理一致的动作序列。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">香港理工大学（The Hong Kong Polytechnic University），PolyU…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.35850/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 OSWAM，一种面向自动驾驶与具身控制的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到单步，实现实时动作生成。</p>
+  <ul class="reading-intro-points"><li>论文提出 OSWAM，一种面向自动驾驶与具身控制的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到单步，实现实时动作生成。</li><li>现有 direct-policy WAM（如 Fast-WAM、SimWAM）虽已避免测试时视频推演，但仍需数十步动作去噪；直接减少步数会使性能在 NAVSIM 上掉约 20%、在 RoboTwin 上掉约 40%。</li><li>作者将问题根源归结为：高斯随机噪声初始化缺乏结构化动作先验，单步更新无法一蹴而就地恢复时序与物理一致的动作序列。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>香港理工大学</strong>（The Hong Kong Polytechnic University），<strong>PolyU VCLab</strong>（Visual Computing Lab）</li><li>论文标注为 PolyU VCLab 预印本（2026），第一作者与通讯作者均来自该机构</li><li>代码与项目页面托管于 PolyU-VCLab 的 GitHub 组织</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>OSWAM</strong>，一种面向<strong>自动驾驶</strong>与<strong>具身控制</strong>的 World Action Model（世界动作模型），目标是把动作去噪从数十步压缩到<strong>单步</strong>，实现实时动作生成。</li><li>现有 direct-policy WAM（如 <strong>Fast-WAM</strong>、<strong>SimWAM</strong>）虽已避免测试时视频推演，但仍需数十步动作去噪；直接减少步数会使性能在 <strong>NAVSIM</strong> 上掉约 20%、在 <strong>RoboTwin</strong> 上掉约 40%。</li><li>作者将问题根源归结为：<strong>高斯随机噪声初始化缺乏结构化动作先验</strong>，单步更新无法一蹴而就地恢复时序与物理一致的动作序列。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>OSWAM</strong>：学习紧凑的 <strong>imagination tokens</strong>（想象令牌）作为动作 DiT 的结构化起点，单次前向即可获得，开销可忽略，单步去噪解码出高质量动作。</li><li>引入 <strong>Action Imagination Tokens（AIT）</strong> 与 <strong>Scene Imagination Tokens（SIT）</strong> 两组令牌，在 Video DiT 中与首帧视觉特征交互，分别编码动作先验与场景上下文。</li><li>提出 <strong>特权信息蒸馏</strong>（privileged-information distillation）：教师模型关注完整未来视频片段，学生（OSWAM）推理时仅用首帧，从而在不引入未来特征的前提下迁移长时程上下文。</li><li>设计 <strong>Role-aware 3D RoPE</strong>，用不同空间锚点显式区分视频令牌、AIT 与 SIT，同时保持动作与视频潜空间的时间对齐。</li><li>在自动驾驶与具身控制两类任务上验证：相对 direct-policy WAM 基线约 <strong>3×</strong> 加速，<strong>RTX 5090</strong> 上编译后延迟低至约 <strong>40 ms</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>骨干</strong>：Video DiT 采用 <strong>Wan2.2-5B</strong> 预训练视频生成模型，配 T5 文本编码器与视频 VAE；Action DiT 由 Video DiT 权重插值下采样初始化，整体为 <strong>Mixture-of-Transformer（MoT）</strong> 结构，视频块与动作块共享注意力。</li><li><strong>AIT</strong>：由动作噪声经编码器构造并赋固定时间步 <code>t_max</code>，在 Video DiT 内关注首帧视觉令牌、SIT 与其他 AIT，经辅助解码器得到动作速度，形成结构化先验；再按 <code>σ_r = τ_r / t_max</code> 重新加噪，交给 Action DiT 单步精修。</li><li><strong>SIT</strong>：独立高斯噪声初始化，锚定在视觉网格中心，作为场景上下文槽位供 AIT 关注，梯度经注意力从 AIT 间接回传。</li><li><strong>Role-aware 3D RoPE</strong>：视频令牌保留原始时空坐标，AIT 分配网格外空间坐标，SIT 锚定网格中心；AIT/SIT 与动作位置共享时间坐标 <code>t_n = n·s_a/(s_v·d_t)</code>。</li><li><strong>特权蒸馏</strong>：冻结教师（Video DiT + AIT）在完整未来视频潜变量（未来帧按固定时间步加噪）条件下前向，学生与教师共享同一视频/动作噪声样本，在 Video DiT 第 <strong>[8,16,24,30]</strong> 块后做多深度特征对齐。</li><li><strong>训练目标</strong>：<code>L = L_vid + L_AIT + λ_dist·L_dist + L_act</code>，其中 <code>λ_dist = 10</code>；<code>L_act</code> 以 <code>σ_r^{-1}</code> 缩放残差，保证一次欧拉更新即可从结构化初值直达真实动作。</li><li><strong>关键设置</strong>：AIT 时间步 <code>t_max = 1000</code>，重加噪时间步 <code>τ_r = 500</code>（<code>σ_r = 0.5</code>）；蒸馏在第 500 步后启动并在随后 500 步线性升温；imagination token 使用 rank 8、α=4 的 LoRA 适配。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>NAVSIM</strong>（自动驾驶）：2 Hz 真实驾驶数据，8 路相机 360° 视野 + LiDAR；1192 个训练场景、136 个测试场景；单前视相机 <strong>384×672</strong>，预测 4 秒内 8 个路点，训练用当前帧 + 8 帧未来。</li><li><strong>RoboTwin 2.0</strong>（具身控制）：50+ 双臂操作任务；2500 条干净场景示范 + 25000 条强随机化示范；头部与双腕视图拼接为 <strong>384×320</strong>，动作时域 32，采样 9 帧视频、时间步长 4。</li><li><strong>模型规模</strong>：基于 <strong>Wan2.2-5B</strong>（约 5B 参数）视频 DiT；Action DiT 隐层维度降为 <strong>1024</strong>；LoRA rank 8。</li><li><strong>训练配置</strong>：AdamW，学习率 <strong>1e-4</strong>，权重衰减 0.01，余弦衰减 + 5% 线性预热；NAVSIM 训练 <strong>40,000</strong> 步、全局 batch <strong>256</strong>；RoboTwin 训练 <strong>29,335</strong> 步、全局 batch <strong>1024</strong>。</li><li><strong>推理/测速硬件</strong>：延迟主表在单张 <strong>NVIDIA H20</strong> + Intel Xeon Max 9468 上测得；效率表在单张 <strong>NVIDIA RTX 5090</strong> + Intel Xeon Platinum 8470Q 上测得（原文未明确给出训练所用 GPU 数量）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估基准</strong>：NAVSIM <code>navtest</code> 使用 <strong>PDMS</strong>（由 NC、DAC、TTC、Comfort、EP 加权组合）与推理延迟；RoboTwin 2.0 在 Clean 与 Randomized 两种条件下各任务 100 次试验的平均成功率。</li><li><strong>NAVSIM</strong>：PDMS <strong>90.3</strong>，延迟 <strong>136 ms</strong>；与 <strong>SimWAM</strong> PDMS 持平但动作去噪从 10 步降为 1 步，加速 <strong>3.01×</strong>；比 <strong>Metis</strong> 高 1.2 PDMS 且快 <strong>3.24×</strong>；比 <strong>DriveVA</strong> 快 <strong>4.36×</strong> 而 PDMS 仅低 0.2。</li><li><strong>RoboTwin 2.0</strong>：平均成功率 <strong>90.00%</strong>（Clean 90.04 / Rand. 89.96），延迟 <strong>142 ms</strong>；相对 <strong>Fast-WAM</strong> 加速 <strong>2.80×</strong>，成功率仅降 1.83%；相对单步 <strong>Flash-WAM</strong> 提升 <strong>8.59%</strong> 且加速 <strong>4.29×</strong>；比 <strong>Light-WAM</strong> 多 35 ms 延迟但成功率大幅提升。</li><li><strong>推理效率</strong>：RoboTwin 上动作 GPU 时间由 <strong>67.61 ms</strong> 降至 <strong>6.78 ms</strong>，视觉 GPU 时间增加 5.48 ms，总体延迟 323.67 → <strong>95.35 ms</strong>（3.39×）；NAVSIM 上总体延迟 330.8 → <strong>99.70 ms</strong>（3.32×）；启用 <code>torch.compile</code> + CUDA Graph 后分别为 <strong>40.81 ms</strong> 与 <strong>52.64 ms</strong>，支持 10 Hz 以上推理。</li><li><strong>消融</strong>：基线 PDMS 71.04 → 加入 <strong>AIT</strong> 89.81 → 加入<strong>蒸馏</strong> 89.96 → 加入 <strong>SIT</strong> <strong>90.28</strong>（ADE 从 1.049 降至 0.587）；RoboTwin 上对应成功率 57.38/55.80 → 87.42/88.16 → 89.42/89.62 → <strong>90.04/89.96</strong>；另对蒸馏权重 <code>λ_dist</code> 做了敏感性分析。</li><li><strong>实机验证</strong>：论文包含 Real-World Evaluation 章节（所提供的截断原文未含具体数值）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2610.35832/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Profiling a Frontier Agent with EBench: From Direct Control to Harness with Policy</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Late Breaking Results: Audio-Language-Action Models with Direct Speech Conditioning for Robotic Manipulation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 Speech-π0.5，一种 audio-language-action 模型，可将原始语音直接映射为机器人动作指令，跳过显式文本转录环节 现有 VLA 模型（如 π0.5）只接受打字文本输入；传统方案是在 VLA 前接一个 ASR（如 Whisper）先把语音转成文本，但这会带来较大响应延迟，并传播转录错误 核心目标是验证：能否在不经过 ASR 解码器的前提下，把语音模态直接接入高性能 VLA，同时保持任务成功率与口音鲁棒性" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.33866">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.33866.webp" alt="Late Breaking Results: Audio-Language-Action Models with Direct Speech Conditioning for Robotic Manipulation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 Speech-π0.5，一种 audio-language-action 模型，可将原始语音直接映射为机器人动作指令，跳过显式文本转录环节</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Late Breaking Results: Audio-Language-Action Models with Direct Speech Conditioning for Robotic Manipulation</h1>
+            <div class="detail-meta">2026-10-24 · <a href="http://arxiv.org/abs/2610.33866" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.33866" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.33866</span></div>
+            <p class="detail-summary">提出 Speech-π0.5，一种 audio-language-action 模型，可将原始语音直接映射为机器人动作指令，跳过显式文本转录环节 现有 VLA 模型（如 π0.5）只接受打字文本输入；传统方案是在 VLA 前接一个 ASR（如 Whisper）先把语音转成文本，但这会带来较大响应延迟，并传播转录错误 核心目标是验证：能否在不经过 ASR 解码器的前提下，把语音模态直接接入高性能 VLA，同时保持任务成功率与口音鲁棒性</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Northeastern University（东北大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.33866/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 Speech-π0.5，一种 audio-language-action 模型，可将原始语音直接映射为机器人动作指令，跳过显式文本转录环节</p>
+  <ul class="reading-intro-points"><li>提出 Speech-π0.5，一种 audio-language-action 模型，可将原始语音直接映射为机器人动作指令，跳过显式文本转录环节</li><li>现有 VLA 模型（如 π0.5）只接受打字文本输入；传统方案是在 VLA 前接一个 ASR（如 Whisper）先把语音转成文本，但这会带来较大响应延迟，并传播转录错误</li><li>核心目标是验证：能否在不经过 ASR 解码器的前提下，把语音模态直接接入高性能 VLA，同时保持任务成功率与口音鲁棒性</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Northeastern University</strong>（东北大学）</li><li><strong>EmbodyX Inc.</strong></li><li>论文发表于 <strong>DAC '26</strong>（63rd ACM/IEEE Design Automation Conference，2026 年 7 月 26–29 日，Long Beach, CA, USA），属于 Late Breaking Results 类型</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>Speech-π0.5</strong>，一种 audio-language-action 模型，可将<strong>原始语音直接映射为机器人动作指令</strong>，跳过显式文本转录环节</li><li>现有 VLA 模型（如 <strong>π0.5</strong>）只接受<strong>打字文本</strong>输入；传统方案是在 VLA 前接一个 ASR（如 <strong>Whisper</strong>）先把语音转成文本，但这会带来较大响应延迟，并传播转录错误</li><li>核心目标是验证：能否在不经过 ASR 解码器的前提下，把语音模态直接接入高性能 VLA，同时保持任务成功率与口音鲁棒性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>cross-modal projection</strong>：把语音隐藏状态压缩为紧凑的 VLM token，绕过自回归 ASR 解码器</li><li>提出 <strong>split LoRA</strong> 适配：为音频与任务分别设置专用低秩适配器，按 token 位置路由，缓解单一适配器对训练音色的过拟合</li><li>设计<strong>两阶段训练</strong>流程（语音–语言对齐 + 任务训练），并采用非对称学习率，防止灾难性遗忘</li><li>实现 <strong>3× 响应延迟降低</strong>（首动作 109 ms，对比 ASR 流水线 324 ms），同时在 <strong>LIBERO</strong> 上保持有竞争力的任务成功率</li><li>在<strong>未见口音</strong>上表现稳健：基线单 LoRA 在 LIBERO-Object 上从 69% 骤降至 38%，而本方法仅轻微下降</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>语音编码</strong>：使用冻结的 <strong>Whisper-large-v3</strong> 语音编码器输出帧级隐藏状态 <strong>H ∈ R^{N×d_s}</strong>（<strong>N = 1500</strong> 帧）</li><li><strong>跨模态投影</strong>：两层 MLP（GeLU 激活）将帧级特征投影到 VLM token 空间 R^{d_v}，再由带 <strong>K = 32</strong> 个可学习查询向量的<strong>交叉注意力池化模块</strong>压缩为 <strong>Z_audio ∈ R^{32×d_v}</strong>，把 1500 帧压缩成 32 个 token，使 ASR 阶段延迟降低 <strong>94–97%</strong></li><li><strong>Split LoRA</strong>：<strong>Gemma-2B</strong> 主干共 <strong>18 层</strong>，每层配置<strong>两个 rank-16 适配器</strong>——<strong>task LoRA</strong>（B_t A_t，作用于文本/动作位置）与 <strong>audio LoRA</strong>（B_a A_a，作用于音频位置），按位置集合 <strong>P_audio</strong> / <strong>P_text/action</strong> 路由，使两条通路互不干扰</li><li><strong>阶段一（语音–语言对齐）</strong>：以原始 <strong>PaliGemma（π0.5 主干）</strong> 在真值文本输入下的输出作为教师，通过 <strong>MSE 蒸馏损失</strong>让带投影与 audio LoRA 的模型在语音输入下对齐语言内容；训练数据为机器人领域 TTS（<strong>100k</strong> 条指令、<strong>~30</strong> 种音色）混合任务专用词汇，动作专家保持冻结</li><li><strong>阶段二（任务训练）</strong>：在机器人示教数据上用 <strong>flow matching 动作损失</strong>优化 task LoRA、audio LoRA、动作专家 LoRA 与音频投影器；语音编码器与基座权重冻结；<strong>audio LoRA 使用更小的学习率</strong>，避免任务梯度覆盖已学到的语音表征</li><li>关键创新点：投影层与 LoRA 模块的联合优化，兼得任务级操作能力与语音识别通路的泛化性</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong> 基准的两个子集：<strong>LIBERO-Spatial</strong> 与 <strong>LIBERO-Object</strong>（各 10 个任务，每任务 50 回合，每条件 <strong>n = 500</strong>）</li><li>训练语音合成：<strong>Piper TTS</strong>（<strong>22 个 VCTK 说话人</strong>），共 <strong>100k</strong> 条机器人领域指令、约 <strong>30</strong> 种音色</li><li>留出评估语音：<strong>10 个 Azure Neural TTS 音色</strong>，其口音在训练中未出现</li><li>模型规模：基于 <strong>π0.5</strong>（PaliGemma 视觉-语言主干 + <strong>Gemma-2B</strong>、18 层），LoRA 秩为 <strong>16</strong>；语音编码器为 <strong>Whisper-large-v3</strong></li><li>训练资源未明确给出 GPU 型号与数量；延迟测试在 <strong>NVIDIA H100</strong> 上进行（batch = 1，100 次运行）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：仿真基准 <strong>LIBERO-Spatial / LIBERO-Object</strong>，每条件 500 回合；延迟测试硬件为 <strong>H100</strong>（batch = 1，100 次运行）</li><li><strong>主要指标</strong>：任务成功率（%）、从语音输入到机器人首个动作的响应延迟（ms）</li><li><strong>任务成功率</strong>：本方法在 LIBERO-Spatial 达 <strong>89.2%</strong>、LIBERO-Object 达 <strong>86.0%</strong>，明显优于单 LoRA 基线的 <strong>69.0% / 69.0%</strong>；ASR 流水线 + π0.5 文本 oracle 为 <strong>95.6% / 95.0%</strong>（性能更高但延迟大）</li><li><strong>口音鲁棒性</strong>：在未见口音上，本方法为 <strong>85.4% / 84.8%</strong>（仅小幅下降）；单 LoRA 基线为 <strong>68.4% / 38.0%</strong>，其中 LIBERO-Object 上出现 69% → 38% 的严重退化</li><li><strong>延迟</strong>：ASR 流水线（Whisper-v3 解码 216.7 ms + π0.5 推理 107.7 ms）总计 <strong>324.4 ms</strong>；Speech-π0.5 仅 <strong>109.1 ms</strong>，实现 <strong>3.0× 加速</strong></li><li>结论：端到端语音到动作建模可消除 ASR 解码器瓶颈，在保持有竞争力成功率的同时显著降低响应延迟，并提升跨口音泛化能力</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.33941/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">TurboWAM: Learning What Matters for Fast World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.33794/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">One Scan is Enough: Demonstration-Free Adaptation for Language-Guided Navigation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

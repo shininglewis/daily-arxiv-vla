@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What Does World Modeling Actually Improve in Robot Action Learning? - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 World Action Models (WAMs) 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。 通过在 FastWAM 和 OpenWAM 两个模型家族内进行受控的未来视频预测损失消融，分析预测监督在熟悉任务执行、行为模式变化以及分布偏移下的表现。 进一步将未来视频预测作为 π0.5 的辅助训练目标，探究是否必须依赖大型预训练视频生成模型才能获得预测监督的收益。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.34593">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.34593.webp" alt="What Does World Modeling Actually Improve in Robot Action Learning?" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 World Action Models (WAMs) 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">What Does World Modeling Actually Improve in Robot Action Learning?</h1>
+            <div class="detail-meta">2026-10-25 · <a href="http://arxiv.org/abs/2610.34593" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.34593" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.34593</span></div>
+            <p class="detail-summary">论文研究 World Action Models (WAMs) 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。 通过在 FastWAM 和 OpenWAM 两个模型家族内进行受控的未来视频预测损失消融，分析预测监督在熟悉任务执行、行为模式变化以及分布偏移下的表现。 进一步将未来视频预测作为 π0.5 的辅助训练目标，探究是否必须依赖大型预训练视频生成模型才能获得预测监督的收益。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">MAIS &amp; NLPR, Institute of Automation, Chinese Acade…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.34593/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 World Action Models (WAMs) 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。</p>
+  <ul class="reading-intro-points"><li>论文研究 World Action Models (WAMs) 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。</li><li>通过在 FastWAM 和 OpenWAM 两个模型家族内进行受控的未来视频预测损失消融，分析预测监督在熟悉任务执行、行为模式变化以及分布偏移下的表现。</li><li>进一步将未来视频预测作为 π0.5 的辅助训练目标，探究是否必须依赖大型预训练视频生成模型才能获得预测监督的收益。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>MAIS & NLPR, Institute of Automation, Chinese Academy of Sciences</strong></li><li><strong>School of Artificial Intelligence, University of Chinese Academy of Sciences</strong></li><li><strong>Beijing Geekplus Technology Co., Ltd.</strong></li><li><strong>School of Computer Science and Engineering, Central South University</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>World Action Models (WAMs)</strong> 中未来视频预测监督对机器人动作学习的具体作用，而不仅仅关注任务成功率是否提升。</li><li>通过在 <strong>FastWAM</strong> 和 <strong>OpenWAM</strong> 两个模型家族内进行受控的未来视频预测损失消融，分析预测监督在熟悉任务执行、行为模式变化以及分布偏移下的表现。</li><li>进一步将未来视频预测作为 <strong>π0.5</strong> 的辅助训练目标，探究是否必须依赖大型预训练视频生成模型才能获得预测监督的收益。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>FastWAM</strong> 和 <strong>OpenWAM</strong> 中分别进行受控的未来视频预测损失消融，保持模型架构、初始化、机器人训练数据和训练步数固定，仅改变是否加入未来视频预测损失。</li><li>发现在 Seen+Clean 条件下，预测监督分别使 <strong>FastWAM</strong> 和 <strong>OpenWAM</strong> 的成功率提升 <strong>24.38</strong> 和 <strong>72.91</strong> 个百分点，并通过轨迹聚类证明增益部分来自相似轨迹模式内的执行改善，而不仅是轨迹模式频率变化。</li><li>揭示预测监督的收益在分布偏移下不能稳定保持：未见任务上的提升因模型和任务而异，环境随机化下两个 WAM 的绝对成功率都很低，且无一致的预测监督优势。</li><li>在 <strong>π0.5</strong> 上引入仅训练时使用的轻量级 Transformer 未来视频预测器，将成功率从 <strong>82.94%</strong> 提升到 <strong>89.19%</strong>，表明无需大型预训练视频 DiT 分支也能获得辅助预测收益。</li><li>提出应分别评估训练目标带来的分布内增益与迁移能力，聚合成功率不能完全反映行为影响，预测训练目标的价值不应与大型视频生成器的必要性混为一谈。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用统一损失形式 <strong>L = L_action + λ_video · L_video</strong>，通过设置 <strong>λ_video = 0</strong> 或 <strong>λ_video = 1</strong> 进行受控对比，不改变模型架构或参数量。</li><li>在 <strong>FastWAM</strong> 和 <strong>OpenWAM</strong> 内部分别保持架构、初始化、模块冻结配置和训练步数一致，仅改变未来视频预测损失是否启用。</li><li>通过数值轨迹特征进行 <strong>K-means 聚类</strong>，将成功率分解为模式频率 <strong>P(z=k\|m)</strong> 和模式内成功率 <strong>P(success\|z=k,m)</strong>，以区分行为变化来源。</li><li>在 <strong>π0.5</strong> 上比较三种配置：原始策略、轻量级 Transformer 视频预测分支、预训练 <strong>Wan2.2-TI2V-5B</strong> 视频 DiT 分支；两种辅助分支均仅在训练时使用，推理时移除。</li><li>轻量级分支使用随机初始化的 <strong>6 层 Transformer</strong>（8 个注意力头），将 2048 维共享前缀投影到 512 维，在冻结 <strong>Wan2.2 VAE</strong> 的潜在空间中用流匹配损失预测未来视频 latent。</li><li>Wan 分支通过可训练前缀适配器将共享表示映射到 Wan 条件空间，并结合冻结 <strong>T5</strong> 文本特征，使用预训练 <strong>Wan2.2-TI2V-5B DiT</strong> 进行未来视频预测。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>RoboTwin 2.0</strong> 的双臂操作数据进行训练，训练集包含 <strong>40</strong> 个任务，每个任务 <strong>45</strong> 条演示用于训练，<strong>5</strong> 条用于验证。</li><li>评估涉及 <strong>Seen/Unseen</strong> 任务与 <strong>Clean/Randomized</strong> 环境的组合条件。</li><li>主要模型包括 <strong>FastWAM</strong>、<strong>OpenWAM</strong> 和 <strong>π0.5</strong>。</li><li>论文未在提供的正文中明确说明 GPU/TPU 的具体型号和数量；训练资源细节未详细列出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估平台为 <strong>RoboTwin 2.0</strong> 仿真环境，任务为双臂机器人操作。</li><li>主要指标为任务成功率 <strong>Success Rate (SR)</strong> 及其变化 <strong>ΔSR</strong>，辅以轨迹模式频率和模式内成功率分析。</li><li><strong>Experiment 1</strong>（10 个 Seen+Clean 任务）：<strong>FastWAM</strong> 从 <strong>14.97%</strong> 提升到 <strong>39.34%</strong>（<strong>+24.38 pp</strong>）；<strong>OpenWAM</strong> 从 <strong>7.00%</strong> 提升到 <strong>79.91%</strong>（<strong>+72.91 pp</strong>）。</li><li><strong>Experiment 3</strong>（5 个 Seen 任务 + 10 个 Unseen 任务）：Seen+Clean 下 <strong>FastWAM +36.37 pp</strong>、<strong>OpenWAM +89.25 pp</strong>；Unseen+Clean 下 <strong>FastWAM +0.28 pp</strong>、<strong>OpenWAM +23.38 pp</strong>；Randomized 条件下绝对成功率最高仅 <strong>3.22%</strong>，预测监督无一致正优势。</li><li>行为分析示例：<strong>FastWAM</strong> 的 <strong>stack_blocks_two</strong> 任务中，主导模式 M0 的频率从 <strong>90.4%</strong> 变为 <strong>90.0%</strong>，但模式内成功率从 <strong>50.2%</strong> 提升到 <strong>89.5%</strong>。</li><li><strong>π0.5</strong> 实验：原始成功率 <strong>82.94%</strong>；加入轻量级视频预测器后 <strong>89.19%</strong>（<strong>+6.25 pp</strong>）；加入 <strong>Wan2.2-TI2V-5B</strong> 后 <strong>86.97%</strong>（<strong>+4.03 pp</strong>）；轻量级与原始差异的 95% 置信区间为 <strong>[2.31, 10.31]</strong>，Wan 与原始差异为 <strong>[0.16, 8.22]</strong>，轻量级与 Wan 差异为 <strong>[-5.63, 1.25]</strong> 且包含零。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.34649/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">RobotAgentBench: Towards Open-world Robot Autonomy</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.34519/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">TRIAGE: Efficient Vision-Language-Action Inference Needs Both Reuse and Pruning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

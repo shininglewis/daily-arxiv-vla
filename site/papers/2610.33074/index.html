@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AGQ: Action-Guided Ultra-Low-Bit Quantization for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="针对 视觉-语言-动作模型（VLA） 权重规模大、难以部署在内存受限的机载平台的问题，研究超低比特量化压缩方法。 目标是在激进压缩（低至 W2、W2.5 甚至 W1.5 语言权重）下，依然保持闭环机器人任务的成功率，同时控制权重恢复（weight recovery）时的计算与临时缓存开销。 指出现有 PTQ 方法（AWQ、GPTQ）和面向 VLA 的 QVLA、ActQuant 在极低比特下任务成功率崩塌，且未显式建模解码与恢复成本。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.33074">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">AGQ: Action-Guided Ultra-Low-Bit Quantization for Vision-Language-Action Models</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">AGQ: Action-Guided Ultra-Low-Bit Quantization for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-10-21 · <a href="http://arxiv.org/abs/2610.33074" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.33074" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.33074</span></div>
+            <p class="detail-summary">针对 视觉-语言-动作模型（VLA） 权重规模大、难以部署在内存受限的机载平台的问题，研究超低比特量化压缩方法。 目标是在激进压缩（低至 W2、W2.5 甚至 W1.5 语言权重）下，依然保持闭环机器人任务的成功率，同时控制权重恢复（weight recovery）时的计算与临时缓存开销。 指出现有 PTQ 方法（AWQ、GPTQ）和面向 VLA 的 QVLA、ActQuant 在极低比特下任务成功率崩塌，且未显式建模解码与恢复成本。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">东南大学 计算机科学与工程学院（School of Computer Science and Engi…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.33074/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">针对 视觉-语言-动作模型（VLA） 权重规模大、难以部署在内存受限的机载平台的问题，研究超低比特量化压缩方法。</p>
+  <ul class="reading-intro-points"><li>针对 视觉-语言-动作模型（VLA） 权重规模大、难以部署在内存受限的机载平台的问题，研究超低比特量化压缩方法。</li><li>目标是在激进压缩（低至 W2、W2.5 甚至 W1.5 语言权重）下，依然保持闭环机器人任务的成功率，同时控制权重恢复（weight recovery）时的计算与临时缓存开销。</li><li>指出现有 PTQ 方法（AWQ、GPTQ）和面向 VLA 的 QVLA、ActQuant 在极低比特下任务成功率崩塌，且未显式建模解码与恢复成本。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>东南大学</strong> 计算机科学与工程学院（School of Computer Science and Engineering, Southeast University，南京）</li><li><strong>莫纳什大学</strong> 信息技术学院（School of Information Technology, Monash University，马来西亚梳邦再也）</li><li><strong>香港科技大学</strong> 电子与计算机工程系（Department of Electronic & Computer Engineering, HKUST，香港）</li><li><strong>中国科学院深圳先进技术研究院</strong>（Shenzhen Institutes of Advanced Technology, Chinese Academy of Sciences，深圳）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>针对 <strong>视觉-语言-动作模型（VLA）</strong> 权重规模大、难以部署在内存受限的机载平台的问题，研究超低比特量化压缩方法。</li><li>目标是在激进压缩（低至 W2、W2.5 甚至 W1.5 语言权重）下，依然保持闭环机器人任务的成功率，同时控制权重恢复（weight recovery）时的计算与临时缓存开销。</li><li>指出现有 PTQ 方法（<strong>AWQ</strong>、<strong>GPTQ</strong>）和面向 VLA 的 <strong>QVLA</strong>、<strong>ActQuant</strong> 在极低比特下任务成功率崩塌，且未显式建模解码与恢复成本。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>AGQ（Action-Guided Quantization）</strong>：以矩阵为单位分配位宽，融合“动作敏感度先验”和“实测权重恢复开销”，在显式存储预算下做混合精度分配。</li><li>提出配套的校准与执行流水线：<strong>逐通道量化器校准</strong>、<strong>分组无损编码</strong>和<strong>分块恢复</strong>，同时降低量化误差、常驻权重存储与临时权重缓存。</li><li>给出一个非对称配置 <strong>W1.5\</strong>*（视觉 W4 + 语言按参数量加权平均 1.5 bit），在 <strong>LIBERO</strong> 闭环任务上验证极低比特可行性。</li><li>在 <strong>RTX 3090</strong> 上实测部署开销（模型体积、峰值显存、时延），揭示了“存储压缩”与“解码时延”之间的权衡并非单调关系。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>动作引导位分配</strong>：每个权重矩阵只量化为 W4、其余保持 BF16，用同输入下的动作偏差定义敏感度 $S_i$（6 维位姿 × 8 步预测的平均平方误差）；并用 W4 与 BF16 的同输入计时差 $C_i$ 作为恢复开销的实测代理。</li><li>归一化后加权打分 $\rho_i = S_i/\sum_j S_j + \lambda C_i/\sum_j C_j$，在存储预算 $\sum_i A_i(b_i) \le B$、$b_i \in \{1,2,3,4\}$ 约束下最小化 $\sum_i \rho_i(4-b_i)^2$，即敏感度或开销越大的矩阵越受保护（二次惩罚为保守分配规则）。</li><li><strong>逐通道校准</strong>：借鉴 <strong>OmniQuant</strong> 的裁剪系数学习与 <strong>BRECQ</strong> 的块重建，学习通道上下界 $[\ell_j, u_j]$ 从而得到 scale $s_j$ 与零点 $z_j$；以冻结 BF16 块输出为监督目标，用 AdamW 反向传播更新裁剪系数，恢复量化误差；每个矩阵内部保持统一位宽以维持规整访存。</li><li><strong>位宽相关分组无损编码</strong>：W2 取 4 个相邻值、W3/W4 取 2 个相邻值组成联合 <strong>Huffman</strong> 符号（6 或 8 bit，码表不超过 256 项），W1 保持原始打包；编码块切分为可独立解码的段，并用前缀查表减少逐位遍历。</li><li><strong>分块执行</strong>：编码权重常驻显存，进入块时解码并与解包、反量化融合成单个 GPU kernel，再接 BF16 矩阵乘；块退出即释放临时 BF16 权重（语言 7 个矩阵 / 视觉 4 个矩阵），使临时稠密权重上界为最大活跃块。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集与基准：<strong>LIBERO</strong> 四个子集（Spatial、Object、Goal、Long），基座模型为 <strong>OpenVLA-OFT</strong>。</li><li>评测规模：10 种配置 × 600 个闭环 episode（每子集 150 个），合计 <strong>6000</strong> 次闭环评测。</li><li>计算资源：部分权重在 <strong>A100</strong> 上校准，全部评测在 <strong>RTX 3090</strong> 上进行。</li><li>模型规模：BF16 全模型存储 <strong>15.457 GB</strong>，峰值显存 16.082 GB；论文未给出参数量与训练资源细节。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：LIBERO 闭环成功率（总体与分子集），以及完整模型存储、峰值 GPU 显存、10 个固定输入的平均时延；每次调用预测 8 个动作，计时不含观测预处理与动作后处理。</li><li>位分配有效性：动作敏感度跨度 <strong>20.2×</strong>、恢复开销跨度 <strong>2.0×</strong>，同层内亦存在差异，支持矩阵级分配；W2.5 下 $\lambda$ 从 0 增至 0.5 使 W1 矩阵由 54 降到 19（W1–W4 为 19/150/199/60）。</li><li>超低比特成功率：<strong>W3 达 92.7%</strong>，超 AWQ 1.2、GPTQ 3.7、QVLA 55.3 个百分点；<strong>W2.5 达 70.5%</strong>（QVLA 0.0%，随机分配 8.2%，$\lambda=0$ 仅敏感度分配 65.8%）；<strong>W2 达 35.0%</strong>（AWQ/GPTQ 均为 0.0%）；W4 达 <strong>97.7%</strong>，反超 BF16 的 96.9%。</li><li>极致压缩：<strong>W1.5\</strong>* 保留 <strong>25.5%</strong> 成功率；配合无损编码完整模型从 15.457 GB 降至 <strong>2.534 GB（6.10× 压缩，相对 BF16）</strong>，峰值显存由 16.082 GB 降至 <strong>3.537 GB（降 78.0%）</strong>。</li><li>时延权衡：BF16 为 187.3 ms，未编码 W4–W1.5\* 为 243.6–254.4 ms；编码后 W1.5\* 升至 310.4 ms、W2.5 升至 473.9 ms——存储增益更大并不必然带来更快推理，需与解码代价联合评估。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.31845/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">EgoForesight: Effectively Scaling Policy Learning with Noisy Egocentric Actions</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.31670/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

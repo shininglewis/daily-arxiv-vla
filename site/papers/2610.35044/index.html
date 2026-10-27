@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DriveUniTok: A Unified Multimodal Tokenizer for Driving World-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DriveUniTok，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。 基于冻结的 DriveUniTok，论文将预训练扩散模型适配为 DriveUniWAM，预测未来统一 latent，并解码未来外观、深度和自车轨迹，实现联合未来场景预测与规划。 论文旨在解决现有 WAM 中外观、几何和自车运动表示不对称、模态流分离导致的信息损失与跨模态不一致问题。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.35044">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.35044.webp" alt="DriveUniTok: A Unified Multimodal Tokenizer for Driving World-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DriveUniTok，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DriveUniTok: A Unified Multimodal Tokenizer for Driving World-Action Models</h1>
+            <div class="detail-meta">2026-10-26 · <a href="http://arxiv.org/abs/2610.35044" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.35044" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.35044</span></div>
+            <p class="detail-summary">论文提出 DriveUniTok，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。 基于冻结的 DriveUniTok，论文将预训练扩散模型适配为 DriveUniWAM，预测未来统一 latent，并解码未来外观、深度和自车轨迹，实现联合未来场景预测与规划。 论文旨在解决现有 WAM 中外观、几何和自车运动表示不对称、模态流分离导致的信息损失与跨模态不一致问题。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.35044/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DriveUniTok，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。</p>
+  <ul class="reading-intro-points"><li>论文提出 DriveUniTok，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。</li><li>基于冻结的 DriveUniTok，论文将预训练扩散模型适配为 DriveUniWAM，预测未来统一 latent，并解码未来外观、深度和自车轨迹，实现联合未来场景预测与规划。</li><li>论文旨在解决现有 WAM 中外观、几何和自车运动表示不对称、模态流分离导致的信息损失与跨模态不一致问题。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>小米汽车</strong>（Xiaomi EV）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DriveUniTok</strong>，一种面向驾驶世界-动作模型（WAM）的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 深度所表示的度量几何、以及自车运动编码到同一个可解码连续 latent 中。</li><li>基于冻结的 <strong>DriveUniTok</strong>，论文将预训练扩散模型适配为 <strong>DriveUniWAM</strong>，预测未来统一 latent，并解码未来外观、深度和自车轨迹，实现联合未来场景预测与规划。</li><li>论文旨在解决现有 WAM 中外观、几何和自车运动表示不对称、模态流分离导致的信息损失与跨模态不一致问题。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DriveUniTok</strong>：基于 query 的统一多模态 tokenizer，将 RGB 外观、投影 LiDAR 几何和 clip-relative 自车姿态编码进同一连续 latent。</li><li>提出 <strong>DriveUniWAM</strong>：基于扩散的 WAM，在统一 latent 上联合预测未来场景与自车轨迹，而非使用独立的观测生成和动作生成通路。</li><li>使用 <strong>Flow-GRPO</strong> 和 <strong>NAVSIM PDM</strong> 奖励进行强化学习后训练，在冻结 tokenizer 的前提下进一步优化规划策略。</li><li>在 <strong>NAVSIM</strong> 上证明统一 tokenization 相比分离模态流方案具有更好的预测与规划性能，并降低下游计算成本。</li><li><strong>DriveUniWAM</strong> 在强化学习后训练后达到 <strong>91.54 PDMS</strong>，在被评估的 WAM-based planners 中达到 state-of-the-art 水平。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>多模态编码器</strong>：RGB 和投影深度共享冻结的 <strong>DINOv3-L</strong> 特征层级；深度使用单通道 patch embedding 和模态嵌入；自车姿态经可训练 ego state encoder 映射为 <strong>8</strong> 个 ego tokens。</li><li><strong>统一 query 融合</strong>：使用 <strong>576</strong> 个图像 query 和 <strong>8</strong> 个 ego query，共 <strong>584</strong> 个共享 query；通过 self-attention 与 deformable cross-attention 依次聚合 RGB 和深度特征，使三种模态在时序压缩前交互。</li><li><strong>时序压缩</strong>：对每个 query 的 <strong>T=5</strong> 帧状态使用 causal self-attention、learned pooling query 和 Gaussian bottleneck，压缩为单个 <strong>d=16</strong> 的连续 latent token。</li><li><strong>多模态解码器</strong>：将统一 latent 扩展回 <strong>T</strong> 个帧级 memory，使用共享 Transformer 和 target-specific mask tokens 分别解码 RGB、深度和自车姿态；额外加入仅训练时使用的语义分支，与冻结 <strong>DINOv3-L</strong> 特征做 cosine 对齐。</li><li><strong>训练目标</strong>：包含 RGB 重建损失、置信度加权深度回归损失、自车姿态 L1 损失、语义 cosine 损失和 KL 正则。</li><li><strong>DriveUniWAM</strong>：冻结 <strong>DriveUniTok</strong>，从 <strong>Wan2.2-TI2V-5B</strong> 初始化去噪器，仅调整输入输出投影；使用 flow matching 预测统一 latent 的速度场，历史 latent 作为干净上下文，未来 latent 加噪重建。</li><li><strong>强化学习后训练</strong>：使用 <strong>Flow-GRPO</strong> 针对 <strong>NAVSIM PDM</strong> 奖励优化采样未来，仅训练去噪器中的 <strong>LoRA</strong> 适配器，tokenizer、解码器和参考策略保持冻结。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>NAVSIM</strong> 数据集，其来自 <strong>nuPlan</strong> 的 <strong>OpenScene</strong> 子集；在 NAVSIM 训练集上训练 <strong>DriveUniTok</strong> 和 <strong>DriveUniWAM</strong>，在 <strong>navtest</strong> 上评估。</li><li>额外报告 <strong>NAVSIM-v2</strong> 上的规划结果。</li><li>输入包括前视相机 RGB、投影到图像平面的稀疏 LiDAR 深度、以及相对 clip 首帧的自车姿态；序列长度 <strong>T=5</strong>，采样频率 <strong>2 Hz</strong>，图像分辨率 <strong>288×512</strong>。</li><li><strong>DriveUniTok</strong> 输出 <strong>584</strong> 个 token、宽度 <strong>d=16</strong> 的统一 latent；视觉骨干为冻结的 <strong>DINOv3-L</strong>。</li><li><strong>DriveUniWAM</strong> 主实验基于 <strong>Wan2.2-TI2V-5B</strong>（5B 级扩散骨干）；泛化实验覆盖 <strong>Wan2.1-T2V-1.3B</strong>、<strong>CogVideoX-2B</strong>、<strong>Cosmos-Predict2.5-2B</strong>、<strong>Wan2.2-TI2V-5B</strong>、<strong>HunyuanVideo-1.5-8.3B</strong>。</li><li>提供的 HTML 原文未明确给出 GPU/TPU 型号、数量及训练时长；<strong>DriveUniTok</strong> 自身参数量也未在已提供内容中明确列出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>NAVSIM navtest</strong> 非反应式规划基准；同时评估多模态重建、联合未来预测和规划性能。</li><li>重建指标包括 <strong>LPIPS_VGG</strong>、<strong>LPIPS_DINO</strong>、<strong>PSNR</strong>、<strong>SSIM</strong>、<strong>rFVD_I3D</strong>、<strong>rFVD_VJ</strong>；深度指标包括 <strong>MAE</strong>、<strong>AbsRel</strong>、<strong>RMSE</strong>；自车运动指标包括 <strong>ADE</strong>、<strong>FDE</strong>。</li><li>规划指标包括 <strong>NC</strong>、<strong>DAC</strong>、<strong>EP</strong>、<strong>TTC</strong>、<strong>Comfort</strong> 和 <strong>PDMS</strong>。</li><li><strong>DriveUniTok</strong> 在 benchmark-scale 方法中取得最低 <strong>LPIPS_DINO=0.1063</strong> 和 <strong>rFVD_VJ=3.4546</strong>，分别比第二名提升 <strong>18.7%</strong> 和 <strong>39.7%</strong>。</li><li>与 natural-budget 分离流控制相比，统一设计使用约一半 token 和 latent scalars、序列长度减半、每步 DiT 计算降低约 <strong>52%</strong>，同时将 <strong>PDMS</strong> 从 <strong>90.1</strong> 提升到 <strong>91.0</strong>。</li><li>在等预算分离流控制下，<strong>DriveUniTok</strong> 将 <strong>gFVD_VJ</strong> 降低约 <strong>48%</strong>、未来深度 <strong>AbsRel</strong> 降低约 <strong>43%</strong>、轨迹 <strong>ADE</strong> 降低近 <strong>9%</strong>，并将 <strong>PDMS</strong> 从 <strong>87.5</strong> 提升到 <strong>91.0</strong>。</li><li><strong>DriveUniWAM</strong> 仅相机输入达到 <strong>90.5 PDMS</strong>；加入投影 LiDAR 后达到 <strong>91.0 PDMS</strong>；强化学习后训练后达到 <strong>91.54 PDMS</strong>。</li><li><strong>DriveUniWAM</strong> 在 <strong>NAVSIM-v2</strong> 上取得 <strong>90.3 EPDMS</strong>。</li><li>替换原生 VAE 为 <strong>DriveUniTok</strong> 后，<strong>Wan2.1-1.3B</strong> 的 <strong>PDMS</strong> 提升 <strong>2.5</strong> 点，<strong>Wan2.2-5B</strong> 提升 <strong>3.1</strong> 点；在五种视频扩散骨干上，统一 latent 取得 <strong>88.9–91.0 PDMS</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.35252/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Labference: Benchmarking the Reasoning-Action Connection in Robotic Laboratories</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.35010/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">JevVLA: Jev-Inspired Energy-Based Adaptation for Vision-Language-Action Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

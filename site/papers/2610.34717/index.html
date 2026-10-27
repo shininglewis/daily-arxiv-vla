@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VLA-HWBench: Where the Time Goes When VLA Models Run on Edge Hardware - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 VLA-HWBench，系统测量 18 个开源 VLA 模型在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。 现有 VLA 研究多报告任务成功率，边缘推理测量覆盖的模型少、动作生成形式少、阶段划分粗，且缺少在同一模型上比较不同推理优化的工作。 论文在 NVIDIA Jetson AGX Thor 和 AMD Ryzen AI Max+ PRO 395 两个边缘平台上进行七阶段延迟拆解，覆盖流匹配、并行解码、自回归 token 生成和“先推理再动作”四类动作生成方式。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.34717">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.34717.webp" alt="VLA-HWBench: Where the Time Goes When VLA Models Run on Edge Hardware" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 VLA-HWBench，系统测量 18 个开源 VLA 模型在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">VLA-HWBench: Where the Time Goes When VLA Models Run on Edge Hardware</h1>
+            <div class="detail-meta">2026-10-26 · <a href="http://arxiv.org/abs/2610.34717" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.34717" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.34717</span></div>
+            <p class="detail-summary">论文提出 VLA-HWBench，系统测量 18 个开源 VLA 模型在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。 现有 VLA 研究多报告任务成功率，边缘推理测量覆盖的模型少、动作生成形式少、阶段划分粗，且缺少在同一模型上比较不同推理优化的工作。 论文在 NVIDIA Jetson AGX Thor 和 AMD Ryzen AI Max+ PRO 395 两个边缘平台上进行七阶段延迟拆解，覆盖流匹配、并行解码、自回归 token 生成和“先推理再动作”四类动作生成方式。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">新加坡国立大学（National University of Singapore）：Borui Xu、…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.34717/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 VLA-HWBench，系统测量 18 个开源 VLA 模型在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。</p>
+  <ul class="reading-intro-points"><li>论文提出 VLA-HWBench，系统测量 18 个开源 VLA 模型在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。</li><li>现有 VLA 研究多报告任务成功率，边缘推理测量覆盖的模型少、动作生成形式少、阶段划分粗，且缺少在同一模型上比较不同推理优化的工作。</li><li>论文在 NVIDIA Jetson AGX Thor 和 AMD Ryzen AI Max+ PRO 395 两个边缘平台上进行七阶段延迟拆解，覆盖流匹配、并行解码、自回归 token 生成和“先推理再动作”四类动作生成方式。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>新加坡国立大学（National University of Singapore）</strong>：Borui Xu、Hongshi Tan、Wenqi Jiang、Bingsheng He</li><li><strong>0G Labs</strong>：Ming Wu、Jason Zeng、Michael Heinrich</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>VLA-HWBench</strong>，系统测量 <strong>18 个开源 VLA 模型</strong>在边缘硬件上的完整“观测到动作”推理路径，重点回答推理时间花在哪里、优化是否有效以及剩余瓶颈是什么。</li><li>现有 VLA 研究多报告任务成功率，边缘推理测量覆盖的模型少、动作生成形式少、阶段划分粗，且缺少在同一模型上比较不同推理优化的工作。</li><li>论文在 <strong>NVIDIA Jetson AGX Thor</strong> 和 <strong>AMD Ryzen AI Max+ PRO 395</strong> 两个边缘平台上进行七阶段延迟拆解，覆盖流匹配、并行解码、自回归 token 生成和“先推理再动作”四类动作生成方式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>VLA-HWBench</strong>：覆盖 <strong>18 个开源 VLA 模型</strong>、<strong>19 个参考配置</strong>、四类动作生成方式和两种架构不同的边缘平台。</li><li>提出 <strong>七阶段调用拆解</strong>：将一次推理分为 CPU 预处理、主机到设备拷贝、视觉编码、语言模型 prefill、动作生成、后处理和残余开销，并在阶段边界同步计时。</li><li>在同一模型上系统比较推理优化：<strong>torch.compile</strong>、专用后端 <strong>TensorRT/FlashRT</strong> 和低精度 <strong>FP8/NVFP4</strong>，并将加速效果归因到具体阶段。</li><li>给出三条核心洞察：延迟主要由动作生成迭代次数决定而非参数量；内核融合加 4-bit 权重收益最大但覆盖有限；优化后剩余时间受内存带宽、软件内核和主机 CPU 共同限制。</li><li>为边缘 VLA 模型、推理软件和硬件设计提出方向：减少动作生成迭代、扩展内核融合与低比特执行、优先提升内存带宽和主机 CPU 性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>将单次推理延迟建模为 <strong>T = ΣT₀…T₆</strong>，并用 <strong>T₄ ≈ N·t</strong> 表示动作生成时间随迭代次数 <strong>N</strong> 增长。</li><li>采用阶段级归因：在每个阶段边界进行设备同步，检查各阶段时间之和是否等于端到端延迟，并利用 CUDA graph 内核顺序拆分融合阶段。</li><li>使用 <strong>roofline 模型</strong>判断 GPU 阶段受计算、内存带宽还是软件实现限制，并结合 PyTorch profiler 统计算子形状、数值格式和内核类型。</li><li>参考配置关闭可选优化，使用各模型自身 LIBERO 评测入口和固定权重；优化实验在 <strong>π0.5</strong> 与 <strong>GR00T N1.7</strong> 上逐项启用编译、专用后端和低精度。</li><li>选择两个主机架构不同的平台：Arm 主机的 Jetson 与 x86 主机的 AMD，以分离主机、GPU 和内存带宽的影响。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>LIBERO-10</strong> 的真实观测作为统一输入：两张 <strong>256×256</strong> 相机图像、机器人状态和语言指令；另用同一 episode 的 24 帧检查输入内容对延迟的影响。</li><li>评估 <strong>18 个开放 VLA 模型</strong>，形成 <strong>19 个参考配置</strong>；加载参数量约 <strong>0.45B–7.99B</strong>，包括 <strong>π0.5（4.14B）</strong>、<strong>GR00T N1.7（3.14B）</strong>、<strong>OpenVLA-OFT（7.71B）</strong>、<strong>RIPT-VLA（7.99B）</strong> 等。</li><li>硬件平台为 <strong>NVIDIA Jetson AGX Thor T5000</strong> 和 <strong>AMD Ryzen AI Max+ PRO 395</strong>，两者均为 CPU/GPU 共享内存的边缘平台。</li><li>软件栈包括 <strong>LeRobot 0.6.1</strong>、作者原始代码、<strong>FlashRT</strong>、<strong>TensorRT</strong>，以及 <strong>CUDA 13.2/PyTorch 2.11</strong> 和 <strong>ROCm 7.2/PyTorch 2.14</strong>。</li><li>本文是推理基准，不训练模型，未报告训练 GPU/TPU 资源；资源消耗主要是两个边缘平台上的推理测量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估以 <strong>LIBERO-10 控制器 20 Hz</strong> 为实时性参照，即每 <strong>50 ms</strong> 执行一个动作，模型需满足 <strong>T/H < 50 ms</strong> 才能跟上控制频率。</li><li>主要指标包括端到端延迟 <strong>T</strong>、每个动作的推理时间 <strong>T/H</strong>、各阶段占比、优化加速比 <strong>T₀/T</strong>、roofline 利用率以及低精度动作与 FP16 动作的余弦相似度。</li><li>在 Jetson 上延迟范围为 <strong>77 ms–6.3 s（82×）</strong>，在 AMD 平台上为 <strong>114 ms–17.9 s（157×）</strong>；仅 <strong>10/19</strong> 个 Jetson 配置和 <strong>9/19</strong> 个 AMD 配置满足 20 Hz 控制需求。</li><li>动作生成是 Jetson 上 <strong>14/19</strong> 个配置的最大阶段，占调用时间的 <strong>42%–99%</strong>；参数量的对数拟合仅解释 <strong>9%</strong>（Jetson）和 <strong>15%</strong>（AMD）的延迟方差。</li><li>延迟主要跟随动作生成迭代次数：流匹配用少量步骤生成长动作块可跟上控制，而逐 token 解码和推理链明显更慢；例如 <strong>VLA-0</strong> 的 208 个 token 占其调用时间 <strong>99%</strong>。</li><li><strong>π0.5</strong> 在 Jetson 上经编译、专用后端和低精度分别加速 <strong>2.5×、1.8×、1.6×</strong>，总计 <strong>7.2×</strong>，从 <strong>318 ms</strong> 降至 <strong>44 ms</strong>；<strong>GR00T N1.7</strong> 总加速 <strong>2.6×</strong>，从 <strong>119 ms</strong> 降至 <strong>46 ms</strong>。</li><li>内核融合加 4-bit 权重相对 <strong>torch.compile</strong> 再快 <strong>2.6–2.9×</strong>，但仅支持这两个模型且仅在 Jetson 上可用；AMD 平台只有编译优化，平台差距从 <strong>2.0–2.5×</strong> 扩大到 <strong>5.7–7.8×</strong>。</li><li>优化会重新分配时间：<strong>π0.5</strong> 的视觉编码占比从 <strong>33%</strong> 降至 <strong>13%</strong>，prefill 从 <strong>14%</strong> 升至 <strong>34%</strong>；<strong>GR00T N1.7</strong> 的 CPU 预处理从 <strong>12%</strong> 升至 <strong>39%</strong>。</li><li>优化后没有单一瓶颈：Jetson 上少 token 的去噪阶段受内存带宽限制，视觉编码和 prefill 受未融合内核及低精度支持限制，CPU 预处理受串行 Python 和线程唤醒开销限制。</li><li>低精度保持较好动作一致性：<strong>FP8</strong> 的余弦相似度不低于 <strong>0.998</strong>，<strong>NVFP4</strong> 不低于 <strong>0.93</strong>；但编译可能改变动作并翻转夹爪指令。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.34837/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Beyond Behaviour: A Stimulus-Response Safety Evaluation of Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.34674/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

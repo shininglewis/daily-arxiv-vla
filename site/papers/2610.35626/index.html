@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robot-Aligned 3D Gaussian Splatting for Precise Reaching with Wrist-Camera VLA Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 PrecisionReach-GS，一个轻量级 real-to-sim-to-real 数据生成管线，用于在仅腕部相机（wrist-camera-only） 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。 针对电子废弃物拆解场景（主板元件密集、细小、反光），指出现有瓶颈：真机遥操作数据采集慢、昂贵且含噪声；完整数字孪生仿真又需物体级网格与接触模型，难以构建。 核心目标是绕开物体网格与物理仿真，仅用 3DGS 重建真实工作空间并渲染机器人可执行的腕部视角观测，配合平滑轨迹生成视觉-动作监督数据。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.35626">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.35626.webp" alt="Robot-Aligned 3D Gaussian Splatting for Precise Reaching with Wrist-Camera VLA Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 PrecisionReach-GS，一个轻量级 real-to-sim-to-real 数据生成管线，用于在仅腕部相机（wrist-camera-only） 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Robot-Aligned 3D Gaussian Splatting for Precise Reaching with Wrist-Camera VLA Policies</h1>
+            <div class="detail-meta">2026-10-26 · <a href="http://arxiv.org/abs/2610.35626" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.35626" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.35626</span></div>
+            <p class="detail-summary">论文提出 PrecisionReach-GS，一个轻量级 real-to-sim-to-real 数据生成管线，用于在仅腕部相机（wrist-camera-only） 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。 针对电子废弃物拆解场景（主板元件密集、细小、反光），指出现有瓶颈：真机遥操作数据采集慢、昂贵且含噪声；完整数字孪生仿真又需物体级网格与接触模型，难以构建。 核心目标是绕开物体网格与物理仿真，仅用 3DGS 重建真实工作空间并渲染机器人可执行的腕部视角观测，配合平滑轨迹生成视觉-动作监督数据。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Zuoxu Wang、Xiao Liang（通讯作者），均隶属于 Texas A&amp;M Universi…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.35626/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 PrecisionReach-GS，一个轻量级 real-to-sim-to-real 数据生成管线，用于在仅腕部相机（wrist-camera-only） 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。</p>
+  <ul class="reading-intro-points"><li>论文提出 PrecisionReach-GS，一个轻量级 real-to-sim-to-real 数据生成管线，用于在仅腕部相机（wrist-camera-only） 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。</li><li>针对电子废弃物拆解场景（主板元件密集、细小、反光），指出现有瓶颈：真机遥操作数据采集慢、昂贵且含噪声；完整数字孪生仿真又需物体级网格与接触模型，难以构建。</li><li>核心目标是绕开物体网格与物理仿真，仅用 3DGS 重建真实工作空间并渲染机器人可执行的腕部视角观测，配合平滑轨迹生成视觉-动作监督数据。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Zuoxu Wang</strong>、<strong>Xiao Liang</strong>（通讯作者），均隶属于 <strong>Texas A&M University</strong> 的 <strong>Zachry Department of Civil and Environmental Engineering</strong>（美国德克萨斯州 College Station）</li><li>研究受 <strong>美国国家科学基金会（NSF）Grant No. 2422826</strong> 资助</li><li>部分计算资源由 <strong>Texas A&M High Performance Research Computing</strong> 提供</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>PrecisionReach-GS</strong>，一个轻量级 real-to-sim-to-real 数据生成管线，用于在<strong>仅腕部相机（wrist-camera-only）</strong> 设置下微调 VLA 策略，完成精确的预接触接近（pre-contact reaching）。</li><li>针对电子废弃物拆解场景（主板元件密集、细小、反光），指出现有瓶颈：真机遥操作数据采集慢、昂贵且含噪声；完整数字孪生仿真又需物体级网格与接触模型，难以构建。</li><li>核心目标是绕开物体网格与物理仿真，仅用 <strong>3DGS</strong> 重建真实工作空间并渲染机器人可执行的腕部视角观测，配合平滑轨迹生成视觉-动作监督数据。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PrecisionReach-GS</strong> 框架，以 3DGS 作为真实感工作空间表示来做 VLA 适配，避免物体级网格、接触模型和完整物理数字孪生。</li><li>设计<strong>机器人对齐的视觉-动作生成方法</strong>：将重建场景映射到机器人基座坐标系，采样运动学可行的起始位姿，同步生成腕部观测、机器人状态与平滑接近动作，人工投入极少。</li><li>引入<strong>指令条件化的接近验证器（instruction-conditioned reach verifier）</strong>，按不同目标的几何精度需求判断是否已到达交互区域，实现更可靠的停止判定。</li><li>在机器人主板拆解场景中验证：仅用腕部相机即可实现精确接近，并支撑下游抓取操作。</li><li>展示了显著的数据效率优势：1,500 条生成轨迹达 <strong>80.0%</strong> 精确接近成功率，优于 150 条遥操作示教的 <strong>58.7%</strong>，且主动人工采集时间不足 10 分钟。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>手眼标定与几何校验</strong>：标定末端执行器与腕部相机变换，并用深度点到平面残差（式 2）验证垂直接近方向上的标定可靠性。</li><li><strong>3DGS 场景重建与机器人坐标系对齐</strong>：用加权相似变换（尺度 $s$、旋转 $\mathbf{R}$、平移 $\mathbf{t}$）把 SfM 重建坐标系对齐到机器人基座坐标系，目标附近关键帧权重更高。</li><li><strong>可行起始位姿采样</strong>：通过工作空间边界、IK 残差阈值、关节限位和可操作度（$\sqrt{\det(\mathbf{J}_p\mathbf{J}_p^\top)}$）过滤，避免渲染上合理但物理不可执行的位姿。</li><li><strong>轨迹渲染与动作标注</strong>：采用三次 smoothstep 时间缩放（$h(u)=3u^2-2u^3$）生成平滑轨迹；关节空间策略（$\pi_{0.5}$）用 IK 差分标注，位姿空间策略（OpenVLA-OFT）用相对末端位姿标注。</li><li><strong>策略学习</strong>：以行为克隆目标微调 VLA 策略；部署时对动作缩放与裁剪，并采用<strong>由粗到细的动作分块策略</strong>（执行块长 $H_{k+1}\le H_k$）。</li><li><strong>接近验证器</strong>：独立于 VLA 主干训练，用 Smooth-$L_1$ 回归目标距离；通过<strong>指令条件 FiLM</strong> 和<strong>语言引导空间注意力</strong>调制视觉特征，训练时以 0.5 概率做 <strong>state masking</strong> 防止状态捷径；$\hat{d}_t<0.65$ cm 且连续 3 次高置信才终止。</li><li><strong>下游抓取</strong>：验证通过后直接以当前末端位姿作为抓取位姿，平行夹爪以 70 N 闭合，随后执行固定的抬升-转移-放置流程。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>平台</strong>：<strong>Franka FR3</strong> 机械臂，腕部搭载 <strong>RealSense D435i</strong> 相机，主板拆解工作空间。</li><li><strong>任务目标</strong>：三个语言条件化目标——<strong>Screw</strong>、<strong>GPU</strong>、<strong>RAM</strong>。</li><li><strong>数据规模</strong>：生成数据 <strong>300 / 900 / 1,500</strong> 条轨迹（由 4–12 段短捕获视频重建生成）；遥操作基线 <strong>50 / 100 / 150</strong> 条示教。</li><li><strong>模型</strong>：<strong>$\pi_{0.5}$</strong>（OpenPI 框架，关节空间动作）与 <strong>OpenVLA-OFT</strong>（位姿空间动作）。</li><li><strong>计算资源</strong>：生成进程每个占用不足 1 GB 显存，可并行多窗口运行；具体 GPU/TPU 型号与训练规模原文未给出（HTML 已截断）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境与协议</strong>：真机测试在<strong>物理移动过的主板</strong>上进行（区别于 3DGS 重建时的场景布局），每目标 25 次试验；指标分 <strong>Coarse reach</strong>（到达目标邻域）与 <strong>Precise reach</strong>（到达交互区域且固定抓取-抬升流程成功）。</li><li><strong>主要结果（$\pi_{0.5}$，1,500 轨迹）</strong>：Screw <strong>21/25</strong>、GPU <strong>19/25</strong>、RAM <strong>20/25</strong>，合计 <strong>80.0%</strong> 精确接近成功率；OpenVLA-OFT 同规模为 10/25、11/25、12/25，趋势一致但整体更低。</li><li><strong>对比遥操作</strong>：150 条遥操作示教（wrist + side 双视角）精确成功率为 <strong>58.7%</strong>，且需约 200 分钟人工操作；生成 1,500 条轨迹仅需 <10 分钟主动采集。</li><li><strong>轨迹平滑度</strong>：RMS jerk 由遥操作的 <strong>3.2657</strong> 降至 <strong>0.2353</strong>（中位数 0.1683 vs 3.2532，P95 0.6969 vs 4.1228，最大值 0.9853 vs 4.5666）。</li><li><strong>初始视角鲁棒性（1,500 轨迹）</strong>：完整上下文 <strong>29/30</strong>、有限上下文 <strong>27/30</strong>、完全无工作空间上下文仍可恢复至 <strong>8/30</strong> 精确成功、17/30 粗接近。</li><li><strong>消融</strong>：遥操作-150 改为仅腕部相机，精确成功率 <strong>58.7%→53.3%</strong>；GS-900 改用线性时间插值，<strong>58.7%→50.7%</strong>，验证 smoothstep 平滑时序的有效性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.35817/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Pretraining Knows What, Simulation Teaches How: Compositional Generalization in a Sim-Trained Robot Agent</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.35252/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Labference: Benchmarking the Reasoning-Action Connection in Robotic Laboratories</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

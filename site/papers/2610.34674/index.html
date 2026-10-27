@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 OSMA-Bench，用于评估家庭机器人导航中的障碍物条件安全运动适应（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。 现有评估多关注任务完成、碰撞避免或社交导航，未检验语义安全区分是否真正体现在连续执行轨迹中。 论文还提出 Semantic Sensitivity Index（SSI），诊断执行运动是否遵循障碍物谨慎等级排序，并揭示 VLM/VLA 策略存在语义到运动 grounding 不足的问题。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.34674">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.34674.webp" alt="Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 OSMA-Bench，用于评估家庭机器人导航中的障碍物条件安全运动适应（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation</h1>
+            <div class="detail-meta">2026-10-26 · <a href="http://arxiv.org/abs/2610.34674" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.34674" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.34674</span></div>
+            <p class="detail-summary">论文提出 OSMA-Bench，用于评估家庭机器人导航中的障碍物条件安全运动适应（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。 现有评估多关注任务完成、碰撞避免或社交导航，未检验语义安全区分是否真正体现在连续执行轨迹中。 论文还提出 Semantic Sensitivity Index（SSI），诊断执行运动是否遵循障碍物谨慎等级排序，并揭示 VLM/VLA 策略存在语义到运动 grounding 不足的问题。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">首尔大学（Seoul National University） 人工智能跨学科项目（Interdisc…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.34674/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 OSMA-Bench，用于评估家庭机器人导航中的障碍物条件安全运动适应（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。</p>
+  <ul class="reading-intro-points"><li>论文提出 OSMA-Bench，用于评估家庭机器人导航中的障碍物条件安全运动适应（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。</li><li>现有评估多关注任务完成、碰撞避免或社交导航，未检验语义安全区分是否真正体现在连续执行轨迹中。</li><li>论文还提出 Semantic Sensitivity Index（SSI），诊断执行运动是否遵循障碍物谨慎等级排序，并揭示 VLM/VLA 策略存在语义到运动 grounding 不足的问题。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>首尔大学（Seoul National University）</strong> 人工智能跨学科项目（Interdisciplinary Program in Artificial Intelligence）</li><li><strong>首尔大学（Seoul National University）</strong> 电气与计算机工程系（Department of Electrical and Computer Engineering）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>OSMA-Bench</strong>，用于评估家庭机器人导航中的<strong>障碍物条件安全运动适应</strong>（Obstacle-Conditioned Safe Motion Adaptation），即机器人能否根据障碍物语义安全含义调整间隙、速度和运动平滑度。</li><li>现有评估多关注任务完成、碰撞避免或社交导航，未检验语义安全区分是否真正体现在连续执行轨迹中。</li><li>论文还提出 <strong>Semantic Sensitivity Index（SSI）</strong>，诊断执行运动是否遵循障碍物谨慎等级排序，并揭示 VLM/VLA 策略存在<strong>语义到运动 grounding 不足</strong>的问题。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>引入 <strong>OSMA-Bench</strong> 模拟基准，通过匹配比较固定空间条件、仅改变障碍物类型，并在 <strong>7 条路线</strong>和 <strong>5 种厨房布局</strong>上重复评估。</li><li>提出 <strong>SSI</strong> 指标，量化最小间隙以及距离归一化速度、加速度、jerk 是否按预期谨慎等级排序。</li><li>发现 VLM/VLA 策略即使接受显式安全提示，也不能一致地将语义安全判断转化为安全执行运动。</li><li>对 VLM 策略提出<strong>模块化分解</strong>，分离控制值推断与任务执行代码生成，以诊断并部分改善语义到运动的 grounding。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>基于 <strong>RoboCasa</strong> 构建 <strong>OSMA-Bench</strong>，组合 <strong>18 个障碍物实体</strong>、<strong>3 个障碍物谨慎层级</strong>、<strong>7 条路线几何</strong>和 <strong>5 种厨房布局</strong>，共 <strong>625 个导航场景</strong>。</li><li>障碍物按谨慎程度分为 <strong>High（Living）</strong>、<strong>Moderate（Fragile）</strong>、<strong>Low（Robust）</strong> 三层，每层包含 6 个实体。</li><li>任务级安全使用 <strong>CFSR/TSR</strong> 衡量；运动级安全定义 7 个特征，包括最小间隙及 <strong>1.25m</strong> 障碍物边界内距离归一化速度、加速度、jerk 的均值和最大值。</li><li>使用 <strong>Kendall’s τ_b</strong> 在每个 layout-route 匹配单元内检验层级均值是否符合预期谨慎排序，并聚合为 <strong>SSI</strong>。</li><li>评估 <strong>VLA</strong> 策略（XR-1、π0.5-Human300、π0.5-OpenTau、GR00T N1.5）和 <strong>VLM</strong> 策略（经 <strong>VoxPoser</strong> 代码生成、<strong>PIVOT</strong> waypoint 选择实例化）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>RoboCasa</strong> 模拟环境构建 <strong>OSMA-Bench</strong>，包含 <strong>625</strong> 个导航场景。</li><li>场景由 <strong>18</strong> 个障碍物实体、<strong>3</strong> 个谨慎层级、<strong>7</strong> 条路线几何和 <strong>5</strong> 种厨房布局组合而成。</li><li>VLA 模型包括 <strong>XR-1</strong>、<strong>π0.5-Human300</strong>、<strong>π0.5-OpenTau</strong>、<strong>GR00T N1.5</strong>。</li><li>VLM 模型包括 <strong>Qwen3.6-35B-A3B</strong>、<strong>Qwen3.5-4B/9B</strong>、<strong>Gemma-4-E4B-it/12B-it</strong>、<strong>Cosmos-Reason2-8B/32B</strong>、<strong>RoboBrain2.5-8B-NV</strong>。</li><li>原文未明确给出训练所用 GPU/TPU 数量或训练资源规模。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>RoboCasa</strong> 模拟环境中闭环评估，比较 <strong>VLA</strong>、<strong>VoxPoser</strong> 和 <strong>PIVOT</strong> 三类策略，主要指标为 <strong>CFSR/TSR</strong> 和 <strong>SSI</strong>。</li><li>VLA 策略 <strong>CFSR/TSR 为 40.6%–57.8%</strong>，<strong>SSI 为 −0.595 至 −0.262</strong>，表明成功执行常伴随碰撞且运动排序趋向反向。</li><li>PIVOT 策略 <strong>CFSR/TSR 为 77.8%–89.5%</strong>，但 <strong>SSI 为 −0.140 至 0.132</strong>，接近层级无关参考值 0。</li><li>VoxPoser 策略 <strong>CFSR/TSR 为 94.9%–99.5%</strong>，<strong>SSI 为 0.169–0.493</strong>，是唯一持续正 SSI 的策略组。</li><li>增大模型规模并不一致改善 OSMA；例如 Qwen3.5 从 4B 到 9B 在 VoxPoser 下 SSI 从 <strong>0.254</strong> 升至 <strong>0.323</strong>，在 PIVOT 下几乎不变。</li><li>对 <strong>Qwen3.5-9B</strong>，隔离值估计的 <strong>value-level SSI 达 0.98</strong>，但联合生成代码时值级 SSI 降至 <strong>0.45</strong>、执行 SSI 为 <strong>0.38</strong>；三步分解将执行 SSI 提升至 <strong>0.58</strong>（+0.20），但 TSR/CFSR 略降至 <strong>96.5%/95.7%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.34717/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-HWBench: Where the Time Goes When VLA Models Run on Edge Hardware</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.34649/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">RobotAgentBench: Towards Open-world Robot Autonomy</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
