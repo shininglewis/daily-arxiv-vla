@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vision-Language-Action or World-Action? Just Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。 核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？ 论文提出统一框架 Just Action Model（JAM）：预训练视觉骨干 + 动作专家，用动作损失与前视损失（foresight loss） 训练，训练与推理均不涉及任何图像/视频生成。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.37219">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.37219.webp" alt="Vision-Language-Action or World-Action? Just Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Vision-Language-Action or World-Action? Just Action Models</h1>
+            <div class="detail-meta">2026-10-27 · <a href="http://arxiv.org/abs/2610.37219" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.37219" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.37219</span></div>
+            <p class="detail-summary">论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。 核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？ 论文提出统一框架 Just Action Model（JAM）：预训练视觉骨干 + 动作专家，用动作损失与前视损失（foresight loss） 训练，训练与推理均不涉及任何图像/视频生成。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">The University of Tokyo（东京大学）：Yonghao Yu、Runyi Li、T…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.37219/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。</p>
+  <ul class="reading-intro-points"><li>论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。</li><li>核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？</li><li>论文提出统一框架 Just Action Model（JAM）：预训练视觉骨干 + 动作专家，用动作损失与前视损失（foresight loss） 训练，训练与推理均不涉及任何图像/视频生成。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>The University of Tokyo</strong>（东京大学）：Yonghao Yu、Runyi Li、Toshihiko Yamasaki</li><li><strong>National Institute of Informatics</strong>（日本国立情报学研究所）：Lang Huang（通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究机器人控制策略应继承<strong>视觉-语言模型</strong>（VLA）还是<strong>视觉生成器</strong>（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——<strong>骨干初始化</strong>、<strong>对未来观测的监督目标</strong>、以及<strong>推理阶段保留的模块</strong>。</li><li>核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？</li><li>论文提出统一框架 <strong>Just Action Model（JAM）</strong>：预训练视觉骨干 + 动作专家，用动作损失与<strong>前视损失（foresight loss）</strong> 训练，训练与推理均不涉及任何图像/视频生成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>JAM</strong> 单一训练范式：记录的未来观测仅作为<strong>冻结的预测目标</strong>进入训练，前视分支（未来锚点与预测头）在训练后丢弃，部署架构与基线完全一致。</li><li>通过<strong>固定架构对照实验</strong>证明，前视监督可替代视觉生成损失，并保持或提升成功率；且<strong>未来位置目标</strong>优于当前位置目标。</li><li>揭示目标表征的<strong>骨干依赖性</strong>：Wan 视频骨干用朴素冻结 <strong>VAE</strong> 目标最强，而 Ovis-U1 需预训练 <strong>Yak</strong> 锚点；未来锚点无需与策略骨干同源。</li><li>将同一目标应用于<strong>生成式、自监督、视觉-语言</strong>三类骨干（Wan、Ovis-U1、DINOv2、Qwen3.5），证明强前视性能不依赖生成器初始化。</li><li>缓存前视目标后，相比 <strong>FastWAM</strong> 将每样本每次更新的在线训练 <strong>FLOPs 降低约 73%</strong>（ImageWAM 为 36.8%）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一问题形式化</strong>：VLA 为 <code>L_VLA = L_act</code>；WAM 为 <code>L_WAM = L_act + λ_G·L_G</code>；JAM 为 <code>L_JAM = L_act + λ_F·L_F</code>，其中动作项采用 <strong>flow matching</strong> 动作专家。</li><li><strong>前视监督</strong>：可训练的小型 token-mixing 预测头将策略骨干第 ℓ 层的当前观测特征映射到目标空间，匹配冻结未来锚点 <code>E_φ</code> 对记录未来的编码。</li><li><strong>前视损失</strong>：预测与目标的<strong>余弦距离</strong>，在 token 与读出偏移上平均，目标侧用 <code>sg[·]</code> 停止梯度；梯度只回传至预测头与策略骨干，未来帧从不进入动作通路。</li><li><strong>动作推理</strong>：训练后丢弃锚点分支与预测头，策略仅编码当前观测与指令，动作专家在其 flow-matching 采样步间复用上下文；固定目标预处理可<strong>离线缓存</strong>。</li><li><strong>读出偏移设计</strong>：FastWAM 每 4 步采样帧、因果 VAE 将后 4 帧合并为一个潜变量位置（偏移 [0] 为当前帧，[1]/[2] 覆盖第 4–16 与 20–32 步）；其他骨干使用 16 步后的单帧作为未来目标。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集/基准</strong>：<strong>LIBERO</strong>（Spatial/Object/Goal/Long 四套件，40 任务 × 50 次 rollout）、<strong>LIBERO-Plus</strong>（15% 子集协议，1,506 个扰动任务清单）、<strong>RoboTwin 2.0</strong>（50 个双臂任务，Clean 与 Randomized 设置）。</li><li><strong>骨干与规模</strong>：<strong>Wan2.2-5B</strong>（FastWAM）、<strong>Ovis-U1 / Yak18</strong>（1.13B）、<strong>DINOv2-B（86.6M）/ DINOv2-L（304M）</strong>、<strong>Qwen3.5-2B（2.0B）</strong>。</li><li><strong>训练预算</strong>：LIBERO 上 FastWAM 配方 20k 更新、ImageWAM 配方 21.7k 更新，全局批大小 128；RoboTwin 2.0 上均训练 5 个 epoch（FastWAM 29,355 步 @ 批 1024，ImageWAM 69,900 步 @ 批 384）。</li><li><strong>超参</strong>：前视损失总权重 <code>λ_F = 0.6</code>（Wan）与 <code>0.3</code>（其他），在读出偏移间均分；策略与锚点读出位于约 60% 深度（Wan 第 18/30 块、Yak 第 11/18 层、Qwen 第 13/24 层），DINOv2 在最后一块监督。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估方式</strong>：同架构、同数据、同优化器、同训练预算、同评测器的严格匹配对照；另做跨骨干对比与已发表系统对比。</li><li><strong>主要指标</strong>：LIBERO / LIBERO-Plus / RoboTwin 2.0 的<strong>任务成功率</strong>，以及每样本每次更新的估计在线训练 FLOPs。</li><li><strong>替换生成损失的效果</strong>：FastWAM 的 LIBERO 从 97.00%→97.45%、LIBERO-Plus 55.31%→55.58%；ImageWAM 从 92.90%→96.75%、65.27%→<strong>79.95%</strong>；读出偏移从 [0] 改为未来偏移 [1] 带来最大增益（69.65%→79.95%）。</li><li><strong>与 FastWAM 对比</strong>：成功率由 <strong>97.0% / 55.3% / 91.2%</strong> 提升至 <strong>98.2% / 64.5% / 91.4%</strong>（LIBERO / LIBERO-Plus / RoboTwin），RoboTwin 为持平或略高。</li><li><strong>跨骨干结果</strong>：JAM (Qwen3.5-2B) 达 LIBERO 96.55% / LIBERO-Plus <strong>81.14%</strong>（仅加前视即从 77.03% 提升）；JAM (DINOv2-L) 70.39%、JAM (DINOv2-B) 68.19%、JAM (Ovis-U1) 79.95%，均超过生成式基线 ImageWAM。</li><li><strong>机制分析</strong>：未来帧读出探针显示，偏移 [1] 训练的 JAM 特征具有最高的未来帧 PSNR，未来变化更易从当前特征中解码；注意力可视化显示 JAM 更关注指令中提到的第二个杯子。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.37330/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Tokens of Motion: Primitive Motion Learning for Human-Humanoid Skill Transfer</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.37215/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Retrieve to Act: Motion Primitive Graph Retrieval for Robust VLA Execution</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

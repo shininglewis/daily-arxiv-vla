@@ -1,5 +1,527 @@
 [
   {
+    "date": "2026-10-27",
+    "title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning",
+    "link": "http://arxiv.org/abs/2610.37666",
+    "arxiv_id": "2610.37666",
+    "detail_path": "papers/2610.37666/",
+    "cover_path": "covers/2610.37666/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37666.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37666.webp",
+    "preview_text": "论文提出 ThinkWorld，一个将动作推理建立在“世界动力学变化”之上的 VLA（视觉-语言-动作）学习框架，并通过“世界想象”强化学习来增强这种推理。 针对的核心问题是：VLA 模型的策略学习高度依赖带动作标注的机器人轨迹，数据覆盖有限；而人类视频行为多样性丰富，却缺少可直接执行的机器人动作标注，现有潜动作方法（latent action）又容易捕捉外观或相机运动这些并非行为的因素。 目标是构建一个跨具身（human/robot）共享的动作推理接口，使无动作标注的视频也能为动作推理提供监督，从而实现人类到机器人的技能迁移与泛化。",
+    "research_unit": "NVIDIA",
+    "hook_text": "论文提出 ThinkWorld，一个将动作推理建立在“世界动力学变化”之上的 VLA（视觉-语言-动作）学习框架，并通过“世界想象”强化学习来增强这种推理。",
+    "key_points": [
+      "论文提出 ThinkWorld，一个将动作推理建立在“世界动力学变化”之上的 VLA（视觉-语言-动作）学习框架，并通过“世界想象”强化学习来增强这种推理。",
+      "针对的核心问题是：VLA 模型的策略学习高度依赖带动作标注的机器人轨迹，数据覆盖有限；而人类视频行为多样性丰富，却缺少可直接执行的机器人动作标注，现有潜动作方法（latent action）又容易捕捉外观或相机运动这些并非行为的因素。",
+      "目标是构建一个跨具身（human/robot）共享的动作推理接口，使无动作标注的视频也能为动作推理提供监督，从而实现人类到机器人的技能迁移与泛化。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "World Dreamer v5-lite: A Multi-Robot World Action Model with One Dreamer",
+    "link": "http://arxiv.org/abs/2610.37518",
+    "arxiv_id": "2610.37518",
+    "detail_path": "papers/2610.37518/",
+    "cover_path": "covers/2610.37518/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37518.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37518.webp",
+    "preview_text": "论文提出 World Dreamer v5-lite，一个面向多机器人协同操作的世界-动作模型（world-action model），用同一个“Dreamer”为多个机器人预测各自的动作序列。 解决的核心问题是：现有 VLA（视觉-语言-动作）与世界-动作模型大多面向单机器人；简单拼接多相机 token 无法建立视图间的空间对应，独立策略又无法利用队友视角，且观测常因遮挡而不完整。 目标是在共享工作空间中，实现“分布式观测 + 耦合决策 + 分离控制”的统一建模，并让机器人在自身视角缺失时仍能依靠队友观测行动。",
+    "research_unit": "World Agents（作者 Yongbin Zheng 标注的所属机构，通讯作者）",
+    "hook_text": "论文提出 World Dreamer v5-lite，一个面向多机器人协同操作的世界-动作模型（world-action model），用同一个“Dreamer”为多个机器人预测各自的动作序列。",
+    "key_points": [
+      "论文提出 World Dreamer v5-lite，一个面向多机器人协同操作的世界-动作模型（world-action model），用同一个“Dreamer”为多个机器人预测各自的动作序列。",
+      "解决的核心问题是：现有 VLA（视觉-语言-动作）与世界-动作模型大多面向单机器人；简单拼接多相机 token 无法建立视图间的空间对应，独立策略又无法利用队友视角，且观测常因遮挡而不完整。",
+      "目标是在共享工作空间中，实现“分布式观测 + 耦合决策 + 分离控制”的统一建模，并让机器人在自身视角缺失时仍能依靠队友观测行动。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "PDRVLA: A Vision-Language-Action Model with Physical Dynamics Representations",
+    "link": "http://arxiv.org/abs/2610.37381",
+    "arxiv_id": "2610.37381",
+    "detail_path": "papers/2610.37381/",
+    "cover_path": "covers/2610.37381/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37381.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37381.webp",
+    "preview_text": "论文提出 PDRVLA，这是一种带有物理动力学表征的视觉–语言–动作（VLA）模型；它从视觉观测与语言指令生成机器人动作。 论文旨在解决现有 VLA 模型对物理世界理解不足的问题，例如难以理解物体质量等物理属性，并且难以根据这些属性调整动作。 视频世界模型虽能捕捉场景动态，但若在控制回路中在线生成未来视频，就会带来高延迟；PDRVLA 通过轻量模块在不进行在线视频生成的前提下引入未来动态信息。",
+    "research_unit": "北京大学（Peking University）",
+    "hook_text": "论文提出 PDRVLA，这是一种带有物理动力学表征的视觉–语言–动作（VLA）模型；它从视觉观测与语言指令生成机器人动作。",
+    "key_points": [
+      "论文提出 PDRVLA，这是一种带有物理动力学表征的视觉–语言–动作（VLA）模型；它从视觉观测与语言指令生成机器人动作。",
+      "论文旨在解决现有 VLA 模型对物理世界理解不足的问题，例如难以理解物体质量等物理属性，并且难以根据这些属性调整动作。",
+      "视频世界模型虽能捕捉场景动态，但若在控制回路中在线生成未来视频，就会带来高延迟；PDRVLA 通过轻量模块在不进行在线视频生成的前提下引入未来动态信息。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "VLA-Stem: A Lightweight Safety Mechanism for Vision-Language-Action Models via Reinforcement Learning",
+    "link": "http://arxiv.org/abs/2610.37378",
+    "arxiv_id": "2610.37378",
+    "detail_path": "papers/2610.37378/",
+    "cover_path": "covers/2610.37378/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37378.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37378.webp",
+    "preview_text": "论文提出 VLA-Stem：一种面向视觉-语言-动作（VLA）模型的轻量级安全机制，它受“脑干”启发，用强化学习在推理时对 VLA 的动作进行安全适配；整个过程不需要微调底层 VLA 策略。 现有 VLA 主要面向无约束的静态操作任务，难以应对空间约束和动态障碍；用避障数据微调代价高，而且会损害原有任务能力，而 CBF 类安全过滤器又缺乏与任务意图的协调，常导致任务失败。 目标是在不牺牲基座策略任务性能的前提下，让 VLA 系统对即时物理风险做出类似反射的快速响应，并把高层任务意图与低层安全执行紧密耦合。",
+    "research_unit": "中国科学技术大学（USTC）：Bojun Zou、Wenhao Yu、Jiaohao Li、Jiaxu…",
+    "hook_text": "论文提出 VLA-Stem：一种面向视觉-语言-动作（VLA）模型的轻量级安全机制，它受“脑干”启发，用强化学习在推理时对 VLA 的动作进行安全适配；整个过程不需要微调底层 VLA 策略。",
+    "key_points": [
+      "论文提出 VLA-Stem：一种面向视觉-语言-动作（VLA）模型的轻量级安全机制，它受“脑干”启发，用强化学习在推理时对 VLA 的动作进行安全适配；整个过程不需要微调底层 VLA 策略。",
+      "现有 VLA 主要面向无约束的静态操作任务，难以应对空间约束和动态障碍；用避障数据微调代价高，而且会损害原有任务能力，而 CBF 类安全过滤器又缺乏与任务意图的协调，常导致任务失败。",
+      "目标是在不牺牲基座策略任务性能的前提下，让 VLA 系统对即时物理风险做出类似反射的快速响应，并把高层任务意图与低层安全执行紧密耦合。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Tokens of Motion: Primitive Motion Learning for Human-Humanoid Skill Transfer",
+    "link": "http://arxiv.org/abs/2610.37330",
+    "arxiv_id": "2610.37330",
+    "detail_path": "papers/2610.37330/",
+    "cover_path": "covers/2610.37330/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37330.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37330.webp",
+    "preview_text": "提出 M-PACT（Motion Primitives for Action Composition and Transfer）框架，用于将大规模人类视频中的手部运动迁移至人形机器人操作任务。 核心思想是将“可复用的运动基元学习”与“具体本体（embodiment）的运动实现”解耦，从而把人类运动数据作为可扩展的机器人技能来源。 解决的问题是：人类演示缺少机器人可执行的动作标签，且人手与机器人末端在形态、运动学、可达动作空间上差异巨大，直接模仿会产生歧义甚至不可执行的动作。",
+    "research_unit": "United Imaging Intelligence（美国波士顿，MA）",
+    "hook_text": "提出 M-PACT（Motion Primitives for Action Composition and Transfer）框架，用于将大规模人类视频中的手部运动迁移至人形机器人操作任务。",
+    "key_points": [
+      "提出 M-PACT（Motion Primitives for Action Composition and Transfer）框架，用于将大规模人类视频中的手部运动迁移至人形机器人操作任务。",
+      "核心思想是将“可复用的运动基元学习”与“具体本体（embodiment）的运动实现”解耦，从而把人类运动数据作为可扩展的机器人技能来源。",
+      "解决的问题是：人类演示缺少机器人可执行的动作标签，且人手与机器人末端在形态、运动学、可达动作空间上差异巨大，直接模仿会产生歧义甚至不可执行的动作。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Vision-Language-Action or World-Action? Just Action Models",
+    "link": "http://arxiv.org/abs/2610.37219",
+    "arxiv_id": "2610.37219",
+    "detail_path": "papers/2610.37219/",
+    "cover_path": "covers/2610.37219/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37219.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37219.webp",
+    "preview_text": "论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。 核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？ 论文提出统一框架 Just Action Model（JAM）：预训练视觉骨干 + 动作专家，用动作损失与前视损失（foresight loss） 训练，训练与推理均不涉及任何图像/视频生成。",
+    "research_unit": "The University of Tokyo（东京大学）：Yonghao Yu、Runyi Li、T…",
+    "hook_text": "论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。",
+    "key_points": [
+      "论文研究机器人控制策略应继承视觉-语言模型（VLA）还是视觉生成器（WAM）的预训练知识，并提出：这一争论实际上混合了三个可分离的选择——骨干初始化、对未来观测的监督目标、以及推理阶段保留的模块。",
+      "核心问题：从记录的未来观测中学习，是否真的需要视觉生成式目标？如果不需要，非生成式预训练骨干是否也能以同样方式利用未来观测？",
+      "论文提出统一框架 Just Action Model（JAM）：预训练视觉骨干 + 动作专家，用动作损失与前视损失（foresight loss） 训练，训练与推理均不涉及任何图像/视频生成。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Retrieve to Act: Motion Primitive Graph Retrieval for Robust VLA Execution",
+    "link": "http://arxiv.org/abs/2610.37215",
+    "arxiv_id": "2610.37215",
+    "detail_path": "papers/2610.37215/",
+    "cover_path": "covers/2610.37215/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37215.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37215.webp",
+    "preview_text": "论文提出 Retrieve to Act (R2A)，一个测试时扩展（test-time scaling）框架，把 VLA 策略在分布外（OOD）视觉扰动下的鲁棒性问题，重新表述为纯几何的运动基元检索问题。 核心动机：预训练 VLA 具备强语义泛化能力，却对相机视角、光照、背景纹理等视觉偏移极度脆弱——它们知道“做什么”，却常丢失“怎么执行”；而现有测试时方法忽视了策略自身训练经验中已存在的、未被污染的运动学先验。 目标：不微调基础策略参数，通过召回训练示范中的成功运动模式，纠正被视觉噪声带偏的空间轨迹，同时保留策略的局部反应性。",
+    "research_unit": "VinUniversity（人工智能研究中心，Center for AI Research）",
+    "hook_text": "论文提出 Retrieve to Act (R2A)，一个测试时扩展（test-time scaling）框架，把 VLA 策略在分布外（OOD）视觉扰动下的鲁棒性问题，重新表述为纯几何的运动基元检索问题。",
+    "key_points": [
+      "论文提出 Retrieve to Act (R2A)，一个测试时扩展（test-time scaling）框架，把 VLA 策略在分布外（OOD）视觉扰动下的鲁棒性问题，重新表述为纯几何的运动基元检索问题。",
+      "核心动机：预训练 VLA 具备强语义泛化能力，却对相机视角、光照、背景纹理等视觉偏移极度脆弱——它们知道“做什么”，却常丢失“怎么执行”；而现有测试时方法忽视了策略自身训练经验中已存在的、未被污染的运动学先验。",
+      "目标：不微调基础策略参数，通过召回训练示范中的成功运动模式，纠正被视觉噪声带偏的空间轨迹，同时保留策略的局部反应性。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "How Much Can Best-of-N Help a World Action Model? Measuring Selectable Headroom and Realizing It in Closed Loop",
+    "link": "http://arxiv.org/abs/2610.37196",
+    "arxiv_id": "2610.37196",
+    "detail_path": "papers/2610.37196/",
+    "cover_path": "covers/2610.37196/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37196.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37196.webp",
+    "preview_text": "论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。 作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。 论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。",
+    "research_unit": "清华大学（Tsinghua University）",
+    "hook_text": "论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。",
+    "key_points": [
+      "论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。",
+      "作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。",
+      "论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "GAWM: A Compact Latent World-Action Model for Multi-Task Robot Manipulation",
+    "link": "http://arxiv.org/abs/2610.37091",
+    "arxiv_id": "2610.37091",
+    "detail_path": "papers/2610.37091/",
+    "cover_path": "covers/2610.37091/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.37091.webp",
+    "paper_image_full_path": "assets/paper-images/2610.37091.webp",
+    "preview_text": "论文提出 GAWM（Geometry-Aware World Model），一种面向多任务机器人操作的紧凑型潜在世界-动作模型，在冻结 DINOv3 编码器的隐空间中预测未来观测。 现有世界-动作模型（WAMs）大多依赖十亿参数级的视觉语言模型或视频生成主干（如 Wan 2.2、π0.5 等），训练成本高、推理延迟大（如 LingBot-VA 每次查询需要 4.5 秒），难以部署到机器人机载计算设备。 论文要解决的问题：能否在没有大主干网络的条件下，让紧凑策略也获得对未来的预测能力，从而在固定任务集上实现低延迟、高成功率的响应式控制。",
+    "research_unit": "论文作者包括 Yang Liu、Xiaoli Liu、Liuzhao Li、Yuduo Song、Mu…",
+    "hook_text": "论文提出 GAWM（Geometry-Aware World Model），一种面向多任务机器人操作的紧凑型潜在世界-动作模型，在冻结 DINOv3 编码器的隐空间中预测未来观测。",
+    "key_points": [
+      "论文提出 GAWM（Geometry-Aware World Model），一种面向多任务机器人操作的紧凑型潜在世界-动作模型，在冻结 DINOv3 编码器的隐空间中预测未来观测。",
+      "现有世界-动作模型（WAMs）大多依赖十亿参数级的视觉语言模型或视频生成主干（如 Wan 2.2、π0.5 等），训练成本高、推理延迟大（如 LingBot-VA 每次查询需要 4.5 秒），难以部署到机器人机载计算设备。",
+      "论文要解决的问题：能否在没有大主干网络的条件下，让紧凑策略也获得对未来的预测能力，从而在固定任务集上实现低延迟、高成功率的响应式控制。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Trace-WAM: Learning to Act via 3D Motion Prediction for World Action Models",
+    "link": "http://arxiv.org/abs/2610.36840",
+    "arxiv_id": "2610.36840",
+    "detail_path": "papers/2610.36840/",
+    "cover_path": "covers/2610.36840/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36840.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36840.webp",
+    "preview_text": "论文提出 Trace-WAM，在 World Action Models (WAMs) 的视频-动作学习中加入未来 3D 运动预测作为辅助目标，以更好地建模机器人及任务相关物体的交互动态。 核心问题是：未来 RGB 预测需要重建整个场景的外观与背景，而成功操作更依赖机器人和任务物体如何随时间变化，因此需要一种更聚焦交互动力学的辅助监督信号。 目标是在不增加推理阶段未来视频或运动预测开销的前提下，提升策略的分布内性能和分布外泛化能力。",
+    "research_unit": "The Hong Kong Polytechnic University",
+    "hook_text": "论文提出 Trace-WAM，在 World Action Models (WAMs) 的视频-动作学习中加入未来 3D 运动预测作为辅助目标，以更好地建模机器人及任务相关物体的交互动态。",
+    "key_points": [
+      "论文提出 Trace-WAM，在 World Action Models (WAMs) 的视频-动作学习中加入未来 3D 运动预测作为辅助目标，以更好地建模机器人及任务相关物体的交互动态。",
+      "核心问题是：未来 RGB 预测需要重建整个场景的外观与背景，而成功操作更依赖机器人和任务物体如何随时间变化，因此需要一种更聚焦交互动力学的辅助监督信号。",
+      "目标是在不增加推理阶段未来视频或运动预测开销的前提下，提升策略的分布内性能和分布外泛化能力。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "TAPESTRY: A Single Backbone for Video Generation and Robot Control",
+    "link": "http://arxiv.org/abs/2610.36823",
+    "arxiv_id": "2610.36823",
+    "detail_path": "papers/2610.36823/",
+    "cover_path": "covers/2610.36823/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36823.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36823.webp",
+    "preview_text": "论文提出 Tapestry，一种“世界动作模型”（world action model），将预训练视频扩散 Transformer 改造为机器人策略，构造上把每个动作时间步视为视频 VAE 潜空间中的单个 patch token。 核心洞察：对动作预测有用的动力学先验存在于视频骨干的权重中，而非生成的像素中；因此推理时无需生成视频，只需在动作 token 序列上做去噪。 解决的问题：现有方法要么在测试时需要昂贵的视频生成（UniPi、DreamGen），要么用从零训练的动作头而无法充分利用预训练权重（VPP、mimic-video），要么虽共享骨干但推理 token 开销大或需额外动作模块（Cosmos Policy、DreamZero、Fast-WAM）。",
+    "research_unit": "Georgia Institute of Technology（佐治亚理工学院）",
+    "hook_text": "论文提出 Tapestry，一种“世界动作模型”（world action model），将预训练视频扩散 Transformer 改造为机器人策略，构造上把每个动作时间步视为视频 VAE 潜空间中的单个 patch token。",
+    "key_points": [
+      "论文提出 Tapestry，一种“世界动作模型”（world action model），将预训练视频扩散 Transformer 改造为机器人策略，构造上把每个动作时间步视为视频 VAE 潜空间中的单个 patch token。",
+      "核心洞察：对动作预测有用的动力学先验存在于视频骨干的权重中，而非生成的像素中；因此推理时无需生成视频，只需在动作 token 序列上做去噪。",
+      "解决的问题：现有方法要么在测试时需要昂贵的视频生成（UniPi、DreamGen），要么用从零训练的动作头而无法充分利用预训练权重（VPP、mimic-video），要么虽共享骨干但推理 token 开销大或需额外动作模块（Cosmos Policy、DreamZero、Fast-WAM）。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Evaluation-Guided Demonstration Refinement for Vision-Language-Action Policies: The Winning Entry in the MetaFine Open Competition",
+    "link": "http://arxiv.org/abs/2610.36765",
+    "arxiv_id": "2610.36765",
+    "detail_path": "papers/2610.36765/",
+    "cover_path": "covers/2610.36765/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36765.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36765.webp",
+    "preview_text": "论文面向 MetaFine Open Competition 中的五个细粒度桌面操作任务，为每个任务分别微调一个 π0.5 视觉-语言-动作策略。 研究目标是利用本地评估发现抓取、推动、插入等反复出现的失败，再通过精炼演示数据和筛选检查点提升策略表现。 最终提交系统 MAI 在官方排行榜上以 96.66 分排名第一。",
+    "research_unit": "东南大学",
+    "hook_text": "论文面向 MetaFine Open Competition 中的五个细粒度桌面操作任务，为每个任务分别微调一个 π0.5 视觉-语言-动作策略。",
+    "key_points": [
+      "论文面向 MetaFine Open Competition 中的五个细粒度桌面操作任务，为每个任务分别微调一个 π0.5 视觉-语言-动作策略。",
+      "研究目标是利用本地评估发现抓取、推动、插入等反复出现的失败，再通过精炼演示数据和筛选检查点提升策略表现。",
+      "最终提交系统 MAI 在官方排行榜上以 96.66 分排名第一。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Making Self-Driving Laboratories Auditable:A Unified Framework for Hybrid Actions,Measurements, and Safe Execution",
+    "link": "http://arxiv.org/abs/2610.36761",
+    "arxiv_id": "2610.36761",
+    "detail_path": "papers/2610.36761/",
+    "cover_path": "covers/2610.36761/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36761.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36761.webp",
+    "preview_text": "论文针对自驱动实验室（SDLs）中“柔性机器人控制”与“仪器类型化 API + 连续测量”难以统一的问题，提出一套可审计的执行接口框架。 框架由四个组件构成：LAM（Lab Action Model，测量条件化的混合动作策略）、OpenSDL（执行基座与事件账本）、Safe-SDL（运行时安全门控）、L3-Bench（L3 级实验室评测基准）。 目标是打通“混合动作生成 → 受监控的设备执行 → 测量反馈 → 实验评测”的端到端闭环，解决 SDL 工作流中的协同与可追溯性难题。 论文定位为框架与协议的设计提案，明确声明端到端 LAM 训练、跨设备迁移实验与系统性硬件/安全验证尚待完成。",
+    "research_unit": "SII–ECNU 联合自主化学实验室，上海创新研究院（SII–ECNU Joint Autonomou…",
+    "hook_text": "论文针对自驱动实验室（SDLs）中“柔性机器人控制”与“仪器类型化 API + 连续测量”难以统一的问题，提出一套可审计的执行接口框架。",
+    "key_points": [
+      "论文针对自驱动实验室（SDLs）中“柔性机器人控制”与“仪器类型化 API + 连续测量”难以统一的问题，提出一套可审计的执行接口框架。",
+      "框架由四个组件构成：LAM（Lab Action Model，测量条件化的混合动作策略）、OpenSDL（执行基座与事件账本）、Safe-SDL（运行时安全门控）、L3-Bench（L3 级实验室评测基准）。",
+      "目标是打通“混合动作生成 → 受监控的设备执行 → 测量反馈 → 实验评测”的端到端闭环，解决 SDL 工作流中的协同与可追溯性难题。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "Adapting Video Models for Robot Control via Motion-guided Asymmetric Prediction",
+    "link": "http://arxiv.org/abs/2610.36624",
+    "arxiv_id": "2610.36624",
+    "detail_path": "papers/2610.36624/",
+    "cover_path": "covers/2610.36624/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36624.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36624.webp",
+    "preview_text": "论文研究 World Action Models（WAMs），即基于预训练视频扩散骨干网络、联合预测未来视觉观测与机器人动作的机器人控制范式。 核心问题：WAM 沿用视频预训练中“对所有视觉区域一视同仁”的视觉预测目标，但不同区域对机器人控制的相关性并不相同。 论文发现将视觉监督向动态区域（机器人运动、物体交互）倾斜能显著提升策略性能，并据此提出新的视觉预测任务 MoGAP。",
+    "research_unit": "KAIST（韩国科学技术院）：Taeyoung Kim、Junyoung Sung、Jinwoo Sh…",
+    "hook_text": "论文研究 World Action Models（WAMs），即基于预训练视频扩散骨干网络、联合预测未来视觉观测与机器人动作的机器人控制范式。",
+    "key_points": [
+      "论文研究 World Action Models（WAMs），即基于预训练视频扩散骨干网络、联合预测未来视觉观测与机器人动作的机器人控制范式。",
+      "核心问题：WAM 沿用视频预训练中“对所有视觉区域一视同仁”的视觉预测目标，但不同区域对机器人控制的相关性并不相同。",
+      "论文发现将视觉监督向动态区域（机器人运动、物体交互）倾斜能显著提升策略性能，并据此提出新的视觉预测任务 MoGAP。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "GRAFT: Geometry-Aware Residual Adaptation for Foundation Trackers",
+    "link": "http://arxiv.org/abs/2610.36507",
+    "arxiv_id": "2610.36507",
+    "detail_path": "papers/2610.36507/",
+    "cover_path": "covers/2610.36507/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36507.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36507.webp",
+    "preview_text": "论文研究 行为基础模型（BFM） 在真实地形上的适配问题：BFM 能根据运动参考生成全身关节指令，但主要从平地运动数据学习，缺少对足端放置、摆动净空和接触时机的显式地形适应机制。 现有地形感知 BFM 方法通常需要重训或微调跟踪器，并将普通跟踪与地形感知通路耦合，数据与计算成本高，还可能损害可复用运动先验。 论文提出 GRAFT，将“可复用全身运动生成”与“地形执行适配”分离：冻结 BFM，仅用轻量适配器对下半身执行目标施加地形条件残差，并保持原始运动参考接口不变。",
+    "research_unit": "论文标注的作者单位为 Xiaomi Robotics Lab 与 HKUST(Guangzhou)。",
+    "hook_text": "论文研究 行为基础模型（BFM） 在真实地形上的适配问题：BFM 能根据运动参考生成全身关节指令，但主要从平地运动数据学习，缺少对足端放置、摆动净空和接触时机的显式地形适应机制。",
+    "key_points": [
+      "论文研究 行为基础模型（BFM） 在真实地形上的适配问题：BFM 能根据运动参考生成全身关节指令，但主要从平地运动数据学习，缺少对足端放置、摆动净空和接触时机的显式地形适应机制。",
+      "现有地形感知 BFM 方法通常需要重训或微调跟踪器，并将普通跟踪与地形感知通路耦合，数据与计算成本高，还可能损害可复用运动先验。",
+      "论文提出 GRAFT，将“可复用全身运动生成”与“地形执行适配”分离：冻结 BFM，仅用轻量适配器对下半身执行目标施加地形条件残差，并保持原始运动参考接口不变。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-27",
+    "title": "SO-101 Bench: Accessible Spatial Manipulation",
+    "link": "http://arxiv.org/abs/2610.36420",
+    "arxiv_id": "2610.36420",
+    "detail_path": "papers/2610.36420/",
+    "cover_path": "covers/2610.36420/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36420.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36420.webp",
+    "preview_text": "论文提出 SO-101 Bench，这是一个面向低成本机械臂 SO-101 的语言条件空间操作（language-conditioned spatial manipulation）仿真基准；它基于 Isaac Lab 构建了真实 SO-101 装置的数字孪生。 论文要解决的问题是：SO-101 已成为机器人学习最常见的入门硬件，但现有 SO-101 基准只在真机上运行，任务简单、留出物体少、成本高（每个条件只有几十次 rollout），且受具体装配（舵机偏移、相机错位、物体磨损）影响，结果难以复现；而已有的通用仿真套件（如 LIBERO）已饱和且存在训练-测试重叠。 论文的核心目标是验证“仿真排名能否在真机上成立”，即数字孪生是否能替代真机进行策略评估，并同时揭示聚合成功率背后被掩盖的能力短板（空间放置、未见类别、旋转适配、遮挡记忆）。",
+    "research_unit": "Truman Hickok（论文作者兼通讯作者，邮箱 hickoktruman@gmail.com）",
+    "hook_text": "论文提出 SO-101 Bench，这是一个面向低成本机械臂 SO-101 的语言条件空间操作（language-conditioned spatial manipulation）仿真基准；它基于 Isaac Lab 构建了真实 SO-101 装置的数字孪生。",
+    "key_points": [
+      "论文提出 SO-101 Bench，这是一个面向低成本机械臂 SO-101 的语言条件空间操作（language-conditioned spatial manipulation）仿真基准；它基于 Isaac Lab 构建了真实 SO-101 装置的数字孪生。",
+      "论文要解决的问题是：SO-101 已成为机器人学习最常见的入门硬件，但现有 SO-101 基准只在真机上运行，任务简单、留出物体少、成本高（每个条件只有几十次 rollout），且受具体装配（舵机偏移、相机错位、物体磨损）影响，结果难以复现；而已有的通用仿真套件（如 LIBERO）已饱和且存在训练-测试重叠。",
+      "论文的核心目标是验证“仿真排名能否在真机上成立”，即数字孪生是否能替代真机进行策略评估，并同时揭示聚合成功率背后被掩盖的能力短板（空间放置、未见类别、旋转适配、遮挡记忆）。"
+    ],
+    "reading_minutes": 14,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-26",
+    "title": "ASPEN: Adaptive Semantic Reasoning via Command Persistence Prediction for Efficient Navigation VLAs",
+    "link": "http://arxiv.org/abs/2610.36285",
+    "arxiv_id": "2610.36285",
+    "detail_path": "papers/2610.36285/",
+    "cover_path": "covers/2610.36285/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36285.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36285.webp",
+    "preview_text": "论文关注导航类视觉-语言-动作（VLA）策略在连续决策中反复调用代价高昂的语义推理的问题：对同一高层指令进行重复推理会带来大量冗余计算。 论文提出 ASPEN，一个事件触发的调度器，通过“命令持续性预测（command persistence prediction）”判断冻结的基座策略是否仍会输出与上一时刻相同的命令；若预测到命令将持续，就复用上一指令，否则触发新的 VLA 推理。 目标是：在保持与原始导航策略行为一致的前提下，减少 VLA 调用次数与推理时延；跨数据集（R2R-CE → RxR-CE）的泛化被精强调。",
+    "research_unit": "University of Houston，电气与计算机工程系（Department of Elect…",
+    "hook_text": "论文关注导航类视觉-语言-动作（VLA）策略在连续决策中反复调用代价高昂的语义推理的问题：对同一高层指令进行重复推理会带来大量冗余计算。",
+    "key_points": [
+      "论文关注导航类视觉-语言-动作（VLA）策略在连续决策中反复调用代价高昂的语义推理的问题：对同一高层指令进行重复推理会带来大量冗余计算。",
+      "论文提出 ASPEN，一个事件触发的调度器，通过“命令持续性预测（command persistence prediction）”判断冻结的基座策略是否仍会输出与上一时刻相同的命令；若预测到命令将持续，就复用上一指令，否则触发新的 VLA 推理。",
+      "目标是：在保持与原始导航策略行为一致的前提下，减少 VLA 调用次数与推理时延；跨数据集（R2R-CE → RxR-CE）的泛化被精强调。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-10-26",
+    "title": "E0.5: From Reconstructive to Future-Predictive 3D Foundations for Robotic World-Action Modeling",
+    "link": "http://arxiv.org/abs/2610.36011",
+    "arxiv_id": "2610.36011",
+    "detail_path": "papers/2610.36011/",
+    "cover_path": "covers/2610.36011/",
+    "paper_image_path": "assets/paper-images/thumbs/2610.36011.webp",
+    "paper_image_full_path": "assets/paper-images/2610.36011.webp",
+    "preview_text": "提出 E0.5，一种“几何原生（geometry-native）”的世界-动作模型（World-Action Model, WAM），直接构建在 3D 基础模型之上，而非以视频基础模型或视觉-语言模型（VLM）为主干。 解决现有 WAM 仅把 3D 几何特征当作辅助输入或辅助监督、主干计算仍围绕视频/VLM 展开的问题。 目标是让动作生成与未来世界状态预测在同一个可训练的几何主干中联合学习，并验证其泛化性与向真实机器人的迁移能力。",
+    "research_unit": "X-Era AI Lab Team（X-Era.AI）",
+    "hook_text": "提出 E0.5，一种“几何原生（geometry-native）”的世界-动作模型（World-Action Model, WAM），直接构建在 3D 基础模型之上，而非以视频基础模型或视觉-语言模型（VLM）为主干。",
+    "key_points": [
+      "提出 E0.5，一种“几何原生（geometry-native）”的世界-动作模型（World-Action Model, WAM），直接构建在 3D 基础模型之上，而非以视频基础模型或视觉-语言模型（VLM）为主干。",
+      "解决现有 WAM 仅把 3D 几何特征当作辅助输入或辅助监督、主干计算仍围绕视频/VLM 展开的问题。",
+      "目标是让动作生成与未来世界状态预测在同一个可训练的几何主干中联合学习，并验证其泛化性与向真实机器人的迁移能力。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
     "date": "2026-10-26",
     "title": "OSWAM: An Effective World Action Model with One-Step Action Generation",
     "link": "http://arxiv.org/abs/2610.35850",
@@ -586,8 +1108,8 @@
     "arxiv_id": "2610.33794",
     "detail_path": "papers/2610.33794/",
     "cover_path": "covers/2610.33794/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2610.33794.webp",
+    "paper_image_full_path": "assets/paper-images/2610.33794.webp",
     "preview_text": "针对语言引导导航（VLN/VLA）在新建筑中部署时性能急剧下降的问题，提出无需人类示教（demonstration-free）的场景自适应方案：只用手持 iPhone 单次被动扫描即可完成适配。 论文要解决的问题是：公开基准上训练的 VLA 策略受布局、外观与语言漂移影响，逐场景退化，而现场遥操作采集轨迹成本高、不可扩展。 核心思路是把一次扫描同时当作“训练环境生成器”和“几何奖励源”，用 Scan2Instruction 编译出带语言指令的可执行导航回合，再用 PRPT-KS 完成策略后训练，全程无人类轨迹、无人类偏好标签。",
     "research_unit": "北京大学计算机学院 CFCS（前沿计算研究中心）（通讯作者 Hao Dong，邮箱 hao.dong@…",
     "hook_text": "针对语言引导导航（VLN/VLA）在新建筑中部署时性能急剧下降的问题，提出无需人类示教（demonstration-free）的场景自适应方案：只用手持 iPhone 单次被动扫描即可完成适配。",
@@ -615,8 +1137,8 @@
     "arxiv_id": "2610.33685",
     "detail_path": "papers/2610.33685/",
     "cover_path": "covers/2610.33685/",
-    "paper_image_path": "",
-    "paper_image_full_path": "",
+    "paper_image_path": "assets/paper-images/thumbs/2610.33685.webp",
+    "paper_image_full_path": "assets/paper-images/2610.33685.webp",
     "preview_text": "论文提出 EXE（Egocentric Cross-Embodiment Pretraining via Factorized Latent Actions），一个利用第一视角人类操作视频为 VLA（Vision-Language-Action）模型做跨本体预训练的框架。 核心问题：机器人演示数据稀缺且昂贵，而第一视角人类视频数据量丰富、语义强，但人-机本体差异（embodiment gap）使得难以从视频中提取可直接迁移的动作表征。 关键观察：手腕/末端执行器的 3D 位置编码了跨本体共享的空间任务意图（伸手、抓取、放置），而手指关节/夹爪几何是本体特有的，应当被解耦而非强行对齐。",
     "research_unit": "ROBOTERA（北京人形机器人创新中心）：Qingyuan Cai、Bo Zhang、Jianyu…",
     "hook_text": "论文提出 EXE（Egocentric Cross-Embodiment Pretraining via Factorized Latent Actions），一个利用第一视角人类操作视频为 VLA（Vision-Language-Action）模型做跨本体预训练的框架。",

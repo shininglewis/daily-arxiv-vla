@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How Much Can Best-of-N Help a World Action Model? Measuring Selectable Headroom and Realizing It in Closed Loop - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。 作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。 论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.37196">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.37196.webp" alt="How Much Can Best-of-N Help a World Action Model? Measuring Selectable Headroom and Realizing It in Closed Loop" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">How Much Can Best-of-N Help a World Action Model? Measuring Selectable Headroom and Realizing It in Closed Loop</h1>
+            <div class="detail-meta">2026-10-27 · <a href="http://arxiv.org/abs/2610.37196" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.37196" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.37196</span></div>
+            <p class="detail-summary">论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。 作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。 论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.37196/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。</p>
+  <ul class="reading-intro-points"><li>论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。</li><li>作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。</li><li>论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>Everwise-Tech Co., Ltd.</strong></li><li><strong>复旦大学</strong>（Fudan University）</li><li><strong>清华深圳研究院</strong>（Research Institute of Tsinghua University in Shenzhen）</li><li><strong>北京大学</strong>（Peking University）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究世界动作模型（World Action Models, WAMs）在测试时用 Best-of-N 选择（即想象多个候选动作的未来并挑选最优者）究竟能带来多大收益。</li><li>作者指出既有评估方式存在偏差：传统“单次延续 oracle”（每个候选只执行一次续跑，取最好结果）把候选本身的优劣与后续随机性混在一起，从而高估了可选增益。</li><li>论文提出“可选余量”（selectable headroom）概念及去噪反事实协议来量化它，并据此设计一个仅在策略可能失败时才偏离策略动作块的“失败门控选择器”，在闭环中真正实现该增益。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>去噪反事实协议</strong>：基于按位可复现的分支、重复延续、留出 oracle（held-out oracle）与公共随机数，测量选择器真正能实现的可选余量。</li><li>揭示标准单延续 oracle 的增益主要来自<strong>延续随机性</strong>：候选效应仅 0.0006，而候选×延续交互为 0.028，即 98% 的候选差异在换种子后被重抽。</li><li>发现<strong>结构化动作扰动</strong>（沿机器人六个轴偏移策略块）能创造真实可选余量，67–95% 在留出评估中存活，而原生样本至多 22%。</li><li>证明<strong>想象未来中已携带排序信号</strong>：线性探针在想象未来与真实未来上表现无显著差异，而 Cosmos Policy 的价值头（AUROC 0.90）几乎未能利用该信号。</li><li>构建<strong>失败门控选择器</strong>（失败门 + 学习排序器），在闭环中显著提升任务成功率，并发布 <strong>HeadroomBench</strong> 基准与分支数据集。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>按位可复现分支</strong>：快照并恢复完整 MuJoCo 状态、全局随机数状态及 RoboCasa 夹具状态（如炉火），分支复现与种子重放的字节级一致。</li><li><strong>三类估计量</strong>：单延续 oracle <code>O¹</code>、样本内 oracle <code>O^in</code>（上界）、留出 oracle <code>O^L</code>（下界），并报告留出份额 <code>R^L = Ō^L/Ō¹</code>。</li><li><strong>方差分解</strong>：用两水平模型 <code>Y_cj = μ + a_c + b_j + e_cj</code> 分离候选效应 <code>τ²</code>、种子计划效应与不可利用的候选×延续交互。</li><li><strong>高效采样</strong>：每个候选先跑一次延续，仅对结果不同的决策点及哈希抽样的四分之一决策点追加延续，并用逆采样概率加权 + 按状态聚类的 bootstrap 置信区间。</li><li><strong>结构化提议</strong>：<code>a'_{k,0:3} = clip(a_{k,0:3} + κe_d, -1, 1)</code>，<code>κ ∈ {0.1, 0.25, 0.5}</code> 对应约 2/5/10 cm 末端执行器位移，方向与夹爪不变。</li><li><strong>表征探针</strong>：对冻结模型最终 Transformer 块未来帧位置的 token 做加权对偶岭回归线性探针，留一状态训练、决策点内中心化并对全局方向残差化，统计量为决策点内 Spearman 相关 <code>ρ</code>，零分布由决策点内置换重拟合得到。</li><li><strong>选择器设计</strong>：失败门（对 WAM 想象自身动作块时的表征做逻辑回归读出，用反事实分支的任务结果训练）判断是否偏离；排序器（想象通道上的岭读出）决定偏移方向，仅在门触发时调用。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>基准</strong>：<strong>RoboCasa</strong>（3 个任务：TurnOnStove、TurnOnMicrowave、PnPCounterToSink）与 <strong>LIBERO-Plus</strong>（LIBERO-10 的扰动版本，选用 Objects Layout 与 Robot Initial States 两类扰动）。</li><li><strong>模型</strong>：四个 WAM——<strong>Cosmos Policy</strong>（2B 参数，RoboCasa 公开检查点平均成功率 67.1%）、<strong>Flex-π</strong>、<strong>Fast-WAM</strong>、<strong>Streaming-WAM</strong>。</li><li><strong>数据规模</strong>：12 个分支数据集（RoboCasa 4 个、LIBERO-Plus 8 个），累计超过 <strong>100,000 条分支 rollout</strong>；另含 400 个新状态（1,176 决策点）、480 个闭环回合、858 个未使用初始状态回合。</li><li><strong>训练细节</strong>：Cosmos Policy 的价值头在 1,200 条策略 rollout 上微调，使用 15K 步模型；选择器在 320 个 LIBERO-Plus 状态上按预声明网格做按状态交叉验证选参。</li><li><strong>计算开销</strong>：选择器每回合额外增加 17.5 次想象通道（相对 12 次策略查询）；原文未明确列出 GPU/TPU 型号与总量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>预注册评估</strong>：主文全部验证性检验均预注册，共 <strong>24 项测试</strong>（附录 A 按注册顺序列出），数据、统计量与判据均在数据收集前登记。</li><li><strong>主要指标</strong>：单延续 oracle <code>Ō¹</code>、留出 oracle <code>ŌL</code>、留出份额 <code>R^L</code>、相对策略块的增益、决策点内 Spearman <code>ρ</code>、AUROC、闭环任务成功率。</li><li><strong>复现与证伪</strong>：复现 Yuan et al. 的 +12.3 分 oracle 增益，但 <code>Ō¹ = 0.102 [0.036, 0.190]</code> 而 <code>ŌL = 0.009 [-0.001, 0.023]</code>，<code>R^L = 0.086</code>；<code>K</code> 增大时 <code>Ō¹</code> 持续上升而 <code>ŌL</code> 持平，是“在噪声上选择”的典型特征。</li><li><strong>余量区间</strong>：17 次延续下，原生样本的可选份额对 Cosmos Policy 为 24%–52%，对 Flex-π 与 Fast-WAM 为三分之一到三分之二；单延续 oracle 至少高估 1.27–1.5 倍。</li><li><strong>结构化提议增益</strong>：留出 oracle 相对策略块提升 +0.112（Cosmos Policy）、+0.088（Fast-WAM）、+0.045（Flex-π）等，且增益集中在策略块失败的决策点（+0.21–0.44）。</li><li><strong>想象信号</strong>：想象未来探针 <code>ρ = +0.31 / +0.37</code>（TurnOnStove）、<code>+0.54</code>（TurnOnMicrowave）、<code>0.26/0.20</code>（LIBERO-Plus）；与真实未来差异在预注册 ±0.15 等效界内；价值头决策点内 <code>\|ρ\|≤ 0.05</code>。</li><li><strong>闭环结果</strong>：训练任务保留回合成功率 <strong>76.9% → 81.6%（+4.7 [1.9, 7.6]）</strong>；机器人初始状态扰动下 <strong>65.1% → 75.8%（+10.7）</strong>；未见任务 <strong>62.6% → 69.8%（+7.2 [4.7, 9.8]）</strong>，全部任务训练时可达 <strong>76.0%（+13.4）</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.37215/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Retrieve to Act: Motion Primitive Graph Retrieval for Robust VLA Execution</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.37091/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">GAWM: A Compact Latent World-Action Model for Multi-Task Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
