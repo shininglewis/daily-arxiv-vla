@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UMI-Live for In-The-Wild Bimanual Robotics Data Collection - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 UMI-Live，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。 目标是解决 UMI 类手持示教系统在复现与使用中的痛点：需要外部跟踪设备、场地标定、笨重的外挂计算与繁琐的逐条数据处理流程。 让操作者用单手按键即可持续采集示教数据，后台异步完成 SLAM 重建与数据集生成，从而无需真实机器人即可大规模收集高质量双臂演示。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.39385">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.39385.webp" alt="UMI-Live for In-The-Wild Bimanual Robotics Data Collection" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 UMI-Live，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">UMI-Live for In-The-Wild Bimanual Robotics Data Collection</h1>
+            <div class="detail-meta">2026-10-29 · <a href="http://arxiv.org/abs/2610.39385" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.39385" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.39385</span></div>
+            <p class="detail-summary">论文提出 UMI-Live，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。 目标是解决 UMI 类手持示教系统在复现与使用中的痛点：需要外部跟踪设备、场地标定、笨重的外挂计算与繁琐的逐条数据处理流程。 让操作者用单手按键即可持续采集示教数据，后台异步完成 SLAM 重建与数据集生成，从而无需真实机器人即可大规模收集高质量双臂演示。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Yale University（耶鲁大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.39385/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 UMI-Live，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。</p>
+  <ul class="reading-intro-points"><li>论文提出 UMI-Live，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。</li><li>目标是解决 UMI 类手持示教系统在复现与使用中的痛点：需要外部跟踪设备、场地标定、笨重的外挂计算与繁琐的逐条数据处理流程。</li><li>让操作者用单手按键即可持续采集示教数据，后台异步完成 SLAM 重建与数据集生成，从而无需真实机器人即可大规模收集高质量双臂演示。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Yale University</strong>（耶鲁大学）</li><li><strong>Carnegie Mellon University</strong>（卡内基梅隆大学）</li><li><strong>AfterQuery</strong></li><li><strong>University of Pennsylvania</strong>（宾夕法尼亚大学）</li><li><strong>Harvard University</strong>（哈佛大学）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>UMI-Live</strong>，一个面向野外（in-the-wild）双臂机器人数据采集的全栈开源系统，涵盖硬件、采集界面、自动数据处理、策略训练与真机部署。</li><li>目标是解决 UMI 类手持示教系统在复现与使用中的痛点：需要外部跟踪设备、场地标定、笨重的外挂计算与繁琐的逐条数据处理流程。</li><li>让操作者用单手按键即可持续采集示教数据，后台异步完成 SLAM 重建与数据集生成，从而无需真实机器人即可大规模收集高质量双臂演示。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>可复现的双臂手持采集硬件</strong>：将感知（相机 + LiDAR-IMU）、板载计算、存储、供电与操作按键全部集成在手持夹爪上，并提供搭建与标定指南。</li><li>提供<strong>从采集到机器人部署的完整软件链路</strong>：协同录制、异步传输、并行批处理、<strong>LeRobot</strong> 数据集构建、双 <strong>YAM</strong> 遥操作，以及策略训练与推理；采集与处理可并行进行。</li><li>发布<strong>约 40 小时的双臂示教数据集</strong>，覆盖三类操作任务，并公开硬件设计、软件与复现指南。</li><li>通过真实机器人实验验证数据质量：微调 <strong>π₀.₅</strong> 与 <strong>MolmoAct2</strong> 后，在双臂抓取放置任务上分别达到 <strong>10/10</strong> 与 <strong>8/10</strong> 成功率（后者官方发布权重为 <strong>0/10</strong>）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>夹爪机构</strong>：在原版 UMI 夹爪基础上改用轴承支撑的扳机与齿轮枢轴，减少回差；扣动扳机驱动两个扇形齿轮啮合齿条，使指座沿直线导轨做对置平行夹持运动。</li><li><strong>夹爪指设计</strong>：采用 <strong>PLA+</strong> 刚性基底加薄层 <strong>TPU</strong> 接触面的混合结构，兼顾小物体（如螺钉）精确施力与对不同物体形状的顺应性。</li><li><strong>传感与电子</strong>：每个夹爪搭载 <strong>RoboSense Airy</strong> LiDAR（含集成 IMU）、<strong>SVPRO AR0234</strong> 全局快门鱼眼 USB 相机（<strong>800×600 @ 30 fps</strong>）与 <strong>Raspberry Pi 5</strong>；不使用顶部俯视相机，靠超广角腕部视角提供全局上下文。</li><li><strong>夹爪开合测量</strong>：在可动指座上贴 <strong>ArUco</strong> 标记，通过视觉检测估计爪口开度。</li><li><strong>供电设计</strong>：可拆卸电池模块卡扣在握把底部，内含电池、电源开关与 DC-DC 变换器，向树莓派提供 <strong>5 V USB-C</strong>、向 LiDAR 提供 <strong>12 V</strong>。</li><li><strong>采集与处理流水线</strong>：单键同时启停双臂录制，LCD 显示录制与传输状态；每条示范在本地存为带时间戳的腕部视频与原始 LiDAR/IMU 数据包，完成后异步上传，服务端并行执行 SLAM 重建、位姿与开合估计、校验及数据集组装。</li><li><strong>训练与部署</strong>：支持双 <strong>YAM</strong> 遥操作数据采集，以及 VLA 策略训练与推理（含运动学模型与真机集成）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>发布约 <strong>40 小时</strong>的 UMI-Live 双臂示教数据，覆盖三个任务：<strong>小物体抓取与插入</strong>、<strong>点火柴（match lighting）</strong>、<strong>折叠衬衫（shirt folding）</strong>。</li><li>数据以 <strong>LeRobot</strong> 数据集格式组织并公开发布。</li><li>评测平台为双臂 <strong>i2RT YAM</strong> 机械臂（Dual-YAM）。</li><li>单台手持单元（含电池）质量 <strong>1.42 kg</strong>，夹爪宽度 <strong>80 mm</strong>，单次充电续航 <strong>1.5 h</strong>，一对硬件成本约 <strong>$1,930</strong>。</li><li>论文 HTML 未给出策略模型参数量与训练所用 GPU/TPU 资源的具体信息。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：手持示教在与机器人评测不同的地点与光照条件下采集；训练数据以 UMI 示教为主，混合少量来自目标机器人与目标场景的遥操作示范；最终在真实 Dual-YAM 机器人上做物理 rollout。</li><li><strong>评估模型</strong>：<strong>π₀.₅</strong> 与 <strong>MolmoAct2</strong> 两个 VLA 策略，均采用混合数据微调。</li><li><strong>主要指标</strong>：双臂抓取放置任务的成功试验数（满分 10 次）。</li><li><strong>关键结果</strong>：<strong>π₀.₅</strong> 达到 <strong>10/10</strong>，<strong>MolmoAct2</strong> 达到 <strong>8/10</strong>，而 MolmoAct2 官方发布检查点仅 <strong>0/10</strong>，说明 UMI-Live 采集的数据可直接支撑策略在真实机器人上的有效学习。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.39451/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Smooth Action Chunking Via Movement-Primitive Representations for Imitation Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.39367/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Utility-WAM: Correcting Future-Induced Action Changes</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

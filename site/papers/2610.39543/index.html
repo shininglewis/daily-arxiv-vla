@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Reasoning to Action: Consequence-Grounded Alignment for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 CoRAct，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。 现有 VLA 模型只把具身思维链（ECoT）当作动作生成的条件上下文，推理与动作之间的一致性仅靠示范数据隐式学习，缺少显式优化目标，因此出现“说得出却做不到”或“预测结果执行不出来”的错位。 核心目标是：将 ECoT 中的运动意图与空间预期转化为可验证的约束信号，通过奖励优化使生成动作与所述意图和预期后果保持一致。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.39543">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.39543.webp" alt="From Reasoning to Action: Consequence-Grounded Alignment for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 CoRAct，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">From Reasoning to Action: Consequence-Grounded Alignment for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-10-29 · <a href="http://arxiv.org/abs/2610.39543" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.39543" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.39543</span></div>
+            <p class="detail-summary">论文提出 CoRAct，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。 现有 VLA 模型只把具身思维链（ECoT）当作动作生成的条件上下文，推理与动作之间的一致性仅靠示范数据隐式学习，缺少显式优化目标，因此出现“说得出却做不到”或“预测结果执行不出来”的错位。 核心目标是：将 ECoT 中的运动意图与空间预期转化为可验证的约束信号，通过奖励优化使生成动作与所述意图和预期后果保持一致。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京大学（Peking University，北京）：Yixue Zhang、Junnan Nie、C…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.39543/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 CoRAct，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。</p>
+  <ul class="reading-intro-points"><li>论文提出 CoRAct，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。</li><li>现有 VLA 模型只把具身思维链（ECoT）当作动作生成的条件上下文，推理与动作之间的一致性仅靠示范数据隐式学习，缺少显式优化目标，因此出现“说得出却做不到”或“预测结果执行不出来”的错位。</li><li>核心目标是：将 ECoT 中的运动意图与空间预期转化为可验证的约束信号，通过奖励优化使生成动作与所述意图和预期后果保持一致。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京大学</strong>（Peking University，北京）：Yixue Zhang、Junnan Nie、Chang Liu（通讯作者）</li><li><strong>北京人形机器人创新中心</strong>（Beijing Innovation Center of Humanoid Robotics）：Wenke Xia、Kun Wu、Wenbo Yu、Pei Ren、Zhengping Che（通讯作者）等</li><li><strong>中国人民大学</strong>（Renmin University of China）：Wenke Xia、Di Hu</li><li><strong>北京林业大学</strong>（Beijing Forestry University）：Wenbo Yu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>CoRAct</strong>，一个面向视觉-语言-动作模型（VLA）的离线训练框架，用于显式对齐“具身推理”与“物理执行”。</li><li>现有 VLA 模型只把具身思维链（<strong>ECoT</strong>）当作动作生成的条件上下文，推理与动作之间的一致性仅靠示范数据隐式学习，缺少显式优化目标，因此出现“说得出却做不到”或“预测结果执行不出来”的错位。</li><li>核心目标是：将 ECoT 中的运动意图与空间预期转化为<strong>可验证的约束信号</strong>，通过奖励优化使生成动作与所述意图和预期后果保持一致。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>CoRAct</strong> 后果锚定对齐框架，显式建立具身推理与物理执行之间的一致性约束，而不再把 ECoT 仅作为条件输入。</li><li>从结构化 ECoT 中提取两类可验证信号——<strong>movement</strong>（预期运动）与 <strong>waypoints</strong>（预期空间后果），并据此构造运动一致性奖励与后果一致性奖励。</li><li>在<strong>动作噪声空间</strong>中做组相对策略优化（GRPO 风格），只更新轻量条件噪声策略，把多候选验证能力蒸馏进单样本推理过程。</li><li>在 <strong>RoboCasa</strong>、<strong>VLABench</strong> 与真实机器人任务上取得一致的性能与泛化提升，并显著改善推理-执行一致性指标。</li><li>证明该方法可把外部强 VLM 提供的 ECoT“落地”为可执行动作，实现无需额外策略训练的<strong>零样本</strong>新场景适应。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>两阶段训练 + 轻量部署</strong>：第一阶段联合建模 ECoT 推理、动作生成与动作条件未来预测；第二阶段冻结主干，仅优化条件噪声策略。</li><li><strong>统一 Mixture-of-Transformers（MoT）</strong>：包含三个专家——VLM 专家自回归生成结构化数值 ECoT；动作专家用条件流匹配预测 8 步 7 维笛卡尔动作块；图像生成专家预测动作条件下的未来视觉隐变量（SDXL VAE 潜空间）。</li><li><strong>注意力掩码设计</strong>：动作 token 可关注多模态上下文与 ECoT 前缀；未来预测流刻意屏蔽 ECoT，防止利用 waypoint 信息走捷径。</li><li><strong>交错联合训练</strong>：以概率 η 采样“推理-动作”流，以 1−η 采样“动作-世界”流，总目标为 CoT 交叉熵损失、动作流匹配损失与世界模型损失的加权和。</li><li><strong>条件噪声策略</strong>：用上下文相关的对角高斯策略替代与上下文无关的高斯先验，由冻结的动作专家去噪 10 步生成候选动作。</li><li><strong>运动对齐奖励</strong>：对平移、旋转、夹爪三类运动分量计算归一化误差并加权求和为负奖励。</li><li><strong>后果对齐奖励</strong>：用 Grounding DINO 训练的 waypoint 定位器从预测未来图像中提取夹爪点，与 ECoT 指定 waypoint 的像素距离做指数衰减奖励。</li><li><strong>组相对优化</strong>：以组均值作为无 critic 基线计算优势，采用 PPO 式裁剪重要性比率与熵正则，不更新主干与定位器。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真基准</strong>：<strong>RoboCasa</strong>（17 个任务，每任务 30 次试验）、<strong>VLABench</strong>（10 个任务，每任务 50 次试验），均含分布内与多种分布外泛化设置（类别、语义、文本、物体、光照、场景）。</li><li><strong>真实机器人</strong>：3 个任务各 30 次试验——桌面整理、图像引导拼词、语言引导水果挑选。</li><li><strong>基座模型</strong>：<strong>JanusFlow-1.3B</strong>（统一多模态理解与生成），外接动作专用 Transformer 专家。</li><li><strong>数据划分</strong>：各数据集按 90%/5%/5% 划分为主干训练、验证与测试；GRPO 后训练只用验证集，评估在留出测试集上进行。</li><li><strong>训练配置</strong>：主干微调 10 个 epoch，bf16、AdamW、学习率 2×10⁻⁴、余弦衰减、权重衰减 0.01；GRPO 训练 2500 次更新、学习率 10⁻⁵；每样本采样 G=8 个候选，各 10 步流积分。</li><li>论文未明确披露 GPU/TPU 具体型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>主结果（成功率 %）</strong>：VLABench 上 <strong>CoRAct</strong> 达 51.8（π₀ 47.0、π₀.₅ 40.6、CoVer-VLA 40.9、LaST₀ 40.9），OOD 平均 30.0 优于对比方法；RoboCasa 分布内 75.5、OOD 物体 70.3、OOD 文本 65.9、OOD 光照 66.9、OOD 场景 60.0，总平均 60.0 为最优。</li><li><strong>消融</strong>：无 CoT 无对齐基线为 VLABench 39.2%/RoboCasa 68.6%；加入 Movement CoT 升至 44.3%/72.9%；再加 Waypoint CoT 为 47.5%/73.5%；加入运动对齐后 49.3%/74.6%；完整模型 51.8%/75.5%（分别提升 12.6% 与 6.9%）。</li><li><strong>推理-执行一致性指标</strong>：位置误差 0.401→<strong>0.171 cm</strong>，旋转误差 0.534→<strong>0.420 deg</strong>，夹爪一致率 69.8%→<strong>91.8%</strong>，waypoint 像素误差 5.998→<strong>0.542 px</strong>。</li><li><strong>闭环自纠正</strong>：引入外部 agent（GPT-5.6 Sol）修正错误 ECoT 后，Insert Flower 任务从 24.0 提升到 <strong>66.0</strong>，Chem Tube 从 22.0 提升到 <strong>52.0</strong>。</li><li><strong>真实机器人</strong>：桌面整理 56.6%（对比 LaST₀ 40.0%）、图像引导拼词 46.6%、水果挑选 63.3%，三项均优于 π₀.₅、LaST₀ 与 CoVer-VLA。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.39816/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PASA-KV: Attacking Action-Facing Visual Routes in World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.39528/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PRIME W0: Physical Priors from World Models for Embodied Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Utility-WAM: Correcting Future-Induced Action Changes - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究World Action Models（WAMs）中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的动作增量 Δa。 作者发现这一增量在基准平均指标上几乎不改变成功率（LIBERO +0.8 分、RoboTwin 2.0 −0.8 分），但视频未来生成会带来 1.7–1.9× 的推理延迟。 论文提出并定义了未来诱导负迁移（future-induced negative transfer）：预测未来对长时序任务有益（LIBERO-Long +2.4 分），对多数常规操作可忽略，但在精细任务上造成集中且可复现的严重性能崩塌（*Press Stapler* −54.0 分、*Place Can Basket* −34.0 分）。 目标是在保留未来预测前瞻能力的同时，修复未来诱导的有害动作变化，并在未来无益时省去视频生成计算。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.39367">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.39367.webp" alt="Utility-WAM: Correcting Future-Induced Action Changes" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究World Action Models（WAMs）中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的动作增量 Δa。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Utility-WAM: Correcting Future-Induced Action Changes</h1>
+            <div class="detail-meta">2026-10-29 · <a href="http://arxiv.org/abs/2610.39367" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.39367" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.39367</span></div>
+            <p class="detail-summary">论文研究World Action Models（WAMs）中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的动作增量 Δa。 作者发现这一增量在基准平均指标上几乎不改变成功率（LIBERO +0.8 分、RoboTwin 2.0 −0.8 分），但视频未来生成会带来 1.7–1.9× 的推理延迟。 论文提出并定义了未来诱导负迁移（future-induced negative transfer）：预测未来对长时序任务有益（LIBERO-Long +2.4 分），对多数常规操作可忽略，但在精细任务上造成集中且可复现的严重性能崩塌（*Press Stapler* −54.0 分、*Place Can Basket* −34.0 分）。 目标是在保留未来预测前瞻能力的同时，修复未来诱导的有害动作变化，并在未来无益时省去视频生成计算。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.39367/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究World Action Models（WAMs）中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的动作增量 Δa。</p>
+  <ul class="reading-intro-points"><li>论文研究World Action Models（WAMs）中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的动作增量 Δa。</li><li>作者发现这一增量在基准平均指标上几乎不改变成功率（LIBERO +0.8 分、RoboTwin 2.0 −0.8 分），但视频未来生成会带来 1.7–1.9× 的推理延迟。</li><li>论文提出并定义了未来诱导负迁移（future-induced negative transfer）：预测未来对长时序任务有益（LIBERO-Long +2.4 分），对多数常规操作可忽略，但在精细任务上造成集中且可复现的严重性能崩塌（*Press Stapler* −54.0 分、*Place Can Basket* −34.0 分）。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>约翰霍普金斯大学</strong>（Johns Hopkins University）</li><li><strong>东北大学</strong>（Northeastern University）</li><li><strong>东南大学</strong>（Southeast University）</li><li><strong>中国科学院自动化研究所</strong>（Institute of Automation, Chinese Academy of Sciences）</li><li><strong>银望智能科技 PAI X Lab</strong>（PAI X Lab, Yinwang Intelligent Technology Co. Ltd.）</li><li><strong>银望智能科技 2030Lab</strong>（2030Lab, Yinwang Intelligent Technology Co. Ltd.）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>World Action Models（WAMs）</strong>中以生成式视觉未来（visual future）为条件对机器人动作预测产生的影响，核心研究对象是“未来条件路径”与“无未来路径”之间的<strong>动作增量 Δa</strong>。</li><li>作者发现这一增量在基准平均指标上几乎不改变成功率（<strong>LIBERO +0.8 分</strong>、<strong>RoboTwin 2.0 −0.8 分</strong>），但视频未来生成会带来 <strong>1.7–1.9×</strong> 的推理延迟。</li><li>论文提出并定义了<strong>未来诱导负迁移（future-induced negative transfer）</strong>：预测未来对长时序任务有益（LIBERO-Long <strong>+2.4 分</strong>），对多数常规操作可忽略，但在精细任务上造成集中且可复现的严重性能崩塌（*Press Stapler* <strong>−54.0 分</strong>、*Place Can Basket* <strong>−34.0 分</strong>）。</li><li>目标是<strong>在保留未来预测前瞻能力的同时，修复未来诱导的有害动作变化</strong>，并在未来无益时省去视频生成计算。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>刻画未来诱导负迁移</strong>：以相对无未来参考路径的动作增量 Δa 形式化测试时想象，证明小的基准平均效应掩盖了在多种 WAM 配置下可复现的精细任务严重崩溃。</li><li><strong>提出定向动作修正</strong>：设计轻量<strong>残差适配器（residual adapter）</strong>，通过真值未来对齐项与超额误差惩罚项修复未来诱导的速度增量；在 RoboTwin 2.0 上恢复两个严重任务 <strong>89%</strong> 与 <strong>59%</strong> 的损失（占其整体 +1.7 分提升的 80%），同时不牺牲其余 48 个任务与长时序收益。</li><li><strong>提出选择性部署门控</strong>：利用适配器配对结果（counterfactual 动作结果）训练<strong>生成前效用门控（pre-generation gate）</strong>，在 RoboTwin 上仅对 <strong>24.5%</strong> 的查询调用视频生成，延迟降低 <strong>38%</strong>。</li><li><strong>取得领先的基准成绩</strong>：报告平均成功率 <strong>LIBERO 98.9%</strong>、<strong>RoboTwin 2.0 93.3%</strong>，优于 FAST-WAM-Joint（98.5%/90.6%）与 FAST-WAM-IDM（98.0%/91.3%）等未来生成变体。</li><li><strong>完成真实世界验证</strong>：在双臂真机三个任务上，60 次试验成功 <strong>53 次</strong>，对比 FAST-WAM 的 43 次（成功率 71.7% → 88.3%，<strong>+16.7 个百分点</strong>）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>共享 WAM 与流匹配</strong>：以 flow matching 联合建模视频与动作 token，同一套参数下设置两条动作路径——<code>π_wo</code>（掩码阻断对未来的访问）与 <code>π_w</code>（条件化于生成的未来），由不同注意力掩码 <code>M_wo</code> / <code>M_w</code> 控制。</li><li><strong>三阶段训练</strong>：阶段 1 联合训练视频与动作 DiT；阶段 2 冻结 WAM，仅训练残差适配器；阶段 3 冻结前两者，用配对最终动作误差训练门控。</li><li><strong>残差适配器</strong>：在动作 velocity 上加入修正项 <code>v̂_w = v_w + Δv_φ(q_τ^a, F_k^+)</code>，使用自生成的未来特征 <code>F_k^+</code>（与推理分布对齐）作为输入，并以真值未来条件下的速度 <code>v_GT</code> 判断未来是否支持有益增量。</li><li><strong>三项损失设计</strong>：<code>L2 = w(τ)d(v̂_w, v*)</code>（动作拟合）+ <code>α·d(v̂_w − v_wo, δ*)</code>（对齐项，δ* 在真值未来无优势时置零）+ <code>β·max{d(v̂_w,v*) − d(v_wo,v*), 0}</code>（超额误差项，以前景无关路径为安全锚点）。</li><li><strong>生成前门控</strong>：门控学习 <code>g_ω(x) ≈ P(u_act > 0 \|x)</code>，以二元交叉熵训练，推理时一次性判定并只执行被选中的完整动作流，从而跳过视频生成。</li><li><strong>创新点</strong>：不同于蒸馏为仅当前观测策略（如 PFD）或仅做路由的方案，该方法在保留未来条件路径的同时约束其负面副作用，实现“先修正、再分配计算”。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：40 个任务、<strong>2,000</strong> 次试验，从预测的 32 步动作中执行 10 步。</li><li><strong>RoboTwin 2.0</strong>：每个任务 <strong>100</strong> 次试验，覆盖 clean 与 randomized 条件，从 32 步中执行 24 步。</li><li><strong>真实世界</strong>：<strong>AgileX PiPER</strong> 双臂平台，3 路 RGB 视角，3 个任务（*Place Empty Cup*、*Insert Can*、*Stack Three Blocks*），每任务 <strong>200</strong> 条遥操作示教，每方法每任务 20 次试验。</li><li><strong>基础模型</strong>：基于 <strong>FAST-WAM</strong>，骨干为 <strong>Wan2.2-TI2V-5B</strong>，每个基准训练一个模型；所有受控变体共享同一 Stage-1 检查点。</li><li>训练具体 GPU/TPU 规模在可见正文中未给出（详见附录 A.2 训练超参部分）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：仿真在 LIBERO 与 RoboTwin 2.0 上进行，所有变体使用相同初始状态与随机种子；真机在双臂平台进行闭环评测；门控阈值在留出验证集上固定（LIBERO η=0.439，RoboTwin η=0.541）。</li><li><strong>主要指标</strong>：闭环成功率、任务级成功率变化 <code>ΔJ_t</code>（百分点）、有效视频生成步数 <code>N_eff</code>、推理延迟。</li><li><strong>负迁移诊断</strong>：RoboTwin 50 个任务中 <strong>21 个</strong>受损但中位数为 0.0，总损失由两个严重任务驱动；其余 19 个受损任务每个最多损失 2.5 分。</li><li><strong>修正效果</strong>：严重任务损失由 54.0→<strong>6.0</strong>、34.0→<strong>14.0</strong>；仅用适配器达 LIBERO <strong>98.7%</strong>、RoboTwin <strong>92.8%</strong>；叠加门控后达 <strong>98.9%</strong> / <strong>93.3%</strong>。</li><li><strong>效率</strong>：RoboTwin 上门控减少 38% 延迟，仅比无未来路径多 17%（换来 +1.4 分）；LIBERO 上节省 6.7% 计算。</li><li><strong>对照基线</strong>：门控曲线在所有中间预算（0 < N_eff < 10）上均优于静态截断与随机路由（随机路由最高 98.4% / 92.6%）。</li><li><strong>消融</strong>：仅用动作损失（类似 scheduled sampling）提升 ≤0.3 分；对齐项带来 RoboTwin +0.9、LIBERO +0.3；对齐与超额误差合用再贡献 +0.5 / +0.2 分。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.39385/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">UMI-Live for In-The-Wild Bimanual Robotics Data Collection</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.39306/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">CAD-WAM: Anticipating Geometry for Text-to-CAD Generation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
