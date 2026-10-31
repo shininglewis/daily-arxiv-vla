@@ -59,12 +59,10 @@
         </div>
 
         <div class="detail-hero-grid">
-          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #3f6ee8; --cover-to: #6fa7ff; --cover-spot: #d5e6ff; --cover-ink: #f7fbff; --cover-muted: rgba(247, 251, 255, 0.82); --cover-chip: rgba(247, 251, 255, 0.16); --cover-stroke: rgba(247, 251, 255, 0.24)">
-  <div class="note-cover-mesh"></div>
-  <div class="note-cover-title-shell">
-    <h1 class="note-cover-title">Full-Weight VLA Fine-Tuning Without an fp32 Master Copy Silently Erases Most Updates</h1>
-  </div>
-</article></div>
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2610.31859.webp" alt="Full-Weight VLA Fine-Tuning Without an fp32 Master Copy Silently Erases Most Updates" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文揭示了 VLA（视觉-语言-动作）模型全权重微调 中的一个静默失效问题：当可训练权重以 bf16 存储且优化器不保存 fp32 主副本 时，AdamW 会直接向 bf16 权重写入更新，凡是小于权重值 1/512 的更新都会被静默舍入丢失。</figcaption>
+</figure></div>
           <div class="detail-hero-copy">
             <p class="eyebrow">论文详情</p>
             <h1 class="detail-page-title">Full-Weight VLA Fine-Tuning Without an fp32 Master Copy Silently Erases Most Updates</h1>
