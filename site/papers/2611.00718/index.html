@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STEER: Route-Aware Adaptive Reasoning for Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文聚焦端到端自动驾驶中的 VLA（Vision-Language Action）模型，指出其普遍存在“过度思考（overthinking）”问题：对所有场景都强制调用 CoT（Chain-of-Thought） 推理，会带来不必要的计算开销，甚至反而降低规划性能。 现有显式路由方法（如 AdaThinkDrive）依赖人工标注的场景难度标签来监督“推理/直答”路径选择，标注成本高、难扩展且主观性强；论文首次探索完全无需场景难度标注即可实现显式路由优化的自适应推理。 提出 STEER，一个通用的过度推理缓解框架，通过强化学习从任务奖励中直接学习“何时该推理”，在保持规划质量的同时提升推理效率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.00718">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">STEER: Route-Aware Adaptive Reasoning for Autonomous Driving</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">STEER: Route-Aware Adaptive Reasoning for Autonomous Driving</h1>
+            <div class="detail-meta">2026-10-31 · <a href="http://arxiv.org/abs/2611.00718" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.00718" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.00718</span></div>
+            <p class="detail-summary">论文聚焦端到端自动驾驶中的 VLA（Vision-Language Action）模型，指出其普遍存在“过度思考（overthinking）”问题：对所有场景都强制调用 CoT（Chain-of-Thought） 推理，会带来不必要的计算开销，甚至反而降低规划性能。 现有显式路由方法（如 AdaThinkDrive）依赖人工标注的场景难度标签来监督“推理/直答”路径选择，标注成本高、难扩展且主观性强；论文首次探索完全无需场景难度标注即可实现显式路由优化的自适应推理。 提出 STEER，一个通用的过度推理缓解框架，通过强化学习从任务奖励中直接学习“何时该推理”，在保持规划质量的同时提升推理效率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">复旦大学（School of Data Science）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.00718/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文聚焦端到端自动驾驶中的 VLA（Vision-Language Action）模型，指出其普遍存在“过度思考（overthinking）”问题：对所有场景都强制调用 CoT（Chain-of-Thought） 推理，会带来不必要的计算开销，甚至反而降低规划性能。</p>
+  <ul class="reading-intro-points"><li>论文聚焦端到端自动驾驶中的 VLA（Vision-Language Action）模型，指出其普遍存在“过度思考（overthinking）”问题：对所有场景都强制调用 CoT（Chain-of-Thought） 推理，会带来不必要的计算开销，甚至反而降低规划性能。</li><li>现有显式路由方法（如 AdaThinkDrive）依赖人工标注的场景难度标签来监督“推理/直答”路径选择，标注成本高、难扩展且主观性强；论文首次探索完全无需场景难度标注即可实现显式路由优化的自适应推理。</li><li>提出 STEER，一个通用的过度推理缓解框架，通过强化学习从任务奖励中直接学习“何时该推理”，在保持规划质量的同时提升推理效率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>复旦大学</strong>（School of Data Science）</li><li><strong>上海创智学院</strong>（Shanghai Innovation Institute）</li><li><strong>Logos Intelligence Lab</strong></li><li><strong>香港科技大学（广州）</strong> HKUST(GZ) 与 <strong>香港科技大学</strong> HKUST</li><li><strong>理想汽车</strong>（Li Auto Inc.）</li><li><strong>帝国理工学院</strong>（Imperial College London）</li><li><strong>萨里大学</strong>（University of Surrey）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文聚焦端到端自动驾驶中的 <strong>VLA（Vision-Language Action）模型</strong>，指出其普遍存在“<strong>过度思考（overthinking）</strong>”问题：对所有场景都强制调用 <strong>CoT（Chain-of-Thought）</strong> 推理，会带来不必要的计算开销，甚至反而降低规划性能。</li><li>现有显式路由方法（如 <strong>AdaThinkDrive</strong>）依赖人工标注的<strong>场景难度标签</strong>来监督“推理/直答”路径选择，标注成本高、难扩展且主观性强；论文首次探索<strong>完全无需场景难度标注</strong>即可实现显式路由优化的自适应推理。</li><li>提出 <strong>STEER</strong>，一个通用的过度推理缓解框架，通过强化学习从任务奖励中直接学习“何时该推理”，在保持规划质量的同时提升推理效率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别出 VLA 自动驾驶中的“<strong>过度思考</strong>”是关键挑战，并首次探索从<strong>比较性任务结果</strong>（而非场景难度标注）中学习显式路由偏好。</li><li>提出 <strong>STEER</strong> 框架，包含 <strong>route-balanced SFT</strong>（保持双路径能力）、<strong>routing uncertainty-aware rollout</strong>（采样多样性与模型不确定性对齐）、<strong>cross-route advantage credit assignment</strong>（基于环境奖励强化最优路由决策）。</li><li>在 <strong>NAVSIM v1/v2</strong> 上取得与 SOTA 竞争力相当的结果，同时提升规划质量、路由质量，并推动推理效率的 <strong>Pareto 前沿</strong>，优于固定路由与既有自适应推理方案。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>问题建模</strong>：将首个生成 token 建模为离散路由决策 <strong>R ∈ {reason, direct}</strong>，响应分布分解为 <code>p(y\|x) = p(R\|x)·p(y\|x,R)</code>；推理路径使用 <code><answer>…</answer></code>，直答路径仅输出 <code><answer>…</answer></code>。</li><li><strong>三阶段训练流程</strong>：(1) driving-centric 预训练做领域适配；(2) <strong>route-balanced SFT</strong>；(3) <strong>route-aware policy optimization</strong>。</li><li><strong>Route-balanced SFT（创新点 1）</strong>：对同一 prompt 同时提供推理与直答两个目标，损失包含 <strong>routing calibration</strong>（将初始路由分布正则到均匀分布，λ/2 系数）与 <strong>length normalization</strong>（按各路径长度归一化），避免模型因直答序列更短而提前坍缩到直答路径。</li><li><strong>Routing uncertainty-aware rollout（创新点 2）</strong>：用二值熵 <code>H(x)</code> 与少数路径概率 <code>p_min(x)</code> 判断路由不确定性，动态选择 <strong>Mode A</strong>（各 n/2 强制推理与直答）、<strong>Mode B</strong>（各 n/4 强制 + n/2 标准 on-policy）、<strong>Mode C</strong>（全部标准 on-policy），实现“反事实”对比探索。</li><li><strong>Cross-route advantage credit assignment（创新点 3）</strong>：定义 <code>A_i^route</code>，用实现路径的奖励减去<strong>另一条路径的组均值奖励</strong>（而非整体组均值），并给出期望更新分析 <code>E[∂_z log π·A^route] = [q_r(1−p)+q_d p]·Δ</code>，证明其能提升高期望奖励路径的概率。</li><li><strong>优化目标</strong>：<code>L = L_content + λ_r·L_route + β_KL·L_KL</code>，其中内容项与路由项均采用 <strong>GRPO</strong> 风格的 clip 代理目标，路由项仅作用于初始路由位置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>评测基准</strong>：<strong>NAVSIM v1</strong> 与 <strong>NAVSIM v2</strong> 官方仿真器（navtest 划分）；SFT 与 RL 训练数据均基于官方 <strong>navtrain</strong> 划分构建。</li><li><strong>预训练数据</strong>：<strong>ReCogDrive</strong>、<strong>LingoQA</strong>、<strong>NuScenes-QA</strong>、<strong>DriveLM</strong>、<strong>OmniDrive</strong> 等公开驾驶推理数据集。</li><li><strong>基础模型</strong>：<strong>Qwen2.5-VL-8B</strong>（8B 参数），直接自回归输出文本 waypoint 轨迹，无需额外 planner。</li><li><strong>训练资源</strong>：<strong>64 张 NVIDIA H20 GPU</strong>，全部阶段采用<strong>全参数微调</strong>，基于 <strong>DeepSpeed ZeRO-3</strong> 实现。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：NAVSIM v1 使用 <strong>PDMS</strong>（聚合 NC、DAC、EP、TTC、C 等子指标）；NAVSIM v2 使用 <strong>EPDMS</strong>（新增 DDC、TLC、LK、HC、EC）；路由质量用 <strong>RouteAcc</strong>、<strong>AUC</strong>、<strong>AvgRegret</strong>（相对 oracle route）评估，另报告平均响应 token 数衡量效率。</li><li><strong>NAVSIM v1</strong>：<strong>91.2 PDMS</strong>，优于依赖场景难度标签的 <strong>AdaThinkDrive</strong>（90.3），并在数值上略超 planner-assisted 的 <strong>SGDrive</strong>（91.1）；<strong>Best-of-N</strong> 评估下达到 <strong>93.4 PDMS</strong>。</li><li><strong>NAVSIM v2</strong>：<strong>87.2 EPDMS</strong> 为最优，较 <strong>SGDrive</strong>（86.2）提升 <strong>1.0</strong> 点，同时取得最佳 <strong>DAC 97.6</strong> 与 <strong>EP 95.6</strong>。</li><li><strong>自适应路由 vs 固定路由</strong>：RL 后自适应策略 PDMS <strong>91.2</strong>，优于强制直答（89.9）与强制推理（90.8）；强制推理平均 <strong>415</strong> token，自适应仅 <strong>315</strong> token，验证“过度思考”既费算力又损性能。</li><li><strong>消融（route-aware policy optimization）</strong>：两个组件同时启用时最佳——<strong>RouteAcc 81.1%</strong>、<strong>AUC 79.1%</strong>、<strong>AvgRegret 0.018</strong>、平均响应 <strong>315</strong> token、<strong>PDMS 91.2</strong>；单独使用任一组件均明显退化。</li><li><strong>消融（route-balanced SFT）</strong>：同时加入长度归一化与路由校准后，推理/直答概率为 <strong>49.1% / 50.9%</strong>，接近平衡，显著缓解直答偏置。</li><li><strong>消融（训练流程）</strong>：无预训练且无 RL 为 <strong>85.9 PDMS</strong>，仅预训练为 <strong>86.5 PDMS</strong>，完整流程进一步提升。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.00883/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Random Is Almost Enough? Stable and Low-Cost Benchmark Compression via BestRand</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.00634/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PREM: Prediction-Regulated Memory for Robot Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

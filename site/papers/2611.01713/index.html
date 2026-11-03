@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文针对 VLA（Vision-Language-Action）模型 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 Route-Guided CBF-QP Repair。 现有方法（如 AEGIS）利用 CBF-QP 安全滤波器将不安全动作局部投影到安全集，虽然能避免即时碰撞，但会把机器人推离学习到的任务轨迹，导致 VLA 策略进入陌生状态区且无法恢复。 论文的目标是在保持 CBF 硬安全约束的前提下，为 VLA 提供“绕过障碍并重新回到任务轨迹”的路径级引导，从而连接局部安全修正与任务成功执行。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.01713">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.01713.webp" alt="Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文针对 VLA（Vision-Language-Action）模型 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 Route-Guided CBF-QP Repair。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Route-Guided CBF-QP Repair for Safe Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-11-01 · <a href="http://arxiv.org/abs/2611.01713" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.01713" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.01713</span></div>
+            <p class="detail-summary">论文针对 VLA（Vision-Language-Action）模型 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 Route-Guided CBF-QP Repair。 现有方法（如 AEGIS）利用 CBF-QP 安全滤波器将不安全动作局部投影到安全集，虽然能避免即时碰撞，但会把机器人推离学习到的任务轨迹，导致 VLA 策略进入陌生状态区且无法恢复。 论文的目标是在保持 CBF 硬安全约束的前提下，为 VLA 提供“绕过障碍并重新回到任务轨迹”的路径级引导，从而连接局部安全修正与任务成功执行。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Sungkyunkwan University（成均馆大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.01713/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文针对 VLA（Vision-Language-Action）模型 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 Route-Guided CBF-QP Repair。</p>
+  <ul class="reading-intro-points"><li>论文针对 VLA（Vision-Language-Action）模型 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 Route-Guided CBF-QP Repair。</li><li>现有方法（如 AEGIS）利用 CBF-QP 安全滤波器将不安全动作局部投影到安全集，虽然能避免即时碰撞，但会把机器人推离学习到的任务轨迹，导致 VLA 策略进入陌生状态区且无法恢复。</li><li>论文的目标是在保持 CBF 硬安全约束的前提下，为 VLA 提供“绕过障碍并重新回到任务轨迹”的路径级引导，从而连接局部安全修正与任务成功执行。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Sungkyunkwan University</strong>（成均馆大学）</li><li><strong>KAIST</strong>（韩国科学技术院）</li><li><strong>University of Toronto</strong>（多伦多大学）</li><li><strong>LG Electronics, Toronto AI Lab</strong>（LG 电子多伦多 AI 实验室）</li><li>通讯作者为 Chan Park（pchan1018@g.skku.edu）；该工作在多伦多大学的访问研究生实习期间完成，属于 CARTE 项目，并与 LG 电子多伦多 AI 实验室合作</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文针对 <strong>VLA（Vision-Language-Action）模型</strong> 在障碍密集的机器人操作场景中缺乏执行安全保障的问题，提出了一个事后修复模块 <strong>Route-Guided CBF-QP Repair</strong>。</li><li>现有方法（如 <strong>AEGIS</strong>）利用 <strong>CBF-QP</strong> 安全滤波器将不安全动作局部投影到安全集，虽然能避免即时碰撞，但会把机器人推离学习到的任务轨迹，导致 VLA 策略进入陌生状态区且无法恢复。</li><li>论文的目标是在保持 CBF 硬安全约束的前提下，为 VLA 提供“绕过障碍并重新回到任务轨迹”的路径级引导，从而连接局部安全修正与任务成功执行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>识别并定义了局部 <strong>CBF-QP</strong> 安全投影在 VLA 机器人执行中的“轨迹恢复失败模式”：即每一步都安全，但整体轨迹不可恢复。</li><li>提出 <strong>Route-Guided CBF-QP Repair</strong> 方法：利用 VLA 预测的短时域动作块检测被障碍阻断的标称轨迹，并生成 <strong>entry–exit–rejoin</strong>（进入—退出—回归）路线引导。</li><li>将选定路线作为<strong>软引导项</strong>加入 QP 目标函数，同时保持 CBF 安全约束为<strong>硬约束</strong>，使修复后的动作既安全又朝向可恢复路线。</li><li>在 <strong>SafeLIBERO</strong> 基准上证明路线引导相较原始 VLA 策略和 <strong>AEGIS</strong> 式局部安全修复能更有效地提升安全任务执行表现。</li><li>通过消融实验验证了路线评分（route scoring）和回归引导（rejoin guidance）各自都是必要组件。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>问题建模</strong>：每个控制步，VLA 策略 π_θ 根据观测 o_t 和语言指令 ℓ 预测长度为 H 的动作块 A_t = {a_t, …, a_{t+H−1}}；累积笛卡尔位移得到标称路径 p̂_{t+k}。</li><li><strong>障碍建模与阻断检测</strong>：每个障碍被建模为膨胀的椭球不安全区域（中心 c、形状矩阵 Q），用椭球得分 φ(p̂) = (p̂−c)ᵀQ⁻¹(p̂−c) 判断；当 min_k φ(p̂_{t+k}) < 1+ε 时判定标称路径被阻断（ε 为安全裕度）。</li><li><strong>路线候选生成</strong>：生成左/右两条候选路线 γ_s = {w_entry^(s), w_exit^(s), w_rejoin^(s)}，用得分 J(γ_s) = λ_clr·C + λ_prog·P − λ_len·L − λ_dev·D 选择最优路线，其中 C 为障碍间隙、P 为沿标称轨迹的进展、L 为绕行长度惩罚、D 为偏离原路径惩罚。</li><li><strong>超参数设置</strong>：固定权重 λ_clr=1.0、λ_prog=1.0、λ_len=0.3、λ_dev=0.5。</li><li><strong>CBF-QP 修复</strong>：目标函数为 ‖u−u_VLA‖²_W + β_t·λ_r·‖u^xyz − u_route‖²，其中 u_route = k_p(w_active − p_t) 为指向当前激活路标点的目标平移动作；约束为 CBF 条件 ḣ(x,u)+αh(x) ≥ 0。</li><li><strong>动态开关机制</strong>：当 β_t ∈ {0,1} 时启用路线引导；仅当标称路径被阻断且存在激活路标点时，才令 β_t=1；此时目标函数退回标准 CBF-QP 形式。</li><li><strong>顺序回归执行</strong>：机器人按 entry→exit→rejoin 的顺序切换激活路标点，当 ‖p_t − w_active‖ < δ 时进入下一阶段；到达 rejoin 路标点后关闭路线引导，恢复标准 VLA 执行。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集/基准</strong>：<strong>SafeLIBERO</strong>，它在 LIBERO 风格的语言条件操作任务上增加了障碍约束，包含 <strong>Spatial、Goal、Object、Long</strong> 四个任务套件。</li><li><strong>评估规模</strong>：每个任务 10 个 episode，报告各套件平均值。</li><li><strong>模型骨干</strong>：AEGIS 与本文方法均使用相同的 <strong>π₀.₅</strong> VLA 骨干网络与权重，以隔离路线引导带来的影响。</li><li><strong>训练资源</strong>：论文 HTML 原文中未说明 GPU/TPU 等具体训练或推理硬件资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：<strong>CAR</strong>（Collision Avoidance Rate，无碰撞 episode 比例）、<strong>TSR</strong>（Task Success Rate，任务完成率）、<strong>SafeSuccess</strong>（既完成任务又无碰撞）、<strong>ETS</strong>（Execution Time Steps，执行步数，越低越好）。</li><li><strong>主要结果（四套件平均，对比 AEGIS）</strong>：</li></ul>
+<p> - CAR：64.69% → <strong>69.06%</strong></p>
+<p> - TSR：62.81% → <strong>65.00%</strong></p>
+<p> - SafeSuccess：47.19% → <strong>49.69%</strong></p>
+<p> - ETS：109.87 → 118.45（因绕行与回归增加步数，属预期代价）</p>
+<ul><li><strong>分套件亮点</strong>：<strong>Object</strong> 套件提升最大，CAR 56.25% → <strong>76.25%</strong>，TSR 67.50% → <strong>72.50%</strong>，SafeSuccess 41.25% → <strong>55.00%</strong>，说明路线引导在需要与物体中心操作协同避障时最有效。</li><li><strong>消融结果（平均 SafeSuccess）</strong>：完整模型 <strong>49.69%</strong>；去掉 rejoin 引导降至 <strong>47.92%</strong>（说明仅绕过障碍不足，还需引导回到任务轨迹）；去掉路线评分降至 <strong>48.15%</strong>（说明路线方向选择同样关键）；AEGIS 基线为 47.19%。</li><li><strong>定性结果</strong>：在图 2 的 SafeLIBERO 案例（“把巧克力布丁放进篮子”）中，AEGIS 虽完成任务但轨迹贴近障碍并发生碰撞；本方法偏离被阻断路径、沿绕行路线避障后回归任务轨迹，实现无碰撞成功。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.01729/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ODE Policy: Robot Learning via Action Dynamics, Not Actions</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.01677/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Xiaomi Auto World Model 2.0: Causal World Models for Real-World Driving and Embodied Intelligence</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

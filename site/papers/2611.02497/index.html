@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboColosseum: Evaluating Physical Intelligence at Scale In-The-Wild - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 RoboColosseum，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。 解决的核心问题是：真实物理试次受硬件、标定、物体摆放、光照等因素影响难以复现，集中式单点评测规模受限，而仿真到现实存在差距；因此需要兼顾“可控可比”与“环境多样性”的大规模物理评测。 通过在 4 种本体、124 个站点上的 5,699 次 Open Track 配对比较 与 20 个任务的 Fine-tune Track 评测，考察 VLA 策略与前沿 AI 智能体的开放世界能力、任务自适应能力、排序一致性及评测可扩展性。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.02497">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.02497.webp" alt="RoboColosseum: Evaluating Physical Intelligence at Scale In-The-Wild" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 RoboColosseum，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">RoboColosseum: Evaluating Physical Intelligence at Scale In-The-Wild</h1>
+            <div class="detail-meta">2026-11-02 · <a href="http://arxiv.org/abs/2611.02497" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.02497" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.02497</span></div>
+            <p class="detail-summary">提出 RoboColosseum，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。 解决的核心问题是：真实物理试次受硬件、标定、物体摆放、光照等因素影响难以复现，集中式单点评测规模受限，而仿真到现实存在差距；因此需要兼顾“可控可比”与“环境多样性”的大规模物理评测。 通过在 4 种本体、124 个站点上的 5,699 次 Open Track 配对比较 与 20 个任务的 Fine-tune Track 评测，考察 VLA 策略与前沿 AI 智能体的开放世界能力、任务自适应能力、排序一致性及评测可扩展性。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">新加坡国立大学（National University of Singapore）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.02497/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 RoboColosseum，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。</p>
+  <ul class="reading-intro-points"><li>提出 RoboColosseum，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。</li><li>解决的核心问题是：真实物理试次受硬件、标定、物体摆放、光照等因素影响难以复现，集中式单点评测规模受限，而仿真到现实存在差距；因此需要兼顾“可控可比”与“环境多样性”的大规模物理评测。</li><li>通过在 4 种本体、124 个站点上的 5,699 次 Open Track 配对比较 与 20 个任务的 Fine-tune Track 评测，考察 VLA 策略与前沿 AI 智能体的开放世界能力、任务自适应能力、排序一致性及评测可扩展性。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>新加坡国立大学</strong>（National University of Singapore）</li><li><strong>华盛顿大学</strong>（University of Washington）</li><li><strong>斯坦福大学</strong>（Stanford University）</li><li><strong>北卡罗来纳大学教堂山分校</strong>（University of North Carolina at Chapel Hill）</li><li><strong>艾伦人工智能研究所</strong>（Allen Institute for AI）</li><li><strong>牛津大学</strong>（University of Oxford）</li><li><strong>Hugging Face</strong></li><li><strong>BitRobot</strong></li><li><strong>新加坡具身智能中心</strong>（Singapore Embodied AI Centre）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>RoboColosseum</strong>，一个分布式真实世界评测框架，通过统一的策略服务基础设施与标准化协议，连接地理分布的本地机器人评测站点，在多样环境中评估通用机器人策略。</li><li>解决的核心问题是：真实物理试次受硬件、标定、物体摆放、光照等因素影响难以复现，集中式单点评测规模受限，而仿真到现实存在差距；因此需要兼顾“可控可比”与“环境多样性”的大规模物理评测。</li><li>通过在 4 种本体、124 个站点上的 <strong>5,699 次 Open Track 配对比较</strong> 与 <strong>20 个任务的 Fine-tune Track</strong> 评测，考察 VLA 策略与前沿 AI 智能体的开放世界能力、任务自适应能力、排序一致性及评测可扩展性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建并开源 <strong>RoboColosseum</strong> 分布式多本体评测基准与运营体系，包含统一硬件配置、任务定义、成功/进度判据与策略服务接口，覆盖 <strong>SO-101、Franka（DROID 配置）、Bimanual-YAM、Unitree G1 人形</strong> 四种本体。</li><li>设计两条互补评测赛道：<strong>Open Track</strong>（无任务特定适配、盲测成对比较、同条件匹配）与 <strong>Fine-tune Track</strong>（固定每任务 100 条示教、统一评测协议）。</li><li>提出 <strong>Difficulty-Calibrated Rasch（DCR）</strong> 排序模型，联合估计策略能力与任务难度，并将人工难度评分 1–10 作为潜在难度的先验，替代易受任务采样影响的原始胜率排序。</li><li>引入<strong>主动配对调度（active matchmaking）</strong>，按不确定性下降最大原则分配昂贵物理试次，显著提升样本效率。</li><li>通过大规模实证揭示：前沿通用 AI 智能体可与专用 VLA 策略匹敌但可靠完成率普遍极低；跨本体排序一致性弱（Kendall's <strong>W=0.24</strong>）；Open Track 排序难以预测微调后表现；引入“部分进度”指标可区分仅看成功率无法分辨的差异。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>统一策略服务与接口标准化</strong>：每种本体固定观测与动作规格（SO-101 为 6 维关节位置、DROID/Franka 为 8 维、Bimanual-YAM 为 14 维），策略可本地（RTX 5090 笔记本）或经远程路由服务器推理，并测量时延以保证低延迟执行。</li><li><strong>Fine-tune Track 协议</strong>：每任务采集 <strong>100 条</strong>高质量遥操作示教（GELLO、主从臂、DROID Quest、Pico VR + 全身控制器），所有策略在同一数据上按其官方配方微调至收敛；每任务 <strong>25 次</strong>评测试次。</li><li><strong>指标体系</strong>：进度分数 <strong>PS</strong>（满足的 K 项进度判据比例，按 K 归一化）与成功率 <strong>SR</strong>；安全中止的试次记 0 分并计为失败。</li><li><strong>Open Track 排序</strong>：以 Rasch/1PL 模型 <code>q = σ(θ_p − β_t)</code> 建模成功概率，任务难度带先验 <code>β_t \|d_t=k ~ N(μ_k, τ²)</code> 且满足 <code>μ_1<…<μ_10</code>，按后验均值能力排序并线性映射为 <strong>Elo 风格 DCR 评分</strong>；同时以 <strong>Bradley–Terry–Davidson（BTD）</strong> 作为排序基线。</li><li><strong>主动配对调度</strong>：采用类 Chatbot Arena 的采样策略，按 <code>P_t(a) ∝ sqrt(Σ̂/n_a) − sqrt(Σ̂/(n_a+1))</code> 优先选择不确定性大的模型对。</li><li><strong>任务类别分析</strong>：用固定 LLM 分类器将 Open Track 任务划分为 Pick/Place、Stack/Arrange、Open/Close、Reorient、Deformable、Tool/Interaction 六类，在类内拟合基于进度的 BTD 模型并报告期望比较得分。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用数据集：<strong>DROID dataset</strong>（Franka 配置）、<strong>MolmoAct2-SO101</strong>、<strong>MolmoAct2-YAM</strong>；微调示教数据（20 任务 × 100 条）公开释放。</li><li>评测模型共 8 个：VLA 策略 <strong>GR00T N1.7、π0.5、MolmoAct2、G0.5、LingBot-VLA v2</strong>；前沿通用智能体 <strong>GPT-6 Astra、Claude Opus 5.5、Grok 4.7</strong>（仅参与 Open Track）。</li><li>评测规模：<strong>5,699 次 Open Track 成对比较</strong>、<strong>124 个站点</strong>、4 种本体、20 个微调任务（每本体 5 个）。</li><li>计算与运营资源：本地推理使用 <strong>RTX 5090</strong> 笔记本或服务器托管端点；真实场景站点（办公室、图书馆、公园、宿舍、家庭、美食广场、工厂）分布在<strong>美国、英国、新加坡、马来西亚、中国</strong>；最多 <strong>30 名全职机器人操作员</strong>，机队规模 <strong>100+ 台机器人</strong>；数据管线做人脸模糊与身份匿名化。</li><li>论文未给出各 VLA 模型的参数量规模信息。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评测环境：真实世界多站点（办公室、家庭、公园、工厂等）物理部署，评测周期为 <strong>2026 年 9 月 17 日至 10 月 28 日</strong>（41 天）。</li><li>主要指标：Fine-tune Track 用 <strong>SR</strong> 与 <strong>PS</strong>（配多重比较校正的配对检验）；Open Track 用 <strong>DCR</strong>（主榜指标，Elo 风格刻度），并以 <strong>BTD、序列 Elo、平均成对得分</strong> 为基线；一致性用 Spearman 相关与成对序一致性，稳定性用重复子采样分析。</li><li>开放世界能力：前沿智能体整体略优于 VLA——901 次配对中智能体 <strong>394</strong> 次进度更高、VLA <strong>265</strong> 次、平局 <strong>242</strong> 次，平均领先 <strong>5.3</strong> 个百分点；其中 Claude Opus 5.5 与 GPT-6 Astra 分别领先 <strong>12.1</strong> 与 <strong>11.0</strong> 个百分点，Grok 4.7 落后 <strong>7.5</strong> 个百分点。</li><li>绝对可靠性极低：六类任务中 MolmoAct2 的期望比较得分最高（58%–77%），但其实际成功率仅 <strong>6%–13%</strong>，且无任何系统在任一类别超过 <strong>13%</strong> 成功率。</li><li>难度效应显著：人工难度 1–4 的任务成功率为 <strong>30.7%</strong>、进度 <strong>56.6%</strong>；难度 9–10 时成功率降至 <strong>0.4%</strong>、进度仅 <strong>3.5%</strong>。</li><li>微调后表现：<strong>GR00T N1.7</strong> 在 SO-101 上领先（平均 PS <strong>89.0</strong>、SR <strong>82.4</strong>），<strong>π0.5</strong> 在 Franka 与 Bimanual-YAM 上领先（YAM 上 5 任务中 4 个达 96–100%）；各策略呈现“广泛可适配”与“仅特定任务可适配”的分化（如 LingBot-VLA v2 在 open_drawer 100%、marker_in_holder 0%，MolmoAct2 恰好相反）。</li><li>排序一致性与可扩展性：跨本体任务套件的排序一致性弱（Kendall's <strong>W=0.24</strong>）；Open Track 排序对微调后表现预测差，三个共有本体上均出现显著名次反转；active matchmaking 在 <strong>400–500</strong> 次评测即达到约 <strong>90%</strong> 与全量排序一致，而均匀采样需约 <strong>1,000</strong> 次；排行榜稳定性随评测规模提升而改善，但高置信稳定仍需更多数据。</li><li>部分进度揭示被成功率掩盖的差异：在 <strong>G1 人形</strong>上无任何策略完成五个任务中的任意一个，但平均进度在 <strong>13.3%–23.2%</strong> 之间分布。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.02600/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">W2A: Distilling World Priors into Action Models for Real-Time Robotic Control</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.02474/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Gnomon4D: Learning Where and When to Focus for Geometric Motion-Grounded World-Action Modeling</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

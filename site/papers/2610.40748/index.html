@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldBridge: Bridging Video and Action for Task Generalization in World Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究世界动作模型（World Action Models, WAMs）在物理环境中的任务泛化问题，将其拆解为两个互补能力：视频泛化（预测新任务的视觉演化）与动作泛化（把视觉预测转成可执行动作，即“video-to-action bridge”，扮演逆动力学模型 IDM 的角色）。 通过在 RoboTwin 2.0 上系统改变分布内（ID）与分布外（OOD）任务的视频/动作监督量，论文量化了两类监督各自对任务迁移的贡献，并据此提出 WorldBridge 模型与配套的统一数据处理流程。 论文要回答的核心问题是：更广的视频覆盖与额外的动作监督分别如何促进任务泛化，以及二者之间的“桥接”何时成为瓶颈。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2610.40748">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">WorldBridge: Bridging Video and Action for Task Generalization in World Action Models</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">WorldBridge: Bridging Video and Action for Task Generalization in World Action Models</h1>
+            <div class="detail-meta">2026-10-29 · <a href="http://arxiv.org/abs/2610.40748" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2610.40748" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2610.40748</span></div>
+            <p class="detail-summary">论文研究世界动作模型（World Action Models, WAMs）在物理环境中的任务泛化问题，将其拆解为两个互补能力：视频泛化（预测新任务的视觉演化）与动作泛化（把视觉预测转成可执行动作，即“video-to-action bridge”，扮演逆动力学模型 IDM 的角色）。 通过在 RoboTwin 2.0 上系统改变分布内（ID）与分布外（OOD）任务的视频/动作监督量，论文量化了两类监督各自对任务迁移的贡献，并据此提出 WorldBridge 模型与配套的统一数据处理流程。 论文要回答的核心问题是：更广的视频覆盖与额外的动作监督分别如何促进任务泛化，以及二者之间的“桥接”何时成为瓶颈。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">WorldBridge Team</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2610.40748/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究世界动作模型（World Action Models, WAMs）在物理环境中的任务泛化问题，将其拆解为两个互补能力：视频泛化（预测新任务的视觉演化）与动作泛化（把视觉预测转成可执行动作，即“video-to-action bridge”，扮演逆动力学模型 IDM 的角色）。</p>
+  <ul class="reading-intro-points"><li>论文研究世界动作模型（World Action Models, WAMs）在物理环境中的任务泛化问题，将其拆解为两个互补能力：视频泛化（预测新任务的视觉演化）与动作泛化（把视觉预测转成可执行动作，即“video-to-action bridge”，扮演逆动力学模型 IDM 的角色）。</li><li>通过在 RoboTwin 2.0 上系统改变分布内（ID）与分布外（OOD）任务的视频/动作监督量，论文量化了两类监督各自对任务迁移的贡献，并据此提出 WorldBridge 模型与配套的统一数据处理流程。</li><li>论文要回答的核心问题是：更广的视频覆盖与额外的动作监督分别如何促进任务泛化，以及二者之间的“桥接”何时成为瓶颈。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>WorldBridge Team</strong></li><li><strong>Joy Future Academy</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>世界动作模型（World Action Models, WAMs）</strong>在物理环境中的<strong>任务泛化</strong>问题，将其拆解为两个互补能力：<strong>视频泛化</strong>（预测新任务的视觉演化）与<strong>动作泛化</strong>（把视觉预测转成可执行动作，即“video-to-action bridge”，扮演逆动力学模型 IDM 的角色）。</li><li>通过在 <strong>RoboTwin 2.0</strong> 上系统改变分布内（ID）与分布外（OOD）任务的视频/动作监督量，论文量化了两类监督各自对任务迁移的贡献，并据此提出 <strong>WorldBridge</strong> 模型与配套的统一数据处理流程。</li><li>论文要回答的核心问题是：更广的视频覆盖与额外的动作监督分别如何促进任务泛化，以及二者之间的“桥接”何时成为瓶颈。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>从<strong>视频泛化</strong>与<strong>动作泛化</strong>互补视角系统研究 WAM 的任务泛化，量化了“仅 ID 视频-动作监督（25.07% OOD）” → “加入 OOD 视频但无动作标签（55.90%）” → “每任务仅 1 条动作示范（70.70%）”的增益规律。</li><li>提出 <strong>WorldBridge</strong>：基于 <strong>Mixture-of-Transformers（MoT）</strong> 的视频专家 + 动作专家架构，通过结构化注意力与联合 flow matching 把视觉动态显式接到动作生成上。</li><li>设计<strong>统一数据处理管线</strong>，将异构机器人轨迹与第一视角人类（ego）演示标准化到共享 <strong>46 维动作空间</strong>，并用逐维有效性掩码支持部分监督。</li><li>引入<strong>双时间尺度视觉记忆</strong>（短期/长期）与<strong>Action Forcing</strong>（动作块内不同噪声水平训练），增强时序上下文利用与动作对视觉信息的依赖。</li><li>在多个仿真基准与真实机器人平台上取得对比方法中的 <strong>state-of-the-art</strong> 表现，验证了视频预测与动作落地联合训练的价值（含跨本体迁移）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>架构</strong>：两个模态专属专家（video expert / action expert）各自持有 FFN 与输出解码器；video expert 额外通过 cross-attention 注入 <strong>T5</strong> 语言特征；条件上下文由 <strong>video VAE</strong> 编码的观测与 T5 语言编码构成。</li><li><strong>联合 flow matching</strong>：视频流时间步 $\tau_v$ 与动作流时间步 $\tau_a$ 独立采样，两专家在不同噪声水平下联合去噪，损失为等权重的视频/动作 flow-matching 损失。</li><li><strong>结构化注意力掩码</strong>：预训练阶段视频 token 不看动作 token（保证动作无关的视频生成），动作 token 可看全部视频与动作；后训练阶段则构建“记忆/当前帧 → 未来视频帧 → 动作”的单向信息通路，使动作显式以预测的视觉演化为条件；强记忆需求任务回退到预训练掩码。</li><li><strong>双尺度视觉记忆</strong>：短期记忆偏移 $[-8,-6,-4,-2]$ 捕捉局部运动，长期记忆偏移 $[-128,-96,-64,-32]$（长步长 $\delta_l=H=32$）刻画任务进展；与当前帧一起经因果 video VAE 编码为 3 个 latent 帧。</li><li><strong>Action Forcing</strong>：把标量动作流时间步扩展为向量，按组大小 $g$ 独立采样每组时间步，使同一动作块内同时存在干净与被高度破坏的 token，迫使每个动作 token 更多依赖视觉上下文；推理时仍用统一时间步联合去噪。</li><li><strong>统一动作空间</strong>：46 维 = 机械臂关节 14D + 末端位姿 14D + 夹爪 2D + 灵巧手 12D + 腰部 4D；末端位姿以当前末端坐标系表达为相对量（位置差 + 旋转向量 log map），并用逐数据集/机器人类型的掩码归一化。</li><li><strong>数据清洗</strong>：机器人数据经语义审计与表示标准化、静止首尾裁剪与长度过滤（<48 帧剔除）、正运动学（FK）位姿一致性校验、突变/状态-动作一致性/极端值异常检测；ego 数据经坐标标准化（转到当前相机系）、手部几何到动作的映射（腕部位姿、夹爪开合、灵巧手关节）、几何与运动学质量过滤。</li><li><strong>效率优化</strong>：解耦视频/动作去噪（先做 $n$ 步同步去噪并缓存逐层 video KV，剩余 $N-n$ 步仅用缓存特征去噪动作，视频分支不再解码 RGB）；<strong>torch.compile</strong> 算子融合 + <strong>CUDA Graph</strong> 重放；真实机器人上采用异步执行与动作块时间戳丢弃过期动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>机器人数据</strong>：<strong>ABC-130K</strong>、<strong>AgiBotWorld-Beta</strong>、<strong>AgiBotWorld2026</strong>、<strong>DROID</strong>、<strong>Galaxea Open-World</strong>、<strong>RoboMIND</strong>、<strong>RoboCOIN</strong>、<strong>RoboMIND 2.0</strong>，以及仿真来源 <strong>GenieSim 3.0</strong>、<strong>InternData-A1</strong>。</li><li><strong>第一视角（ego）数据</strong>：<strong>EgoStandard</strong>、<strong>Lightwheel</strong>、<strong>XDOF</strong>、<strong>CyberOrigin</strong>、<strong>GenRobot</strong>、<strong>Xperience</strong>、<strong>EgoDex</strong>。</li><li><strong>数据规模（清洗后）</strong>：机器人 1,275,715 episodes / 9,729.58 小时；ego 2,105,846 episodes / 12,591.63 小时；合计 3,381,561 episodes / 22,321.21 小时（清洗前 3,888,958 episodes / 28,104.87 小时，保留率 79.42%）。</li><li><strong>模型规模</strong>：论文（提供的文本）未明确给出参数量；模型组件包括视频 VAE（时间压缩因子 4）、T5 文本编码器与 $L$ 层 MoT 块。</li><li><strong>训练资源</strong>：<strong>BF16</strong>、<strong>64 张 GPU</strong>，每卡 12 个样本、2 步梯度累积，有效 batch size 1,536；<strong>AdamW</strong>（$\beta_1=0.9,\beta_2=0.95$，weight decay 0.01，梯度裁剪 0.5），基础学习率 $10^{-4}$，共预训练 <strong>60,000</strong> 步，前 2,000 步线性 warmup。</li><li><strong>训练配置</strong>：动作块 $H=32$、8 帧未来视频（每 4 个动作步对应 1 视频帧）；机器人/ego 动作采样率 15 Hz 与 30 Hz，采样概率 0.7/0.3；三视角数据拼成 T 形布局并缩放为 320×384。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>基准</strong>：<strong>RoboTwin 2.0</strong>（含 full data 与 clean-to-random C2R 设置）、<strong>RoboCasa GR1 TableTop</strong>、<strong>RMBench</strong>、<strong>DOMINO Level-1</strong>、<strong>SimplerEnv-WidowX</strong>、<strong>RoboDojo</strong>；真实平台 <strong>AgiBot-G2</strong> 与 <strong>ARX AC-1</strong>（同一联合预训练 checkpoint 分别微调）。</li><li><strong>主要指标</strong>：任务成功率（Success Rate, %），并区分 ID / OOD / Overall SR；真实实验覆盖长程执行、记忆依赖任务、空间定位与双臂协同。</li><li><strong>任务泛化（RoboTwin 2.0，OOD 动作监督量扫描）</strong>：仅 ID 监督 91.85% ID / 25.07% OOD / 71.81% 总体；加入 OOD 视频后 OOD 升至 55.90%（+30.83），ID 保持 91.96%，总体 81.14%；每任务 1 条示范 → 70.70%；5 条 → 84.67%（较无 OOD 动作标签 +28.77）；20 条 → 90.03%（仅比 550 条低 2.80 点，约用 3.6% 的标注预算）；100 条 → 93.17%；550 条 → 92.83%（收益递减）。</li><li><strong>仿真基准成绩</strong>：<strong>RoboTwin 2.0</strong> 全数据 <strong>96.23%</strong>、C2R 设置 <strong>80.9%</strong>、<strong>RoboCasa GR1 TableTop 82.8%</strong>、<strong>DOMINO Level-1 57.6%</strong>、<strong>RMBench 83.0%</strong>（与对比最优持平），均为对比方法中的 state-of-the-art。</li><li><strong>消融与分析</strong>：验证了联合视频-动作预训练的收益、记忆对“饮料扫描”类记忆依赖任务的作用、跨本体迁移效果，以及推理延迟（解耦去噪、异步执行）的影响。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2610.40799/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">CaPtain: A Pipeline for Post-Training Code-as-Policy Robot Agents</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2610.40565/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Gym-Anything for Robotics: Scaling physical simulations with digital agents</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

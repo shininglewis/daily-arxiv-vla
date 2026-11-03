@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rollout then Recycle: 3,718 Labelled Real-Robot Episodes from Benchmarking 7 Policies on 12 Tasks - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="发布 ArmnetBench v0.1 的全部 3,718 个真实机器人 episode，包括 600 条遥操作示教和 3,118 条策略 rollout。 在 12 个桌面操作任务上评测 7 个模仿学习/视觉-语言-动作策略，其中 73.4% 的 rollout 为失败。 针对真实机器人失败数据稀缺、现有大规模数据集以成功示教为主、 benchmark 很少发布 rollout 的问题，提供共享设置下的带标签成功/失败语料。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.03168">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.03168.webp" alt="Rollout then Recycle: 3,718 Labelled Real-Robot Episodes from Benchmarking 7 Policies on 12 Tasks" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">发布 ArmnetBench v0.1 的全部 3,718 个真实机器人 episode，包括 600 条遥操作示教和 3,118 条策略 rollout。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Rollout then Recycle: 3,718 Labelled Real-Robot Episodes from Benchmarking 7 Policies on 12 Tasks</h1>
+            <div class="detail-meta">2026-11-02 · <a href="http://arxiv.org/abs/2611.03168" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.03168" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.03168</span></div>
+            <p class="detail-summary">发布 ArmnetBench v0.1 的全部 3,718 个真实机器人 episode，包括 600 条遥操作示教和 3,118 条策略 rollout。 在 12 个桌面操作任务上评测 7 个模仿学习/视觉-语言-动作策略，其中 73.4% 的 rollout 为失败。 针对真实机器人失败数据稀缺、现有大规模数据集以成功示教为主、 benchmark 很少发布 rollout 的问题，提供共享设置下的带标签成功/失败语料。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Armnet：Praveen Selvaraj、Lorenzo Uttini、Ville Kuosma…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.03168/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">发布 ArmnetBench v0.1 的全部 3,718 个真实机器人 episode，包括 600 条遥操作示教和 3,118 条策略 rollout。</p>
+  <ul class="reading-intro-points"><li>发布 ArmnetBench v0.1 的全部 3,718 个真实机器人 episode，包括 600 条遥操作示教和 3,118 条策略 rollout。</li><li>在 12 个桌面操作任务上评测 7 个模仿学习/视觉-语言-动作策略，其中 73.4% 的 rollout 为失败。</li><li>针对真实机器人失败数据稀缺、现有大规模数据集以成功示教为主、 benchmark 很少发布 rollout 的问题，提供共享设置下的带标签成功/失败语料。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Armnet</strong>：Praveen Selvaraj、Lorenzo Uttini、Ville Kuosmanen</li><li><strong>Imperial College London</strong>：Lorenzo Uttini（第二单位）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>发布 <strong>ArmnetBench v0.1</strong> 的全部 <strong>3,718 个真实机器人 episode</strong>，包括 <strong>600 条遥操作示教</strong>和 <strong>3,118 条策略 rollout</strong>。</li><li>在 <strong>12 个桌面操作任务</strong>上评测 <strong>7 个模仿学习/视觉-语言-动作策略</strong>，其中 <strong>73.4% 的 rollout 为失败</strong>。</li><li>针对真实机器人失败数据稀缺、现有大规模数据集以成功示教为主、 benchmark 很少发布 rollout 的问题，提供共享设置下的带标签成功/失败语料。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>发布大规模带标签真实机器人 rollout 语料，每条 rollout 标注为 <strong>successful、suboptimal 或 failure</strong>。</li><li>同一任务的所有策略使用相同的 <strong>50 条示教</strong>并在同一实验单元上评测，便于受控比较不同策略的失败模式。</li><li>提供 <strong>LeRobot v3.0</strong> 单臂/双臂数据仓库，以及 <strong>Robometer</strong> 奖励模型训练格式。</li><li>公开所有被评测策略的 checkpoint，便于复现实验。</li><li>系统记录采集协议、标签定义和已知限制，推动失败数据、奖励建模和策略评估研究。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>论文不是提出新策略，而是“回收” benchmark 评测产生的 rollout，将其整理为带标签数据集。</li><li>在 <strong>3 个 SO-101 实验单元</strong>上采集：两个单臂单元、一个双臂单元，每个单元配备 <strong>3 个相机、20 fps</strong>。</li><li>每个任务先采集 <strong>50 条成功遥操作示教</strong>，再用这些示教训练或微调 7 个策略。</li><li>每个任务-策略对目标采集 <strong>30 次 rollout</strong>；部分额外 session 使实际数量为 <strong>29–60 次</strong>。</li><li>操作员手动重置场景并随机化物体位置，并对每条 rollout 进行 <strong>successful/suboptimal/failure</strong> 标注。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集：<strong>ArmnetBench v0.1</strong>，共 <strong>3,718 个 episode（约 26 小时）</strong>，含 <strong>600 条示教</strong>和 <strong>3,118 条 rollout</strong>。</li><li>任务与硬件：<strong>12 个桌面任务</strong>（8 个单臂、4 个双臂），使用低成本 <strong>SO-101</strong> 机械臂；状态/动作为 6-D 单臂或 12-D 双臂关节与夹爪位置。</li><li>策略：<strong>ACT、Diffusion Policy、SmolVLA、π0、π0.5、GR00T N1.7、MolmoAct 2</strong>。</li><li>Hugging Face 仓库：<code>armnet/armnetbench_v01_lerobot_so101</code>（2,499 episodes）、<code>armnet/armnetbench_v01_lerobot_bimanual_so101</code>（1,219 episodes）、<code>armnet/armnetbench_v01_robometer</code>。</li><li>模型参数量、训练 GPU/TPU 等资源论文未报告；checkpoint 已公开。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为真实机器人：<strong>3 个 SO-101 单元、12 个桌面任务、7 个策略</strong>，基准为 <strong>ArmnetBench v0.1</strong>。</li><li>主要指标为 rollout 的 <strong>successful、suboptimal、failure</strong> 比例及任务/策略层面的成功计数。</li><li>总体结果：<strong>724 条成功（23.2%）</strong>、<strong>106 条 suboptimal（3.4%）</strong>、<strong>2,288 条失败（73.4%）</strong>。</li><li>策略间差异明显：<strong>π0.5 171/359</strong>、<strong>π0 126/359</strong>、<strong>GR00T N1.7 106/360</strong>、<strong>Diffusion Policy 96/360</strong>、<strong>MolmoAct 2 92/720</strong>、<strong>ACT 70/480</strong>、<strong>SmolVLA 63/480</strong>。</li><li>任务难度差异大：<code>cable_clip</code> 为 <strong>0/270</strong> 成功，<code>eye_drops_to_basket</code> 为 <strong>120/240</strong> 成功；<code>suboptimal</code> 标签仅覆盖 4 个任务，实际近似二分类。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.03585/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Seeing Through the Illusion: Test-Time Scaling for World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.03163/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">FineCraft: Enhancing VLA Models for Fine-Grained Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
