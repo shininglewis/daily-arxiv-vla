@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定&quot;何时干预、用哪种方法恢复&quot;。 核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。 论文同时提出 LIBERO-Disturb 基准，用于系统评估机器人在执行中扰动下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.04226">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.04226.webp" alt="DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定&quot;何时干预、用哪种方法恢复&quot;。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.04226" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.04226" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.04226</span></div>
+            <p class="detail-summary">论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定&quot;何时干预、用哪种方法恢复&quot;。 核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。 论文同时提出 LIBERO-Disturb 基准，用于系统评估机器人在执行中扰动下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京理工大学（Beijing Institute of Technology，中国北京）——主要作者单位</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.04226/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定&quot;何时干预、用哪种方法恢复&quot;。</p>
+  <ul class="reading-intro-points"><li>论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定&quot;何时干预、用哪种方法恢复&quot;。</li><li>核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。</li><li>论文同时提出 LIBERO-Disturb 基准，用于系统评估机器人在执行中扰动下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京理工大学</strong>（Beijing Institute of Technology，中国北京）——主要作者单位</li><li><strong>深圳北理莫斯科大学</strong>（Shenzhen MSU-BIT University，中国深圳）</li><li><strong>创新奇智科技集团有限公司</strong>（AInnovation Technology Group Co., Ltd.）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DiMuRe</strong>（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定"何时干预、用哪种方法恢复"。</li><li>核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。</li><li>论文同时提出 <strong>LIBERO-Disturb</strong> 基准，用于系统评估机器人在<strong>执行中扰动</strong>下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DiMuRe</strong> 框架：利用<strong>分阶段（phase-specific）诊断证据</strong>与方法前提条件，在"程序复用 / 预定义恢复技能（含受限 VLA 抓取）/ MLLM 辅助重规划"三级恢复能力之间进行选择。</li><li>设计<strong>分层诊断机制</strong>：通过机器人状态、夹爪开合、RGB-D 几何与任务关系判定故障，并在证据不足时主动请求新观测（如机器人上抬重新拍摄）。</li><li>设计<strong>条件切换与验证机制</strong>：按模板回放 → 几何重抓 → VLA 抓取固定顺序尝试候选方法，每次尝试后做局部抓取/释放验证，只有验证通过才结束恢复流程。</li><li>提出<strong>共享物理步预算与完成预留</strong>机制（<code>C = min{B_t − r, n_start + C_max, C_outer}</code>），使恢复开销可控且不挤占任务完成所需步数。</li><li>发布 <strong>LIBERO-Disturb</strong> 基准：包含 9 类执行中扰动，并将"扰动注入、物理效果验证、任务成功评估"与受测系统解耦。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>程序接口与观测</strong>：执行监视器拦截运动与夹爪调用，记录抓取/放置片段，用 RGB-D 几何、机器人状态与夹爪状态跟踪物体身份与运动，并评估任务指令中的空间关系。</li><li><strong>分层诊断</strong>：诊断器 <code>d_t = D(φ_t, E_t)</code>，其中 <code>φ_t ∈ {grasp, transport, place, verify}</code> 为当前操作阶段，<code>E_t</code> 含机器人状态、物体几何、任务关系、动作反馈、历史验证与预算信息；输出诊断码、规则置信度、建议响应与证据。</li><li><strong>抓取跟随检验</strong>：以位移残差 <code>e_t^follow = ‖(ĉ_t − ĉ_ref) − (p_t − p_ref)‖₂</code> 判定物体是否随夹爪运动，并结合最小工具位移、夹爪开合上下界等阈值判定抓取是否成立。</li><li><strong>Level 1 原始程序复用</strong>：将录制抓取段的路径点按测得平移量 <code>δ_t</code> 整体平移（保持姿态 <code>R_j</code> 不变），并做形状兼容性与支撑高度变化检查。</li><li><strong>Level 2 预定义恢复技能</strong>：基于几何的<strong>重抓取</strong>（依目标形状选择接近方向、夹爪朝向、闭合与抬升），以及以 <strong>GraspVLA</strong> 为受限技能的 VLA 抓取，均需满足技能前提并做验证。</li><li><strong>Level 3 MLLM 辅助重规划</strong>：原程序退出后，MLLM 依据当前 RGB 图像、结构化状态证据、程序上下文与执行历史生成纠正代码，多轮迭代修订。</li><li><strong>候选切换规则</strong>：<code>next(m)</code> 根据准入 <code>a_m</code> 与验证 <code>v_m</code> 决定跳过候选、返回已验证抓取或推进到下一候选；候选尝试共享全任务上限 <code>A_max</code>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：作为 LIBERO-Disturb 的任务与目标谓词基础。</li><li><strong>LIBERO-Disturb</strong>：含 9 类执行中扰动——XY 位移、物体碰撞、缓慢漂移、物体取回、姿态改变、翻倒、抓取滑落、机械臂回缩、接收区偏移。</li><li><strong>Encore</strong> 集成：30 个固定 Encore 任务程序 × 3 个重置种子。</li><li>评测规模：<strong>801 个计划扰动用例</strong> + <strong>90 个干净用例</strong>（完整集共 <strong>891 例</strong>）。</li><li>使用模型：<strong>GraspVLA</strong>（作为 Level 2 受限抓取技能）、一个<strong>多模态大语言模型（MLLM）</strong>用于终端重规划；附录另报告 <strong>π0.5</strong> VLA 策略的原生执行评测。</li><li>论文为框架/系统类工作，<strong>未报告模型训练规模、参数量或 GPU/TPU 训练资源</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：LIBERO-Disturb 模拟环境（Encore 任务程序接口），扰动注入器与原生评测器与被测系统解耦；所有配置共享相同扰动注入器与原程序检查/重试逻辑。</li><li><strong>评估指标</strong>：任务成功率 SR（分母含未触发扰动的计划用例）、ΔSR（百分点）、平均任务时间（秒）、平均物理步数、异常响应覆盖率、响应后任务 SR、记录的局部/终端恢复时间。</li><li><strong>主结果</strong>：在 801 个扰动用例上，<strong>Original 58.68%</strong> → <strong>Local DiMuRe（L1+L2）77.65%</strong>（+18.98 pp）→ <strong>Full DiMuRe（L1+L2+L3）81.90%</strong>（+23.22 pp）；三者在 90 个干净用例上均为 <strong>100%</strong>。</li><li><strong>消融</strong>：<strong>L1-only 73.66%</strong>（+14.98 pp）、<strong>L2-only 65.54%</strong>（+6.87 pp），二者覆盖不同故障类型（L1 更擅长抓取滑落，L2 更擅长姿态改变），组合后收益更大，说明两级恢复能力互补。</li><li><strong>执行开销</strong>：Local 全用例平均 <strong>310.20 步</strong>（低于 Original 的 328.90 步）但耗时更长（<strong>5.47 s vs 4.65 s</strong>）；Full 全用例平均 <strong>19.59 s / 361.30 步</strong>，成功子集 <strong>7.05 s / 248.25 步</strong>。</li><li><strong>异常响应与恢复时间</strong>：161/801 个可标注故障窗口中，Local 与 Full 的响应覆盖率均为 <strong>78.26%</strong>；响应后任务 SR 分别为 <strong>74.60%</strong> 与 <strong>80.16%</strong>；局部恢复平均 <strong>1.80 s</strong>，终端 MLLM 恢复平均 <strong>62.86 s</strong>。</li><li><strong>局限</strong>：遮挡与物体误匹配会影响方法选择与局部验证；固定候选顺序可能过早耗尽预算；结论仅限模拟环境；Full 因额外预算与提前交接，无法将增益单独归因于 L3。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04241/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">AceAction-5M: Hierarchical Goals for Generalist Action Learning Across 3D Game Worlds</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.04166/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Say the Same, Act Differently: Diagnosing and Steering Text-Action Divergence in Reasoning VLAs</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。 指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 RoboTwin Easy episode 需 359.7 分钟，官方 StarVLA 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 14.3%。 核心问题：如何在不改变基准规则与打分（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.03850">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #ef6c3f; --cover-to: #f6b13d; --cover-spot: #ffd59c; --cover-ink: #fff8ef; --cover-muted: rgba(255, 248, 239, 0.82); --cover-chip: rgba(255, 248, 239, 0.16); --cover-stroke: rgba(255, 248, 239, 0.26)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation</h1>
+            <div class="detail-meta">2026-11-02 · <a href="http://arxiv.org/abs/2611.03850" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.03850" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.03850</span></div>
+            <p class="detail-summary">论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。 指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 RoboTwin Easy episode 需 359.7 分钟，官方 StarVLA 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 14.3%。 核心问题：如何在不改变基准规则与打分（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">13 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">上海交通大学 人工智能学院（School of AI, Shanghai Jiao Tong Univ…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.03850/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。</p>
+  <ul class="reading-intro-points"><li>论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。</li><li>指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 RoboTwin Easy episode 需 359.7 分钟，官方 StarVLA 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 14.3%。</li><li>核心问题：如何在不改变基准规则与打分（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>上海交通大学 人工智能学院（School of AI, Shanghai Jiao Tong University）</strong>（主要单位）</li><li><strong>中南大学（Central South University）</strong></li><li><strong>同济大学（Tongji University）</strong></li><li><strong>上海科技大学（ShanghaiTech University）</strong></li><li><strong>中国农业科学院（Chinese Academy of Agricultural Sciences）</strong></li><li><strong>南京大学（Nanjing University）</strong></li><li>通讯作者：<strong>Bo Zhao</strong>（bo.zhao@sjtu.edu.cn）；项目页：roboscope.pages.dev；代码：github.com/MINT-SJTU/RoboScope-Kit</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>RoboScope Kit</strong>，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。</li><li>指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 <strong>RoboTwin Easy</strong> episode 需 <strong>359.7 分钟</strong>，官方 <strong>StarVLA</strong> 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 <strong>14.3%</strong>。</li><li>核心问题：如何在<strong>不改变基准规则与打分</strong>（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>评估时间去向的量化剖析</strong>：在单张 <strong>RTX 4090</strong> 上，官方 StarVLA LIBERO-Long 评估器 <strong>55%</strong> 时间花在 CPU 上的仿真与逐步处理、GPU 平均利用率 <strong>14.3%</strong>；增加仿真器可升至 <strong>45.7%</strong>，再加一个 Policy 副本升至 <strong>87.7%</strong>；RoboTwin 每步渲染三路相机，而策略每 <strong>16</strong> 步才读一次观测。</li><li><strong>统一的评估接口</strong>：模型只需包成一个 <strong>Policy</strong> 类、基准只需包成一个 <strong>adapter</strong>（包裹基准自有评估器），适配器覆盖<strong>六个基准族</strong>；固定配置可复现官方 StarVLA 在 LIBERO-Long 上全部 <strong>500</strong> 个 episode 的成功结果。</li><li><strong>调度加速</strong>：把<strong>仿真器 worker</strong> 与 <strong>Policy 副本</strong>作为两个独立进程池（规模分别为 *K* 与 *g*），用时间受限的<strong>并发搜索（diagonal search）</strong>自动定容，并按 <code>j mod N</code> 做<strong>确定性分片</strong>跨 GPU 实例扩展。</li><li><strong>运行时优化</strong>：支持 <strong>chunk-boundary observation</strong>（按 Policy 声明 stride 渲染，stride=1 即官方节奏）、复用 <strong>SAPIEN Engine/Renderer</strong>、消除控制循环重复计算、种子缓存与场景初始化缓存，且只删除既不影响策略输入也不影响得分的仿真工作。</li><li><strong>实测大幅提速且结果一致</strong>：LIBERO-Long 单卡 500 episode 由 2990 s 降至 <strong>485 s（6.16×）</strong>；RoboTwin Easy 四卡 500 episode 由 359.7 分钟降至 <strong>14.4 分钟（25.04×）</strong>，成功结果与终止步完全一致。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Policy 抽象</strong>：一个类封装 <code>load / reset / act / act_batch / end_episode / unload</code> 生命周期；声明所需观测特征（如 <code>images.head</code>、<code>state.joints</code>、<code>language.instruction</code>）、支持的基准与套件、动作 chunk 长度、动作表示与<strong>观测 stride</strong>；模型侧预处理（裁剪、归一化、tokenize、动作反变换）全部留在 Policy 内。</li><li><strong>基准适配器</strong>：包住基准的<strong>原生评估器</strong>，保留任务定义、初始状态、终止条件与打分；只负责构造 work item、启动原生 rollout、观测/动作翻译与解析 episode 记录。</li><li><strong>双运行时架构</strong>：<strong>Control Runtime</strong> 负责展开 manifest（episode key = 任务/回合/种子）、切分 work item、启动 *K* 个仿真 worker 与 *g* 个 Policy 副本、聚合并校验结果；<strong>Simulation Runtime</strong> 在每个 worker 内运行插桩后的原生评估器。</li><li><strong>并发搜索（Algorithm 1）</strong>：先用真实负载做短探针（每 worker 3 个 work item，丢弃首项暖机、测稳态吞吐 *q*、占用核数 *c*、GPU 利用率 *u*、限流 *t*、每副本显存 *v*）；<strong>worker 阶段</strong>按 1 副本/GPU 倍增 *K*，直到增益低于 <strong>25%（κ=0.25）</strong> 的拐点；<strong>replica 阶段</strong>按 <code>K = r·g</code> 同步扩副本，直到增益低于 <strong>3%（ε=0.03）</strong>；受 <code>WorkerCap</code>、<code>ReplicaCap</code>、<code>FitsMemory</code>、<code>WithinLimits</code>（u≤0.95、t≤0.40）约束，探针上限 τ_c=15 min、整体预算 τ=30 min。</li><li><strong>解耦与隔离</strong>：worker 与副本不共享解释器，可绑定互相冲突的依赖库；副本可在实例内跨多张 GPU 分布，消息为本地 request–response 并携带 episode id 以复用同一加载模型。</li><li><strong>容错与一致性</strong>：work item 原子认领、幂等发布；worker 崩溃/显存 OOM 时回收该项、丢弃部分记录并重启替换 worker 重放（OOM 时降低该 GPU 并发），Policy 副本退出则整体中止；聚合前校验覆盖性与 episode key 唯一性。</li><li><strong>跨实例分片合并</strong>：支持 record-tree merging 与 result-only reduction 两条合并路径，非可加指标由计数重算。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>基准（六个族）</strong>：<strong>LIBERO</strong>（5 个套件）、<strong>LIBERO-Plus</strong>、<strong>RoboTwin 2.0</strong>（Easy / Hard）、<strong>CALVIN</strong>、<strong>RoboCasa GR-1 Tabletop</strong>、<strong>MetaWorld MT50</strong>。</li><li><strong>报告中的实测负载</strong>：<strong>LIBERO-Long</strong> 与 <strong>RoboTwin Easy</strong>（各 500 episode）；跨实例运行使用 <strong>MetaWorld MT50</strong>。</li><li><strong>被测策略</strong>：<strong>StarVLA</strong> checkpoint（RoboTwin 路径动作 chunk 长度 <strong>H = 16</strong>）；论文未给出模型参数量等规模信息。</li><li><strong>硬件</strong>：单张 <strong>48 GiB RTX 4090</strong>（LIBERO-Long 实验）、<strong>四张 GPU</strong>（RoboTwin 实验），评估平台最多调度 <strong>4 个实例</strong>；启用 <strong>CUDA MPS</strong> 可使多副本内核并发。</li><li><strong>软件与工程</strong>：Python 包形式分发，Control Runtime、仿真 worker、Policy 副本以独立进程经 Unix domain socket 通信；支持 CUDA MPS 与本地/共享存储加载仿真器与数据集。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>基线</strong>：官方 <strong>StarVLA</strong> 评估器、<strong>RLinf</strong>、<strong>vla-eval</strong>（调至其最优配置）；RoboTwin 单卡单仿真器单模型为对照基线。</li><li><strong>指标</strong>：任务<strong>成功率</strong>与逐 episode 结果一致性（成功率、终止步完全相同）、评估<strong>墙钟时间与加速比</strong>、稳态<strong>吞吐 q（控制步/秒）</strong>、CPU 占用核数、GPU 利用率、限流、每副本显存、以及 worker/副本/GPU 数量下的<strong>可扩展性</strong>。</li><li><strong>保真性</strong>：固定 RoboScope Kit 配置复现官方 StarVLA 在 LIBERO-Long 上全部 <strong>500</strong> 个成功结果；四卡 stride-16 的 RoboTwin 运行与单卡 stride-1 运行在全部 500 个 episode 的成功结果与终止步上完全一致。</li><li><strong>LIBERO-Long（单张 RTX 4090，500 episode）</strong>：并发搜索选出 <strong>12 workers / 3 replicas</strong>，较官方 StarVLA 快 <strong>4.45×</strong>、较 RLinf 快 <strong>2.78×</strong>、较 vla-eval 快 <strong>1.52×</strong>；启用 <strong>CUDA MPS</strong> 后选出 <strong>16 workers / 4 replicas</strong>，分别快 <strong>6.16× / 3.85× / 2.10×</strong>（485 s vs 2990 s）。</li><li><strong>RoboTwin Easy（四卡，500 episode）</strong>：结合调度与 chunk-boundary observation，由 <strong>359.7 分钟</strong>降至 <strong>14.4 分钟</strong>，较单卡基线快 <strong>25.04×</strong>，结果与终止步完全一致。</li><li><strong>消融</strong>：分别验证「仿真/推理分离」「并发搜索及其代价」「CUDA MPS 下的搜索」「运行时优化（Engine 复用、控制循环去冗余、stride 渲染）」以及「优化后的四卡 RoboTwin 运行」，并给出 worker 数、副本数与 GPU 数的扩展曲线及瓶颈迁移分析。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04006/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Controlling Action-Head Co-Adaptation to VLM Representation Anisotropy</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.03815/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">AIRoA-0: Long-Horizon, Precise, Cross-Embodiment Manipulation from Handheld Data</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

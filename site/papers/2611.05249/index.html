@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Should the Action Expert Train the VLM? Action-Token Supervision and Gradient Routing in Mixture-of-Transformer VLAs - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。 核心问题是：动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 gradient insulation（梯度隔离） 是否真的必要。 通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.05249">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.05249.webp" alt="Should the Action Expert Train the VLM? Action-Token Supervision and Gradient Routing in Mixture-of-Transformer VLAs" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Should the Action Expert Train the VLM? Action-Token Supervision and Gradient Routing in Mixture-of-Transformer VLAs</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.05249" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.05249" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.05249</span></div>
+            <p class="detail-summary">研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。 核心问题是：动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 gradient insulation（梯度隔离） 是否真的必要。 通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NVIDIA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.05249/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。</p>
+  <ul class="reading-intro-points"><li>研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。</li><li>核心问题是：动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 gradient insulation（梯度隔离） 是否真的必要。</li><li>通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NVIDIA</strong></li><li><strong>Princeton University</strong></li><li><strong>Stanford University</strong></li><li>第一作者 <strong>Asher James Hancock</strong> 的工作是在 <strong>NVIDIA</strong> 实习期间完成的（论文标注了 “Work done during internship at NVIDIA”）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>研究对象是 <strong>Mixture-of-Transformers 式 VLA</strong>：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。</li><li>核心问题是：<strong>动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督</strong>这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 <strong>gradient insulation（梯度隔离）</strong> 是否真的必要。</li><li>通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 <strong>VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次将 <strong>action-token supervision</strong> 与 <strong>expert-to-VLM gradient routing</strong> 两个因素解耦，在固定数据、架构、优化与语义共训练的受控设置下进行 2×2（再加训练日程）因子实验。</li><li>发现在开环驾驶中，有 action-token 监督时 insulation 与 coupling 几乎无差别；<strong>没有 action token 监督时，coupling 将轨迹预测误差降低约 25%</strong>（Public Golden 约 26%、OOD 约 24%）。</li><li>在闭环驾驶中，coupling 一致提升路线完成度：有 token 监督时为 <strong>0.600→0.703</strong>（约 +17%），无 token 监督时为 <strong>0.425→0.601</strong>（相对提升约 40%）。</li><li>将结论迁移到机器人操作（<strong>π0.5</strong> 复现与 <strong>MolmoAct2</strong>），coupling 在有无 FAST 监督下均提升任务进度，且无 FAST 时增益更大，说明结论不局限于驾驶域。</li><li>指出训练顺序（concurrent / VLM-first / expert-first）只改变效应大小，不改变其依赖关系；并发现 <strong>concurrent 联合训练</strong>取得跨日程最佳绝对性能，与既有 VLM-first 配方形成对照。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用 <strong>Alpamayo</strong> 风格的 MoT-VLA：<strong>Qwen3-VL-2B-Instruct</strong> 主干 + 同宽度、非因果的 <strong>flow-matching 动作专家</strong>；专家在每层注意力中读取对应 VLM 层的 K/V，VLM 不关注专家的连续动作输入。</li><li>动作表示为 <strong>K 组（加速度、曲率）控制量</strong>，经离散化独轮车模型积分得到位置与航向路点；VLM 同时输出场景推理 rationale 与未来轨迹 token。</li><li>联合目标为 <strong>L = L_CE + L_flow</strong>：CE 覆盖 VQA/推理/轨迹定界符，以及（可开关的）未来动作 token；flow 采用 rectified flow matching，时间采样 <code>b~Beta(1.5,1.0)</code>、<code>t=0.999(1-b)</code>。</li><li>关键干预一：<strong>gradient routing</strong> —— coupled 时 <code>H̃_θ = H_θ</code>；insulated 时 <code>H̃_θ = sg(H_θ)</code>，仅阻断反传、不改变前向。</li><li>关键干预二：<strong>action-token supervision</strong> —— 通过指示函数 <code>1_action</code> 关闭未来动作 token 的 CE，token 仍以 teacher-forcing 方式保留在上下文中，并固定被监督位置数 N 以保持其他 CE 项权重。</li><li>关键干预三：<strong>训练日程</strong> —— concurrent（同时训练）、expert-first（先冻结 VLM 训专家 100k 步）、VLM-first（先单独训 VLM 100k 步），总步数统一为 300k。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>开环驾驶：<strong>PhysicalAI-Autonomous-Vehicles</strong> 数据集，<strong>Public Golden</strong>（1,434 场景）与 <strong>OOD</strong>（273 场景）两个 split；评估采样 6 条候选轨迹，主指标为 ADE，另有 minADE 作为 oracle 指标。</li><li>闭环驾驶：<strong>AlpaSim</strong> 模拟器，827 个场景 × 5 次随机 rollout。</li><li>推理质量评估：冻结的 <strong>Lingo-Judge</strong> 分类器计算 rationale 通过率。</li><li>机器人操作：<strong>PolaRiS</strong> 三个任务（BlockStackKitchen、FoodBussing、PanClean），每条件每任务 50 次 rollout；训练数据为 <strong>DROID</strong>（90%）+ PolaRiS 训练数据（10%），VQA 混合 <strong>VQAv2 / COCO caption & localization / Visual Genome</strong>。</li><li>模型规模：<strong>Qwen3-VL-2B-Instruct</strong>（驾驶）、<strong>PaliGemma-3B</strong>（π0.5 复现）、<strong>Molmo2-ER</strong>（MolmoAct2）；训练步数分别为 300k（驾驶 / MolmoAct2）与 400k（π0.5 复现）。</li><li>计算资源：正文未给出具体 GPU/TPU 型号与数量，仅说明受算力限制，每个条件只做了一次训练，因此未度量训练随机种子带来的方差。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境覆盖 <strong>开环驾驶（ADE / minADE）</strong>、<strong>闭环驾驶（AlpaSim 路线完成度、碰撞等安全指标）</strong>、<strong>生成推理轨迹质量（Lingo-Judge 通过率）</strong> 与 <strong>闭环机器人操作（归一化任务进度）</strong>；统计上使用 10,000 次按 clip 聚类的配对 bootstrap 给出 95% 置信区间。</li><li>开环结果：有 action token 时 insulation 与 coupling 差异很小（Public Golden 上 insulation 略优）；无 action token 时 insulation 显著变差，<strong>coupling 降低 ADE 约 25%（Public Golden 26%、OOD 24%）</strong>，且该模式在三种训练日程、分布内与 OOD 上均成立。</li><li>闭环驾驶路线完成度：concurrent 下 coupling 使 <strong>0.600→0.703（tokens on）</strong>、<strong>0.425→0.601（tokens off，+17.6 个百分点，相对约 41%）</strong>；无 token 的 coupled 模型接近有 token 的 insulated 模型；整体最佳为 <strong>concurrent + coupled + tokens on（0.703）</strong>。</li><li>推理质量：insulation 在所选 vision–language 共训练配方下并<strong>没有</strong>表现出稳定的 rationale 质量优势；在部分设置下 coupled 反而更高（如 concurrent tokens-on 下的 Public Golden 0.649 vs 0.647），OOD 方向不一致。</li><li>操作任务：π0.5 复现中 coupling 使进度 <strong>19.5%→30.7%（FAST on）</strong>、<strong>10.3%→32.9%（FAST off）</strong>；MolmoAct2 中为 <strong>22.0%→24.3%（FAST on）</strong>、<strong>14.5%→36.5%（FAST off）</strong>，四条件中最佳均为 “coupled + 无动作 token”。</li><li>安全与局限：在有 token 监督的分阶段训练中，coupled 的 at-fault 碰撞率观测值更高；论文仅覆盖一个驾驶模型族与两个操作模型族、且全部为仿真评估，未上真机，也未做多随机种子重复。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.05372/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">PolicyIK: High-Precision Inverse Kinematics for Robot Arms with Reinforcement Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.05155/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Asynchronous Robot Policies</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LoopQ: Fair, Closed-Loop Evaluation of Quantized Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。 现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 RTN）、在接近饱和的 LIBERO 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。 研究目标是在统一协议下系统评估量化的精度保持、内存收益、真实延迟与分布偏移下的鲁棒性，并审计公开的 VLA 量化代码发布能否复现。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.05093">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.05093.webp" alt="LoopQ: Fair, Closed-Loop Evaluation of Quantized Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">LoopQ: Fair, Closed-Loop Evaluation of Quantized Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.05093" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.05093" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.05093</span></div>
+            <p class="detail-summary">论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。 现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 RTN）、在接近饱和的 LIBERO 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。 研究目标是在统一协议下系统评估量化的精度保持、内存收益、真实延迟与分布偏移下的鲁棒性，并审计公开的 VLA 量化代码发布能否复现。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">13 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Chalmers University of Technology（查尔姆斯理工大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.05093/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。</p>
+  <ul class="reading-intro-points"><li>论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。</li><li>现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 RTN）、在接近饱和的 LIBERO 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。</li><li>研究目标是在统一协议下系统评估量化的精度保持、内存收益、真实延迟与分布偏移下的鲁棒性，并审计公开的 VLA 量化代码发布能否复现。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Chalmers University of Technology</strong>（查尔姆斯理工大学）</li><li><strong>University of Gothenburg</strong>（哥德堡大学）</li><li>所属院系/方向：<strong>Computer and Network Systems</strong></li><li>作者：<strong>Syed Umer Bukhari</strong>、<strong>Magnus Almgren</strong>、<strong>Ahmed Ali-Eldin</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>LoopQ</strong>，这是首个面向 <strong>Vision-Language-Action (VLA)</strong> 模型后训练量化（<strong>PTQ</strong>）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。</li><li>现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 <strong>RTN</strong>）、在接近饱和的 <strong>LIBERO</strong> 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。</li><li>研究目标是在统一协议下系统评估量化的<strong>精度保持</strong>、<strong>内存收益</strong>、<strong>真实延迟</strong>与<strong>分布偏移下的鲁棒性</strong>，并审计公开的 VLA 量化代码发布能否复现。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建 <strong>LoopQ</strong> 基准：把 VLA 专用方法与通用方法放在同一量化范围、同一引擎下比较，并按<strong>真实低比特</strong>与<strong>模拟量化</strong>分别报告，同时在 <strong>3 块 GPU</strong> 上按 kernel 路径计时，并用<strong>配对扰动任务</strong>测试鲁棒性。</li><li>揭示“<strong>位数减少不等于速度提升</strong>”：真实低比特模型内存减少 <strong>2–3×</strong>，但在 H100 上比 16-bit 慢 <strong>1.06–1.58×</strong>（库 kernel）；仅 L4 上的 int8 kernel 有 <strong>4–14%</strong> 增益，Jetson AGX Thor 上所有 4-bit 配置都更慢。</li><li>用性能剖析（profiling）解释原因：<strong>π0.5</strong> 的量化骨干是<strong>计算受限</strong>（compute-bound），而占据 <strong>63% GPU 时间</strong>、仅 <strong>13% 参数</strong>的<strong>动作专家（action expert）</strong> 是<strong>访存受限</strong>（memory-bound），且始终保持 16-bit，因此即使量化层零耗时，端到端最多也只有 <strong>1.09×</strong> 加速。</li><li>证明 <strong>LIBERO 掩盖了量化损失</strong>：在 LIBERO 上无显著损失的配置，在配对的 <strong>LIBERO-plus</strong> 扰动下会掉 <strong>1.5–4.3</strong> 分；通用方法 <strong>RTN</strong> 与 <strong>AWQ/GPTQ</strong> 在四个模型上与专用方法 <strong>ActQuant/QuantVLA</strong> 持平甚至更好。</li><li>发布审计：在 4 个公开 VLA 量化发布中，只有 <strong>ActQuant</strong> 可被真正计时（且比自身 16-bit 更慢）；<strong>QVLA</strong> 相对 AWQ 的“优势”在统一协议下消失。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>五条设计原则：<strong>只改量化器</strong>（固定 checkpoint、量化层、校准数据与引擎）、<strong>报告真实执行方式而非仅位宽</strong>（如 llama.cpp 的 “W4A16” 文件实际走 int8 + 激活量化 kernel）、<strong>足够多且配对的任务回合</strong>、<strong>同引擎端到端计时</strong>、<strong>核查每个发布的复现能力</strong>。</li><li>被评测的量化方法：<strong>RTN</strong>（无校准的最近舍入）、<strong>AWQ</strong>（官方 llm-awq 搜索与裁剪）、<strong>GPTQ</strong>（自实现，与参考代码 99.7–99.997% 一致）、<strong>ActQuant</strong>（动作引导敏感度的混合低比特）、<strong>QuantVLA</strong>（DuQuant 风格 W4A8）。每个模型统一使用 <strong>512</strong> 帧校准数据。</li><li>量化层选择复用被比较的 VLA 专用方法的设置：<strong>π0.5</strong> 与真实低比特 OpenVLA-OFT 用 ActQuant 的视觉+语言骨干层，<strong>GR00T N1.5</strong> 用 QuantVLA 的 <strong>116 层</strong>（含 DiT 动作头 MLP），<strong>UniVLA</strong> 与模拟 OpenVLA-OFT 用 <strong>QVLA 的 435 个骨干层</strong>。</li><li>效率测量分三层：<strong>隔离测量</strong>（10 次预热 + 50 次计时，记录峰值内存与 GPU 能耗）、<strong>闭环测量</strong>（约 65,000 次调用的中位延迟）、<strong>算子级剖析</strong>（Nsight Systems + Roofline，H100 上 ridge 约 <strong>214 FLOP/B</strong>）。</li><li>鲁棒性采用<strong>配对检验</strong>：量化策略与基线在同一批扰动任务上逐条对比，避免把基座模型自身的失败归因于量化。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集：<strong>LIBERO</strong>（4 个 suite、每 suite 10 个任务、每任务 50 trials，即每配置 2,000 episodes）、<strong>LIBERO-plus</strong>（7 类扰动轴：相机视角、机器人初始状态、语言、光照、背景、传感器噪声、物体布局，每轴 5 个难度等级）。</li><li>评测规模：H100 上 <strong>170,524</strong> 条闭环 episode，L4 与 Thor 上 <strong>11,310</strong> 条，总计超过 <strong>180,000</strong> 条；LIBERO-plus 上 π0.5/GR00T 各 <strong>2,016</strong> 个配对任务，UniVLA/OpenVLA-OFT 各 <strong>5,014</strong> 个任务。</li><li>模型：<strong>π0.5</strong>（3.36B，SigLIP-So400m + PaliGemma/Gemma-2B 前缀 + Gemma-300M 动作专家，10 步 flow matching）、<strong>GR00T N1.5</strong>（Eagle-2.5 + 扩散 Transformer 动作头，8 步去噪）、<strong>UniVLA</strong>（7B 自回归离散 latent action）、<strong>OpenVLA-OFT</strong>（Llama-2 骨干 + MLP 连续动作块头）。</li><li>配置数量：π0.5 共 <strong>18</strong> 个配置、GR00T <strong>6</strong> 个、UniVLA <strong>5</strong> 个、OpenVLA-OFT 模拟 <strong>5</strong> 个 + 真实 <strong>10</strong> 个；其中 5 配置子集在三种 GPU 上重复。</li><li>训练/推理资源：<strong>NVIDIA H100 NVL</strong> 集群为主，另在 <strong>NVIDIA L4</strong> 与 <strong>Jetson AGX Thor</strong> 上做缩小规模实验；batch size 为 1。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估基准与协议：LIBERO 上的任务成功率、LIBERO-plus 上的配对成功率变化（Δ，points，95% CI，p<0.05，Holm 校正）、文件体积与峰值内存、每次调用延迟（ms/call）与能耗（J/call）。</li><li>精度结论：在 LIBERO 上所有 8-bit 与 4-bit 方法（RTN/AWQ/GPTQ/ActQuant/QuantVLA）基本与 F16 持平（π0.5 上 96.7–97.6% vs. 96.5%）；仅 ActQuant 在真实低比特 OpenVLA-OFT 上掉 <strong>1.3</strong> 分、3-bit 模型在 int8 激活路径上掉分、AWQ 在 MMQ 上因 FP16 溢出崩溃（84.4%）。</li><li>速度与内存：4-bit 使 π0.5 文件体积最多缩小 <strong>2.8×</strong>（6.71→2.40–2.70 GB）、峰值内存最多缩小 <strong>2.3×</strong>（7.04→3.0–3.5 GiB），但 <strong>14 个</strong>量化 π0.5 配置全部更慢（隔离 <strong>1.06–1.37×</strong>，闭环 <strong>1.10–1.40×</strong>，OpenVLA-OFT <strong>1.32–1.58×</strong>）；能耗上升 <strong>1.1–1.3×</strong>；13 个配置中 <strong>283–288</strong> 个量化算子无一变快（慢 <strong>1.24–2.44×</strong>）。</li><li>引擎影响：同一 16-bit π0.5 在编译版 PyTorch（47 ms）、自建 GGML（81 ms）、ActQuant 引擎（99 ms）间相差 <strong>2.1×</strong>，超过任何量化器在库 kernel 上的效果。</li><li>鲁棒性结论：在 LIBERO-plus 上所有策略都下降（π0.5 掉 9–17 分、UniVLA 掉 40–44 分），其中大部分来自基座模型本身；但 <strong>QuantVLA 在 GR00T 上多掉 4.2 分</strong>（Goal suite 单类掉 <strong>12.3</strong>），<strong>ActQuant 在 π0.5 上 4/3 bpw 分别多掉 2.3/5.3 分</strong>、在真实 OpenVLA-OFT 上多掉 <strong>4.9/8.4</strong> 分，而 RTN/AWQ/GPTQ 在多数对比中保持在 <strong>±1.1</strong> 分以内。</li><li>其它发现：离线的动作误差（action error）不能预测闭环成功率（AWQ 误差 3.6% 仍与 RTN 0.2% 同等成功）；不同 GPU 上任务成功判定在 <strong>90–99%</strong> 的 episode 上一致，说明“GPU 决定速度、方法决定成功率”。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.05155/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Asynchronous Robot Policies</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.05080/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">CRONOS: Benchmarking Non-Episodic Reinforcement Learning for Robotic Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

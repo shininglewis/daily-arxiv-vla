@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Say the Same, Act Differently: Diagnosing and Steering Text-Action Divergence in Reasoning VLAs - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。 揭示一种新的失效模式：rationale-preserving action divergence（保文动作偏离）——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下逐词完全相同。 目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.04166">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.04166.webp" alt="Say the Same, Act Differently: Diagnosing and Steering Text-Action Divergence in Reasoning VLAs" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Say the Same, Act Differently: Diagnosing and Steering Text-Action Divergence in Reasoning VLAs</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.04166" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.04166" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.04166</span></div>
+            <p class="detail-summary">研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。 揭示一种新的失效模式：rationale-preserving action divergence（保文动作偏离）——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下逐词完全相同。 目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Southern California（南加州大学）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.04166/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。</p>
+  <ul class="reading-intro-points"><li>研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。</li><li>揭示一种新的失效模式：rationale-preserving action divergence（保文动作偏离）——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下逐词完全相同。</li><li>目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Southern California</strong>（南加州大学）</li><li><strong>University of Arizona</strong>（亚利桑那大学）</li><li><strong>General Motors</strong>（通用汽车）</li><li>作者：Zihao Feng、Qingzhao Zhang、Chunyu Xia、Bo Yu、Z. Morley Mao、Ramesh Govindan</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>研究<strong>推理型视觉-语言-动作模型（Reasoning VLA）</strong>：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。</li><li>揭示一种新的失效模式：<strong>rationale-preserving action divergence（保文动作偏离）</strong>——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下<strong>逐词完全相同</strong>。</li><li>目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>发现视觉输入可导致保文动作偏离</strong>：在 <strong>Alpamayo</strong>（自动驾驶）中，全图扰动可在 <strong>52.6%</strong> 的障碍标注场景中，在 rationale 逐词不变的情况下引入原本不存在的碰撞；局部前视摄像头 patch 攻击下为 <strong>35.1%</strong>，而未引导的动作攻击仅 <strong>4.55%</strong>。</li><li><strong>提出局部几何解释机制</strong>：提出 <strong>TNAS（Text-Neutral Action-Subspace）</strong> 诊断，证明共享接口处最敏感的动作方向与活跃文本损失梯度几乎正交，在 Alpamayo 和 InstructVLA 上的投影范数比仅为 <strong>1.87%</strong> 与 <strong>5.28%</strong>。</li><li><strong>给出隐藏状态干预的因果证据</strong>：在等扰动范数下，沿文本中性方向扰动使动作位移达到文本梯度扰动的 <strong>4.64×–47.8×</strong>，而文本梯度扰动带来的 teacher-forced KL 高出 <strong>21.2×–277×</strong>。</li><li><strong>提出机制引导的攻击优化</strong>：直接在输出层联合“动作偏离损失 + 文本保持惩罚”会产生相互冲突的梯度；加入 TNAS 对齐项后冲突被化解，在同等动作偏离水平下显著提升文本保真度。</li><li><strong>跨模型、跨具身验证</strong>：同一几何解耦在 <strong>InstructVLA</strong>（机器人操作、flow-matching 动作专家）上复现，说明该现象并非单一模型特有。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>共享状态挂钩与干预坐标</strong>：在 <strong>K</strong> 层 transformer、隐藏宽度 <strong>d</strong>、活跃推理/响应 token 跨度 <strong>R</strong> 上定义加性干预 δ ∈ ℝ^(Kd)，按层广播；筛选同时具备非零文本基与强动作接口的层窗口，Alpamayo 取<strong>推理 token 层 32–35</strong>，InstructVLA 取<strong>响应 token 层 14–17</strong>。</li><li><strong>动作雅可比方向 d_act</strong>：对挂钩动作输出 A_hook(δ) 求 ∂A_hook/∂δ\|_{δ=0}，取行空间方向并归一化（不直接对 ADE/Δ_IVLA 求梯度，因为其在 δ=0 处不可导）。</li><li><strong>活跃文本损失跨度 𝒯</strong>：使用在 δ=0 处梯度非零的两个损失——干净目标 <strong>NLL</strong> 与<strong>有符号 target-margin drop</strong>；对二者梯度做 Gram–Schmidt 得到秩 2 的正交基。</li><li><strong>TNAS 方向</strong>：d_TNAS = normalize((I − P_𝒯) d_act)，即从动作方向中投影掉文本梯度分量，使其一阶上不改变文本 NLL 与 margin。</li><li><strong>三个探针</strong>：Probe 1 测量干净态几何（投影范数比 ρ）；Probe 2 在固定 teacher-forced KL 预算下比较动作位移；Probe 3 在等扰动范数 \|q\|·S_clip（q ∈ {0.5, 1, 2}）下比较方向特异性因果控制。</li><li><strong>输入级攻击</strong>：白盒数字扰动，端到端反传；<strong>PGD 200 步</strong>，ℓ∞ 投影；全图攻击 ε=0.05、α=5×10⁻⁴，局部 patch ε=0.5、α=5×10⁻³；在目标函数中加入 TNAS 对齐项 cos(Δh, d_TNAS) 引导隐状态更新。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>Alpamayo</strong>（自动驾驶 VLA）：<strong>200</strong> 个评测 clip，其中 <strong>154</strong> 个带障碍物标注用于开环安全评估；另有 <strong>1,181</strong> 个 clip 用于 rationale 一致性统计。</li><li><strong>InstructVLA</strong>（机器人操作 VLA）：<strong>200</strong> 个 <strong>Bridge</strong> 分布样本，7-DoF 末端执行器动作、16 步动作块。</li><li><strong>Qwen3-14B</strong>：冻结使用，作为 benign rationale-only reader 做对照分析。</li><li>动作读出采用固定 <strong>10 步 Euler flow-matching</strong> 求解器与配对初始噪声；Alpamayo 为 64 个 10 Hz 路点（6.4 s），InstructVLA 为 16×7 动作块。</li><li>训练/计算资源：原文 <strong>A.10 Compute resources</strong> 章节在所提供的 HTML 中被截断，具体 GPU 型号与数量未能在本次可见内容中获取。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：受控的固定前缀读出（动作位移 Δ_ADE / Δ_IVLA、teacher-forced KL、cos(Δh, d_TNAS)）、端到端自由生成（Exact 逐词匹配率）、以及基于 154 个障碍标注 clip 的<strong>开环安全协议</strong>（鸟瞰图有向包围盒 + 分离轴定理，统计 <strong>silent collision rate</strong>）。</li><li><strong>基线</strong>：Action-only PGD、Text-preserving PGD（输出层联合动作位移与文本保持惩罚）；对照方向还包括 g_NLL、g_margin 与随机单位向量 u_rand。</li><li><strong>几何解耦</strong>：d_act 投影到文本跨度的范数比 ρ 平均为 <strong>1.87%</strong>（Alpamayo）与 <strong>5.28%</strong>（InstructVLA），而各向同性随机向量的期望为 <strong>0.978%</strong>；投影后仍保留 <strong>>99.8%</strong> 的动作方向范数。</li><li><strong>文本并不完全决定动作</strong>：rationale-only reader 对“是否停车”的预测与真实结果一致率 <strong>84.3%</strong>，但 1,181 个 clip 仅含 <strong>258</strong> 种不同 rationale，<strong>36.9%</strong> 的 clip 其 rationale 也出现在相反结果中。</li><li><strong>固定的文本 KL 预算下</strong>：Alpamayo 中 d_TNAS 在 B=10⁻⁴ / 5×10⁻⁴ 时分别推动轨迹 <strong>0.227 m / 0.504 m</strong>，超过各对照方向（≤5.10 mm）<strong>63.3×–212×</strong>。</li><li><strong>相同扰动范数下（q=2）</strong>：Alpamayo 轨迹位移 <strong>0.142 m</strong>，为文本梯度对照的 <strong>44.0×–47.8×</strong>、随机对照的 <strong>53.9×</strong>；同时 d_TNAS 仅引发 <strong>9.87×10⁻⁵</strong> 的 KL，而文本梯度对照高 <strong>269×–277×</strong>；InstructVLA 动作位移 <strong>0.156</strong>，为文本梯度对照的 <strong>4.64×–5.51×</strong>。</li><li><strong>攻击效果</strong>：Alpamayo 全图 TNAS 引导攻击的 Exact rationale 保持率从文本保持基线的 <strong>83.0%</strong> 提升至 <strong>89.5%</strong>，teacher-forced 文本漂移下降 <strong>68.4%</strong>，碰撞率基本持平；InstructVLA 上文本漂移下降 <strong>40.5%</strong>，<strong>85.0%</strong> 样本保持逐词一致响应，平均动作块位移 <strong>1.73</strong> 个归一化单位。</li><li><strong>核心结论</strong>：rationale 未变<strong>不能</strong>作为动作安全的证书，基于推理文本的监控器必须直接验证动作通道。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04226/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.04096/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Online Hamilton-Jacobi Reachability Onboard the Robot Control Loop: A Real-Time GPU Solver for Safety-Critical Autonomy</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trusting Imagined Futures: Auditing Imagined Rewards for VLA Post-Training - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。 核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。 研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.04873">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.04873.webp" alt="Trusting Imagined Futures: Auditing Imagined Rewards for VLA Post-Training" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Trusting Imagined Futures: Auditing Imagined Rewards for VLA Post-Training</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.04873" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.04873" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.04873</span></div>
+            <p class="detail-summary">论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。 核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。 研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">12 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">北京邮电大学（Beijing University of Posts and Telecommunic…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.04873/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。</p>
+  <ul class="reading-intro-points"><li>论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。</li><li>核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。</li><li>研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>北京邮电大学</strong>（Beijing University of Posts and Telecommunications）：Zicheng Kong、Haoyan Zhang、Jinghan Yang、Zhenzhen Li、Liuyu Xiang、Min Ren、Zhaofeng He 等</li><li><strong>施方科技（杭州）</strong>（ShiFang Technology Inc.）：Zhenbo Xu</li><li><strong>中国科学院自动化研究所</strong>（Institute of Automation, Chinese Academy of Sciences）：Yiwei Ru</li><li><strong>武汉电力职业技术学院</strong>（Wuhan Electric Power Technical College）：WanTing Xu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Trusting Imagined Futures（TIF）</strong>，一种面向 <strong>VLA（视觉-语言-动作）模型后训练</strong> 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。</li><li>核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。</li><li>研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>TIF</strong> 监督审计框架，从配对的想象视频与真实执行中学习奖励高估风险，并结合预测优势决定是否替换现有监督轨迹。</li><li>设计<strong>多维奖励模型</strong>，同时预测任务进度、目标正确性、操作质量、安全性和执行稳定性五个维度，以及用于候选排序的效用分数。</li><li>设计<strong>风险审计器</strong>，利用奖励预测、维度不确定性及视频诊断信息识别“高预测奖励、低真实执行质量”的候选。</li><li>在 <strong>LIBERO</strong> 四个任务套件和真实机器人任务上验证：TIF 在相同轨迹数量和训练预算下提升策略成功率，并优于仅按预测优势或逻辑回归风险选择的方法。</li><li>通过固定替换数量、审计目标消融和多维监督消融，分析审计门控与执行质量信息对策略学习的贡献。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>候选构造与配对执行</strong>：每个初始状态构造候选动作池，包含 Source、贪心分支和采样分支；世界模型根据初始观测与动作生成想象视频，真实执行记录提供标签、选择结果和行为克隆目标。</li><li><strong>五维执行质量监督</strong>：从真实执行中计算 <strong>任务进度（P）</strong>、<strong>目标正确性（G）</strong>、<strong>操作质量（M）</strong>、<strong>安全性（S）</strong>、<strong>执行稳定性（E）</strong>，并加权构造参考效用，同时对低进度或低安全候选施加效用上限。</li><li><strong>多维奖励模型</strong>：使用冻结的 <strong>DINOv2-L</strong> 提取想象视频帧特征，融合任务指令与候选动作，预测五个维度的低/中/高分布及效用分数；联合优化维度预测、效用回归和同初始状态候选间的成对排序损失。</li><li><strong>奖励高估审计</strong>：以“预测效用高、真实参考效用低、二者差距大”定义正审计样本；审计器输入预测效用、五维分布与分数、不确定性统计和视频诊断信息，输出风险分数。</li><li><strong>可靠性门控与策略学习</strong>：选择预测效用最高的候选，仅当其相对 Source 的预测优势超过 <strong>0.15</strong> 且审计风险不超过 <strong>0.50</strong> 时接受，否则保留 Source；随后用保留的真实轨迹所有有效时间步进行行为克隆，并通过 <strong>LoRA</strong> 更新 OpenVLA。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>LIBERO</strong> 四个任务套件：<strong>Spatial、Object、Goal、Long</strong>，共 40 个任务。</li><li>策略模型为 <strong>OpenVLA</strong>；想象视频由 <strong>Cosmos-Predict2 2B</strong> 生成；视觉特征由 <strong>DINOv2-L</strong> 提取。</li><li>奖励模型与审计器训练数据包含 <strong>32,000 对</strong>真实执行轨迹与想象视频，来自 <strong>8,000 个初始状态</strong>。</li><li>自然候选数据集包含 <strong>1,600 个初始状态</strong>，按 <strong>800/400/400</strong> 划分为训练、验证和测试；离线评估使用 <strong>384 个测试状态</strong>。</li><li>策略后训练每个套件使用 <strong>200 条</strong>选中轨迹，共 <strong>800 条</strong>；每个套件 <strong>500 次更新</strong>，有效批大小 <strong>16</strong>，使用 <strong>3 个训练种子</strong>，每个种子每任务评估 <strong>50 次</strong>，共 <strong>2,000 个 episode</strong>。</li><li>真实机器人实验使用 <strong>JAKA S5</strong>，3 个任务、每个任务 <strong>20 个候选池</strong>、每池 5 条执行轨迹，共 <strong>300 条轨迹</strong>、<strong>60 个候选池</strong>。</li><li>原文未明确报告具体 <strong>GPU/TPU 型号与数量</strong>；OpenVLA 的参数量在给定 HTML 原文中未明确给出，Cosmos-Predict2 为 <strong>2B</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境与基准</strong>：仿真评估在 <strong>LIBERO</strong> 四套件上进行，对比原始 OpenVLA、Source、Greedy、Random、Reward-only、Reward+Margin、TIF，以及固定替换数量下的 Random-K、Advantage Top-K、Logistic risk-K、Low-entropy-K、Consistency-K 等选择规则。</li><li><strong>主要指标</strong>：策略成功率、候选排序的 Pairwise/Top-1 准确率、选中候选的平均执行参考效用、五维预测 Macro-F1、审计 AUROC、替换轨迹的 Better/Worse 数量、真实机器人任务完成率和干净完成率。</li><li><strong>奖励模型结果</strong>：五维预测 Macro-F1 为 <strong>0.732–0.758</strong>；5D 奖励模型取得最高 Pairwise <strong>57.79%</strong>、Top-1 <strong>33.07%</strong> 和选中效用 <strong>0.4603</strong>，优于 Scalar 与 2D 变体。</li><li><strong>想象视频信息增益</strong>：加入想象视频后，Top-1 从 <strong>29.95%</strong> 提升至 <strong>33.07%</strong>，选中效用从 <strong>0.4527</strong> 提升至 <strong>0.4603</strong>；使用真实执行视频时 Top-1 可达 <strong>50.52%</strong>，显示想象与真实结果之间仍有差距。</li><li><strong>审计门控结果</strong>：Reward-only 替换 <strong>310</strong> 个候选，其中 <strong>219</strong> 个真实效用低于 Source，占 <strong>70.6%</strong>；TIF 将替换数降至 <strong>111</strong>，低于 Source 的替换占比降至 <strong>53.2%</strong>，平均效用保持相近（<strong>0.4602 vs. 0.4603</strong>）。审计器识别高估事件的 <strong>AUROC 为 0.77</strong>。</li><li><strong>固定替换数量比较</strong>：在同样接受 <strong>111</strong> 个候选时，审计风险选择 <strong>58</strong> 个优于 Source 的候选，优于预测优势的 <strong>47</strong> 个和逻辑回归风险的 <strong>52</strong> 个；平均效用为 <strong>0.4636</strong>，高于预测优势的 <strong>0.4589</strong> 和逻辑回归的 <strong>0.4621</strong>。</li><li><strong>策略后训练结果</strong>：TIF 在四个 LIBERO 套件、三个种子下平均成功率为 <strong>76.25% ± 0.58%</strong>，相比仅使用 Source 的 <strong>73.25% ± 0.68%</strong> 提升 <strong>3.00 个百分点</strong>；在奖励模型和优势边际固定时，加入审计门控相比 Reward+Margin 的 <strong>74.78%</strong> 再提升 <strong>1.47 个百分点</strong>。</li><li><strong>分套件结果</strong>：TIF 在 Spatial 为 <strong>84.13%</strong>、Object 为 <strong>89.40%</strong>、Goal 为 <strong>82.73%</strong>、Long 为 <strong>48.73%</strong>；相比 Source，Long 提升 <strong>5.73 个百分点</strong>，Goal 下降 <strong>1.00 个百分点</strong>。</li><li><strong>匹配替换数量比较</strong>：TIF 的 <strong>76.25%</strong> 高于 Advantage Top-K 的 <strong>75.55%</strong>、Logistic risk-K 的 <strong>75.65%</strong>、Consistency-K 的 <strong>75.60%</strong>、Low-entropy-K 的 <strong>75.03%</strong> 和 Random-K 的 <strong>74.15%</strong>。</li><li><strong>真实机器人结果</strong>：在 60 个候选池上，TIF 将选中轨迹的任务完成率从 <strong>75.00%</strong> 提升至 <strong>78.33%</strong>，干净完成率从 <strong>58.33%</strong> 提升至 <strong>70.00%</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04972/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Caging Vision-Language Navigation for Legged Robots via Barrier-Certified Safety Architecture</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.04839/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Coordinating Humanoid Loco-Manipulation through Action-Conditioned Latent Foresight</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

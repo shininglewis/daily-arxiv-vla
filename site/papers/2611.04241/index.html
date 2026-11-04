@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AceAction-5M: Hierarchical Goals for Generalist Action Learning Across 3D Game Worlds - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。 论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。 数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.04241">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.04241.webp" alt="AceAction-5M: Hierarchical Goals for Generalist Action Learning Across 3D Game Worlds" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">AceAction-5M: Hierarchical Goals for Generalist Action Learning Across 3D Game Worlds</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.04241" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.04241" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.04241</span></div>
+            <p class="detail-summary">论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。 论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。 数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">腾讯（Tencent）：Kailing Li、Ruoxuan Zhang、Zheyuan Zhou、B…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.04241/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。</p>
+  <ul class="reading-intro-points"><li>论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。</li><li>论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。</li><li>数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>腾讯（Tencent）</strong>：Kailing Li、Ruoxuan Zhang、Zheyuan Zhou、Boyang Chu、Yingshan Lei、Liang Du、Zixun Sun</li><li><strong>吉林大学（Jilin University）</strong>：Hongxia Xie</li><li><strong>华东师范大学（East China Normal University）</strong>：论文作者列表中出现的另一署名单位</li><li>项目主页：https://zhangdaxia22.github.io/AceAction-5M/</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>AceAction-5M</strong> 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（<strong>VLA</strong>）模型。</li><li>论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。</li><li>数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>构建<strong>分层标注的多游戏动作数据集</strong>：覆盖 <strong>42 款游戏</strong>、<strong>5,027.87 小时</strong>游玩、<strong>5,476,222 条 episode</strong>，任务描述、阶段级子目标和局部动作指令与帧级键盘与鼠标轨迹联合对齐。</li><li>提出让阶段结构显式化的标注方案：定义 <strong>43 个技能类别</strong>（涵盖导航、侦察、战斗、交互与恢复），并标注每个阶段的起止时间点。</li><li>设计基于视觉-语言模型的自动标注流水线：通过目标或交互对象的变化切分技能子目标，将导航子目标锚定到视觉可识别的<strong>路标（waypoint）</strong>，再把相邻子目标组合成任务级指令。</li><li>建立双阶段质量控制机制：双模型交叉验证（<strong>Qwen3.8-27B</strong> 与 <strong>GLM-5.3-FLASH</strong>）筛选，再配合 <strong>8 名人工评审</strong>抽样审核，500 条轨迹的通过率达 <strong>95.8%</strong>。</li><li>与 Open-P2P、EgoCS-400K、CS2-10k 等数据集相比，本数据集在“指令标注、细粒度层级标注、长指令”三个维度上均具备优势，且显式提供阶段边界与对齐的键鼠动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>数据来源整合</strong>：将自采数据（《和平精英》1,891 小时、<strong>Valorant</strong> 261.17 小时）与公开数据（CS:GO/CS2 2,103.05 小时、<strong>Open-P2P</strong> 811.50 小时、<strong>VPT</strong> 中的 Minecraft 113.25 小时）合并，总计约 5,180 小时。</li><li><strong>统一动作表示</strong>：编码键盘和鼠标按键状态以及水平、垂直方向的鼠标位移；自采数据与 CS 系列动作序列按 <strong>16 Hz</strong> 采样（每步 62.5 ms），Open-P2P 与 VPT 保留原 <strong>20 Hz</strong>。</li><li><strong>技能子目标标注</strong>：每 4 个连续动作构成一个标注单元，轨迹按最长 32 个单元的窗口切分；VLM 为每段预测技能类别、起止索引和子目标描述。</li><li><strong>跨窗口连续性处理</strong>：后续窗口会携带前一窗口的末帧、技能类别与子目标描述，模型预测“延续标志”；仅当标志为正、技能类别一致且索引相邻时，才合并两段，使子目标可跨窗口延伸。</li><li><strong>路标式导航子目标</strong>：以最长 8 帧的滑动窗口检测“到达事件”，为到达位置分配可复用的路标名称，并采样不同长度、终点相同的片段生成导航子目标及路线描述。</li><li><strong>指令组合与校验</strong>：按执行顺序拼接相邻子目标生成整体指令，导出前检查描述非空、类别合法、边界有序且落在源序列内，并核对图像与动作的对应关系以及导航片段是否终止于目标路标帧。</li><li><strong>质量验证</strong>：两个模型在动作描述、子目标、整体指令三个层级上逐级自底向上核验视觉接地性与动作一致性，任一层级被任一模型否决即剔除。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>数据集名称：<strong>AceAction-5M</strong>（AceAction）</li><li>数据规模：<strong>42 款游戏</strong>、<strong>5,027.87 小时</strong>、<strong>5,476,222 条 episode</strong>、<strong>43 个技能类别</strong></li><li>游戏构成：Game for Peace、Valorant、CS:GO/CS2、Open-P2P、Minecraft（VPT）</li><li>模型规模与参数量：论文未涉及自研模型训练，未报告参数量；仅在标注与质检中使用现成模型 <strong>Qwen3.8-27B</strong>、<strong>GLM-5.3-FLASH</strong> 以及用于标注的视觉-语言模型流水线</li><li>训练资源：论文未提及 GPU/TPU 等训练算力信息</li><li>标注成本：8 名人工评审参与质量抽检</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估方式：本文为数据集论文，未设置策略模型的训练与基准测试，主要评估标注质量与数据集特性对比。</li><li>主要指标：人工审核<strong>通过率</strong>（每条轨迹至少由 2 名评审独立评估，每条记录代表一位评审对一条轨迹的评估）。</li><li>关键结果：对 <strong>500 条轨迹</strong>的审计得到 <strong>95.8%</strong> 的通过率；模型交叉验证与人工检查共同保证语言标注、视觉观察和动作三者的对齐一致性。</li><li>对比结论：相对 <strong>Open-P2P</strong>（指令稀疏、无层级）、<strong>EgoCS-400K</strong>（仅限 Counter-Strike）、<strong>CS2-10k</strong>（无任务指令），本数据集同时具备指令标注、细粒度层级标注与长指令，并提供显式阶段边界与对齐键鼠动作。</li><li>覆盖任务类型：导航、侦察、战斗、交互、恢复五类行为及其跨阶段组合与切换。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04368/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">RAFT: Reasoning-Aligned Fine-Tuning Improves Robustness of VLA Post-Training</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.04226/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

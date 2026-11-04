@@ -1,5 +1,641 @@
 [
   {
+    "date": "2026-11-03",
+    "title": "PolicyIK: High-Precision Inverse Kinematics for Robot Arms with Reinforcement Learning",
+    "link": "http://arxiv.org/abs/2611.05372",
+    "arxiv_id": "2611.05372",
+    "detail_path": "papers/2611.05372/",
+    "cover_path": "covers/2611.05372/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05372.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05372.webp",
+    "preview_text": "论文提出 PolicyIK，一种面向机械臂高精度逆运动学（IK）的目标条件强化学习策略，可直接把末端执行器位姿指令转换为关节位置参考。 解决的问题是：冗余臂与奇异位形使解析/数值 IK 难以兼顾精度与鲁棒性，实际执行还受体重、有限增益、关节限位影响，需要逐机器人手工调参，且真机数据采集代价高。 目标是仅用策略本身（不依赖数值 IK 求解器）在一次尝试内达到 1 mm / 0.2° 的全位姿容差，并能在该容差内持续保持。",
+    "research_unit": "纽约大学阿布扎比分校（New York University Abu Dhabi）",
+    "hook_text": "论文提出 PolicyIK，一种面向机械臂高精度逆运动学（IK）的目标条件强化学习策略，可直接把末端执行器位姿指令转换为关节位置参考。",
+    "key_points": [
+      "论文提出 PolicyIK，一种面向机械臂高精度逆运动学（IK）的目标条件强化学习策略，可直接把末端执行器位姿指令转换为关节位置参考。",
+      "解决的问题是：冗余臂与奇异位形使解析/数值 IK 难以兼顾精度与鲁棒性，实际执行还受体重、有限增益、关节限位影响，需要逐机器人手工调参，且真机数据采集代价高。",
+      "目标是仅用策略本身（不依赖数值 IK 求解器）在一次尝试内达到 1 mm / 0.2° 的全位姿容差，并能在该容差内持续保持。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Should the Action Expert Train the VLM? Action-Token Supervision and Gradient Routing in Mixture-of-Transformer VLAs",
+    "link": "http://arxiv.org/abs/2611.05249",
+    "arxiv_id": "2611.05249",
+    "detail_path": "papers/2611.05249/",
+    "cover_path": "covers/2611.05249/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05249.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05249.webp",
+    "preview_text": "研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。 核心问题是：动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 gradient insulation（梯度隔离） 是否真的必要。 通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方。",
+    "research_unit": "NVIDIA",
+    "hook_text": "研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。",
+    "key_points": [
+      "研究对象是 Mixture-of-Transformers 式 VLA：预训练 VLM 负责处理视觉与语言输入，并通过逐层 K/V 缓存为 flow-matching 动作专家提供条件；论文探讨这种架构下“动作专家的损失是否应当回传并更新 VLM”这一训练决策。",
+      "核心问题是：动作专家到 VLM 的梯度流（coupling）与离散动作 token 监督这两个让 VLM 表征“变得可动作”的信号，是否互相替代；以往工作中被普遍采用的 gradient insulation（梯度隔离） 是否真的必要。",
+      "通过在自动驾驶与机器人操作两个领域独立交叉变化 “action-token supervision” 与 “expert→VLM 梯度路由” 两个因素，论文论证 VLM 隔离是一种条件性选择，而非 VLA 的默认训练配方。"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Asynchronous Robot Policies",
+    "link": "http://arxiv.org/abs/2611.05155",
+    "arxiv_id": "2611.05155",
+    "detail_path": "papers/2611.05155/",
+    "cover_path": "covers/2611.05155/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05155.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05155.webp",
+    "preview_text": "论文提出 Asynchronous Robot Policies（ARP），一个将高层语义推理与底层动作生成解耦为异步双频环路的机器人策略架构框架。 研究目标是解决现有 VLA（Vision-Language-Action） 模型的根本矛盾：扩大 VLM 规模能提升语义能力，但推理延迟会拖垮实时物理反应性。 核心问题是：如何在保留大规模基础模型语义能力的同时，维持高频率的感知—动作闭环，以应对动态扰动、接触动力学等实时任务。",
+    "research_unit": "INSAIT（Sofia University St. Kliment Ohridski，保加利亚）",
+    "hook_text": "论文提出 Asynchronous Robot Policies（ARP），一个将高层语义推理与底层动作生成解耦为异步双频环路的机器人策略架构框架。",
+    "key_points": [
+      "论文提出 Asynchronous Robot Policies（ARP），一个将高层语义推理与底层动作生成解耦为异步双频环路的机器人策略架构框架。",
+      "研究目标是解决现有 VLA（Vision-Language-Action） 模型的根本矛盾：扩大 VLM 规模能提升语义能力，但推理延迟会拖垮实时物理反应性。",
+      "核心问题是：如何在保留大规模基础模型语义能力的同时，维持高频率的感知—动作闭环，以应对动态扰动、接触动力学等实时任务。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "LoopQ: Fair, Closed-Loop Evaluation of Quantized Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.05093",
+    "arxiv_id": "2611.05093",
+    "detail_path": "papers/2611.05093/",
+    "cover_path": "covers/2611.05093/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05093.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05093.webp",
+    "preview_text": "论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。 现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 RTN）、在接近饱和的 LIBERO 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。 研究目标是在统一协议下系统评估量化的精度保持、内存收益、真实延迟与分布偏移下的鲁棒性，并审计公开的 VLA 量化代码发布能否复现。",
+    "research_unit": "Chalmers University of Technology（查尔姆斯理工大学）",
+    "hook_text": "论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。",
+    "key_points": [
+      "论文提出 LoopQ，这是首个面向 Vision-Language-Action (VLA) 模型后训练量化（PTQ）的闭环评测基准，目标是让 VLA 专用量化方法与通用量化方法在完全相同的检查点、量化层和推理引擎下公平对比。",
+      "现有 VLA 量化工作普遍存在三类问题：缺少公平基线（例如很少使用最简单的 RTN）、在接近饱和的 LIBERO 上报告主结果且评测回合数过少、且多数发布只做浮点模拟而无法真正测速；因此论文要回答“量化是否真的更准、更快、更鲁棒”这一基本问题。",
+      "研究目标是在统一协议下系统评估量化的精度保持、内存收益、真实延迟与分布偏移下的鲁棒性，并审计公开的 VLA 量化代码发布能否复现。"
+    ],
+    "reading_minutes": 13,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "CRONOS: Benchmarking Non-Episodic Reinforcement Learning for Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2611.05080",
+    "arxiv_id": "2611.05080",
+    "detail_path": "papers/2611.05080/",
+    "cover_path": "covers/2611.05080/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05080.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05080.webp",
+    "preview_text": "论文提出 CRONOS，一个用于研究“非回合制场景重置（non-episodic scene reset）”下强化学习微调 VLA（视觉-语言-动作） 模型的仿真基准。 论文要解决的问题是：标准 RL 依赖每个回合频繁重置场景，这在实际机器人部署中需要大量人工干预；而现有非回合制 RL 研究多局限于从零训练的小模型，尚未考察其对现代大规模预训练 VLA 的影响。 论文系统回答了三个问题：预训练 VLA 在非回合制多任务设置下直接微调表现如何、关键影响因素是什么、以及非回合制训练除省人力外的额外收益。",
+    "research_unit": "国立台湾大学（National Taiwan University） 资讯工程学系（Departmen…",
+    "hook_text": "论文提出 CRONOS，一个用于研究“非回合制场景重置（non-episodic scene reset）”下强化学习微调 VLA（视觉-语言-动作） 模型的仿真基准。",
+    "key_points": [
+      "论文提出 CRONOS，一个用于研究“非回合制场景重置（non-episodic scene reset）”下强化学习微调 VLA（视觉-语言-动作） 模型的仿真基准。",
+      "论文要解决的问题是：标准 RL 依赖每个回合频繁重置场景，这在实际机器人部署中需要大量人工干预；而现有非回合制 RL 研究多局限于从零训练的小模型，尚未考察其对现代大规模预训练 VLA 的影响。",
+      "论文系统回答了三个问题：预训练 VLA 在非回合制多任务设置下直接微调表现如何、关键影响因素是什么、以及非回合制训练除省人力外的额外收益。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "FloMo: 3D Scene Flow as a World Action Model Intermediate for Learning from Human Video",
+    "link": "http://arxiv.org/abs/2611.05062",
+    "arxiv_id": "2611.05062",
+    "detail_path": "papers/2611.05062/",
+    "cover_path": "covers/2611.05062/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05062.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05062.webp",
+    "preview_text": "论文提出 FloMo，将 3D scene flow（3D 场景流） 作为世界动作模型（WAM）的视频-动作中间表示，用预训练视频生成模型同时预测未来 3D 运动与机器人动作。 核心观点是：视频包含大量纹理、光照、材质等与动作无关的信息，而 3D 运动是更低熵、更外观不变 的预测目标，更适合从人类视频迁移到机器人动作。 方法在无动作人类视频和有动作机器人遥操作数据上联合训练，目标是在真实机器人和仿真基准上验证运动预测相对视频预测的样本效率与泛化优势。",
+    "research_unit": "Georgia Institute of Technology",
+    "hook_text": "论文提出 FloMo，将 3D scene flow（3D 场景流） 作为世界动作模型（WAM）的视频-动作中间表示，用预训练视频生成模型同时预测未来 3D 运动与机器人动作。",
+    "key_points": [
+      "论文提出 FloMo，将 3D scene flow（3D 场景流） 作为世界动作模型（WAM）的视频-动作中间表示，用预训练视频生成模型同时预测未来 3D 运动与机器人动作。",
+      "核心观点是：视频包含大量纹理、光照、材质等与动作无关的信息，而 3D 运动是更低熵、更外观不变 的预测目标，更适合从人类视频迁移到机器人动作。",
+      "方法在无动作人类视频和有动作机器人遥操作数据上联合训练，目标是在真实机器人和仿真基准上验证运动预测相对视频预测的样本效率与泛化优势。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "HiLo-WAM: Decoupling Long-Horizon Task Evolution and Local Dynamics in World Action Models",
+    "link": "http://arxiv.org/abs/2611.05023",
+    "arxiv_id": "2611.05023",
+    "detail_path": "papers/2611.05023/",
+    "cover_path": "covers/2611.05023/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.05023.webp",
+    "paper_image_full_path": "assets/paper-images/2611.05023.webp",
+    "preview_text": "论文提出 HiLo-WAM，一种将视觉世界建模解耦为“长时程任务演化”和“局部视觉动力学”的 World Action Model，并联合建模二者与机器人动作的交互。 现有 WAM 多聚焦短时程密集视觉动力学，能捕捉局部交互，但缺乏长时程任务上下文；直接延长预测时程会增加不确定性、计算量，并混淆任务级演化与局部动力学的依赖关系。 论文目标是在统一模型中同时利用稀疏长时程历史/未来信息与密集短时程交互信息，提升长时程机器人操作性能，同时控制推理开销。",
+    "research_unit": "CoCoMatrix",
+    "hook_text": "论文提出 HiLo-WAM，一种将视觉世界建模解耦为“长时程任务演化”和“局部视觉动力学”的 World Action Model，并联合建模二者与机器人动作的交互。",
+    "key_points": [
+      "论文提出 HiLo-WAM，一种将视觉世界建模解耦为“长时程任务演化”和“局部视觉动力学”的 World Action Model，并联合建模二者与机器人动作的交互。",
+      "现有 WAM 多聚焦短时程密集视觉动力学，能捕捉局部交互，但缺乏长时程任务上下文；直接延长预测时程会增加不确定性、计算量，并混淆任务级演化与局部动力学的依赖关系。",
+      "论文目标是在统一模型中同时利用稀疏长时程历史/未来信息与密集短时程交互信息，提升长时程机器人操作性能，同时控制推理开销。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Caging Vision-Language Navigation for Legged Robots via Barrier-Certified Safety Architecture",
+    "link": "http://arxiv.org/abs/2611.04972",
+    "arxiv_id": "2611.04972",
+    "detail_path": "papers/2611.04972/",
+    "cover_path": "covers/2611.04972/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04972.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04972.webp",
+    "preview_text": "论文提出一种面向足式机器人视觉语言导航（Legged-VLN）的“caging（笼式防护）”安全架构，为预训练 VLM/VLA 模型的导航输出提供物理落地（physical grounding）与可证明的碰撞规避保证。 核心问题是：现有端到端 VLA 规划器虽具备强大的语义与常识推理能力，但其输出忽略了机器人运动学、局部障碍几何与形式化安全约束，可能产生物理上不可执行或易碰撞的指令。 论文不放弃端到端 VLA 的能力，而是在语义前端与底层运动控制器之间插入一个具备安全保证的物理落地层，对 VLA 的提案进行“验证-落地”，从而在给出安全性证明的同时保持前端可替换。",
+    "research_unit": "特拉华大学 机器人感知与导航组（RPNG, University of Delaware）——作者 A…",
+    "hook_text": "论文提出一种面向足式机器人视觉语言导航（Legged-VLN）的“caging（笼式防护）”安全架构，为预训练 VLM/VLA 模型的导航输出提供物理落地（physical grounding）与可证明的碰撞规避保证。",
+    "key_points": [
+      "论文提出一种面向足式机器人视觉语言导航（Legged-VLN）的“caging（笼式防护）”安全架构，为预训练 VLM/VLA 模型的导航输出提供物理落地（physical grounding）与可证明的碰撞规避保证。",
+      "核心问题是：现有端到端 VLA 规划器虽具备强大的语义与常识推理能力，但其输出忽略了机器人运动学、局部障碍几何与形式化安全约束，可能产生物理上不可执行或易碰撞的指令。",
+      "论文不放弃端到端 VLA 的能力，而是在语义前端与底层运动控制器之间插入一个具备安全保证的物理落地层，对 VLA 的提案进行“验证-落地”，从而在给出安全性证明的同时保持前端可替换。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Trusting Imagined Futures: Auditing Imagined Rewards for VLA Post-Training",
+    "link": "http://arxiv.org/abs/2611.04873",
+    "arxiv_id": "2611.04873",
+    "detail_path": "papers/2611.04873/",
+    "cover_path": "covers/2611.04873/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04873.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04873.webp",
+    "preview_text": "论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。 核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。 研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。",
+    "research_unit": "北京邮电大学（Beijing University of Posts and Telecommunic…",
+    "hook_text": "论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。",
+    "key_points": [
+      "论文提出 Trusting Imagined Futures（TIF），一种面向 VLA（视觉-语言-动作）模型后训练 的离线监督选择方法，利用真实执行反馈审计“想象未来”中的预测奖励。",
+      "核心问题是：视频世界模型生成的想象视频可能给出高奖励，但这些高奖励候选在真实执行中可能存在碰撞、抓取不稳定或错误交互，直接用于行为克隆会损害策略学习。",
+      "研究目标是：在候选轨迹替换现有监督轨迹前，判断其预测优势是否可信，并仅保留真实执行质量较高的轨迹用于 VLA 后训练。"
+    ],
+    "reading_minutes": 12,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Coordinating Humanoid Loco-Manipulation through Action-Conditioned Latent Foresight",
+    "link": "http://arxiv.org/abs/2611.04839",
+    "arxiv_id": "2611.04839",
+    "detail_path": "papers/2611.04839/",
+    "cover_path": "covers/2611.04839/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04839.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04839.webp",
+    "preview_text": "论文研究人形机器人 loco-manipulation（移动-操作协同），要求全身运动与手部交互在时间上协调。 指出现有 VLA/世界-动作模型生成的命令序列看似合理，但执行中可能掉落物体或未完成交互，核心问题是如何在执行前评估候选动作序列。 提出 action-conditioned latent foresight：一种潜在世界-动作模型（WAM），在机器人执行前对候选“运动-手部”命令序列进行评分并选择最优序列。",
+    "research_unit": "University of Hamburg（TAMS, Department of Informati…",
+    "hook_text": "论文研究人形机器人 loco-manipulation（移动-操作协同），要求全身运动与手部交互在时间上协调。",
+    "key_points": [
+      "论文研究人形机器人 loco-manipulation（移动-操作协同），要求全身运动与手部交互在时间上协调。",
+      "指出现有 VLA/世界-动作模型生成的命令序列看似合理，但执行中可能掉落物体或未完成交互，核心问题是如何在执行前评估候选动作序列。",
+      "提出 action-conditioned latent foresight：一种潜在世界-动作模型（WAM），在机器人执行前对候选“运动-手部”命令序列进行评分并选择最优序列。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Cycle WAM: Coupling Action and Video through Cycle Consistency",
+    "link": "http://arxiv.org/abs/2611.04711",
+    "arxiv_id": "2611.04711",
+    "detail_path": "papers/2611.04711/",
+    "cover_path": "covers/2611.04711/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04711.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04711.webp",
+    "preview_text": "论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。 现有方法（如 UWM、DreamZero）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。 论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。",
+    "research_unit": "浙江大学（Zhejiang University）",
+    "hook_text": "论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。",
+    "key_points": [
+      "论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。",
+      "现有方法（如 UWM、DreamZero）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。",
+      "论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Future Representation Distillation for Imagination-Free World Action Models",
+    "link": "http://arxiv.org/abs/2611.04527",
+    "arxiv_id": "2611.04527",
+    "detail_path": "papers/2611.04527/",
+    "cover_path": "covers/2611.04527/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Action Intent as a Bridge: Transferring Manipulation Knowledge from Human-Centric Videos to Robots",
+    "link": "http://arxiv.org/abs/2611.04522",
+    "arxiv_id": "2611.04522",
+    "detail_path": "papers/2611.04522/",
+    "cover_path": "covers/2611.04522/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04522.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04522.webp",
+    "preview_text": "论文提出 Action-Intent Transfer (AIT)，目标是从易获取的人类中心视频中迁移操作知识，以缓解 VLA 模型对昂贵真实机器人数据的依赖。 核心问题是：现有从人类视频提取的潜在动作表示常与场景噪声纠缠，导致迁移知识被稀释。 论文将 Action Intent 作为人类与机器人共享的“桥梁”，通过显式意图和隐式意图的两阶段框架，将人类视频知识对齐并解码为机器人可执行动作。",
+    "research_unit": "Southeast University，中国南京",
+    "hook_text": "论文提出 Action-Intent Transfer (AIT)，目标是从易获取的人类中心视频中迁移操作知识，以缓解 VLA 模型对昂贵真实机器人数据的依赖。",
+    "key_points": [
+      "论文提出 Action-Intent Transfer (AIT)，目标是从易获取的人类中心视频中迁移操作知识，以缓解 VLA 模型对昂贵真实机器人数据的依赖。",
+      "核心问题是：现有从人类视频提取的潜在动作表示常与场景噪声纠缠，导致迁移知识被稀释。",
+      "论文将 Action Intent 作为人类与机器人共享的“桥梁”，通过显式意图和隐式意图的两阶段框架，将人类视频知识对齐并解码为机器人可执行动作。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Human-to-Robot Transfer via Bridging Representation and Action Space in VLAs",
+    "link": "http://arxiv.org/abs/2611.04391",
+    "arxiv_id": "2611.04391",
+    "detail_path": "papers/2611.04391/",
+    "cover_path": "covers/2611.04391/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04391.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04391.webp",
+    "preview_text": "论文提出 H2RB（Human-To-Robot Bridge），一个人类-机器人联合训练框架，用于从非配对的人类与机器人演示数据中适配预训练的 VLA（Vision-Language-Action）策略。 针对的核心问题：在目标机器人上采集演示数据成本高；人类演示数据易采集，但存在巨大的人-机具身差异（embodiment gap），尤其是当 VLA 主要在机器人数据上预训练时，直接利用人类数据效果很差。 论文认为，仅统一动作空间（共享动作表示）不足以解决问题：动作空间对齐不会消除感知层面的错配，因此必须同时桥接“表示空间”和“动作空间”。",
+    "research_unit": "KAIST（韩国科学技术院）：Junhyeong Park、Wook Jung、Taeyoung Ki…",
+    "hook_text": "论文提出 H2RB（Human-To-Robot Bridge），一个人类-机器人联合训练框架，用于从非配对的人类与机器人演示数据中适配预训练的 VLA（Vision-Language-Action）策略。",
+    "key_points": [
+      "论文提出 H2RB（Human-To-Robot Bridge），一个人类-机器人联合训练框架，用于从非配对的人类与机器人演示数据中适配预训练的 VLA（Vision-Language-Action）策略。",
+      "针对的核心问题：在目标机器人上采集演示数据成本高；人类演示数据易采集，但存在巨大的人-机具身差异（embodiment gap），尤其是当 VLA 主要在机器人数据上预训练时，直接利用人类数据效果很差。",
+      "论文认为，仅统一动作空间（共享动作表示）不足以解决问题：动作空间对齐不会消除感知层面的错配，因此必须同时桥接“表示空间”和“动作空间”。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "RAFT: Reasoning-Aligned Fine-Tuning Improves Robustness of VLA Post-Training",
+    "link": "http://arxiv.org/abs/2611.04368",
+    "arxiv_id": "2611.04368",
+    "detail_path": "papers/2611.04368/",
+    "cover_path": "covers/2611.04368/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04368.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04368.webp",
+    "preview_text": "论文提出 RAFT（Reasoning-Aligned Fine-Tuning），一种面向视觉-语言-动作（VLA）策略的两阶段后训练流程，旨在提升在少量演示数据下适配目标技能后的鲁棒性。 核心问题：通用 VLA 策略在少量、环境单一的演示上做微调，虽然能提升名义任务成功率，却会削弱对物体外观、场景背景、指令措辞等分布变化的鲁棒性。 研究思路：在动作微调之前，先用任务相关的“推理标注”对齐策略的视觉-语言表征，再冻结该表征去学习动作，从而保留任务相关的语义与空间信息。",
+    "research_unit": "普林斯顿大学（Princeton University）",
+    "hook_text": "论文提出 RAFT（Reasoning-Aligned Fine-Tuning），一种面向视觉-语言-动作（VLA）策略的两阶段后训练流程，旨在提升在少量演示数据下适配目标技能后的鲁棒性。",
+    "key_points": [
+      "论文提出 RAFT（Reasoning-Aligned Fine-Tuning），一种面向视觉-语言-动作（VLA）策略的两阶段后训练流程，旨在提升在少量演示数据下适配目标技能后的鲁棒性。",
+      "核心问题：通用 VLA 策略在少量、环境单一的演示上做微调，虽然能提升名义任务成功率，却会削弱对物体外观、场景背景、指令措辞等分布变化的鲁棒性。",
+      "研究思路：在动作微调之前，先用任务相关的“推理标注”对齐策略的视觉-语言表征，再冻结该表征去学习动作，从而保留任务相关的语义与空间信息。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "AceAction-5M: Hierarchical Goals for Generalist Action Learning Across 3D Game Worlds",
+    "link": "http://arxiv.org/abs/2611.04241",
+    "arxiv_id": "2611.04241",
+    "detail_path": "papers/2611.04241/",
+    "cover_path": "covers/2611.04241/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04241.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04241.webp",
+    "preview_text": "论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。 论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。 数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。",
+    "research_unit": "腾讯（Tencent）：Kailing Li、Ruoxuan Zhang、Zheyuan Zhou、B…",
+    "hook_text": "论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。",
+    "key_points": [
+      "论文提出 AceAction-5M 数据集，其标注覆盖多个 3D 游戏，跟踪人类游玩时产生的键盘与鼠标动作，用于训练和评估游戏智能体和视觉-语言-动作（VLA）模型。",
+      "论文的核心目标是解决现有游戏交互数据集的三大局限：游戏覆盖范围窄（如仅限 CS）、语言监督稀疏、按预设时长划分的时序层级无法真实反映任务目标的切换。",
+      "数据集围绕“完整任务—有序子目标—局部技能指令”的三级结构组织演示，显式标注阶段边界，使“何时切换技能或子目标”从隐式属性变为可学习信号。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "DiMuRe: Diagnosis-Guided Multilevel Recovery for Robotic Task Execution",
+    "link": "http://arxiv.org/abs/2611.04226",
+    "arxiv_id": "2611.04226",
+    "detail_path": "papers/2611.04226/",
+    "cover_path": "covers/2611.04226/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04226.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04226.webp",
+    "preview_text": "论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定\"何时干预、用哪种方法恢复\"。 核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。 论文同时提出 LIBERO-Disturb 基准，用于系统评估机器人在执行中扰动下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。",
+    "research_unit": "北京理工大学（Beijing Institute of Technology，中国北京）——主要作者单位",
+    "hook_text": "论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定\"何时干预、用哪种方法恢复\"。",
+    "key_points": [
+      "论文提出 DiMuRe（Diagnosis-Guided Multilevel Recovery），一个面向机器人代理（robot-use agents）的故障恢复框架，用于在任务执行中遭遇扰动时决定\"何时干预、用哪种方法恢复\"。",
+      "核心问题是：扰动（目标移动、抓取滑落、路径阻挡、接收区偏移等）会让任务程序下一步动作的前提条件失效，但程序的大部分内容仍然可用，因此需要依据当前状态选择恰当粒度的恢复手段，而非直接重新规划。",
+      "论文同时提出 LIBERO-Disturb 基准，用于系统评估机器人在执行中扰动下的鲁棒性与恢复能力，并支持程序式代理与 VLA 策略两类被测系统。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Say the Same, Act Differently: Diagnosing and Steering Text-Action Divergence in Reasoning VLAs",
+    "link": "http://arxiv.org/abs/2611.04166",
+    "arxiv_id": "2611.04166",
+    "detail_path": "papers/2611.04166/",
+    "cover_path": "covers/2611.04166/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04166.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04166.webp",
+    "preview_text": "研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。 揭示一种新的失效模式：rationale-preserving action divergence（保文动作偏离）——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下逐词完全相同。 目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。",
+    "research_unit": "University of Southern California（南加州大学）",
+    "hook_text": "研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。",
+    "key_points": [
+      "研究推理型视觉-语言-动作模型（Reasoning VLA）：这类模型在输出连续动作的同时生成自然语言 rationale（推理说明），人类监督者通常通过阅读这段文本监控其行为是否安全。",
+      "揭示一种新的失效模式：rationale-preserving action divergence（保文动作偏离）——视觉扰动可以让动作变得危险，而生成的推理文本与干净输入下逐词完全相同。",
+      "目标是回答一个关键问题：*动作能否在模型“说的话”完全不变的情况下变得不安全？* 并据此提出诊断方法和攻击方法，说明基于文本的监控不足以证明动作安全。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-03",
+    "title": "Online Hamilton-Jacobi Reachability Onboard the Robot Control Loop: A Real-Time GPU Solver for Safety-Critical Autonomy",
+    "link": "http://arxiv.org/abs/2611.04096",
+    "arxiv_id": "2611.04096",
+    "detail_path": "papers/2611.04096/",
+    "cover_path": "covers/2611.04096/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04096.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04096.webp",
+    "preview_text": "本文提出一个可在机器人控制回路内实时运行的 Hamilton–Jacobi（HJ）可达性 GPU 求解器，用于计算带形式化保证的后向可达管（BRT），作为学习型黑箱策略（ADAS/AV、人形机器人、VLA 模型）下游的确定性安全层。 要解决的问题是：HJ 水平集计算随状态维度指数增长，历史上只能离线预计算并作为固定查表使用；当扰动模型、障碍集或动力学在运行中变化时，离线 BRT 就变成“过期的安全保证”。 目标是把经典高保真水平集求解（WENO5 + TVD-RK3 + Lax–Friedrichs）加速到控制环时间尺度（数十毫秒级），从而支持每个控制节拍重新计算 BRT。",
+    "research_unit": "Mirror AI（Kevin Weekly）",
+    "hook_text": "本文提出一个可在机器人控制回路内实时运行的 Hamilton–Jacobi（HJ）可达性 GPU 求解器，用于计算带形式化保证的后向可达管（BRT），作为学习型黑箱策略（ADAS/AV、人形机器人、VLA 模型）下游的确定性安全层。",
+    "key_points": [
+      "本文提出一个可在机器人控制回路内实时运行的 Hamilton–Jacobi（HJ）可达性 GPU 求解器，用于计算带形式化保证的后向可达管（BRT），作为学习型黑箱策略（ADAS/AV、人形机器人、VLA 模型）下游的确定性安全层。",
+      "要解决的问题是：HJ 水平集计算随状态维度指数增长，历史上只能离线预计算并作为固定查表使用；当扰动模型、障碍集或动力学在运行中变化时，离线 BRT 就变成“过期的安全保证”。",
+      "目标是把经典高保真水平集求解（WENO5 + TVD-RK3 + Lax–Friedrichs）加速到控制环时间尺度（数十毫秒级），从而支持每个控制节拍重新计算 BRT。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-02",
+    "title": "Controlling Action-Head Co-Adaptation to VLM Representation Anisotropy",
+    "link": "http://arxiv.org/abs/2611.04006",
+    "arxiv_id": "2611.04006",
+    "detail_path": "papers/2611.04006/",
+    "cover_path": "covers/2611.04006/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.04006.webp",
+    "paper_image_full_path": "assets/paper-images/2611.04006.webp",
+    "preview_text": "研究模块化学习系统中预训练骨干（VLM）与下游头（action head）之间的表示接口问题，并以视觉-语言-动作模型（VLA）为主要载体进行剖析。 发现 VLM 输出存在强烈的通道级各向异性（channel-wise anisotropy）：少部分维度方差远大于其余维度；而动作头在训练过程中会逐步将敏感性集中到这些高方差维度上，形成“骨干–头协同适应（co-adaptation）”。 核心问题：VLM 为视觉-语言理解而预训练，动作头为控制而训练，两者优化目标不同——动作头为何要越来越依赖 VLM 预先塑造的特征维度？这种协同适应在表示–任务不匹配时可能有害。",
+    "research_unit": "University of California, Santa Barbara (UCSB)",
+    "hook_text": "研究模块化学习系统中预训练骨干（VLM）与下游头（action head）之间的表示接口问题，并以视觉-语言-动作模型（VLA）为主要载体进行剖析。",
+    "key_points": [
+      "研究模块化学习系统中预训练骨干（VLM）与下游头（action head）之间的表示接口问题，并以视觉-语言-动作模型（VLA）为主要载体进行剖析。",
+      "发现 VLM 输出存在强烈的通道级各向异性（channel-wise anisotropy）：少部分维度方差远大于其余维度；而动作头在训练过程中会逐步将敏感性集中到这些高方差维度上，形成“骨干–头协同适应（co-adaptation）”。",
+      "核心问题：VLM 为视觉-语言理解而预训练，动作头为控制而训练，两者优化目标不同——动作头为何要越来越依赖 VLM 预先塑造的特征维度？这种协同适应在表示–任务不匹配时可能有害。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-02",
+    "title": "RoboScope Kit: Unified Interfaces for Fast and Scalable Embodied-AI Evaluation",
+    "link": "http://arxiv.org/abs/2611.03850",
+    "arxiv_id": "2611.03850",
+    "detail_path": "papers/2611.03850/",
+    "cover_path": "covers/2611.03850/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。 指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 RoboTwin Easy episode 需 359.7 分钟，官方 StarVLA 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 14.3%。 核心问题：如何在不改变基准规则与打分（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。",
+    "research_unit": "上海交通大学 人工智能学院（School of AI, Shanghai Jiao Tong Univ…",
+    "hook_text": "论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。",
+    "key_points": [
+      "论文提出 RoboScope Kit，一套面向具身智能（Embodied-AI）策略评估的统一接口与加速框架，目标是把「多个模型 × 多个仿真基准」的组合式集成成本降到只需各做一次。",
+      "指出现有评估流程慢且重复：每个基准自带评估器、观测布局与动作约定；单个 GPU 上 500 个 RoboTwin Easy episode 需 359.7 分钟，官方 StarVLA 评估器剖析显示仿真占 CPU、GPU 平均利用率仅 14.3%。",
+      "核心问题：如何在不改变基准规则与打分（保真）的前提下，统一模型与基准的对接接口，并通过调度与运行时优化大幅缩短评估时间。"
+    ],
+    "reading_minutes": 13,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-02",
+    "title": "AIRoA-0: Long-Horizon, Precise, Cross-Embodiment Manipulation from Handheld Data",
+    "link": "http://arxiv.org/abs/2611.03815",
+    "arxiv_id": "2611.03815",
+    "detail_path": "papers/2611.03815/",
+    "cover_path": "covers/2611.03815/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "论文提出 AIRoA-0（A-0）：一个完全从手持夹爪演示数据中学习的双臂长程精细操作（long-horizon, precise, cross-embodiment manipulation）系统，不使用遥操作、强化学习、真机纠错或仿真。 核心目标是解决“可扩展数据”与“难学习数据”之间的矛盾：手持数据可由任意人随时在任意地点采集，规模易扩展，但数据中没有机器人行为、没有失败与恢复过程、仅有腕部相机视角、由上百名操作者采集，且部署地点与采集地点不同。 论文要在未见过的场地（unseen site）、仅凭两个腕部相机视角、由单句指令驱动的条件下，完成长程双臂任务，并验证同一套权重可在多种机器人本体上运行。",
+    "research_unit": "论文作者包括 Yueh-Hua (Kris) Wu、Kei Ota、Hanlong Li、Hayata…",
+    "hook_text": "论文提出 AIRoA-0（A-0）：一个完全从手持夹爪演示数据中学习的双臂长程精细操作（long-horizon, precise, cross-embodiment manipulation）系统，不使用遥操作、强化学习、真机纠错或仿真。",
+    "key_points": [
+      "论文提出 AIRoA-0（A-0）：一个完全从手持夹爪演示数据中学习的双臂长程精细操作（long-horizon, precise, cross-embodiment manipulation）系统，不使用遥操作、强化学习、真机纠错或仿真。",
+      "核心目标是解决“可扩展数据”与“难学习数据”之间的矛盾：手持数据可由任意人随时在任意地点采集，规模易扩展，但数据中没有机器人行为、没有失败与恢复过程、仅有腕部相机视角、由上百名操作者采集，且部署地点与采集地点不同。",
+      "论文要在未见过的场地（unseen site）、仅凭两个腕部相机视角、由单句指令驱动的条件下，完成长程双臂任务，并验证同一套权重可在多种机器人本体上运行。"
+    ],
+    "reading_minutes": 10,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
     "date": "2026-11-02",
     "title": "Seeing Through the Illusion: Test-Time Scaling for World Action Models",
     "link": "http://arxiv.org/abs/2611.03585",

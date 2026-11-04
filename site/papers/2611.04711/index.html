@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cycle WAM: Coupling Action and Video through Cycle Consistency - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。 现有方法（如 UWM、DreamZero）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。 论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.04711">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.04711.webp" alt="Cycle WAM: Coupling Action and Video through Cycle Consistency" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Cycle WAM: Coupling Action and Video through Cycle Consistency</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.04711" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.04711" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.04711</span></div>
+            <p class="detail-summary">论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。 现有方法（如 UWM、DreamZero）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。 论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学（Zhejiang University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.04711/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。</p>
+  <ul class="reading-intro-points"><li>论文研究世界动作模型（WAM, World Action Model）中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。</li><li>现有方法（如 UWM、DreamZero）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。</li><li>论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学</strong>（Zhejiang University）</li><li><strong>中国电信人工智能研究院（TeleAI）</strong></li><li><strong>国防科技大学</strong>（National University of Defense Technology）</li><li><strong>中国科学院工业人工智能研究所</strong></li><li><strong>深圳大学</strong>（Shenzhen University）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究<strong>世界动作模型（WAM, World Action Model）</strong>中视频与动作之间的对应关系，目标是更充分地利用预训练视频先验来同时支持前向动力学、逆向动力学与策略执行。</li><li>现有方法（如 <strong>UWM</strong>、<strong>DreamZero</strong>）虽然统一建模视频与动作，但共享骨干网络本身并不能保证“预测的动作”与“动作带来的视觉后果”相互一致，因而限制了预训练能力的发挥。</li><li>论文把视频和动作视为描述同一交互过程的两种模态，通过统一的训练框架学习二者之间的因果对应关系。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>从<strong>视频–动作对应（video–action correspondence）</strong>的角度重新审视 WAM 的学习问题，并给出理论分析，说明双向转换与循环一致性如何互补地学习这一关系。</li><li>提出 <strong>Cycle WAM</strong> 统一训练框架：在视频–动作联合共训练的基础上，加入<strong>双向转换（Bidirectional Conversion）</strong>和<strong>循环重建（Cycle Reconstruction）</strong>。</li><li>通过误差分解与风险上界推导，论证缺失共享交互信息会带来额外的预测代价，并给出转换误差与循环重建误差对该代价的控制关系。</li><li>在 <strong>LIBERO-Pro</strong> 与 <strong>DROID</strong> 上验证训练策略带来的性能提升，并在 <strong>LIBERO</strong> 上通过与 UWM 的对比刻画前向/逆向动力学能力。</li><li>在真实机器人上完成抓取—搬运—放置任务，展示了物理执行的初步有效性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>视频–动作共训练（Co-Training）</strong>：使用模态专用编码器把视频、动作、文本映射为 token，由视频预训练骨干从噪声输入联合生成视频与动作，损失为原生 flow-matching 损失 $\mathcal{L}_J=\ell_J^V+\ell_J^A$。</li><li><strong>双向转换（Bidirectional Conversion）</strong>：显式训练两个方向的映射——视频到动作（学习逆向动力学）与动作到视频（学习前向动力学），并与共训练目标加权组合：$\mathcal{L}_{\mathrm{conversion}}=\rho_J\mathcal{L}_J+\rho_I\ell_I^A+\rho_F\ell_F^V$。</li><li><strong>循环重建（Cycle Reconstruction）</strong>：以视频→动作→视频的往返过程重建源视频；逆向查询采用<strong>单步 flow 读出</strong>得到动作估计并做裁剪，避免展开完整去噪轨迹，再用原生视频 flow 损失监督重建。</li><li><strong>梯度耦合</strong>：转换得到的动作保留在计算图中，重建损失可穿过前向查询与逆向查询回传，从而把动作预测与其视觉后果耦合起来；同时保留一条独立监督的逆向通路，使动作输出锚定在真实机器人指令上。</li><li><strong>三阶段训练</strong>：先共训练，再训练双向转换（联合、逆向、前向的概率为 0.50、0.25、0.25），最后混合循环重建与联合生成（0.70、0.30）；推理时两个转换查询分别提供前向与逆向动力学，机器人控制直接由联合生成给出可执行动作，部署时不需要目标未来视频或额外循环。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集</strong>：<strong>LIBERO-40/90</strong>（共 5,652 条 episode、848,036 个窗口起点）、<strong>LIBERO-Pro</strong>（含 Spatial-T/S、Goal-T/S 四类扰动条件）、<strong>DROID</strong>（DreamZero-DROID 三个仿真场景）、以及真实机器人桌面抓放任务。</li><li><strong>模型规模</strong>：以 <strong>DreamZero</strong> 风格的 <strong>5B</strong> WAM 为起点，从 <strong>Wan2.2-TI2V-5B</strong> 初始化；DROID 实验涉及 <strong>14B</strong> 的 DreamZero-DROID 模拟器。</li><li><strong>训练配置</strong>：基于 <strong>RLinf</strong> 框架；共训练 27,000 步，双向转换 5,000 步，循环阶段 3,000 步；使用 rank 与 scaling 为 <strong>32</strong> 的共享 <strong>LoRA</strong> 适配器，基础权重、动作/状态接口与查询嵌入保持冻结。</li><li><strong>输入输出</strong>：两路相机视角、8 维状态与语言指令为输入；输出 7 维动作与视频 latent；视频采样于 $t,t+2,\dots,t+64$，动作于 $t,\dots,t+63$。</li><li><strong>训练硬件</strong>：原文（可见部分）未给出具体 GPU/TPU 型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测设置</strong>：LIBERO-Pro 采用 Harness VLA direct 协议，10 个任务、种子 1–10、视界 220 步（LIBERO-10 为 520 步）；逆向动力学对比使用 100 个配对窗口、$16\times7$ 目标与 16 步去噪；前向动力学使用 MSE/MAE/PSNR/SSIM/Frame FID。</li><li><strong>LIBERO-Pro 控制</strong>：Cycle WAM 在所选四条件平均成功率 <strong>17.8%</strong>，优于 DreamZero（13.5%）与 UWM（6.3%），并在 Spatial-S（25.0%）与 Goal-T（19.0%）上排名第一；但 Spatial-T 与 Goal-S 仍落后于部分基线。</li><li><strong>DROID 控制</strong>：完整 Cycle WAM 在三个场景共 <strong>59/60（98.3%）</strong>，优于去掉 Cycle 的 58/60 与官方 DreamZero 权重的 52/60（86.7%）；提升主要来自双向转换。</li><li><strong>逆向动力学</strong>：Cycle WAM 旋转误差更低（Rot. RMSE 0.20 vs UWM 0.23）、运动方向一致性更高（0.85 vs 0.83），但总体动作 MSE 高于 UWM（0.10 vs 0.06），呈现分量层面的互有强弱。</li><li><strong>前向动力学</strong>：MAE 0.08（UWM 0.10）、PSNR 15.92（15.48）、SSIM 0.63（0.57）、Frame FID 96.02（280.84），未取整的 MSE 低约 9.65%，可视化显示边缘与纹理更锐利，但物体位置与视角构图仍与真值存在差异。</li><li><strong>真实机器人</strong>：在 5 个评估场景中完成 <strong>3/5</strong>，DreamZero 为 <strong>0/5</strong>；但场景级计数尚未证明重复试验下的可靠性。</li><li><strong>消融结论</strong>：双向转换带来主要增益，Cycle 在部分条件上有额外提升；在采用匹配的续训设置后，Cycle 未表现出一致的额外收益，也无法单独隔离梯度耦合的作用。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.04839/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Coordinating Humanoid Loco-Manipulation through Action-Conditioned Latent Foresight</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.04527/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Future Representation Distillation for Imagination-Free World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
