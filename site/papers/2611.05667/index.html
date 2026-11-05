@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Correct Robots Before They Make Mistakes: Proactive Human-in-the-Loop Intervention via Preference Learning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 PHIL（Proactive Human-in-the-Loop） 框架，让操作者通过 扩展现实（XR） 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。 解决现有 human-in-the-loop 方法多为被动纠正（reactive correction） 的问题：纠正往往发生在错误已出现之后，数据中混入大量恢复动作，导致策略在无需恢复时也产生多余恢复行为。 目标是利用主动纠正数据构造“被拒绝的策略预测”与“实际执行的纠正动作”偏好对，通过偏好学习后训练提升真实机器人操作任务的成功率。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.05667">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.05667.webp" alt="Correct Robots Before They Make Mistakes: Proactive Human-in-the-Loop Intervention via Preference Learning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 PHIL（Proactive Human-in-the-Loop） 框架，让操作者通过 扩展现实（XR） 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Correct Robots Before They Make Mistakes: Proactive Human-in-the-Loop Intervention via Preference Learning</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.05667" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.05667" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.05667</span></div>
+            <p class="detail-summary">提出 PHIL（Proactive Human-in-the-Loop） 框架，让操作者通过 扩展现实（XR） 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。 解决现有 human-in-the-loop 方法多为被动纠正（reactive correction） 的问题：纠正往往发生在错误已出现之后，数据中混入大量恢复动作，导致策略在无需恢复时也产生多余恢复行为。 目标是利用主动纠正数据构造“被拒绝的策略预测”与“实际执行的纠正动作”偏好对，通过偏好学习后训练提升真实机器人操作任务的成功率。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">卡尔斯鲁厄理工学院（KIT, Germany）：全部作者的主要署名单位</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.05667/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 PHIL（Proactive Human-in-the-Loop） 框架，让操作者通过 扩展现实（XR） 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。</p>
+  <ul class="reading-intro-points"><li>提出 PHIL（Proactive Human-in-the-Loop） 框架，让操作者通过 扩展现实（XR） 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。</li><li>解决现有 human-in-the-loop 方法多为被动纠正（reactive correction） 的问题：纠正往往发生在错误已出现之后，数据中混入大量恢复动作，导致策略在无需恢复时也产生多余恢复行为。</li><li>目标是利用主动纠正数据构造“被拒绝的策略预测”与“实际执行的纠正动作”偏好对，通过偏好学习后训练提升真实机器人操作任务的成功率。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>卡尔斯鲁厄理工学院（KIT, Germany）</strong>：全部作者的主要署名单位</li><li><strong>德国机器人研究所（Robotics Institute Germany, RIG）</strong>：Rudolf Lioutikov 的联合署名单位</li><li>作者包括 <strong>Xinkai Jiang</strong>、<strong>Jing Jiang</strong>、<strong>Hongyi Zhou</strong>、<strong>Pankhuri Vanjani</strong>、<strong>Ahmad Baki</strong>、<strong>Jakub Suliga</strong>、<strong>Ge Li</strong>、<strong>Zhuoyue Li</strong>、<strong>Gerhard Neumann</strong>、<strong>Rudolf Lioutikov</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PHIL（Proactive Human-in-the-Loop）</strong> 框架，让操作者通过 <strong>扩展现实（XR）</strong> 界面预览策略预测的未来末端执行器轨迹，在错误发生之前主动接管纠正。</li><li>解决现有 human-in-the-loop 方法多为<strong>被动纠正（reactive correction）</strong> 的问题：纠正往往发生在错误已出现之后，数据中混入大量恢复动作，导致策略在无需恢复时也产生多余恢复行为。</li><li>目标是利用主动纠正数据构造“被拒绝的策略预测”与“实际执行的纠正动作”偏好对，通过<strong>偏好学习后训练</strong>提升真实机器人操作任务的成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>PHIL</strong> 主动式人机回环框架，利用 XR 在物理工作空间中可视化策略提议的未来运动，使人类能在预期错误发生前介入。</li><li>在人机接管期间提取<strong>同一物理状态锚定的“被拒绝–被纠正”动作块对</strong>（$A_t^-$ 与 $A_t^+$），并用于偏好式后训练，偏好实际执行的纠正轨迹。</li><li>在真实世界操作任务上，结合 <strong>Diffusion Policy</strong> 与预训练 VLA 策略 <strong>X-VLA</strong> 验证有效性，同时表明主动纠正数据可将<strong>不必要的恢复行为减少约 10 倍</strong>。</li><li>设计了保持查询调度不变的“影子模式”数据采集机制，使接管与释放不打断策略推理节奏，纠正窗口可延伸至释放之后。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>面向<strong>动作分块（action-chunking）策略</strong>：上下文 $c_t=(o_t,q_t,\ell_t)$，策略输出 $H$ 步动作块 $A_t$，每 $B$ 步查询一次（$B\le H$），查询调度在人工接管期间保持不变。</li><li><strong>影子模式采集</strong>：接管期间策略继续按调度查询并渲染预测，但预测不执行；被拒绝的预测 $A_t^-$ 与随后同一状态出发的 $H$ 步实际执行动作 $A_t^+$ 构成偏好对。</li><li><strong>偏好后训练目标</strong>：以策略原生模仿损失 $\ell_\theta$ 作为比较代理，构造 $\Delta_\theta=\ell_\theta(A^-,c)-\ell_\theta(A^+,c)$，使用成对 logistic 损失 $\mathcal{L}_{\text{pref}}=-\mathbb{E}[\log\sigma(\beta\Delta_\theta)]$。</li><li>总损失为 $\mathcal{L}=\mathcal{L}_{\text{base}}+\lambda_{\text{pref}}\mathcal{L}_{\text{pref}}$，保留原始示范数据上的模仿学习以防遗忘。</li><li><strong>系统实现</strong>：<strong>Meta Quest 3</strong> 头显 + 手柄遥操作，基于 <strong>IRIS</strong> 的 XR 界面显示与真实机器人同步的虚拟 <strong>Franka Panda</strong>，通过二维码配准对齐虚拟与物理坐标系。</li><li>轨迹以成对的夹爪指尖点（蓝/红双轨迹，越靠后颜色越深）可视化位置、姿态与开合状态；扳机按下接管、松开立即交还策略控制。</li><li>控制频率 20 Hz，动作块时域 $H=30$，查询间隔 $B=10$ 控制步。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>四个真实机器人操作任务</strong>：<strong>Pick Up Banana</strong>、<strong>Towel Folding</strong>（单阶段）、<strong>Cook the Carrot</strong>、<strong>Lemon in the Drawer</strong>（各含三个有序阶段）。</li><li><strong>示范预算</strong>：Pick Up Banana 使用 3/6/9 条基础示范（低数据区间）；其余任务与 X-VLA 实验使用 10/20/30 条。</li><li><strong>策略模型</strong>：<strong>Diffusion Policy</strong>（基于 <strong>BESO</strong>）在全部四个任务上评估；预训练 VLA 策略 <strong>X-VLA</strong> 在 Towel Folding、Cook the Carrot、Lemon in the Drawer 上评估。</li><li><strong>纠正数据</strong>：每个条件（模型×任务×示范预算）固定基础策略，采集 <strong>5 个</strong>主动纠正与 <strong>5 个</strong>被动纠正回合，每回合允许多次干预。</li><li>论文未明确给出 GPU/TPU 训练规模与算力细节；评估统一为每个条件 <strong>25 次</strong> rollout。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测设置</strong>：真实世界四任务，基线为 <strong>Base Policy</strong>、<strong>HG-DAgger</strong>（被动纠正 + 行为克隆）、<strong>Residual Policy</strong>（预测动作残差），所有方法在同一采集模式下共享同一份纠正数据。</li><li><strong>指标</strong>：完整任务成功率 <strong>SR</strong>，以及针对长程任务的分阶段归一化任务完成度 <strong>TCS</strong>（$\mathrm{TCS}=\frac{1}{K}\sum_m \mathbb{I}_m$）。</li><li><strong>整体提升</strong>：五次纠正回合条件下，Diffusion Policy 平均成功率由 HG-DAgger 的 <strong>44.0%</strong> 提升到 <strong>70.3%</strong>；X-VLA 由 <strong>57.8%</strong> 提升到 <strong>76.9%</strong>。</li><li><strong>Cook the Carrot（10 条示范）</strong>：PHIL 达 <strong>52% SR / 84.0% TCS</strong>，Base Policy 为 4%/38.7%，HG-DAgger 为 24%/57.3%，Residual Policy 为 24%/56.0%。</li><li><strong>X-VLA 结果</strong>：Cook the Carrot（20 条示范）PHIL 为 <strong>68% SR / 89.3% TCS</strong>，HG-DAgger 为 48%/76.0%；Lemon in the Drawer 在 30 条示范下达到 <strong>100% SR / 100.0% TCS</strong>。</li><li><strong>消融结论</strong>：仅主动采集在行为克隆下无稳定收益（Q1）；在相同主动数据上，偏好后训练显著优于 HG-DAgger（Q2，Towel Folding 40%→68%）；固定偏好目标时，主动数据优于被动数据（Q3，四任务均提升）；混合（Hybrid）数据对 HG-DAgger 有利、对 PHIL 反而不利。</li><li><strong>恢复行为分析</strong>：主动纠正训练的策略在成功回合中产生的不必要恢复行为更少，与被动纠正相比减少约十倍；策略性能越低、纠正帧占比越高时该现象越明显。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.06007/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">MotoVerse: A Benchmark for Predictive Perception of Motorized Two-Wheelers in Dense Unstructured Traffic</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.05567/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">MESA: An Evaluation Framework for Compositional, Semantic, and Spatial Generalization in Robotics</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MESA: An Evaluation Framework for Compositional, Semantic, and Spatial Generalization in Robotics - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 MESA，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败 指出现有基准要么狭窄且已饱和（如 LIBERO 上 SOTA 已超 98%），要么范围过宽但缺乏受控实验（如 RoboCasa、Behavior-1K），要么依赖庞大杂乱的 DROID 真实数据集 通过配套的 MESA-Gen 数据生成管线规模化构建基准，并在单臂 Franka 与双臂 YAM 两个平台上发布评测套件" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.05567">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.05567.webp" alt="MESA: An Evaluation Framework for Compositional, Semantic, and Spatial Generalization in Robotics" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 MESA，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">MESA: An Evaluation Framework for Compositional, Semantic, and Spatial Generalization in Robotics</h1>
+            <div class="detail-meta">2026-11-03 · <a href="http://arxiv.org/abs/2611.05567" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.05567" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.05567</span></div>
+            <p class="detail-summary">提出 MESA，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败 指出现有基准要么狭窄且已饱和（如 LIBERO 上 SOTA 已超 98%），要么范围过宽但缺乏受控实验（如 RoboCasa、Behavior-1K），要么依赖庞大杂乱的 DROID 真实数据集 通过配套的 MESA-Gen 数据生成管线规模化构建基准，并在单臂 Franka 与双臂 YAM 两个平台上发布评测套件</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Georgia Institute of Technology（佐治亚理工学院）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.05567/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 MESA，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败</p>
+  <ul class="reading-intro-points"><li>提出 MESA，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败</li><li>指出现有基准要么狭窄且已饱和（如 LIBERO 上 SOTA 已超 98%），要么范围过宽但缺乏受控实验（如 RoboCasa、Behavior-1K），要么依赖庞大杂乱的 DROID 真实数据集</li><li>通过配套的 MESA-Gen 数据生成管线规模化构建基准，并在单臂 Franka 与双臂 YAM 两个平台上发布评测套件</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Georgia Institute of Technology</strong>（佐治亚理工学院）</li><li><strong>Georgia Tech Research Institute</strong>（佐治亚理工研究学院）</li><li>作者包括 Albert Wilcox、Frank Chang、Nhi Nguyen、Aishani Chakraborty、Jeremy A. Collins、Vaibhav Saxena、Benjamin Joffe、Siddharth Karamcheti、Animesh Garg</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MESA</strong>，一个用于语言条件机器人操作策略的精确、可复现评测框架，专注于诊断策略“在哪里”以及“为什么”失败，而不仅仅是“是否”失败</li><li>指出现有基准要么狭窄且已饱和（如 <strong>LIBERO</strong> 上 SOTA 已超 98%），要么范围过宽但缺乏受控实验（如 <strong>RoboCasa</strong>、<strong>Behavior-1K</strong>），要么依赖庞大杂乱的 <strong>DROID</strong> 真实数据集</li><li>通过配套的 <strong>MESA-Gen</strong> 数据生成管线规模化构建基准，并在单臂 <strong>Franka</strong> 与双臂 <strong>YAM</strong> 两个平台上发布评测套件</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MESA-Bench</strong>：包含单臂 Franka 与双臂 YAM 两种形态，各有一个规范训练集和五个评测套件（分布内、空间、实例、类别、组合泛化）</li><li>提出基于干扰任务完成情况的<strong>语言跟随率（Language Following Rate）</strong>指标，用于区分“指令定位失败”与“控制执行失败”</li><li>提出 <strong>MESA-Gen</strong>：可扩展的任务与数据集生成框架，改进 <strong>MimicGen</strong>，支持在更大空间变化下生成高质量数据，并能对无人类示教的新任务生成数据</li><li>发布 <strong>BiMESA</strong>：首个面向双臂泛化的大规模多任务语言条件基准</li><li>系统评测 7 种基线方法，并验证 MESA 排名与真实世界 <strong>RoboArena</strong> Elo 排名大体一致</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>任务骨架（task skeleton）</strong>：用 Python 类定义初始化、示教与目标谓词，自动生成训练/评测用的 <strong>BDDL</strong> 文件，每个场景拥有独特布局、干扰物集合与可选纹理/相机位姿/机器人形态</li><li><strong>视觉混淆采样</strong>：每个场景包含多个可见的“物体-目标”配对作为干扰项，避免策略忽略语言指令、仅凭视觉直接操作唯一可交互物体（因果混淆）</li><li><strong>MimicGen 改进</strong>：引入<strong>子任务拼接（subtask stitching）</strong>，从按谓词类型与物体语义索引的共享子任务库中组合（如 <code>Grasp(apple)</code>、<code>On(·, plate)</code>），实现零人类源数据的任务生成；并引入<strong>轨迹优化</strong>以应对大位姿差异，避免不自然的扫掠动作与自碰撞</li><li><strong>语言跟随率</strong>：定义为 $L=\frac{S}{S+D}$，其中 $S$ 为成功率、$D$ 为干扰任务完成率，即在“完成某个可行任务”的条件下完成正确任务的概率</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>MESA-70</strong>：单臂训练集，70 个任务、<strong>7,000</strong> 条示教</li><li><strong>BiMESA-57</strong>：双臂训练集，57 个任务、<strong>6,833</strong> 条示教</li><li><strong>MESA-Aux</strong>：736 个辅助单臂任务，用于研究数据多样性扩展</li><li>评测套件规模：MESA-ID（70 任务）、MESA-Spatial（单臂 10 / 双臂 38）、MESA-Instance（20 / 18）、MESA-Composite（20 / 15）、MESA-Category（20 / 17）</li><li>基线模型：<strong>Multitask Diffusion Policy (DP)</strong>、<strong>PG-Bin</strong> 与 <strong>PG-FM</strong>（基于 PaliGemma-3B 微调）、<strong>GR00T-N1.6</strong>、<strong>π0</strong>、<strong>π0-FAST</strong>、<strong>π0.5</strong>，另有零样本 <strong>GPT-6.1-Sol</strong> LLM 智能体</li><li>训练资源：论文强调可在学术预算的有限算力下完成训练与评测；具体 GPU/TPU 数量在正文截断部分未给出（详见附录 F.3）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：仿真桌面操作平台，单臂 DROID 风格 Franka Panda 与双臂 YAM；每个任务固定初始状态集、采样未见干扰物与位姿，保证跨策略无偏比较</li><li><strong>主要指标</strong>：任务成功率、语言跟随率（LFR）、与 RoboArena Elo 的排名一致性</li><li><strong>总体性能</strong>：<strong>π0.5</strong> 在单臂 <strong>MESA 平均 52.0%</strong>、双臂 <strong>BiMESA 平均 48.7%</strong> 均为最强；<strong>π0-FAST</strong> 次之（35.3% / 39.4%）；<strong>DP</strong> 表现极差（1.1% / 10.6%），反映其多任务扩展性不足</li><li><strong>泛化落差显著</strong>：MESA-Category 上 π0.5 仅 26.4%，BiMESA-Category 上最强基线仅 18.6%，说明开放词汇物体类别泛化仍是空白领域</li><li><strong>语言跟随</strong>：具备 VLM 主干的模型 LFR 普遍较高，π0.5 达 MESA 平均 74.9%、BiMESA-ID 92.9%；DP 仅 14.4%，语言条件能力弱</li><li><strong>机器人预训练并非普遍可迁移</strong>：π0 在单臂优于 PG-FM，但在双臂反而略逊于 PG-FM</li><li><strong>数据规模与多样性</strong>：增加示教数量近单调提升性能，但 <strong>π0.5 用 10 条示教即稳定优于 π0 用 100 条</strong>，说明预训练质量主导数据量；加入 736 个辅助任务协同训练<strong>未带来一致的泛化增益</strong></li><li><strong>跨臂迁移</strong>：单臂任务换臂与反向交接退化较小，但<strong>铰接物体操作技能的跨臂迁移退化最大</strong>，揭示技能对称性缺失</li><li><strong>与真实世界一致性</strong>：MESA 与 BiMESA 的模型排序与 <strong>RoboArena</strong> Elo 排序大体一致（主要分歧为 PG-FM 与 π0 的相对顺序）</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.05667/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Correct Robots Before They Make Mistakes: Proactive Human-in-the-Loop Intervention via Preference Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.05372/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">PolicyIK: High-Precision Inverse Kinematics for Robot Arms with Reinforcement Learning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
