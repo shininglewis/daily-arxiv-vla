@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AffectiveVLA: Safe and Intent-Aware VLA Control for Human-Humanoid Social Interaction - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 AffectiveVLA，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 Vision-Language-Action (VLA) 流水线，部署在配备灵巧手的 Unitree G1 人形机器人上。 论文要解决的问题是：在人类与机器人的社交接触中，机器人既要推断人类意图、生成富含接触的动作，又要保证接触时的物理安全；而现有 VLA 模型在人类意图不确定时，容易产生不安全的误激活。 论文围绕三个研究问题展开：哪种 VLA 模型在接触丰富的交互任务上表现最好；最优的手臂柔顺性是否随交互类型变化；意图门控能否提升交互选择正确率，以及能否安全中断正在进行的接触。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.07712">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.07712.webp" alt="AffectiveVLA: Safe and Intent-Aware VLA Control for Human-Humanoid Social Interaction" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 AffectiveVLA，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 Vision-Language-Action (VLA) 流水线，部署在配备灵巧手的 Unitree G1 人形机器人上。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">AffectiveVLA: Safe and Intent-Aware VLA Control for Human-Humanoid Social Interaction</h1>
+            <div class="detail-meta">2026-11-05 · <a href="http://arxiv.org/abs/2611.07712" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.07712" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.07712</span></div>
+            <p class="detail-summary">论文提出 AffectiveVLA，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 Vision-Language-Action (VLA) 流水线，部署在配备灵巧手的 Unitree G1 人形机器人上。 论文要解决的问题是：在人类与机器人的社交接触中，机器人既要推断人类意图、生成富含接触的动作，又要保证接触时的物理安全；而现有 VLA 模型在人类意图不确定时，容易产生不安全的误激活。 论文围绕三个研究问题展开：哪种 VLA 模型在接触丰富的交互任务上表现最好；最优的手臂柔顺性是否随交互类型变化；意图门控能否提升交互选择正确率，以及能否安全中断正在进行的接触。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Skolkovo Institute of Science and Technology（斯科尔科沃科…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.07712/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 AffectiveVLA，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 Vision-Language-Action (VLA) 流水线，部署在配备灵巧手的 Unitree G1 人形机器人上。</p>
+  <ul class="reading-intro-points"><li>论文提出 AffectiveVLA，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 Vision-Language-Action (VLA) 流水线，部署在配备灵巧手的 Unitree G1 人形机器人上。</li><li>论文要解决的问题是：在人类与机器人的社交接触中，机器人既要推断人类意图、生成富含接触的动作，又要保证接触时的物理安全；而现有 VLA 模型在人类意图不确定时，容易产生不安全的误激活。</li><li>论文围绕三个研究问题展开：哪种 VLA 模型在接触丰富的交互任务上表现最好；最优的手臂柔顺性是否随交互类型变化；意图门控能否提升交互选择正确率，以及能否安全中断正在进行的接触。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Skolkovo Institute of Science and Technology</strong>（斯科尔科沃科学技术研究院），俄罗斯莫斯科</li><li>作者：Nikita Kuzmin、Georgii Demianchuk、Mariya Lezina、Yara Mahmoud、Iana Zhura、Miguel Altamirano Cabrera、Dzmitry Tsetserukou</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>AffectiveVLA</strong>，一个面向人形机器人社交触摸交互（握手、碰拳、拥抱）的意图门控 <strong>Vision-Language-Action (VLA)</strong> 流水线，部署在配备灵巧手的 <strong>Unitree G1</strong> 人形机器人上。</li><li>论文要解决的问题是：在人类与机器人的社交接触中，机器人既要推断人类意图、生成富含接触的动作，又要保证接触时的物理安全；而现有 VLA 模型在人类意图不确定时，容易产生不安全的误激活。</li><li>论文围绕三个研究问题展开：哪种 VLA 模型在接触丰富的交互任务上表现最好；最优的手臂柔顺性是否随交互类型变化；意图门控能否提升交互选择正确率，以及能否安全中断正在进行的接触。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>在社交触摸任务上，对四个微调后的 VLA 模型（<strong>Being-H0.5</strong>、<strong>GR00T</strong>、<strong>RLDX-1</strong>、<strong>UnifoLM-VLA-0</strong>）进行了对比评估。</li><li>提出一种意图门控的 VLA 流水线：用轻量级 RGB 模型识别交互意图，并将其转换为语言提示词；当预测置信度较低时，抑制动作执行。</li><li>引入任务条件柔顺控制，为不同交互类型自适应调整手臂阻抗参数。</li><li>设计独立的语音触发锁存安全停止机制，可在接触过程中安全中断。</li><li>据作者所述，这是首个将 RGB 意图识别、VLA 执行与交互特定阻抗相结合、用于人形机器人社交触摸的系统。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>意图识别</strong>：用两个机载 RGB 相机构建双视图输入；共享 <strong>TinyViT</strong> 编码器提取帧特征，两个独立的因果 <strong>VideoLightFormer</strong> 模块进行时序聚合，再通过注意力融合完成分类（handshake、hug、fist_bump、no_interaction）。</li><li><strong>意图确认规则</strong>：只有当某一意图的概率连续三步超过 0.6 时，才提交该意图；在此之前，机器人禁止执行动作，从而减少误激活。</li><li><strong>VLA 全身执行</strong>：VLA 以 5 Hz 输出 40 步动作块（包含 64 维 SONIC 运动 token 和每只手 6 个手指指令），并以 50 Hz 执行；运动 token 交由 <strong>GEAR-SONIC</strong> 全身控制器处理，手指指令直接发送给 BrainCo 手；依靠按执行器进行的速率限制、接触检测（禁止继续闭合、允许张开）以及动作块切换时的清空队列来保障安全。</li><li><strong>任务条件柔顺</strong>：按交互类型缩放 14 个手臂关节的阻抗增益（\(K_{p,i}=\alpha_i K^0_{p,i}\)，\(K_{d,i}=\beta_i K^0_{d,i}\)，且 \(\beta_i \ge \sqrt{\alpha_i}\)），并通过最小加加速度斜坡过渡。</li><li><strong>语音安全停止</strong>：使用离线 <strong>Vosk</strong> 识别器（限定词表包含 “stop”、“hold on”）触发确定性锁存停止；该停止机制会忽略操作员命令和 VLA 命令，让机器人停止移动、将手臂降至静止位并张开手指，只有手动释放后才能恢复控制。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>通过 <strong>VR 遥操作</strong>（PICO 4 Ultra + XRoboToolkit）采集约 <strong>1,300</strong> 个多模态交互回合，最终保留 <strong>1,270</strong> 个回合，来自 <strong>19</strong> 名参与者（13 男 6 女；年龄 24.4±3.7 岁，身高 175.4±8.6 cm）。</li><li>四个交互类别：<strong>握手、碰拳、拥抱、无交互</strong>；数据以 <strong>LeRobot</strong> 格式存储，并标注四个时序标记（approach start、contact start、release start、idle start）。</li><li>扩展集共 982 个回合，来自 15 名参与者；测试集共 288 个回合，来自 4 名未参与者，两者没有参与者重叠。</li><li>意图模型开发数据清洗后剩余 790 个回合（632 个用于训练、158 个用于验证）；测试使用 288 个回合。</li><li>控制平台：<strong>Unitree G1</strong> 人形机器人、<strong>BrainCo</strong> 灵巧手、<strong>SONIC</strong> 全身控制器；采集三个同步 RGB 视图（自视角 1280×720、头戴 1600×896、外部 1280×960）以及 50 Hz 上身遥测数据。</li><li>微调资源：单块 <strong>A100 80GB GPU</strong>，训练 30k 步；UnifoLM 还需将数据转换为 HDF5/RLDS 格式。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>离线开环比较</strong>（288 个测试回合、40 步动作块）：<strong>RLDX-1</strong> 的整体 RMSE 最低（0.133），<strong>GR00T</strong> 和 <strong>Being-H0.5</strong> 为 0.135，<strong>UnifoLM-VLA-0</strong> 最差（0.148）；GR00T 在动作块首步和末步误差上最优（首步 0.085）。</li><li><strong>机器人在线评估</strong>：5 名参与者对每种交互各进行 10 次，每个策略进行 150 次试验；单独使用 <strong>GR00T</strong> 的宏平均 F1 最高，为 <strong>0.75</strong>，但经常混淆碰拳。</li><li>加入意图识别后，宏平均 F1 从 <strong>0.75</strong> 提升到 <strong>0.90</strong>；碰拳从 0.50 → 0.78，握手 0.86 → 0.92，拥抱 0.89 → 1.00。</li><li><strong>意图模型对比</strong>：六种因果视频分类器组合的测试宏平均 F1 为 0.51–0.76，p95 延迟为 5.31–6.73 ms；<strong>TinyViT + VideoLightFormer</strong> 最佳（宏平均 F1 0.76、准确率 0.736、p95 延迟 <strong>6.27 ms</strong>）。</li><li>验证集上，时序提交规则在 54 个无交互回合中未产生误激活；<strong>77%</strong> 的交互意图在物理接触前提交，中位提前量为 <strong>2.1 s</strong>。</li><li>语音停止词在近距机载麦克风下 10/10 试验检出，对话期间无误触发。</li><li><strong>柔顺性用户研究</strong>：采用被试内设计（2×2×2，肩、肘、腕刚度刚性对柔性），按平衡拉丁方排序，使用 7 分制评定安全、舒适、自然度，数据采集仍在进行中。</li><li>结论：离线 RMSE 不能可靠预测真实机器人交互表现，VLA 必须进行在线评估；意图门控在保持实时性的同时显著提升可靠性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.07912/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">GuidedWAM: Training-Free Energy Guidance for World Action Models in Autonomous Driving</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.07513/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

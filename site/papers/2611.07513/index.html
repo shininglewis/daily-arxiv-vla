@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 eVLM（Embodied Vision-Language Model，具身视觉语言模型） 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。 研究目标是让预训练 VLM 在保持原有模型架构、原生训练范式和视觉语言泛化能力的前提下，原生输出精确的连续动作轨迹。 论文要解决的问题是现有 VLA 的两类解耦：一是表示解耦（离散化动作 token，token 误差与物理位移无稳定对应），二是计算与参数解耦（外接 action expert、DiT 或 flow-matching 头，梯度冲突导致冻结骨干或知识隔离）。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.07513">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.07513.webp" alt="Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 eVLM（Embodied Vision-Language Model，具身视觉语言模型） 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model</h1>
+            <div class="detail-meta">2026-11-05 · <a href="http://arxiv.org/abs/2611.07513" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.07513" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.07513</span></div>
+            <p class="detail-summary">论文提出 eVLM（Embodied Vision-Language Model，具身视觉语言模型） 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。 研究目标是让预训练 VLM 在保持原有模型架构、原生训练范式和视觉语言泛化能力的前提下，原生输出精确的连续动作轨迹。 论文要解决的问题是现有 VLA 的两类解耦：一是表示解耦（离散化动作 token，token 误差与物理位移无稳定对应），二是计算与参数解耦（外接 action expert、DiT 或 flow-matching 头，梯度冲突导致冻结骨干或知识隔离）。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">悉尼大学（University of Sydney）：Chengcheng Wang、Wenhao L…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.07513/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 eVLM（Embodied Vision-Language Model，具身视觉语言模型） 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。</p>
+  <ul class="reading-intro-points"><li>论文提出 eVLM（Embodied Vision-Language Model，具身视觉语言模型） 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。</li><li>研究目标是让预训练 VLM 在保持原有模型架构、原生训练范式和视觉语言泛化能力的前提下，原生输出精确的连续动作轨迹。</li><li>论文要解决的问题是现有 VLA 的两类解耦：一是表示解耦（离散化动作 token，token 误差与物理位移无稳定对应），二是计算与参数解耦（外接 action expert、DiT 或 flow-matching 头，梯度冲突导致冻结骨干或知识隔离）。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>悉尼大学（University of Sydney）</strong>：Chengcheng Wang、Wenhao Li、Chang Xu</li><li><strong>TokenRhythm Technologies</strong>：Wei He、Hongguang Li、Kai Han</li><li><strong>香港城市大学（City University of Hong Kong）</strong>：Jianyuan Guo</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>eVLM（Embodied Vision-Language Model，具身视觉语言模型）</strong> 这一新范式，主张把“操作（manipulation）”与“认知（cognition）”统一在同一个视觉语言模型内部完成，而不是在 VLM 外部外接一个动作模块。</li><li>研究目标是让预训练 VLM 在<strong>保持原有模型架构、原生训练范式和视觉语言泛化能力</strong>的前提下，原生输出精确的连续动作轨迹。</li><li>论文要解决的问题是现有 VLA 的两类解耦：一是<strong>表示解耦</strong>（离散化动作 token，token 误差与物理位移无稳定对应），二是<strong>计算与参数解耦</strong>（外接 action expert、DiT 或 flow-matching 头，梯度冲突导致冻结骨干或知识隔离）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>eVLM 范式</strong>：在表示、监督信号和生成过程三个层面把操作能力内嵌进单一 VLM，使连续轨迹生成、坐标监督都落在共享扩散 VLM 骨干的计算与参数路径上。</li><li>提出 <strong>Concertina</strong> 架构：把一条长度为 H 的轨迹表示为 <strong>H 个连续隐动作 token</strong>（每个控制步一个 token，而非 H×D 个标量符号），采用块内双向、块间因果的可见性，并使用 packed teacher forcing。</li><li>引入 <strong>Action Interface Audit（动作接口审计）</strong> 方法论，含 <strong>EGC</strong>（误差几何一致性）、<strong>TCA/NLR</strong>（轨迹耦合归因）、<strong>ASCR</strong>（动作专属容量比）三项指标，用于定位动作表示与轨迹计算究竟发生在哪一层。</li><li>通过反事实干预证明：在共享隐空间上再叠加第二个坐标目标会产生方向相反的梯度（余弦相似度为 <strong>−0.891</strong>），使 CALVIN 链长从 <strong>2.970</strong> 跌至 <strong>0.237</strong>，说明动作表示与监督目标必须协同设计。</li><li>在 <strong>LIBERO</strong>、<strong>LIBERO-Plus</strong>、<strong>CALVIN ABC–D</strong> 上取得领先的闭环成功率。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>连续隐动作 token</strong>：轻量逐位置（position-wise）编码器 <strong>E_φ</strong> 将 D 维动作向量映射为 d 维隐空间中的单个 token，解码器 <strong>D_ψ</strong> 再将骨干隐状态映射回物理坐标；二者均为逐时间步独立作用的 MLP，不做时间混合。</li><li><strong>共享骨干建模时序</strong>：所有跨时间、跨模态依赖由共享 Transformer <strong>F_θ</strong> 计算，骨干初始化自 <strong>BARD-VL</strong>，复用其掩码块“破坏—重建”算子处理连续隐动作，无需第二个训练范式或外部扩散网络。</li><li><strong>块式拓扑与 packed teacher forcing</strong>：将 H 步划分为 M 个有序动作块，块间因果、块内双向；训练序列打包为 <strong>[C, Z̃, Z]</strong>（多模态前缀、加噪动作和教师强制干净动作），一次前向即可同时监督全部 M 个块条件分布。</li><li><strong>块分层加噪与坐标重建</strong>：对 [0,1] 分层采样每块的掩码率，并随机置换分配到各块；损失直接在归一化物理坐标上计算，坐标权重为 <strong>500:10:1</strong>（平移、6D 旋转和夹爪），位姿用 Smooth-L1、夹爪用概率型 BCE，并按掩码概率的倒数加权。</li><li><strong>多具身统一隐空间</strong>：用维度有效掩码与时间步有效掩码把异构控制空间对齐到统一最大坐标宽度，非激活维度置零且不计入损失分母。</li><li><strong>推理与闭环执行</strong>：前缀预填 KV cache，逐块生成；用轻量 token 风险头预测对数重建误差，按负风险排序并进行可选的重掩码精修，最后以滚动时域方式闭环重规划。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>评测数据集：<strong>LIBERO</strong>（4 个套件、每任务 50 回合，共 2,000 回合）、<strong>LIBERO-Plus</strong>（10,030 个扰动任务）、<strong>CALVIN ABC–D</strong>（1,000 条官方五任务指令链，D 为未见环境）。</li><li>预训练数据：多具身混合数据，规模为 <strong>80.2M 帧</strong>。</li><li>模型规模：<strong>4.46B</strong> 参数；活跃动作投影仅占 <strong>0.21%</strong> 参数，<strong>零</strong>独立动作生成层。</li><li>训练资源：<strong>8 张 GPU</strong>；多具身预训练 60,000 次更新和 30,000 次更新续训，全局 batch 1,536（每卡 192）；CALVIN 微调 5,000 次更新；LIBERO 微调全局 batch 448（每卡 56）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境：标准闭环操作基准 <strong>LIBERO / LIBERO-Plus / CALVIN ABC–D</strong>，以及作者提出的 <strong>Action Interface Audit</strong> 检查点级审计。</li><li>主要指标：LIBERO 与 LIBERO-Plus 的<strong>成功率（%）</strong>；CALVIN 的<strong>平均完成链长 AvgLen</strong> 与 <strong>SR@k</strong>。</li><li>LIBERO 常规基准平均 <strong>98.15%</strong>（Spatial 99.0 / Object 100.0 / Goal 98.8 / LIBERO-10 94.8），高于 <strong>π0</strong> 94.2%、<strong>π0.5</strong> 97.5%、<strong>X-VLA</strong> 98.1%、<strong>Dream-VLA</strong> 97.2%。</li><li>LIBERO-Plus 总体 <strong>85.9%</strong>（8,615/10,030），比 <strong>EFFVLA</strong> 79.8% 高 <strong>+6.1</strong> 点，比 <strong>OpenVLA-OFT</strong> 69.6% 高 <strong>+16.3</strong> 点，四个套件全部最优。</li><li>CALVIN ABC–D 平均链长 <strong>4.142</strong>，SD@1 <strong>98.6%</strong>、SR@2 <strong>93.8%</strong>，优于共享骨干扩散策略 <strong>LLaDA-VLA</strong>（4.01）。</li><li>审计结果：离散分箱单元token误差可造成 <strong>25.14×</strong> 的物理误差跨度，FAST 类压缩 token 单 token 扰动下出现 <strong>77.9%–82.2%</strong> 结构性解码失败；<strong>π0 / π0.5 / SmolVLA / X-VLA</strong> 的 ASCR 分别为 <strong>16.51% / 19.17% / 22.19% / 35.10%</strong>，而 Concertina 仅 <strong>0.21%</strong>。</li><li>耦合定位：Concertina 的动作接口自身 <strong>NLR = 0</strong>（无跨时间响应），跨时间轨迹耦合全部出现在共享骨干的<strong>中后层</strong>（预训练 <strong>4.06%</strong>、CALVIN <strong>4.10%</strong>、LIBERO <strong>1.22%</strong>）；动作编码器有效秩 <strong>18.63/20</strong>，未发生表示塌缩。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.07712/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">AffectiveVLA: Safe and Intent-Aware VLA Control for Human-Humanoid Social Interaction</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.07411/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Kinematic Hypothesis Context: Embodiment-Conditioned Learned Video Coding for Bandwidth-Limited Robot Policy Uplinks</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

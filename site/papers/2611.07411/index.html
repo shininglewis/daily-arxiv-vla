@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kinematic Hypothesis Context: Embodiment-Conditioned Learned Video Coding for Bandwidth-Limited Robot Policy Uplinks - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种零速率运动学条件信号，让发送端与接收端利用共享的具身知识对视频编码进行条件化。 核心观点：机器人相机流中的大量时间变化由机器人自身运动引起，而接收端已知关节状态、机器人模型与相机标定，因此这部分信息无需重复传输。 证明仅依赖历史或全局位姿向量的条件编码在存在大范围运动时无法利用该信息，并将编码增益与策略任务成功率联系起来。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.07411">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.07411.webp" alt="Kinematic Hypothesis Context: Embodiment-Conditioned Learned Video Coding for Bandwidth-Limited Robot Policy Uplinks" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种零速率运动学条件信号，让发送端与接收端利用共享的具身知识对视频编码进行条件化。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Kinematic Hypothesis Context: Embodiment-Conditioned Learned Video Coding for Bandwidth-Limited Robot Policy Uplinks</h1>
+            <div class="detail-meta">2026-11-05 · <a href="http://arxiv.org/abs/2611.07411" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.07411" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.07411</span></div>
+            <p class="detail-summary">针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种零速率运动学条件信号，让发送端与接收端利用共享的具身知识对视频编码进行条件化。 核心观点：机器人相机流中的大量时间变化由机器人自身运动引起，而接收端已知关节状态、机器人模型与相机标定，因此这部分信息无需重复传输。 证明仅依赖历史或全局位姿向量的条件编码在存在大范围运动时无法利用该信息，并将编码增益与策略任务成功率联系起来。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">清华大学（Tsinghua University, Beijing, China），作者为 Yuze…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.07411/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种零速率运动学条件信号，让发送端与接收端利用共享的具身知识对视频编码进行条件化。</p>
+  <ul class="reading-intro-points"><li>针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种零速率运动学条件信号，让发送端与接收端利用共享的具身知识对视频编码进行条件化。</li><li>核心观点：机器人相机流中的大量时间变化由机器人自身运动引起，而接收端已知关节状态、机器人模型与相机标定，因此这部分信息无需重复传输。</li><li>证明仅依赖历史或全局位姿向量的条件编码在存在大范围运动时无法利用该信息，并将编码增益与策略任务成功率联系起来。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>清华大学</strong>（Tsinghua University, Beijing, China），作者为 Yuze Lu</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>针对机器人远程执行大型视觉-语言-动作（VLA）策略时相机上行链路成为瓶颈的问题，提出一种<strong>零速率运动学条件信号</strong>，让发送端与接收端利用共享的具身知识对视频编码进行条件化。</li><li>核心观点：机器人相机流中的大量时间变化由机器人自身运动引起，而接收端已知关节状态、机器人模型与相机标定，因此这部分信息无需重复传输。</li><li>证明仅依赖历史或全局位姿向量的条件编码在存在大范围运动时无法利用该信息，并将编码增益与策略任务成功率联系起来。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>将<strong>具身信息</strong>形式化为零速率边信息，证明加入运动学上下文可降低条件率失真，并推导其何时转化为任务成功率增益。</li><li>设计<strong>运动学假设上下文（KHC）</strong>：由平面扫描、关节化机器人层、末端执行器平面和背景记忆组成的零速率假设体，并融合进条件编解码器。</li><li>提供可部署的上行链路方案：比特精确的包协议、漏桶速率控制器、基于录制数据的离线手眼自标定、批量实现与端到端延迟模型。</li><li>通过容量匹配对照、打乱运动学对照、双参考对照、全局向量对照、消融实验、鲁棒性测试、真实 DROID 数据以及 38,400 组配对闭环实验，系统验证压缩与任务成功率的双重提升。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>假设体构建</strong>：对每次传输生成 <strong>J = D + 5</strong> 个对已解码参考帧的反向变换，包括恒等、<strong>D</strong> 个平面扫描单应性（逆深度均匀采样）、逐连杆刚体重投影的机器人层、末端执行器平面、背景记忆与辅助槽。</li><li><strong>KinFusion 融合</strong>：将假设体映射为三个分辨率的上下文 <strong>K⁽¹⁾、K⁽²⁾、K⁽³⁾</strong>，通过零初始化的 <strong>1×1</strong> 混合器 φᵢ 注入历史上下文，条件化分析变换、合成变换与熵模型。</li><li><strong>运动学 SKIP</strong>：在极端码率预算下仅发送两字节槽索引，接收端直接显示当前位姿下的假设，替代陈旧帧。</li><li><strong>速率控制</strong>：采用漏桶比例-积分控制器在算术字节上调节速率参数 α，跟踪千比特级预算。</li><li><strong>理论分析</strong>：证明历史或全局向量条件化在感受野受限时对位移“失明”，运动学将场景运动降为一维逆深度族，并给出标定误差的二阶特性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：通过 <strong>MuJoCo</strong> 与 <strong>robosuite</strong> 重渲染为 <strong>256×256</strong>，含第三人称与手腕相机，保存关节状态、连杆位姿、内外参与机器人深度图。</li><li><strong>DROID</strong>：100 个真实机器人回合（Franka 机械臂，320×180，15 Hz），按实验室划分 63/7/30。</li><li>宿主模型为 <strong>7.0 M 参数</strong>、1.39 MFLOPs/像素的 DCVC 风格隐式条件编解码器；训练 200k 步，AdamW，学习率 10⁻⁴。</li><li>复杂度在 <strong>RTX 4090</strong> 上测量（批量假设生成由 18.0 ms 降至 3.8 ms/帧）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：LIBERO 四个留出套件共 200 个测试回合；闭环使用官方 <strong>OpenVLA-OFT</strong> 与 <strong>π₀.₅</strong> 检查点，20,800 + 13 组配对闭环回合。</li><li><strong>指标</strong>：RGB PSNR、MS-SSIM、LPIPS、策略动作偏差、BD-rate，以及任务成功率（Wilson 区间、McNemar 精确检验、Holm 校正）。</li><li><strong>压缩结果</strong>：相等 PSNR 下比容量匹配 HIST 节省 <strong>23.9%</strong> 码率（第三人称相机达 <strong>37.9%</strong>）；相对 x264/x265/SVT-AV1 节省 <strong>40–56%</strong>；相等动作偏差下比 <strong>DCVC-RT</strong> 少用 <strong>23.2%</strong> 比特，将其 PSNR 差距从 37.2% 缩至 7.5%。</li><li><strong>闭环结果</strong>：6 kbps 下 OpenVLA-OFT 成功率从 <strong>22.8%</strong> 提升至 <strong>43.1%</strong>（近似翻倍），8.3 kbps 增加 14.8 个百分点，10.7 kbps 比 DCVC-RT 高 19.5 个百分点；<strong>π₀.₅</strong> 从 55.5% 升至 77.4%；在 10% 丢包下仍保持优势（46.4% 对 22.9%）。</li><li><strong>低码率扩展</strong>：KHC-LR 在 6 kbps 达 72.6%，比 DCVC-RT 高 23.6 个百分点，并在相等动作偏差下少用 30.1% 比特。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.07513/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Concertina: Embodying Manipulation and Cognition in One Diffusion Vision-Language Model</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.07229/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Spatial-UMI-Dream: Scaling World Action Models with Metric Geometry for UMI Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

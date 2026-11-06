@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OopsieRecover: Learning Transferable VLA Corrections from Semantic Interventions - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 OopsieRecover，目标是从少量带语义标注的人类干预中学习可迁移的 VLA（Vision-Language-Action）纠正行为。 要解决的问题是：VLA 在部署中会出现碰撞、掉落物体、放置不准等系统性失败，而现有 DAgger 类方法通常把纠正当作额外状态-动作监督，需要大量交互且难以泛化到新物体、新位姿和新场景。 核心假设是：语义能够刻画失败原因和纠正意图；因此论文用 abduction（溯因推理） 从少量纠正中推断可复用意图，并编码为稠密空间表示与条件代价，用于在测试时引导冻结的 VLA。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.08462">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.08462.webp" alt="OopsieRecover: Learning Transferable VLA Corrections from Semantic Interventions" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 OopsieRecover，目标是从少量带语义标注的人类干预中学习可迁移的 VLA（Vision-Language-Action）纠正行为。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">OopsieRecover: Learning Transferable VLA Corrections from Semantic Interventions</h1>
+            <div class="detail-meta">2026-11-05 · <a href="http://arxiv.org/abs/2611.08462" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.08462" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.08462</span></div>
+            <p class="detail-summary">论文提出 OopsieRecover，目标是从少量带语义标注的人类干预中学习可迁移的 VLA（Vision-Language-Action）纠正行为。 要解决的问题是：VLA 在部署中会出现碰撞、掉落物体、放置不准等系统性失败，而现有 DAgger 类方法通常把纠正当作额外状态-动作监督，需要大量交互且难以泛化到新物体、新位姿和新场景。 核心假设是：语义能够刻画失败原因和纠正意图；因此论文用 abduction（溯因推理） 从少量纠正中推断可复用意图，并编码为稠密空间表示与条件代价，用于在测试时引导冻结的 VLA。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">德克萨斯大学奥斯汀分校（UT Austin），论文工作主要在 RobIn Lab 完成</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.08462/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 OopsieRecover，目标是从少量带语义标注的人类干预中学习可迁移的 VLA（Vision-Language-Action）纠正行为。</p>
+  <ul class="reading-intro-points"><li>论文提出 OopsieRecover，目标是从少量带语义标注的人类干预中学习可迁移的 VLA（Vision-Language-Action）纠正行为。</li><li>要解决的问题是：VLA 在部署中会出现碰撞、掉落物体、放置不准等系统性失败，而现有 DAgger 类方法通常把纠正当作额外状态-动作监督，需要大量交互且难以泛化到新物体、新位姿和新场景。</li><li>核心假设是：语义能够刻画失败原因和纠正意图；因此论文用 abduction（溯因推理） 从少量纠正中推断可复用意图，并编码为稠密空间表示与条件代价，用于在测试时引导冻结的 VLA。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>德克萨斯大学奥斯汀分校（UT Austin）</strong>，论文工作主要在 <strong>RobIn Lab</strong> 完成</li><li><strong>丰田研究院（Toyota Research Institute, TRI）</strong></li><li>作者包括 <strong>Arpit Bahety、Skand Peri、Sriniket Ambatipudi、Chen Xu、Haruki Nishimura、Masha Itkina、Roberto Martín-Martín</strong>，其中前两位作者为共同第一作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>OopsieRecover</strong>，目标是从少量带语义标注的人类干预中学习可迁移的 <strong>VLA（Vision-Language-Action）纠正行为</strong>。</li><li>要解决的问题是：VLA 在部署中会出现碰撞、掉落物体、放置不准等系统性失败，而现有 DAgger 类方法通常把纠正当作额外状态-动作监督，需要大量交互且难以泛化到新物体、新位姿和新场景。</li><li>核心假设是：<strong>语义</strong>能够刻画失败原因和纠正意图；因此论文用 <strong>abduction（溯因推理）</strong> 从少量纠正中推断可复用意图，并编码为稠密空间表示与条件代价，用于在测试时引导冻结的 VLA。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出一种<strong>基于语义和溯因推理的少样本 VLA 纠正框架</strong>，从人类干预轨迹与语言描述中推断可复用的纠正意图。</li><li>设计 <strong>generate-and-test</strong> 流程，合成并验证 <strong>semantically grounded gated costs</strong>（语义 grounding 的门控代价/纠正程序）。</li><li>提出<strong>测试时策略引导机制</strong>，在不重新训练 VLA 的情况下，用学习到的门控代价对候选动作排序并纠正策略行为。</li><li>证明少量纠正即可<strong>零样本迁移</strong>到新的物体位姿、场景布局和相关任务变化。</li><li>在仿真和真实机器人任务中验证方法优于 <strong>HG-DAgger\</strong>*、<strong>OLAF</strong>、<strong>VLS</strong> 等基线，并显著减少所需纠正数据量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>收集语义纠正</strong>：人类在 VLA 执行失败时接管，提供纠正动作轨迹、自由文本纠正语义和纠正类型；记录干预前窗口、人类控制窗口以及恢复后的 VLA 执行窗口。</li><li><strong>语义实体 grounding</strong>：用 VLM 根据任务指令、纠正描述和视觉观察定位纠正相关实体，并用分割模型与深度图构建 3D 点集；对关键位置可用单点表示。</li><li><strong>门控代价表示</strong>：每个纠正程序由实体标签、<strong>gate term</strong>、<strong>correction term</strong> 和 <strong>task term</strong> 组成；gate 决定纠正何时生效，correction 描述应优化的时空关系，task 项保持任务进展。</li><li><strong>纠正程序合成与验证</strong>：VLM 基于实体点集轨迹提出门控代价；利用干预前窗口校准触发阈值；通过 <strong>ranking check</strong> 和 <strong>trigger check</strong> 验证，若不满足则让 VLM 判断修改 gate、correction 或二者，并迭代细化。</li><li><strong>测试时引导</strong>：在新场景中重新 grounding 相同语义实体，计算 gate score；超过阈值时采样多个候选动作块，用动力学模型预测点集变化，按预测门控代价排序并执行最低代价动作。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真实验使用 <strong>RoboCasa</strong> 基准，包含 <strong>CoffeeMugSetup、BlenderLid、StartKettle</strong> 三个任务。</li><li>仿真基座策略为 <strong>π0.5</strong>，在完整 <strong>RoboCasa</strong> 数据集上微调；每个任务收集 <strong>5–8</strong> 条纠正，方法评估 <strong>50</strong> 个 episode。</li><li>真实实验使用 <strong>DROID</strong> 硬件平台和 OpenPI 的官方 <strong>DROID π0.5 checkpoint</strong>，包含 <strong>Put Croffle、Load Coffee Pod、Shelve item</strong> 三个任务。</li><li>真实任务每个使用 <strong>3–6</strong> 条语义纠正，每个设置评估 <strong>20</strong> 次 rollout。</li><li>对比基线包括 **π0.5、HG-DAgger\*、OLAF、VLS<strong>；其中 </strong>HG-DAgger\*** 使用相同干预数据进行 LoRA 微调。</li><li>论文未明确报告模型参数量、训练 GPU/TPU 数量或总训练资源。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>仿真评估设置 <strong>L0/L1/L2</strong> 三档难度：L0 为收集纠正时的相同初始状态，L1 为同场景不同物体位姿，L2 为未见场景中的不同物体位姿。</li><li>仿真指标为<strong>零样本成功率</strong>，使用 <strong>STEP test</strong> 与 <strong>CLD</strong> 在 95% 置信水平下比较；真实实验指标为<strong>任务进度</strong>，使用 <strong>NSCORE</strong> 序贯检验。</li><li>仿真中 <strong>OopsieRecover</strong> 在 L0、L1、L2 均领先或并列最佳，并形成统计上显著分离的 top-performing 组；<strong>HG-DAgger\</strong>* 仅在 L0 提升明显，难以泛化到 L1/L2。</li><li>真实实验中，<strong>OopsieRecover</strong> 将任务进度从 <strong>35.1%</strong> 提升到 <strong>61.0%</strong>，相对次优基线提升约 <strong>74%</strong>；在每个难度级别上比 <strong>HG-DAgger\</strong>* 至少高 <strong>60%</strong>。</li><li>数据效率实验显示，<strong>OopsieRecover</strong> 仅用 <strong>8</strong> 条纠正即在 CoffeeMug 上达到 <strong>84%</strong> 成功率，而 <strong>HG-DAgger\</strong>* 使用三倍纠正仅达到 <strong>28%</strong>。</li><li>泛化实验表明，从单条“避免碰撞蒸汽手柄”纠正中学到的程序可在 <strong>10</strong> 个新场景中全部触发并 <strong>100% 防止目标失败</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2611.08449/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">VFlash: Fast, Accurate Visual Planning via Flash Primitive Decoding</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
