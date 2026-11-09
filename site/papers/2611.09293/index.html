@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MDF++: Visuo-Tactile World Action Model with End-to-end Representation Learning - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 MDF++，一种面向接触密集型操作的视触觉世界-动作模型（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络端到端联合训练。 指出现有世界-动作模型（WAMs）的两大局限：一是主要依赖视觉，触觉与力信息几乎未被利用；二是普遍使用冻结的预训练编码器（基于像素重建或自监督目标），其特征空间未必与控制任务对齐，触觉模态尤其缺乏通用预训练编码器。 核心问题是：直接用 WAM 目标微调编码器会导致特征坍缩（feature collapse）——编码器与扩散骨干相互适配，产生“易去噪但不利于控制”的隐空间。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.09293">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.09293.webp" alt="MDF++: Visuo-Tactile World Action Model with End-to-end Representation Learning" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 MDF++，一种面向接触密集型操作的视触觉世界-动作模型（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络端到端联合训练。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">MDF++: Visuo-Tactile World Action Model with End-to-end Representation Learning</h1>
+            <div class="detail-meta">2026-11-06 · <a href="http://arxiv.org/abs/2611.09293" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.09293" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.09293</span></div>
+            <p class="detail-summary">论文提出 MDF++，一种面向接触密集型操作的视触觉世界-动作模型（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络端到端联合训练。 指出现有世界-动作模型（WAMs）的两大局限：一是主要依赖视觉，触觉与力信息几乎未被利用；二是普遍使用冻结的预训练编码器（基于像素重建或自监督目标），其特征空间未必与控制任务对齐，触觉模态尤其缺乏通用预训练编码器。 核心问题是：直接用 WAM 目标微调编码器会导致特征坍缩（feature collapse）——编码器与扩散骨干相互适配，产生“易去噪但不利于控制”的隐空间。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">密歇根大学安娜堡分校机器人系（Department of Robotics, University o…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.09293/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 MDF++，一种面向接触密集型操作的视触觉世界-动作模型（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络端到端联合训练。</p>
+  <ul class="reading-intro-points"><li>论文提出 MDF++，一种面向接触密集型操作的视触觉世界-动作模型（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络端到端联合训练。</li><li>指出现有世界-动作模型（WAMs）的两大局限：一是主要依赖视觉，触觉与力信息几乎未被利用；二是普遍使用冻结的预训练编码器（基于像素重建或自监督目标），其特征空间未必与控制任务对齐，触觉模态尤其缺乏通用预训练编码器。</li><li>核心问题是：直接用 WAM 目标微调编码器会导致特征坍缩（feature collapse）——编码器与扩散骨干相互适配，产生“易去噪但不利于控制”的隐空间。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>密歇根大学安娜堡分校机器人系</strong>（Department of Robotics, University of Michigan, Ann Arbor）</li><li>作者：<strong>Zixuan Huang</strong>、<strong>Jinhao Yu</strong>、<strong>Zachary Charlick</strong>、<strong>Dmitry Berenson</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>MDF++</strong>，一种面向接触密集型操作的<strong>视触觉世界-动作模型</strong>（Visuo-Tactile World-Action Model），让观测编码器与扩散世界-动作骨干网络<strong>端到端联合训练</strong>。</li><li>指出现有世界-动作模型（WAMs）的两大局限：一是主要依赖视觉，触觉与力信息几乎未被利用；二是普遍使用<strong>冻结的预训练编码器</strong>（基于像素重建或自监督目标），其特征空间未必与控制任务对齐，触觉模态尤其缺乏通用预训练编码器。</li><li>核心问题是：直接用 WAM 目标微调编码器会导致<strong>特征坍缩</strong>（feature collapse）——编码器与扩散骨干相互适配，产生“易去噪但不利于控制”的隐空间。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>MDF++</strong>，一个基于扩散的视触觉世界-动作模型，通过<strong>跨模态预测</strong>端到端学习任务相关的多模态表征。</li><li>提出<strong>选择性梯度流</strong>（selective gradient-flow）策略：每个模态编码器只接收来自<strong>其他模态</strong>的扩散损失梯度，禁止自身重建/去噪损失的梯度回传，从而在联合训练中避免特征坍缩。</li><li>将 <strong>Multimodal Diffusion Forcing（MDF）</strong> 扩展为多任务结构化训练，均匀采样五类条件查询：策略学习、世界-动作建模、前向动力学、逆向动力学与随机掩码。</li><li>在 <strong>7 个接触密集型任务</strong>（5 个仿真 + 2 个真实穿轴任务）上验证，仿真中比冻结编码器基线高 <strong>28%</strong>、比朴素联合训练高 <strong>22%</strong>，真实场景比视频式 WAM（UWM）高 <strong>29%</strong>（摘要称最高达 <strong>50%</strong>）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>采用<strong>潜空间扩散</strong>框架：用模态专属编码器将高维观测映射为隐 token，再由扩散 Transformer 在隐空间中进行去噪与预测，避免像素级重建负担。</li><li><strong>编码器设计</strong>：RGB 与触觉图像经 <strong>ViT-Tiny/16</strong>（ImageNet-21k <code>augreg_in21k</code> 初始化）取 CLS token（192 维，后接 BatchNorm）；力、本体感觉与动作等低维流经线性投影。</li><li><strong>二维噪声矩阵</strong>：在“时间 × 模态”上独立采样扩散步 <code>K ∈ {0,…,K}^{T×M}</code>，零噪声为观测、最大噪声为掩码，使同一模型可表达策略、联合预测、前向/逆向动力学等多种条件分布。</li><li><strong>结构化查询采样</strong>：以等概率采样五类控制相关条件模式，替代原始 MDF 的纯随机掩码，使模型容量聚焦于机器人控制。</li><li><strong>选择性梯度流</strong>：对每个观测编码器 φ_o，采用掩码梯度 <code>∇φ_o L = Σ_{s≠o} ∇φ_o L_s</code>，即阻断自身流的去噪梯度，仅由跨模态预测损失更新。</li><li><strong>训练细节</strong>：对高噪声（高度损坏）token 的编码器输出做 detach；每条轨迹采样多个训练模式；编码器使用余弦学习率并早于扩散骨干退火。</li><li>骨干为 <strong>12 层 Transformer</strong>，隐藏维 512、8 个注意力头、FFN 512，采用余弦噪声调度、1000 训练步、DDIM 10 步推理、预测目标为 x₀。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>Isaac Lab Factory</strong>（改造自 <strong>Forge</strong>，加入 <strong>GelSight Mini</strong> 触觉传感器）：<strong>PegInsert</strong>、<strong>GearMesh</strong>、<strong>NutThread</strong>，每任务用 RL 专家策略采集 <strong>1,000 条演示</strong>。</li><li><strong>ManiFeel</strong> 触觉探索任务：<strong>BallSorting</strong>、<strong>ObjectSearch</strong>。</li><li><strong>真实任务</strong>：<strong>Bolt Screwing</strong>（300 条演示）与 <strong>Nut Mating</strong>（255 条演示），使用改造版 <strong>UMI</strong> 搭配 GelSight 采集；通过残差校正将跟踪误差从约 <strong>4 mm 降到 1.2 mm</strong>。</li><li><strong>硬件平台</strong>：<strong>Franka Research 3</strong> 机械臂 + <strong>WSG-50</strong> 夹爪 + <strong>GelSight Mini</strong> 触觉传感器（仅用右指图像）+ 腕部 <strong>RealSense 405</strong> 相机。</li><li><strong>模型规模</strong>：ViT-Tiny/16 编码器（输出 192 维）+ 12 层/512 维扩散 Transformer；训练 <strong>200,000 步</strong>、batch size 64、bf16 混合精度、AdamW、权重衰减 1e-4、梯度裁剪 1.0。</li><li>论文未明确说明 GPU/TPU 型号与数量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真评估</strong>：5 个任务，每个方法 <strong>150 次试验</strong>的成功率；<strong>真实评估</strong>：每个策略-任务对 <strong>20 次试验</strong>，采用分阶段打分（对齐 60 分、旋转 180° 75 分、啮合 95 分、释放并固定 100 分）。</li><li><strong>主要指标</strong>：任务成功率、分阶段得分、表征诊断（特征方差、有效秩、线性动作探针 MSE）。</li><li><strong>仿真结果</strong>：<strong>MDF++</strong> 平均成功率 <strong>86.9%</strong>，优于 MDF（adapted）<strong>68.4%</strong>、MDF + selective E2E <strong>71.5%</strong>、MDF++（naive grad）<strong>64.1%</strong>、SIGReg <strong>58.1%</strong>、frozen-ViT <strong>58.7%</strong>、frozen-Sparsh <strong>58.9%</strong>、policy-only <strong>78.9%</strong>、UWM <strong>74.2%</strong>、DP w/ tactile <strong>68.7%</strong>。</li><li><strong>真实结果</strong>：MDF++ 在 Bolt Screwing 达 <strong>80%（16/20）</strong>、Nut Mating 达 <strong>40%（8/20）</strong>；UWM 为 <strong>50% / 25%</strong>，frozen-ViT 为 <strong>30% / 15%</strong>。</li><li><strong>表征分析</strong>：MDF++ 的 RGB 动作探针 MSE 仅 <strong>0.043</strong>（ViT 0.163、naive E2E 0.520、仅自去噪 0.574），触觉有效秩 <strong>33.34</strong>（naive E2E 仅 5.99），说明选择性跨模态监督既缓解坍缩又提升动作线性可分性。</li><li><strong>消融</strong>：自去噪梯度缩放系数 λ_self = 0/0.1/0.5/1 对应成功率 <strong>86.9% / 80.0% / 74.9% / 64.1%</strong>，验证抑制自身去噪梯度的必要性。</li><li><strong>局限性</strong>：力信号采样频率较低、多模态损失权重需手工调节、阻断自身去噪梯度可能限制隐空间的扩散性。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.09355/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">HiMEM: Hippocampus-Inspired Memory Consolidation, Pruning, and Composition for Vision-Language-Action Models in 3D Scenes</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.09124/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Toward the Era of Agentic Embodied Intelligence</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

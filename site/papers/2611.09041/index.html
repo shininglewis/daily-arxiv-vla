@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DobotTrack: Target-Grounded Vision-Language-Action Learning for Embodied Person Tracking - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 DobotTrack，一个面向具身人物跟踪（embodied person tracking）的目标锚定视觉-语言-动作（VLA）框架，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。 核心要解决的问题有两个：一是如何让跟踪策略显式地表征被指代目标，而不是仅靠轨迹模仿；二是如何在有限算力下高效压缩历史视觉观测，同时保留目标可辨识的外观线索与场景上下文。 论文还构建了一个四足机器人采集的真实世界人物跟踪数据集，并提供从掩码自动派生边界框与视觉-空间标签的标注流水线。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.09041">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.09041.webp" alt="DobotTrack: Target-Grounded Vision-Language-Action Learning for Embodied Person Tracking" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 DobotTrack，一个面向具身人物跟踪（embodied person tracking）的目标锚定视觉-语言-动作（VLA）框架，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DobotTrack: Target-Grounded Vision-Language-Action Learning for Embodied Person Tracking</h1>
+            <div class="detail-meta">2026-11-06 · <a href="http://arxiv.org/abs/2611.09041" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.09041" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.09041</span></div>
+            <p class="detail-summary">论文提出 DobotTrack，一个面向具身人物跟踪（embodied person tracking）的目标锚定视觉-语言-动作（VLA）框架，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。 核心要解决的问题有两个：一是如何让跟踪策略显式地表征被指代目标，而不是仅靠轨迹模仿；二是如何在有限算力下高效压缩历史视觉观测，同时保留目标可辨识的外观线索与场景上下文。 论文还构建了一个四足机器人采集的真实世界人物跟踪数据集，并提供从掩码自动派生边界框与视觉-空间标签的标注流水线。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">佛山大学（Foshan University）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.09041/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 DobotTrack，一个面向具身人物跟踪（embodied person tracking）的目标锚定视觉-语言-动作（VLA）框架，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。</p>
+  <ul class="reading-intro-points"><li>论文提出 DobotTrack，一个面向具身人物跟踪（embodied person tracking）的目标锚定视觉-语言-动作（VLA）框架，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。</li><li>核心要解决的问题有两个：一是如何让跟踪策略显式地表征被指代目标，而不是仅靠轨迹模仿；二是如何在有限算力下高效压缩历史视觉观测，同时保留目标可辨识的外观线索与场景上下文。</li><li>论文还构建了一个四足机器人采集的真实世界人物跟踪数据集，并提供从掩码自动派生边界框与视觉-空间标签的标注流水线。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>佛山大学</strong>（Foshan University）</li><li><strong>清华大学</strong>（Tsinghua University）</li><li><strong>越疆机器人</strong>（Dobot Robotics）</li><li><strong>香港大学</strong>（The University of Hong Kong）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>DobotTrack</strong>，一个面向具身人物跟踪（embodied person tracking）的<strong>目标锚定视觉-语言-动作（VLA）框架</strong>，让移动智能体根据外观描述指令在自我中心视角下持续锁定并跟随指定行人。</li><li>核心要解决的问题有两个：一是如何让跟踪策略显式地表征被指代目标，而不是仅靠轨迹模仿；二是如何在有限算力下高效压缩历史视觉观测，同时保留目标可辨识的外观线索与场景上下文。</li><li>论文还构建了一个四足机器人采集的真实世界人物跟踪数据集，并提供从掩码自动派生边界框与视觉-空间标签的标注流水线。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DobotTrack</strong> 目标锚定跟踪框架，并系统比较了五种辅助任务：人物分割、边界框定位、视觉-空间分类（<strong>VSC</strong>）、未来 DINO 特征预测、未来帧预测；最终采用互补的<strong>掩码 + 边界框</strong>监督。</li><li>提出 <strong>Q-identity</strong>，一个以目标为条件的历史视觉压缩模块，利用目标定位预测在紧凑历史 token 中保留身份判别性外观特征与空间线索。</li><li>构建四足机器人真实跟踪数据集，包含 <strong>126 个跟踪 episode</strong>、<strong>596,323 帧带掩码标注</strong>，并设计从掩码自动推导边界框与结构化 VSC 标签的标注流程，无需额外人工标注。</li><li>在 <strong>EVT-Bench</strong> 上，仅 <strong>0.8B</strong> 参数的模型平均成功率达 <strong>77.9%</strong>，比 <strong>OmTrackVLA</strong> 高出 <strong>16.9 个百分点</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>主干基于 <strong>InternVL3</strong> 视觉-语言模型；视觉编码器与多模态投影器将每帧 RGB 观测映射为 <strong>256</strong> 个视觉 token，语言模型融合指令与时间序列做时序推理。</li><li>输入为 <strong>H=8</strong> 帧、采样间隔 <strong>Δ=0.2s</strong>（5Hz）的 RGB 历史窗口，输出 <strong>P=8</strong> 个 10Hz 的未来自我中心路点（0.8s 预测视野），每个路点为平面位姿 (x, y, θ)。</li><li>三类任务头：分割头结合 mask token 隐状态与当前帧稠密特征，经 <strong>SAM2</strong> 掩码解码器输出前景概率图；框头回归归一化边界框 (c_x, c_y, w, h) 与可见性；动作头回归路点。</li><li>因果序列中 mask token 与 box token 排在路点 token 之前，使轨迹预测能通过因果注意力关注目标监督表征；一次前向即可同时输出掩码、框、可见性与轨迹。</li><li><strong>Q-identity</strong> 将每帧历史压缩为 <strong>N_q=16</strong> 个 token：先用目标区域特征与可学习查询做目标条件自注意力，再与全图特征做交叉注意力，经 3 个注意力块输出；窗口总视觉 token 由 <strong>2048</strong> 降至 <strong>368</strong>（7×16+256）。</li><li>训练时用扰动后的真值框确定目标区域（扰动概率 0.8），并以 0.3 概率压缩当前帧；推理时用缓存的框与可见性预测选择目标区域，可见性低于 0.5 时回退到无目标 token。</li><li>总损失为轨迹损失（加权 MSE，权重 x:y:θ = 1:3:2）、分割损失（BCE + Dice + IoU-score + 物体存在性）与框损失（SmoothL1 + GIoU + 可见性 BCE）之和，λ_seg=0.001、λ_box=0.01。</li><li>视觉编码器冻结，联合优化多模态投影器、语言模型、Q-identity 与各任务头。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据</strong>：基于 <strong>EVT-Bench</strong>（Habitat 3.0 + HM3D/Matterport3D 室内场景），约 <strong>180 万</strong>序列样本，STT:DT:AT = 1:2:1。</li><li><strong>真实数据</strong>：四足机器人采集，约 <strong>10.2 小时</strong>跟踪数据、<strong>596,669</strong> 帧原始 RGB，经位姿对齐与轨迹预处理后得到 <strong>565,994</strong> 个训练样本；分辨率 <strong>960×540</strong>；含 <strong>33</strong> 个目标外观档案（24 女 / 9 男）。</li><li>标注使用 <strong>Qwen3.5</strong> 定位目标生成框提示，再由 <strong>SAM3</strong> 生成掩码，最后人工校验修正。</li><li><strong>模型规模</strong>：0.8B 参数（对比基线含 1B、3B、4B、7B、8B 等模型）。</li><li><strong>训练资源</strong>：<strong>8 块 NVIDIA B300 GPU</strong>，全局 batch size 256（每卡 32），约 <strong>28,000</strong> 步优化，AdamW + BF16 混合精度，学习率 2e-5（语言模型与 SAM2 解码器）/ 4e-5（其余），100 步 warmup + 余弦退火。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评测基准为 <strong>EVT-Bench</strong> 的 <strong>STT</strong>（单人跟踪）、<strong>DT</strong>（干扰跟踪）、<strong>AT</strong>（歧义跟踪）三种设置；指标为成功率 <strong>SR</strong>、跟踪率 <strong>TR</strong>、碰撞率 <strong>CR</strong>。</li><li><strong>主要结果</strong>：STT 上 SR/TR/CR = <strong>90.2 / 92.3 / 3.6</strong>；DT 上 <strong>72.5 / 83.3 / 8.3</strong>；AT 上 <strong>70.9 / 85.5 / 6.6</strong>；平均成功率 <strong>77.9%</strong>，较 OmTrackVLA 提升 16.9 个百分点，且在仅 0.8B 参数下优于多个 4B/7B 模型。</li><li><strong>与纯轨迹基线对比</strong>：基线（0.8B，仅轨迹监督）DT 上 SR 为 55.9，加入框与掩码监督后提升至 72.5，AT 上从 52.4 提升至 70.9。</li><li><strong>辅助任务消融</strong>（DT 设置）：仅轨迹 SR 55.9；+Box 59.6；+VSC 59.6；+Mask 61.3；<strong>+Box & Mask 63.7</strong>（最优）；+未来帧预测 60.9；+未来 DINO 特征预测 58.9。</li><li><strong>目标条件消融</strong>：掩码监督下不加目标条件压缩 STT/DT/AT 的 SR 为 79.2/55.3/57.7，加目标条件后提升至 84.8/67.6/65.6；掩码+框联合并启用目标条件达 <strong>87.6/69.0/67.8</strong>。</li><li><strong>效率分析</strong>：在 <strong>Jetson Orin Nano</strong>（FP16、batch=1，含视觉编码器）上，token 数从 2048 降到 256 可使推理延迟下降约 <strong>52%</strong>，为端侧部署提供依据。</li><li>论文还报告了真实世界场景的定性评估（室内单人、室内遮挡、室外开阔、复杂街道）以及掩码/框监督权重与 token 预算（256-token 池化、16-token 池化、16-token Q-identity）的对比实验。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.09124/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Toward the Era of Agentic Embodied Intelligence</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.08987/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">VLA Handover: Failure-Prediction-Based Switching from On-Robot to Server VLA Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

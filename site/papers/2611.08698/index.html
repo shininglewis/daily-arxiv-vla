@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VICTR: Value-Informed In-Context Learning for Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 VICTR，一种面向 视觉-语言-动作模型（VLA） 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。 核心问题是：现有基于检索的上下文学习方法使用视觉相似度选择演示块，但视觉相似的状态可能出现在不同执行阶段，导致检索到的上下文与当前动作需求不匹配。 论文将进度估计本身建模为上下文学习问题，提出 In-Context Value Function Estimator（IC-VFE），以参考演示视频为条件估计当前状态的任务进度，并用于检索和指导动作生成。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.08698">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.08698.webp" alt="VICTR: Value-Informed In-Context Learning for Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 VICTR，一种面向 视觉-语言-动作模型（VLA） 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">VICTR: Value-Informed In-Context Learning for Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-11-05 · <a href="http://arxiv.org/abs/2611.08698" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.08698" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.08698</span></div>
+            <p class="detail-summary">论文提出 VICTR，一种面向 视觉-语言-动作模型（VLA） 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。 核心问题是：现有基于检索的上下文学习方法使用视觉相似度选择演示块，但视觉相似的状态可能出现在不同执行阶段，导致检索到的上下文与当前动作需求不匹配。 论文将进度估计本身建模为上下文学习问题，提出 In-Context Value Function Estimator（IC-VFE），以参考演示视频为条件估计当前状态的任务进度，并用于检索和指导动作生成。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">纽约大学（New York University, NYU），作者包括 Luca Macesanu、T…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.08698/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 VICTR，一种面向 视觉-语言-动作模型（VLA） 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。</p>
+  <ul class="reading-intro-points"><li>论文提出 VICTR，一种面向 视觉-语言-动作模型（VLA） 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。</li><li>核心问题是：现有基于检索的上下文学习方法使用视觉相似度选择演示块，但视觉相似的状态可能出现在不同执行阶段，导致检索到的上下文与当前动作需求不匹配。</li><li>论文将进度估计本身建模为上下文学习问题，提出 In-Context Value Function Estimator（IC-VFE），以参考演示视频为条件估计当前状态的任务进度，并用于检索和指导动作生成。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>纽约大学（New York University, NYU）</strong>，作者包括 Luca Macesanu、Tianluo Zhang、Aditya Patil、Archit Sharma、Kevin Angers、Christopher M. Clark、Chen Feng、Juexiao Zhang。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>VICTR</strong>，一种面向 <strong>视觉-语言-动作模型（VLA）</strong> 的上下文学习框架，通过估计任务相对进度来检索演示片段，而不是仅依赖视觉相似度。</li><li>核心问题是：现有基于检索的上下文学习方法使用视觉相似度选择演示块，但视觉相似的状态可能出现在不同执行阶段，导致检索到的上下文与当前动作需求不匹配。</li><li>论文将进度估计本身建模为上下文学习问题，提出 <strong>In-Context Value Function Estimator（IC-VFE）</strong>，以参考演示视频为条件估计当前状态的任务进度，并用于检索和指导动作生成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>IC-VFE</strong>：以参考演示视频、语言指令和当前观测为输入，估计任务相对进度，无需任务特定微调即可适应未见任务。</li><li>提出 <strong>VICTR</strong> 框架：基于进度对齐检索演示块，并将其作为上下文提供给 <strong>π0.5</strong> 策略进行动作生成。</li><li>在真实机器人上构建 <strong>8 个域内任务和 8 个域外任务</strong> 的评估体系，验证进度信息检索对域外泛化的有效性。</li><li>实验表明，在域外任务上，VICTR 将微调 <strong>π0.5</strong> 基线的成功率从 <strong>6.2%</strong> 提升到 <strong>23.8%</strong>，任务进度率从 <strong>28.9%</strong> 提升到 <strong>55.5%</strong>。</li><li>IC-VFE 在与人工标注进度曲线的一致性上优于现有在线价值估计器，且该优势能传递到下游控制性能。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>IC-VFE</strong> 使用冻结的 <strong>Gemma 3 4B</strong> 视觉编码器处理当前观测和参考演示，使用 <strong>Gemma 3 270M</strong> 解码器进行进度预测。</li><li>参考演示的每个视角被压缩为 <strong>16 个 summary tokens</strong>，当前观测保留 <strong>256 个 detail tokens</strong> 并额外计算 <strong>16 个 summary tokens</strong>，以兼顾细节与上下文长度。</li><li>解码器采用混合注意力：大多数层进行块内双向注意力，在 <strong>第 6、12、18 层</strong> 引入 block-causal attention 以聚合演示中的时间信息。</li><li>IC-VFE 输出 <strong>201 个离散进度 bin</strong> 的概率分布，再转换为 <strong>[0,1]</strong> 范围内的连续进度估计。</li><li><strong>VICTR</strong> 根据当前估计进度与候选演示块进度的距离检索上下文块，并将其与当前观测、语言指令一起输入 <strong>π0.5</strong> 策略。</li><li><strong>IC-VLA</strong> 在 <strong>π0.5</strong> 基础上微调，使用 FAST tokenized 动作块，并保留动作块最低 <strong>20/30</strong> 个离散余弦变换频率 bin 以缩短上下文。</li><li>训练 IC-VFE 时使用 <strong>Robo-Dopamine</strong> 生成的伪进度标签作为监督，采用分类交叉熵损失；部署时模型权重保持固定，不进行测试时参数更新。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用自采真实机器人数据集：<strong>28 个任务、1,180 个 episode、总计 7.5 小时</strong>，其中约 <strong>7 小时用于训练</strong>，<strong>30 分钟演示</strong>构成 16 个评估任务的演示池。</li><li>评估集包含 <strong>8 个域内任务</strong> 和 <strong>8 个域外任务</strong>；域外任务涵盖新物体替换、已学技能组合和语义相似但未见任务。</li><li>机器人平台为 <strong>YOR 双臂机器人</strong>，配备头部 <strong>ZED 相机</strong> 和两个 <strong>7-DoF AgileX Piper 机械臂</strong> 的鱼眼腕部相机。</li><li>本体状态为 <strong>18 维</strong>，动作空间为 <strong>20 维</strong>，动作块长度 <strong>H=30</strong>，数据采集控制频率为 <strong>30 Hz</strong>。</li><li>基础策略为 <strong>π0.5</strong>；IC-VFE 视觉编码器为 <strong>Gemma 3 4B</strong>，解码器为 <strong>Gemma 3 270M（18 层）</strong>。</li><li>训练资源包括 <strong>NYU IT 高性能计算资源</strong>，以及通过 <strong>NVIDIA Academic Grant Program</strong> 获得的 <strong>NVIDIA RTX 6000 Ada GPU</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估在真实机器人上进行，覆盖 <strong>16 个任务</strong>，每个任务执行 <strong>10 次 rollout</strong>。</li><li>主要指标为 <strong>任务成功率</strong> 和 <strong>任务进度率</strong>；进度率基于预定义里程碑给予部分完成信用。</li><li>价值估计质量使用 <strong>Kendall τ_b</strong> 和 <strong>Pearson r</strong> 衡量，与人工标注进度曲线比较。</li><li>域外任务上，微调 <strong>π0.5</strong> 为 <strong>6.2%</strong> 成功率、<strong>28.9%</strong> 进度率；<strong>RICL-π0.5,nointerp</strong> 为 <strong>15.0%</strong> 成功率、<strong>42.1%</strong> 进度率；<strong>VICTR</strong> 达到 <strong>23.8%</strong> 成功率、<strong>55.5%</strong> 进度率。</li><li>融合视觉相似度的 <strong>VICTR+vision</strong> 达到 <strong>21.2%</strong> 成功率、<strong>47.8%</strong> 进度率，未超过仅使用进度检索的 VICTR。</li><li>域内任务上，各检索方法进度率为 <strong>87.5%–90%</strong>，高于 <strong>π0.5</strong> 的 <strong>82.2%</strong>，成功率整体较高。</li><li>在 VFE 质量对比中，<strong>IC-VFE</strong> 在域内取得 <strong>Kendall τ_b=0.51、Pearson r=0.62</strong>，在域外取得 <strong>0.52、0.65</strong>，优于 RECAP、Robometer 等在线价值模型。</li><li>部署时使用 IC-VFE 的 VICTR 在域外达到 <strong>62.7%</strong> 进度率，而最佳替代价值估计器仅为 <strong>29.2%</strong>。</li><li>演示池消融显示性能随演示数量增加而提升，约在 <strong>5 个演示</strong> 附近趋于饱和；训练与部署使用相同检索信号时性能最佳。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.08827/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">ActPrune: Action-Grounded Visual Token Pruning for Efficient Vision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.08577/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Meituan-Robotics-0: A Vision-Language-Action Foundation Model for Desktop Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

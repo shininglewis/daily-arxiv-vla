@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRISM: Primitive Routing via In-context Skill Mixing for Retentive VLA Adaptation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 Vision-Language-Action（VLA）模型在机器人操作中的技能保留（skill retention）与长程组合（long-horizon composition）问题。 标准做法通常将新任务吸收到共享参数中，导致已学技能难以定位、后续训练干扰旧技能，并在组合任务中无法按阶段调用已掌握的子技能。 作者发现逐技能 LoRA 更新并非无序分布，而是占据可区分、可复现的低维子空间；组合任务 LoRA 约 56% 的 Frobenius 能量落在该子空间中，而随机旋转控制接近 0%。 基于此提出 PRISM，将可复用技能表示为参数级“原语”，通过技能原语库、逐 chunk 路由器和确定性动作标签 oracle 实现技能保留与组合。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.08917">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.08917.webp" alt="PRISM: Primitive Routing via In-context Skill Mixing for Retentive VLA Adaptation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 Vision-Language-Action（VLA）模型在机器人操作中的技能保留（skill retention）与长程组合（long-horizon composition）问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">PRISM: Primitive Routing via In-context Skill Mixing for Retentive VLA Adaptation</h1>
+            <div class="detail-meta">2026-11-06 · <a href="http://arxiv.org/abs/2611.08917" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.08917" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.08917</span></div>
+            <p class="detail-summary">论文研究 Vision-Language-Action（VLA）模型在机器人操作中的技能保留（skill retention）与长程组合（long-horizon composition）问题。 标准做法通常将新任务吸收到共享参数中，导致已学技能难以定位、后续训练干扰旧技能，并在组合任务中无法按阶段调用已掌握的子技能。 作者发现逐技能 LoRA 更新并非无序分布，而是占据可区分、可复现的低维子空间；组合任务 LoRA 约 56% 的 Frobenius 能量落在该子空间中，而随机旋转控制接近 0%。 基于此提出 PRISM，将可复用技能表示为参数级“原语”，通过技能原语库、逐 chunk 路由器和确定性动作标签 oracle 实现技能保留与组合。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Illinois Chicago（伊利诺伊大学芝加哥分校）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.08917/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 Vision-Language-Action（VLA）模型在机器人操作中的技能保留（skill retention）与长程组合（long-horizon composition）问题。</p>
+  <ul class="reading-intro-points"><li>论文研究 Vision-Language-Action（VLA）模型在机器人操作中的技能保留（skill retention）与长程组合（long-horizon composition）问题。</li><li>标准做法通常将新任务吸收到共享参数中，导致已学技能难以定位、后续训练干扰旧技能，并在组合任务中无法按阶段调用已掌握的子技能。</li><li>作者发现逐技能 LoRA 更新并非无序分布，而是占据可区分、可复现的低维子空间；组合任务 LoRA 约 56% 的 Frobenius 能量落在该子空间中，而随机旋转控制接近 0%。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Illinois Chicago</strong>（伊利诺伊大学芝加哥分校）</li><li>作者：<strong>Jiachen Tao</strong>、<strong>Gengyu Zhang</strong>、<strong>Haoxuan Wang</strong>、<strong>Bing Liu</strong>、<strong>Yan Yan</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>Vision-Language-Action（VLA）模型</strong>在机器人操作中的<strong>技能保留（skill retention）</strong>与<strong>长程组合（long-horizon composition）</strong>问题。</li><li>标准做法通常将新任务吸收到共享参数中，导致已学技能难以定位、后续训练干扰旧技能，并在组合任务中无法按阶段调用已掌握的子技能。</li><li>作者发现逐技能 LoRA 更新并非无序分布，而是占据可区分、可复现的低维子空间；组合任务 LoRA 约 <strong>56%</strong> 的 Frobenius 能量落在该子空间中，而随机旋转控制接近 <strong>0%</strong>。</li><li>基于此提出 <strong>PRISM</strong>，将可复用技能表示为参数级“原语”，通过技能原语库、逐 chunk 路由器和确定性动作标签 oracle 实现技能保留与组合。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>结构性发现</strong>：逐技能低秩更新形成近似 <strong>N 维、语义聚类</strong>的子空间，且可跨独立训练 checkpoint 复现；组合任务更新显著对齐该子空间。</li><li><strong>框架贡献</strong>：提出 <strong>PRISM</strong>，包含技能原语库、技能特定残差适配器、VLM prefix 条件路由器，以及确定性动作派生标签器。</li><li><strong>训练机制</strong>：组合训练阶段冻结每个技能原语，仅更新视觉编码器、语言 LoRA、技能残差、路由器、动作投影和时间 MLP，从结构上避免“原语坍缩”。</li><li><strong>实验贡献</strong>：在 <strong>RoboCasa365</strong> 上同时提升原子技能成功率和长程组合任务成功率，并在 <strong>AgileX PIPER</strong> 真实机器人上验证。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>π0.5</strong> 作为 VLA 主干，包含视觉编码器、语言模型和小型动作专家；动作专家输出 <strong>H=10</strong> 的动作 chunk，每次执行 <strong>5</strong> 步后重新规划。</li><li><strong>技能原语库</strong>：每个原子技能学习一个秩为 <strong>32</strong> 的动作专家 LoRA 原语 <strong>P_i = B_i A_i</strong>，各原语参数块互不共享，并在第一阶段后冻结。</li><li><strong>技能残差</strong>：组合训练时为每个技能增加秩为 <strong>10</strong> 的残差 <strong>R_i = D_i C_i</strong>，初始化为零，从而初始不改变原语分支输出。</li><li><strong>路由器</strong>：在每个动作 chunk 边界读取 VLM prefix 表示 <strong>h_t</strong>，经 LayerNorm 和两层 MLP 后 softmax，输出对原语–残差分支的混合权重 <strong>α(t)</strong>。</li><li><strong>标签 oracle</strong>：使用任务身份和演示动作中的夹爪开合事件生成逐帧技能标签，为路由器提供逐 chunk 交叉熵监督。</li><li><strong>激活空间组合</strong>：注意力投影中混合 <strong>P_i x + R_i x</strong>；FFN 中先计算每个技能分支的完整 FFN 输出再混合，避免不同 LoRA 因子相乘产生跨技能项。</li><li><strong>两阶段训练</strong>：第一阶段用原子演示和 one-hot 路由学习原语；第二阶段冻结原语，在组合演示与原子 replay 上训练残差、路由器和共享适配模块，损失为流匹配损失加 <strong>0.05 × 路由交叉熵</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真数据集：<strong>RoboCasa365</strong>。</li><li>原子数据：<strong>3,016</strong> 条人类演示，覆盖 <strong>28</strong> 个任务；包括 Pick & Place <strong>18</strong> 任务/<strong>1,939</strong> 条、Turn Lever <strong>3</strong> 任务/<strong>322</strong> 条、Close <strong>7</strong> 任务/<strong>755</strong> 条。</li><li>组合数据：<strong>415</strong> 条演示，覆盖 <strong>LoadDishwasher、SnackSorting、ThawInSink、WashLettuce</strong> 四个组合任务。</li><li>第二阶段加入每个原子任务 <strong>20</strong> 条 replay，共 <strong>560</strong> 条，总计 <strong>975</strong> 个 episode、<strong>454,758</strong> 帧。</li><li>真实机器人：<strong>AgileX PIPER 6-DoF</strong> 机械臂，每个任务采集 <strong>20</strong> 条遥操作演示，每个任务评估 <strong>20</strong> 次。</li><li>模型规模、总参数量及 GPU/TPU 训练资源在提供的 HTML 原文中未明确给出。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>仿真基准为 <strong>RoboCasa365</strong>；原子成功率为 <strong>28</strong> 个原子任务的宏平均，每任务 <strong>20</strong> 次试验；组合成功率为 <strong>4</strong> 个组合任务的宏平均，每任务 <strong>100</strong> 次试验。</li><li><strong>PRISM</strong> 达到 <strong>56.43%</strong> 原子成功率与 <strong>20.00%</strong> 组合成功率。</li><li>标准 <strong>π0.5-LoRA</strong> 两阶段微调为 <strong>17.86%</strong> 原子成功率与 <strong>17.50%</strong> 组合成功率；PRISM 分别提升 <strong>38.57</strong> 和 <strong>2.50</strong> 个百分点。</li><li>相比带 replay 的 LoRA 基线（<strong>49.82%</strong> 原子、<strong>10.25%</strong> 组合），PRISM 分别提升 <strong>6.61</strong> 和 <strong>9.75</strong> 个百分点。</li><li>标准两阶段 LoRA 使原子成功率从 <strong>48.04%</strong> 降至 <strong>17.86%</strong>；PRISM 则从第一阶段 <strong>50.71%</strong> 提升至组合训练后的 <strong>56.43%</strong>，同时原语参数保持冻结。</li><li>消融结果：运动学 oracle <strong>20.00%</strong>，优于 MLP oracle <strong>13.75%</strong> 和 Qwen2.5-VL oracle <strong>11.25%</strong>；VLM prefix 路由 <strong>20.00%</strong>，优于仅视觉 <strong>10.25%</strong> 和仅状态 <strong>7.50%</strong>；激活空间软组合 <strong>20.00%</strong>，优于硬 one-hot <strong>10.50%</strong>、参数空间软混合 <strong>15.50%</strong> 和动作空间软混合 <strong>13.50%</strong>。</li><li>真实机器人实验在 <strong>AgileX PIPER</strong> 上验证了组合任务 rollout；但提供的 HTML 原文在真实机器人结果表处被截断，具体数值未能完整获取。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.08987/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA Handover: Failure-Prediction-Based Switching from On-Robot to Server VLA Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.08895/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Localizing and Editing the Goal Representation of a Vision-Language-Action Model</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

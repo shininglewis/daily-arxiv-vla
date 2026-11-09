@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toward the Era of Agentic Embodied Intelligence - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 A²-MEAS，一个面向具身智能的多智能体框架，核心思想是“以代码作为扩展接口（code as a scaling interface）”，把基础模型的推理能力与专用动作策略连接起来 论文要解决的问题是：机器人在长程活动中不仅要选择看似合理的下一步动作，还要在失败后从物理状态出发进行有效纠错与恢复，而这无法仅靠语言层面的重规划完成 另一目标是在模型之外配套高效的训练与评测基础设施，使长程基准的全量测试能压缩到可日常迭代的周期内" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.09124">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.09124.webp" alt="Toward the Era of Agentic Embodied Intelligence" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 A²-MEAS，一个面向具身智能的多智能体框架，核心思想是“以代码作为扩展接口（code as a scaling interface）”，把基础模型的推理能力与专用动作策略连接起来</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Toward the Era of Agentic Embodied Intelligence</h1>
+            <div class="detail-meta">2026-11-06 · <a href="http://arxiv.org/abs/2611.09124" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.09124" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.09124</span></div>
+            <p class="detail-summary">论文提出 A²-MEAS，一个面向具身智能的多智能体框架，核心思想是“以代码作为扩展接口（code as a scaling interface）”，把基础模型的推理能力与专用动作策略连接起来 论文要解决的问题是：机器人在长程活动中不仅要选择看似合理的下一步动作，还要在失败后从物理状态出发进行有效纠错与恢复，而这无法仅靠语言层面的重规划完成 另一目标是在模型之外配套高效的训练与评测基础设施，使长程基准的全量测试能压缩到可日常迭代的周期内</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文 HTML 原文为截断版本，作者名单未完整给出；但根据论文公开代码库链接中的署名 AutoLab-…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.09124/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 A²-MEAS，一个面向具身智能的多智能体框架，核心思想是“以代码作为扩展接口（code as a scaling interface）”，把基础模型的推理能力与专用动作策略连接起来</p>
+  <ul class="reading-intro-points"><li>论文提出 A²-MEAS，一个面向具身智能的多智能体框架，核心思想是“以代码作为扩展接口（code as a scaling interface）”，把基础模型的推理能力与专用动作策略连接起来</li><li>论文要解决的问题是：机器人在长程活动中不仅要选择看似合理的下一步动作，还要在失败后从物理状态出发进行有效纠错与恢复，而这无法仅靠语言层面的重规划完成</li><li>另一目标是在模型之外配套高效的训练与评测基础设施，使长程基准的全量测试能压缩到可日常迭代的周期内</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文 HTML 原文为截断版本，作者名单未完整给出；但根据论文公开代码库链接中的署名 <strong>AutoLab-SAI-SJTU</strong>，可以推断这项工作的主要完成单位是 <strong>上海交通大学人工智能学院（SJTU School of Artificial Intelligence）AutoLab 团队</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>A²-MEAS</strong>，一个面向具身智能的多智能体框架，核心思想是“<strong>以代码作为扩展接口（code as a scaling interface）</strong>”，把基础模型的推理能力与专用动作策略连接起来</li><li>论文要解决的问题是：机器人在长程活动中不仅要选择看似合理的下一步动作，还要在失败后从物理状态出发进行有效纠错与恢复，而这无法仅靠语言层面的重规划完成</li><li>另一目标是在模型之外配套高效的训练与评测基础设施，使长程基准的全量测试能压缩到可日常迭代的周期内</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>A²-MEAS</strong> 框架及其 code 接口：用学习的“纠错码”把 MetaBrain 生成的纠正指令、可验证的空间证据、已执行历史与基础动作提案统一编码，从而在<strong>推理时不需要更新任何参数</strong>即可调制动作生成</li><li>提出基础动作模型 <strong>A²-WLA</strong>（运动感知历史编码 + 多视角潜世界模型 + 动作专家），验证了仅靠简单架构配合动作预训练与任务特化，就可在长程任务上取得强性能</li><li>在 <strong>BEHAVIOR 2026</strong> 公开集上完整系统取得 <strong>0.6411 Q-score / 45.40% 任务完成率</strong>，在 <strong>RoboTwin 2.0</strong> 上达 <strong>93.98%（完整系统 95.05%）</strong>，真机 12 项桌面任务平均成功率达 <strong>57.92%</strong>（π0.5 为 26.67%）</li><li>提供高效基础设施：训练吞吐 <strong>427.1 样本/秒</strong>（约 <strong>4.03×</strong> π0.5 参考实现的吞吐量），1000 回合评测仅需 <strong>18.1 小时</strong>（相对线性外推的 8 卡朴素基线约 <strong>8.8×</strong> 加速）</li><li>将开源系统代码、模型权重、训练脚本与基础设施：<code>https://github.com/AutoLab-SAI-SJTU/A2MEAS</code></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>三层智能体协作</strong>：<strong>MetaBrain</strong>（基于 <strong>Qwen3.8-27B</strong> 的视觉语言协调器）负责维护任务目标，判断执行是否正常，并输出恢复指令；诊断智能体（感知定位、时空跟踪、交互与可行性评估）提供带来源与时戳的证据；<strong>A²-WLA</strong> 负责连续控制，三者共享统一的执行记录（execution record）</li><li><strong>纠错码构造</strong>：条件编码器 $c_t = E_\phi(u_t, G_t, R_t, \hat{A}^{base}_t)$ 融合恢复指令、验证后的空间证据、相关执行历史与一次未纠错的基础提案；同一句语言指令在不同证据与历史下会得到不同的纠正码</li><li><strong>残差适配器注入</strong>：在动作专家 18 层中的第 9 层之后（零基索引 8）注入 $\alpha \odot C_\phi(h_\tau, c_t)$，逐流积分步重算隐藏态残差，使同一动作块内不同时间位置可施加不同修正；输出投影零初始化、$\alpha$ 初始 0.1，瓶颈宽度 256</li><li><strong>A²-WLA 架构</strong>：2B <strong>Qwen3-VL</strong> 骨干 + 运动感知历史编码器（每相机 5 帧历史 + 当前帧，配对差分生成时序特征）+ 多视角潜世界模型（冻结视觉编码器、逆模型、未来特征预测器）+ 约 300M 参数、18 层 Gemma 风格动作专家，采用条件流匹配，10 步积分生成 50 步动作块、最多执行 32 步，另设相位进度预测头</li><li><strong>训练流程</strong>：基础策略三阶段（世界模型预训练 → 视觉-语言-具身预训练 → 联合策略优化），纠错学习为独立第四阶段，<strong>冻结基础参数、只训练 <100M 的纠错分支</strong></li><li><strong>纠错监督离线挖掘</strong>：在示教状态上让冻结策略生成候选块，与专家后续动作对齐比较，在技能切换、接触前接近、夹爪动作边界等关键步保留偏差超阈值的窗口，总量上限为 1950 小时语料的 <strong>2%（约 39 小时）</strong></li><li><strong>闭环运行时</strong>：检测异常后暂停待执行控制、保存状态与历史，按需补充视角与证据，派发前校验证据时效性、关节限位与避障；每次异常最多 2 次补拍视角、3 次物理重试、总时长 60 秒</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>BEHAVIOR 2026</strong>：官方语料 <strong>20,000 条遥操作示教、约 1,950 小时</strong>，覆盖 <strong>100 个家务任务、7 个场景</strong>，平均轨迹 5.86 分钟，标注 <strong>31 类技能原语</strong>，通过 JoyLo 全身遥操作接口采集；公开评测子集含 50 任务子集与完整 100 任务集</li><li><strong>RoboTwin 2.0</strong>：用于短程双臂操作评测（Clean 与 Randomized 条件）</li><li><strong>真机数据</strong>：覆盖 5 类家庭场景、12 项桌面任务（收纳、取物、备餐、推压与工具使用），每任务每配置 20 次试验；另有约 4 分钟/次的<strong>长程手冲咖啡</strong>流程测试</li><li>模型规模：<strong>2B</strong> 视觉语言骨干 + <strong>约 300M</strong> 动作专家；纠错分支含条件编码器在内 <strong><100M</strong> 可训练参数；MetaBrain 使用 <strong>Qwen3.8-27B</strong></li><li>训练资源：纠错训练使用 <strong>8 卡 GPU、BF16、全局批大小 256</strong>、AdamW（β=0.9/0.999、权重衰减 0.01、梯度裁剪 1.0）、6000 步、1000 步线性预热至 1e-4 后余弦衰减至 1e-5；训练与评测基础设施基于 <strong>8 卡 Pro6000</strong> 工作池</li><li>图像处理：头相机 720×720、腕相机 480×480 双线性降采样至 224×224 用于策略训练，世界模型预训练用 256×256；控制与状态为 30 Hz，BEHAVIOR 配置动作为 23 维</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评测基准</strong>：BEHAVIOR 2026 公开集（50 任务子集与完整 100 任务集）、RoboTwin 2.0、真机桌面任务与长程咖啡冲煮</li><li><strong>主要指标</strong>：Q-score、完整任务成功率、平均成功率、失败后恢复完成率；另报告训练吞吐（样本/秒）与评测墙钟时间</li><li><strong>BEHAVIOR 2026 长程家务操作</strong>：50 任务公开子集上单模型共享策略达 <strong>0.4522</strong>，任务特化后达 <strong>0.5755</strong>，约为 2025 年冠军 RLC 公开成绩 <strong>0.2605</strong> 的 <strong>2.21×</strong>；完整 100 任务集上多模型基线为 <strong>0.6040 / 40.60%</strong>，加入 MetaBrain、诊断与学习纠错后升至 <strong>0.6411 / 45.40%</strong>，并有 <strong>88 个任务</strong>至少成功一次</li><li><strong>RoboTwin 2.0 双臂操作</strong>：A²-WLA 在 Clean 与 Randomized 条件下平均成功率 <strong>93.98%</strong>，完整系统达 <strong>95.05%</strong></li><li><strong>真机评测</strong>：不使用高层纠错时 A²-WLA 宏平均成功率 <strong>57.92%</strong>，显著高于 <strong>π0.5 的 26.67%</strong></li><li><strong>真机长程恢复</strong>：手冲咖啡两处滤纸操作步骤中，带历史条件 Adapter 将失败后完成率从 <strong>14.00% → 94.00%</strong> 与 <strong>8.00% → 82.00%</strong>（对照为同策略禁用 Adapter 的重试）</li><li><strong>基础设施效率</strong>：8 卡训练吞吐 <strong>427.1 样本/秒</strong>，约为 π0.5 参考实现的 <strong>4.03×</strong>；1000 回合评测在 <strong>18.1 小时</strong>完成，相对估计的 8 卡朴素基线（约 159.4 小时）提速约 <strong>8.8×</strong></li><li><strong>消融分析</strong>：涵盖基础动作模型消融、任务特化与模型设计、纠错条件各项贡献与纠错接口对比、实例泛化、全任务条件与子任务调度，以及跨任务技能迁移的定性分析</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.09293/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">MDF++: Visuo-Tactile World Action Model with End-to-end Representation Learning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.09041/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DobotTrack: Target-Grounded Vision-Language-Action Learning for Embodied Person Tracking</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
