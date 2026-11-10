@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Where Should Models Run? A Collaborative Inference Framework for Embodied Intelligence in 6G - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="面向 具身智能（Embodied Intelligence） 系统，研究一个基础性问题：模型推理到底应该在哪里运行（端侧、边缘还是云侧）。 系统梳理 device–edge–cloud 协同推理（collaborative inference） 的最新进展与标准化工作（ITU-T Y.4509、ITU-T F.748.20、3GPP TR 37.817、3GPP TS 22.261），并提出以边缘为中心的协同推理框架。 解决的核心痛点：LLM/VLA 等基础模型参数量远超机器人本体算力与能耗预算，而分割点选择又同时受无线信道条件、模型结构、隐私要求、成本制约，现有方案多只优化单一目标且假设网络静态。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.11023">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><article class="note-cover note-cover-title-only" style="--cover-from: #3f6ee8; --cover-to: #6fa7ff; --cover-spot: #d5e6ff; --cover-ink: #f7fbff; --cover-muted: rgba(247, 251, 255, 0.82); --cover-chip: rgba(247, 251, 255, 0.16); --cover-stroke: rgba(247, 251, 255, 0.24)">
+  <div class="note-cover-mesh"></div>
+  <div class="note-cover-title-shell">
+    <h1 class="note-cover-title">Where Should Models Run? A Collaborative Inference Framework for Embodied Intelligence in 6G</h1>
+  </div>
+</article></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Where Should Models Run? A Collaborative Inference Framework for Embodied Intelligence in 6G</h1>
+            <div class="detail-meta">2026-11-07 · <a href="http://arxiv.org/abs/2611.11023" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.11023" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.11023</span></div>
+            <p class="detail-summary">面向 具身智能（Embodied Intelligence） 系统，研究一个基础性问题：模型推理到底应该在哪里运行（端侧、边缘还是云侧）。 系统梳理 device–edge–cloud 协同推理（collaborative inference） 的最新进展与标准化工作（ITU-T Y.4509、ITU-T F.748.20、3GPP TR 37.817、3GPP TS 22.261），并提出以边缘为中心的协同推理框架。 解决的核心痛点：LLM/VLA 等基础模型参数量远超机器人本体算力与能耗预算，而分割点选择又同时受无线信道条件、模型结构、隐私要求、成本制约，现有方案多只优化单一目标且假设网络静态。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">University of Warwick（英国华威大学工程学院）：Wanlu Sun、Zhenhui…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.11023/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">面向 具身智能（Embodied Intelligence） 系统，研究一个基础性问题：模型推理到底应该在哪里运行（端侧、边缘还是云侧）。</p>
+  <ul class="reading-intro-points"><li>面向 具身智能（Embodied Intelligence） 系统，研究一个基础性问题：模型推理到底应该在哪里运行（端侧、边缘还是云侧）。</li><li>系统梳理 device–edge–cloud 协同推理（collaborative inference） 的最新进展与标准化工作（ITU-T Y.4509、ITU-T F.748.20、3GPP TR 37.817、3GPP TS 22.261），并提出以边缘为中心的协同推理框架。</li><li>解决的核心痛点：LLM/VLA 等基础模型参数量远超机器人本体算力与能耗预算，而分割点选择又同时受无线信道条件、模型结构、隐私要求、成本制约，现有方案多只优化单一目标且假设网络静态。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>University of Warwick</strong>（英国华威大学工程学院）：Wanlu Sun、Zhenhui Yuan、Gan Zheng</li><li><strong>Nanchang University</strong>（中国南昌大学信息工程学院）：Xiang Ji</li><li><strong>Wuhan University of Technology</strong>（中国武汉理工大学信息工程学院）：Yi Han</li><li><strong>Pengcheng Laboratory</strong>（中国深圳鹏城实验室）：Qing Li</li><li>论文受欧盟 <strong>Horizon Europe</strong> 项目 <strong>DIRECT</strong>（Grant Agreement No. 101299316）资助</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>面向 <strong>具身智能（Embodied Intelligence）</strong> 系统，研究一个基础性问题：<strong>模型推理到底应该在哪里运行</strong>（端侧、边缘还是云侧）。</li><li>系统梳理 <strong>device–edge–cloud 协同推理（collaborative inference）</strong> 的最新进展与标准化工作（ITU-T Y.4509、ITU-T F.748.20、3GPP TR 37.817、3GPP TS 22.261），并提出以<strong>边缘为中心</strong>的协同推理框架。</li><li>解决的核心痛点：LLM/VLA 等基础模型参数量远超机器人本体算力与能耗预算，而分割点选择又同时受<strong>无线信道条件、模型结构、隐私要求、成本</strong>制约，现有方案多只优化单一目标且假设网络静态。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出面向 <strong>device–edge–cloud 连续体</strong>的<strong>边缘中心协同推理框架</strong>，将设备状态监控、模型压缩优化、分割点选择与分布式执行串联为统一架构，并支持应用相关的隐私约束。</li><li>通过<strong>仿真 + 私有 5G 网络真实硬件实验</strong>研究时延最小化的 device–edge 分割，揭示最优分割点随无线条件与模型结构的变化规律，并将其归因于计算代价与<strong>中间特征尺寸</strong>的权衡。</li><li>给出 <strong>ResNet-101、Qwen2.5-VL-7B、OpenVLA-7B</strong> 在不同无线条件下的时延最小化分割点，为分割策略提供实证依据。</li><li>指出未来研究方向：串行/分支模型结构的分割、动态条件下端到端时延预测、将隐私约束纳入分割点选择。</li><li>明确界定研究边界：聚焦<strong>推理部署与执行</strong>而非分布式训练，案例研究主要验证框架中的<strong>分割点选择组件</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>设计原则一：边缘中心分割</strong>——分割决策放在边缘服务器而非设备端，因为边缘具备 RAN 内所有设备的全局视图（网络拥塞、自身后台负载），可做系统级最优决策，避免各设备贪心优化导致资源争用。</li><li><strong>设计原则二：隐私保护式分割</strong>——采用 <strong>三段式（U 型）分割</strong>：设备执行前几层 → 边缘执行计算密集的中间层 → <strong>预测头/最后几层回到设备执行</strong>，使敏感输出与个性化参数不落到共享边缘设施；由于现代 DNN 末层仅占极小比例时延与能耗，隐私代价低。</li><li><strong>四种协同推理模式</strong>（对齐 ITU-T Y.4509）：<strong>D2D</strong>（设备间）、<strong>D2E</strong>（设备–边缘）、<strong>E2E</strong>（边缘–边缘，经 5G/6G 回传）、<strong>C2E2D</strong>（云–边–端分层）。</li><li><strong>五阶段流水线</strong>：① 设备负载监控（CPU/GPU、内存、电量、链路质量）→ ② MEC 模型优化（推理时延预测、模型下载与缓存、量化/剪枝/蒸馏压缩）→ ③ MEC 分割策略（输出模型版本与分割点）→ ④ 设备执行前缀模型（隐私模式仅跑 1~k 层）→ ⑤ MEC 执行剩余层（隐私模式回传中间特征图，非隐私模式直接回传最终预测），随后设备触发<strong>Action</strong>。</li><li><strong>云侧角色</strong>：模型仓库管理、大规模训练与微调、周期更新、<strong>网络切片/定价编排</strong>。</li><li>案例研究采用<strong>候选分割点枚举</strong>方式，在给定信道条件下选择端到端时延最低的分割点，不包含在线切换开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>未使用公开数据集；感知任务为自建场景："识别身穿黑衣、背白色背包的行人"。</li><li>评测模型：<strong>ResNet-101</strong>（44.5M 参数，约 178 MB）、<strong>Qwen2.5-VL-7B</strong>（8.29B 参数，约 33,169 MB；ViT 32 层 + LLM 28 层）、<strong>OpenVLA-7B</strong>（7.54B 参数，约 30,165 MB；ViT 24/27 层 + LLM 32 层）。</li><li>硬件平台：端侧 <strong>NVIDIA Jetson Nano</strong>（ResNet-101）与 <strong>Jetson AGX Xavier</strong>（两个 7B 模型）；边缘 <strong>NVIDIA Jetson AGX Thor</strong>（128 GB LPDDR5X，最高 2070 TFLOPS 稀疏 FP4）。</li><li>网络：<strong>USRP B210</strong> 搭建的私有 <strong>5G 独立组网（SA）</strong> 基站，NR <strong>n78</strong> 频段，信道带宽 <strong>20 MHz</strong>；仿真侧使用 Wi-Fi SNR–吞吐映射。</li><li><strong>Alibaba Cloud</strong> 仅作为离线模型仓库，不参与实时推理链路；论文未涉及模型训练，因此无 GPU/TPU 训练开销。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：Test A 为 Python 解析式仿真（按算子数、有效算力、固定开销估算计算时延，按特征尺寸与 SNR–吞吐映射估算通信时延）；Test B 为私有 5G 真实测试床（机器人 rover + Xavier + 5G 模组 ↔ Thor 边缘服务器）。</li><li><strong>主要指标</strong>：<strong>端到端推理时延</strong>（设备计算 + 中间特征传输 + 边缘计算），辅以 Thor 侧每帧能耗（<code>tegrastats</code> 100 ms 采样估算）与目标识别是否成功。</li><li><strong>信道条件</strong>：仿真取 SNR = 30/25/15/8/5 dB，分别标记为 Excellent/Good/Fair/Poor/Bad；真实实验用 C1–C3 三档（按 k=S1 处实测通信时延升序排列）。</li><li><strong>ResNet-101</strong>：最优分割点由 Excellent/Good 的 <strong>k=4</strong> → Fair 的 <strong>k=8</strong> → Poor/Bad 的 <strong>k=31</strong>，端到端时延从 <strong>71.33 ms</strong> 增至 <strong>555.17 ms</strong>；信道变差时把更多计算留在端侧可因特征变小而获益。</li><li><strong>Qwen2.5-VL-7B</strong>：Excellent/Good/Fair 选 <strong>k=S1</strong>，Poor/Bad 转为 <strong>k=SM</strong>；原因是 pre-merger 视觉块不改变特征张量维度，加深分割只增算力不减排，而把 <strong>patch merger</strong> 放到端侧才能真正压缩传输载荷。</li><li><strong>OpenVLA-7B</strong>：整个 SNR 范围内始终 <strong>k=S1</strong> 最优，因其视觉分支加深执行不减少传输元素数，融合与投影阶段也不保证更小载荷，"SNR 越低就越往深分"的通用规则不成立。</li><li><strong>真实 5G 实验（Qwen2.5-VL-7B）</strong>：C1 下 <strong>k=S1</strong> 最优（<strong>2426.73 ms</strong>）；C2、C3 下 <strong>k=SM</strong> 更优，相对 k=S1 分别降低 <strong>6.61%</strong> 和 <strong>18.86%</strong>；C3 下切到 k=SM 使通信时延由 <strong>2362.33 ms</strong> 降至 <strong>1594.57 ms</strong>，Thor 侧能耗由 <strong>46.45 J</strong> 降至 <strong>39.55 J</strong>（降 <strong>14.85%</strong>）。</li><li><strong>重要观察</strong>：时延最优分割点未必是能耗最优分割点（C1 下 k=S4 边缘能耗最低但 k=S1 时延最低）；所有配置均成功完成目标识别，说明在该演示场景下分割不损害任务功能。</li><li><strong>局限性</strong>（作者自述）：依赖稳定通信与准确时延预测，高动态网络下频繁重分割与模型同步会带来额外开销；三段式分割虽保护预测头，但传输的中间特征仍可能被<strong>特征反演/表示重构</strong>攻击泄露信息，严格保密场景需额外隐私机制。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.11089/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Control-Aware Command Generation for Asynchronous Control and Action Inference with Vision-Based Policies towards Fast Execution</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.10967/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">BAT-WAM: Bridging Action and Touch in World-Action Models for Dexterous Hands</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

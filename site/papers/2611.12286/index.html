@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 VLA-MOPD（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 flow-matching VLA 专家（specialist）整合为单一共享策略的“在线策略蒸馏”协议。 要解决的问题是：任务特定的后训练会产生彼此割裂的专家，而混合任务强化学习（如多任务 GRPO / MixRL）只有轨迹级稀疏二值奖励，离线蒸馏又可能覆盖不到学生实际访问的观测，端点动作蒸馏无法监督动作生成的中间状态。 核心思路是解耦“技能获取”与“技能整合”：先获得并冻结专家作为教师，再让学生在自身 rollout 产生的观测与内部 ODE 状态上向路由教师学习。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.12286">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.12286.webp" alt="VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 VLA-MOPD（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 flow-matching VLA 专家（specialist）整合为单一共享策略的“在线策略蒸馏”协议。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.12286" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.12286" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.12286</span></div>
+            <p class="detail-summary">论文提出 VLA-MOPD（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 flow-matching VLA 专家（specialist）整合为单一共享策略的“在线策略蒸馏”协议。 要解决的问题是：任务特定的后训练会产生彼此割裂的专家，而混合任务强化学习（如多任务 GRPO / MixRL）只有轨迹级稀疏二值奖励，离线蒸馏又可能覆盖不到学生实际访问的观测，端点动作蒸馏无法监督动作生成的中间状态。 核心思路是解耦“技能获取”与“技能整合”：先获得并冻结专家作为教师，再让学生在自身 rollout 产生的观测与内部 ODE 状态上向路由教师学习。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">中国科学技术大学（University of Science and Technology of Ch…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.12286/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 VLA-MOPD（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 flow-matching VLA 专家（specialist）整合为单一共享策略的“在线策略蒸馏”协议。</p>
+  <ul class="reading-intro-points"><li>论文提出 VLA-MOPD（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 flow-matching VLA 专家（specialist）整合为单一共享策略的“在线策略蒸馏”协议。</li><li>要解决的问题是：任务特定的后训练会产生彼此割裂的专家，而混合任务强化学习（如多任务 GRPO / MixRL）只有轨迹级稀疏二值奖励，离线蒸馏又可能覆盖不到学生实际访问的观测，端点动作蒸馏无法监督动作生成的中间状态。</li><li>核心思路是解耦“技能获取”与“技能整合”：先获得并冻结专家作为教师，再让学生在自身 rollout 产生的观测与内部 ODE 状态上向路由教师学习。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>中国科学技术大学</strong>（University of Science and Technology of China）</li><li><strong>ACE Robotics</strong></li><li><strong>中南大学</strong>（Central South University）</li><li>标注 * 为共同贡献，† 为通讯作者</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>VLA-MOPD</strong>（VLA Multi-teacher On-Policy Distillation），一种将多个单任务/单套件 <strong>flow-matching VLA 专家</strong>（specialist）整合为单一共享策略的“在线策略蒸馏”协议。</li><li>要解决的问题是：任务特定的后训练会产生彼此割裂的专家，而混合任务强化学习（如多任务 <strong>GRPO / MixRL</strong>）只有轨迹级稀疏二值奖励，离线蒸馏又可能覆盖不到学生实际访问的观测，端点动作蒸馏无法监督动作生成的中间状态。</li><li>核心思路是<strong>解耦“技能获取”与“技能整合”</strong>：先获得并冻结专家作为教师，再让学生在自身 rollout 产生的观测与内部 ODE 状态上向路由教师学习。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>两阶段配方</strong>：将专家技能获取（SFT / RL）与多任务 VLA 策略整合分离，整合阶段仅在学生自身占用分布上做蒸馏。</li><li>提出<strong>局部 ODE 转移匹配目标</strong>：在学生诱导的外层机器人观测与内层 flow（ODE）状态上，逐 flow 步匹配教师与学生的 ODE 步均值，形成比端点动作更稠密、比稀疏奖励更有信息量的监督。</li><li>引入<strong>参考策略正则（reference mean matching）</strong>，用初始策略的冻结副本在保留任务上约束学生，缓解整合过程中的遗忘。</li><li>在 <strong>LIBERO</strong>、<strong>RoboTwin 2.0</strong> 与真实 <strong>Piper</strong> 机器人上给出一致的整合效果证据，并分析了保留（retention）与训练效率。</li><li>提供理论/分析视角：用总变差（TV）距离的变化测度界说明为何应在学生诱导状态上评估匹配损失，并给出共享协方差高斯核下 KL 与 ODE 步均值匹配的闭式联系。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>阶段一（专家获取）</strong>：多任务 SFT 初始化 π_θ0，再通过监督或 RL 适配得到各任务/套件的冻结专家 π^T_i = π_φi。</li><li><strong>阶段二（在线策略整合）</strong>：学生执行 ODE rollout，记录观测指令 c_t、教师路由标识与完整 ODE 链 x_{t,0:K}；对每个存储状态查询对应教师，得到<strong>带 stop-gradient 的逐步 ODE 步均值目标</strong>。</li><li><strong>目标函数</strong>：L_ODE 为在 flow 步与动作元素上平均的掩码均方匹配（有效动作块掩码，屏蔽终止/填充行）；实际采用确定性 Euler 步匹配而非严格 KL（确定性 Dirac 转移无有限 KL）。</li><li><strong>闭式 KL 联系</strong>：在共享协方差高斯转移假设下，KL 化为 (δ_k²/2σ_k²)‖v_θ − v_φi‖²_F，说明步均值/速度场回归在 Euler 参数化下等价。</li><li><strong>冻结快照投影</strong>：梯度期望基于冻结快照分布（d_i^θ̄、q_θ̄），即对学生向量场在学生诱导分布上的局部投影，更新后刷新 rollout。</li><li><strong>保留正则</strong>：L_total = L_ODE + β·L_ref，L_ref 在保留任务观测上匹配初始策略 π_θ0 的步均值；保留任务观测可仅来自环境重置，无需专家轨迹。</li><li><strong>可训练参数</strong>：仅更新 VLM 的 <strong>LoRA</strong> 模块与完整 <strong>action expert</strong>，其余 VLM 参数与全部教师参数冻结。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：Spatial、Object、Goal、LIBERO-10 四个单臂操作套件；极端稀缺设定为每任务 <strong>1 条轨迹</strong>（1-traj）初始化，参考全量设定为每任务 50 条轨迹；每套件 500 次评估。</li><li><strong>RoboTwin 2.0</strong>：三个双臂任务 <strong>Place Empty Cup</strong>、<strong>Pick Dual Bottles</strong>、<strong>Stack Bowls Two</strong>；学生初始化为每任务 50 条干净轨迹的多任务 SFT，每任务 100 次评估。</li><li><strong>真实机器人</strong>：<strong>Piper</strong> 单臂，三任务 <strong>Pick Banana</strong>、<strong>Stack Cup</strong>、<strong>Sort Number</strong>，每任务 30 次试验。</li><li><strong>模型</strong>：采用 <strong>π0.5</strong> 系列 flow-matching VLA 作为学生与教师底座（SFT 使用 RLinf 的 π0.5 配方）；文中未给出具体参数量。</li><li><strong>训练资源</strong>：所用 GPU/TPU 型号与数量在所给文本中未说明。</li><li>代码与模型：https://github.com/yxuan1234/VLA-MOPD</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估协议</strong>：统一使用 <strong>success-once</strong> 成功率，多套件/多任务取未加权平均；教师为任务路由的 PPO 专家（LIBERO-10 教师额外 PPO 训练 120 步）。</li><li><strong>LIBERO（主要结果）</strong>：1-traj 学生初始化平均 <strong>75.4%</strong> → VLA-MOPD <strong>98.9%</strong>；对比端点动作蒸馏 <strong>98.15%</strong>、路由教师 <strong>98.5%</strong>、MixRL 在同步第 400 步仅 <strong>82.55%</strong>（VLA-MOPD 97.6%）。</li><li><strong>RoboTwin 2.0</strong>：平均 <strong>73.0%</strong> → <strong>89.3%</strong>，接近路由教师 <strong>94.0%</strong>（Place Empty Cup 87.0、Pick Dual Bottles 93.0、Stack Bowls Two 88.0）。</li><li><strong>真实机器人（Piper）</strong>：两轮整合使平均成功率 <strong>70.0%</strong> → <strong>90.0%</strong>，教师上限 <strong>93.3%</strong>。</li><li><strong>保留/遗忘消融</strong>：在 Spatial 适配程度近似匹配的快照上，参考项把 Object 套件下降限制在 <strong>3.0</strong> 点，而无参考项为 <strong>13.2</strong> 点、SFT 为 <strong>12.8</strong> 点（参考项相对无参考减少 10.2 点遗忘）。</li><li><strong>中间 flow 状态监督消融</strong>：同等设置下 VLA-MOPD 比端点蒸馏在 Goal 上 +1.2、LIBERO-10 上 +1.4 点，长程/组合性任务受益更明显。</li><li><strong>Rollout 预算敏感性</strong>：64/32/16 并行环境在第 500 步分别达 98.9% / 95.2% / 94.5%，预算越大收敛越快。</li><li><strong>局限</strong>：需要预先获得并存储任务/套件专家教师，前期训练与维护成本随任务族数量增长；学生能力上限受教师质量与覆盖范围约束。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.12295/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Be My Eye: Learning to See Beyond a Robot&#x27;s Own Perspective</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.12136/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">LHNav: Long-Horizon Humanoid Navigation via Multirate Coordination and Physics-Grounded Action Data</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

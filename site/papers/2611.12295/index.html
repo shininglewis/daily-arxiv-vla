@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Be My Eye: Learning to See Beyond a Robot&#x27;s Own Perspective - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文聚焦多机器人协作中的部分可观测性问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。 提出任务导向的主动上下文共享（active context sharing）框架，将机器人观测压缩为紧凑的上下文表示并与伙伴机器人交换，而非直接传输原始图像或通用视觉特征。 核心目标是让共享的信息按任务目标与执行进度选择性编码，在有限通信预算下直接服务于协作决策与动作生成。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.12295">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.12295.webp" alt="Be My Eye: Learning to See Beyond a Robot&#x27;s Own Perspective" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文聚焦多机器人协作中的部分可观测性问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Be My Eye: Learning to See Beyond a Robot&#x27;s Own Perspective</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.12295" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.12295" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.12295</span></div>
+            <p class="detail-summary">论文聚焦多机器人协作中的部分可观测性问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。 提出任务导向的主动上下文共享（active context sharing）框架，将机器人观测压缩为紧凑的上下文表示并与伙伴机器人交换，而非直接传输原始图像或通用视觉特征。 核心目标是让共享的信息按任务目标与执行进度选择性编码，在有限通信预算下直接服务于协作决策与动作生成。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Astribot Team（联系邮箱 research@astribot.com）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.12295/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文聚焦多机器人协作中的部分可观测性问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。</p>
+  <ul class="reading-intro-points"><li>论文聚焦多机器人协作中的部分可观测性问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。</li><li>提出任务导向的主动上下文共享（active context sharing）框架，将机器人观测压缩为紧凑的上下文表示并与伙伴机器人交换，而非直接传输原始图像或通用视觉特征。</li><li>核心目标是让共享的信息按任务目标与执行进度选择性编码，在有限通信预算下直接服务于协作决策与动作生成。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Astribot Team</strong>（联系邮箱 research@astribot.com）</li><li>项目主页：<strong>www.astribot.com/AI/CoMind</strong>（作者名单列于论文 Contributions 章节）</li><li>实验平台为两台 <strong>Astribot S1</strong> 机器人</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文聚焦多机器人协作中的<strong>部分可观测性</strong>问题：单台机器人受视角、传感器布局和遮挡限制，其观测往往不足以完成协作任务。</li><li>提出<strong>任务导向的主动上下文共享（active context sharing）</strong>框架，将机器人观测压缩为紧凑的上下文表示并与伙伴机器人交换，而非直接传输原始图像或通用视觉特征。</li><li>核心目标是让共享的信息<strong>按任务目标与执行进度选择性编码</strong>，在有限通信预算下直接服务于协作决策与动作生成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出面向多机器人协作的<strong>两阶段主动上下文共享框架</strong>：将本地观测编码为任务条件化的紧凑潜表示，接入伙伴的 VLA 策略，并通过下游动作监督联合优化。</li><li>设计<strong>进度感知、任务条件化的观测压缩模块</strong>：基于可学习 query 支持多相机联合/分相机编码，并用任务导向未来预测 + 软任务进度对应学习约束表示空间。</li><li>提出<strong>联合上下文优化</strong>机制：通过灵活的条件接口把压缩上下文注入预训练 VLA 策略，支持可变 token 预算与双向共享，接收端动作监督可回传优化发送端编码器。</li><li>在真实双机器人操作任务上系统评估，与无共享、通用视觉特征共享等基线对比，并完成通信预算分析与组件消融。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Stage 1：与协作模式无关的上下文压缩</strong>。冻结视觉/语言编码器提取特征，用 <strong>K 个可学习 query</strong> 聚合多相机特征与任务指令，输出 <code>K×d_z</code> 的上下文 token；支持联合编码与按相机分配 query（<code>K=ΣK_c</code>）。</li><li><strong>任务导向未来预测</strong>：用冻结视觉编码器对 <code>t+Δ</code> 帧特征作自监督目标，借助预训练视觉-语言模型的 patch–指令相似度生成有界权重，加权回归未来视觉特征，使表示保留任务相关状态转移信息。</li><li><strong>软任务进度对应学习</strong>：对同一观测做两次增强视为正对，以「任务身份 + 执行进度相似核」构造软亲和矩阵并行归一化，混合单位阵得到软目标，做双向 soft-label 对比学习，促进跨视角一致性、任务间可分性与任务内时序连续性。</li><li><strong>Stage 2：联合上下文优化与协作策略学习</strong>：投影模块 <code>P_ρ</code> 将上下文 token 映射到预训练 VLA 策略（<strong>π0.5</strong>）的隐空间，作为多模态前缀与本地观测、指令、本体状态共同条件化动作生成；损失为接收端动作损失 + η 倍发送端 Stage 1 辅助损失。</li><li><strong>对称双向共享</strong>：两个方向共享编码器、投影与策略参数，无预定义 leader/follower 角色，可同时编码、交换与使用上下文；推理时省略预测解码器与对比投影头。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用<strong>真实世界双机器人演示数据</strong>（由两台 Astribot S1 采集并合并为统一数据集），论文未给出公开数据集名称。</li><li>预训练资源：<strong>π0.5</strong> 预训练 VLA 策略、冻结的视觉编码器与视觉-语言模型（基线中使用 <strong>SigLIP</strong> 视觉 token 作为高带宽参照）。</li><li>模型规模：默认上下文 token 预算 <strong>K=32</strong>，每 token 为 <strong>1152</strong> 维 FP32 向量，单向单步通信量约 <strong>144 KiB</strong>（<code>K×1152×4</code> 字节，不含协议开销）。</li><li>论文未提及具体 GPU/TPU 训练资源配置。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：两台 Astribot S1 真实机器人，两个受控协作任务——遮挡目标选择（每设置 18 次试验）、交替 leader–follower 标记抓取（48 次试验，覆盖 6 种颜色顺序 × 双向初始 leader）。</li><li><strong>主要指标</strong>：目标选择准确率；双向颜色匹配准确率、正确触发率、两阶段序列成功率；归一化过程分数（Process Score）；通信字节数/token 预算。</li><li><strong>遮挡目标选择</strong>：<strong>Ours-Joint 88.9%</strong>，显著优于 <strong>Generic SigLIP 72.2%</strong>（160 token）与 <strong>No Sharing 38.9%</strong>，token 预算降低约 80%。</li><li><strong>交替 leader–follower 检索</strong>：<strong>Ours-Joint</strong> 与 Generic SigLIP 均在四项指标上达 <strong>100%</strong>，而 <strong>No Sharing</strong> 序列成功率为 <strong>0%</strong>（触发率仅 25%）。</li><li><strong>Stage 1 目标消融</strong>：完整 100%，去掉预测 96.7%，去掉对比学习降至 68.9%，说明进度对比学习更关键。</li><li><strong>冻结 vs 联合优化</strong>：Ours-Frozen 83.3% → Ours-Joint 100%（+16.7 个百分点）。</li><li><strong>token 预算</strong>：K=4 → 90.5%（18 KiB）、K=16 → 97.6%（72 KiB）、K=32 → 100%（144 KiB），对比 SigLIP 160 token、720 KiB。</li><li><strong>定性分析</strong>：冰箱补货、盒子组装、叠毯打包三类真实任务验证泛化性；VLA 第 7 层注意力图显示两机器人关注互补区域并随任务阶段变化。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.12353/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">QCC-WM: Linking Macro-State Dynamics and Visual Generation via Quotient Causal Construction</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.12286/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

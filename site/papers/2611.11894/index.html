@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy&#x27;s Misreading - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究通用机器人策略在任务某一步失败时，能否不依赖梯度、不收集训练数据、不修改指令，直接通过编辑权重修复。 作者使用零样本 π0.5 视觉-语言-动作策略在 RoboLab 的 16 个任务上评估，发现“把方块再香蕉放进碗里”任务中策略会过早松开方块。 诊断表明该失败是语言绑定错误：策略把“in the bowl”错误绑定到香蕉，而非当前搬运的方块。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.11894">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.11894.webp" alt="Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy&#x27;s Misreading" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究通用机器人策略在任务某一步失败时，能否不依赖梯度、不收集训练数据、不修改指令，直接通过编辑权重修复。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy&#x27;s Misreading</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.11894" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.11894" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.11894</span></div>
+            <p class="detail-summary">论文研究通用机器人策略在任务某一步失败时，能否不依赖梯度、不收集训练数据、不修改指令，直接通过编辑权重修复。 作者使用零样本 π0.5 视觉-语言-动作策略在 RoboLab 的 16 个任务上评估，发现“把方块再香蕉放进碗里”任务中策略会过早松开方块。 诊断表明该失败是语言绑定错误：策略把“in the bowl”错误绑定到香蕉，而非当前搬运的方块。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">RIVeR Laboratory, Northeastern University（美国波士顿）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.11894/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究通用机器人策略在任务某一步失败时，能否不依赖梯度、不收集训练数据、不修改指令，直接通过编辑权重修复。</p>
+  <ul class="reading-intro-points"><li>论文研究通用机器人策略在任务某一步失败时，能否不依赖梯度、不收集训练数据、不修改指令，直接通过编辑权重修复。</li><li>作者使用零样本 π0.5 视觉-语言-动作策略在 RoboLab 的 16 个任务上评估，发现“把方块再香蕉放进碗里”任务中策略会过早松开方块。</li><li>诊断表明该失败是语言绑定错误：策略把“in the bowl”错误绑定到香蕉，而非当前搬运的方块。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>RIVeR Laboratory, Northeastern University</strong>（美国波士顿）</li><li><strong>General Motors</strong>（美国山景城）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究通用机器人策略在任务某一步失败时，能否<strong>不依赖梯度、不收集训练数据、不修改指令</strong>，直接通过编辑权重修复。</li><li>作者使用零样本 <strong>π0.5</strong> 视觉-语言-动作策略在 <strong>RoboLab</strong> 的 16 个任务上评估，发现“把方块再香蕉放进碗里”任务中策略会过早松开方块。</li><li>诊断表明该失败是<strong>语言绑定错误</strong>：策略把“in the bowl”错误绑定到香蕉，而非当前搬运的方块。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>closed-form instruction distillation（闭式指令蒸馏）</strong>：先找到一个能成功的改写指令，再把该改写带来的逐层内部效应以闭式权重编辑写入 VLM 的 MLP 权重。</li><li>在 <strong>128 个 held-out seeds</strong> 上将成功率从 <strong>27/128</strong> 提升到 <strong>106/128</strong>，修复 <strong>81</strong> 个、破坏 <strong>2</strong> 个，说明该编辑可泛化到编辑时未使用的种子。</li><li>证明编辑效果来自特定方向而非更新幅度：同等大小的随机方向更新无效；仅存储 <strong>0.16%</strong> 参数的小变体仍保留大部分效果。</li><li>发现编辑位置很关键：写入 <strong>VLM</strong> 最有效并可迁移到两个其他任务；写入 action expert 或 action head 效果更差或无效。</li><li>发布 <strong>weightsmith distill</strong> 工具，并报告七名盲测 <strong>Claude Opus</strong> 编辑器的受控研究，以及配对闭环评估的噪声下限。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>在固定图像、机器人状态和 flow-matching 噪声的条件下，重放失败决策并尝试不同指令改写；找到能消除失败的 <strong>known-good instruction</strong>。</li><li>对 VLM 每层构造 <strong>72 个 keys</strong>：40 个提示/状态位置 + 32 个图像单元（每相机 16 个）；keys 为原始指令下 MLP 下投影输入在 6 个失败决策上的均值。</li><li>values 为显式改写指令与原始指令下每层残差增量之差；使用多键闭式最小范数更新：<strong>ΔW = Kᵀ(KKᵀ + λI)⁻¹V</strong>，其中 <strong>λ = 10⁻³·tr(KKᵀ)/72</strong>。</li><li>更新应用于 VLM 的 <strong>0–16 层</strong>，每层秩最多 72；不使用梯度、优化器、微调或黑盒搜索，指令文本保持不变。</li><li>先在离线决策上检查是否消除过早释放，再在 practice seeds 上闭环验证，最后冻结编辑并在 held-out seeds 上评分。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>基础模型：<strong>OpenPI π0.5 DROID joint-position checkpoint</strong>，约 <strong>3.35B</strong> 参数；由 <strong>18 层 PaliGemma VLM</strong> 与 <strong>18 层 Gemma action expert</strong> 组成，输出 15 步动作块。</li><li>训练数据：模型在 <strong>DROID</strong> 数据上训练，但未在本文任务上训练，因此所有机器人结果为<strong>零样本</strong>。</li><li>评估基准：<strong>RoboLab</strong> 的 <strong>16 个任务</strong>，运行于 <strong>Isaac Sim</strong>，每次评估使用 16 个并行环境。</li><li>编辑规模：完整 VLM 编辑改动约 <strong>450M</strong> 个存储值，约为策略存储值的 <strong>13.4%</strong>；小变体低秩因子仅 <strong>5.3M</strong> 参数（<strong>0.16%</strong>），秩不超过 32，仅使用第 8–16 层图像单元。</li><li>训练资源：原文未明确报告 GPU/TPU 训练资源；编辑与评估在 NumPy sandbox、模拟器闭环 rollout 中完成。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估采用<strong>配对 seeds</strong>：编辑策略与未编辑策略从相同模拟器起点运行，报告 fixed/broke 对数、bootstrap 置信区间、精确 McNemar 检验和 Wilson 区间。</li><li>主任务 held-out 结果：成功率从 <strong>27/128（21.1%）</strong> 升至 <strong>106/128（82.8%）</strong>，<strong>81 fixed / 2 broken</strong>，提升 <strong>+61.7 个百分点</strong>，<strong>p = 7.2 × 10⁻²²</strong>。</li><li>随机方向对照：同等层、秩和奇异值的随机更新仅 <strong>9/64</strong>，与未编辑策略的 <strong>13/64</strong> 无显著差异（<strong>p = 0.45</strong>）；蒸馏编辑为 <strong>50/64</strong>，显式改写为 <strong>57/64</strong>。</li><li>小编辑变体：在 held-out seeds 上 <strong>102/128 vs 19/128</strong>，<strong>86 fixed / 3 broken</strong>；但与完整编辑头对头比较为 <strong>41/64 vs 55/64</strong>，未完全保留效果。</li><li>迁移结果：拾取眼镜从 <strong>22/64</strong> 升至 <strong>44/64</strong>；方块放碗左侧从 <strong>8/64</strong> 升至 <strong>36/64</strong>；方块放碗右侧仍为 <strong>0/32</strong>；其余 13 个任务未检测到显著损害。</li><li>编辑位置：VLM 编辑在 64 个 held-out seeds 上为 <strong>55/64 vs 5/64</strong>；action expert 为 <strong>20/64</strong>；action head 最小范数编辑为 <strong>0/64</strong>；VLM + action expert 为 <strong>43/64</strong>，反而低于单独 VLM 编辑。</li><li>工具复现：<strong>weightsmith distill</strong> 在新 held-out seeds 上从 <strong>8/64</strong> 提升到 <strong>36/64</strong>，<strong>33 fixed / 5 broken</strong>，但当时仅在一个任务上运行。</li><li>盲测编辑器：七名 <strong>Claude Opus</strong> 编辑器中仅 cube-then-banana 任务通过 held-out 评分，成功率 <strong>11/64 → 27/64</strong>，<strong>22 fixed / 6 broken</strong>，<strong>p = 0.004</strong>。</li><li>其他失败层级：针对感知、缺失抓取能力、接触物理和夹爪阈值的编辑均未带来稳定收益。</li><li>噪声下限：权重不变的重跑会翻转约三分之一的配对结果；16 个 episode 的筛选只能作为过滤，不能作为证据。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.11981/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Thermo-VLA: A Thermal-Aware Vision-Language-Action Model with Gated Residual Modulation for Robotic Manipulation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.11856/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DeltaForge: A Post-hoc Mixture-of-Experts VLA for Multi-Domain Autonomous Driving</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

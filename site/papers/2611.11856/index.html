@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DeltaForge: A Post-hoc Mixture-of-Experts VLA for Multi-Domain Autonomous Driving - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="提出 DeltaForge，据作者所知是首个面向自动驾驶的 post-hoc 混合专家（MoE）VLA 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。 现实中驾驶 VLA 按领域（城市、越野、高速；轿车、卡车、ATV；不同地区与交通规则）分散微调，数据因隐私/法规无法集中，导致模型碎片化。 需同时解决四大障碍：数据不可得（只能拿到权重）、领域异构性、效率（稠密 MoE 存储与计算随领域数线性增长）、可扩展性（新领域持续接入），并进一步追问“领域技能是否可组合泛化”。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.11856">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.11856.webp" alt="DeltaForge: A Post-hoc Mixture-of-Experts VLA for Multi-Domain Autonomous Driving" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">提出 DeltaForge，据作者所知是首个面向自动驾驶的 post-hoc 混合专家（MoE）VLA 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">DeltaForge: A Post-hoc Mixture-of-Experts VLA for Multi-Domain Autonomous Driving</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.11856" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.11856" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.11856</span></div>
+            <p class="detail-summary">提出 DeltaForge，据作者所知是首个面向自动驾驶的 post-hoc 混合专家（MoE）VLA 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。 现实中驾驶 VLA 按领域（城市、越野、高速；轿车、卡车、ATV；不同地区与交通规则）分散微调，数据因隐私/法规无法集中，导致模型碎片化。 需同时解决四大障碍：数据不可得（只能拿到权重）、领域异构性、效率（稠密 MoE 存储与计算随领域数线性增长）、可扩展性（新领域持续接入），并进一步追问“领域技能是否可组合泛化”。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">14 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">NVIDIA Corporation（Santa Clara, CA, USA）：Bingzhang…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.11856/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">提出 DeltaForge，据作者所知是首个面向自动驾驶的 post-hoc 混合专家（MoE）VLA 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。</p>
+  <ul class="reading-intro-points"><li>提出 DeltaForge，据作者所知是首个面向自动驾驶的 post-hoc 混合专家（MoE）VLA 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。</li><li>现实中驾驶 VLA 按领域（城市、越野、高速；轿车、卡车、ATV；不同地区与交通规则）分散微调，数据因隐私/法规无法集中，导致模型碎片化。</li><li>需同时解决四大障碍：数据不可得（只能拿到权重）、领域异构性、效率（稠密 MoE 存储与计算随领域数线性增长）、可扩展性（新领域持续接入），并进一步追问“领域技能是否可组合泛化”。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>NVIDIA Corporation</strong>（Santa Clara, CA, USA）：Bingzhang Wang、Mo Poorsartep、Yasaman Esfandiari</li><li><strong>University of Washington</strong>（Seattle, WA, USA）：Bingzhang Wang（双单位）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DeltaForge</strong>，据作者所知是首个面向自动驾驶的 <strong>post-hoc 混合专家（MoE）VLA</strong> 模型，目标是将多个独立微调得到的领域专用驾驶模型合并为一个多领域统一模型。</li><li>现实中驾驶 VLA 按领域（城市、越野、高速；轿车、卡车、ATV；不同地区与交通规则）分散微调，数据因隐私/法规无法集中，导致模型碎片化。</li><li>需同时解决四大障碍：<strong>数据不可得</strong>（只能拿到权重）、<strong>领域异构性</strong>、<strong>效率</strong>（稠密 MoE 存储与计算随领域数线性增长）、<strong>可扩展性</strong>（新领域持续接入），并进一步追问“领域技能是否可组合泛化”。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出 <strong>DeltaForge</strong>：仅凭各领域微调权重与约 <strong>1% proxy 数据</strong>即可把 N 个独立微调的领域模型整合为单一多领域 VLA，后续新领域可低成本 opt-in，无需重训练也无需共享数据。</li><li>提出 <strong>Post-hoc Expert Factorization (PEF)</strong>：用联合 SVD 将各领域 task vector 分解为冻结的<strong>共享技能基（shared skill basis）</strong>与每领域<strong>低秩 core（r×r）</strong>，使路由只搬运极小的 core 而非稠密参数块。</li><li>设计<strong>两层 clip-level 盲路由（skill-mixing routing）</strong>：一个在输入端路由 VLM 推理专家，一个在中间层路由 flow-matching 动力学专家，可在无领域标签下自由交叉组合“场景推理”与“车辆动力学”技能。</li><li>给出基于 proxy 集的组合训练流程：软 oracle 路由训练（KL 对齐）+ core 专家微调，两阶段分别训练 VLM MoE 与 flow-matching MoE。</li><li>在跨城市/越野/高速、轿车/卡车/ATV 的 <strong>6 个领域</strong>上接近各领域专家精度，并在参数量与计算量接近单模型的前提下超过所有 merging、routing、centralized、federated 基线，同时展示对未见领域的<strong>组合式零样本泛化</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>问题形式化</strong>：给定基座权重 W₀ 与 N 个领域微调权重 {Wᵢ}，求组合算子 C 得到 W_MoE = C(W₀, {Wᵢ})，目标为能力匹配、无标签高效路由、灵活增长。</li><li><strong>PEF（共享技能基）</strong>：对每个可分解权重矩阵计算 task vector Δᵢ = Wᵢ − W₀，对拼接矩阵做截断 SVD 得到 U、V（Eckart–Young 意义下的最优低秩近似），基的规模由秩 r 决定、与领域数 N 无关。</li><li><strong>低秩 core 专家</strong>：Cᵢ = Uᵀ Δᵢ V ∈ ℝ^{r×r}，重建 Ŵᵢ = W₀ + U Cᵢ Vᵀ；基座以零 core C₀ = 0 免费加入专家池作为默认路由。分解范围覆盖 ViT、LLM 与 flow-matching 动作专家的 attention/FFN，其余模块（token embedding、LM head 等）合并为单一共享副本不参与路由。</li><li><strong>Clip-level 盲路由</strong>：每个输入 clip 只计算一次混合权重 w，所有分解层共享同一混合，避免 LLM MoE 的 token/layer 级细粒度切换开销。</li><li><strong>输入级 VLM 路由器</strong>：输入为冻结 ViT 的视觉 token 均值特征 v 与自车历史速度/加速度/曲率的 z-score 统计量 m，经小 MLP + softmax 得 pᴿ。</li><li><strong>中间层动力学路由器</strong>：输入为 VLM 末层隐状态均值池化 h 与同样的运动学 m，输出 pᴰ，从而可跨域自由配对推理与动力学技能。</li><li><strong>Top-k 软混合</strong>：对路由分布截断到 top-k 并重归一化；由于混合对 core 线性，可在参数空间一次性完成，<strong>零额外推理开销</strong>，且 w 保留在计算图中保证端到端可训。</li><li><strong>软 oracle 路由训练</strong>：每个候选专家对 proxy 样本打分（VLM 专家用 teacher-forcing token 损失，flow-matching 专家用生成轨迹 ADE），经温度 τ 的 softmax 得软标签 q，最小化 KL(q‖p)；全程不使用领域标签。</li><li><strong>core 专家微调（core repair）</strong>：冻结路由器与共享基，仅优化 top-k 选中的 cores，补偿 SVD 截断损失并让被混合的 core 协同适配。</li><li><strong>新领域 onboarding</strong>：冻结基下计算 Δ_{N+1} 并投影得 C_{N+1} = Uᵀ Δ_{N+1} V，在自身 proxy 集上做 anchor-repair（路由锁定到新专家），再重新生成软标签并在扩展 proxy 集上联合刷新路由器与全部 cores，无需端到端重训练。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>基座模型</strong>：<strong>Alpamayo 1.5（10B）</strong>，由 <strong>8B Cosmos-Reason VLM</strong> 骨干 + <strong>2B flow-matching 动作专家</strong>组成；部署系统总参数 <strong>12.55B</strong>（N=5），其中仅 <strong>122.7M（约 1.0%）</strong> 需训练；共享基 U,V 约 1,257M，路由器约 2.1M，每领域 core 约 <strong>42M（占基座 0.3%）</strong>。</li><li><strong>六个领域数据集</strong>：<strong>ONCE</strong>（中国城市，24,885/2,769）、<strong>CoVLA</strong>（日本城市左行，26,987/2,893）、<strong>TartanDrive</strong>（森林越野 ATV，17,470/1,484）、<strong>ORAD-3D</strong>（中国越野轿车，34,801/4,897）、<strong>TruckScenes</strong>（欧洲高速卡车，33,305/3,172）、<strong>PhysicalAI-AV</strong>（基座原生域，美/欧四摄像头，19,545/3,000）。</li><li><strong>留出集</strong>：<strong>ParkRecon3D</strong>（地下车库鱼眼，新领域 onboarding）、<strong>Torc TruckDrive</strong>（美国高速卡车）与 <strong>BeVIS</strong>（室内车库灰度）用于零样本泛化。</li><li><strong>训练资源</strong>：每个领域专家在 <strong>8× H100 GPU</strong> 上两阶段训练（阶段 1 全参微调 VLM，AdamW，lr 1e-5，batch 32；阶段 2 冻结 VLM 训练动作专家，lr 1e-4，batch 8），最多 10 个 epoch。</li><li><strong>组合训练配置</strong>：PEF 秩 <strong>r=256</strong>，软 oracle 温度 <strong>τ=0.3</strong>，路由器训练 200 步、core 训练 500 步；proxy 集为每领域 <strong>200 个 clip（约训练数据 1%）</strong>，评测集从不接触。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估协议</strong>：指标为 5 秒时域上 6 条采样轨迹的 <strong>minADE@5s（米，best-of-6，越低越好）</strong>；路由器在 N 个领域专家 + 1 条默认基座路由间选择。</li><li><strong>对比基线</strong>：零样本基座（下界）、各领域专家（上界）、Centralized SFT、Federated SFT（FedAdam）、静态合并不知（Model soup、Task arithmetic、TIES、DARE、TSV-M、KnOTS、EMR-Merging、Twin-Merging）与路由式方法（BTX）。</li><li><strong>主结果</strong>：DeltaForge <strong>top-1 均值 1.0157</strong>、<strong>top-2 均值 1.0170</strong>，接近独立领域专家的 <strong>0.9798</strong>，优于所有 merging/routing 基线（最佳基线 BTX 1.2398、EMR-Merging 1.2732、Twin-Merging 1.3510）；且优于使用全量数据的 Centralized SFT（1.1129）与 Federated SFT（1.1086）。</li><li><strong>分领域表现</strong>：top-2 在基座域 PAI 从 0.9189 显著降至 <strong>0.7569</strong>（top-1）与 <strong>0.7569→0.6529</strong> 附近水平，说明保留基座路由可缓解合并类方法的灾难性遗忘；Tartan ATV 上 top-2 达 <strong>1.1727</strong>（较最佳基线 BTX 1.2049 更优）。</li><li><strong>效率结果</strong>：参数量随领域数近似常数增长（12.34 + 0.042N，N=5 时 12.55B；N=10 时 12.76B），而逐领域专家为 11.08(N+1)（N=5 时 66.5B）、BTX 为 11.08 + 7.26N（47.4B）；推理计算为 23.39 + 0.08k GFLOPs/token（top-1 23.5、top-2 23.6、top-5 23.8），远低于 BTX 的 6.35 + 14.52k（top-2 为 35.4、top-5 为 79.0）。</li><li><strong>零样本技能迁移</strong>：在无 Torc TruckDrive 任何训练数据的情况下，盲路由器将 <strong>90%（top-1）/ 83%（top-2）</strong> 的 clip 路由到卡车技能，误差从 <strong>8.99 降至 1.06（top-1）/ 1.00（top-2）</strong>，接近该域自身专家（0.82）；无相关技能可借的领域则无此增益。</li><li><strong>新领域 onboarding</strong>：接入 ParkRecon3D 后其误差从 <strong>0.75 降至 0.65</strong>，系统仅增长 <strong>42M</strong> 参数，六个已有领域平均仅变化 <strong>+1.5%</strong>，并可同时提升仍未见过的相关领域。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.11894/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy&#x27;s Misreading</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.11854/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Decoupled Asynchronous System for Humanoids (DASH): Latency-Agnostic Scaling of Vision-Language-Action Models for Humanoid Manipulation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

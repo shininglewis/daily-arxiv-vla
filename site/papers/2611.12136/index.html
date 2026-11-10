@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LHNav: Long-Horizon Humanoid Navigation via Multirate Coordination and Physics-Grounded Action Data - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="研究长时程人形机器人导航：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。 指出两个核心难题：一是任务分解本身不足以保证执行过程中的进度一致性（目标切换必须反映真实执行进度）；二是路径约束（航点、轨迹、速度指令）无法直接保证全身执行时的无碰撞与自然性。 提出 LHNav：一个异步多速率三层系统（Brain / Cerebellum / Brainstem），配合物理落地的数据引擎，将单目标导航策略扩展为长时程多目标导航。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.12136">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.12136.webp" alt="LHNav: Long-Horizon Humanoid Navigation via Multirate Coordination and Physics-Grounded Action Data" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">研究长时程人形机器人导航：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">LHNav: Long-Horizon Humanoid Navigation via Multirate Coordination and Physics-Grounded Action Data</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.12136" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.12136" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.12136</span></div>
+            <p class="detail-summary">研究长时程人形机器人导航：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。 指出两个核心难题：一是任务分解本身不足以保证执行过程中的进度一致性（目标切换必须反映真实执行进度）；二是路径约束（航点、轨迹、速度指令）无法直接保证全身执行时的无碰撞与自然性。 提出 LHNav：一个异步多速率三层系统（Brain / Cerebellum / Brainstem），配合物理落地的数据引擎，将单目标导航策略扩展为长时程多目标导航。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">浙江大学（Zhejiang University）：Xueyang Wang、Dingkun Wei、…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.12136/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">研究长时程人形机器人导航：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。</p>
+  <ul class="reading-intro-points"><li>研究长时程人形机器人导航：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。</li><li>指出两个核心难题：一是任务分解本身不足以保证执行过程中的进度一致性（目标切换必须反映真实执行进度）；二是路径约束（航点、轨迹、速度指令）无法直接保证全身执行时的无碰撞与自然性。</li><li>提出 LHNav：一个异步多速率三层系统（Brain / Cerebellum / Brainstem），配合物理落地的数据引擎，将单目标导航策略扩展为长时程多目标导航。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>浙江大学</strong>（Zhejiang University）：Xueyang Wang、Dingkun Wei、Changpeng Wang、Hujun Bao、Xiaowei Zhou</li><li><strong>Robbyant</strong>（蚂蚁集团旗下具身智能研究团队）：Xueyang Wang、Zehong Shen、Dingkun Wei、Huaijin Pi、Changpeng Wang、Xing Zhu、Yujun Shen</li><li><strong>香港大学</strong>（The University of Hong Kong）：Huaijin Pi</li><li>论文致谢说明部分作者在 <strong>Ant Group</strong> 实习期间完成，受 Ant Group Research Intern Program 支持</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>研究<strong>长时程人形机器人导航</strong>：机器人需依据一段长指令推断出多个有序目的地，并在连续行走中保持稳定、自然的全身运动。</li><li>指出两个核心难题：一是任务分解本身不足以保证执行过程中的进度一致性（目标切换必须反映真实执行进度）；二是路径约束（航点、轨迹、速度指令）无法直接保证全身执行时的无碰撞与自然性。</li><li>提出 <strong>LHNav</strong>：一个异步多速率三层系统（Brain / Cerebellum / Brainstem），配合物理落地的数据引擎，将单目标导航策略扩展为长时程多目标导航。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>异步多速率系统</strong>，整合任务推理、运动 token 预测与全身执行，并用进度感知与到达反馈的状态转移把单目标策略扩展到长时程人形导航。</li><li>设计<strong>可扩展的物理落地数据引擎</strong>：借助特权编码器（P-SONIC）与冻结 SONIC 解码器提升对全局运动参考的跟踪精度，在 Gaussian–Mesh 场景中生成与真实执行对齐的导航示教数据。</li><li>提出<strong>几何监督的联合预测</strong>：VLA 共享 DiT 同时预测运动 token 与辅助航点，并用基于 SDF 的软惩罚约束航点可通行性。</li><li>实验验证在未见仿真场景中更高成功率、更平滑运动、更少碰撞与跌倒、更快长时程完成，并在 <strong>Unitree G1</strong> 上实现真机单目标导航与零样本长时程导航。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>Brain（脑）</strong>：带工具的语言规划智能体（可用 <strong>GPT-6</strong> 或 <strong>Qwen3.8-27B</strong>），维护“已完成 / 进行中 / 待完成”显式计划；Tool 1 为任务管理（可删除不再需要的待访问目标），Tool 2 为到达验证（独立 <strong>Qwen VLM</strong>，最高 1 Hz 判断是否抵达）。</li><li><strong>Cerebellum（小脑）</strong>：基于 <strong>GR00T N1.7</strong> 微调框架的人形 VLA，保留视觉–语言骨干与 flow-matching 动作头，约 <strong>8 Hz</strong>、4 步去噪预测运动 token（ℝ^{40×64}）与辅助航点（ℝ^{40×5}，含平面位置、朝向 sin/cos、到达指示）。</li><li><strong>Brainstem（脑干）</strong>：<strong>冻结的 SONIC 解码器</strong>结合本体感知，以 <strong>50 Hz</strong> 将运动 token 解码为关节目标，交由 PD 控制；新返回的 chunk 跳过已执行前缀、无混合地替换未执行尾部。</li><li><strong>几何监督</strong>：从 BgMesh + FgMesh 当前配置预计算 xy 平面 SDF（可通行区内为正），对去噪后航点做双线性查询，取最小净空 c_min 并以 softplus 形式惩罚，总损失为联合 flow-matching 损失加 λ_sdf 加权 SDF 项。</li><li><strong>数据引擎</strong>：首先在 InteriorGS 高斯背景上人工标注 BgMesh，并叠加可移动前景网格 FgMesh；随后标注目标包围盒与朝向，采样起点后用 2D A* 规划并在净空、平滑性、长度上精修路径；再用 <strong>ARDY</strong> 以 50 Hz 合成全身参考动作，由 <strong>P-SONIC</strong> 在 MuJoCo 中跟踪；最后回放记录的机器人状态，渲染第一人称观测（高斯与网格按深度合成）。</li><li><strong>P-SONIC</strong>：在原 SONIC 编码器输入中拼接 10 个未来参考骨盆位置的机体系位移与 10 个近期机体系线速度，在 <strong>IsaacLab</strong> 中用 PPO 训练 40K 迭代、262K 并行环境，冻结 FSQ 量化器与解码器，消除长路径上的全局漂移。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>场景数据</strong>：从 <strong>InteriorGS</strong> 选取 <strong>100 个训练场景</strong>与 <strong>20 个留出测试场景</strong>（工具链共覆盖 120 个场景）。</li><li><strong>示教规模</strong>：数据引擎生成 <strong>185,401</strong> 条单目标训练示教；单目标评测在留出场景上进行 <strong>522</strong> 个回合；184,990 条共享路线上做跟踪对比。</li><li><strong>长时程设置</strong>：使用训练集中的 20 个场景，<strong>14,410</strong> 条单目标示教训练策略，<strong>45</strong> 个需至少 3 个有序目标访问的评测任务。</li><li><strong>训练资源</strong>：所有导航策略训练 <strong>100K steps</strong>、全局 batch size 64，使用 <strong>8 张 NVIDIA H20 GPU</strong>。</li><li><strong>真机平台</strong>：<strong>Unitree G1</strong> 人形机器人 + 头部 3D 打印支架固定的前向 <strong>Orbbec Gemini335L</strong> 相机（第一人称 RGB）。</li><li>基线：<strong>OmniNav</strong>、<strong>DualVLN</strong>（均从其公开 checkpoint 微调）；全身控制统一使用 <strong>SONIC</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：Isaac/仿真留出场景 + 真机家居环境；指标包括 <strong>SR₀.₅ / SR₁.₅</strong>（0.5/1.5 m 内成功且未跌倒）、<strong>NE</strong>（终点平面误差）、<strong>CR</strong>（根轨迹落在可通行区外的比例）、<strong>Jp</strong>（29 关节位置三阶差分 jerk）、<strong>Falls</strong>、长时程 <strong>Task SR₁.₅ / Progress / OSR / Time</strong>。</li><li><strong>单目标仿真（522 回合 / 20 留出场景）</strong>：<strong>LHNav</strong> 取得 SR₀.₅ <strong>52.3%</strong>、SR₁.₅ <strong>75.7%</strong>、NE <strong>1.7 m</strong>、CR <strong>8.6%</strong>、Jp <strong>75.6</strong>、<strong>跌倒 0 次</strong>；对比 OmniNav（36.0 / 69.0 / 1.8 / 19.5 / 109.1 / 7）与 DualVLN（18.6 / 48.7 / 2.9 / 25.8 / 128.3 / 91）。</li><li><strong>长时程仿真（45 任务）</strong>：完整系统 Task SR₁.₅ <strong>75.56%</strong>、Progress <strong>82.2%</strong>、OSR <strong>91.1%</strong>、NE <strong>1.7 m</strong>、平均耗时 <strong>82.1 s</strong>（同步变体 73.3% 但耗时 97.8 s）；去掉任务管理后成功率降至 <strong>0%</strong>，去掉到达验证后降至 <strong>55.6%</strong>；Codex 版本从 55.6%（Native）→ 64.4%（+Harness）→ 71.1%（+Harness+tools）。</li><li><strong>真机（Unitree G1，每条件 5 次）</strong>：5 个家居单目标 <strong>100%</strong> 成功；3 个重排布局目标 <strong>93.3%–100%</strong>；三目的地“阅读笔记”零样本长时程任务 <strong>4/5（80%）</strong>；联合真机遥操作操作数据后还可完成“导航到桌边 + 推玩具狗”。</li><li><strong>消融</strong>：P-SONIC 将终点水平误差均值从 <strong>48.65 cm 降至 1.76 cm</strong>（降低 <strong>96.4%</strong>）；航点-only 26.4% → 运动 token 47.9% → 联合预测 <strong>52.3%</strong>；几何监督使 SR₀.₅ 提升 <strong>4.98 个百分点</strong>、CR 从 14.4% 降至 8.6%；Cerebellum 更新率约 <strong>8 Hz</strong> 时 CR 最低且无跌倒，较慢更新则 jerk 更低。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.12286/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">VLA-MOPD: On-Policy Distillation for Multi-Task VLA Policy Consolidation</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.12113/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Motion Belief Action: From a Visual Scene Map to Physical Decisions</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
