@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WAM is capable in BEHAVIOR-1K: the 2nd-place solution to the 2026 BEHAVIOR Challenge - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="本文是 2026 BEHAVIOR Challenge（100 项家庭长程移动操作任务）的第二名解决方案，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。 针对长程家庭任务中的非马尔可夫观测歧义（视觉相似的观测可能出现在不同任务阶段）与指令跟随/空间理解不足问题，提出以 Cosmos 3 为骨干的系统化改进方案。 在严格满足官方 ≥1 FPS 推理约束的前提下，不使用递归自我改进（RSI）、不使用 agentic harness、不依赖闭源模型，最终在私有测试集取得 Q-score 0.615 / 成功率 41.2%。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.13818">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.13818.webp" alt="WAM is capable in BEHAVIOR-1K: the 2nd-place solution to the 2026 BEHAVIOR Challenge" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">本文是 2026 BEHAVIOR Challenge（100 项家庭长程移动操作任务）的第二名解决方案，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">WAM is capable in BEHAVIOR-1K: the 2nd-place solution to the 2026 BEHAVIOR Challenge</h1>
+            <div class="detail-meta">2026-11-10 · <a href="http://arxiv.org/abs/2611.13818" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.13818" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.13818</span></div>
+            <p class="detail-summary">本文是 2026 BEHAVIOR Challenge（100 项家庭长程移动操作任务）的第二名解决方案，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。 针对长程家庭任务中的非马尔可夫观测歧义（视觉相似的观测可能出现在不同任务阶段）与指令跟随/空间理解不足问题，提出以 Cosmos 3 为骨干的系统化改进方案。 在严格满足官方 ≥1 FPS 推理约束的前提下，不使用递归自我改进（RSI）、不使用 agentic harness、不依赖闭源模型，最终在私有测试集取得 Q-score 0.615 / 成功率 41.2%。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">11 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">深圳云天励飞技术股份有限公司（Shenzhen Intellifusion Technologies…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.13818/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">本文是 2026 BEHAVIOR Challenge（100 项家庭长程移动操作任务）的第二名解决方案，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。</p>
+  <ul class="reading-intro-points"><li>本文是 2026 BEHAVIOR Challenge（100 项家庭长程移动操作任务）的第二名解决方案，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。</li><li>针对长程家庭任务中的非马尔可夫观测歧义（视觉相似的观测可能出现在不同任务阶段）与指令跟随/空间理解不足问题，提出以 Cosmos 3 为骨干的系统化改进方案。</li><li>在严格满足官方 ≥1 FPS 推理约束的前提下，不使用递归自我改进（RSI）、不使用 agentic harness、不依赖闭源模型，最终在私有测试集取得 Q-score 0.615 / 成功率 41.2%。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>深圳云天励飞技术股份有限公司</strong>（Shenzhen Intellifusion Technologies Co., Ltd., China）</li><li><strong>约翰斯·霍普金斯大学</strong>（Johns Hopkins University）</li><li>参赛队伍名称：<strong>Team IF1001</strong></li><li>通讯作者：<strong>Xinming Wei</strong>；<strong>Xianbiao Qi</strong> 在云天励飞任职期间参与该项目</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>本文是 <strong>2026 BEHAVIOR Challenge</strong>（100 项家庭长程移动操作任务）的<strong>第二名解决方案</strong>，核心主张是“世界动作模型（WAM）足以胜任 BEHAVIOR-1K”。</li><li>针对长程家庭任务中的<strong>非马尔可夫观测歧义</strong>（视觉相似的观测可能出现在不同任务阶段）与<strong>指令跟随/空间理解不足</strong>问题，提出以 <strong>Cosmos 3</strong> 为骨干的系统化改进方案。</li><li>在严格满足官方 <strong>≥1 FPS</strong> 推理约束的前提下，不使用递归自我改进（RSI）、不使用 agentic harness、不依赖闭源模型，最终在私有测试集取得 <strong>Q-score 0.615 / 成功率 41.2%</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>首次系统性地将 <strong>Cosmos 3 世界动作模型</strong>（16B 的 Cosmos 3-Nano）适配到 BEHAVIOR-1K 长程家庭任务，验证 WAM 路线的可行性。</li><li>引入<strong>更丰富的视觉历史</strong>（当前帧 + 2 帧跨越 2 秒的历史）、<strong>任务进度条件化</strong>（stage ID 的 4 个 conditioning token）与<strong>任务组 LoRA 微调</strong>，在不同层级上共同缓解观测歧义。</li><li>提出<strong>技能专属 LoRA 适配器</strong>：跨任务汇聚演示片段，分别为<strong>抓取、放置、打开、关闭</strong>训练独立适配器，并由进度估计器的技能预测驱动路由选择。</li><li>设计完整推理流水线：<strong>独立进度估计器</strong>、<strong>动作候选聚合</strong>、<strong>滚动式 inpainting</strong>、<strong>时间重定时（TOPP-RA）</strong> 与<strong>夹爪感知控制</strong>。</li><li>在 100 个任务、100 个并发评测端口、有限硬件资源下实现<strong>每端口平均端到端推理速率 > 2 FPS</strong>，满足官方最低要求。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>基础模型</strong>：从 Cosmos 3-Nano 出发，扩展输入序列，插入 4 个 stage-task fusion 干净条件 token、视觉历史 token 与当前本体感知 token，保留 Cosmos 3 的 AR 因果 + DM 全可见注意力掩码。</li><li><strong>位置编码</strong>：沿用 3D mRoPE，时间坐标 $t=B+\omega\tau$（$\omega=6\,\mathrm{s}^{-1}$），视觉保留 patch 空间坐标，本体感知与动作取 $h=w=0$。</li><li><strong>动作表示</strong>：23 维动作（基座速度、躯干/手臂关节、夹爪），对其中 17 维采用<strong>相对 chunk 起始状态的 delta 动作</strong>，并按 chunk 位置与维度做分位数归一化。</li><li><strong>任务进度条件化</strong>：任务阶段数 $K_q=\mathrm{clip}(\lceil \bar{N}_q/900\rceil,5,15)$，100 个任务共 <strong>1,120 个任务专属阶段</strong>；阶段嵌入经门控融合生成 4 个 token（门控任务特征、联合任务-阶段融合、门控阶段特征、无门控阶段特征）。</li><li><strong>任务分组</strong>：依据场景-初始房间元数据构建冲突图，用平衡图着色划分为 <strong>17 组</strong>（最大团 17 个任务同厨房起始，达到下界；15 组×6 任务 + 2 组×5 任务），每组训练一个 <strong>rank 128、α=256</strong> 的 LoRA（作用于注意力 Q/K/V/O 与 MLP gate/up/down）。</li><li><strong>进度估计器</strong>：阶段估计分支为 2 层 Transformer（4096 隐维、32 头，约 <strong>404M</strong> 参数）；子任务预测分支为 <strong>SigLIP-B/16</strong> + 8 层因果 Transformer（128 隐维、4 头，<strong>94.6M</strong> 参数），预测导航/操作状态与技能类别以驱动路由。</li><li><strong>推理</strong>：生成 <strong>N=5</strong> 个候选，CFG 系数 <strong>γ=3</strong>，UniPC <strong>S=4</strong> 步去噪、shift <strong>β=5</strong>；连续维度取均值、夹爪维度按多数符号投票，或采用 medoid 聚合；滚动 inpainting 在 σ>0.7 时用锚点混合。</li><li><strong>执行</strong>：将 32 步 @15Hz 动作块上采样为 64 条 @30Hz 命令；用 <strong>TOPP-RA</strong> 在速度约束下最小化行进时间，执行窗口取 {20,30,40,50}；并以任务/阶段专属夹爪规则覆盖过早闭合。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>数据集</strong>：2026 BEHAVIOR Challenge 数据集，<strong>100 个任务 × 200 条人类演示 = 20,000 条</strong>，总时长约 <strong>1,950 小时</strong>，涵盖 <strong>7 个房屋级场景</strong>、<strong>35 类技能标注</strong>。</li><li>训练窗口：按 15 Hz 采样网格得到 <strong>104,823,365</strong> 个可用窗口；视觉输入为头部 224×224 + 双腕 112×112 拼接为 336×224。</li><li><strong>模型规模</strong>：基座 <strong>Cosmos 3-Nano（16B）</strong>；进度估计器合计约 <strong>500M</strong> 参数（404M + 94.6M，不含共享 VAE）。</li><li><strong>训练资源</strong>：基座训练 <strong>600,000 步、有效 batch 384、约 7,095 GPU-hours</strong>（约 2.20 等价 epoch，MFU 52.3%，bfloat16，Wan2.2 VAE 预计算 6-bit 打包 latent）；17 个任务组 LoRA 各 40,000 步，合计约 <strong>6,427 GPU-hours</strong>。</li><li>额外使用 <strong>Openpi Comet</strong> 的成功 rollout 数据做 LoRA 微调。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估环境</strong>：OmniGibson 仿真（版本跨 v3.9.1–v3.9.3），仿真超时为任务平均人类完成时间的 <strong>1.5 倍</strong>；每任务 10 个公开验证实例、20 个私有测试实例。</li><li><strong>评估指标</strong>：谓词式 <strong>Q-score</strong>（部分目标完成度）与<strong>全任务成功率 SR</strong>。</li><li><strong>私有测试集官方成绩</strong>：<strong>Q-score 0.615，成功率 41.2%</strong>，总排名第 2。</li><li><strong>自评估</strong>（100 任务、3 轮平均）：<strong>Q-score 0.613，成功率 40.9%</strong>。</li><li><strong>推理效率</strong>：100 个评测端口并发、硬件受限条件下，每端口平均端到端 <strong>> 2 FPS</strong>，满足 1 FPS 门槛。</li><li><strong>对比基线</strong>：2025 冠军 RLC（π₀.₅ + 阶段预测/动作 inpainting/时间压缩）私有测试 Q-score <strong>0.260</strong>；2025 亚军 Openpi Comet <strong>0.251</strong>；RoboHarness 类 agentic 方法在子任务集上报告 0.658（仅 6 任务）或 0.445（仅 10 任务）。</li><li><strong>消融</strong>：分别考察基座策略、任务组 LoRA、stage-ID 估计（含 skill-to-stage 查表替代）、技能专属 LoRA 路由、时间重定时与执行窗口配置；作者说明因赛程与算力限制，这些比较刻画的是整体系统表现，未严格隔离每个组件贡献。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.14048/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">LaST0.5: A Generalist World Action Model with Interaction-Centric Latent Reasoning</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.13160/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">How Much of Your VLA Is kNN</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

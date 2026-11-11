@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elastic-WAM: Adaptive Spatiotemporal Imagination for Efficient Robot Control - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 Elastic-WAM，面向 World-Action Model（WAM） 的机器人控制，通过自适应分配&quot;世界模型精化&quot;计算量来降低推理开销。 核心问题：WAM 依赖迭代式未来视频去噪来辅助动作生成，推理代价高；已有加速方法（部分去噪、步蒸馏、稀疏 latent 等）普遍采用固定的精化预算，忽视任务与状态差异。 关键实证观察：在 LIBERO-Plus 的 10 个任务上，最优去噪步数在 1–4 之间随任务变化，同一任务内不同状态也偏好不同精化深度；动作-视频注意力图显示未来视频区域对动作生成的贡献高度不均。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.14257">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.14257.webp" alt="Elastic-WAM: Adaptive Spatiotemporal Imagination for Efficient Robot Control" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 Elastic-WAM，面向 World-Action Model（WAM） 的机器人控制，通过自适应分配&quot;世界模型精化&quot;计算量来降低推理开销。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Elastic-WAM: Adaptive Spatiotemporal Imagination for Efficient Robot Control</h1>
+            <div class="detail-meta">2026-11-10 · <a href="http://arxiv.org/abs/2611.14257" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.14257" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.14257</span></div>
+            <p class="detail-summary">论文提出 Elastic-WAM，面向 World-Action Model（WAM） 的机器人控制，通过自适应分配&quot;世界模型精化&quot;计算量来降低推理开销。 核心问题：WAM 依赖迭代式未来视频去噪来辅助动作生成，推理代价高；已有加速方法（部分去噪、步蒸馏、稀疏 latent 等）普遍采用固定的精化预算，忽视任务与状态差异。 关键实证观察：在 LIBERO-Plus 的 10 个任务上，最优去噪步数在 1–4 之间随任务变化，同一任务内不同状态也偏好不同精化深度；动作-视频注意力图显示未来视频区域对动作生成的贡献高度不均。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">新加坡国立大学（National University of Singapore）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.14257/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 Elastic-WAM，面向 World-Action Model（WAM） 的机器人控制，通过自适应分配&quot;世界模型精化&quot;计算量来降低推理开销。</p>
+  <ul class="reading-intro-points"><li>论文提出 Elastic-WAM，面向 World-Action Model（WAM） 的机器人控制，通过自适应分配&quot;世界模型精化&quot;计算量来降低推理开销。</li><li>核心问题：WAM 依赖迭代式未来视频去噪来辅助动作生成，推理代价高；已有加速方法（部分去噪、步蒸馏、稀疏 latent 等）普遍采用固定的精化预算，忽视任务与状态差异。</li><li>关键实证观察：在 LIBERO-Plus 的 10 个任务上，最优去噪步数在 1–4 之间随任务变化，同一任务内不同状态也偏好不同精化深度；动作-视频注意力图显示未来视频区域对动作生成的贡献高度不均。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>新加坡国立大学</strong>（National University of Singapore）</li><li><strong>RoboScience</strong></li><li><strong>香港科技大学（广州）</strong></li><li><strong>浙江大学</strong></li><li><strong>哈尔滨工业大学（深圳）</strong></li><li><strong>清华大学</strong></li><li><strong>南洋理工大学</strong></li><li><strong>西交利物浦大学</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>Elastic-WAM</strong>，面向 <strong>World-Action Model（WAM）</strong> 的机器人控制，通过自适应分配"世界模型精化"计算量来降低推理开销。</li><li>核心问题：WAM 依赖迭代式未来视频去噪来辅助动作生成，推理代价高；已有加速方法（部分去噪、步蒸馏、稀疏 latent 等）普遍采用<strong>固定的精化预算</strong>，忽视任务与状态差异。</li><li>关键实证观察：在 <strong>LIBERO-Plus</strong> 的 10 个任务上，最优去噪步数在 1–4 之间随任务变化，同一任务内不同状态也偏好不同精化深度；动作-视频注意力图显示未来视频区域对动作生成的贡献高度不均。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出用<strong>统一的时空精化需求场</strong>（unified spatiotemporal demand field）建模自适应世界精化，联合决定<strong>何时停止（WHEN）</strong>、<strong>每步推进多远（HOW FAR）</strong>、<strong>刷新哪些区域（WHERE）</strong>。</li><li>设计基于动作质量监督的三阶段学习框架（时序轮廓 → 相对空间优先级 → 总体精化需求），在<strong>冻结 WAM 主干</strong>的前提下完成自适应精化学习。</li><li>提出<strong>循环稀疏推理策略</strong>：先做一次稠密联合去噪，随后按学到的场选择性地刷新部分未来视频 query，世界精化停止后继续用缓存表示完成动作去噪。</li><li>在多个仿真基准与真实长程操作任务上取得（无大规模具身预训练方法中的）SOTA 控制性能，同时显著降低推理延迟。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>场建模</strong>：将 196 个未来视频 token 划分为 <strong>G=64</strong> 个保留时序与相机视角边界的几何感知组（每组 1/2/4 个 token），每组定义局部精化曲线 <code>q_g(z\|s)=a_g(s)·Beta(z; m_g, c_g)</code>，聚合得全局需求 <code>Q(z\|s)=D(s)·B_0(z\|s)</code>。</li><li><strong>参数化</strong>：所有区域共享时序基 <code>B_0</code>（Beta 分布的众数 <code>m_0</code> 与集中度 <code>c_0</code>），区域差异由幅值 <code>a_g(s)=sigmoid(b_0(s)+stopgrad[Δu_g(s)])</code> 表达；中心化后的 <code>Δu_g</code> 只编码相对空间优先级，<code>b_0</code> 控制整体需求。</li><li><strong>WHEN</strong>：把 <code>D(s_k)</code> 视为条件延续概率，构造累积 World Commit 概率 <code>F_k=1-∏C_j</code>，当 <code>F_k≥η=0.5</code> 时提交世界表示。</li><li><strong>HOW FAR</strong>：归一化后用时序分布众数 <code>m_0(s_k)</code> 决定步长 <code>Δσ_k=δ_min+z_k(δ_max-δ_min)</code>，<code>δ_min=0.05</code>，<code>δ_max=min(0.20, σ_k-σ_floor)</code>。</li><li><strong>WHERE</strong>：在精确 token 预算 <code>K_0=96</code> 下按相对得分求解 0/1 掩码最优化问题，选出需刷新的区域；推理时保留完整逻辑注意力上下文。</li><li><strong>三阶段监督</strong>：① 用终端动作误差 <code>E=0.6E_seq+0.4E_Δ</code> 生成软目标学习时序轮廓，并训练时序教师（hazard）用于停止监督；② 冻结时序后，用稠密教师对比可微稀疏学生，通过<strong>直通（straight-through）松弛</strong>优化离散掩码，损失含动作-GT、动作-稠密、视频-GT 与软预算正则；③ 冻结前两者，用时序教师的 hazard 反解目标 <code>b_0*</code>，用完整循环前缀监督累积停止行为并加入终端动作质量修正。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>仿真基准：<strong>LIBERO</strong>（分布内）、<strong>LIBERO-Pro</strong>、<strong>LIBERO-Plus</strong>（分布外，含相机、机器人、语言、光照、背景、噪声、布局等扰动）、<strong>RoboCasa-GR1</strong>。</li><li>真实世界：长程<strong>茶艺制备（tea preparation）</strong>操作任务，配套自建机器人平台与数据采集流程。</li><li>对比方法包括 <strong>π0.5、π0、π0-Fast、OpenVLA、OpenVLA-OFT、X-VLA、UniVLA、WorldVLA、LingBot-VA、Motus、Fast-WAM、Joint-WAM</strong> 等。</li><li>模型以<strong>冻结的预训练 WAM 为骨干</strong>，仅学习轻量精化场参数；未使用大规模具身预训练（原文截断部分未给出具体参数量与 GPU/TPU 配置，附录 A.3 有推理效率与硬件说明）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：平均成功率 <strong>98.8%</strong>，为表中最佳，优于 Joint-WAM（98.5）、LingBot-VA（98.5）、Motus（97.7）、Fast-WAM（97.6）、π0.5（96.9）。</li><li><strong>LIBERO-Pro</strong>：平均 <strong>54.1%</strong> 最佳，显著高于 Joint-WAM（52.8）、π0.5（53.4）、OpenVLA（47.6）、X-VLA（45.9）、Fast-WAM（44.5）；在 Obj./Sem./Task 等子项上取得最好或次好成绩。</li><li><strong>LIBERO-Plus</strong>：在相机、机器人、语言、光照、背景、噪声、布局等扰动下整体保持领先（如 Task 项 24.7% 为最佳、Sem. 97.7% 为最佳），明显优于 OpenVLA-OFT、π0、WorldVLA 等方法。</li><li><strong>效率</strong>：相比 <strong>Joint-WAM</strong> 在 <strong>RoboCasa-GR1</strong> 上降低 <strong>32.2%</strong> 推理延迟，同时保持或提升任务成功率。</li><li><strong>真实世界</strong>：在长程茶艺制备任务上验证了自适应精化在真实操作中的有效性（附录 C 提供定性长程执行结果）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.14365/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.14092/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">DexSeed: Expanding Human Hand-Object Interactions into Robot Demonstrations for Dexterous Policy Learning</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

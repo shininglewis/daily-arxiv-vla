@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>One Policy for 100 Household Tasks: Our Solution for the 2026 BEHAVIOR Challenge - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文介绍 2026 BEHAVIOR Challenge 的参赛方案：在 OmniGibson 仿真器中完成 100 个长时程家庭任务 核心是使用一个 视觉-语言-动作（VLA）模型 和 一个 checkpoint 服务全部 100 个任务，并基于 2025 年冠军方案及 π0.5 继续训练 针对 2025 年模型“训练不足”的问题，重点改进了 50→100 任务迁移、训练稳定性、流匹配采样效率和评测基础设施，并对部分困难任务引入 GPT-6 Astra 智能体路线" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.14432">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.14432.webp" alt="One Policy for 100 Household Tasks: Our Solution for the 2026 BEHAVIOR Challenge" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文介绍 2026 BEHAVIOR Challenge 的参赛方案：在 OmniGibson 仿真器中完成 100 个长时程家庭任务</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">One Policy for 100 Household Tasks: Our Solution for the 2026 BEHAVIOR Challenge</h1>
+            <div class="detail-meta">2026-11-10 · <a href="http://arxiv.org/abs/2611.14432" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.14432" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.14432</span></div>
+            <p class="detail-summary">论文介绍 2026 BEHAVIOR Challenge 的参赛方案：在 OmniGibson 仿真器中完成 100 个长时程家庭任务 核心是使用一个 视觉-语言-动作（VLA）模型 和 一个 checkpoint 服务全部 100 个任务，并基于 2025 年冠军方案及 π0.5 继续训练 针对 2025 年模型“训练不足”的问题，重点改进了 50→100 任务迁移、训练稳定性、流匹配采样效率和评测基础设施，并对部分困难任务引入 GPT-6 Astra 智能体路线</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者栏仅列出姓名和邮箱，未明确标注所属研究机构</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.14432/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文介绍 2026 BEHAVIOR Challenge 的参赛方案：在 OmniGibson 仿真器中完成 100 个长时程家庭任务</p>
+  <ul class="reading-intro-points"><li>论文介绍 2026 BEHAVIOR Challenge 的参赛方案：在 OmniGibson 仿真器中完成 100 个长时程家庭任务</li><li>核心是使用一个 视觉-语言-动作（VLA）模型 和 一个 checkpoint 服务全部 100 个任务，并基于 2025 年冠军方案及 π0.5 继续训练</li><li>针对 2025 年模型“训练不足”的问题，重点改进了 50→100 任务迁移、训练稳定性、流匹配采样效率和评测基础设施，并对部分困难任务引入 GPT-6 Astra 智能体路线</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者栏仅列出姓名和邮箱，<strong>未明确标注所属研究机构</strong></li><li>论文称该团队为 <strong>2026 BEHAVIOR Challenge 的独立参赛队伍</strong>，是前十名中唯一的独立团队</li><li>代码仓库署名为 <strong>Robot-Learning-Collective</strong>，但这不属于正式机构信息</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文介绍 <strong>2026 BEHAVIOR Challenge</strong> 的参赛方案：在 <strong>OmniGibson</strong> 仿真器中完成 <strong>100 个长时程家庭任务</strong></li><li>核心是使用一个 <strong>视觉-语言-动作（VLA）模型</strong> 和 <strong>一个 checkpoint</strong> 服务全部 100 个任务，并基于 2025 年冠军方案及 <strong>π0.5</strong> 继续训练</li><li>针对 2025 年模型“训练不足”的问题，重点改进了 <strong>50→100 任务迁移、训练稳定性、流匹配采样效率和评测基础设施</strong>，并对部分困难任务引入 <strong>GPT-6 Astra</strong> 智能体路线</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出从 <strong>50 个任务扩展到 100 个任务</strong> 的迁移方案：利用技能标注构建语义阶段、对新任务和阶段 embedding 做相似任务热启动，并采用 <strong>21 维动作空间</strong></li><li>在 VLA 的多层级引入 <strong>attention sinks、scratch tokens 和 SigLIP registers</strong>，并通过参数手术将预训练 SigLIP 的 attention-sink 异常值迁移到 registers</li><li>提出 <strong>方差缩减的多样本流匹配训练</strong>：使用分层时间采样和 antithetic noise，并给出无需大规模消融即可选择样本数 <strong>K</strong> 的噪声-计算量模型</li><li>构建跨本地与两个云平台的 <strong>评测基础设施</strong>，支持来源追踪、诊断信息和可恢复仿真状态，单 GPU 上 6 个仿真器聚合速度超过实时</li><li>为 14 个困难任务引入 <strong>GPT-6 Astra 智能体路线</strong>：在训练实例上自主练习并冻结会话，评测时由智能体通过观察和运动工具控制机器人</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li>模型继承 <strong>π0.5/openpi</strong> 架构：<strong>PaliGemma</strong>（SigLIP So400m + Gemma 2B）作为 VLM，搭配 <strong>300M Gemma action expert</strong>，通过流匹配生成 <strong>30 步动作块</strong></li><li>使用可学习的 <strong>task embedding</strong> 替代文本提示，并用 <strong>System 2 阶段预测头 + 投票</strong> 跟踪任务阶段；动作专家通过 <strong>KV mixing</strong> 读取 VLM 多层信息</li><li>动作与状态空间压缩为 <strong>21 维</strong>：base 3、torso translate/tilt、双臂各 7 维加夹爪，去掉填充维度和冗余躯干自由度</li><li>训练采用 <strong>多流样本、分层 Beta 时间采样、antithetic noise、FAST 辅助损失、相关流噪声、分组学习率、图像增强和状态 dropout</strong></li><li>智能体路线中，<strong>GPT-6 Astra</strong> 在 Pi coding agent 中通过 <code>observe</code>、<code>xyz</code>、<code>act</code> 工具练习任务，评测时从冻结会话副本开始，失败时回退到学习策略</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>BEHAVIOR Challenge 2026 / OmniGibson</strong> 数据集：<strong>100 个任务</strong>，每任务 <strong>200 条示教</strong>，共 <strong>20,000 episodes</strong>、<strong>211M 帧</strong>、约 <strong>1,950 小时</strong>，LeRobot 格式</li><li>机器人平台为 <strong>Galaxea R1Pro</strong>：全向底座、4 关节躯干、两条 7-DOF 机械臂、平行夹爪，观测包括头部相机、双腕相机和本体状态</li><li>模型规模：<strong>π0.5 风格 VLA</strong>，PaliGemma VLM + <strong>300M action expert</strong>；图像分辨率 <strong>224×224</strong>，动作块长度 <strong>30</strong></li><li>训练资源：先用 <strong>1×B300</strong>、batch 480 训练 130k 步，再用 <strong>8×H200 + FSDP</strong>、batch 2048 训练 70k 步，总计 <strong>200k 步</strong>、约 <strong>200M 样本</strong>，接近对 211M 帧的一遍遍历</li><li>评测资源：约 <strong>9,000 个评测 episode</strong>、约 <strong>100M 环境步</strong>、近 <strong>1,000 仿真小时</strong>；完整 100 任务×10 实例评测约需 8 台机器 20 小时，成本约 <strong>300 美元</strong></li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>评估环境为 <strong>BEHAVIOR Challenge 2026 官方评测器</strong>，主要指标为 <strong>Q 分数</strong>（满足目标谓词比例）和 <strong>全任务成功率</strong></li><li>最终排名 <strong>第 9 名</strong>，为前十中唯一独立团队；公开提交结果为 <strong>Q=0.446</strong>、全任务成功率 <strong>27.3%</strong></li><li>学习策略单独在全部 100 任务上 <strong>Q=0.392</strong>；在 2025 年共享的 50 个任务上，Q 从 <strong>0.260 提升到 0.371</strong></li><li>在 14 个路由给 <strong>GPT-6 Astra</strong> 的任务上，智能体平均 <strong>Q=0.639</strong>，学习策略仅 <strong>0.108</strong></li><li>失败模式分析显示：<strong>Order、Robot fell、Robot stuck</strong> 类失败减少，<strong>Dexterity</strong> 仍是主要瓶颈；学习策略还表现出一定程度的 <strong> emergent recovery</strong> 能力</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.14488/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">Is Your Robot&#x27;s Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.14365/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">From Video Frames to Robot Meta-Frames: A Unified Latent Interface for World Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

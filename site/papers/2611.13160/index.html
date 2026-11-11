@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How Much of Your VLA Is kNN - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究 LIBERO 仿真基准上 VLA（视觉-语言-动作）模型 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。 作者提出一种免训练（training-free）的 kNN 策略：检索与当前观测最相似的演示帧，并加权复用其后续动作块（action chunk）。 论文还提出离线度量 LAC（Lookup Action Consistency），用于在无闭环 rollout 的情况下评估表征作为检索键（retrieval key）的质量。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.13160">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.13160.webp" alt="How Much of Your VLA Is kNN" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究 LIBERO 仿真基准上 VLA（视觉-语言-动作）模型 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">How Much of Your VLA Is kNN</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.13160" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.13160" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.13160</span></div>
+            <p class="detail-summary">论文研究 LIBERO 仿真基准上 VLA（视觉-语言-动作）模型 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。 作者提出一种免训练（training-free）的 kNN 策略：检索与当前观测最相似的演示帧，并加权复用其后续动作块（action chunk）。 论文还提出离线度量 LAC（Lookup Action Consistency），用于在无闭环 rollout 的情况下评估表征作为检索键（retrieval key）的质量。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Sereact GmbH（德国斯图加特）——Denis Grachev、Damien LaRocque…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.13160/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究 LIBERO 仿真基准上 VLA（视觉-语言-动作）模型 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。</p>
+  <ul class="reading-intro-points"><li>论文研究 LIBERO 仿真基准上 VLA（视觉-语言-动作）模型 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。</li><li>作者提出一种免训练（training-free）的 kNN 策略：检索与当前观测最相似的演示帧，并加权复用其后续动作块（action chunk）。</li><li>论文还提出离线度量 LAC（Lookup Action Consistency），用于在无闭环 rollout 的情况下评估表征作为检索键（retrieval key）的质量。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Sereact GmbH</strong>（德国斯图加特）——Denis Grachev、Damien LaRocque、Omar Moured</li><li><strong>Karlsruher Institut für Technologie (KIT)</strong>（德国卡尔斯鲁厄）——Omar Moured</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究 <strong>LIBERO</strong> 仿真基准上 <strong>VLA（视觉-语言-动作）模型</strong> 的高成功率中有多少可以直接由“检索演示”来解释，而不是真正的泛化能力。</li><li>作者提出一种<strong>免训练（training-free）的 kNN 策略</strong>：检索与当前观测最相似的演示帧，并加权复用其后续动作块（action chunk）。</li><li>论文还提出离线度量 <strong>LAC（Lookup Action Consistency）</strong>，用于在无闭环 rollout 的情况下评估表征作为检索键（retrieval key）的质量。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>量化了基准性能可被纯检索解释的程度：无需任何策略训练，<strong>kNN 在 LIBERO 上达到 91.7% 成功率</strong>。</li><li>使用检索作为“探针”，在微调前后评估 <strong>9 个公开 VLA</strong> 的视觉-语言主干（VLM backbone），并与完整策略对比。</li><li>提出 <strong>LAC</strong> 离线指标：衡量表征空间中相邻的观测是否对应相似的动作块，并证明其与闭环检索成功率的关联。</li><li>证明 <strong>LAC 的可微代理损失</strong> 可训练出更好的线性检索键，将 ResNet kNN 的成功率从 88.7% 提升到 93.0%。</li><li>在 <strong>LIBERO-Plus</strong> 扰动下，检索策略表现出所有被评估策略中<strong>最小的性能下降（9.3 个百分点）</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>记忆构建</strong>：从 1693 条 LIBERO 演示中每隔一帧采样，得到约 <strong>137k 条记忆条目</strong>，每条包含观测、其后长度为 H 的动作块及来源轨迹索引。</li><li><strong>加权多模态距离</strong>：组合图像特征、机器人本体状态、语言指令（CLIP 嵌入）、回合时间与观测历史，各模态按任务内距离中位数归一化。</li><li><strong>邻居选择与动作预测</strong>：取 k 个最近邻，限制<strong>每条演示最多贡献一个邻居</strong>以避免过度依赖单条轨迹；用 softmax 加权融合动作块。</li><li><strong>三种策略变体</strong>：<code>kNN (ResNet)</code>（k=8，冻结 ImageNet ResNet-18 第 3 层 4×4 特征网格）、<code>kNN (multimodal)</code>（k=13，含模态寻峰与时序集成）、<code>kNN (LAC key)</code>（在 ResNet 特征上加线性投影）。</li><li><strong>LAC 指标</strong>：定义为 1 减去“k 近邻平均动作距离”与“同任务全体条目平均动作距离”之比，报告 <strong>LAC@8</strong>。</li><li><strong>VLA 表征探测</strong>：用 VLA 主干某层图像 token 隐状态（池化为 2×2 网格）替代 ResNet 特征做检索，层选择以留出集上动作预测的 R² 最大化确定。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>LIBERO</strong>：130 个语言条件 Franka 操作任务，五个套件；实验使用 Spatial、Object、Goal、Long 共 <strong>40 个任务、1693 条演示</strong>。</li><li><strong>LIBERO-Plus</strong>：引入 7 类扰动，论文固定选取 <strong>420 个变体（每类 60 个）</strong>，且从训练与调参中留出。</li><li><strong>9 个公开 VLA 检查点</strong>（均来自 <strong>LeRobot</strong>）：<strong>π0.5、MolmoAct2、GR00T N1.7、VLA-JEPA、Evo-1、X-VLA、π0、SmolVLA、π0-FAST</strong>。</li><li>视觉编码使用<strong>冻结的 ImageNet 预训练 ResNet-18</strong>，语言使用 <strong>CLIP</strong> 嵌入；超参数用 <strong>Optuna</strong> 搜索。</li><li>未报告具体 GPU/TPU 型号与训练算力；方法本身基本免训练（除 LAC key 的轻量线性投影）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估协议</strong>：按 LIBERO 官方协议每任务 50 回合，每策略共 <strong>2000 次 rollout</strong>；VLA-Plus 上使用同一组 420 个扰动变体。</li><li><strong>主要指标</strong>：任务成功率（%），以及 LIBERO 到 LIBERO-Plus 的下降幅度 Δ；LAC 与闭环成功率的相关性。</li><li><strong>基准结果</strong>：<code>kNN (ResNet)</code> 88.7% / 75.5%，<code>kNN (multimodal)</code> <strong>91.7% / 82.4%</strong>，<code>kNN (LAC key)</code> <strong>93.0% / 81.7%</strong>；π0.5 最高（97.7% / 85.5%）。</li><li><strong>鲁棒性</strong>：multimodal kNN 下降仅 <strong>9.3 个百分点</strong>，优于全部 9 个 VLA（VLA 下降 12.2–64.8 个百分点），并在 LIBERO-Plus 上超过 9 个 VLA 中的 7 个。</li><li><strong>消融</strong>：仅用 10% 演示降至 77.4%；用原始像素替代嵌入降至 57.2%；去掉语言提示下降 <strong>27.1 个百分点</strong>；模式寻峰、时序集成、历史、本体状态、时间步的影响均在 ±1 个百分点内。</li><li><strong>表征分析</strong>：微调后 8 个 VLA 中有 5 个（LIBERO）/ 7 个（LIBERO-Plus）检索性能提升，提升幅度 5–37 个百分点；对 2/9（LIBERO）与 4/9（LIBERO-Plus）模型，仅用微调主干的检索就超过完整 VLA，最高超出 48 个百分点；π0 微调后检索从 86.9% 崩至 17.9%，其 t-SNE 每任务坍缩为单簇。</li><li><strong>动作空间分析</strong>：VLA 动作块与 kNN 预测的 <strong>R² = 0.63–0.93</strong>（5/8 模型比真值更接近 kNN 预测），且所有 VLA 动作比留出真值更接近训练动作块。</li><li><strong>LAC 诊断能力</strong>：与闭环检索成功率 <strong>Pearson r = 0.78</strong>、<strong>Spearman ρ = 0.61</strong>；能标记退化键（π0 微调后 LAC 0.55 vs 其他键 0.76–0.88）。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.13818/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">WAM is capable in BEHAVIOR-1K: the 2nd-place solution to the 2026 BEHAVIOR Challenge</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.13039/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">Robo-MLT: Dual-System Robotic Manipulation for Long-Horizon Medical Laboratory Tasks</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

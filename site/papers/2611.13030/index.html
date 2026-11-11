@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>APS-VLA: Action-Guided and Future-Aware Token Pruning for Efficient Vision-Language-Action Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 APS-VLA，一个面向视觉-语言-动作（VLA）模型的动作引导与未来感知视觉 token 剪枝框架，目标是在冻结预训练 VLA 主干的前提下降低推理延迟。 解决的问题是：VLA 策略每步需处理多相机、数百个密集视觉 token，推理代价高；而现有剪枝方法依赖静态空间冗余、即时指令相关性或启发式重要性，难以保留任务推进过程中真正影响控制决策的视觉线索。 核心思路是从机器人演示轨迹中“学习”token 选择规则——同时利用示范动作与随之发生的视觉变化作为互补监督信号。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.13030">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.13030.webp" alt="APS-VLA: Action-Guided and Future-Aware Token Pruning for Efficient Vision-Language-Action Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 APS-VLA，一个面向视觉-语言-动作（VLA）模型的动作引导与未来感知视觉 token 剪枝框架，目标是在冻结预训练 VLA 主干的前提下降低推理延迟。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">APS-VLA: Action-Guided and Future-Aware Token Pruning for Efficient Vision-Language-Action Models</h1>
+            <div class="detail-meta">2026-11-09 · <a href="http://arxiv.org/abs/2611.13030" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.13030" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.13030</span></div>
+            <p class="detail-summary">论文提出 APS-VLA，一个面向视觉-语言-动作（VLA）模型的动作引导与未来感知视觉 token 剪枝框架，目标是在冻结预训练 VLA 主干的前提下降低推理延迟。 解决的问题是：VLA 策略每步需处理多相机、数百个密集视觉 token，推理代价高；而现有剪枝方法依赖静态空间冗余、即时指令相关性或启发式重要性，难以保留任务推进过程中真正影响控制决策的视觉线索。 核心思路是从机器人演示轨迹中“学习”token 选择规则——同时利用示范动作与随之发生的视觉变化作为互补监督信号。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">10 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">同济大学 计算机科学与技术学院（Xiaoyang Xing、Chun-Mei Feng、Xiaolia…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.13030/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 APS-VLA，一个面向视觉-语言-动作（VLA）模型的动作引导与未来感知视觉 token 剪枝框架，目标是在冻结预训练 VLA 主干的前提下降低推理延迟。</p>
+  <ul class="reading-intro-points"><li>论文提出 APS-VLA，一个面向视觉-语言-动作（VLA）模型的动作引导与未来感知视觉 token 剪枝框架，目标是在冻结预训练 VLA 主干的前提下降低推理延迟。</li><li>解决的问题是：VLA 策略每步需处理多相机、数百个密集视觉 token，推理代价高；而现有剪枝方法依赖静态空间冗余、即时指令相关性或启发式重要性，难以保留任务推进过程中真正影响控制决策的视觉线索。</li><li>核心思路是从机器人演示轨迹中“学习”token 选择规则——同时利用示范动作与随之发生的视觉变化作为互补监督信号。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>同济大学</strong> 计算机科学与技术学院（Xiaoyang Xing、Chun-Mei Feng、Xiaoliang Gong）</li><li><strong>利兹大学</strong> 计算机学院（Anthony Cohn）</li><li>**新加坡科技研究局（A*STAR）**（Chun-Mei Feng）</li><li><strong>伦敦布鲁内尔大学</strong> 电子与电气工程系（Asoke Nandi）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>APS-VLA</strong>，一个面向视觉-语言-动作（VLA）模型的<strong>动作引导与未来感知视觉 token 剪枝</strong>框架，目标是在<strong>冻结预训练 VLA 主干</strong>的前提下降低推理延迟。</li><li>解决的问题是：VLA 策略每步需处理多相机、数百个密集视觉 token，推理代价高；而现有剪枝方法依赖静态空间冗余、即时指令相关性或启发式重要性，难以保留任务推进过程中真正影响控制决策的视觉线索。</li><li>核心思路是从机器人<strong>演示轨迹</strong>中“学习”token 选择规则——同时利用示范动作与随之发生的视觉变化作为互补监督信号。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>从演示轨迹学习视觉选择</strong>：为共享的视觉选择器设计<strong>动作监督</strong>与<strong>动作条件下的未来视觉转移预测</strong>两个互补目标，前者保留复现策略与专家动作所需信息，后者用同一表征监督后续视觉变化。</li><li>提出 <strong>Decision Influence Estimator（DIE）</strong>：一个轻量模块，结合图像 patch 局部特征、跨视角视觉上下文、语言指令与归一化本体感知（proprioception）为每个视觉 token 打分，并按相机视角固定预算做一次性硬选择。</li><li>设计<strong>预算约束的可微门控</strong>机制：用 Laplace 累积分布函数将分数转为门控权重，按视角隐式求解阈值以满足固定预算，并以黑参考图像特征做残差填充，从而支持对选择器的端到端训练。</li><li>保持<strong>模块化即插即用</strong>：训练时的未来预测头在部署阶段被移除，部署仅需选择器 + 冻结策略，保留原生动作生成过程与策略参数，可跨不同 VLA 架构使用。</li><li>在仿真与真实世界均验证有效性：<strong>LIBERO 1.57×</strong>、<strong>RoboCasa365 1.46×</strong>、真实任务 <strong>1.47×</strong> 加速，且成功率接近未剪枝基线。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>固定预算的视觉选择</strong>：冻结视觉编码器 $E_\omega$ 与投影器 $P_\omega$ 产生 token 特征，选择器 $S_\theta$ 仅用当前输入（视觉特征、指令 $\ell$、本体感知 $p_t$）打分，总预算 $K$ 按视角拆分为 $k_c$（$\sum_c k_c = K$）。</li><li><strong>动作监督</strong>：门控表征经冻结策略 $F_\omega$ 得到动作，同时对齐<strong>全输入稠密预测</strong>（stop-gradient 目标，保持原策略行为）与<strong>演示动作块</strong>，损失为两者 L1 误差的平均；随机动作生成时两分支共享采样噪声。</li><li><strong>视觉转移监督</strong>：固定摘要算子 $R$（2×2 空间网格平均 → 固定高斯投影到 64 维 → 非仿射层归一化）压缩特征；两层预测器 $H_\phi$ 以门控当前摘要与演示动作预测 $h$ 步后观测的摘要，目标端 stop-gradient；该项训练后即弃用。</li><li><strong>任务条件打分（DIE）</strong>：token 特征经 LayerNorm + 线性投影并加相机/位置嵌入；视角级 Mean/Max 池化 + 仿射映射得视觉条件，指令用冻结词嵌入表加投影与编码器平均得语言条件，本体感知经 MLP 得状态条件；三者相加广播后由两层 MLP（SiLU）打分，输入端全部 detach。</li><li><strong>可微门控实现</strong>：$g = F_{\text{Lap}}((s-b)/\alpha)$，每视角单独求阈值 $b$ 满足预算，梯度通过预算约束的隐式微分获得，训练中退火温度 $\alpha$。</li><li><strong>部署</strong>：每视角一次性 TopK 硬选择（同分按原索引确定），恢复相机与 patch 顺序后物理打包为紧凑序列，交由冻结策略原生动作生成；稠密教师分支、黑参考门控、未来预测器全部移除。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真数据集</strong>：<strong>LIBERO</strong>（Spatial / Object / Goal / Long 四个任务套件）、<strong>RoboCasa365</strong>（seen atomic、seen composite、unseen composite）。</li><li><strong>使用的 VLA 主干</strong>：<strong>OpenVLA-OFT（7B）</strong>、<strong>π0.5</strong>、<strong>XR-1</strong>（覆盖并行解码与 flow-matching 两类动作生成范式）。</li><li><strong>真实世界平台</strong>：两个双臂机器人平台，五个真实操作任务（Close Drawer、Close Microwave、Red Cube into Bowl、Fold Clothes、Clear Toys and Wipe Table），每任务 40 次试验。</li><li><strong>训练配置</strong>：AdamW，学习率 <strong>1e-4</strong>，batch size <strong>8</strong>，<strong>5,000</strong> 次更新；默认未来预测视野 <strong>h = 8</strong>，辅助损失权重 <strong>λ = 0.1</strong>；主干参数全部冻结。</li><li>提供的原文（含附录 A 部分）中<strong>未给出具体 GPU/TPU 型号与数量</strong>等硬件资源信息。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估指标</strong>：任务成功率、策略推理延迟（含视觉编码、token 选择与打包、语言主干计算、动作预测）、相对未剪枝基线的推理加速比。</li><li><strong>LIBERO + OpenVLA-OFT（512 tokens，剪枝 50%/75%/87.5%）</strong>：75% 剪枝下延迟降至 <strong>68.75 ms（1.57×）</strong>，平均成功率 <strong>95.75%</strong>，仅比未剪枝基线 97.00% 低 1.25 个百分点；50% 剪枝为 81.39 ms（1.33×）/ 96.58%；87.5% 剪枝延迟收益饱和（66.21 ms，1.63×）但成功率降至 93.92%，说明过度剪枝会丢失精细空间线索。</li><li><strong>RoboCasa365</strong>：<strong>π0.5</strong> 平均 <strong>1.37×</strong> 加速（延迟 51.50 ms），<strong>XR-1</strong> 平均 <strong>1.52×</strong> 加速（延迟 142.93 ms）；XR-1 上较最强剪枝基线在 seen/unseen 复合任务分别高 <strong>3.00</strong> 与 <strong>1.64</strong> 个百分点，seen atomic 任务与未剪枝策略差距在半百分点内。</li><li><strong>真实世界</strong>：平均推理延迟从 <strong>137.25 ms 降至 93.25 ms（1.47×）</strong>，平均成功率 <strong>61%</strong> 略高于未剪枝 <strong>π0.5</strong> 的 <strong>60%</strong>，单任务加速 1.44×–1.51×。</li><li><strong>消融实验</strong>：加入未来视觉监督后，在 256/128/64 token 预算下成功率分别提升 <strong>1.41 / 1.17 / 1.17</strong> 个百分点；未来目标时间对应关系被随机打乱后，2000 次更新时教师动作 L1 误差高出 <strong>37.8%</strong>，证明正确的时间对齐至关重要。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.13034/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">RoboACE: Adversarial Co-Evolution for Robot Self-Improvement</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.12870/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">SWAM: Scaling World Action Models with Cross-Modal Alignment</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

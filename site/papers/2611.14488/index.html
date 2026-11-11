@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Is Your Robot&#x27;s Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。 论文提出 phantom progress（虚假进度） 现象：机器人短暂停顿或手腕抖动等这些“空事件”，即使不改变任何任务相关状态，也会被记忆当作“已完成工作”，导致策略过早停止。 论文目标在于诊断该故障的成因（时间捷径），并检验数据层面与记忆索引层面两类修复方案的效果。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.14488">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.14488.webp" alt="Is Your Robot&#x27;s Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">Is Your Robot&#x27;s Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies</h1>
+            <div class="detail-meta">2026-11-10 · <a href="http://arxiv.org/abs/2611.14488" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.14488" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.14488</span></div>
+            <p class="detail-summary">论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。 论文提出 phantom progress（虚假进度） 现象：机器人短暂停顿或手腕抖动等这些“空事件”，即使不改变任何任务相关状态，也会被记忆当作“已完成工作”，导致策略过早停止。 论文目标在于诊断该故障的成因（时间捷径），并检验数据层面与记忆索引层面两类修复方案的效果。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">9 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">南洋理工大学（Nanyang Technological University, NTU）</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.14488/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。</p>
+  <ul class="reading-intro-points"><li>论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。</li><li>论文提出 phantom progress（虚假进度） 现象：机器人短暂停顿或手腕抖动等这些“空事件”，即使不改变任何任务相关状态，也会被记忆当作“已完成工作”，导致策略过早停止。</li><li>论文目标在于诊断该故障的成因（时间捷径），并检验数据层面与记忆索引层面两类修复方案的效果。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>南洋理工大学（Nanyang Technological University, NTU）</strong></li><li>作者：<strong>Chubin Zhang</strong>、<strong>Bo An</strong>（通讯作者）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究记忆增强的视觉-语言-动作（VLA）策略，揭示一类广泛存在的故障：这类策略往往按时间填充记忆，即在整个回合内均匀采样历史帧，并为每帧标注绝对时间步；因此，它无法区分“等待”和“工作”。</li><li>论文提出 <strong>phantom progress（虚假进度）</strong> 现象：机器人短暂停顿或手腕抖动等这些“空事件”，即使不改变任何任务相关状态，也会被记忆当作“已完成工作”，导致策略过早停止。</li><li>论文目标在于诊断该故障的成因（时间捷径），并检验数据层面与记忆索引层面两类修复方案的效果。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li><strong>提出 phantom progress 现象</strong>：在 <strong>RoboMME</strong> 的两个计数任务上，注入空事件使成功率从 47/50 降至 16/50、从 44/50 降至 10/50；对照实验采用可见与隐藏两种条件，若从记忆中移除同一事件的帧，性能即恢复，证明损害完全经由记忆产生。</li><li><strong>定位到“索引层面的时间捷径”</strong>：证明仅缩放时间戳即可定向移动失败（快时钟导致提前按、慢时钟导致多重复），而从头训练去掉时间编码的 <strong>NoClock</strong> 仍会失败，因为空事件的帧仍占据按时间采样的记忆槽位。</li><li><strong>跨设计验证</strong>：在 RoboMME 全部已发布记忆设计上，脆弱性随记忆索引方式变化——按时间索引全部崩溃，按像素变化选择对停顿伤害小、对抖动伤害大，按子目标索引则不受影响。</li><li><strong>检验并区分修复方案</strong>：注入停顿的数据增强无法消除失败，反而损害计数能力；而在测试时改为<strong>按事件索引记忆</strong>，无需重训练即可在停顿、抖动、空抓三类事件下挽回一半以上损失。</li><li><strong>提出记忆设计原则</strong>：追踪“发生了什么”的记忆应以事件推进，而不是以时钟推进；仅在时长本身是任务要素时（如 TimedTransfer），才需要保留时间输入。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>任务与策略</strong>：使用 <strong>RoboMME</strong> 模拟环境中的 <strong>PickXtimes</strong>（抓放 K∈{1..5} 次后按按钮）与 <strong>SwingXtimes</strong>（在两点间搬运 K 次）两个计数任务；以 <strong>π₀.₅</strong> 为底座、发布版 <strong>MME-VLA</strong>（FrameSamp-Modul / Expert / Context）为主对象。</li><li><strong>记忆机制</strong>：<strong>FrameSamp</strong> 在整个回合内均匀采样 32 帧，每帧附加绝对时间步的正弦编码；<strong>TokenDrop</strong> 则按像素变化选 token。</li><li><strong>对照模型</strong>：从同一 π₀.₅ 检查点出发、按相同配方训练 30k 步的 <strong>Clock</strong>（保留时间编码）与 <strong>NoClock</strong>（移除时间编码）。</li><li><strong>空事件注入</strong>：在第 48 与 160 个策略步后注入三类事件——<strong>pause</strong>（静止 100 步 ≈ 5s）、<strong>wrist fidget</strong>（腕部 ±0.3 rad 往复 100 步）、<strong>air-grasp</strong>（在空处执行抓取并回到原姿态）。</li><li><strong>可见/隐藏协议</strong>：物理事件完全一致，仅控制其帧是否进入记忆、时间戳是否推进，以此分离“中断本身”与“记忆内容”的影响。</li><li><strong>时钟干预</strong>：不注入事件，仅将记忆帧时间戳乘以因子 s（0.5 / 1.5），检验策略是否读取时钟。</li><li><strong>事件索引（测试时）</strong>：如果机器人构型回到已保留帧的状态、机器人外场景未变、且中途无接触建立或释放，该段即判为空事件并折叠为单帧；时间位置在保留帧上重算。检测器读取仿真中的机器人轮廓、夹爪开度与外部力，容差在 16 个任务上统一固定。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>RoboMME</strong>（16 个记忆依赖操作任务，主实验为 PickXtimes / SwingXtimes）</li><li>真实遥操作数据：<strong>Open X-Embodiment</strong> 中的两个数据集；<strong>stanford_hydra</strong>、<strong>FMB</strong>、<strong>LIBERO-10</strong>（用于“时间预测进度”的泛化检验）</li><li>探索性实验：<strong>MIKASA-Robo</strong></li><li>模型规模：基于 <strong>π₀.₅</strong> 的 MME-VLA 系列，从头训练模型各训练 <strong>30k 步</strong>；论文未给出参数量细节</li><li>训练资源：全部实验在<strong>仿真</strong>中完成；文中提到使用“第二台机器”做重训对照，未列出具体 GPU/TPU 型号与数量</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>评估设置</strong>：每个单元格 50 个配对测试回合（相同环境种子与策略噪声），用双侧精确 <strong>McNemar 检验</strong>；两次同条件重跑可差 8/50，故约 10 回合以内的差异需谨慎解读；失败分为 early（未完成 K 次即按）与 extra（多做了）。</li><li><strong>主要指标</strong>：任务成功率（按重复次数 K 分层统计）、失败类型分布、按时间步单独预测已完成重复数的准确率。</li><li><strong>关键结果</strong>：</li></ul>
+<p> - 两个 5 秒停顿使 PickXtimes 从 <strong>47→16</strong>、SwingXtimes 从 <strong>44→10</strong>；抖动伤害相当；空抓在 SwingXtimes 上仍减半；隐藏同一事件后成功率回到基线 ±3。</p>
+<p> - 仅缩放时间戳：s=1.5 时 PickXtimes <strong>47→18</strong> 且全部为提前按；s=0.5 时改为多做重复——失败方向随“时钟”方向变化。</p>
+<p> - <strong>NoClock</strong> 仍被停顿击穿（<strong>21/50 与 14/50</strong>），隐藏后恢复；说明槽位占用本身即构成损害。</p>
+<p> - 跨设计：FrameSamp 三种变体全部崩溃；TokenDrop 停顿 39→30、抖动 39→21；MemER 式关键帧与文本子目标记忆基本不受影响。</p>
+<p> - 修复效果：注入停顿的增强无法消除失败，并且无空事件时计数能力受损；事件索引在测试时使三类事件下成功率<strong>至少翻倍</strong>，空抓下 SwingXtimes 从 <strong>13→43</strong>。</p>
+<p> - 机理性证据：仅凭时间步即可 89%（PickXtimes）与 80%（SwingXtimes）正确预测已完成重复数，在两个常规真实遥操作数据上超过 92%。</p>
+<ul><li><strong>局限</strong>：因果分析限于 MME-VLA 家族，全部实验在仿真中、空事件为脚本注入，事件检测器依赖仿真信号；多数模型仅单一种子。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2611.14432/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">One Policy for 100 Household Tasks: Our Solution for the 2026 BEHAVIOR Challenge</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>
