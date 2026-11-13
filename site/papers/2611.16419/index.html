@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>I See What You Want: Decoding Hierarchical Operator Intent from Visual Teleoperation History - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。 作者将意图定义为两个层级：Ongoing Action (OA) 当前原子动作，以及 Ongoing Mission (OM) 该动作所服务的任务目标。 为解决监督数据缺失问题，论文构建 VI AMO 数据集并微调视觉语言模型得到 VIM，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.16419">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.16419.webp" alt="I See What You Want: Decoding Hierarchical Operator Intent from Visual Teleoperation History" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">I See What You Want: Decoding Hierarchical Operator Intent from Visual Teleoperation History</h1>
+            <div class="detail-meta">2026-11-12 · <a href="http://arxiv.org/abs/2611.16419" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.16419" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.16419</span></div>
+            <p class="detail-summary">论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。 作者将意图定义为两个层级：Ongoing Action (OA) 当前原子动作，以及 Ongoing Mission (OM) 该动作所服务的任务目标。 为解决监督数据缺失问题，论文构建 VI AMO 数据集并微调视觉语言模型得到 VIM，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">7 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">论文作者来自 ETH Zurich 和 Chinese University of Hong Kong。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.16419/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。</p>
+  <ul class="reading-intro-points"><li>论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。</li><li>作者将意图定义为两个层级：Ongoing Action (OA) 当前原子动作，以及 Ongoing Mission (OM) 该动作所服务的任务目标。</li><li>为解决监督数据缺失问题，论文构建 VI AMO 数据集并微调视觉语言模型得到 VIM，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li>论文作者来自 <strong>ETH Zurich</strong> 和 <strong>Chinese University of Hong Kong</strong>。</li><li>原文中 <strong>Shengzhi Wang</strong> 标注了上述双单位，其余作者在截取页面中未单独列出 affiliation。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。</li><li>作者将意图定义为两个层级：<strong>Ongoing Action (OA)</strong> 当前原子动作，以及 <strong>Ongoing Mission (OM)</strong> 该动作所服务的任务目标。</li><li>为解决监督数据缺失问题，论文构建 <strong>VI AMO</strong> 数据集并微调视觉语言模型得到 <strong>VIM</strong>，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出<strong>分层意图预测</strong>任务：从视觉遥操作历史中联合预测开放词汇的 ongoing action 与 ongoing mission。</li><li>构建 <strong>VI AMO</strong> 数据集：包含 <strong>6,600</strong> 个 episode、<strong>13,653</strong> 个时间对齐动作标注和 <strong>9,702</strong> 个 mission 标注，覆盖 <strong>11</strong> 个机器人来源。</li><li>提出 <strong>VIM</strong>：在 VI AMO 上微调视觉语言模型，在动作和 mission 预测上显著优于 GPT-4o、GPT-5.6 Luna、两个具身基础模型及未微调骨干。</li><li>验证下游应用：将 VIM 预测的 mission 作为 VLA 策略的语言指令，在真实环境共享自治任务中减少人工遥操作时间并降低意图预测延迟。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>VI AMO 标注流程</strong>包含五阶段：动作分解、mission 分组、粗时间定位、精细边界修正和人工审核。</li><li>使用 <strong>GPT-5.6 Sol</strong> 进行动作分解与 mission 分组，使用 <strong>Qwen3.7-Plus</strong> 进行粗时间定位和精细边界修正。</li><li><strong>VIM</strong> 以 <strong>Qwen3.5-27B</strong> 为骨干，通过 <strong>LoRA</strong> 微调视觉与语言注意力及 MLP 模块。</li><li>对每个原子动作构造六种观测序列，输入视觉历史 <strong>H_t</strong> 和文本执行上下文 <strong>C_t</strong>，单次自回归生成 OA 与 OM。</li><li>下游共享自治中，微调 <strong>π0.5</strong> VLA 策略，使用条件流匹配目标，并将 VIM 预测的 OM 作为 VLA 的语言指令。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li>使用 <strong>VI AMO</strong> 数据集：<strong>6,600</strong> 个 episode，来自 <strong>11</strong> 个机器人来源，包含 <strong>13,653</strong> 个动作标注和 <strong>9,702</strong> 个 mission 标注。</li><li>数据划分为 <strong>5,500</strong> 个训练 episode、<strong>550</strong> 个验证 episode、<strong>550</strong> 个测试 episode。</li><li>测试集包含 <strong>1,091</strong> 个原子动作和 <strong>781</strong> 个 mission 实例，其中 <strong>35.4%</strong> 的测试动作其 OA 和 OM 标签均在训练中未出现。</li><li>VIM 训练使用 <strong>11,481</strong> 个训练动作，经六种时间采样构造出 <strong>68,886</strong> 个训练样本。</li><li>VIM 骨干模型为 <strong>Qwen3.5-27B</strong>，LoRA 设置包括 rank <strong>16</strong>、alpha <strong>16</strong>、dropout <strong>0</strong>。</li><li>VIM 微调使用单张 <strong>NVIDIA A100 80GB GPU</strong>，约 <strong>13.44 GPU-hours</strong>。</li><li>VLA 策略微调使用 <strong>4× NVIDIA A100 80GB GPU</strong>，训练 <strong>10,000</strong> 步。</li><li>真实部署使用 <strong>RTX 5090 GPU</strong>，通过 <strong>TensorRT-Edge-LLM</strong> 并量化为 <strong>NVFP4</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li>在 <strong>VI AMO test set</strong> 上评估，覆盖动作进度 <strong>0%–95%</strong> 的九个相对时间点。</li><li>评估指标包括 <strong>Token F1</strong>、<strong>SBERT</strong> 语义相似度、<strong>SigLIP</strong> 相似度和 <strong>Top-10</strong> 检索准确率。</li><li>VIM 取得 OA/OM <strong>SBERT 0.825/0.821</strong>，显著高于最强基线的 <strong>0.581/0.564</strong>。</li><li>VIM 取得 OA/OM <strong>SigLIP 0.879/0.872</strong>，以及 <strong>Top-10 76.59%/78.77%</strong>。</li><li>在 <strong>35.4%</strong> 的 OA 与 OM 标签均未见的测试动作上，VIM 仍达到 <strong>0.726/0.717 SBERT</strong>，高于基线最高 <strong>0.570/0.564</strong>。</li><li>消融实验显示：移除 wrist view 后 OA/OM SBERT 降至 <strong>0.798/0.798</strong>；移除文本上下文后降至 <strong>0.767/0.788</strong>；仅使用 0% 单帧历史后降至 <strong>0.793/0.792</strong>。</li><li>真实世界 <strong>5</strong> 个共享自治任务中，VIM 相对 GPT-4o 减少 <strong>34.6%</strong> 人工遥操作时间，相对 GPT-5.6 Luna 减少 <strong>39.8%</strong>。</li><li>VIM 单次意图预测延迟约 <strong>0.70–0.81 s</strong>，而 GPT-4o 为 <strong>3.09–3.53 s</strong>、GPT-5.6 Luna 为 <strong>1.92–2.27 s</strong>。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-prev" href="../../papers/2611.16589/"><span class="paper-nav-label">← 上一篇</span><span class="paper-nav-title">STVLA: Spatial-aware and Temporal-memory forVision-Language-Action Models</span></a>
+      <a class="paper-nav-link paper-nav-next" href="../../papers/2611.16246/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">What Can a VLA Learn from the Agent That Calls It? Task-Level Experience Distillation for Embodied Navigation</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

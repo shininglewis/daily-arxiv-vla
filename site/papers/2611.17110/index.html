@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models - VLA / World Action Model 每日论文卡</title>
+    <meta name="description" content="论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。 现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。 目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。" />
+    <script>
+      (function() {
+        try {
+          var themePreference = window.localStorage.getItem('color-theme') || 'system';
+          var systemUsesDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = themePreference === 'system'
+            ? (systemUsesDarkTheme ? 'dark' : 'light')
+            : themePreference;
+          document.documentElement.dataset.theme = resolvedTheme;
+          document.documentElement.dataset.themePreference = themePreference;
+          document.documentElement.style.colorScheme = resolvedTheme;
+        } catch (error) {
+          document.documentElement.dataset.theme = 'light';
+          document.documentElement.dataset.themePreference = 'system';
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23111827'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-size='30' font-family='Arial, sans-serif' fill='white'%3EV%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/style.css" />
+  </head>
+  <body class="detail-page" data-paper-id="2611.17110">
+    <div class="page-noise"></div>
+    <div class="page-blur page-blur-a"></div>
+    <div class="page-blur page-blur-b"></div>
+
+    <header class="header detail-page-header">
+      <div class="container">
+        <div class="detail-page-topbar">
+          <a class="back-link" href="../../index.html">返回列表</a>
+          <div class="detail-topbar-actions">
+            <span class="detail-site-name">VLA / World Action Model 每日论文卡</span>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="当前主题：设备，点击切换主题" title="当前主题：设备">
+  <span class="theme-toggle-icons" aria-hidden="true">
+    <svg class="theme-toggle-icon theme-toggle-icon-light" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-dark" viewBox="0 0 24 24" fill="none">
+      <path d="M20 15.2A8.1 8.1 0 0 1 8.8 4a8.2 8.2 0 1 0 11.2 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+    </svg>
+    <svg class="theme-toggle-icon theme-toggle-icon-system" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="theme-toggle-label" data-theme-toggle-label>设备</span>
+</button>
+          </div>
+        </div>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-cover"><figure class="paper-figure-card paper-figure-card-detail">
+  <img class="paper-figure-image" src="../../assets/paper-images/2611.17110.webp" alt="SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models" loading="lazy" onclick="window.openPaperFigureImage && window.openPaperFigureImage(this)" />
+  <figcaption class="paper-figure-caption">论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。</figcaption>
+</figure></div>
+          <div class="detail-hero-copy">
+            <p class="eyebrow">论文详情</p>
+            <h1 class="detail-page-title">SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models</h1>
+            <div class="detail-meta">2026-11-12 · <a href="http://arxiv.org/abs/2611.17110" target="_blank" rel="noopener noreferrer">原文</a> · <a href="https://hjfy.top/arxiv/2611.17110" target="_blank" rel="noopener noreferrer">翻译</a> · <span class="meta-pill">2611.17110</span></div>
+            <p class="detail-summary">论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。 现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。 目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。</p>
+            <div class="detail-micro-meta">
+              <span class="meta-pill">8 分钟读完</span>
+              <span class="meta-pill">6 张阅读卡</span>
+              <span class="meta-pill">Sharpa Robotics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container detail-layout">
+      <div class="detail-shell">
+        <article id="detail-body" class="reading-flow"><section class="reading-card reading-card-intro">
+  <div class="reading-card-topline">
+    <span class="reading-badge">一眼看懂</span>
+    <a class="cover-preview-link" href="../../covers/2611.17110/">封面预览</a>
+  </div>
+  <p class="reading-intro-hook">论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。</p>
+  <ul class="reading-intro-points"><li>论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。</li><li>现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。</li><li>目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。</li></ul>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 01</span>
+    <span class="reading-step-note">研究单位</span>
+  </div>
+  <h2>研究单位</h2>
+  <div class="reading-card-content"><ul><li><strong>Sharpa Robotics</strong></li><li><strong>SJTU-Sharpa Joint Lab for Embodied AI, SJTU</strong>（上海交通大学）</li><li><strong>Tsinghua University</strong>（清华大学）</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 02</span>
+    <span class="reading-step-note">论文概述</span>
+  </div>
+  <h2>论文概述</h2>
+  <div class="reading-card-content"><ul><li>论文提出 <strong>SALA</strong>，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。</li><li>现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。</li><li>目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 03</span>
+    <span class="reading-step-note">核心贡献</span>
+  </div>
+  <h2>核心贡献</h2>
+  <div class="reading-card-content"><ul><li>提出用<strong>语言作为关系监督</strong>：利用人类与机器人片段的原子动作语言描述估计语义相似度，无需配对数据即可对齐跨具身潜在动作，且以控制锚定的机器人潜在表示为中心。</li><li>将人类视频转化为监督<strong>同一动作专家</strong>的潜在动作信号，实现“双轴扩展”：预训练阶段扩展通用人类视频，后训练阶段扩展任务特定人类演示。</li><li>在 <strong>RoboTwin 2.0</strong> 仿真基准上，SALA 平均成功率 <strong>64.4%</strong>，优于同视频训练的现有 LAMs 与 WAMs，并在域随机化场景下优势最大（Random 48.6%）。</li><li>在 <strong>63-DoF</strong> 真实机器人（含两只 22-DoF 灵巧手）上验证双轴可扩展性：预训练人类视频增至 <strong>2,678 小时</strong>持续降低动作预测误差；后训练加入任务特定人类视频将平均成功率从 <strong>53.75%</strong> 提升至 <strong>72.5%</strong>。</li><li>消融分析表明语言对齐使潜在动作按<strong>原子动作语义</strong>而非场景组织，验证了 SoftVQ 与 stop-gradient 设计的必要性。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 04</span>
+    <span class="reading-step-note">方法描述</span>
+  </div>
+  <h2>方法描述</h2>
+  <div class="reading-card-content"><ul><li><strong>潜在动作分词器</strong>：人类与机器人片段共享视觉编码器、<strong>SoftVQ</strong> 量化器与视觉解码器，以冻结 <strong>DINOv2</strong> 特征为重建目标；机器人片段额外训练动作解码器，将潜在动作锚定到真实机器人动作。</li><li><strong>机器人锚定的语义迁移</strong>：用冻结文本编码器编码原子动作描述，计算语言相似度 <code>S^ℓ</code> 并以 softmax 构成软邻域 <code>P</code>，监督由潜在相似度 <code>S^z</code> 构成的潜在邻域 <code>Q</code>，采用交叉熵 <code>L_align</code> 对齐；对机器人潜变量做 <strong>stop-gradient</strong>，确保对齐只移动人类潜变量向控制锚点靠拢。</li><li><strong>SoftVQ</strong> 替代硬 VQ：以码本上的类别分布代替 one-hot 分配，无 commitment loss，能表达潜在表示间的渐近差异，使语言软邻域监督可连续生效。</li><li><strong>潜在动作监督的策略学习</strong>：冻结的分词器作为教师为人类与机器人片段打标签；策略采用 <strong>π0 风格架构</strong>（<strong>Qwen3-VL-4B</strong> 视觉语言模型 + <strong>0.6B</strong> 动作专家），在动作专家中加入可学习潜在动作查询，通过潜在头预测标签分布，以 KL 散度 <code>L_LA</code> 监督，机器人数据额外使用流匹配损失 <code>L_FM</code>。</li><li><strong>三阶段训练</strong>：预训练（人类视频 + 潜在动作损失）→ 中训练（机器人遥操作数据 + 动作损失）→ 可选后训练（任务特定遥操作与人类演示联合训练）。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 05</span>
+    <span class="reading-step-note">数据集与资源</span>
+  </div>
+  <h2>数据集与资源</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真</strong>：<strong>RoboTwin 2.0</strong> 双臂操作基准，目标具身为 <strong>Aloha-AgileX</strong>（2,500 条轨迹，9.2 小时），非目标具身为 <strong>ARX-X5</strong>（27,000 条轨迹，68.0 小时）。</li><li><strong>真实世界</strong>：动作无关的自我中心人类视频 <strong>2,678 等效小时</strong>（71,582 条轨迹）用于预训练，机器人遥操作数据 <strong>888 小时</strong>（70,859 条轨迹）；分词器语言标注子集 983 小时。</li><li><strong>下游任务</strong>：齿轮装配、双臂倒水、插花、勺子舀取（含工具使用）。</li><li><strong>模型规模</strong>：策略 VLM 为 <strong>Qwen3-VL-4B</strong>，动作专家为 <strong>0.6B</strong> 参数的 Qwen3 风格 Transformer；分词器将每个片段编码为 <strong>8 个潜在 token</strong>，SoftVQ 码本大小 <strong>256</strong>。</li><li>文本编码器：仿真用 <strong>CLIP ViT-B/32</strong>，真实世界用 <strong>Qwen3-Embedding-4B</strong>。</li></ul></div>
+</section>
+<section class="reading-card reading-card-section">
+  <div class="reading-card-topline">
+    <span class="reading-step">Card 06</span>
+    <span class="reading-step-note">评估与结果</span>
+  </div>
+  <h2>评估与结果</h2>
+  <div class="reading-card-content"><ul><li><strong>仿真评估</strong>：在 RoboTwin 2.0 的 Clean 与 Random 设置下，每任务 100 次 rollout，报告 50 个任务的平均成功率；对比 VLA（π0.5、X-VLA）、WAM（FastWAM、LingBot-VA、InternVLA-A1.5、OpenWAM）与 LAM（UniVLA、UniT、RotVLA）。</li><li><strong>真实世界评估</strong>：每任务 20 次试验；真实机器人平台为 <strong>Sharpa North</strong> 轮式人形机器人，配两只 <strong>Sharpa Wave</strong> 22-DoF 灵巧手，动作空间 <strong>63 维</strong>。</li><li><strong>关键结果</strong>：仿真中 SALA 平均成功率 <strong>64.4%</strong>（Clean 80.2%、Random 48.6%），为所有方法最高；真实世界平均成功率从 <strong>53.75%</strong> 提升至 <strong>72.5%</strong>；人类视频预训练量增加持续降低机器人动作预测误差。</li><li><strong>消融结论</strong>：移除语义对齐会显著降低性能；SoftVQ 使对齐损失有效下降而硬 VQ 几乎不变；跨具身检索与潜在空间分析证实对齐按动作语义组织。</li></ul></div>
+</section></article>
+        <aside id="detail-toc" class="detail-toc hidden" aria-label="内容目录">
+          <p class="detail-toc-title">阅读目录</p>
+          <nav id="detail-toc-nav" class="detail-toc-nav"></nav>
+        </aside>
+      </div>
+      <nav class="paper-nav"><a class="paper-nav-link paper-nav-next" href="../../papers/2611.16589/"><span class="paper-nav-label">下一篇 →</span><span class="paper-nav-title">STVLA: Spatial-aware and Temporal-memory forVision-Language-Action Models</span></a></nav>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>内容来自 <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer">arXiv.org</a>，阅读卡片由静态站点生成器构建。</p>
+      </div>
+    </footer>
+
+    <script src="../../assets/theme.js"></script>
+    <script src="../../assets/media.js"></script>
+    <script src="../../assets/paper.js"></script>
+  </body>
+</html>

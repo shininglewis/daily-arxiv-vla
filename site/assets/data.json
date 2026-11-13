@@ -1,5 +1,397 @@
 [
   {
+    "date": "2026-11-12",
+    "title": "SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models",
+    "link": "http://arxiv.org/abs/2611.17110",
+    "arxiv_id": "2611.17110",
+    "detail_path": "papers/2611.17110/",
+    "cover_path": "covers/2611.17110/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.17110.webp",
+    "paper_image_full_path": "assets/paper-images/2611.17110.webp",
+    "preview_text": "论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。 现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。 目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。",
+    "research_unit": "Sharpa Robotics",
+    "hook_text": "论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。",
+    "key_points": [
+      "论文提出 SALA，以“语义对齐的潜在动作（Semantically Aligned Latent Actions）”为核心，解决具身基础模型中人类视频到机器人策略的可迁移性问题。",
+      "现有潜在动作模型（LAMs）仅依靠视频重建训练，其潜在表示倾向按视觉外观（如场景）聚类，而非按底层动作语义聚类，导致人类动作与其机器人对应动作难以对齐。",
+      "目标是在无需成对数据的前提下，利用语言描述建立人类视频与机器人视频之间的语义对应，并将人类视频转化为机器人策略的可扩展监督信号。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-12",
+    "title": "STVLA: Spatial-aware and Temporal-memory forVision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.16589",
+    "arxiv_id": "2611.16589",
+    "detail_path": "papers/2611.16589/",
+    "cover_path": "covers/2611.16589/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.16589.webp",
+    "paper_image_full_path": "assets/paper-images/2611.16589.webp",
+    "preview_text": "现有视觉-语言-动作（VLA）策略大多只以当前观测为条件，因此任务历史与场景空间结构都只是被隐式表达。 从策略的视角看，日常操作常常是非马尔可夫的：相似画面可能对应不同任务状态，导致策略重复已完成步骤或停滞；而单帧 2D 特征也难以表达表面高度、位置是否空闲等几何结构。 论文提出 STVLA 框架，把预训练视觉几何基础模型的特征直接纳入时间记忆，使策略既能回忆过去的场景结构，又能检索与当前观测相关的历史证据。",
+    "research_unit": "论文作者主要来自 AgiBot（智元机器人）",
+    "hook_text": "现有视觉-语言-动作（VLA）策略大多只以当前观测为条件，因此任务历史与场景空间结构都只是被隐式表达。",
+    "key_points": [
+      "现有视觉-语言-动作（VLA）策略大多只以当前观测为条件，因此任务历史与场景空间结构都只是被隐式表达。",
+      "从策略的视角看，日常操作常常是非马尔可夫的：相似画面可能对应不同任务状态，导致策略重复已完成步骤或停滞；而单帧 2D 特征也难以表达表面高度、位置是否空闲等几何结构。",
+      "论文提出 STVLA 框架，把预训练视觉几何基础模型的特征直接纳入时间记忆，使策略既能回忆过去的场景结构，又能检索与当前观测相关的历史证据。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-12",
+    "title": "I See What You Want: Decoding Hierarchical Operator Intent from Visual Teleoperation History",
+    "link": "http://arxiv.org/abs/2611.16419",
+    "arxiv_id": "2611.16419",
+    "detail_path": "papers/2611.16419/",
+    "cover_path": "covers/2611.16419/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.16419.webp",
+    "paper_image_full_path": "assets/paper-images/2611.16419.webp",
+    "preview_text": "论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。 作者将意图定义为两个层级：Ongoing Action (OA) 当前原子动作，以及 Ongoing Mission (OM) 该动作所服务的任务目标。 为解决监督数据缺失问题，论文构建 VI AMO 数据集并微调视觉语言模型得到 VIM，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。",
+    "research_unit": "论文作者来自 ETH Zurich 和 Chinese University of Hong Kong。",
+    "hook_text": "论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。",
+    "key_points": [
+      "论文研究如何仅从机器人遥操作的短视觉历史中，无显式语言指令地解码操作员的分层意图。",
+      "作者将意图定义为两个层级：Ongoing Action (OA) 当前原子动作，以及 Ongoing Mission (OM) 该动作所服务的任务目标。",
+      "为解决监督数据缺失问题，论文构建 VI AMO 数据集并微调视觉语言模型得到 VIM，进一步将预测的 mission 用于共享自治中的 VLA 策略接管。"
+    ],
+    "reading_minutes": 7,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-12",
+    "title": "What Can a VLA Learn from the Agent That Calls It? Task-Level Experience Distillation for Embodied Navigation",
+    "link": "http://arxiv.org/abs/2611.16246",
+    "arxiv_id": "2611.16246",
+    "detail_path": "papers/2611.16246/",
+    "cover_path": "covers/2611.16246/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.16246.webp",
+    "paper_image_full_path": "assets/paper-images/2611.16246.webp",
+    "preview_text": "论文研究\"调用 VLA 的智能体（LLM 规划器）能给被调用的 VLA 带来什么\"，提出任务级经验蒸馏方法 H2E，把前沿 LLM 导航智能体的成功会话蒸馏进它调用的 VLA 中。 现有系统在每个测试回合都需要 LLM 规划器，带来高昂代价（中位数每回合 70k tokens、耗时是纯 VLA 的两倍以上）；已有蒸馏工作多是把规划器缩小，而保持 VLA 冻结。 核心目标：训练后的 VLA 在测试时独立运行、不再需要 LLM，同时继承智能体的导航能力（尤其是到达目标后停住）。",
+    "research_unit": "清华大学深圳国际研究生院（Tsinghua Shenzhen International Gradua…",
+    "hook_text": "论文研究\"调用 VLA 的智能体（LLM 规划器）能给被调用的 VLA 带来什么\"，提出任务级经验蒸馏方法 H2E，把前沿 LLM 导航智能体的成功会话蒸馏进它调用的 VLA 中。",
+    "key_points": [
+      "论文研究\"调用 VLA 的智能体（LLM 规划器）能给被调用的 VLA 带来什么\"，提出任务级经验蒸馏方法 H2E，把前沿 LLM 导航智能体的成功会话蒸馏进它调用的 VLA 中。",
+      "现有系统在每个测试回合都需要 LLM 规划器，带来高昂代价（中位数每回合 70k tokens、耗时是纯 VLA 的两倍以上）；已有蒸馏工作多是把规划器缩小，而保持 VLA 冻结。",
+      "核心目标：训练后的 VLA 在测试时独立运行、不再需要 LLM，同时继承智能体的导航能力（尤其是到达目标后停住）。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "MOSAIC: Modular Obstacle and Spatial-Aware Framework for Manipulation In Cluttered Scenes",
+    "link": "http://arxiv.org/abs/2611.15937",
+    "arxiv_id": "2611.15937",
+    "detail_path": "papers/2611.15937/",
+    "cover_path": "covers/2611.15937/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15937.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15937.webp",
+    "preview_text": "论文提出 MOSAIC（Modular Obstacle and Spatial-Aware Framework），一个模块化、障碍物与空间感知的框架，可即插即用地增强预训练 VLA（Vision-Language-Action） 策略在杂乱场景中的操作能力。 现有 VLA 主要依赖 2D 视觉观测与语言指令，隐式推断几何与障碍关系；在杂物密集环境中，微小的空间误差即导致误触或碰撞。 目标是在不破坏原有预训练 VLA 架构的前提下，显式注入语义、几何与障碍物感知线索，提升操作成功率与安全性。",
+    "research_unit": "Huawei Noah's Ark Lab（华为诺亚方舟实验室）——主要作者单位，作者包括 Richa…",
+    "hook_text": "论文提出 MOSAIC（Modular Obstacle and Spatial-Aware Framework），一个模块化、障碍物与空间感知的框架，可即插即用地增强预训练 VLA（Vision-Language-Action） 策略在杂乱场景中的操作能力。",
+    "key_points": [
+      "论文提出 MOSAIC（Modular Obstacle and Spatial-Aware Framework），一个模块化、障碍物与空间感知的框架，可即插即用地增强预训练 VLA（Vision-Language-Action） 策略在杂乱场景中的操作能力。",
+      "现有 VLA 主要依赖 2D 视觉观测与语言指令，隐式推断几何与障碍关系；在杂物密集环境中，微小的空间误差即导致误触或碰撞。",
+      "目标是在不破坏原有预训练 VLA 架构的前提下，显式注入语义、几何与障碍物感知线索，提升操作成功率与安全性。"
+    ],
+    "reading_minutes": 11,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "Recover, Don't Just Continue: Learning from Feedback for Physical Failure Understanding and Correction",
+    "link": "http://arxiv.org/abs/2611.15651",
+    "arxiv_id": "2611.15651",
+    "detail_path": "papers/2611.15651/",
+    "cover_path": "covers/2611.15651/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15651.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15651.webp",
+    "preview_text": "论文关注具身智能体在真实物理执行中“动作偏离预期”的问题，指出多模态大模型仅靠指令规划无法成为可靠的“具身大脑”。 提出可靠大脑需具备三种互补且不可替代的能力：物理因果理解与失败定位、执行能力识别与适配、从交互经验中在上下文学习。 构建 Embodied-Corrector，通过数据构造、训练策略与推理框架，让模型在失败后“恢复（Recover）”而非盲目“继续（Continue）”。",
+    "research_unit": "浙江大学（Zhejiang University），论文署名机构为 OmniAI Group of Z…",
+    "hook_text": "论文关注具身智能体在真实物理执行中“动作偏离预期”的问题，指出多模态大模型仅靠指令规划无法成为可靠的“具身大脑”。",
+    "key_points": [
+      "论文关注具身智能体在真实物理执行中“动作偏离预期”的问题，指出多模态大模型仅靠指令规划无法成为可靠的“具身大脑”。",
+      "提出可靠大脑需具备三种互补且不可替代的能力：物理因果理解与失败定位、执行能力识别与适配、从交互经验中在上下文学习。",
+      "构建 Embodied-Corrector，通过数据构造、训练策略与推理框架，让模型在失败后“恢复（Recover）”而非盲目“继续（Continue）”。"
+    ],
+    "reading_minutes": 8,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "What Makes a VLA Reactive? A Study of Execution Strategies for Dynamic Manipulation",
+    "link": "http://arxiv.org/abs/2611.15491",
+    "arxiv_id": "2611.15491",
+    "detail_path": "papers/2611.15491/",
+    "cover_path": "covers/2611.15491/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15491.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15491.webp",
+    "preview_text": "研究预训练视觉-语言-动作（VLA）模型在动态操作场景中“反应性（reactivity）”的来源，即当物体在推理与执行期间移动时，动作块（action chunk）迅速“过期”的问题。 以 π0.5 为基础策略，系统性地拆解并对比预测时域、执行时域、同步/异步推理调度、动作块连续性、时序运动信息与策略自适应等多类干预手段。 核心论点：频繁重规划本身并不能保证性能提升，反应性同时取决于执行流水线与策略本身，二者应被联合评估。",
+    "research_unit": "Intuitive Robots Lab (IRL), Karlsruhe Institute of…",
+    "hook_text": "研究预训练视觉-语言-动作（VLA）模型在动态操作场景中“反应性（reactivity）”的来源，即当物体在推理与执行期间移动时，动作块（action chunk）迅速“过期”的问题。",
+    "key_points": [
+      "研究预训练视觉-语言-动作（VLA）模型在动态操作场景中“反应性（reactivity）”的来源，即当物体在推理与执行期间移动时，动作块（action chunk）迅速“过期”的问题。",
+      "以 π0.5 为基础策略，系统性地拆解并对比预测时域、执行时域、同步/异步推理调度、动作块连续性、时序运动信息与策略自适应等多类干预手段。",
+      "核心论点：频繁重规划本身并不能保证性能提升，反应性同时取决于执行流水线与策略本身，二者应被联合评估。"
+    ],
+    "reading_minutes": 9,
+    "section_count": 6,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "ActionCodec2: A Streaming Action Tokenizer",
+    "link": "http://arxiv.org/abs/2611.15490",
+    "arxiv_id": "2611.15490",
+    "detail_path": "papers/2611.15490/",
+    "cover_path": "covers/2611.15490/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15490.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15490.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "Low-Cost Mobile Bimanual Manipulation for Long-Horizon Toilet Cleaning",
+    "link": "http://arxiv.org/abs/2611.15381",
+    "arxiv_id": "2611.15381",
+    "detail_path": "papers/2611.15381/",
+    "cover_path": "covers/2611.15381/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15381.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15381.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "Bind-WAM: Binding-Uncertainty-Guided Selective Future Imagination in World Action Models",
+    "link": "http://arxiv.org/abs/2611.15368",
+    "arxiv_id": "2611.15368",
+    "detail_path": "papers/2611.15368/",
+    "cover_path": "covers/2611.15368/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15368.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15368.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "CARE-Drive: Coupled Alternating Refinement for Ego-trajectories",
+    "link": "http://arxiv.org/abs/2611.15360",
+    "arxiv_id": "2611.15360",
+    "detail_path": "papers/2611.15360/",
+    "cover_path": "covers/2611.15360/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15360.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15360.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "PolyMorphWBC: Whole-Body Control from End-Effector Trajectories for Quadrupedal Mobile Manipulation across Arm Morphologies with Extended Reach",
+    "link": "http://arxiv.org/abs/2611.15117",
+    "arxiv_id": "2611.15117",
+    "detail_path": "papers/2611.15117/",
+    "cover_path": "covers/2611.15117/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.15117.webp",
+    "paper_image_full_path": "assets/paper-images/2611.15117.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-11",
+    "title": "Scaling VLA Serving Under Robotic Execution Constraints",
+    "link": "http://arxiv.org/abs/2611.14969",
+    "arxiv_id": "2611.14969",
+    "detail_path": "papers/2611.14969/",
+    "cover_path": "covers/2611.14969/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.14969.webp",
+    "paper_image_full_path": "assets/paper-images/2611.14969.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-10",
+    "title": "Learning Low-Latency Action Verification for Frozen Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.14834",
+    "arxiv_id": "2611.14834",
+    "detail_path": "papers/2611.14834/",
+    "cover_path": "covers/2611.14834/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.14834.webp",
+    "paper_image_full_path": "assets/paper-images/2611.14834.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
     "date": "2026-11-10",
     "title": "Is Your Robot's Memory Just a Clock? Temporal Shortcuts in Memory-Augmented VLA Policies",
     "link": "http://arxiv.org/abs/2611.14488",
