@@ -1,5 +1,167 @@
 [
   {
+    "date": "2026-11-13",
+    "title": "Training Reasoning Models in Simulation to Natively Use Real Robots",
+    "link": "http://arxiv.org/abs/2611.18562",
+    "arxiv_id": "2611.18562",
+    "detail_path": "papers/2611.18562/",
+    "cover_path": "covers/2611.18562/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.18562.webp",
+    "paper_image_full_path": "assets/paper-images/2611.18562.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "title": "Gamer: A Generalist Vision-Language-Action Foundation Model for Long-Horizon Real-Time Game Agent",
+    "link": "http://arxiv.org/abs/2611.18397",
+    "arxiv_id": "2611.18397",
+    "detail_path": "papers/2611.18397/",
+    "cover_path": "covers/2611.18397/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.18397.webp",
+    "paper_image_full_path": "assets/paper-images/2611.18397.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "title": "Vision-Language-Action Models: A Life-Cycle Survey of Design, Training and Deployment",
+    "link": "http://arxiv.org/abs/2611.18372",
+    "arxiv_id": "2611.18372",
+    "detail_path": "papers/2611.18372/",
+    "cover_path": "covers/2611.18372/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.18372.webp",
+    "paper_image_full_path": "assets/paper-images/2611.18372.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "title": "ESI: An Embodied Self-Improvement Flywheel for LLM-VLA Agents",
+    "link": "http://arxiv.org/abs/2611.18176",
+    "arxiv_id": "2611.18176",
+    "detail_path": "papers/2611.18176/",
+    "cover_path": "covers/2611.18176/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.18176.webp",
+    "paper_image_full_path": "assets/paper-images/2611.18176.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "title": "Joint World Action Models through Differentiable Trajectory Optimization",
+    "link": "http://arxiv.org/abs/2611.17626",
+    "arxiv_id": "2611.17626",
+    "detail_path": "papers/2611.17626/",
+    "cover_path": "covers/2611.17626/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.17626.webp",
+    "paper_image_full_path": "assets/paper-images/2611.17626.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-12",
+    "title": "Agentic-Teacher: An Agentic Data Engine for Failure-Driven VLA Post-Training",
+    "link": "http://arxiv.org/abs/2611.17394",
+    "arxiv_id": "2611.17394",
+    "detail_path": "papers/2611.17394/",
+    "cover_path": "covers/2611.17394/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.17394.webp",
+    "paper_image_full_path": "assets/paper-images/2611.17394.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
     "date": "2026-11-12",
     "title": "SALA: Semantically Aligned Latent Actions Enable Dual-Axis Scaling of Embodied Foundation Models",
     "link": "http://arxiv.org/abs/2611.17110",
