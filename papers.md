@@ -1,5 +1,32 @@
 | 日期 | 标题 | 链接 | 简要总结 |
 | --- | --- | --- | --- |
+| 2026-11-16 | ScaleVLA: Scaling Vision-Language-Action Models to 552 Billion Parameters | http://arxiv.org/abs/2611.21607 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | ThinkWAM: Rethinking Latent Futures for Action Refinement | http://arxiv.org/abs/2611.21258 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | MetricHand: Geometry-Aware Flow Matching for 4D Hand Reconstruction in Metric World Space | http://arxiv.org/abs/2611.21060 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | WiTac: Wrist-Informed Tactile Representations for Contact-Rich Manipulation | http://arxiv.org/abs/2611.21057 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | POKE: Probe Offline, Keep Efficiently for Vision-Language-Action Models | http://arxiv.org/abs/2611.21033 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | FAVR: Flow-Aware Visual Residual Alignment for Vision-Language-Action Policies | http://arxiv.org/abs/2611.20971 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | ACiT: Proprioceptive-Prior Action Chunking with Inverted Transformers | http://arxiv.org/abs/2611.20719 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | Competent Autonomous Driving Through Fine Tuning Vision Language Action Models with Symbolic Traffic Rules | http://arxiv.org/abs/2611.20648 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | Instructions Before Actions: Prospective and Retrospective Language Supervision for Driving Vision-Language-Action Data | http://arxiv.org/abs/2611.20631 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | ReRead: Wrong Predictions, Useful Representations - Correcting Frozen Robot Policies by Re-reading Their Own Representations | http://arxiv.org/abs/2611.20465 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-16 | Stochastic Self-Distillation for Flow-Based Vision-Language-Action Models | http://arxiv.org/abs/2611.20460 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | NF-VLA: A Normalizing-Flow Baseline for Vision-Language-Action Learning | http://arxiv.org/abs/2611.20314 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | Right Goal, Wrong Body: Re-grounding Frozen VLAs under Actuation Shift | http://arxiv.org/abs/2611.20244 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | ReactBench-AD: Do Driving VLAs and World-Action Models React to Imminent Hazards in Their Path? | http://arxiv.org/abs/2611.20011 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | PlanDiv: Test-Time Scaling with Latent Plans for Vision-Language-Action Models | http://arxiv.org/abs/2611.20010 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | DiffWAM: Learning World Action Model from Consecutive Visual Difference | http://arxiv.org/abs/2611.19904 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | When Backdoors Can Be Switched Off: Suppression-Aware Backdoor Attacks on Vision-Language-Action Models | http://arxiv.org/abs/2611.19774 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-15 | Cache or Denoise Less? Residual Reuse in a Flow-Matching World Action Model | http://arxiv.org/abs/2611.19709 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | ResWAM: Learning What Changes, Not What Stays, for World-Action Models | http://arxiv.org/abs/2611.19559 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | MARS: Dynamic Routing of Reinforcement-Learned Atomic Skills for Multi-Stage Robotic Manipulation | http://arxiv.org/abs/2611.19324 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | Self-Calibrating Vision-Agent-Action: Deploying Pick-and-Place to New Robot Cells without Demonstrations or Fine-Tuning | http://arxiv.org/abs/2611.19198 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | Ego2Sim2Humanoid: Agentic Real-to-Sim for Learning Loco-Manipulation VLAs without Robot Demonstrations | http://arxiv.org/abs/2611.19196 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | WA-JEPA: Goal-Aware Predictive Feedback Action Refinement for a World-Action Model | http://arxiv.org/abs/2611.19183 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | SuperGlance: Driving at a Glance with a Vision-Language Model | http://arxiv.org/abs/2611.19138 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | Wireless Edge-Assisted Adaptive Latent Reasoning for Vision-Language-Action Models in Physical AI | http://arxiv.org/abs/2611.19131 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-14 | RoboCoEvo: Expanding Robot Capabilities through Agent-Policy Co-Evolution | http://arxiv.org/abs/2611.19081 | <details><summary>展开</summary>待生成</details> |
+| 2026-11-13 | Bring Back Language to Actions: Restoring VLM capabilities in VLA Models via Parameter Merging | http://arxiv.org/abs/2611.18891 | <details><summary>展开</summary>待生成</details> |
 | 2026-11-13 | Training Reasoning Models in Simulation to Natively Use Real Robots | http://arxiv.org/abs/2611.18562 | <details><summary>展开</summary>待生成</details> |
 | 2026-11-13 | Gamer: A Generalist Vision-Language-Action Foundation Model for Long-Horizon Real-Time Game Agent | http://arxiv.org/abs/2611.18397 | <details><summary>展开</summary>待生成</details> |
 | 2026-11-13 | Vision-Language-Action Models: A Life-Cycle Survey of Design, Training and Deployment | http://arxiv.org/abs/2611.18372 | <details><summary>展开</summary>待生成</details> |

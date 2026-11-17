@@ -1,5 +1,734 @@
 [
   {
+    "date": "2026-11-16",
+    "title": "ScaleVLA: Scaling Vision-Language-Action Models to 552 Billion Parameters",
+    "link": "http://arxiv.org/abs/2611.21607",
+    "arxiv_id": "2611.21607",
+    "detail_path": "papers/2611.21607/",
+    "cover_path": "covers/2611.21607/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.21607.webp",
+    "paper_image_full_path": "assets/paper-images/2611.21607.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "ThinkWAM: Rethinking Latent Futures for Action Refinement",
+    "link": "http://arxiv.org/abs/2611.21258",
+    "arxiv_id": "2611.21258",
+    "detail_path": "papers/2611.21258/",
+    "cover_path": "covers/2611.21258/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.21258.webp",
+    "paper_image_full_path": "assets/paper-images/2611.21258.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "MetricHand: Geometry-Aware Flow Matching for 4D Hand Reconstruction in Metric World Space",
+    "link": "http://arxiv.org/abs/2611.21060",
+    "arxiv_id": "2611.21060",
+    "detail_path": "papers/2611.21060/",
+    "cover_path": "covers/2611.21060/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.21060.webp",
+    "paper_image_full_path": "assets/paper-images/2611.21060.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "WiTac: Wrist-Informed Tactile Representations for Contact-Rich Manipulation",
+    "link": "http://arxiv.org/abs/2611.21057",
+    "arxiv_id": "2611.21057",
+    "detail_path": "papers/2611.21057/",
+    "cover_path": "covers/2611.21057/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.21057.webp",
+    "paper_image_full_path": "assets/paper-images/2611.21057.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "POKE: Probe Offline, Keep Efficiently for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.21033",
+    "arxiv_id": "2611.21033",
+    "detail_path": "papers/2611.21033/",
+    "cover_path": "covers/2611.21033/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.21033.webp",
+    "paper_image_full_path": "assets/paper-images/2611.21033.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "FAVR: Flow-Aware Visual Residual Alignment for Vision-Language-Action Policies",
+    "link": "http://arxiv.org/abs/2611.20971",
+    "arxiv_id": "2611.20971",
+    "detail_path": "papers/2611.20971/",
+    "cover_path": "covers/2611.20971/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20971.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20971.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "ACiT: Proprioceptive-Prior Action Chunking with Inverted Transformers",
+    "link": "http://arxiv.org/abs/2611.20719",
+    "arxiv_id": "2611.20719",
+    "detail_path": "papers/2611.20719/",
+    "cover_path": "covers/2611.20719/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20719.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20719.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "Competent Autonomous Driving Through Fine Tuning Vision Language Action Models with Symbolic Traffic Rules",
+    "link": "http://arxiv.org/abs/2611.20648",
+    "arxiv_id": "2611.20648",
+    "detail_path": "papers/2611.20648/",
+    "cover_path": "covers/2611.20648/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20648.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20648.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "Instructions Before Actions: Prospective and Retrospective Language Supervision for Driving Vision-Language-Action Data",
+    "link": "http://arxiv.org/abs/2611.20631",
+    "arxiv_id": "2611.20631",
+    "detail_path": "papers/2611.20631/",
+    "cover_path": "covers/2611.20631/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20631.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20631.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "ReRead: Wrong Predictions, Useful Representations - Correcting Frozen Robot Policies by Re-reading Their Own Representations",
+    "link": "http://arxiv.org/abs/2611.20465",
+    "arxiv_id": "2611.20465",
+    "detail_path": "papers/2611.20465/",
+    "cover_path": "covers/2611.20465/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20465.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20465.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-16",
+    "title": "Stochastic Self-Distillation for Flow-Based Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.20460",
+    "arxiv_id": "2611.20460",
+    "detail_path": "papers/2611.20460/",
+    "cover_path": "covers/2611.20460/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20460.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20460.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "NF-VLA: A Normalizing-Flow Baseline for Vision-Language-Action Learning",
+    "link": "http://arxiv.org/abs/2611.20314",
+    "arxiv_id": "2611.20314",
+    "detail_path": "papers/2611.20314/",
+    "cover_path": "covers/2611.20314/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20314.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20314.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "Right Goal, Wrong Body: Re-grounding Frozen VLAs under Actuation Shift",
+    "link": "http://arxiv.org/abs/2611.20244",
+    "arxiv_id": "2611.20244",
+    "detail_path": "papers/2611.20244/",
+    "cover_path": "covers/2611.20244/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20244.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20244.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#177e89",
+      "to": "#5ec2a8",
+      "spot": "#c5f0de",
+      "ink": "#f5fffb",
+      "muted": "rgba(245, 255, 251, 0.82)",
+      "chip": "rgba(245, 255, 251, 0.16)",
+      "stroke": "rgba(245, 255, 251, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "ReactBench-AD: Do Driving VLAs and World-Action Models React to Imminent Hazards in Their Path?",
+    "link": "http://arxiv.org/abs/2611.20011",
+    "arxiv_id": "2611.20011",
+    "detail_path": "papers/2611.20011/",
+    "cover_path": "covers/2611.20011/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20011.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20011.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "PlanDiv: Test-Time Scaling with Latent Plans for Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.20010",
+    "arxiv_id": "2611.20010",
+    "detail_path": "papers/2611.20010/",
+    "cover_path": "covers/2611.20010/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.20010.webp",
+    "paper_image_full_path": "assets/paper-images/2611.20010.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "DiffWAM: Learning World Action Model from Consecutive Visual Difference",
+    "link": "http://arxiv.org/abs/2611.19904",
+    "arxiv_id": "2611.19904",
+    "detail_path": "papers/2611.19904/",
+    "cover_path": "covers/2611.19904/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.19904.webp",
+    "paper_image_full_path": "assets/paper-images/2611.19904.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "When Backdoors Can Be Switched Off: Suppression-Aware Backdoor Attacks on Vision-Language-Action Models",
+    "link": "http://arxiv.org/abs/2611.19774",
+    "arxiv_id": "2611.19774",
+    "detail_path": "papers/2611.19774/",
+    "cover_path": "covers/2611.19774/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.19774.webp",
+    "paper_image_full_path": "assets/paper-images/2611.19774.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-15",
+    "title": "Cache or Denoise Less? Residual Reuse in a Flow-Matching World Action Model",
+    "link": "http://arxiv.org/abs/2611.19709",
+    "arxiv_id": "2611.19709",
+    "detail_path": "papers/2611.19709/",
+    "cover_path": "covers/2611.19709/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.19709.webp",
+    "paper_image_full_path": "assets/paper-images/2611.19709.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "ResWAM: Learning What Changes, Not What Stays, for World-Action Models",
+    "link": "http://arxiv.org/abs/2611.19559",
+    "arxiv_id": "2611.19559",
+    "detail_path": "papers/2611.19559/",
+    "cover_path": "covers/2611.19559/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.19559.webp",
+    "paper_image_full_path": "assets/paper-images/2611.19559.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#d84f61",
+      "to": "#f29c6b",
+      "spot": "#ffd6c4",
+      "ink": "#fff7f4",
+      "muted": "rgba(255, 247, 244, 0.82)",
+      "chip": "rgba(255, 247, 244, 0.16)",
+      "stroke": "rgba(255, 247, 244, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "MARS: Dynamic Routing of Reinforcement-Learned Atomic Skills for Multi-Stage Robotic Manipulation",
+    "link": "http://arxiv.org/abs/2611.19324",
+    "arxiv_id": "2611.19324",
+    "detail_path": "papers/2611.19324/",
+    "cover_path": "covers/2611.19324/",
+    "paper_image_path": "assets/paper-images/thumbs/2611.19324.webp",
+    "paper_image_full_path": "assets/paper-images/2611.19324.webp",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "Self-Calibrating Vision-Agent-Action: Deploying Pick-and-Place to New Robot Cells without Demonstrations or Fine-Tuning",
+    "link": "http://arxiv.org/abs/2611.19198",
+    "arxiv_id": "2611.19198",
+    "detail_path": "papers/2611.19198/",
+    "cover_path": "covers/2611.19198/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "Ego2Sim2Humanoid: Agentic Real-to-Sim for Learning Loco-Manipulation VLAs without Robot Demonstrations",
+    "link": "http://arxiv.org/abs/2611.19196",
+    "arxiv_id": "2611.19196",
+    "detail_path": "papers/2611.19196/",
+    "cover_path": "covers/2611.19196/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#6f4cc9",
+      "to": "#c57be8",
+      "spot": "#efd9ff",
+      "ink": "#fdf7ff",
+      "muted": "rgba(253, 247, 255, 0.82)",
+      "chip": "rgba(253, 247, 255, 0.16)",
+      "stroke": "rgba(253, 247, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "WA-JEPA: Goal-Aware Predictive Feedback Action Refinement for a World-Action Model",
+    "link": "http://arxiv.org/abs/2611.19183",
+    "arxiv_id": "2611.19183",
+    "detail_path": "papers/2611.19183/",
+    "cover_path": "covers/2611.19183/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "SuperGlance: Driving at a Glance with a Vision-Language Model",
+    "link": "http://arxiv.org/abs/2611.19138",
+    "arxiv_id": "2611.19138",
+    "detail_path": "papers/2611.19138/",
+    "cover_path": "covers/2611.19138/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#ef6c3f",
+      "to": "#f6b13d",
+      "spot": "#ffd59c",
+      "ink": "#fff8ef",
+      "muted": "rgba(255, 248, 239, 0.82)",
+      "chip": "rgba(255, 248, 239, 0.16)",
+      "stroke": "rgba(255, 248, 239, 0.26)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "Wireless Edge-Assisted Adaptive Latent Reasoning for Vision-Language-Action Models in Physical AI",
+    "link": "http://arxiv.org/abs/2611.19131",
+    "arxiv_id": "2611.19131",
+    "detail_path": "papers/2611.19131/",
+    "cover_path": "covers/2611.19131/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-14",
+    "title": "RoboCoEvo: Expanding Robot Capabilities through Agent-Policy Co-Evolution",
+    "link": "http://arxiv.org/abs/2611.19081",
+    "arxiv_id": "2611.19081",
+    "detail_path": "papers/2611.19081/",
+    "cover_path": "covers/2611.19081/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#3f6ee8",
+      "to": "#6fa7ff",
+      "spot": "#d5e6ff",
+      "ink": "#f7fbff",
+      "muted": "rgba(247, 251, 255, 0.82)",
+      "chip": "rgba(247, 251, 255, 0.16)",
+      "stroke": "rgba(247, 251, 255, 0.24)"
+    }
+  },
+  {
+    "date": "2026-11-13",
+    "title": "Bring Back Language to Actions: Restoring VLM capabilities in VLA Models via Parameter Merging",
+    "link": "http://arxiv.org/abs/2611.18891",
+    "arxiv_id": "2611.18891",
+    "detail_path": "papers/2611.18891/",
+    "cover_path": "covers/2611.18891/",
+    "paper_image_path": "",
+    "paper_image_full_path": "",
+    "preview_text": "待生成",
+    "research_unit": "",
+    "hook_text": "待生成",
+    "key_points": [
+      "待生成"
+    ],
+    "reading_minutes": 1,
+    "section_count": 1,
+    "cover_theme": {
+      "from": "#316b57",
+      "to": "#8bb174",
+      "spot": "#d9e7c7",
+      "ink": "#fbfff6",
+      "muted": "rgba(251, 255, 246, 0.82)",
+      "chip": "rgba(251, 255, 246, 0.16)",
+      "stroke": "rgba(251, 255, 246, 0.24)"
+    }
+  },
+  {
     "date": "2026-11-13",
     "title": "Training Reasoning Models in Simulation to Natively Use Real Robots",
     "link": "http://arxiv.org/abs/2611.18562",
